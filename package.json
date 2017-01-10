@@ -1,0 +1,63 @@
+{
+  "name": "carbon-ui-components",
+  "version": "0.0.1",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "ava": "CONFIG=$(pwd)/webpack.ava.config.js NODE_ENV=AVA BABEL_DISABLE_CACHE=1 ava",
+    "build": "npm test && webpack -d",
+    "docs:server": "styleguidist server",
+    "docs:build": "styleguidist build",
+    "eslint": "eslint source/*.js source/**/*.js source/**/*.jsx",
+    "precommit": "npm test",
+    "prepublish": "npm run test",
+    "start": "npm run icons && npm run docs:server",
+    "test": "npm run eslint && npm run icons && npm run ava"
+  },
+  "ava": {
+    "files": [
+      "source/**/*.test.js"
+    ],
+    "verbose": true,
+    "babel": "inherit",
+    "require": [
+      "babel-register",
+      "ignore-styles"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/quantumblack/carbon-ui-components.git"
+  },
+  "author": "Andy Shora <andy.shora@quantumblack.com>",
+  "contributors": [
+    {
+      "name": "Andy Shora",
+      "email": "andy.shora@quantumblack.com"
+    },
+    {
+      "name": "Achilleas Tsoumitas",
+      "email": "Achilleas.Tsoumitas@quantumblack.com"
+    },
+    {
+      "name": "Susana Costa",
+      "email": "susana.costa@quantumblack.com"
+    },
+    {
+      "name": "Lucia Koncincova",
+      "email": "lucia.koncincova@quantumblack.com"
+    },
+    {
+      "name": "Ottis Kelleghan",
+      "email": "ottis.kelleghan@quantumblack.com"
+    }
+  ],
+  "dependencies": {},
+  "devDependencies": {},
+  "engines": {
+    "node": "6.9",
+    "npm": "3.10"
+  },
+  "license": "UNLICENSED",
+  "homepage": "https://bitbucket.org/quantumblack/carbon-ui-components#readme"
+}

@@ -1,0 +1,22 @@
+{
+  "presets": [
+    "es2016",
+    "es2015",
+    "react"
+  ],
+  "plugins": [
+    "transform-es2015-modules-commonjs",
+    "transform-es2015-destructuring",
+    "transform-object-rest-spread"
+  ],
+  "env": {
+    "AVA": {
+      "plugins": [
+        ["babel-plugin-webpack-loaders", {
+          "config": "${CONFIG}",
+          "verbose": false
+        }]
+      ]
+    }
+  }
+}
