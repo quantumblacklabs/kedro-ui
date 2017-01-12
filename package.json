@@ -1,5 +1,5 @@
 {
-  "name": "carbon-ui-components",
+  "name": "@quantumblack/carbon-ui-components",
   "version": "0.0.1",
   "description": "",
   "main": "dist/index.js",
@@ -37,7 +37,7 @@
     },
     {
       "name": "Achilleas Tsoumitas",
-      "email": "Achilleas.Tsoumitas@quantumblack.com"
+      "email": "achilleas.tsoumitas@quantumblack.com"
     },
     {
       "name": "Susana Costa",
@@ -53,7 +53,9 @@
     }
   ],
   "dependencies": {},
-  "devDependencies": {},
+  "devDependencies": {
+    "@quantumblack/javascript-standards": "git+ssh://git@bitbucket.org/quantumblack/javascript-standards.git"
+  },
   "engines": {
     "node": "6.9",
     "npm": "3.10"
