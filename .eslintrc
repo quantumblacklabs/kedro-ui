@@ -1,2 +1,5 @@
----
-  extends: ./node_modules/@quantumblack/javascript-standards/config/react/eslint/.eslintrc-source
+{
+  "extends": [
+    "./node_modules/@quantumblack/javascript-standards/config/react/eslint/.eslintrc-source"
+  ]
+}

@@ -8,7 +8,7 @@
     "build": "npm test && webpack -d",
     "docs:server": "styleguidist server",
     "docs:build": "styleguidist build",
-    "eslint": "eslint source/*.js source/**/*.js source/**/*.jsx",
+    "eslint": "eslint src/*.js src/**/*.js src/**/*.jsx",
     "precommit": "npm test",
     "prepublish": "npm run test",
     "start": "npm run icons && npm run docs:server",
@@ -16,7 +16,7 @@
   },
   "ava": {
     "files": [
-      "source/**/*.test.js"
+      "src/**/*.test.js"
     ],
     "verbose": true,
     "babel": "inherit",
