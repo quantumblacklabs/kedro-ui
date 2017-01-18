@@ -21,7 +21,11 @@
       "src/**/*.test.js"
     ],
     "verbose": false,
-    "babel": "inherit"
+    "babel": "inherit",
+    "require": [
+      "babel-register",
+      "ignore-styles"
+    ]
   },
   "repository": {
     "type": "git",
