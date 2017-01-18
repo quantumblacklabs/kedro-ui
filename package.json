@@ -53,12 +53,11 @@
       "email": "ottis.kelleghan@quantumblack.com"
     }
   ],
-  "devDependencies": {
-    "@quantumblack/javascript-standards": "git+ssh://git@bitbucket.org/quantumblack/javascript-standards.git",
-    "babel-plugin-transform-react-jsx": "^6.8.0"
-  },
+  "devDependencies": {},
   "dependencies": {
+    "@quantumblack/javascript-standards": "git+ssh://git@bitbucket.org/quantumblack/javascript-standards.git",
     "ava": "^0.17.0",
+    "babel-core": "^6.21.0",
     "babel-plugin-transform-object-rest-spread": "^6.20.2",
     "babel-plugin-webpack-loaders": "^0.8.0",
     "babel-preset-latest": "^6.16.0",
