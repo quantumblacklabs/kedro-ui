@@ -20,12 +20,8 @@
     "files": [
       "src/**/*.test.js"
     ],
-    "verbose": true,
-    "babel": "inherit",
-    "require": [
-      "babel-register",
-      "ignore-styles"
-    ]
+    "verbose": false,
+    "babel": "inherit"
   },
   "repository": {
     "type": "git",
