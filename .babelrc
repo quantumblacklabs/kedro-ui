@@ -1,0 +1,19 @@
+{
+  "presets": [
+    "latest",
+    "react"
+  ],
+  "plugins": [
+    "transform-object-rest-spread"
+  ],
+  "env": {
+    "AVA": {
+      "plugins": [
+        ["babel-plugin-webpack-loaders", {
+          "config": "${CONFIG}",
+          "verbose": false
+        }]
+      ]
+    }
+  }
+}
