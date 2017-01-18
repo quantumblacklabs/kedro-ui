@@ -61,7 +61,7 @@
     "babel-plugin-transform-object-rest-spread": "^6.20.2",
     "babel-plugin-webpack-loaders": "^0.8.0",
     "babel-preset-latest": "^6.16.0",
-    "babel-preset-react": "^6.16.0",
+    "babel-preset-react": "^6.11.1",
     "babel-register": "^6.18.0",
     "es6-object-assign": "^1.0.3",
     "express": "^4.14.0",
