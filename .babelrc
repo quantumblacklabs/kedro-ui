@@ -13,7 +13,7 @@
       "plugins": [
         ["babel-plugin-webpack-loaders", {
           "config": "${CONFIG}",
-          "verbose": false
+          "verbose": true
         }]
       ]
     }

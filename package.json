@@ -6,6 +6,7 @@
   "scripts": {
     "ava": "pwd && CONFIG=$(pwd)/webpack.ava.config.js NODE_ENV=AVA BABEL_DISABLE_CACHE=1 ava",
     "build": "npm test && webpack -d",
+    "build-quick": "webpack -d",
     "docs:server": "styleguidist server",
     "docs:build": "styleguidist build",
     "eslint": "eslint src/*.js src/**/*.js src/**/*.jsx",
