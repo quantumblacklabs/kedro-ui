@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "ava": "CONFIG=$(pwd)/webpack.ava.config.js NODE_ENV=AVA BABEL_DISABLE_CACHE=1 ava",
+    "ava": "pwd && CONFIG=$(pwd)/webpack.ava.config.js NODE_ENV=AVA BABEL_DISABLE_CACHE=1 ava",
     "build": "npm test && webpack -d",
     "docs:server": "styleguidist server",
     "docs:build": "styleguidist build",
