@@ -10,7 +10,7 @@
     "docs:server": "styleguidist server",
     "docs:build": "styleguidist build",
     "eslint": "eslint src/*.js src/**/*.js src/**/*.jsx",
-    "postinstall": "npm run build-quick",
+    "postinstall": "npm run build",
     "precommit": "npm test",
     "prepublish": "npm run test",
     "start": "npm run docs:server",
@@ -21,11 +21,7 @@
       "src/**/*.test.js"
     ],
     "verbose": false,
-    "babel": "inherit",
-    "require": [
-      "babel-register",
-      "ignore-styles"
-    ]
+    "babel": "inherit"
   },
   "repository": {
     "type": "git",
