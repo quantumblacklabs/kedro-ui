@@ -2,7 +2,7 @@
   "name": "@quantumblack/carbon-ui-components",
   "version": "0.0.1",
   "description": "",
-  "main": "source/index.js",
+  "main": "src/index.js",
   "scripts": {
     "ava": "CONFIG=$(pwd)/webpack.ava.config.js NODE_ENV=AVA BABEL_DISABLE_CACHE=1 ava",
     "build": "webpack -d",
@@ -53,11 +53,14 @@
       "email": "ottis.kelleghan@quantumblack.com"
     }
   ],
-  "devDependencies": {},
+  "devDependencies": {
+    "@quantumblack/javascript-standards": "git+ssh://git@bitbucket.org/quantumblack/javascript-standards.git",
+    "ava": "^0.17.0"
+  },
   "dependencies": {
     "@quantumblack/javascript-standards": "git+ssh://git@bitbucket.org/quantumblack/javascript-standards.git",
-    "ava": "^0.17.0",
     "babel-core": "^6.21.0",
+    "babel-loader": "^6.2.10",
     "babel-plugin-transform-object-rest-spread": "^6.20.2",
     "babel-plugin-webpack-loaders": "^0.8.0",
     "babel-preset-latest": "^6.16.0",
