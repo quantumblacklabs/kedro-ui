@@ -54,8 +54,10 @@
     }
   ],
   "devDependencies": {
-    "@quantumblack/javascript-standards": "git+ssh://git@bitbucket.org/quantumblack/javascript-standards.git",
-    "ava": "^0.17.0"
+    "ava": "^0.17.0",
+    "ignore-styles": "^5.0.1",
+    "babel-register": "^6.18.0",
+    "sinon": "^1.17.7"
   },
   "dependencies": {
     "@quantumblack/javascript-standards": "git+ssh://git@bitbucket.org/quantumblack/javascript-standards.git",
@@ -65,16 +67,13 @@
     "babel-plugin-webpack-loaders": "^0.8.0",
     "babel-preset-latest": "^6.16.0",
     "babel-preset-react": "^6.11.1",
-    "babel-register": "^6.18.0",
     "es6-object-assign": "^1.0.3",
     "express": "^4.14.0",
     "glob": "^7.1.1",
-    "ignore-styles": "^5.0.1",
     "lodash": "^4.17.4",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-styleguidist": "^4.6.1",
-    "sinon": "^1.17.7",
     "webpack": "^1.14.0"
   },
   "engines": {
