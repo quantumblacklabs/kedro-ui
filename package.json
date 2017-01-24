@@ -54,10 +54,15 @@
     }
   ],
   "devDependencies": {
+    "@quantumblack/javascript-standards": "git+ssh://git@bitbucket.org/quantumblack/javascript-standards.git",
     "ava": "^0.17.0",
-    "ignore-styles": "^5.0.1",
+    "babel-loader": "^6.2.10",
     "babel-register": "^6.18.0",
-    "sinon": "^1.17.7"
+    "css-loader": "^0.26.1",
+    "ignore-styles": "^5.0.1",
+    "sinon": "^1.17.7",
+    "style-loader": "^0.13.1",
+    "svg-react-loader": "^0.3.7"
   },
   "dependencies": {
     "@quantumblack/javascript-standards": "git+ssh://git@bitbucket.org/quantumblack/javascript-standards.git",
