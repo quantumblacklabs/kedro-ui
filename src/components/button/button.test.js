@@ -1,6 +1,6 @@
 import test from 'ava';
 import Button from './button';
 
-test('ava should work from Components', t => {
+test('Button is a React Component', t => {
   t.is(typeof Button, 'function');
 });
