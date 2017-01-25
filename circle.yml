@@ -4,3 +4,34 @@ machine:
 deployment:
   production:
     branch: master
+    commands:
+      - "[[ ! -s \"$(git rev-parse --git-dir)/shallow\" ]] || git fetch --unshallow"
+      #- git push dokku@5.148.131.186:carbon-ui master -f
+      #- git push dokku@quantumblack.io:carbon-ui master -f
+dependencies:
+  post:
+    ## install the Cypress CLI Tools
+    ## which gives us access to the
+    ## `cypress` command used below
+    - npm install -g cypress-cli
+test:
+  pre:
+  ## runs the 'start' script which
+  ## boots our local app server on port 8080
+  ## which cypress expects to be running
+  - npm start:
+      background: true
+  override:
+    ## now run cypress in CI mode
+    ## which runs all of the tests
+    ## and uses the CYPRESS_CI_KEY
+    ## environment var by default
+    ## which you need to configure
+    ## on Circle CI behind the scenes
+    - cypress ci
+
+    ## alternatively we could specify
+    ## a specific secret key to use
+    ## like this without having to
+    ## configure anything in Circle CI:
+    ## - cypress ci 703b33d9-a00e-4c66-90c2-40efc0fee2c6
