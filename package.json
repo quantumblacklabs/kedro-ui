@@ -64,7 +64,8 @@
     "svg-react-loader": "^0.3.7"
   },
   "dependencies": {
-    "@quantumblack/javascript-standards": "0.0.1",
+    "@quantumblack/carbon-ui-core": "0.0.2",
+    "@quantumblack/javascript-standards": "0.0.3",
     "babel-core": "^6.21.0",
     "babel-loader": "^6.2.10",
     "babel-plugin-transform-object-rest-spread": "^6.20.2",
