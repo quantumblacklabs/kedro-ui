@@ -10,8 +10,6 @@ deployment:
       #- git push dokku@quantumblack.io:carbon-ui master -f
 dependencies:
   cache_directories:
-    - /home/ubuntu/nvm/versions/node/v6.9.0/bin/cypress
-    - /home/ubuntu/nvm/versions/node/v6.9.0/lib/node_modules/cypress-cli
     - /home/ubuntu/.cypress/Cypress
   post:
     ## install the Cypress CLI Tools
@@ -32,7 +30,8 @@ test:
     ## environment var by default
     ## which you need to configure
     ## on Circle CI behind the scenes
-    - cypress ci
+    - cypress ci:
+        timeout: 720
 
     ## alternatively we could specify
     ## a specific secret key to use
