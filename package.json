@@ -1,6 +1,6 @@
 {
   "name": "@quantumblack/carbon-ui-components",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -64,7 +64,7 @@
     "svg-react-loader": "^0.3.7"
   },
   "dependencies": {
-    "@quantumblack/carbon-ui-core": "0.0.2",
+    "@quantumblack/carbon-ui-core": "0.0.3",
     "@quantumblack/javascript-standards": "0.0.3",
     "babel-core": "^6.21.0",
     "babel-loader": "^6.2.10",
