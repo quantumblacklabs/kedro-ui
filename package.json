@@ -54,7 +54,6 @@
     }
   ],
   "devDependencies": {
-    "@quantumblack/javascript-standards": "git+ssh://git@bitbucket.org/quantumblack/javascript-standards.git",
     "ava": "^0.17.0",
     "babel-loader": "^6.2.10",
     "babel-register": "^6.18.0",
@@ -65,7 +64,7 @@
     "svg-react-loader": "^0.3.7"
   },
   "dependencies": {
-    "@quantumblack/javascript-standards": "git+ssh://git@bitbucket.org/quantumblack/javascript-standards.git",
+    "@quantumblack/javascript-standards": "0.0.1",
     "babel-core": "^6.21.0",
     "babel-loader": "^6.2.10",
     "babel-plugin-transform-object-rest-spread": "^6.20.2",
