@@ -10,7 +10,7 @@ deployment:
       #- git push dokku@quantumblack.io:carbon-ui master -f
 dependencies:
   cache_directories:
-    - /home/ubuntu/.cypress/Cypress
+    - /home/ubuntu/.cypress
   post:
     ## install the Cypress CLI Tools
     ## which gives us access to the
