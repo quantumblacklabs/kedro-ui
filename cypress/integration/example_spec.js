@@ -1110,7 +1110,7 @@ describe('Kitchen Sink', function(){
         // https://on.cypress.io/api/readfile
         .readFile('templates/index.html')
         .then(function (html) {
-          expect(html).to.include('<!DOCTYPE html>')
+          expect(html).to.include('<!doctype html>')
         })
 
     })
