@@ -1,7 +1,7 @@
 {
   "name": "@quantumblack/carbon-ui-components",
   "version": "0.0.6",
-  "description": "",
+  "description": "A collection of React components which are used in Carbon UI",
   "main": "dist/index.js",
   "scripts": {
     "ava": "CONFIG=$(pwd)/webpack.ava.config.js NODE_ENV=AVA BABEL_DISABLE_CACHE=1 ava",
