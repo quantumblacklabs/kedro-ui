@@ -35,18 +35,20 @@ const Button = ({
 
   const classes = classNames(
     'qb-button',
-    `qb-button--size-${ size }`,
-    `qb-button--type-${ type }`,
-    { [`qb-button--disabled`]: disabled },
-    `qb-button--theme-${ theme }`
+    `qb-button--size-${size}`,
+    `qb-button--type-${type}`,
+    { 'qb-button--disabled': disabled },
+    `qb-button--theme-${theme}`
   );
 
   return (
     <button
-      { ...eventHandlerProps }
-      disabled={ disabled }
-      type='button'
-      className={ classes }>{ label }</button>
+      {...eventHandlerProps}
+      disabled={disabled}
+      type={'button'}
+      className={classes}>
+      {label}
+    </button>
   );
 };
 
@@ -94,6 +96,11 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
+  data: null,
+  disabled: false,
+  onHoverIn: null,
+  onTapped: null,
+  onHoverOut: null,
   size: 'medium',
   tappedPropName: 'onClick',
   theme: 'dark',
