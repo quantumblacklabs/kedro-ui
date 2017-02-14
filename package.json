@@ -5,12 +5,11 @@
   "main": "dist/index.js",
   "scripts": {
     "ava": "CONFIG=$(pwd)/webpack.ava.config.js NODE_ENV=AVA BABEL_DISABLE_CACHE=1 ava",
-    "build": "webpack -d",
+    "build": "webpack -d --config webpack.build.config.js",
     "docs:server": "styleguidist server",
     "docs:build": "styleguidist build",
     "eslint": "eslint src/*.js src/**/*.js src/**/*.jsx",
     "postinstall": "npm run build",
-    "precommit": "npm test",
     "prepublish": "npm run test",
     "start": "npm run docs:server",
     "test": "npm run eslint && npm run ava"
@@ -54,6 +53,7 @@
     }
   ],
   "devDependencies": {
+    "autoprefixer": "^6.7.2",
     "ava": "^0.17.0",
     "babel-loader": "^6.2.10",
     "babel-register": "^6.18.0",
@@ -65,13 +65,20 @@
     "eslint-plugin-react": "^6.9.0",
     "eslint-plugin-require-jsdoc": "^1.0.4",
     "ignore-styles": "^5.0.1",
+    "postcss-cssnext": "^2.9.0",
+    "postcss-loader": "^1.3.0",
+    "postcss-smart-import": "^0.6.7",
+    "precss": "^1.4.0",
+    "react-styleguidist": "^5.0.0-beta.10",
     "sinon": "^1.17.7",
     "style-loader": "^0.13.1",
+    "stylelint": "^7.8.0",
+    "stylelint-config-standard": "^16.0.0",
     "svg-react-loader": "^0.3.7"
   },
   "dependencies": {
     "@quantumblack/carbon-ui-core": "0.0.3",
-    "@quantumblack/javascript-standards": "0.0.5",
+    "@quantumblack/javascript-standards": "^1.2.2",
     "babel-core": "^6.21.0",
     "babel-loader": "^6.2.10",
     "babel-plugin-transform-object-rest-spread": "^6.20.2",
@@ -85,8 +92,7 @@
     "lodash": "^4.17.4",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
-    "react-styleguidist": "^4.6.1",
-    "webpack": "^1.14.0"
+    "webpack": "^2.2.1"
   },
   "engines": {
     "node": "6.9",
