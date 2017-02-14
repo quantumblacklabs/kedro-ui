@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import './button.css';
 
 /**
- * An button component
+ * A button component
  */
 const Button = ({
   data,

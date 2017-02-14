@@ -1,7 +1,9 @@
 var path = require('path');
-var pkg = require('./package.json')
+var pkg = require('./package.json');
+var corePkg = require('@quantumblack/carbon-ui-core/package.json');
 var _ = require('lodash');
 var glob = require('glob');
+var stylelint = require('stylelint');
 
 const dirs = [
   path.resolve(__dirname, 'src'),
@@ -66,8 +68,16 @@ var config = {
         },
         {
           test: /\.css$/,
-          loaders: ['style-loader', 'css-loader', 'postcss-loader'],
-          include: dirs
+          loaders: ['style-loader', 'css-loader', { loader: 'postcss-loader', options: {
+            plugins: function () {
+              return [
+                require('precss'),
+                require('autoprefixer'),
+                require('stylelint')
+              ];
+            }
+          } }],
+          include: dirs,
         },
         {
           test: /\.json$/,
