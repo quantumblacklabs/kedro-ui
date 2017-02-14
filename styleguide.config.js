@@ -68,15 +68,21 @@ var config = {
         },
         {
           test: /\.css$/,
-          loaders: ['style-loader', 'css-loader', { loader: 'postcss-loader', options: {
-            plugins: function () {
-              return [
-                require('precss'),
-                require('autoprefixer'),
-                require('stylelint')
-              ];
+          loaders: [
+            'style-loader',
+            'css-loader',
+            {
+              loader: 'postcss-loader',
+              options: {
+                plugins: function () {
+                  return [
+                    require('stylelint'),
+                    require('postcss-cssnext')
+                  ];
+                }
+              }
             }
-          } }],
+          ],
           include: dirs,
         },
         {

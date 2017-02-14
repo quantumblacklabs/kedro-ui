@@ -1,3 +1,7 @@
+:root {
+  --mainColor: hotpink;
+}
+
 .qb-button {
-  background: red;
+  background: var(--mainColor);
 }
