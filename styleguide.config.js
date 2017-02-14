@@ -7,9 +7,7 @@ var stylelint = require('stylelint');
 
 const dirs = [
   path.resolve(__dirname, 'src'),
-  path.resolve(__dirname, 'templates'),
-  path.join(process.cwd() + '/src'),
-  path.join(process.cwd() + '/templates')
+  path.resolve(__dirname, 'templates')
 ];
 
 var config = {
