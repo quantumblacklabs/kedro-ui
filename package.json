@@ -1,6 +1,6 @@
 {
   "name": "@quantumblack/carbon-ui-components",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A collection of React components which are used in Carbon UI",
   "main": "dist/index.js",
   "scripts": {
@@ -52,18 +52,6 @@
       "email": "ottis.kelleghan@quantumblack.com"
     }
   ],
-  "devDependencies": {
-    "ava": "^0.17.0",
-    "eslint": "^3.14.1",
-    "eslint-config-airbnb": "^14.0.0",
-    "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-jsx-a11y": "^3.0.2",
-    "eslint-plugin-react": "^6.9.0",
-    "eslint-plugin-require-jsdoc": "^1.0.4",
-    "ignore-styles": "^5.0.1",
-    "react-styleguidist": "^5.0.0-beta.10",
-    "sinon": "^1.17.7"
-  },
   "dependencies": {
     "@quantumblack/carbon-ui-core": "^1.0.0",
     "@quantumblack/javascript-standards": "^1.4.1",
@@ -90,6 +78,18 @@
     "stylelint-config-standard": "^16.0.0",
     "svg-react-loader": "^0.3.7",
     "webpack": "^2.2.1"
+  },
+  "devDependencies": {
+    "ava": "^0.17.0",
+    "eslint": "^3.14.1",
+    "eslint-config-airbnb": "^14.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^3.0.2",
+    "eslint-plugin-react": "^6.9.0",
+    "eslint-plugin-require-jsdoc": "^1.0.4",
+    "ignore-styles": "^5.0.1",
+    "react-styleguidist": "^5.0.0-beta.10",
+    "sinon": "^1.17.7"
   },
   "engines": {
     "node": "6.9",
