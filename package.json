@@ -5,12 +5,10 @@
   "main": "dist/index.js",
   "scripts": {
     "ava": "CONFIG=$(pwd)/webpack.ava.config.js NODE_ENV=AVA BABEL_DISABLE_CACHE=1 ava",
-    "build": "webpack -d --config webpack.build.config.js",
+    "build": "npm run docs:build",
     "docs:server": "styleguidist server",
     "docs:build": "styleguidist build",
     "eslint": "eslint src/*.js src/**/*.js src/**/*.jsx",
-    "postinstall": "npm run build",
-    "prepublish": "npm run test",
     "start": "npm run docs:server",
     "test": "npm run eslint && npm run ava"
   },
