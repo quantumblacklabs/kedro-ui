@@ -18,7 +18,10 @@ var config = {
       name: pkg.name, content: './templates/intro.md',
     },
     {
-      name: 'Installation', content: './templates/installation.md'
+      name: 'Components', content: './templates/components/index.md'
+    },
+    {
+      name: 'Modules', content: './templates/modules/index.md'
     },
     // {
     //   name: 'Components',
@@ -30,8 +33,8 @@ var config = {
     //   }
     // },
     {
-      name: 'Insights Components',
-      content: './templates/insights.md',
+      name: 'Project: Insights',
+      content: './templates/projects/insights.md',
       components: function() {
         const components = _.sortBy(glob.sync(path.resolve(__dirname, 'src/components/insights/**/*.jsx')), c => _.last(c.split('/')));
         console.log(`Found ${ components.length } components in ${ path.resolve(__dirname, 'src/components/insights/**/*.jsx') }`);
