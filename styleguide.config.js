@@ -20,12 +20,21 @@ var config = {
     {
       name: 'Installation', content: './templates/installation.md'
     },
+    // {
+    //   name: 'Components',
+    //   content: './templates/components.md',
+    //   components: function() {
+    //     const components = _.sortBy(glob.sync(path.resolve(__dirname, 'src/components/**/*.jsx')), c => _.last(c.split('/')));
+    //     console.log(`Found ${ components.length } components in ${ path.resolve(__dirname, 'src/components/**/*.jsx') }`);
+    //     return components;
+    //   }
+    // },
     {
-      name: 'Components',
-      content: './templates/components.md',
+      name: 'Insights Components',
+      content: './templates/insights.md',
       components: function() {
-        const components = _.sortBy(glob.sync(path.resolve(__dirname, 'src/components/**/*.jsx')), c => _.last(c.split('/')));
-        console.log(`Found ${ components.length } components in ${ path.resolve(__dirname, 'src/components/**/*.jsx') }`);
+        const components = _.sortBy(glob.sync(path.resolve(__dirname, 'src/components/insights/**/*.jsx')), c => _.last(c.split('/')));
+        console.log(`Found ${ components.length } components in ${ path.resolve(__dirname, 'src/components/insights/**/*.jsx') }`);
         return components;
       }
     },

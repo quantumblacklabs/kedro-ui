@@ -81,6 +81,7 @@
   },
   "devDependencies": {
     "ava": "^0.17.0",
+    "enzyme": "^2.7.1",
     "eslint": "^3.14.1",
     "eslint-config-airbnb": "^14.0.0",
     "eslint-plugin-import": "^2.2.0",
