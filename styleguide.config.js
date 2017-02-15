@@ -66,7 +66,7 @@ var config = {
     return 'import { ' + name + ' } from \'qb-components\';';
   },
   defaultExample: true,
-  serverPort: 3500,
+  serverPort: process.env.PORT || 3500,
   highlightTheme: 'material',
   webpackConfig: {
     module: {
