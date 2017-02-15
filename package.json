@@ -10,6 +10,7 @@
     "docs:build": "styleguidist build",
     "eslint": "eslint src/*.js src/**/*.js src/**/*.jsx",
     "start": "npm run docs:server",
+    "postinstall": "npm run build",
     "test": "npm run eslint && npm run ava"
   },
   "ava": {
