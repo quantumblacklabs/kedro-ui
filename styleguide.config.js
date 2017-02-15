@@ -18,14 +18,26 @@ var config = {
       name: pkg.name, content: './templates/intro.md',
     },
     {
-      name: 'Installation', content: './templates/installation.md'
+      name: 'Components', content: './templates/components/index.md'
     },
     {
-      name: 'Components',
-      content: './templates/components.md',
+      name: 'Modules', content: './templates/modules/index.md'
+    },
+    // {
+    //   name: 'Components',
+    //   content: './templates/components.md',
+    //   components: function() {
+    //     const components = _.sortBy(glob.sync(path.resolve(__dirname, 'src/components/**/*.jsx')), c => _.last(c.split('/')));
+    //     console.log(`Found ${ components.length } components in ${ path.resolve(__dirname, 'src/components/**/*.jsx') }`);
+    //     return components;
+    //   }
+    // },
+    {
+      name: 'Project: Insights',
+      content: './templates/projects/insights.md',
       components: function() {
-        const components = _.sortBy(glob.sync(path.resolve(__dirname, 'src/components/**/*.jsx')), c => _.last(c.split('/')));
-        console.log(`Found ${ components.length } components in ${ path.resolve(__dirname, 'src/components/**/*.jsx') }`);
+        const components = _.sortBy(glob.sync(path.resolve(__dirname, 'src/components/insights/**/*.jsx')), c => _.last(c.split('/')));
+        console.log(`Found ${ components.length } components in ${ path.resolve(__dirname, 'src/components/insights/**/*.jsx') }`);
         return components;
       }
     },
@@ -54,7 +66,7 @@ var config = {
     return 'import { ' + name + ' } from \'qb-components\';';
   },
   defaultExample: true,
-  serverPort: 3500,
+  serverPort: process.env.PORT || 3500,
   highlightTheme: 'material',
   webpackConfig: {
     module: {
