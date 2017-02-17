@@ -18,7 +18,7 @@ const Button = ({
   theme,
   type
 }) => {
-  let eventHandlerProps = {};
+  const eventHandlerProps = {};
 
   // lets add some event handlers
   if (onTapped && typeof onTapped === 'function') {
@@ -92,7 +92,7 @@ Button.propTypes = {
   /**
    * Define the button type
    */
-  type: PropTypes.oneOf(['primary', 'secondary', 'positive', 'negative']),
+  type: PropTypes.oneOf(['primary', 'secondary', 'positive', 'negative'])
 };
 
 Button.defaultProps = {

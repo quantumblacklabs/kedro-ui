@@ -62,7 +62,7 @@ test('Satellite component basics', t => {
   const data = { id: 'marketing' };
 
   const wrapper = shallow(<Satellite
-    active={true}
+    active
     state="focused"
     data={data}
     onTapped={callback}
