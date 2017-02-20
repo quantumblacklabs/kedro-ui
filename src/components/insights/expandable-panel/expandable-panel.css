@@ -1,0 +1,35 @@
+$size-expandable-panel-padding: 22px;
+$size-arrow: 16px;
+$size-arrow-pos-right: 35px;
+
+.qb-expandable-panel {
+  position: relative;
+  border-bottom: 1px solid #e0e0e0;
+
+  &--closed {
+    overflow: hidden;
+    height: 0;
+  }
+}
+
+.qb-expandable-panel__container {
+  padding: $size-expandable-panel-padding;
+  border-top: 1px solid;
+  border-color: inherit;
+}
+
+.qb-expandable-panel__arrow {
+  .qb-expandable-panel--open & {
+    position: absolute;
+    top: calc(-1 * $size-arrow / 2);
+    right: $size-arrow-pos-right;
+    width: $size-arrow;
+    height: $size-arrow;
+    border: 1px solid;
+    border-color: inherit;
+    border-right: 0;
+    border-bottom: 0;
+    transform: rotate(45deg);
+    z-index: 1;
+  }
+}
