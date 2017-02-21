@@ -1,7 +1,0 @@
-:root {
-  --mainColor: hotpink;
-}
-
-.qb-button {
-  background: var(--mainColor);
-}
