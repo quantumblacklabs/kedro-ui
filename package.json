@@ -1,6 +1,6 @@
 {
   "name": "@quantumblack/carbon-ui-components",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "A collection of React components which are used in Carbon UI",
   "main": "dist/index.js",
   "scripts": {
@@ -15,13 +15,15 @@
   },
   "ava": {
     "files": [
+      "test/**/*.js",
       "src/**/*.test.js"
     ],
     "verbose": false,
     "babel": "inherit",
     "require": [
       "babel-register",
-      "ignore-styles"
+      "ignore-styles",
+      "./test/helpers/setup-browser-env.js"
     ]
   },
   "repository": {
@@ -81,6 +83,7 @@
   },
   "devDependencies": {
     "ava": "^0.17.0",
+    "browser-env": "^2.0.21",
     "enzyme": "^2.7.1",
     "eslint": "^3.14.1",
     "eslint-config-airbnb": "^14.0.0",
