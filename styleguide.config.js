@@ -21,18 +21,6 @@ var config = {
       name: 'Components', content: './templates/components/index.md'
     },
     {
-      name: 'Modules', content: './templates/modules/index.md'
-    },
-    // {
-    //   name: 'Components',
-    //   content: './templates/components.md',
-    //   components: function() {
-    //     const components = _.sortBy(glob.sync(path.resolve(__dirname, 'src/components/**/*.jsx')), c => _.last(c.split('/')));
-    //     console.log(`Found ${ components.length } components in ${ path.resolve(__dirname, 'src/components/**/*.jsx') }`);
-    //     return components;
-    //   }
-    // },
-    {
       name: 'Project: Insights',
       content: './templates/projects/insights.md',
       components: function() {
@@ -43,7 +31,7 @@ var config = {
     },
     {
       name: 'Modules',
-      content: './templates/modules.md',
+      content: './templates/modules/index.md',
       components: function() {
         const modules = _.sortBy(glob.sync(path.resolve(__dirname, 'src/modules/**/*.jsx')), c => _.last(c.split('/')));
         console.log(`Found ${ modules.length } components in ${ path.resolve(__dirname, 'src/modules/**/*.jsx') }`);

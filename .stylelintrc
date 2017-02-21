@@ -1,6 +1,6 @@
 {
   "extends": ["stylelint-config-standard"],
   "rules": {
-    "unit-whitelist": ["%", "rem", "px"]
+    "unit-whitelist": ["%", "rem", "px", "deg", "vw", "vh", "vmin", "vmax"]
   }
 }
