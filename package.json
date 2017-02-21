@@ -89,6 +89,7 @@
     "eslint-plugin-react": "^6.9.0",
     "eslint-plugin-require-jsdoc": "^1.0.4",
     "ignore-styles": "^5.0.1",
+    "react-addons-test-utils": "^15.4.2",
     "sinon": "^1.17.7"
   },
   "engines": {

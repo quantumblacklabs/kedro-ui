@@ -26,11 +26,11 @@ const Satellite = ({
 }) => {
   const transform = `translate(${x}, ${y})`;
 
-  let outerCircleStyles = {
+  const outerCircleStyles = {
     strokeWidth: borderWidth
   };
 
-  let innerCircleStyles = {
+  const innerCircleStyles = {
     fill: centreColor
   };
 
@@ -54,8 +54,11 @@ const Satellite = ({
     innerCircleStyles.fillOpacity = 0.25;
   }
 
-  let eventHandlerProps = {};
+  const eventHandlerProps = {};
 
+  /**
+   * Tap function wrapper
+   */
   const handleTapped = () => {
     onTapped(data);
   };
@@ -74,15 +77,15 @@ const Satellite = ({
 
   return (
     <g
-      className='qb-satellite'
-      transform={ transform }
-      { ...eventHandlerProps }>
+      className="qb-satellite"
+      transform={transform}
+      {...eventHandlerProps}>
       <circle
-        style={ outerCircleStyles }
-        r={ radius } />
+        style={outerCircleStyles}
+        r={radius} />
       <circle
-        style={ innerCircleStyles }
-        r={ centreRadius } />
+        style={innerCircleStyles}
+        r={centreRadius} />
     </g>
   );
 };
@@ -158,7 +161,10 @@ Satellite.defaultProps = {
   data: null,
   inactiveColor: 'rgb(229, 229, 229)',
   state: 'normal',
-  tappedPropName: 'onClick'
+  tappedPropName: 'onClick',
+  onHoverIn: () => {},
+  onHoverOut: () => {},
+  onTapped: () => {}
 };
 
 export default Satellite;
