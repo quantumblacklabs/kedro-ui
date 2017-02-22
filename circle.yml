@@ -1,17 +1,17 @@
 machine:
   node:
     version: 6.9.0
-deployment:
-  production:
-    branch: master
-    commands:
-      - "[[ ! -s \"$(git rev-parse --git-dir)/shallow\" ]] || git fetch --unshallow"
-      - git push dokku@5.148.131.186:carbon-ui-components master -f
-  staging:
-    branch: develop
-    commands:
-      - "[[ ! -s \"$(git rev-parse --git-dir)/shallow\" ]] || git fetch --unshallow"
-      - git push dokku@5.148.131.186:carbon-ui-components-staging develop:master -f
+# deployment:
+#   production:
+#     branch: master
+#     commands:
+#       - "[[ ! -s \"$(git rev-parse --git-dir)/shallow\" ]] || git fetch --unshallow"
+#       - git push dokku@5.148.131.186:carbon-ui-components master -f
+#   staging:
+#     branch: develop
+#     commands:
+#       - "[[ ! -s \"$(git rev-parse --git-dir)/shallow\" ]] || git fetch --unshallow"
+#       - git push dokku@5.148.131.186:carbon-ui-components-staging develop:master -f
 dependencies:
   post:
   ## install the Cypress CLI Tools
@@ -22,11 +22,13 @@ dependencies:
     - /home/ubuntu/.cypress/Cypress
 test:
   pre:
-  ## runs the 'start' script which
-  ## boots our local app server on port 8080
-  ## which cypress expects to be running
-  - npm start:
-      background: true
+    # runs unit tests
+    - npm install -g cypress-cli
+    ## runs the 'start' script which
+    ## boots our local app server on port 8080
+    ## which cypress expects to be running
+    - npm start:
+        background: true
   override:
     ## now run cypress in CI mode
     ## which runs all of the tests
