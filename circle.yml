@@ -22,11 +22,13 @@ dependencies:
     - /home/ubuntu/.cypress/Cypress
 test:
   pre:
-  ## runs the 'start' script which
-  ## boots our local app server on port 8080
-  ## which cypress expects to be running
-  - npm start:
-      background: true
+    # runs unit tests
+    - npm install -g cypress-cli
+    ## runs the 'start' script which
+    ## boots our local app server on port 8080
+    ## which cypress expects to be running
+    - npm start:
+        background: true
   override:
     ## now run cypress in CI mode
     ## which runs all of the tests
