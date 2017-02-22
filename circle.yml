@@ -1,17 +1,17 @@
 machine:
   node:
     version: 6.9.0
-deployment:
-  production:
-    branch: master
-    commands:
-      - "[[ ! -s \"$(git rev-parse --git-dir)/shallow\" ]] || git fetch --unshallow"
-      - git push dokku@5.148.131.186:carbon-ui-components master -f
-  staging:
-    branch: develop
-    commands:
-      - "[[ ! -s \"$(git rev-parse --git-dir)/shallow\" ]] || git fetch --unshallow"
-      - git push dokku@5.148.131.186:carbon-ui-components-staging develop:master -f
+# deployment:
+#   production:
+#     branch: master
+#     commands:
+#       - "[[ ! -s \"$(git rev-parse --git-dir)/shallow\" ]] || git fetch --unshallow"
+#       - git push dokku@5.148.131.186:carbon-ui-components master -f
+#   staging:
+#     branch: develop
+#     commands:
+#       - "[[ ! -s \"$(git rev-parse --git-dir)/shallow\" ]] || git fetch --unshallow"
+#       - git push dokku@5.148.131.186:carbon-ui-components-staging develop:master -f
 dependencies:
   post:
   ## install the Cypress CLI Tools
