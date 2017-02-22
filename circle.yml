@@ -23,7 +23,7 @@ dependencies:
 test:
   pre:
     # runs unit tests
-    - npm install -g cypress-cli
+    - npm run test
     ## runs the 'start' script which
     ## boots our local app server on port 8080
     ## which cypress expects to be running
