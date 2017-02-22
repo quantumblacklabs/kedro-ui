@@ -14,6 +14,7 @@ module.exports = {
     library: 'flames'
   },
   externals: {
+    'react': 'react',
     'react/addons': true,
     'react/lib/ExecutionEnvironment': true,
     'react/lib/ReactContext': true
