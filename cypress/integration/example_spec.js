@@ -49,6 +49,44 @@ describe('Kitchen Sink', function(){
     //   ↲               ↲            ↲
     // subject        chainer      value
   })
+});
+
+/*
+describe('Kitchen Sink', function(){
+
+  beforeEach(function(){
+    // **** Resetting State Before Each Test ****
+    //
+    // Visiting our app before each test
+    // removes any state build up from
+    // previous tests. Visiting acts as if
+    // we closed a tab and opened a fresh one
+    //
+    // By default Cypress also automatically
+    // clears the Local Storage and Cookies
+    // before each test.
+  })
+
+  it('cy.should - assert that <title> is correct', function(){
+
+    // https://on.cypress.io/api/visit
+    cy.visit('https://example.cypress.io')
+
+    // **** Making Assertions ****
+    //
+    // Here we've made our first assertion using a 'cy.should()' command.
+    // An assertion is comprised of a chainer, subject, and optional value.
+    // Chainers are available from Chai, Chai-jQuery, and Chai-Sinon.
+    // https://on.cypress.io/guides/making-assertions
+    //
+    // https://on.cypress.io/api/should
+    // https://on.cypress.io/api/and
+
+    // https://on.cypress.io/api/title
+    cy.title().should('include', 'Kitchen Sink')
+    //   ↲               ↲            ↲
+    // subject        chainer      value
+  })
 
   context('Querying', function(){
     beforeEach(function(){
@@ -1566,3 +1604,4 @@ describe('Kitchen Sink', function(){
     })
   })
 })
+*/
