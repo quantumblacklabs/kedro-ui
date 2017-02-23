@@ -1,4 +1,4 @@
-@import 'typography/_extends';
+@import 'typography/extends';
 
 /** Fixed position component and module overrides */
 .qb-demo .qb-nav-panel-module {

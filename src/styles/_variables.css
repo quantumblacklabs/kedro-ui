@@ -1,4 +1,4 @@
-@import './_palette';
+@import './palette';
 
 /** Breakpoints **/
 $breakpoint-xsmall: 320px;

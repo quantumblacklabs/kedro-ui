@@ -1,3 +1,3 @@
-@import 'mixins/_breakpoint';
-@import 'mixins/_clearfix';
-@import 'mixins/_font-size';
+@import 'mixins/breakpoint';
+@import 'mixins/clearfix';
+@import 'mixins/font-size';

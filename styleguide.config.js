@@ -5,7 +5,7 @@ var _ = require('lodash');
 var glob = require('glob');
 var stylelint = require('stylelint');
 
-const dirs = [
+var dirs = [
   path.resolve(__dirname, 'src'),
   path.resolve(__dirname, 'templates')
 ];

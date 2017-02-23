@@ -1,6 +1,8 @@
 'use strict';
 
 const webpack = require('webpack');
+const pkg = require('./package.json');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   entry: [
@@ -27,6 +29,7 @@ module.exports = {
     extensions: ['.js', '.jsx', '.css']
   },
   plugins: [
+    new ExtractTextPlugin('carbon-ui.css'),
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
@@ -43,21 +46,13 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loaders: [
-          'style-loader',
-          'css-loader',
-          {
-            loader: 'postcss-loader',
-            options: {
-              plugins: function () {
-                return [
-                  require('stylelint'),
-                  require('postcss-cssnext')
-                ];
-              }
-            }
-          }
-        ]
+        loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            'css-loader',
+            'postcss-loader'
+          ]
+        })
       },
       {
         test: /\.svg$/,

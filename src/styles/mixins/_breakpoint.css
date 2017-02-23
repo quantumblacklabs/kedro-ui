@@ -1,4 +1,4 @@
-@import '../_variables';
+@import '../variables';
 
 @define-mixin from-height $min-height {
   @media (min-height: $min-height) {

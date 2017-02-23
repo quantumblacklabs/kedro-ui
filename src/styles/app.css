@@ -1,11 +1,7 @@
-@import './_reset';
-@import './_includes';
-@import './_overrides';
-@import './typography/_styles';
-
-body {
-  background: hotpink !important;
-}
+@import './reset';
+@import './includes';
+@import './overrides';
+@import './typography/styles';
 
 .qb-demo-body {
   color: white;

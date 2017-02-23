@@ -1,4 +1,4 @@
-@import '_variables';
-@import '_mixins';
-@import '_functions';
-@import 'typography/_extends';
+@import 'variables';
+@import 'mixins';
+@import 'functions';
+@import 'typography/extends';
