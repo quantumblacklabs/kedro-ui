@@ -1,0 +1,25 @@
+@import '../_variables';
+
+@define-mixin from-height $min-height {
+  @media (min-height: $min-height) {
+    @content;
+  }
+}
+
+@define-mixin from-width $min-width {
+  @media (min-width: $min-width) {
+    @content;
+  }
+}
+
+@define-mixin up-to-width $max-width {
+  @media (max-width: $max-width) {
+    @content;
+  }
+}
+
+@define-mixin between-width $min-width, $max-width {
+  @media (min-width: $min-width) and (max-width: $max-width) {
+    @content;
+  }
+}

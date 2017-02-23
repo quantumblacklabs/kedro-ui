@@ -1,0 +1,188 @@
+@import 'typography/_extends';
+
+/** Fixed position component and module overrides */
+.qb-demo .qb-nav-panel-module {
+  position: absolute;
+}
+
+/** React Styleguidist overrides */
+.ReactStyleguidist-Playground__preview {
+  background: #091321;
+  overflow: hidden;
+  padding: 0;
+  margin-bottom: 0;
+  position: relative;
+  min-height: 70px;
+
+  .qb-context--svg & {
+    &:after {
+      content: 'SVG';
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: #008fd5;
+      border: 5px solid #007dc6;
+      width: 60px;
+      height: 60px;
+      text-align: center;
+      color: white;
+      font-size: 24px;
+    }
+  }
+
+  .qb-context--html & {
+    &:after {
+      content: 'HTML';
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: #f16529;
+      border: 5px solid #e44d26;
+      width: 60px;
+      height: 60px;
+      text-align: center;
+      color: white;
+      font-size: 24px;
+    }
+  }
+}
+
+.ReactStyleguidist-ReactComponent__pathLine {
+  color: $turqoise-blue;
+  background: black;
+  padding: 20px;
+  margin: 10px 0;
+}
+
+.ReactStyleguidist-StyleGuide__sidebar {
+  background: radial-gradient(circle at 27% 53%,#1d3149,#162538 56%,#162538 0,#111c2b);
+  color: white;
+
+  .ReactStyleguidist-colors__link,
+  .ReactStyleguidist-StyleGuide__heading {
+    color: white;
+  }
+
+  .ReactStyleguidist-StyleGuide__heading {
+    @extend %type--display-2;
+    padding: 40px 15px;
+  }
+
+  .ReactStyleguidist-ComponentsList__heading {
+    @extend %type--subhead-1;
+    @extend %type--light;
+  }
+
+  .ReactStyleguidist-ComponentsList__item {
+    @extend %type--subhead-2;
+    @extend %type--light;
+  }
+}
+
+.ReactStyleguidist-ReactComponent__heading {
+  font-size: 36px;
+}
+
+.ReactStyleguidist-Editor__root {
+  max-height: 400px;
+  overflow: auto;
+}
+
+.ReactStyleguidist-StyleGuide__content {
+  max-width: 1000px;
+}
+
+.ReactStyleguidist-ReactComponent__description {
+  margin: 20px 0;
+}
+
+.ReactStyleguidist-TableOfContents__search {
+  width: 100%;
+  height: 50px;
+  margin: 0 0 15px 0;
+  font-size: 15px;
+  border-radius: 0;
+  font-family: 'Source Code Pro', monospace;
+
+  &:focus {
+    border: none;
+  }
+}
+
+.CodeMirror-lines {
+  line-height: 20px;
+  font-size: 16px;
+}
+
+.ReactStyleguidist-TableOfContents__section,
+.ReactStyleguidist-Section__heading {
+  font-weight: 300;
+}
+
+.ReactStyleguidist-Section__heading {
+  &:before {
+    content: '>';
+    margin-right: 10px;
+  }
+}
+
+.ReactStyleguidist-ReactComponent__root {
+  border-bottom: 1px solid whitesmoke;
+  padding-bottom: 50px;
+  position: relative;
+
+  > div > .qb-pill {
+    position: absolute;
+    right: 0;
+  }
+}
+
+.ReactStyleguidist-ReactComponent__root {
+  .ReactStyleguidist-Playground__root {
+    .qb-refresh {
+      display: none;
+    }
+  }
+}
+
+.ReactStyleguidist-ReactComponent__root.is-animated {
+  .ReactStyleguidist-Playground__root {
+    .qb-refresh {
+      display: block;
+    }
+
+    &:hover {
+      .qb-refresh {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.ReactStyleguidist-common__font {
+  font-family: 'Titillium Web', sans-serif;
+}
+
+.ReactStyleguidist-Markdown__pre {
+  font-family: 'Source Code Pro', monospace;
+  padding: 20px;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.ReactStyleguidist-Props__tableBody > tr:nth-child(odd) {
+  background: #f7f7fb;
+}
+
+.ReactStyleguidist-Props__cell {
+  min-width: 110px;
+  padding-left: 4px;
+}
+
+.ReactStyleguidist-Props__name {
+  color: #04c141;
+}
+
+.ReactStyleguidist-Props__type {
+  color: #d448b4;
+}

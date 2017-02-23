@@ -1,0 +1,54 @@
+@import './_reset';
+@import './_includes';
+@import './_overrides';
+@import './typography/_styles';
+
+body {
+  background: hotpink !important;
+}
+
+.qb-demo-body {
+  color: white;
+}
+
+.qb-demo-svg {
+  padding: 20px;
+}
+
+.qb-demo {
+  background: black;
+  position: relative;
+  min-height: 50px;
+  padding: 20px 0;
+
+  &.qb-demo--light {
+    background: white;
+    border: none;
+  }
+
+  &.qb-demo--vcenter {
+    display: flex;
+    align-items: center;
+  }
+
+  &.qb-demo--hcenter {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.qb-demo-type {
+  margin: 40px 0 20px;
+
+  label {
+    @extend %type--subhead-1;
+    @extend %type--light;
+  }
+}
+
+.qb-demo-code {
+  color: $turqoise-blue;
+  background: black;
+  padding: 20px;
+  margin: 10px 0;
+}
