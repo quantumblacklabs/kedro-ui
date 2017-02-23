@@ -1,4 +1,4 @@
-@import 'typography/extends';
+/** todo - this should not form part of the bundle, it should just be for the styleguide */
 
 /** Fixed position component and module overrides */
 .qb-demo .qb-nav-panel-module {
@@ -25,7 +25,7 @@
       width: 60px;
       height: 60px;
       text-align: center;
-      color: white;
+      
       font-size: 24px;
     }
   }
@@ -41,10 +41,14 @@
       width: 60px;
       height: 60px;
       text-align: center;
-      color: white;
+      
       font-size: 24px;
     }
   }
+}
+
+.rsg--StyleGuide--content {
+  max-width: none;
 }
 
 .ReactStyleguidist-ReactComponent__pathLine {
@@ -56,11 +60,11 @@
 
 .ReactStyleguidist-StyleGuide__sidebar {
   background: radial-gradient(circle at 27% 53%,#1d3149,#162538 56%,#162538 0,#111c2b);
-  color: white;
+  
 
   .ReactStyleguidist-colors__link,
   .ReactStyleguidist-StyleGuide__heading {
-    color: white;
+    
   }
 
   .ReactStyleguidist-StyleGuide__heading {

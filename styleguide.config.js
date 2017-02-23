@@ -15,9 +15,6 @@ var config = {
   template: './templates/index.html',
   sections: [
     {
-      name: pkg.name, content: './templates/intro.md',
-    },
-    {
       name: 'Components', content: './templates/components/index.md'
     },
     {
@@ -101,14 +98,17 @@ var config = {
       ]
     },
     resolve: {
-      // alias: {
-      //   'rsg-components/ReactComponent/ReactComponentRenderer': path.resolve(__dirname + '/templates/custom-renderers/ReactComponent'),
-      //   'rsg-components/Editor/Editor': path.resolve(__dirname + '/templates/custom-renderers/Editor'),
-      //   'rsg-components/Editor/EditorLoader': path.resolve(__dirname + '/templates/custom-renderers/Editor/EditorLoader')
-      // },
-      // modules: [path.join(process.cwd() + '/src'), path.resolve(__dirname, 'src')]
+      alias: {
+        'rsg-components/ReactComponent/ReactComponentRenderer': path.resolve(__dirname + '/templates/custom-renderers/react-component'),
+        'rsg-components/Section/SectionRenderer': path.resolve(__dirname + '/templates/custom-renderers/section'),
+        'rsg-components/StyleGuide/StyleGuideRenderer': path.resolve(__dirname + '/templates/custom-renderers/styleguide')
+        // 'rsg-components/Editor/Editor': path.resolve(__dirname + '/templates/custom-renderers/editor'),
+        // 'rsg-components/Editor/EditorLoader': path.resolve(__dirname + '/templates/custom-renderers/editor/editor-loader')
+      }
     }
   }
 };
+
+console.log(path.resolve(__dirname + '/templates/custom-renderers/ReactComponent'));
 
 module.exports = config;
