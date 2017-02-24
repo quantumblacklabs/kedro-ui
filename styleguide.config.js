@@ -36,7 +36,6 @@ var config = {
       }
     }
   ],
-  showCode: true,
   getComponentPathLine: function(componentPath) {
     var originalName = path.basename(componentPath, '.jsx');
 
@@ -51,6 +50,7 @@ var config = {
     return 'import { ' + name + ' } from \'qb-components\';';
   },
   defaultExample: true,
+  showCode: true,
   serverPort: process.env.PORT || 3500,
   highlightTheme: 'material',
   webpackConfig: {
@@ -101,7 +101,9 @@ var config = {
       alias: {
         'rsg-components/ReactComponent/ReactComponentRenderer': path.resolve(__dirname + '/templates/custom-renderers/react-component'),
         'rsg-components/Section/SectionRenderer': path.resolve(__dirname + '/templates/custom-renderers/section'),
-        'rsg-components/StyleGuide/StyleGuideRenderer': path.resolve(__dirname + '/templates/custom-renderers/styleguide')
+        'rsg-components/StyleGuide/StyleGuideRenderer': path.resolve(__dirname + '/templates/custom-renderers/styleguide'),
+        'rsg-components/Playground/PlaygroundRenderer': path.resolve(__dirname + '/templates/custom-renderers/playground'),
+        'rsg-components/Examples': path.resolve(__dirname + '/templates/custom-renderers/examples')
         // 'rsg-components/Editor/Editor': path.resolve(__dirname + '/templates/custom-renderers/editor'),
         // 'rsg-components/Editor/EditorLoader': path.resolve(__dirname + '/templates/custom-renderers/editor/editor-loader')
       }

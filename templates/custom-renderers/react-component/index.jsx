@@ -10,7 +10,7 @@ const ReactComponentRenderer = ({ name, pathLine, description, props, examples, 
 
   return (
     <div className={ classnames('cbn-sg__root', { 'is-animated': isAnimated }) } id={ name }>
-      <div className={ 'cbn-sg__meta' }>
+      <div className={ 'cbn-sg__meta cbn-sg-gutter' }>
         <header className={ 'cbn-sg__header' }>
           <a className={ 'cbn-sg__anchor' } href={ '#' + name }>
             <h2 className={ 'cbn-sg__heading' }>{ name }</h2>
