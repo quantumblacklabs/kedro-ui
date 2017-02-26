@@ -38,11 +38,8 @@ const SectionView = React.createClass({
       const content = { background: "#FFFFFF", padding: '20px' };
       return <section className='qb-demo' { ...state } style={ style }>
                <div style={ { marginBottom: '10px' } }>
-                 <Button
-                    type='secondary'
-                    size='medium'
-                    label={ this.state.isOpen ? 'Close' : 'Open' }
-                    onTapped={ () => { this.onClick() } } />
+                 <button
+                    onClick={ () => { this.onClick() } }>{ this.state.isOpen ? 'Close' : 'Open' }</button>
                 </div>
                 <ExpandablePanel
                     isOpen={ this.state.isOpen }
