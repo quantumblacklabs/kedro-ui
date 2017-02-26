@@ -50,7 +50,7 @@ var config = {
     return 'import { ' + name + ' } from \'qb-components\';';
   },
   defaultExample: true,
-  showCode: true,
+  showCode: false,
   serverPort: process.env.PORT || 3500,
   highlightTheme: 'material',
   webpackConfig: {
