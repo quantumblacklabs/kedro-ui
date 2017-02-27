@@ -5,11 +5,11 @@ import classnames from 'classnames';
 
 import './styles.css';
 
-// todo
-const PlaygroundRenderer = ({ code, showCode, evalInContext, onChange, onCodeToggle }) => (
+const _PlaygroundRenderer = ({ code, grid, showCode, evalInContext, onChange, onCodeToggle, onGridToggle }) => (
 	<div className='cbn-sg-playground'>
-		<div className='cbn-sg-playground__preview'>
+		<div className={ classnames('cbn-sg-playground__preview', { 'cbn-sg-playground__preview--grid': grid }) }>
       <div className='cbn-sg-gutter'>
+          <h1>grid: { grid }</h1>
 		     <Preview code={code} evalInContext={evalInContext} />
       </div>
       <div className='cbn-sg-gutter'>
@@ -19,7 +19,7 @@ const PlaygroundRenderer = ({ code, showCode, evalInContext, onChange, onCodeTog
           ) : (
             <button className='cbn-sg-btn' type='button' onClick={onCodeToggle}>Show code</button>
           )}
-          <button className='cbn-sg-btn' type='button' onClick={() => console.log('not implemented yet')}>Grid</button>
+          <button className='cbn-sg-btn' type='button' onClick={onGridToggle}>Grid</button>
           <button className='cbn-sg-btn' type='button' onClick={() => console.log('not implemented yet')}>Reset</button>
         </div>
       </div>
@@ -31,6 +31,28 @@ const PlaygroundRenderer = ({ code, showCode, evalInContext, onChange, onCodeTog
 		</div>
 	</div>
 );
+
+const PlaygroundRenderer = React.createClass({
+
+  getInitialState() {
+    return { grid: false };
+  },
+
+  _handleGridToggle() {
+    this.setState({
+      grid: !this.state.grid
+    });
+  },
+
+  render() {
+    return _PlaygroundRenderer({
+      ...this.props,
+      grid: this.state.grid,
+      onGridToggle: this._handleGridToggle
+    });
+  }
+});
+
 
 PlaygroundRenderer.propTypes = {
 	code: PropTypes.string.isRequired,
