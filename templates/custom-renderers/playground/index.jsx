@@ -5,12 +5,11 @@ import classnames from 'classnames';
 
 import './styles.css';
 
-const _PlaygroundRenderer = ({ code, grid, showCode, evalInContext, onChange, onCodeToggle, onGridToggle }) => (
-	<div className='cbn-sg-playground'>
+const _PlaygroundRenderer = ({ code, grid, showCode, evalInContext, onChange, onCodeToggle, onGridToggled, onResetTapped }) => (
+	<div ref='playground' className='cbn-sg-playground'>
 		<div className={ classnames('cbn-sg-playground__preview', { 'cbn-sg-playground__preview--grid': grid }) }>
       <div className='cbn-sg-gutter'>
-          <h1>grid: { grid }</h1>
-		     <Preview code={code} evalInContext={evalInContext} />
+		    <Preview code={code} evalInContext={evalInContext} />
       </div>
       <div className='cbn-sg-gutter'>
         <div className='cbn-sg-controls'>
@@ -19,8 +18,8 @@ const _PlaygroundRenderer = ({ code, grid, showCode, evalInContext, onChange, on
           ) : (
             <button className='cbn-sg-btn' type='button' onClick={onCodeToggle}>Show code</button>
           )}
-          <button className='cbn-sg-btn' type='button' onClick={onGridToggle}>Grid</button>
-          <button className='cbn-sg-btn' type='button' onClick={() => console.log('not implemented yet')}>Reset</button>
+          <button className='cbn-sg-btn' type='button' onClick={onGridToggled}>Grid</button>
+          <button className='cbn-sg-btn' type='button' onClick={onResetTapped}>Reset</button>
         </div>
       </div>
 		</div>
@@ -38,17 +37,23 @@ const PlaygroundRenderer = React.createClass({
     return { grid: false };
   },
 
-  _handleGridToggle() {
+  _handleGridToggled() {
     this.setState({
       grid: !this.state.grid
     });
+  },
+
+  _handleResetTapped() {
+    console.log('Implement reset');
+
   },
 
   render() {
     return _PlaygroundRenderer({
       ...this.props,
       grid: this.state.grid,
-      onGridToggle: this._handleGridToggle
+      onGridToggled: this._handleGridToggled,
+      onResetTapped: this._handleResetTapped
     });
   }
 });
@@ -59,7 +64,7 @@ PlaygroundRenderer.propTypes = {
 	showCode: PropTypes.bool.isRequired,
 	evalInContext: PropTypes.func.isRequired,
 	onChange: PropTypes.func.isRequired,
-	onCodeToggle: PropTypes.func.isRequired,
+	onCodeToggle: PropTypes.func.isRequired
 };
 
 export default PlaygroundRenderer;
