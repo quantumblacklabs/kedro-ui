@@ -1,0 +1,104 @@
+
+/* the height of each item/row */
+$item-height: 40px;
+
+/* paddint at the top and bottom of each group of items */
+$group-padding: 4px;
+
+/* the padding of each item
+  (either side of the text */
+$item-padding: 0 12px;
+
+/* the padding either side of the label in the main dropdown
+  (this doesn't apply to the sub dropdown) */
+$label-padding: 0 12px;
+
+$color-hover: rgb(230,232,235);
+
+.cbn-dropdown {
+  display: inline-block;
+  border-radius: 2px;
+  overflow: hidden;
+
+  background: white;
+}
+
+.cbn-dropdown__label {
+
+  display: flex;
+  align-items: center;
+  height: $item-height;
+  padding: $item-padding;
+
+  cursor: pointer;
+  user-select: none;
+
+  &:hover {
+    background: $color-hover;
+  }
+}
+
+.cbn-dropdown__options {
+  display: none;
+  margin: 0;
+  border-style: solid;
+  border-width: 1px 0;
+  border-color: rgba(255, 255, 255, 0.2);
+  border-top-color: rgba(0, 0, 0, .12);
+  border-image-slice: 1;
+  border-radius: 2px;
+
+  font-style: 16px;
+
+  background-color: white;
+
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 0 2px 0 rgba(0, 0, 0, 0.12);
+
+  .cbn-dropdown--open & {
+    display: block;
+  }
+
+  > section {
+    position: relative;
+
+    display: block;
+    width: 100%;
+    padding: $group-padding 0;
+    border-bottom: rgba(0, 0, 0, 0.12);
+
+    &:last-child:after {
+      display: none;
+    }
+
+    &:after {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 1px;
+
+      display: block;
+      width: 100%;
+
+      background-color: rgba(0, 0, 0, 0.12);
+      content: '';
+    }
+  }
+
+  .cbn-menu-item {
+    display: flex;
+    align-items: center;
+    height: $item-height;
+    padding: $item-padding;
+    border-style: solid;
+    border-width: 0 1px;
+    border-color: rgba(255, 255, 255, 0.2);
+
+    background: white;
+
+    cursor: pointer;
+
+    &:hover {
+      background: $color-hover;
+    }
+  }
+}

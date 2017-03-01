@@ -1,0 +1,11 @@
+.cbn-menu-item {
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.cbn-menu-item__content {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

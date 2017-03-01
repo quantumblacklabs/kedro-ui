@@ -15,7 +15,13 @@ var config = {
   template: './templates/index.html',
   sections: [
     {
-      name: 'Components', content: './templates/components/index.md'
+      name: 'Menus',
+      content: './templates/components/menus.md',
+      components: function() {
+        const components = _.sortBy(glob.sync(path.resolve(__dirname, 'src/components/menus/**/*.jsx')), c => _.last(c.split('/')));
+        console.log(`Found ${ components.length } menus in ${ path.resolve(__dirname, 'src/components/menus/**/*.jsx') }`);
+        return components;
+      }
     },
     {
       name: 'Project: Insights',
@@ -72,6 +78,7 @@ var config = {
                 plugins: function () {
                   return [
                     require('stylelint'),
+                    require('precss'),
                     require('postcss-cssnext')
                   ];
                 }
