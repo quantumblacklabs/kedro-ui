@@ -3,12 +3,17 @@ import React, { PropTypes } from 'react';
 // Styles
 import './menu-item.css';
 
-const MenuItem = ({ onClick, primaryText }) => {
-  return (
-    <div className='cbn-menu-item' onClick={ onClick }>
-      <div className='cbn-menu-item__content' title={ primaryText }>{ primaryText }</div>
-    </div>
-  );
+/**
+ * A menu item, which sits within a menu component
+ */
+const MenuItem = ({ onClick, primaryText }) => (
+  <div className='cbn-menu-item' onClick={onClick}>
+    <div className='cbn-menu-item__content' title={primaryText}>{primaryText}</div>
+  </div>
+);
+
+MenuItem.defaultProps = {
+  onClick: null
 };
 
 MenuItem.propTypes = {

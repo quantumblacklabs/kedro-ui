@@ -1,12 +1,8 @@
 import React, { PropTypes } from 'react';
-import _ from 'lodash';
 import classnames from 'classnames';
 
 // Styles
 import './dropdown.css';
-
-// components
-import MenuItem from '../menu-item/menu-item';
 
 const Dropdown = React.createClass({
   displayName: 'Dropdown',
@@ -46,6 +42,8 @@ const Dropdown = React.createClass({
     return {
       children: null,
       defaultText: 'Please select...',
+      onClosed: null,
+      onOpened: null,
       width: 160
     };
   },
@@ -59,6 +57,9 @@ const Dropdown = React.createClass({
       open: false
     };
   },
+  /**
+   * Event handler which is fired when the label is clicked
+   */
   _handleLabelClicked() {
     const { open } = this.state;
     const { onOpened, onClosed } = this.props;
@@ -72,7 +73,7 @@ const Dropdown = React.createClass({
       callback = onClosed;
     }
 
-    this.setState({ open: !open}, callback);
+    this.setState({ open: !open }, callback);
   },
   /**
    * React lifecycle method
@@ -83,12 +84,12 @@ const Dropdown = React.createClass({
     const { children, defaultText, width } = this.props;
     const { open } = this.state;
 
-    const wrapperClasses = classnames('cbn-dropdown', {'cbn-dropdown--open': open});
+    const wrapperClasses = classnames('cbn-dropdown', { 'cbn-dropdown--open': open });
     return (
-      <div className={ wrapperClasses } style={ { width: `${width}px` } }>
-        <div className='cbn-dropdown__label' onClick={ this._handleLabelClicked }>{ defaultText }</div>
+      <div className={wrapperClasses} style={{ width: `${width}px` }}>
+        <div className='cbn-dropdown__label' onClick={this._handleLabelClicked}>{defaultText}</div>
         <div className='cbn-dropdown__options'>
-          { children }
+          {children}
         </div>
       </div>
     );

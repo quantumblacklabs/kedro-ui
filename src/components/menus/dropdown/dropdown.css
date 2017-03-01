@@ -16,11 +16,16 @@ $label-padding: 0 12px;
 $color-hover: rgb(230,232,235);
 
 .cbn-dropdown {
+  position: relative;
+
   display: inline-block;
   border-radius: 2px;
-  overflow: hidden;
 
   background: white;
+
+  &.cbn-dropdown--open {
+    border-radius: 2px 2px 0 0;
+  }
 }
 
 .cbn-dropdown__label {
@@ -29,24 +34,25 @@ $color-hover: rgb(230,232,235);
   align-items: center;
   height: $item-height;
   padding: $item-padding;
+  border-radius: 2px;
+  overflow: hidden;
 
   cursor: pointer;
   user-select: none;
-
-  &:hover {
-    background: $color-hover;
-  }
 }
 
 .cbn-dropdown__options {
+  position: absolute;
+
   display: none;
+  width: 100%;
   margin: 0;
   border-style: solid;
   border-width: 1px 0;
   border-color: rgba(255, 255, 255, 0.2);
   border-top-color: rgba(0, 0, 0, .12);
   border-image-slice: 1;
-  border-radius: 2px;
+  border-radius: 0 0 2px 2px;
 
   font-style: 16px;
 
@@ -70,7 +76,7 @@ $color-hover: rgb(230,232,235);
       display: none;
     }
 
-    &:after {
+    &::after {
       position: absolute;
       bottom: 0;
       left: 0;
