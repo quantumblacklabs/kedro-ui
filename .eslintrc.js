@@ -6,4 +6,9 @@ baseConfig.settings = Object.assign(baseConfig.settings, {
   ]
 });
 
+baseConfig.rules = Object.assign(baseConfig.rules, {
+  'jsx-quotes': ['error', 'prefer-single'],
+  'react/prefer-es6-class': [2, 'never']
+});
+
 module.exports = baseConfig;

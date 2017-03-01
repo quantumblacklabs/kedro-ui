@@ -17,19 +17,23 @@
   position: relative;
 }
 
-.cbn-sg-playground__preview--grid > div:first-child:after {
-  content: '4px grid';
-  padding: 10px 0 0 10px;
-  color: white;
-  position: absolute;
-  display: block;
-  width: 100%;
-  height: 100%;
-  top: -1px;
-  left: 0;
-  background-size: 4px 4px;
-  background-color: transparent;
-  background-image: linear-gradient(0deg, transparent 75%, rgba(255,105,180, 0.5) 75%);
+.cbn-sg-playground__preview--grid {
+  > div:first-child {
+    &::after {
+      content: '4px grid';
+      padding: 10px 0 0 10px;
+      color: white;
+      position: absolute;
+      display: block;
+      width: 100%;
+      height: 100%;
+      top: -1px;
+      left: 0;
+      background-size: 4px 4px;
+      background-color: transparent;
+      background-image: linear-gradient(0deg, transparent 75%, rgba(255, 105, 180, 0.5) 75%);
+    }
+  }
 }
 
 .cbn-sg-controls {

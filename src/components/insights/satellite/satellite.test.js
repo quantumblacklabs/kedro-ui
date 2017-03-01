@@ -63,11 +63,11 @@ test('Satellite component basics', t => {
 
   const wrapper = shallow(<Satellite
     active
-    state="focused"
+    state='focused'
     data={data}
     onTapped={callback}
     radius={30}
-    color="rgb(38, 192, 33)"
+    color='rgb(38, 192, 33)'
     x={10}
     y={10} />);
 
@@ -98,7 +98,7 @@ for (let i = 0, length = testData.length; i < length; i += 1) {
       active={testData[i].active}
       state={testData[i].state}
       radius={30}
-      color="rgb(38, 192, 33)"
+      color='rgb(38, 192, 33)'
       x={10}
       y={10} />);
 
