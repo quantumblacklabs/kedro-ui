@@ -91,7 +91,7 @@ const Dropdown = React.createClass({
     return (
       <div className={wrapperClasses} style={{ width: `${width}px` }}>
         <div className='cbn-dropdown__label' onClick={this._handleLabelClicked}>
-          <span>{defaultText}</span> <Icon type='refresh' theme='light' />
+          <span>{defaultText}</span> <Icon type='chevronUp' theme='light' />
         </div>
         <div className='cbn-dropdown__options'>
           {children}

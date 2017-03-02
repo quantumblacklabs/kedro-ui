@@ -1,6 +1,5 @@
 var path = require('path');
 var pkg = require('./package.json');
-var corePkg = require('@quantumblack/carbon-ui-core/package.json');
 var _ = require('lodash');
 var glob = require('glob');
 var stylelint = require('stylelint');
@@ -108,7 +107,24 @@ var config = {
         },
         {
           test: /\.svg$/,
-          loaders: ['babel-loader', 'svg-react-loader'],
+          use: [
+            { loader: 'babel-loader' },
+            { loader: 'svg-react-loader' },
+            {
+              loader: 'svgo-loader',
+              options: {
+                plugins: [
+                  { removeUnusedNS: true },
+                  { removeAttrs: { attrs: ['fill', 'fill-rule'] } },
+                  { removeDesc: true },
+                  { removeTitle: true },
+                  { removeXMLNS: true },
+                  { removeUnknownsAndDefaults: true },
+                  { removeEditorsNSData: true }
+                ]
+              }
+            }
+          ],
           include: dirs
         }
       ]

@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 import _ from 'lodash';
-import Icons from '../../assets/icons';
+import Icons from './assets';
 
 import './icon.css';
 
@@ -54,10 +54,12 @@ const Icon = props => {
     }
   );
 
+  const styleOverrides = typeof color === 'string' ? { style: { fill: color } } : null;
+
   return (
     <div className={containerClassNames} {...dataProps} onClick={onClick}>
-      <SvgIcon title={title} className={svgClassNames} style={{ fill: color }} />
-      {SvgIcon2 && <SvgIcon2 title={title} className={svgClassNames} style={{ fill: color }} />}
+      <SvgIcon title={title} className={svgClassNames} {...styleOverrides} />
+      {SvgIcon2 && <SvgIcon2 title={title} className={svgClassNames} {...styleOverrides} />}
     </div>
   );
 };
@@ -99,7 +101,7 @@ Icon.propTypes = {
 };
 
 Icon.defaultProps = {
-  color: 'black',
+  color: null,
   index: 0,
   onClick: null,
   size: 'medium',

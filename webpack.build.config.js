@@ -56,7 +56,24 @@ module.exports = {
       },
       {
         test: /\.svg$/,
-        loaders: ['babel-loader', 'svg-react-loader']
+        use: [
+          { loader: 'babel-loader' },
+          { loader: 'svg-react-loader' },
+          {
+            loader: 'svgo-loader',
+            options: {
+              plugins: [
+                { removeUnusedNS: true },
+                { removeAttrs: { attrs: ['fill', 'fill-rule'] } },
+                { removeDesc: true },
+                { removeTitle: true },
+                { removeXMLNS: true },
+                { removeUnknownsAndDefaults: true },
+                { removeEditorsNSData: true }
+              ]
+            }
+          }
+        ]
       }
     ]
   }

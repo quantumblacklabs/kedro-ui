@@ -46,8 +46,15 @@ $color-hover: rgb(230,232,235);
     position: absolute;
     right: 0;
     margin: $item-padding;
+    transform: rotate(180deg);
+    transition: transform 0.2s;
+
+    .cbn-dropdown--open & {
+      transform: rotate(0deg);
+    }
   }
 }
+
 
 .cbn-dropdown__options {
   position: absolute;

@@ -9,7 +9,6 @@
     "docs:server": "styleguidist server",
     "docs:build": "styleguidist build",
     "eslint": "eslint src/*.js src/**/*.js src/**/*.jsx",
-    "icons": "svgo -f src/assets/icons/raw -o src/assets/icons/optimised --config=src/assets/icons/config.json",
     "start": "npm run build && npm run docs:server",
     "postinstall": "npm run build",
     "test": "npm run eslint && npm run ava"
@@ -70,6 +69,7 @@
     "es6-object-assign": "^1.0.3",
     "express": "^4.14.0",
     "extract-text-webpack-plugin": "^2.0.0-rc.3",
+    "file-loader": "^0.10.1",
     "glob": "^7.1.1",
     "lodash": "^4.17.4",
     "postcss-cssnext": "^2.9.0",
@@ -82,7 +82,7 @@
     "stylelint": "^7.8.0",
     "stylelint-config-standard": "^16.0.0",
     "svg-react-loader": "^0.3.7",
-    "svgo": "^0.7.2",
+    "svgo-loader": "^1.1.2",
     "webpack": "^2.2.1"
   },
   "devDependencies": {
