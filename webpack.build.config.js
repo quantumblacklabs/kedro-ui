@@ -3,6 +3,7 @@
 const webpack = require('webpack');
 const pkg = require('./package.json');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const path = require('path');
 
 module.exports = {
   entry: [
@@ -22,6 +23,9 @@ module.exports = {
     'react/lib/ReactContext': true
   },
   resolve: {
+    alias: {
+      'styles': path.resolve(__dirname + '/src/styles')
+    },
     modules: [
       __dirname,
       'node_modules'

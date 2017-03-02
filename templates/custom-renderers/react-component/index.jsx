@@ -1,9 +1,20 @@
 import React, { PropTypes } from 'react';
+import Link from 'rsg-components/Link';
 import classnames from 'classnames';
 
 import './styles.css';
 
-const ReactComponentRenderer = ({ name, pathLine, description, props, examples, sidebar }) => {
+const ReactComponentRenderer = ({
+  classes,
+	name,
+	slug,
+	pathLine,
+	description,
+	props,
+	methods,
+	examples,
+	isolated = false
+}) => {
 
   const str = description ? description.props.text : '';
   const isAnimated = /\(ANIMATED\)/.test(str);
@@ -19,11 +30,11 @@ const ReactComponentRenderer = ({ name, pathLine, description, props, examples, 
             { description }
           </div>
           <p className={ 'cbn-sg__pathLine' }>
-            {sidebar ? (
-              <a className={ 'cbn-sg__isolatedLink' } href={'#!/' + name} title="Open isolated">⇢</a>
-            ) : (
-              <a className={ 'cbn-sg__isolatedLink' } href="/" title="Back">←</a>
-            )}
+            {isolated ? (
+  						<Link href='/'>← Back</Link>
+  					) : (
+  						<Link href={'#!/' + name}>Open isolated ⇢</Link>
+  					)}
             {pathLine}
           </p>
         </header>
@@ -31,12 +42,17 @@ const ReactComponentRenderer = ({ name, pathLine, description, props, examples, 
           { props }
         </div>
       </div>
-      { examples && (
+      {examples && (
         <div className={ 'cbn-sg__examples' }>
           { examples }
         </div>
-        )
-      }
+        )}
+      {methods && (
+				<div className={ 'cbn-sg__methods' }>
+					<h3>Methods</h3>
+					{methods}
+				</div>
+			)}
     </div>
   );
 };

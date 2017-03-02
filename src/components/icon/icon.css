@@ -29,8 +29,8 @@
       transition: opacity .8s;
     }
 
-    /* show index 0 icon by default */
-    /* hide index 1 icon by default */
+    /* show index 0 icon by default
+    hide index 1 icon by default */
     > .cbn-icon__graphics:nth-child(2) {
       opacity: 0;
     }

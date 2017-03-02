@@ -1,21 +1,5 @@
 @import '../../../styles/includes';
 
-/* the height of each item/row */
-$item-height: 40px;
-
-/* paddint at the top and bottom of each group of items */
-$group-padding: 4px;
-
-/* the padding of each item
-  (either side of the text */
-$item-padding: 0 12px;
-
-/* the padding either side of the label in the main dropdown
-  (this doesn't apply to the sub dropdown) */
-$label-padding: 0 12px;
-
-$color-hover: rgb(230,232,235);
-
 .cbn-dropdown {
   position: relative;
 
@@ -32,21 +16,23 @@ $color-hover: rgb(230,232,235);
 .cbn-dropdown__label {
 
   position: relative;
+  z-index: 2;
 
   display: flex;
   align-items: center;
-  height: $item-height;
-  padding: $item-padding;
+  height: $menu-item-height;
+  padding: $menu-item-padding;
   border-radius: 2px;
   overflow: hidden;
 
   cursor: pointer;
   user-select: none;
+  background: white;
 
   > .cbn-icon {
     position: absolute;
     right: 0;
-    margin: $item-padding;
+    margin: $menu-item-padding;
     transition: transform 0.2s;
     transform: rotate(180deg); /* chevron pointing up */
 
@@ -59,6 +45,7 @@ $color-hover: rgb(230,232,235);
 
 .cbn-dropdown__options {
   position: absolute;
+  z-index: 1;
 
   display: none;
   width: 100%;
@@ -76,6 +63,8 @@ $color-hover: rgb(230,232,235);
 
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 0 2px 0 rgba(0, 0, 0, 0.12);
 
+  animation: dropdownEntrance .3s;
+
   .cbn-dropdown--open & {
     display: block;
   }
@@ -85,10 +74,10 @@ $color-hover: rgb(230,232,235);
 
     display: block;
     width: 100%;
-    padding: $group-padding 0;
+    padding: $menu-group-padding 0;
     border-bottom: rgba(0, 0, 0, 0.12);
 
-    &:last-child:after {
+    &:last-child::after {
       display: none;
     }
 
@@ -108,8 +97,8 @@ $color-hover: rgb(230,232,235);
     > span {
       display: flex;
       align-items: center;
-      height: $item-height;
-      padding: $item-padding;
+      height: $menu-item-height;
+      padding: $menu-item-padding;
 
       @extend %type--body-1;
       @extend %type--semibold;
@@ -118,22 +107,16 @@ $color-hover: rgb(230,232,235);
       text-transform: uppercase;
     }
   }
+}
 
-  .cbn-menu-item {
-    display: flex;
-    align-items: center;
-    height: $item-height;
-    padding: $item-padding;
-    border-style: solid;
-    border-width: 0 1px;
-    border-color: rgba(255, 255, 255, 0.2);
+@keyframes dropdownEntrance {
+  0% {
+    opacity: 0.5;
+    transform: translateY(-20px);
+  }
 
-    background: white;
-
-    cursor: pointer;
-
-    &:hover {
-      background: $color-hover;
-    }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

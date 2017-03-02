@@ -1,81 +1,44 @@
 
-## Default Dropdown
+## Dropdown Component
 
-Demo description
-
-```
-<Dropdown
-    onOpened={ () => console.log('Opened') }
-    onClosed={ () => console.log('Closed') }>
-    <MenuItem primaryText='Menu Item One' onClick={ () => console.log('Menu item tapped') } />
-    <MenuItem primaryText='Menu Item Two' />
-</Dropdown>
-
-```
-
-
-## Narrow Dropdown + Icons
-
-Demo description
-
-```
-<Dropdown defaultText='Edit' width={ 100 }>
-    <MenuItem primaryText='Undo' icon='undo' iconPosition='left' />
-    <MenuItem primaryText='Redo' icon='refresh' iconPosition='left' />
-    <MenuItem primaryText='Cut' icon='cut' iconPosition='left' />
-    <MenuItem primaryText='Copy' icon='copy' iconPosition='left' />
-    <MenuItem primaryText='Paste' icon='paste' iconPosition='left' />
-</Dropdown>
-```
-
-## Narrow Dropdown + Icons after
-
-Demo description
-
-```
-<Dropdown defaultText='Edit' width={ 100 }>
-    <MenuItem primaryText='Undo' icon='undo' />
-    <MenuItem primaryText='Redo' icon='refresh' />
-    <MenuItem primaryText='Cut' icon='cut' />
-    <MenuItem primaryText='Copy' icon='copy' />
-    <MenuItem primaryText='Paste' icon='paste' />
-</Dropdown>
-```
-
-## Dropdown + Sections
-
-Demo description
+Default dropdown, with no selected options by default, and default unselected text.
 
 ```
 <Dropdown
     onOpened={ () => console.log('Opened') }
-    onClosed={ () => console.log('Closed') }>
-    <section>
-        <MenuItem primaryText='Menu Item' onClick={ () => console.log('Menu item tapped') } />
-        <MenuItem primaryText='Menu Item Two' />
-    </section>
-    <section>
-        <MenuItem primaryText='Menu Item' onClick={ () => console.log('Menu item tapped') } />
-        <MenuItem primaryText='Menu Item Two' />
-    </section>
+    onClosed={ () => console.log('Closed') }
+    onChanged={ e => console.log(e) }>
+    <MenuOption primaryText='Menu Item One' value={ 1 } />
+    <MenuOption primaryText='Menu Item Two' value={ 2 } />
 </Dropdown>
+
 ```
 
-## Dropdown + Sections + Headings
-
-Demo description
+Default selected option
 
 ```
-<Dropdown>
-    <section>
-        <span>Heading One</span>
-        <MenuItem primaryText='Menu Item' onClick={ () => console.log('Menu item tapped') } />
-        <MenuItem primaryText='Menu Item Two' />
-    </section>
-    <section>
-        <span>Heading Two</span>
-        <MenuItem primaryText='Menu Item' onClick={ () => console.log('Menu item tapped') } />
-        <MenuItem primaryText='Menu Item Two' />
-    </section>
+<Dropdown
+    onOpened={ () => console.log('Opened') }
+    onClosed={ () => console.log('Closed') }
+    onChanged={ e => console.log(e) }>
+    <MenuOption primaryText='Menu Item One' value={ 1 } />
+    <MenuOption primaryText='Menu Item Two' value={ 2 } />
+    <MenuOption primaryText='Menu Item Three' selected={ true } value={ 3 } />
 </Dropdown>
+
+```
+
+Null first option
+
+```
+<Dropdown
+    onOpened={ () => console.log('Opened') }
+    onClosed={ () => console.log('Closed') }
+    onChanged={ e => console.log(e) }>
+    <MenuOption primaryText='All' selected={ true } />
+    <MenuOption primaryText='Menu Item One' value={ 1 } />
+    <MenuOption primaryText='Menu Item Two' value={ 2 } />
+    <MenuOption primaryText='Menu Item Three' value={ 3 } />
+</Dropdown>
+
 ```

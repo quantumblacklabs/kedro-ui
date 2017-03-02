@@ -1,11 +1,13 @@
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
+import _ from 'lodash';
 
 // Styles
 import './dropdown.css';
 
 // Components
 import Icon from '../../icon/icon';
+import MenuOption from '../menu-option/menu-option';
 
 const Dropdown = React.createClass({
   displayName: 'Dropdown',
@@ -18,11 +20,15 @@ const Dropdown = React.createClass({
     /**
     * An array of child items
     */
-    children: PropTypes.array.isRequired,
+    children: PropTypes.node.isRequired,
     /**
     * Default text to show in a closed unselected state
     */
     defaultText: PropTypes.string,
+    /**
+     * Callback function to be executed when a menu item is clicked, other than the one currently selected.
+     */
+    onChanged: PropTypes.func,
     /**
     * Callback to be executed after menu opens
     */
@@ -45,6 +51,7 @@ const Dropdown = React.createClass({
     return {
       children: null,
       defaultText: 'Please select...',
+      onChanged: null,
       onClosed: null,
       onOpened: null,
       width: 160
@@ -56,7 +63,27 @@ const Dropdown = React.createClass({
   * @return {object} An object to be used as the initial state
   */
   getInitialState() {
+
+    // check children for a selected option
+    // otherwise, default to first
+    const selectedIndex = _.findIndex(this.props.children, c => c.props.selected);
+
+    let selectedOption = {
+      index: -1,
+      label: null,
+      value: null
+    };
+
+    if (selectedIndex !== -1) {
+      selectedOption = {
+        index: selectedIndex,
+        label: this.props.children[selectedIndex].props.primaryText,
+        value: this.props.children[selectedIndex].props.value,
+      };
+    }
+
     return {
+      selectedOption,
       open: false
     };
   },
@@ -79,22 +106,49 @@ const Dropdown = React.createClass({
     this.setState({ open: !open }, callback);
   },
   /**
+   * Event handler which is fired when a child item is selected
+   */
+  _handleOptionSelected(obj) {
+    const { label, index, value } = obj;
+    const { onChanged, onClosed } = this.props;
+
+    // detect if the selected item has changed
+    const hasChanged = value !== this.state.value;
+    if (hasChanged) {
+
+      const selectedOption = { label, value, index };
+      this.setState({ open: false, selectedOption }, () => {
+        if (typeof onChanged === 'function') {
+          onChanged(obj);
+          onClosed();
+        }
+      });
+    }
+  },
+  /**
    * React lifecycle method
    * {@link https://facebook.github.io/react/docs/component-specs.html#render}
    * @return {object} JSX for this component
    */
   render() {
     const { children, defaultText, width } = this.props;
-    const { open } = this.state;
-
+    const { open, selectedOption } = this.state;
     const wrapperClasses = classnames('cbn-dropdown', { 'cbn-dropdown--open': open });
+
     return (
       <div className={wrapperClasses} style={{ width: `${width}px` }}>
         <div className='cbn-dropdown__label' onClick={this._handleLabelClicked}>
-          <span>{defaultText}</span> <Icon type='chevronUp' theme='light' />
+          <span>{selectedOption.label || defaultText}</span> <Icon type='chevronUp' theme='light' />
         </div>
         <div className='cbn-dropdown__options'>
-          {children}
+          {React.Children.map(children, (child, i) => {
+            const extraProps = {
+              index: i,
+              onSelected: this._handleOptionSelected,
+              selected: selectedOption.index === i,
+            };
+            return React.cloneElement(child, extraProps);
+          })}
         </div>
       </div>
     );

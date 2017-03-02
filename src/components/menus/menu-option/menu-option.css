@@ -1,6 +1,6 @@
 @import '../../../styles/includes';
 
-.cbn-menu-item {
+.cbn-menu-option {
   display: flex;
   align-items: center;
   height: $menu-item-height;
@@ -10,17 +10,22 @@
   border-color: rgba(255, 255, 255, 0.2);
 
   background: white;
-
-  cursor: pointer;
   white-space: nowrap;
   overflow: hidden;
+
+  cursor: pointer;
 
   &:hover {
     background: rgb(230,232,235);
   }
+
+  &.cbn-menu-option--selected {
+    background: hotpink;
+    color: white;
+  }
 }
 
-.cbn-menu-item__content {
+.cbn-menu-option__content {
   position: relative;
 
   display: flex;
@@ -29,16 +34,16 @@
 
   text-overflow: ellipsis;
 
-  .cbn-menu-item--icon-left & {
+  .cbn-menu-option--icon-left & {
     padding-left: 36px;
   }
 
   > .cbn-icon {
     position: absolute;
     right: 0;
-    margin: $menu-item-padding;
+    margin: $menu-menu-item-padding;
 
-    .cbn-menu-item--icon-left & {
+    .cbn-menu-option--icon-left & {
       right: auto;
       left: 0;
     }
