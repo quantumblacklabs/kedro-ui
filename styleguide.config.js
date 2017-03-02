@@ -15,6 +15,15 @@ var config = {
   template: './templates/index.html',
   sections: [
     {
+      name: 'Icons',
+      content: './templates/components/icons.md',
+      components: function() {
+        const components = _.sortBy(glob.sync(path.resolve(__dirname, 'src/components/icon/*.jsx')), c => _.last(c.split('/')));
+        console.log(`Found ${ components.length } icon components in ${ path.resolve(__dirname, 'src/components/icon/*.jsx') }`);
+        return components;
+      }
+    },
+    {
       name: 'Menus',
       content: './templates/components/menus.md',
       components: function() {
@@ -94,7 +103,7 @@ var config = {
         },
         {
           test: /\.(png|jpg|woff|eot|ttf)$/,
-          loader: 'file',
+          loader: 'file-loader',
           include: dirs
         },
         {

@@ -1,3 +1,19 @@
-var config = require('@quantumblack/javascript-standards/config/ava/webpack.ava.config.js');
+var path = require('path');
 
-module.exports = config;
+module.exports = {
+  resolve: {
+    modules: [
+      __dirname,
+      'node_modules',
+      path.resolve(__dirname, 'src')
+    ],
+    alias: {},
+    extensions: ['.js', '.jsx', '.css']
+  },
+  module: {
+    loaders: [{
+      test: /\.(svg|js|jsx)$/,
+      loaders: ['babel-loader']
+    }]
+  }
+};

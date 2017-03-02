@@ -9,6 +9,7 @@
     "docs:server": "styleguidist server",
     "docs:build": "styleguidist build",
     "eslint": "eslint src/*.js src/**/*.js src/**/*.jsx",
+    "icons": "svgo -f src/assets/icons/raw -o src/assets/icons/optimised --config=src/assets/icons/config.json",
     "start": "npm run build && npm run docs:server",
     "postinstall": "npm run build",
     "test": "npm run eslint && npm run ava"
@@ -55,7 +56,7 @@
   ],
   "dependencies": {
     "@quantumblack/carbon-ui-core": "^1.0.0",
-    "@quantumblack/javascript-standards": "^1.4.4",
+    "@quantumblack/javascript-standards": "^1.4.5",
     "autoprefixer": "^6.7.2",
     "babel-core": "^6.21.0",
     "babel-loader": "^6.2.10",
@@ -81,6 +82,7 @@
     "stylelint": "^7.8.0",
     "stylelint-config-standard": "^16.0.0",
     "svg-react-loader": "^0.3.7",
+    "svgo": "^0.7.2",
     "webpack": "^2.2.1"
   },
   "devDependencies": {

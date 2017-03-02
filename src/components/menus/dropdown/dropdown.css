@@ -30,6 +30,8 @@ $color-hover: rgb(230,232,235);
 
 .cbn-dropdown__label {
 
+  position: relative;
+
   display: flex;
   align-items: center;
   height: $item-height;
@@ -39,6 +41,12 @@ $color-hover: rgb(230,232,235);
 
   cursor: pointer;
   user-select: none;
+
+  > .cbn-icon {
+    position: absolute;
+    right: 0;
+    margin: $item-padding;
+  }
 }
 
 .cbn-dropdown__options {

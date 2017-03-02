@@ -4,6 +4,9 @@ import classnames from 'classnames';
 // Styles
 import './dropdown.css';
 
+// Components
+import Icon from '../../icon/icon';
+
 const Dropdown = React.createClass({
   displayName: 'Dropdown',
   /**
@@ -87,7 +90,9 @@ const Dropdown = React.createClass({
     const wrapperClasses = classnames('cbn-dropdown', { 'cbn-dropdown--open': open });
     return (
       <div className={wrapperClasses} style={{ width: `${width}px` }}>
-        <div className='cbn-dropdown__label' onClick={this._handleLabelClicked}>{defaultText}</div>
+        <div className='cbn-dropdown__label' onClick={this._handleLabelClicked}>
+          <span>{defaultText}</span> <Icon type='refresh' theme='light' />
+        </div>
         <div className='cbn-dropdown__options'>
           {children}
         </div>
