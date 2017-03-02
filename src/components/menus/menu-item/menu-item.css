@@ -4,8 +4,26 @@
 }
 
 .cbn-menu-item__content {
-  display: block;
+  position: relative;
+
+  display: flex;
+  align-items: center;
   width: 100%;
-  overflow: hidden;
+
   text-overflow: ellipsis;
+
+  .cbn-menu-item--icon-left & {
+    padding-left: 36px;
+  }
+
+  > .cbn-icon {
+    position: absolute;
+    right: 0;
+    margin: $item-padding;
+
+    .cbn-menu-item--icon-left & {
+      right: auto;
+      left: 0;
+    }
+  }
 }

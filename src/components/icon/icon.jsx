@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 import _ from 'lodash';
-import Icons from './assets';
+import IconAssets from './assets';
 
 import './icon.css';
 
@@ -27,12 +27,12 @@ const Icon = props => {
   const dataProps = _.pickBy(props, (val, key) => /^data-.*/.test(key));
 
   // ensure we have a corresponding icon SVG file for this type
-  const iconType = type in Icons ? type : 'missing';
-  const iconType2 = type2 in Icons ? type2 : '';
+  const iconType = type in IconAssets ? type : 'missing';
+  const iconType2 = type2 in IconAssets ? type2 : '';
 
   // load the icon for this type
-  const SvgIcon = Icons[iconType];
-  const SvgIcon2 = iconType2 ? Icons[iconType2] : '';
+  const SvgIcon = IconAssets[iconType];
+  const SvgIcon2 = iconType2 ? IconAssets[iconType2] : '';
 
   const containerClassNames = classnames(
     'cbn-icon',

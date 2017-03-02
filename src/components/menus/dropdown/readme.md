@@ -7,8 +7,8 @@ Demo description
 <Dropdown
     onOpened={ () => console.log('Opened') }
     onClosed={ () => console.log('Closed') }>
-    <MenuItem primaryText='Menu Item' onClick={ () => console.log('Menu item tapped') } />
-    <MenuItem primaryText='Menu Item gdsgds ds gsd' />
+    <MenuItem primaryText='Menu Item One' onClick={ () => console.log('Menu item tapped') } />
+    <MenuItem primaryText='Menu Item Two' />
 </Dropdown>
 
 ```
@@ -20,11 +20,11 @@ Demo description
 
 ```
 <Dropdown defaultText='Edit' width={ 100 }>
-    <MenuItem primaryText='Undo' />
-    <MenuItem primaryText='Redo' />
-    <MenuItem primaryText='Cut' />
-    <MenuItem primaryText='Copy' />
-    <MenuItem primaryText='Paste' />
+    <MenuItem primaryText='Undo' icon='undo' iconPosition='left' />
+    <MenuItem primaryText='Redo' icon='refresh' iconPosition='left' />
+    <MenuItem primaryText='Cut' icon='cut' iconPosition='left' />
+    <MenuItem primaryText='Copy' icon='copy' iconPosition='left' />
+    <MenuItem primaryText='Paste' icon='paste' iconPosition='left' />
 </Dropdown>
 ```
 
@@ -34,11 +34,11 @@ Demo description
 
 ```
 <Dropdown defaultText='Edit' width={ 100 }>
-    <MenuItem primaryText='Undo' />
-    <MenuItem primaryText='Redo' />
-    <MenuItem primaryText='Cut' />
-    <MenuItem primaryText='Copy' />
-    <MenuItem primaryText='Paste' />
+    <MenuItem primaryText='Undo' icon='undo' />
+    <MenuItem primaryText='Redo' icon='refresh' />
+    <MenuItem primaryText='Cut' icon='cut' />
+    <MenuItem primaryText='Copy' icon='copy' />
+    <MenuItem primaryText='Paste' icon='paste' />
 </Dropdown>
 ```
 
@@ -52,11 +52,11 @@ Demo description
     onClosed={ () => console.log('Closed') }>
     <section>
         <MenuItem primaryText='Menu Item' onClick={ () => console.log('Menu item tapped') } />
-        <MenuItem primaryText='Menu Item gdsgds ds gsd' />
+        <MenuItem primaryText='Menu Item Two' />
     </section>
     <section>
         <MenuItem primaryText='Menu Item' onClick={ () => console.log('Menu item tapped') } />
-        <MenuItem primaryText='Menu Item gdsgds ds gsd' />
+        <MenuItem primaryText='Menu Item Two' />
     </section>
 </Dropdown>
 ```
@@ -67,7 +67,15 @@ Demo description
 
 ```
 <Dropdown>
-    <MenuItem primaryText='Menu Item' />
-    <MenuItem primaryText='Menu Item' />
+    <section>
+        <span>Heading One</span>
+        <MenuItem primaryText='Menu Item' onClick={ () => console.log('Menu item tapped') } />
+        <MenuItem primaryText='Menu Item Two' />
+    </section>
+    <section>
+        <span>Heading Two</span>
+        <MenuItem primaryText='Menu Item' onClick={ () => console.log('Menu item tapped') } />
+        <MenuItem primaryText='Menu Item Two' />
+    </section>
 </Dropdown>
 ```

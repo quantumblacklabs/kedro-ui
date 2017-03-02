@@ -1,3 +1,4 @@
+@import '../../../styles/includes';
 
 /* the height of each item/row */
 $item-height: 40px;
@@ -46,11 +47,11 @@ $color-hover: rgb(230,232,235);
     position: absolute;
     right: 0;
     margin: $item-padding;
-    transform: rotate(180deg);
     transition: transform 0.2s;
+    transform: rotate(180deg); /* chevron pointing up */
 
     .cbn-dropdown--open & {
-      transform: rotate(0deg);
+      transform: rotate(0deg); /* chevron pointing down */
     }
   }
 }
@@ -102,6 +103,19 @@ $color-hover: rgb(230,232,235);
 
       background-color: rgba(0, 0, 0, 0.12);
       content: '';
+    }
+
+    > span {
+      display: flex;
+      align-items: center;
+      height: $item-height;
+      padding: $item-padding;
+
+      @extend %type--body-1;
+      @extend %type--semibold;
+      color: rgba(0, 0, 0, 0.38);
+      line-height: 1.43;
+      text-transform: uppercase;
     }
   }
 
