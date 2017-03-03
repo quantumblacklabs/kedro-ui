@@ -8,6 +8,7 @@
   border-style: solid;
   border-width: 0 1px;
   border-color: rgba(255, 255, 255, 0.2);
+  color: $light--text;
 
   background: white;
   white-space: nowrap;
@@ -16,12 +17,19 @@
   cursor: pointer;
 
   &:hover {
-    background: rgb(230,232,235);
+    background: $c-default-light--hover;
+  }
+
+  &:active {
+    background: $c-default-light--focus;
   }
 
   &.cbn-menu-option--selected {
-    background: hotpink;
-    color: white;
+    background: $c-default-light--active;
+
+    &:hover {
+      background: $c-default-light--active;
+    }
   }
 }
 

@@ -8,7 +8,7 @@
 .cbn-sg-playground__preview {
   padding: 40px 0 0;
   margin: 0;
-  background: black;
+  background: rgba(0, 0, 0, 0.06);
   position: relative;
 }
 
@@ -48,14 +48,15 @@
 .cbn-sg-btn {
   background: black;
   color: white;
-  border: 4px solid black;
   outline: none;
   padding: 10px;
   cursor: pointer;
+  border: none;
 }
 
 .cbn-sg-btn:hover {
-  border-bottom-color: white;
+  background: rgb(25, 104, 209);
+  color: white;
 }
 
 .cbn-sg-playground__code {
