@@ -11,6 +11,7 @@
     "docs:build": "styleguidist build && cp -r dist styleguide",
     "eslint": "eslint src/*.js src/**/*.js src/**/*.jsx",
     "start": "npm run build && npm run docs:server",
+    "stylelint": "stylelint src/**/*.css --config stylelint.config.js",
     "postinstall": "npm run build",
     "test": "npm run eslint && npm run ava"
   },
@@ -56,7 +57,7 @@
   ],
   "dependencies": {
     "@quantumblack/carbon-ui-core": "^1.0.0",
-    "@quantumblack/javascript-standards": "^1.4.5",
+    "@quantumblack/javascript-standards": "^1.5.0",
     "autoprefixer": "^6.7.2",
     "babel-core": "^6.21.0",
     "babel-loader": "^6.2.10",
@@ -80,8 +81,9 @@
     "react-dom": "^15.4.2",
     "react-styleguidist": "^5.0.0-beta.10",
     "style-loader": "^0.13.1",
-    "stylelint": "^7.8.0",
+    "stylelint": "^7.9.0",
     "stylelint-config-standard": "^16.0.0",
+    "stylelint-order": "^0.3.0",
     "svg-react-loader": "^0.3.7",
     "svgo-loader": "^1.1.2",
     "webpack": "^2.2.1"
