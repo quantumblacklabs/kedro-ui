@@ -36,7 +36,7 @@ const MenuOption = ({ icon, iconPosition, key, index, onSelected, primaryText, s
       <div className='cbn-menu-option__content' title={primaryText}>
         {iconPosition === 'left' && icon
           && iconNode}
-        {primaryText}
+        <span>{primaryText}</span>
         {iconPosition === 'right' && icon
           && iconNode}
       </div>

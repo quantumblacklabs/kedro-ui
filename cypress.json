@@ -1,3 +1,5 @@
 {
+  "fileServerFolder": "styleguide",
+  "integrationFolder": "cypress/tests",
   "projectId": "x4tjns"
 }
