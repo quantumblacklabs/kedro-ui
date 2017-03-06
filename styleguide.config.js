@@ -9,6 +9,24 @@ var dirs = [
   path.resolve(__dirname, 'templates')
 ];
 
+const searchPath = pattern => {
+  console.log('pattern', pattern);
+  return _(glob.sync(path.resolve(__dirname, pattern)))
+    .reject(c => /renderer\.jsx$/.test(pattern))
+    .sortBy(c => _.last(c.split('/')))
+    .value();
+};
+
+const searchPath2 = pattern => _.sortBy(glob.sync(path.resolve(__dirname, pattern)), c => _.last(c.split('/')));
+
+const getComponentsFunc = (name, pattern) => {
+  return () => {
+    const components = searchPath(pattern);
+    console.log(`Found ${components.length} ${name} components`);
+    return components;
+  }
+};
+
 var config = {
   title: pkg.name + ' v' + pkg.version,
   template: './templates/index.html',
@@ -16,38 +34,22 @@ var config = {
     {
       name: 'Icons',
       content: './templates/components/icons.md',
-      components: function() {
-        const components = _.sortBy(glob.sync(path.resolve(__dirname, 'src/components/icon/*.jsx')), c => _.last(c.split('/')));
-        console.log(`Found ${ components.length } icon components in ${ path.resolve(__dirname, 'src/components/icon/*.jsx') }`);
-        return components;
-      }
+      components: getComponentsFunc('icon', 'src/components/icon/**/*.jsx')
     },
     {
       name: 'Menus',
       content: './templates/components/menus.md',
-      components: function() {
-        const components = _.sortBy(glob.sync(path.resolve(__dirname, 'src/components/menus/**/*.jsx')), c => _.last(c.split('/')));
-        console.log(`Found ${ components.length } menus in ${ path.resolve(__dirname, 'src/components/menus/**/*.jsx') }`);
-        return components;
-      }
+      components: getComponentsFunc('menu', 'src/components/menus/**/*.jsx')
     },
     {
       name: 'Project: Insights',
       content: './templates/projects/insights.md',
-      components: function() {
-        const components = _.sortBy(glob.sync(path.resolve(__dirname, 'src/components/insights/**/*.jsx')), c => _.last(c.split('/')));
-        console.log(`Found ${ components.length } components in ${ path.resolve(__dirname, 'src/components/insights/**/*.jsx') }`);
-        return components;
-      }
+      components: getComponentsFunc('menu', 'src/components/insights/**/*.jsx')
     },
     {
       name: 'Modules',
       content: './templates/modules/index.md',
-      components: function() {
-        const modules = _.sortBy(glob.sync(path.resolve(__dirname, 'src/modules/**/*.jsx')), c => _.last(c.split('/')));
-        console.log(`Found ${ modules.length } components in ${ path.resolve(__dirname, 'src/modules/**/*.jsx') }`);
-        return modules;
-      }
+      components: getComponentsFunc('module', 'src/components/modules/**/*.jsx')
     }
   ],
   getComponentPathLine: function(componentPath) {

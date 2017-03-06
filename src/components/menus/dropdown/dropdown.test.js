@@ -4,24 +4,29 @@ import { shallow } from 'enzyme';
 import sinon from 'sinon';
 
 import Dropdown from './dropdown';
-import MenuItem from '../menu-item/menu-item';
+import MenuOption from '../menu-option/menu-option';
 
 const mockData = [
   {
     defaultText: 'Test 123',
-    onOpened: sinon.spy(() => {})
+    onOpened: sinon.spy(() => {}),
+    onClosed: sinon.spy(() => {}),
+    onChanged: sinon.spy(() => {})
   },
   {
     defaultText: 'Test 456',
-    onOpened: sinon.spy(() => {})
+    onOpened: sinon.spy(() => {}),
+    onClosed: sinon.spy(() => {}),
+    onChanged: sinon.spy(() => {})
   }
 ];
 
 mockData.forEach((dataSet, i) => {
   const jsx = (
     <Dropdown {...dataSet}>
-      <MenuItem primaryText='Test' />
-      <MenuItem primaryText='Test' />
+      <MenuOption key={1} primaryText='Menu Item One' value={1} />
+      <MenuOption key={2} primaryText='Menu Item Two' value={2} />
+      <MenuOption key={3} primaryText='Menu Item Three' value={3} />
     </Dropdown>
   );
 
@@ -31,18 +36,6 @@ mockData.forEach((dataSet, i) => {
 
   test(`Dropdown should create a valid React Component when called with required props - Test ${i}`, t => {
     const wrapper = shallow(jsx);
-    t.true(wrapper.find('.cbn-dropdown__options')
-      .children()
-      .length
-      === 2);
-  });
-
-  test(`Dropdown should toggle open modifier class when label clicked - Test ${i}`, t => {
-    const wrapper = shallow(jsx);
-    t.false(wrapper.hasClass('cbn-dropdown--open'));
-    wrapper.find('.cbn-dropdown__label')
-      .simulate('click');
-    t.true(wrapper.hasClass('cbn-dropdown--open'));
-    t.true(dataSet.onOpened.called);
+    t.true(wrapper.children().length === 3);
   });
 });

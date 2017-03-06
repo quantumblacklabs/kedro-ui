@@ -29,12 +29,14 @@ const ReactComponentRenderer = ({
           <div className={ 'cbn-sg__description' }>
             { description }
           </div>
+          <div className={ 'cbn-sg__links' }>
+          {isolated ? (
+            <Link href='/'>← Back</Link>
+          ) : (
+            <Link href={'#!/' + name}>Open isolated ⇢</Link>
+          )}
+          </div>
           <p className={ 'cbn-sg__pathLine' }>
-            {isolated ? (
-  						<Link href='/'>← Back</Link>
-  					) : (
-  						<Link href={'#!/' + name}>Open isolated ⇢</Link>
-  					)}
             {pathLine}
           </p>
         </header>

@@ -12,7 +12,7 @@ module.exports = {
   },
   module: {
     loaders: [{
-      test: /\.(svg|js|jsx)$/,
+      test: /\.(js|jsx)$/,
       loaders: ['babel-loader']
     }]
   }
