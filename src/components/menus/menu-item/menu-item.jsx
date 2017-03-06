@@ -10,21 +10,24 @@ import Icon from '../../icon/icon';
 /**
  * A menu item, which sits within a menu component
  */
-const MenuItem = ({ icon, iconPosition, key, primaryText, onSelected, value }) => {
-
-  console.log('key', key);
-
+const MenuItem = ({ icon, iconPosition, index, key, onSelected, primaryText, value }) => {
   const wrapperClasses = classnames('cbn-menu-item', {
     'cbn-menu-item--has-icon': typeof icon === 'string',
     'cbn-menu-item--icon-left': iconPosition === 'left',
     'cbn-menu-item--icon-right': iconPosition === 'right'
   });
 
-  const iconNode = icon && <Icon type={ icon } theme='light' />;
-  const _handleClicked = e => onSelected(e, key, value);
+  const iconNode = icon && <Icon type={icon} theme='light' />;
+
+/**
+ * Event handler executed when the menu item is clicked
+ * @param  {object} e the event object
+ * @return {function}   the event handler
+ */
+  const _handleClicked = e => onSelected({ event: e, index, key, value });
 
   return (
-    <div className={wrapperClasses} onClick={ _handleClicked }>
+    <div className={wrapperClasses} onClick={_handleClicked}>
       <div className='cbn-menu-item__content' title={primaryText}>
         {iconPosition === 'left' && icon
           && iconNode}
@@ -39,6 +42,7 @@ const MenuItem = ({ icon, iconPosition, key, primaryText, onSelected, value }) =
 MenuItem.defaultProps = {
   icon: null,
   iconPosition: 'right',
+  index: null,
   value: null
 };
 
@@ -51,6 +55,14 @@ MenuItem.propTypes = {
    * Icon position relative to label
    */
   iconPosition: PropTypes.oneOf(['left', 'right']),
+  /**
+   * An optional index to be send back in callbacks
+   */
+  index: PropTypes.number,
+  /**
+   * A unique key for this element
+   */
+  key: PropTypes.string.isRequired,
   /**
    * A callback which is automatically implemented by a parent menu component
    */

@@ -1,13 +1,11 @@
 import React, { PropTypes } from 'react';
-import classnames from 'classnames';
 import _ from 'lodash';
 
 // Styles
 import './dropdown.css';
 
-// Components
-import Icon from '../../icon/icon';
-import MenuOption from '../menu-option/menu-option';
+// Renderer
+import DropdownRenderer from './dropdown-renderer';
 
 const Dropdown = React.createClass({
   displayName: 'Dropdown',
@@ -63,7 +61,6 @@ const Dropdown = React.createClass({
   * @return {object} An object to be used as the initial state
   */
   getInitialState() {
-
     // check children for a selected option
     // otherwise, default to first
     const selectedIndex = _.findIndex(this.props.children, c => c.props.selected);
@@ -78,7 +75,7 @@ const Dropdown = React.createClass({
       selectedOption = {
         index: selectedIndex,
         label: this.props.children[selectedIndex].props.primaryText,
-        value: this.props.children[selectedIndex].props.value,
+        value: this.props.children[selectedIndex].props.value
       };
     }
 
@@ -115,7 +112,6 @@ const Dropdown = React.createClass({
     // detect if the selected item has changed
     const hasChanged = value !== this.state.value;
     if (hasChanged) {
-
       const selectedOption = { label, value, index };
       this.setState({ open: false, selectedOption }, () => {
         if (typeof onChanged === 'function') {
@@ -133,24 +129,17 @@ const Dropdown = React.createClass({
   render() {
     const { children, defaultText, width } = this.props;
     const { open, selectedOption } = this.state;
-    const wrapperClasses = classnames('cbn-dropdown', { 'cbn-dropdown--open': open });
 
     return (
-      <div className={wrapperClasses} style={{ width: `${width}px` }}>
-        <div className='cbn-dropdown__label' onClick={this._handleLabelClicked}>
-          <span>{selectedOption.label || defaultText}</span> <Icon type='chevronUp' theme='light' />
-        </div>
-        <div className='cbn-dropdown__options'>
-          {React.Children.map(children, (child, i) => {
-            const extraProps = {
-              index: i,
-              onSelected: this._handleOptionSelected,
-              selected: selectedOption.index === i,
-            };
-            return React.cloneElement(child, extraProps);
-          })}
-        </div>
-      </div>
+      <DropdownRenderer
+        defaultText={defaultText}
+        onLabelClicked={this._handleLabelClicked}
+        onOptionSelected={this._handleOptionSelected}
+        open={open}
+        selectedOption={selectedOption}
+        width={width}>
+        {children}
+      </DropdownRenderer>
     );
   }
 });
