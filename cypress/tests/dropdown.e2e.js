@@ -11,13 +11,6 @@ describe('Dropdown component', () => {
       });
   });
 
-  it('assert that all Dropdowns open when the label is clicked', () => {
-    cy.get('.cbn-dropdown')
-      .should(components => {
-        expect(components).to.have.length(3);
-      });
-  });
-
   it('assert that Dropdown opens and closes correctly', () => {
     cy.get('.cbn-dropdown')
       .each(($el, index, $list) => {
@@ -54,6 +47,10 @@ describe('Dropdown component', () => {
         cy.wrap($el)
           .should('not.have.class', 'cbn-dropdown--open');
 
+          cy.wrap($el)
+            .find('.cbn-dropdown__options')
+            .should('not.be.visible');
+
         if (originalLabel !== optionLabel) {
           // assert label has changed
           cy.wrap($el)
@@ -64,4 +61,5 @@ describe('Dropdown component', () => {
 
       });
   });
+
 });
