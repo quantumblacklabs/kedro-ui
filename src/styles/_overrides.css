@@ -7,42 +7,51 @@
 
 /** React Styleguidist overrides */
 .ReactStyleguidist-Playground__preview {
-  background: #091321;
-  overflow: hidden;
-  padding: 0;
-  margin-bottom: 0;
   position: relative;
+
   min-height: 70px;
+  margin-bottom: 0;
+  padding: 0;
+
+  background: rgb(9, 19, 33);
+
+  overflow: hidden;
 
   .qb-context--svg & {
-    &:after {
-      content: 'SVG';
+    &::after {
       position: absolute;
       top: 0;
       right: 0;
-      background: #008fd5;
-      border: 5px solid #007dc6;
+
       width: 60px;
       height: 60px;
-      text-align: center;
-      
+      border: 5px solid rgb(0, 125, 198);
+
       font-size: 24px;
+      text-align: center;
+
+      background: rgb(0, 143, 213);
+
+      content: 'SVG';
     }
   }
 
   .qb-context--html & {
-    &:after {
-      content: 'HTML';
+    &::after {
       position: absolute;
       top: 0;
       right: 0;
-      background: #f16529;
-      border: 5px solid #e44d26;
+
       width: 60px;
       height: 60px;
-      text-align: center;
-      
+      border: 5px solid rgb(228, 77, 38);
+
       font-size: 24px;
+      text-align: center;
+
+      background: rgb(241, 101, 41);
+
+      content: 'HTML';
     }
   }
 }
@@ -52,23 +61,19 @@
 }
 
 .ReactStyleguidist-ReactComponent__pathLine {
+  margin: 10px 0;
+  padding: 20px;
+
   color: $turqoise-blue;
   background: black;
-  padding: 20px;
-  margin: 10px 0;
 }
 
 .ReactStyleguidist-StyleGuide__sidebar {
-  background: radial-gradient(circle at 27% 53%,#1d3149,#162538 56%,#162538 0,#111c2b);
-  
-
-  .ReactStyleguidist-colors__link,
-  .ReactStyleguidist-StyleGuide__heading {
-    
-  }
+  background: radial-gradient(circle at 27% 53%, rgb(29, 49, 73), rgb(22, 37, 56) 56%, rgb(22, 37, 56) 0, rgb(17, 28, 43));
 
   .ReactStyleguidist-StyleGuide__heading {
     @extend %type--display-2;
+
     padding: 40px 15px;
   }
 
@@ -103,10 +108,11 @@
 .ReactStyleguidist-TableOfContents__search {
   width: 100%;
   height: 50px;
-  margin: 0 0 15px 0;
-  font-size: 15px;
+  margin: 0 0 15px;
   border-radius: 0;
+
   font-family: 'Source Code Pro', monospace;
+  font-size: 15px;
 
   &:focus {
     border: none;
@@ -114,8 +120,8 @@
 }
 
 .CodeMirror-lines {
-  line-height: 20px;
   font-size: 16px;
+  line-height: 20px;
 }
 
 .ReactStyleguidist-TableOfContents__section,
@@ -124,16 +130,17 @@
 }
 
 .ReactStyleguidist-Section__heading {
-  &:before {
-    content: '>';
+  &::before {
     margin-right: 10px;
+    content: '>';
   }
 }
 
 .ReactStyleguidist-ReactComponent__root {
-  border-bottom: 1px solid whitesmoke;
-  padding-bottom: 50px;
   position: relative;
+
+  padding-bottom: 50px;
+  border-bottom: 1px solid whitesmoke;
 
   > div > .qb-pill {
     position: absolute;
@@ -168,14 +175,15 @@
 }
 
 .ReactStyleguidist-Markdown__pre {
-  font-family: 'Source Code Pro', monospace;
-  padding: 20px;
-  font-size: 18px;
   margin-bottom: 20px;
+  padding: 20px;
+
+  font-family: 'Source Code Pro', monospace;
+  font-size: 18px;
 }
 
 .ReactStyleguidist-Props__tableBody > tr:nth-child(odd) {
-  background: #f7f7fb;
+  background: rgb(247, 247, 251);
 }
 
 .ReactStyleguidist-Props__cell {
@@ -184,9 +192,9 @@
 }
 
 .ReactStyleguidist-Props__name {
-  color: #04c141;
+  color: rgb(4, 193, 65);
 }
 
 .ReactStyleguidist-Props__type {
-  color: #d448b4;
+  color: rgb(212, 72, 180);
 }
