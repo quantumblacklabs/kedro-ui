@@ -1,6 +1,6 @@
 {
   "name": "@quantumblack/carbon-ui-components",
-  "version": "0.3.0",
+  "version": "0.2.8",
   "description": "A collection of React components which are used in Carbon UI",
   "main": "dist/index.js",
   "scripts": {
