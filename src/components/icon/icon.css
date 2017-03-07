@@ -1,7 +1,7 @@
 .cbn-icon {
+  display: inline-block;
   width: 24px;
   height: 24px;
-  display: inline-block;
 
   /* size variants */
   &--small {
@@ -26,7 +26,7 @@
       position: absolute;
       top: 0;
       left: 0;
-      transition: opacity .8s;
+      transition: opacity 0.8s;
     }
 
     /* show index 0 icon by default

@@ -11,8 +11,8 @@
     "docs:build": "styleguidist build && cp -r dist styleguide",
     "eslint": "eslint src/*.js src/**/*.js src/**/*.jsx",
     "start": "npm run build && npm run docs:server",
-    "stylelint": "stylelint src/**/*.css --config stylelint.config.js",
     "postinstall": "npm run build",
+    "prepublish": "npm run test",
     "test": "npm run eslint && npm run ava"
   },
   "ava": {
@@ -56,8 +56,8 @@
     }
   ],
   "dependencies": {
-    "@quantumblack/carbon-ui-core": "^1.0.0",
-    "@quantumblack/javascript-standards": "^1.5.0",
+    "@quantumblack/carbon-ui-core": "^1.1.0",
+    "@quantumblack/javascript-standards": "^1.6.1",
     "autoprefixer": "^6.7.2",
     "babel-core": "^6.21.0",
     "babel-loader": "^6.2.10",

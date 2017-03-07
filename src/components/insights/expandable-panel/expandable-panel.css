@@ -4,11 +4,13 @@ $size-arrow-pos-right: 35px;
 
 .qb-expandable-panel {
   position: relative;
-  border-bottom: 1px solid #e0e0e0;
+
+  border-bottom: 1px solid rgb(224, 224, 224);
 
   &--closed {
-    overflow: hidden;
     height: 0;
+
+    overflow: hidden;
   }
 }
 
@@ -23,13 +25,14 @@ $size-arrow-pos-right: 35px;
     position: absolute;
     top: calc(-1 * $size-arrow / 2);
     right: $size-arrow-pos-right;
+
+    z-index: 1;
+
     width: $size-arrow;
     height: $size-arrow;
-    border: 1px solid;
-    border-color: inherit;
-    border-right: 0;
-    border-bottom: 0;
+
+    border: 1px solid inherit;
+    border-width: 1px 0 0;
     transform: rotate(45deg);
-    z-index: 1;
   }
 }
