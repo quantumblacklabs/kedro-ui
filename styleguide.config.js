@@ -1,10 +1,10 @@
-var path = require('path');
-var pkg = require('./package.json');
-var _ = require('lodash');
-var glob = require('glob');
-var stylelint = require('stylelint');
+const path = require('path');
+const pkg = require('./package.json');
+const _ = require('lodash');
+const glob = require('glob');
+const stylelint = require('stylelint');
 
-var dirs = [
+const dirs = [
   path.resolve(__dirname, 'src'),
   path.resolve(__dirname, 'templates')
 ];
@@ -27,9 +27,7 @@ const getComponentsFunc = (name, pattern) => {
   }
 };
 
-console.log('resolve-----', path.resolve(__dirname + '/templates/custom-renderers/styleguide'));
-
-var config = {
+const config = {
   title: pkg.name + ' v' + pkg.version,
   template: './templates/index.html',
   sections: [
@@ -138,7 +136,7 @@ var config = {
         'styles': path.resolve(__dirname + '/src/styles'),
         'rsg-components/ReactComponent/ReactComponentRenderer': path.resolve(__dirname + '/templates/custom-renderers/react-component'),
         'rsg-components/Section/SectionRenderer': path.resolve(__dirname + '/templates/custom-renderers/section'),
-        'rsg-components/StyleGuide/StyleGuideRenderer': path.resolve(__dirname + '/templates/custom-renderers/styleguide/index.jsx'),
+        // 'rsg-components/StyleGuide/StyleGuideRenderer': path.resolve(__dirname + '/templates/custom-renderers/styleguide/index.jsx'),
         'rsg-components/Playground/PlaygroundRenderer': path.resolve(__dirname + '/templates/custom-renderers/playground'),
         'rsg-components/Examples': path.resolve(__dirname + '/templates/custom-renderers/examples')
         // 'rsg-components/Editor/Editor': path.resolve(__dirname + '/templates/custom-renderers/editor'),
