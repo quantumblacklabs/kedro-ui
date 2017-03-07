@@ -27,6 +27,8 @@ const getComponentsFunc = (name, pattern) => {
   }
 };
 
+console.log('resolve-----', path.resolve(__dirname + '/templates/custom-renderers/styleguide'));
+
 var config = {
   title: pkg.name + ' v' + pkg.version,
   template: './templates/index.html',

@@ -100,13 +100,14 @@
 
       height: $menu-item-height;
       padding: $menu-item-padding;
-      @extend %type--body-1;
-      @extend %type--semibold;
       text-transform: uppercase;
 
       line-height: 1.43;
 
       color: rgba(0, 0, 0, 0.38);
+
+      @extend %type--body-1;
+      @extend %type--semibold;
     }
   }
 }
