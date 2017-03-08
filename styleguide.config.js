@@ -9,20 +9,15 @@ const dirs = [
   path.resolve(__dirname, 'templates')
 ];
 
-const searchPath = pattern => {
-  console.log('pattern', pattern);
-  return _(glob.sync(path.resolve(__dirname, pattern)))
-    .reject(c => /renderer\.jsx$/.test(pattern))
-    .sortBy(c => _.last(c.split('/')))
-    .value();
-};
-
-const searchPath2 = pattern => _.sortBy(glob.sync(path.resolve(__dirname, pattern)), c => _.last(c.split('/')));
+const searchPath = pattern => _(glob.sync(path.resolve(__dirname, pattern)))
+  .reject(c => /renderer\.jsx$/.test(c))
+  .sortBy(c => _.last(c.split('/')))
+  .value();
 
 const getComponentsFunc = (name, pattern) => {
   return () => {
     const components = searchPath(pattern);
-    console.log(`Found ${components.length} ${name} components`);
+    console.log(`Found ${components.length} ${name} components from pattern ${pattern}`);
     return components;
   }
 };
@@ -136,7 +131,7 @@ const config = {
         'styles': path.resolve(__dirname + '/src/styles'),
         'rsg-components/ReactComponent/ReactComponentRenderer': path.resolve(__dirname + '/templates/custom-renderers/react-component'),
         'rsg-components/Section/SectionRenderer': path.resolve(__dirname + '/templates/custom-renderers/section'),
-        // 'rsg-components/StyleGuide/StyleGuideRenderer': path.resolve(__dirname + '/templates/custom-renderers/styleguide/index.jsx'),
+        'rsg-components/StyleGuide/StyleGuideRenderer': path.resolve(__dirname + '/templates/custom-renderers/styleguide'),
         'rsg-components/Playground/PlaygroundRenderer': path.resolve(__dirname + '/templates/custom-renderers/playground'),
         'rsg-components/Examples': path.resolve(__dirname + '/templates/custom-renderers/examples')
         // 'rsg-components/Editor/Editor': path.resolve(__dirname + '/templates/custom-renderers/editor'),
@@ -145,7 +140,5 @@ const config = {
     }
   }
 };
-
-console.log(path.resolve(__dirname + '/templates/custom-renderers/ReactComponent'));
 
 module.exports = config;
