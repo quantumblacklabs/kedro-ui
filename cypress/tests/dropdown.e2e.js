@@ -4,11 +4,9 @@ describe('Dropdown component', () => {
     cy.visit('/#!/Dropdown');
   });
 
-  it('assert that we have all of the demos rendering root nodes correctly', () => {
+  it('assert that we have more than 2 demos rendering root nodes correctly', () => {
     cy.get('.cbn-dropdown')
-      .should(components => {
-        expect(components).to.have.length(3);
-      });
+      .should('to.have.length.above', 2);
   });
 
   it('assert that Dropdown opens and closes correctly', () => {

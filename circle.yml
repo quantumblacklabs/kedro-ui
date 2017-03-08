@@ -35,7 +35,7 @@ test:
     ## environment var by default
     ## which you need to configure
     ## on Circle CI behind the scenes
-    - cypress run --record:
+    - cypress run --record --key cc14c0f3-ca23-431a-bb98-1a2987b3e139:
         timeout: 720
 
     ## alternatively we could specify
