@@ -89,12 +89,13 @@ const Dropdown = React.createClass({
   _findSelectedOptionElement() {
     // we may have an array of options
     // or an array of sections, containing options
-    if (this.props.children[0].type === 'section') {
-      const sectionOptions = _(this.props.children).map(section => section.props.children).flatten().value();
-      return _.find(sectionOptions, c => c.props.selected);
-    } else {
-      return _.find(this.props.children, c => c.props.selected);
-    }
+    return (this.props.children[0].type === 'section')
+      ? _(this.props.children)
+        .map(section => section.props.children)
+        .flatten()
+        .value()
+        .find(c => c.props.selected)
+      : _.find(this.props.children, c => c.props.selected);
   },
   /**
    * Event handler which is fired when the label is clicked
