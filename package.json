@@ -6,17 +6,13 @@
   "scripts": {
     "start": "npm run build && npm run docs:server",
     "docs:server": "styleguidist server",
-
     "build": "webpack -d --config webpack.build.config.js",
     "docs:build": "styleguidist build && cp -r dist styleguide",
-
     "postinstall": "npm run build",
-    "prepublish": "npm run test && npm run cypress",
-
+    "prepublish": "npm run test",
     "stylelint": "stylelint templates/**/*.css --config stylelint.config.js",
     "eslint": "eslint src/*.js src/**/*.js src/**/*.jsx",
     "ava": "CONFIG=$(pwd)/webpack.ava.config.js NODE_ENV=AVA BABEL_DISABLE_CACHE=1 ava",
-    "cypress": "npm run build && npm run docs:build && cypress run --record false --key cc14c0f3-ca23-431a-bb98-1a2987b3e139",
     "test": "npm run eslint && npm run ava"
   },
   "ava": {
