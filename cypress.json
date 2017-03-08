@@ -1,5 +1,7 @@
 {
   "fileServerFolder": "styleguide",
   "integrationFolder": "cypress/tests",
-  "projectId": "x4tjns"
+  "projectId": "x4tjns",
+  "viewportWidth": 1440,
+  "viewportHeight": 900
 }
