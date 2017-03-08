@@ -25,8 +25,8 @@ test:
     ## runs the 'start' script which
     ## boots our local app server on port 8080
     ## which cypress expects to be running
-    - npm start:
-        background: true
+    - npm run build
+    - npm run docs:build
   override:
     ## now run cypress in CI mode
     ## which runs all of the tests
