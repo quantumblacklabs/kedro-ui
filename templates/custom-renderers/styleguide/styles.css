@@ -3,19 +3,21 @@
 }
 
 .cbn-sg-gutter {
-  margin: 0 auto;
   max-width: 1200px;
+  margin: 0 auto;
 }
 
 .cbn-sg-root {
-  background: white;
   font-size: 16px;
+
   color: black;
+  background: white;
 }
 
 .cbn-sg-content {
-  padding: 0;
   margin: 0 auto;
+  padding: 0;
+
   background: white;
 }
 
@@ -30,27 +32,32 @@
 .cbn-sg-sidebar {
   position: fixed;
   top: 0;
-  left: 0;
   bottom: 0;
+  left: 0;
+
   width: 239px;
+
   overflow: scroll;
 }
 
 .cbn-sg__pathLine {
+  margin: 10px 0;
+  padding: 20px;
+
   color: white;
   background: black;
-  padding: 20px;
-  margin: 10px 0;
 }
 
 .cbn-sg-components {
-  overflow: auto;/* to prevent the pane from growing out of the screen */
   background: white;
+
+  overflow: auto; /* to prevent the pane from growing out of the screen */
 }
 
 .cbn-sg-header {
-  background: rgba(239, 239, 239, 1);
   padding: 100px 0 40px;
+
+  background: rgba(239, 239, 239, 1);
 }
 
 .cbn-sg-header > div {
@@ -59,12 +66,13 @@
 }
 
 .CodeMirror-lines {
-  line-height: 20px;
   font-size: 16px;
+
+  line-height: 20px;
 }
 
 .cm-s-material.CodeMirror {
-  background-color: #171717 !important;
+  background-color: rgb(23, 23, 23) !important;
 }
 
 .cbn-sg__props .rsg--common__font {
@@ -72,14 +80,15 @@
 }
 
 .cbn-sg__props .rsg--Markdown__pre {
-  font-family: 'Source Code Pro', monospace;
-  padding: 20px;
-  font-size: 18px;
   margin-bottom: 20px;
+  padding: 20px;
+
+  font-family: 'Source Code Pro', monospace;
+  font-size: 18px;
 }
 
 .cbn-sg__props .rsg--Props__tableBody > tr:nth-child(odd) {
-  background: #f7f7fb;
+  background: rgb(247, 247, 251);
 }
 
 .cbn-sg__props .rsg--Props--cell {
