@@ -13,7 +13,7 @@ import Icon from '../../icon/icon';
  * with it's label and value properties.
  * The parent component will override the onSelected property of this component, so you don't need to implement it.
  */
-const MenuOption = ({ icon, iconPosition, key, index, onSelected, primaryText, selected, value }) => {
+const MenuOption = ({ icon, iconPosition, id, onSelected, primaryText, selected, value }) => {
   const wrapperClasses = classnames('cbn-menu-option', {
     'cbn-menu-option--selected': selected,
     'cbn-menu-option--has-icon': typeof icon === 'string',
@@ -29,7 +29,12 @@ const MenuOption = ({ icon, iconPosition, key, index, onSelected, primaryText, s
    * @param  {object} e The event object
    * @return {function}   The event handler
    */
-  const _handleClicked = e => onSelected({ event: e, index, key, label: primaryText, value });
+  const _handleClicked = e => onSelected({
+    event: e,
+    id,
+    label: primaryText,
+    value
+  });
 
   return (
     <div className={wrapperClasses} onClick={_handleClicked}>
@@ -47,7 +52,6 @@ const MenuOption = ({ icon, iconPosition, key, index, onSelected, primaryText, s
 MenuOption.defaultProps = {
   icon: null,
   iconPosition: 'right',
-  index: null,
   onSelected: null,
   selected: false,
   value: null
@@ -63,13 +67,10 @@ MenuOption.propTypes = {
    */
   iconPosition: PropTypes.oneOf(['left', 'right']),
   /**
-   * An optional index to be send back in callbacks
+   * A unique key for this element, which will be set by the parent menu component.
+   * This is used by the parent menu component to determine which option is selected.
    */
-  index: PropTypes.number,
-  /**
-   * A unique key for this element
-   */
-  key: PropTypes.string.isRequired,
+  id: PropTypes.string,
   /**
    * A callback which is automatically implemented by a parent menu component
    */

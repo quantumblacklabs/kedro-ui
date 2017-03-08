@@ -63,19 +63,21 @@ const Dropdown = React.createClass({
   getInitialState() {
     // check children for a selected option
     // otherwise, default to first
-    const selectedIndex = _.findIndex(this.props.children, c => c.props.selected);
 
     let selectedOption = {
-      index: -1,
+      id: null,
       label: null,
       value: null
     };
 
-    if (selectedIndex !== -1) {
+    const selectedOptionElement = this._findSelectedOptionElement();
+
+    if (selectedOptionElement) {
+      const { id, primaryText, value } = selectedOptionElement.props;
       selectedOption = {
-        index: selectedIndex,
-        label: this.props.children[selectedIndex].props.primaryText,
-        value: this.props.children[selectedIndex].props.value
+        id,
+        label: primaryText,
+        value
       };
     }
 
@@ -83,6 +85,16 @@ const Dropdown = React.createClass({
       selectedOption,
       open: false
     };
+  },
+  _findSelectedOptionElement() {
+    // we may have an array of options
+    // or an array of sections, containing options
+    if (this.props.children[0].type === 'section') {
+      const sectionOptions = _(this.props.children).map(section => section.props.children).flatten().value();
+      return _.find(sectionOptions, c => c.props.selected);
+    } else {
+      return _.find(this.props.children, c => c.props.selected);
+    }
   },
   /**
    * Event handler which is fired when the label is clicked
@@ -94,9 +106,9 @@ const Dropdown = React.createClass({
     let callback = null;
 
     // set callbacks, if defined
-    if (onOpened && !open) {
+    if (typeof onOpened === 'function' && !open) {
       callback = onOpened;
-    } else if (onClosed && open) {
+    } else if (typeof onClosed === 'function' && open) {
       callback = onClosed;
     }
 
@@ -110,15 +122,19 @@ const Dropdown = React.createClass({
     const { onChanged, onClosed } = this.props;
 
     // detect if the selected item has changed
-    const hasChanged = value !== this.state.value;
+    const hasChanged = value !== this.state.selectedOption.value;
     if (hasChanged) {
       const selectedOption = { label, value, index };
       this.setState({ open: false, selectedOption }, () => {
         if (typeof onChanged === 'function') {
           onChanged(obj);
+        }
+        if (typeof onClosed === 'function') {
           onClosed();
         }
       });
+    } else {
+      this.setState({ open: false });
     }
   },
   /**
