@@ -22,12 +22,11 @@ dependencies:
     - /home/ubuntu/.cypress/Cypress
 test:
   pre:
-    # runs unit tests
-    - npm run test
     ## runs the 'start' script which
     ## boots our local app server on port 8080
     ## which cypress expects to be running
-    - npm run build && npm run docs:build
+    - npm start
+        background: true
   override:
     ## now run cypress in CI mode
     ## which runs all of the tests
@@ -35,8 +34,7 @@ test:
     ## environment var by default
     ## which you need to configure
     ## on Circle CI behind the scenes
-    - cypress run --record --key cc14c0f3-ca23-431a-bb98-1a2987b3e139:
-        timeout: 720
+    - cypress run --record
 
     ## alternatively we could specify
     ## a specific secret key to use
