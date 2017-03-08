@@ -1,20 +1,24 @@
-
 .cbn-sg-playground {
   position: relative;
-  border-radius: 3px 3px 0;
+
   margin: 0 0 200px;
+
+  border-radius: 3px 3px 0;
 }
 
 .cbn-sg-playground__preview {
-  padding: 40px 0 0;
-  margin: 0;
-  background: rgba(0, 0, 0, 0.06);
   position: relative;
+
+  margin: 0;
+  padding: 40px 0 0;
+
+  background: rgba(0, 0, 0, 0.06);
 }
 
 .cbn-sg-playground__preview > div:first-child {
-  min-height: 100px;
   position: relative;
+
+  min-height: 100px;
   padding-bottom: 40px;
 }
 
@@ -25,18 +29,21 @@
 .cbn-sg-playground__preview--grid {
   > div:first-child {
     &::after {
-      content: '4px grid';
-      padding: 10px 0 0 10px;
-      color: white;
       position: absolute;
+      top: -1px;
+      right: 0;
+
       display: block;
       width: 100%;
       height: 100%;
-      top: -1px;
-      right: 0;
+      padding: 10px 0 0 10px;
+
+      color: white;
       background-size: 4px 4px;
       background-color: transparent;
       background-image: linear-gradient(0deg, transparent 75%, rgba(255, 105, 180, 0.5) 75%);
+
+      content: '4px grid';
     }
   }
 }
@@ -46,29 +53,34 @@
 }
 
 .cbn-sg-btn {
-  background: black;
-  color: white;
-  outline: none;
   padding: 10px;
-  cursor: pointer;
   border: none;
+
+  color: white;
+  background: black;
+
+  outline: none;
+  cursor: pointer;
 }
 
 .cbn-sg-btn:hover {
-  background: rgb(25, 104, 209);
   color: white;
+  background: rgb(25, 104, 209);
 }
 
 .cbn-sg-playground__code {
-  background: #171717 !important;
   max-height: 0;
-  overflow: auto;
   padding: 0;
+
+  background: rgb(23, 23, 23) !important;
+
+  overflow: auto;
   transition: max-height 0.4s ease;
 }
 
 .cbn-sg-playground__code > div {
   padding: 50px 0;
+
   opacity: 0;
   transition: opacity 0.4s 0.6s ease;
 }
@@ -83,12 +95,15 @@
 
 .cbn-sg-playground__code-toggle {
   position: absolute;
-  right: -1px;
   bottom: -26px;
-  cursor: pointer;
+  right: -1px;
+
+  padding: 4px 8px;
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
   border-top: 0;
-  padding: 4px 8px;
+
   font-size: 14px;
+
+  cursor: pointer;
 }
