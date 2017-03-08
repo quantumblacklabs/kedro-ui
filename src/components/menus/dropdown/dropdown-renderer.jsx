@@ -46,14 +46,12 @@ const DropdownRenderer = ({ children, defaultText, onLabelClicked, onOptionSelec
                   })}
                 </section>
               );
-              break;
             case 'span':
               // Heading
               return child;
             default:
-              return _extendMenuOption(child, `menu-option-${i}`)
+              return _extendMenuOption(child, `menu-option-${i}`);
           }
-
         })}
       </div>
     </div>

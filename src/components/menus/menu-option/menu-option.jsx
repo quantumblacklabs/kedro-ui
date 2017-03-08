@@ -52,6 +52,7 @@ const MenuOption = ({ icon, iconPosition, id, onSelected, primaryText, selected,
 MenuOption.defaultProps = {
   icon: null,
   iconPosition: 'right',
+  id: null,
   onSelected: null,
   selected: false,
   value: null
