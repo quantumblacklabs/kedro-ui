@@ -11,6 +11,7 @@
     "docs:build": "styleguidist build && cp -r dist styleguide",
     "eslint": "eslint src/*.js src/**/*.js src/**/*.jsx",
     "start": "npm run build && npm run docs:server",
+    "stylelint": "stylelint templates/**/*.css --config stylelint.config.js",
     "postinstall": "npm run build",
     "prepublish": "npm run test",
     "test": "npm run eslint && npm run ava"
