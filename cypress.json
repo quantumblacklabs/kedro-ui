@@ -1,5 +1,5 @@
 {
-  "fileServerFolder": "styleguide",
+  "baseUrl": "http://localhost:3000",
   "integrationFolder": "cypress/tests",
   "pageLoadTimeout": 10000,
   "projectId": "x4tjns",
