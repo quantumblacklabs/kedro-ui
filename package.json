@@ -6,6 +6,7 @@
   "scripts": {
     "start": "npm run build && npm run docs:server",
     "docs:server": "styleguidist server",
+    "static": "node server.js",
     "build": "webpack -d --config webpack.build.config.js",
     "docs:build": "styleguidist build && cp -r dist styleguide",
     "postinstall": "npm run build",

@@ -27,7 +27,8 @@ test:
     ## which cypress expects to be running
     - npm run build
     - npm run docs:build
-    - node server.js
+    - npm run static:
+        background: true
   override:
     ## now run cypress in CI mode
     ## which runs all of the tests
