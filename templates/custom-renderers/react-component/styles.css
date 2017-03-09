@@ -1,3 +1,6 @@
 .cbn-sg__root {
   padding: 100px 0;
 }
+.bn-sg__props {
+  display: none;
+}

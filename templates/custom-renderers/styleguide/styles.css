@@ -27,6 +27,7 @@
 
 .cbn-sg__props {
   padding: 0 0 60px;
+  display: none;
 }
 
 .cbn-sg-sidebar {
@@ -56,7 +57,7 @@
 
 .cbn-sg-header {
   padding: 100px 0 40px;
-
+  display: none;
   background: rgba(239, 239, 239, 1);
 }
 
