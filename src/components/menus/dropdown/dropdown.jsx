@@ -147,7 +147,10 @@ const Dropdown = React.createClass({
     const { children, defaultText, width } = this.props;
     const { open, selectedOption } = this.state;
 
-    document.querySelector('.cbn-sg-components').style.background = 'hotpink';
+    const elm = document.querySelector('.cbn-sg-components');
+    if (elm) {
+      elm.style.background = 'hotpink';
+    }
 
     return (
       <DropdownRenderer
