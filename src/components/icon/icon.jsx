@@ -23,6 +23,11 @@ const Icon = props => {
     type2
   } = props;
 
+  const elm = document.querySelector('.cbn-sg-components');
+  if (elm) {
+    elm.style.background = 'hotpink';
+  }
+
   // filter props for data attributes to attach to the node
   const dataProps = _.pickBy(props, (val, key) => /^data-.*/.test(key));
 
