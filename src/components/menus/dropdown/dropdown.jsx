@@ -36,6 +36,10 @@ const Dropdown = React.createClass({
     */
     onClosed: PropTypes.func,
     /**
+    * The theme for the component
+    */
+    theme: PropTypes.oneOf(['light', 'dark']),
+    /**
     * The width for the component. Both the label and options are the same width
     */
     width: PropTypes.number
@@ -52,6 +56,7 @@ const Dropdown = React.createClass({
       onChanged: null,
       onClosed: null,
       onOpened: null,
+      theme: 'light',
       width: 160
     };
   },
@@ -144,7 +149,7 @@ const Dropdown = React.createClass({
    * @return {object} JSX for this component
    */
   render() {
-    const { children, defaultText, width } = this.props;
+    const { children, defaultText, theme, width } = this.props;
     const { open, selectedOption } = this.state;
 
     return (
@@ -154,6 +159,7 @@ const Dropdown = React.createClass({
         onOptionSelected={this._handleOptionSelected}
         open={open}
         selectedOption={selectedOption}
+        theme={theme}
         width={width}>
         {children}
       </DropdownRenderer>

@@ -7,8 +7,8 @@ import Icon from '../../icon/icon';
 /**
  * Renderer for the Dropdown component
  */
-const DropdownRenderer = ({ children, defaultText, onLabelClicked, onOptionSelected, open, selectedOption, width }) => {
-  const wrapperClasses = classnames('cbn-dropdown', { 'cbn-dropdown--open': open });
+const DropdownRenderer = ({ children, defaultText, onLabelClicked, onOptionSelected, open, selectedOption, theme, width }) => {
+  const wrapperClasses = classnames('cbn-dropdown', `cbn-theme--${theme}`, { 'cbn-dropdown--open': open });
 
   /**
    * Clone a React element and extend with extra props tieing it to a new scope
@@ -66,6 +66,7 @@ DropdownRenderer.defaultProps = {
   onOptionSelected: null,
   open: false,
   selectedOption: null,
+  theme: 'light',
   width: 160
 };
 
@@ -94,6 +95,10 @@ DropdownRenderer.propTypes = {
   * An object containing selected option details
   */
   selectedOption: PropTypes.object,
+  /**
+  * The theme for the component
+  */
+  theme: PropTypes.oneOf(['light', 'dark']),
   /**
   * The width for the component. Both the label and options are the same width
   */

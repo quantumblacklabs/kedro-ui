@@ -1,5 +1,13 @@
 @import '../../../styles/includes';
 
+@define-mixin themedParent $propName, $themeKey: text {
+  .cbn-theme--dark & {
+    @each $val, $i in map(themes, dark) {
+      $(propName): $(val);
+    }
+  }
+}
+
 .cbn-menu-option {
   display: flex;
   align-items: center;
@@ -10,7 +18,7 @@
   border-width: 0 1px;
   border-color: rgba(255, 255, 255, 0.2);
 
-  color: $light--text;
+  @mixin themedParent color;
 
   background: white;
   white-space: nowrap;
@@ -20,6 +28,10 @@
 
   &:hover {
     background: $c-default-light--hover;
+
+    .cbn-theme--dark & {
+      background: $c-menu-bg-dark;
+    }
   }
 
   &:active {

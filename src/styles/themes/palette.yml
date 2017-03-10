@@ -1,0 +1,6 @@
+# Carbon UI color themes
+themes:
+  light:
+    text: hotpink
+  dark:
+    text: cornflowerblue

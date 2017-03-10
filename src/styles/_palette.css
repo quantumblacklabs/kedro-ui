@@ -1,5 +1,4 @@
 $light--hover: rgb(230, 232, 235);
-$light--text: rgba(0, 0, 0, 0, 85);
 
 /** Light UI **/
 $c-primary-light: rgb(27, 117, 240);
@@ -22,6 +21,8 @@ $c-primary-light--disabled: rgb(0, 174, 239);
 $c-secondary-light--disabled: rgb(211, 234, 247);
 $c-default-light--disabled: rgb(251, 251, 251);
 
+$c-text-dark: rgba(255, 255, 255, 0.85);
+
 /** Dark UI **/
 $c-primary-dark: rgb(27, 117, 240);
 $c-secondary-dark: rgb(80, 170, 222);
@@ -42,3 +43,8 @@ $c-default-dark--active: rgb(119, 130, 137);
 $c-primary-dark--disabled: rgb(0, 174, 239);
 $c-secondary-dark--disabled: rgb(211, 234, 247);
 $c-default-dark--disabled: rgb(17, 32, 42);
+
+$c-text-light: rgba(0, 0, 0, 0.85);
+
+/* Custom component colors */
+$c-menu-bg-dark: rgba(54, 70, 81, 1);

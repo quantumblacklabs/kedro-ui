@@ -1,20 +1,29 @@
 @import '../../../styles/includes';
 
-.cbn-dropdown {
+%cbn-dropdown {
   position: relative;
 
   display: inline-block;
-  border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 2px;
-
-  background: white;
 
   &.cbn-dropdown--open {
     border-radius: 2px 2px 0 0;
   }
 }
 
-.cbn-dropdown__label {
+.cbn-dropdown {
+  @extend %cbn-dropdown;
+
+  border: 1px solid rgba(0, 0, 0, 0.12);
+
+  background: white;
+
+  &.cbn-theme--dark {
+    background: $c-menu-bg-dark;
+  }
+}
+
+%cbn-dropdown__label {
   position: relative;
   z-index: 2;
 
@@ -28,8 +37,6 @@
   cursor: pointer;
   user-select: none;
 
-  background: white;
-
   > .cbn-icon {
     position: absolute;
     right: 0;
@@ -42,6 +49,16 @@
     .cbn-dropdown--open & {
       transform: rotate(0deg); /* chevron pointing down */
     }
+  }
+}
+
+.cbn-dropdown__label {
+  @extend %cbn-dropdown__label;
+
+  background: white;
+
+  .cbn-theme--dark & {
+    background: $c-menu-bg-dark;
   }
 }
 

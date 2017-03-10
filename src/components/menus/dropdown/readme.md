@@ -14,6 +14,18 @@ Default dropdown, with no selected options by default, and default unselected te
 
 ```
 
+```
+<Dropdown
+    theme='dark'
+    onOpened={ () => console.log('Opened') }
+    onClosed={ () => console.log('Closed') }
+    onChanged={ e => console.log(e) }>
+    <MenuOption primaryText='Menu Item One' value={ 1 } />
+    <MenuOption primaryText='Menu Item Two' value={ 2 } />
+</Dropdown>
+
+```
+
 Default selected option
 
 ```
