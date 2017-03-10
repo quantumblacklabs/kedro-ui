@@ -7,7 +7,14 @@ import Icon from '../../icon/icon';
 /**
  * Renderer for the Dropdown component
  */
-const DropdownRenderer = ({ children, defaultText, onLabelClicked, onOptionSelected, open, selectedOption, theme, width }) => {
+const DropdownRenderer = ({ children,
+                            defaultText,
+                            onLabelClicked,
+                            onOptionSelected,
+                            open,
+                            selectedOption,
+                            theme,
+                            width }) => {
   const wrapperClasses = classnames('cbn-dropdown', `cbn-theme--${theme}`, { 'cbn-dropdown--open': open });
 
   /**
