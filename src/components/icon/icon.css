@@ -54,7 +54,7 @@
 
   /* theme variants */
   &--light {
-    fill: grey;
+    fill: black;
   }
 
   &--dark {

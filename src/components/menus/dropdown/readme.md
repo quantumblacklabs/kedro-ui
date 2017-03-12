@@ -5,31 +5,20 @@ Default dropdown, with no selected options by default, and default unselected te
 
 ```
 <Dropdown
+    theme='light'
     onOpened={ () => console.log('Opened') }
     onClosed={ () => console.log('Closed') }
     onChanged={ e => console.log(e) }>
     <MenuOption primaryText='Menu Item One' value={ 1 } />
     <MenuOption primaryText='Menu Item Two' value={ 2 } />
 </Dropdown>
-
-```
-
-```
-<Dropdown
-    theme='dark'
-    onOpened={ () => console.log('Opened') }
-    onClosed={ () => console.log('Closed') }
-    onChanged={ e => console.log(e) }>
-    <MenuOption primaryText='Menu Item One' value={ 1 } />
-    <MenuOption primaryText='Menu Item Two' value={ 2 } />
-</Dropdown>
-
 ```
 
 Default selected option
 
 ```
 <Dropdown
+    theme='light'
     onOpened={ () => console.log('Opened') }
     onClosed={ () => console.log('Closed') }
     onChanged={ e => console.log(e) }
@@ -45,6 +34,7 @@ Null first option
 
 ```
 <Dropdown
+    theme='light'
     onChanged={ e => console.log(e) }
     width={ 200 }>
     <MenuOption primaryText='All' selected={ true } value={ null } />
@@ -60,7 +50,9 @@ Null first option
 Demo description
 
 ```
-<Dropdown onChanged={ e => console.log(e) }>
+<Dropdown
+    onChanged={ e => console.log(e) }
+    theme='light'>
     <section>
         <MenuOption primaryText='Menu Item' value={ 1 } />
         <MenuOption primaryText='Menu Item Two' value={ 2 } />
@@ -77,7 +69,10 @@ Demo description
 Demo description
 
 ```
-<Dropdown onChanged={ e => console.log(e) } width={ 200 }>
+<Dropdown
+    onChanged={ e => console.log(e) }
+    width={ 200 }
+    theme='light'>
     <section>
         <span>Heading One</span>
         <MenuOption primaryText='Menu Item' value={ 1 } />
@@ -93,7 +88,10 @@ Demo description
 ```
 
 ```
-<Dropdown onChanged={ e => console.log(e) } width={ 200 }>
+<Dropdown
+    onChanged={ e => console.log(e) }
+    width={ 200 }
+    theme='light'>
     <section>
         <span>Heading One</span>
         <MenuOption primaryText='Menu Item' value={ 1 } />

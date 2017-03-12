@@ -87,6 +87,7 @@ MenuOption.propTypes = {
   /**
   * The theme for the component
   */
+  theme: PropTypes.oneOf(['light', 'dark']),
   /**
    * The value to send to the parent menu component when this item is selected
    */

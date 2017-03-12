@@ -10,9 +10,11 @@
   position: relative;
 
   margin: 0;
-  padding: 40px 0 0;
+  padding: 0;
 
   background: rgba(0, 0, 0, 0.06);
+
+  @mixin themed background, bg, default;
 }
 
 .cbn-sg-playground__preview > div:first-child {
@@ -27,11 +29,12 @@
 }
 
 .cbn-sg-playground__preview--grid {
-  > div:first-child {
+  .cbn-sg-playground__preview-section {
     &::after {
       position: absolute;
       top: -1px;
       right: 0;
+      z-index: 10;
 
       display: block;
       width: 100%;
@@ -45,6 +48,17 @@
 
       content: '4px grid';
     }
+  }
+}
+
+.cbn-sg-playground__preview-section {
+  position: relative;
+
+  display: none;
+  padding: 60px 0;
+
+  &.cbn-sg-playground__preview-section--show {
+    display: block;
   }
 }
 

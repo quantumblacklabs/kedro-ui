@@ -1,0 +1,203 @@
+@import './includes';
+@import './typography/extends';
+
+/** this is not part of the bundle, it is just for the styleguide */
+
+/** Fixed position component and module overrides */
+.qb-demo .qb-nav-panel-module {
+  position: absolute;
+}
+
+/** React Styleguidist overrides */
+.ReactStyleguidist-Playground__preview {
+  position: relative;
+
+  min-height: 70px;
+  margin-bottom: 0;
+  padding: 0;
+
+  background: rgb(9, 19, 33);
+
+  overflow: hidden;
+
+  .qb-context--svg & {
+    &::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+
+      width: 60px;
+      height: 60px;
+      border: 5px solid rgb(0, 125, 198);
+
+      font-size: 24px;
+      text-align: center;
+
+      background: rgb(0, 143, 213);
+
+      content: 'SVG';
+    }
+  }
+
+  .qb-context--html & {
+    &::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+
+      width: 60px;
+      height: 60px;
+      border: 5px solid rgb(228, 77, 38);
+
+      font-size: 24px;
+      text-align: center;
+
+      background: rgb(241, 101, 41);
+
+      content: 'HTML';
+    }
+  }
+}
+
+.rsg--StyleGuide--content {
+  max-width: none;
+}
+
+.ReactStyleguidist-ReactComponent__pathLine {
+  margin: 10px 0;
+  padding: 20px;
+
+  color: $turqoise-blue;
+  background: black;
+}
+
+.ReactStyleguidist-StyleGuide__sidebar {
+  background: radial-gradient(circle at 27% 53%, rgb(29, 49, 73), rgb(22, 37, 56) 56%, rgb(22, 37, 56) 0, rgb(17, 28, 43));
+
+  .ReactStyleguidist-StyleGuide__heading {
+    @extend %type--display-2;
+
+    padding: 40px 15px;
+  }
+
+  .ReactStyleguidist-ComponentsList__heading {
+    @extend %type--subhead-1;
+    @extend %type--light;
+  }
+
+  .ReactStyleguidist-ComponentsList__item {
+    @extend %type--subhead-2;
+    @extend %type--light;
+  }
+}
+
+.ReactStyleguidist-ReactComponent__heading {
+  font-size: 36px;
+}
+
+.ReactStyleguidist-Editor__root {
+  max-height: 400px;
+  overflow: auto;
+}
+
+.ReactStyleguidist-StyleGuide__content {
+  max-width: 1000px;
+}
+
+.ReactStyleguidist-ReactComponent__description {
+  margin: 20px 0;
+}
+
+.ReactStyleguidist-TableOfContents__search {
+  width: 100%;
+  height: 50px;
+  margin: 0 0 15px;
+  border-radius: 0;
+
+  font-family: 'Source Code Pro', monospace;
+  font-size: 15px;
+
+  &:focus {
+    border: none;
+  }
+}
+
+.CodeMirror-lines {
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.ReactStyleguidist-TableOfContents__section,
+.ReactStyleguidist-Section__heading {
+  font-weight: 300;
+}
+
+.ReactStyleguidist-Section__heading {
+  &::before {
+    margin-right: 10px;
+    content: '>';
+  }
+}
+
+.ReactStyleguidist-ReactComponent__root {
+  position: relative;
+
+  padding-bottom: 50px;
+  border-bottom: 1px solid whitesmoke;
+
+  > div > .qb-pill {
+    position: absolute;
+    right: 0;
+  }
+}
+
+.ReactStyleguidist-ReactComponent__root {
+  .ReactStyleguidist-Playground__root {
+    .qb-refresh {
+      display: none;
+    }
+  }
+}
+
+.ReactStyleguidist-ReactComponent__root.is-animated {
+  .ReactStyleguidist-Playground__root {
+    .qb-refresh {
+      display: block;
+    }
+
+    &:hover {
+      .qb-refresh {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.ReactStyleguidist-common__font {
+  font-family: 'Titillium Web', sans-serif;
+}
+
+.ReactStyleguidist-Markdown__pre {
+  margin-bottom: 20px;
+  padding: 20px;
+
+  font-family: 'Source Code Pro', monospace;
+  font-size: 18px;
+}
+
+.ReactStyleguidist-Props__tableBody > tr:nth-child(odd) {
+  background: rgb(247, 247, 251);
+}
+
+.ReactStyleguidist-Props__cell {
+  min-width: 110px;
+  padding-left: 4px;
+}
+
+.ReactStyleguidist-Props__name {
+  color: rgb(4, 193, 65);
+}
+
+.ReactStyleguidist-Props__type {
+  color: rgb(212, 72, 180);
+}
