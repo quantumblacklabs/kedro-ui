@@ -65,6 +65,9 @@ const config = {
   serverPort: process.env.PORT || 3500,
   highlightTheme: 'material',
   webpackConfig: {
+    entry: [
+      path.resolve(__dirname + '/src/styles/app.css')
+    ],
     module: {
       rules: [
         {
