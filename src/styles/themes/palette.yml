@@ -23,38 +23,44 @@ themes:
       default: rgb(251, 251, 251)
     text:
       default: rgba(0, 0, 0, 0.85)
+      secondary: rgba(0, 0, 0, 0.38)
     bg:
       default: rgb(240, 241, 243)
     menu:
       default: rgb(255, 255, 255)
       hover: rgb(230, 232, 235)
       border: rgba(0, 0, 0, 0.12)
+    grid:
+      default: rgba(255, 105, 180, 0.5)
   dark:
     base:
-      primary-dark: rgb(27, 117, 240)
-      secondary-dark: rgb(80, 170, 222)
-      default-dark: rgb(85, 99, 108)
+      primary: rgb(27, 117, 240)
+      secondary: rgb(80, 170, 222)
+      default: rgb(85, 99, 108)
     hover:
-      primary-dark: rgb(25, 104, 209)
-      secondary-dark: rgb(73, 149, 194)
-      default-dark: rgb(67, 76, 81)
+      primary: rgb(25, 104, 209)
+      secondary: rgb(73, 149, 194)
+      default: rgb(67, 76, 81)
     focus:
-      primary-dark: rgb(27, 117, 240)
-      secondary-dark: rgb(80, 170, 222)
-      default-dark: rgb(85, 99, 108)
+      primary: rgb(27, 117, 240)
+      secondary: rgb(80, 170, 222)
+      default: rgb(85, 99, 108)
     active:
-      primary-dark: rgb(58, 137, 242)
-      secondary-dark: rgb(141, 199, 224)
-      default-dark: rgb(119, 130, 137)
+      primary: rgb(58, 137, 242)
+      secondary: rgb(141, 199, 224)
+      default: rgb(119, 130, 137)
     disabled:
-      primary-dark: rgb(0, 174, 239)
-      secondary-dark: rgb(211, 234, 247)
-      default-dark: rgb(17, 32, 42)
+      primary: rgb(0, 174, 239)
+      secondary: rgb(211, 234, 247)
+      default: rgb(17, 32, 42)
     text:
       default: rgba(255, 255, 255, 0.85)
+      secondary: rgba(255, 255, 255, 0.55)
     bg:
       default: rgb(29, 48, 59)
     menu:
       default: rgb(55, 70, 80)
       hover: rgb(79, 92, 101)
       border: rgba(255, 255, 255, 0.12)
+    grid:
+      default: rgba(100, 149, 237, 0.5)

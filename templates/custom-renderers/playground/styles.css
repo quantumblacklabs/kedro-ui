@@ -38,16 +38,61 @@
 
       display: block;
       width: 100%;
-      height: 100%;
+      height: 0;
       padding: 10px 0 0 10px;
 
       color: white;
       background-size: 4px 4px;
       background-color: transparent;
-      background-image: linear-gradient(0deg, transparent 75%, rgba(255, 105, 180, 0.5) 75%);
 
-      content: '4px grid';
+      background-image: linear-gradient(0deg, transparent 75%, rgba(0, 0, 0, 0.5) 75%);
+
+      animation: gridEntrance 0.5s forwards;
+      pointer-events: none;
+      content: '';
     }
+
+    &.cbn-theme--light::after {
+      background-image: linear-gradient(0deg, transparent 75%, rgba(255, 105, 180, 0.5) 75%);
+    }
+
+    &.cbn-theme--dark::after {
+      background-image: linear-gradient(0deg, transparent 75%, rgba(100, 149, 237, 0.5) 75%);
+    }
+
+    &::before {
+      position: absolute;
+      bottom: -10px;
+      right: 0;
+      z-index: 11;
+
+      display: block;
+      width: 100%;
+      height: 50px;
+      padding: 0;
+
+      background-color: transparent;
+
+      content: '';
+    }
+
+    &.cbn-theme--light::before {
+      background-image: linear-gradient(0deg, rgb(240, 241, 243) 20%, transparent 60%);
+    }
+
+    &.cbn-theme--dark::before {
+      background-image: linear-gradient(0deg, rgb(29, 48, 59) 20%, transparent 60%);
+    }
+  }
+}
+
+@keyframes gridEntrance {
+  0% {
+    height: 0;
+  }
+
+  100% {
+    height: 100%;
   }
 }
 

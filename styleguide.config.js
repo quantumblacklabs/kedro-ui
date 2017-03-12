@@ -58,7 +58,7 @@ const config = {
     // capitalize first letter
     name = name.charAt(0).toUpperCase() + name.slice(1);
 
-    return 'import { ' + name + ' } from \'qb-components\';';
+    return 'import { ' + name + ' } from \'carbon-ui\';';
   },
   defaultExample: true,
   showCode: false,

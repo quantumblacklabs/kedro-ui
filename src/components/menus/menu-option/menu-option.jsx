@@ -13,7 +13,7 @@ import Icon from '../../icon/icon';
  * with it's label and value properties.
  * The parent component will override the onSelected property of this component, so you don't need to implement it.
  */
-const MenuOption = ({ icon, iconPosition, id, onSelected, primaryText, selected, value }) => {
+const MenuOption = ({ icon, iconPosition, id, onSelected, primaryText, selected, theme, value }) => {
   const wrapperClasses = classnames('cbn-menu-option', {
     'cbn-menu-option--selected': selected,
     'cbn-menu-option--has-icon': typeof icon === 'string',
@@ -22,7 +22,7 @@ const MenuOption = ({ icon, iconPosition, id, onSelected, primaryText, selected,
   });
 
   const iconNode = icon
-    && <Icon type={icon} theme='light' />;
+    && <Icon type={icon} theme={theme} />;
 
   /**
    * Event handler executed when the option is selected
@@ -55,6 +55,7 @@ MenuOption.defaultProps = {
   id: null,
   onSelected: null,
   selected: false,
+  theme: 'light',
   value: null
 };
 
