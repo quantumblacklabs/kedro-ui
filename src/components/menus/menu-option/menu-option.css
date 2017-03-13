@@ -3,6 +3,7 @@
 .cbn-menu-option {
   display: flex;
   align-items: center;
+  box-sizing: border-box;
 
   height: $menu-item-height;
   padding: $menu-item-padding;
@@ -16,16 +17,16 @@
   user-select: none;
 
   &:hover {
-    @mixin themed background, menu, hover;
+    @mixin themedParent background, menu, border;
   }
 
   &:active {
-    background: $c-default-light--focus;
+    @mixin themedParent background, menu, activeColor;
   }
 
   &.cbn-menu-option--selected,
   &:hover {
-    @mixin themed background, active, default;
+    @mixin themedParent background, active, default;
   }
 }
 

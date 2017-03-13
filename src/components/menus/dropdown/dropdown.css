@@ -4,11 +4,14 @@
   position: relative;
 
   display: inline-block;
+  box-sizing: border-box;
 
   @mixin themed background, menu, default;
   @mixin themed color, text;
 
   border: 1px solid rgba(0, 0, 0, 0.12);
+
+  @mixin themed border-color, menu, wrapper;
 
   &:hover {
     &:not(.cbn-dropdown--open) {
@@ -16,9 +19,12 @@
     }
   }
 
-  /* custom style overrides */
   &.cbn-theme--dark {
-    border: none;
+    box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.24), 0 0 2px 0 rgba(0, 0, 0, 0.08), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+
+    &:hover {
+      box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 2px 0 rgba(0, 0, 0, 0.24), inset 0 1px 0 0 rgba(255, 255, 255, 0.06);
+    }
   }
 }
 
@@ -38,11 +44,15 @@
   cursor: pointer;
   user-select: none;
 
+  &:active {
+    @mixin themedParent background, menu, active;
+  }
+
   > .cbn-icon {
     position: absolute;
     right: 0;
 
-    margin: $menu-item-padding;
+    margin: 0 8px 0 12px;
 
     transition: transform 0.2s;
     transform: rotate(180deg); /* chevron pointing up */
@@ -65,9 +75,6 @@
   border-width: 1px 0 0;
 
   @mixin themedParent border-top-color, menu, border;
-
-  font-style: 16px;
-
   @mixin themedParent background, menu, default;
 
   animation: dropdownEntrance 0.3s;
