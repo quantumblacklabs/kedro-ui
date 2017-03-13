@@ -99,7 +99,6 @@ const config = {
                 plugins: function () {
                   return [
                     require('stylelint'),
-                    require('postcss-foreach'),
                     require('precss'),
                     require('postcss-cssnext'),
                     require('postcss-map')({
