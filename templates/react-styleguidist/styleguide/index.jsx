@@ -12,6 +12,12 @@ const StyleGuideRenderer = ({
   sidebar
 }) =>  (
 	<div className={cx('cbn-sg-root', sidebar && 'cbn-sg-root--sidebar-open')}>
+    <header className='cbn-sg-header'>
+      <div>
+        <h3>QUANTUMBLACK</h3>
+        <h1>Carbon UI Design System</h1>
+      </div>
+    </header>
 		<main className='cbn-sg-content'>
 			<div className='cbn-sg-components'>
 				{components}

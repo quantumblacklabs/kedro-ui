@@ -9,11 +9,23 @@ const dirs = [
   path.resolve(__dirname, 'templates')
 ];
 
+/**
+ * A function to search directories for components to render within the styleguide
+ * @param  {string} pattern Glob pattern to match against path
+ * @return {object}         Array of components
+ */
 const searchPath = pattern => _(glob.sync(path.resolve(__dirname, pattern)))
   .reject(c => /renderer\.jsx$/.test(c))
   .sortBy(c => _.last(c.split('/')))
   .value();
 
+/**
+ * Returns a function to search for components within the project
+ * by patching a path by pattern
+ * @param  {string} name    The type of component
+ * @param  {string} pattern Glob pattern to match against path
+ * @return {function}         The search function
+ */
 const getComponentsFunc = (name, pattern) => {
   return () => {
     const components = searchPath(pattern);
@@ -138,13 +150,11 @@ const config = {
     resolve: {
       alias: {
         'styles': path.resolve(__dirname + '/src/styles'),
-        'rsg-components/ReactComponent/ReactComponentRenderer': path.resolve(__dirname + '/templates/custom-renderers/react-component'),
-        'rsg-components/Section/SectionRenderer': path.resolve(__dirname + '/templates/custom-renderers/section'),
-        'rsg-components/StyleGuide/StyleGuideRenderer': path.resolve(__dirname + '/templates/custom-renderers/styleguide'),
-        'rsg-components/Playground/PlaygroundRenderer': path.resolve(__dirname + '/templates/custom-renderers/playground'),
-        'rsg-components/Examples': path.resolve(__dirname + '/templates/custom-renderers/examples')
-        // 'rsg-components/Editor/Editor': path.resolve(__dirname + '/templates/custom-renderers/editor'),
-        // 'rsg-components/Editor/EditorLoader': path.resolve(__dirname + '/templates/custom-renderers/editor/editor-loader')
+        'rsg-components/ReactComponent/ReactComponentRenderer': path.resolve(__dirname + '/templates/react-styleguidist/react-component'),
+        'rsg-components/Section/SectionRenderer': path.resolve(__dirname + '/templates/react-styleguidist/section'),
+        'rsg-components/StyleGuide/StyleGuideRenderer': path.resolve(__dirname + '/templates/react-styleguidist/styleguide'),
+        'rsg-components/Playground/PlaygroundRenderer': path.resolve(__dirname + '/templates/react-styleguidist/playground'),
+        'rsg-components/Examples': path.resolve(__dirname + '/templates/react-styleguidist/examples')
       }
     }
   }

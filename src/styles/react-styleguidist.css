@@ -1,13 +1,6 @@
 @import './includes';
 @import './typography/extends';
 
-/** this is not part of the bundle, it is just for the styleguide */
-
-/** Fixed position component and module overrides */
-.qb-demo .qb-nav-panel-module {
-  position: absolute;
-}
-
 /** React Styleguidist overrides */
 .ReactStyleguidist-Playground__preview {
   position: relative;
@@ -19,44 +12,6 @@
   background: rgb(9, 19, 33);
 
   overflow: hidden;
-
-  .qb-context--svg & {
-    &::after {
-      position: absolute;
-      top: 0;
-      right: 0;
-
-      width: 60px;
-      height: 60px;
-      border: 5px solid rgb(0, 125, 198);
-
-      font-size: 24px;
-      text-align: center;
-
-      background: rgb(0, 143, 213);
-
-      content: 'SVG';
-    }
-  }
-
-  .qb-context--html & {
-    &::after {
-      position: absolute;
-      top: 0;
-      right: 0;
-
-      width: 60px;
-      height: 60px;
-      border: 5px solid rgb(228, 77, 38);
-
-      font-size: 24px;
-      text-align: center;
-
-      background: rgb(241, 101, 41);
-
-      content: 'HTML';
-    }
-  }
 }
 
 .rsg--StyleGuide--content {
