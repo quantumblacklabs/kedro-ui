@@ -33,7 +33,7 @@ const DropdownRenderer = ({ children,
   return (
     <div className={wrapperClasses} style={{ width: `${width}px` }}>
       <div className='cbn-dropdown__label' onClick={onLabelClicked}>
-        <span>{selectedOption.label || defaultText}</span> <Icon type='chevronUp' theme={ theme } />
+        <span>{selectedOption.label || defaultText}</span> <Icon type='chevronUp' theme={theme} />
       </div>
       <div className='cbn-dropdown__options'>
         {React.Children.map(children, (child, i) => {
