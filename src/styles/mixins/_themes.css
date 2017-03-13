@@ -1,11 +1,19 @@
 @define-mixin themed $propName, $category: base, $variant: default {
-  .cbn-theme--light &,
   &.cbn-theme--light {
     $(propName): map(themes, light, $category, $variant);
   }
 
-  .cbn-theme--dark &,
   &.cbn-theme--dark {
+    $(propName): map(themes, dark, $category, $variant);
+  }
+}
+
+@define-mixin themedParent $propName, $category: base, $variant: default {
+  .cbn-theme--light & {
+    $(propName): map(themes, light, $category, $variant);
+  }
+
+  .cbn-theme--dark & {
     $(propName): map(themes, dark, $category, $variant);
   }
 }

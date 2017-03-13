@@ -127,6 +127,11 @@
   background: rgb(25, 104, 209);
 }
 
+.cbn-sg-playground__events {
+  background: cornflowerblue;
+  height: 200px;
+}
+
 .cbn-sg-playground__code {
   max-height: 0;
   padding: 0;

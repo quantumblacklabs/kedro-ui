@@ -154,7 +154,8 @@ const config = {
         'rsg-components/Section/SectionRenderer': path.resolve(__dirname + '/templates/react-styleguidist/section'),
         'rsg-components/StyleGuide/StyleGuideRenderer': path.resolve(__dirname + '/templates/react-styleguidist/styleguide'),
         'rsg-components/Playground/PlaygroundRenderer': path.resolve(__dirname + '/templates/react-styleguidist/playground'),
-        'rsg-components/Examples': path.resolve(__dirname + '/templates/react-styleguidist/examples')
+        'rsg-components/Examples': path.resolve(__dirname + '/templates/react-styleguidist/examples'),
+        'rsg-components/Preview': path.resolve(__dirname + '/templates/react-styleguidist/preview')
       }
     }
   }

@@ -32,8 +32,8 @@
   padding: $menu-item-padding;
   overflow: hidden;
 
-  @mixin themed background, menu, default;
-  @mixin themed color, text;
+  @mixin themedParent background, menu, default;
+  @mixin themedParent color, text;
 
   cursor: pointer;
   user-select: none;
@@ -64,11 +64,11 @@
   border-style: solid;
   border-width: 1px 0 0;
 
-  @mixin themed border-top-color, menu, border;
+  @mixin themedParent border-top-color, menu, border;
 
   font-style: 16px;
 
-  @mixin themed background, menu, default;
+  @mixin themedParent background, menu, default;
 
   animation: dropdownEntrance 0.3s;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 0 2px 0 rgba(0, 0, 0, 0.12);
@@ -104,9 +104,7 @@
 
       content: '';
 
-      background: red;
-
-      @mixin themed background, menu, border;
+      @mixin themedParent background, menu, border;
     }
 
     > span {
@@ -119,7 +117,7 @@
 
       line-height: 1.43;
 
-      @mixin themed color, text, secondary;
+      @mixin themedParent color, text, secondary;
 
       @extend %type--body-1;
       @extend %type--semibold;

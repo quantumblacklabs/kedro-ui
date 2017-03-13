@@ -6,7 +6,7 @@ import _ from 'lodash';
 
 import './styles.css';
 
-const _PlaygroundRenderer = ({ activeThemeIndex, code, grid, showCode, evalInContext, onChange, onCodeToggle, onGridToggled, onResetTapped, onThemeChanged, themes }) => {
+const _PlaygroundRenderer = ({ activeThemeIndex, code, grid, showCode, evalInContext, onChange, onCallbackFired, onCodeToggle, onGridToggled, onResetTapped, onThemeChanged, themes }) => {
 
   const themeable = true;///\stheme=/.test(code);
   const themedCodeBlocks = themeable ? _.map(themes, t => code.replace(/theme='light'/g, `theme='${t}'`)) : [];
@@ -19,11 +19,11 @@ const _PlaygroundRenderer = ({ activeThemeIndex, code, grid, showCode, evalInCon
           ? _.map(themedCodeBlocks, (c, i) => (
             <section key={i} className={classnames('cbn-sg-playground__preview-section', `cbn-theme--${themes[i]}`, { 'cbn-sg-playground__preview-section--show': activeThemeIndex === i })}>
               <div className='cbn-sg-gutter'>
-                <Preview code={c} evalInContext={evalInContext} />
+                <Preview code={c} evalInContext={evalInContext} onCallbackFired={onCallbackFired} />
               </div>
             </section>
           ))
-          : <div className='cbn-sg-gutter'><Preview code={code} evalInContext={evalInContext} /></div>
+          : <div className='cbn-sg-gutter'><Preview code={code} evalInContext={evalInContext} onCallbackFired={onCallbackFired} /></div>
         }
 
         <div className='cbn-sg-gutter'>
@@ -41,6 +41,12 @@ const _PlaygroundRenderer = ({ activeThemeIndex, code, grid, showCode, evalInCon
               </Dropdown>
             )}
           </div>
+        </div>
+  		</div>
+      <div className={ classnames('cbn-sg-playground__events', { 'cbn-sg-playground__events--open': true }) }>
+        <div className='cbn-sg-gutter'>
+  				Event Callbacks
+
         </div>
   		</div>
   		<div className={ classnames('cbn-sg-playground__code', { 'cbn-sg-playground__code--open': showCode }) }>
@@ -61,6 +67,10 @@ const PlaygroundRenderer = React.createClass({
       grid: false,
       themes: ['light', 'dark']
     };
+  },
+
+  _handleEventCallbackFired(e) {
+    console.warn('_handleEventCallbackFired', e);
   },
 
   _handleGridToggled() {
@@ -84,6 +94,7 @@ const PlaygroundRenderer = React.createClass({
       ...this.props,
       activeThemeIndex: this.state.activeThemeIndex,
       grid: this.state.grid,
+      onCallbackFired: this._handleEventCallbackFired,
       onGridToggled: this._handleGridToggled,
       onResetTapped: this._handleResetTapped,
       onThemeChanged: this._handleThemeChanged,
