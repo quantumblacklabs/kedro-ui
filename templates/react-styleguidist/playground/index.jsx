@@ -6,7 +6,7 @@ import _ from 'lodash';
 
 import './styles.css';
 
-const _PlaygroundRenderer = ({ activeThemeIndex, code, grid, showCode, evalInContext, onChange, onCallbackFired, onCodeToggle, onGridToggled, onResetTapped, onThemeChanged, themes }) => {
+const _PlaygroundRenderer = ({ activeThemeIndex, callbackMeta, code, grid, showCode, evalInContext, onChange, onCallbackFired, onCodeToggle, onGridToggled, onResetTapped, onThemeChanged, themes }) => {
 
   const themeable = true;///\stheme=/.test(code);
   const themedCodeBlocks = themeable ? _.map(themes, t => code.replace(/theme='light'/g, `theme='${t}'`)) : [];
@@ -45,8 +45,7 @@ const _PlaygroundRenderer = ({ activeThemeIndex, code, grid, showCode, evalInCon
   		</div>
       <div className={ classnames('cbn-sg-playground__events', { 'cbn-sg-playground__events--open': true }) }>
         <div className='cbn-sg-gutter'>
-  				Event Callbacks
-
+  				{_.map(callbackMeta, (cb, i) => <p key={i}>{i}: {cb.count}</p>)}
         </div>
   		</div>
   		<div className={ classnames('cbn-sg-playground__code', { 'cbn-sg-playground__code--open': showCode }) }>
@@ -65,12 +64,19 @@ const PlaygroundRenderer = React.createClass({
     return {
       activeThemeIndex: 0,
       grid: false,
-      themes: ['light', 'dark']
+      themes: ['light', 'dark'],
+      callbackMeta: {}
     };
   },
 
-  _handleEventCallbackFired(e) {
-    console.warn('_handleEventCallbackFired', e);
+  _handleEventCallbackFired({ name }) {
+    console.log('_handleEventCallbackFired', name);
+    this._incCallbackCounts(name);
+
+  },
+
+  _incCallbackCounts(name) {
+    // todo - set this.state.callbackMeta to contain counts and trigger animations
   },
 
   _handleGridToggled() {
@@ -93,6 +99,7 @@ const PlaygroundRenderer = React.createClass({
     return _PlaygroundRenderer({
       ...this.props,
       activeThemeIndex: this.state.activeThemeIndex,
+      callbackMeta: this.state.callbackMeta,
       grid: this.state.grid,
       onCallbackFired: this._handleEventCallbackFired,
       onGridToggled: this._handleGridToggled,

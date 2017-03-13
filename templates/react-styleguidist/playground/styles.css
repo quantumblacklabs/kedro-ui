@@ -128,8 +128,9 @@
 }
 
 .cbn-sg-playground__events {
-  background: cornflowerblue;
   height: 200px;
+
+  background: cornflowerblue;
 }
 
 .cbn-sg-playground__code {

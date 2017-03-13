@@ -93,16 +93,13 @@ export default class Preview extends Component {
 				render() {
 					const one = exampleComponent(this.state, this.setState, this.setInitialState);
 
-          console.log('one', one.props);
-
+          // extend props by overriding any null callbacks with our fancy callback indicators
           let newProps = {};
           for (var key in one.props) {
             newProps[key] = one.props[key] === null && /^on/.test(key) ? this.createCallback(this.props.onCallbackFired, { name: key }) : one.props[key];
           }
 
-          console.log('newProps', newProps);
-          const two = React.cloneElement(one, newProps/*{ onOpened: this.props.onCallbackFired, onChanged: this.props.onCallbackFired }*/);
-          return two;
+          return React.cloneElement(one, newProps);
 				}
 			}
 
