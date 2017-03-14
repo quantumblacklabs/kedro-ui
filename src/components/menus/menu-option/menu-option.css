@@ -20,13 +20,14 @@
     @mixin themedParent background, menu, border;
   }
 
-  &:active {
-    @mixin themedParent background, menu, active;
-  }
-
   &.cbn-menu-option--selected,
   &:hover {
     @mixin themedParent background, active, default;
+  }
+
+  &:active {
+    @mixin themedParent background, menu, active;
+    @mixin themedParent color, menu, activeColor;
   }
 }
 

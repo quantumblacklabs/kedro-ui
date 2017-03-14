@@ -26,7 +26,8 @@ const DropdownRenderer = ({ children,
     const extraProps = {
       id,
       onSelected: onOptionSelected,
-      selected: selectedOption.id === id
+      selected: selectedOption.id === id,
+      theme
     };
     return React.cloneElement(element, extraProps);
   };
