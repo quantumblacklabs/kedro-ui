@@ -115,7 +115,7 @@ export default class Preview extends Component {
 			ReactDOM.unmountComponentAtNode(this.mountNode);
 			this.setState({
 				error: err.toString(),
-			});
+			}, () => console.error(err));
 		}
 	}
 
