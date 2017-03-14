@@ -7,6 +7,9 @@ import './dropdown.css';
 // Renderer
 import DropdownRenderer from './dropdown-renderer';
 
+/**
+ * This is a stateful component providing a rich version of a native select box.
+ */
 const Dropdown = React.createClass({
   displayName: 'Dropdown',
   /**
@@ -68,7 +71,6 @@ const Dropdown = React.createClass({
   getInitialState() {
     // check children for a selected option
     // otherwise, default to first
-
     let selectedOption = {
       id: null,
       label: null,
@@ -91,16 +93,22 @@ const Dropdown = React.createClass({
       open: false
     };
   },
+  /**
+   * Find the selected option by traversing sections and MenuOptions
+   */
   _findSelectedOptionElement() {
+
+    const children = React.Children.toArray(this.props.children);
+
     // we may have an array of options
     // or an array of sections, containing options
-    return (this.props.children[0].type === 'section')
-      ? _(this.props.children)
+    return (children[0].type === 'section')
+      ? _(children)
         .map(section => section.props.children)
         .flatten()
         .value()
         .find(c => c.props.selected)
-      : _.find(this.props.children, c => c.props.selected);
+      : _.find(children, c => c.props.selected);
   },
   /**
    * Event handler which is fired when the label is clicked
@@ -124,13 +132,13 @@ const Dropdown = React.createClass({
    * Event handler which is fired when a child item is selected
    */
   _handleOptionSelected(obj) {
-    const { label, index, value } = obj;
+    const { label, id, value } = obj;
     const { onChanged, onClosed } = this.props;
 
     // detect if the selected item has changed
     const hasChanged = value !== this.state.selectedOption.value;
     if (hasChanged) {
-      const selectedOption = { label, value, index };
+      const selectedOption = { label, value, id };
       this.setState({ open: false, selectedOption }, () => {
         if (typeof onChanged === 'function') {
           onChanged(obj);
@@ -142,6 +150,28 @@ const Dropdown = React.createClass({
     } else {
       this.setState({ open: false });
     }
+  },
+  /**
+   * API method to open the dropdown
+   */
+  open() {
+    const { onOpened } = this.props;
+    this.setState({ open: true }, () => {
+      if (typeof onOpened === 'function') {
+        onOpened();
+      }
+    });
+  },
+  /**
+   * API method to close the dropdown
+   */
+  close() {
+    const { onClosed } = this.props;
+    this.setState({ open: false }, () => {
+      if (typeof onClosed === 'function') {
+        onClosed();
+      }
+    });
   },
   /**
    * React lifecycle method

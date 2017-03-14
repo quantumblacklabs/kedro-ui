@@ -1,10 +1,10 @@
 
 ## Dropdown Component
 
-Default dropdown, with no selected options by default, and default unselected text.
+A dropdown component with no selected options by default, and default unselected text.
+A plain array of Menu Options will get wrapped inside a padded section automatically.
 
 ```
-
 <Dropdown
     theme='light'
     onOpened={ null }
@@ -15,8 +15,23 @@ Default dropdown, with no selected options by default, and default unselected te
 </Dropdown>
 ```
 
+Or you can define the single section yourself. You may want to do this if you also require a heading next to the options.
+```
+<Dropdown
+    theme='light'
+    onOpened={ null }
+    onClosed={ null }
+    onChanged={ null }>
+    <section>
+        <span>Heading</span>
+        <MenuOption primaryText='Menu Item One' value={ 1 } />
+        <MenuOption primaryText='Menu Item Two' value={ 2 } />
+    </section>
+</Dropdown>
+```
 
-Default selected option
+
+An initial selected menu option.
 
 ```
 <Dropdown
@@ -32,7 +47,7 @@ Default selected option
 
 ```
 
-Null first option
+A default selected null first option can be used to provide an alternative to default label text.
 
 ```
 <Dropdown
@@ -47,28 +62,33 @@ Null first option
 
 ```
 
-## Dropdown + Sections
-
-Demo description
+Programmatic opening and closing of the Dropdown via `.open()` and `.close()` API methods.
 
 ```
-<Dropdown
-    onChanged={ e => console.log(e) }
-    theme='light'>
-    <section>
-        <MenuOption primaryText='Menu Item' value={ 1 } />
-        <MenuOption primaryText='Menu Item Two' value={ 2 } />
-    </section>
-    <section>
-        <MenuOption primaryText='Menu Three' value={ 3 } />
-        <MenuOption primaryText='Menu Four' value={ 4 } />
-    </section>
-</Dropdown>
+const Wrap = React.createClass({
+    render() {
+        return (
+            <div>
+                <Dropdown
+                    theme='light'
+                    ref='dropdown'>
+                    <MenuOption primaryText='All' selected={ true } value={ null } />
+                    <MenuOption primaryText='One' value={ 1 } />
+                    <MenuOption primaryText='Two' value={ 2 } />
+                </Dropdown>
+                <button onClick={ () => this.refs.dropdown.open() }>Open</button>
+                <button onClick={ () => this.refs.dropdown.close() }>Close</button>
+            </div>
+        );
+    }
+});
+
+<Wrap />
+
 ```
 
-## Dropdown + Sections + Headings
 
-Demo description
+Using sections and headings to group menu options.
 
 ```
 <Dropdown
@@ -89,6 +109,7 @@ Demo description
 </Dropdown>
 ```
 
+A selected option within sections.
 ```
 <Dropdown
     onChanged={ e => console.log(e) }

@@ -26,11 +26,47 @@ const DropdownRenderer = ({ children,
     const extraProps = {
       id,
       onSelected: onOptionSelected,
-      selected: selectedOption.id === id,
+      selected: selectedOption.id === id || (!selectedOption.id && element.props.selected),
       theme
     };
     return React.cloneElement(element, extraProps);
   };
+
+  const childElements = React.Children.toArray(children);
+  const sectionWrapRequired = typeof childElements[0].type === 'function';
+
+  // create options node
+  // we may have a plain array of Menu Options, in which case we'll wrap it with a section
+  // an array of sections, each containing an array of Menu Options
+  // sections may contain headings, which are defined as spans
+  const options = React.Children.map(childElements, (child, i) => {
+    switch (child.type) {
+      case 'section':
+        // one level of sections to iterate before we get to the Menu Options
+        return (
+          <section key={`menu-section-${i}`}>
+            {React.Children.map(child.props.children, (sectionChild, j) => {
+              switch (sectionChild.type) {
+                case 'span':
+                  // Heading
+                  return sectionChild;
+                default:
+                  // Menu Option
+                  return _extendMenuOption(sectionChild, `menu-option-${i}.${j}`);
+              }
+            })}
+          </section>
+        );
+      case 'span':
+        // Heading
+        return child;
+      default:
+        // Menu Option
+        return _extendMenuOption(child, `menu-option-${i}`);
+    }
+  });
+
+  const optionsNode = sectionWrapRequired ? <section>{options}</section> : options;
 
   return (
     <div className={wrapperClasses} style={{ width: `${width}px` }} title={title}>
@@ -38,30 +74,7 @@ const DropdownRenderer = ({ children,
         <span>{selectedOption.label || defaultText}</span> <Icon type='chevronUp' theme={theme} />
       </div>
       <div className='cbn-dropdown__options'>
-        {React.Children.map(children, (child, i) => {
-          switch (child.type) {
-            case 'section':
-              // one level of sections to iterate before we get to the Menu Options
-              return (
-                <section key={`menu-section-${i}`}>
-                  {React.Children.map(child.props.children, (sectionChild, j) => {
-                    switch (sectionChild.type) {
-                      case 'span':
-                        // Heading
-                        return sectionChild;
-                      default:
-                        return _extendMenuOption(sectionChild, `menu-option-${i}.${j}`);
-                    }
-                  })}
-                </section>
-              );
-            case 'span':
-              // Heading
-              return child;
-            default:
-              return _extendMenuOption(child, `menu-option-${i}`);
-          }
-        })}
+        {optionsNode}
       </div>
     </div>
   );

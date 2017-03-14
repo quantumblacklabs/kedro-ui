@@ -17,12 +17,12 @@
   user-select: none;
 
   &:hover {
-    @mixin themedParent background, menu, border;
+    @mixin themedParent background, menu, hover;
   }
 
   &.cbn-menu-option--selected,
   &:hover {
-    @mixin themedParent background, active, default;
+    @mixin themedParent background, menu, hover;
   }
 
   &:active {
