@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import Editor from 'rsg-components/Editor';
 import Preview from 'rsg-components/Preview';
+import EventIndicator from '../event-indicator';
 import classnames from 'classnames';
 import _ from 'lodash';
 
@@ -73,23 +74,11 @@ const _PlaygroundRenderer = ({
       </div>
       <div className={classnames('cbn-sg-playground__events', { 'cbn-sg-playground__events--open': true })}>
         <div className='cbn-sg-gutter'>
-          {_.map(callbackMeta, (callbackObj, propName) => (
-            <div key={propName}>
-              <div className='cbn-sg-playground__event'>
-                <div className='cbn-sg-playground__event-circle'>
-                  <div className={classnames(
-                      'cbn-sg-playground__event-circle-bg',
-                      { 'cbn-sg-playground__event-circle-bg--animate': callbackObj.active })}></div>
-                  <div className='cbn-sg-playground__event-number'>
-                    { callbackObj.count }
-                  </div>
-                </div>
-                <div className='cbn-sg-playground__event-name'>
-                  { propName }
-                </div>
-              </div>
-            </div>
-          ))}
+          {_.map(callbackMeta, (callbackObj, propName) => {
+            return (
+              <EventIndicator key={propName} color='blue' count={callbackObj.count} name={propName} />
+            );
+          })}
         </div>
       </div>
       <div className={classnames('cbn-sg-playground__code', { 'cbn-sg-playground__code--open': showCode })}>
