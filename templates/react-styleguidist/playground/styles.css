@@ -222,8 +222,8 @@
     opacity: .5;
   }
 
-  70% {
-    transform: scale(1.5);
+  40% {
+    transform: scale(1.75);
     opacity: .75;
   }
 
@@ -233,7 +233,7 @@
   }
 
   100% {
-    transform: scale(2.3);
+    transform: scale(2.1);
     opacity: 0;
   }
 }
