@@ -14,6 +14,7 @@ const DropdownRenderer = ({ children,
                             open,
                             selectedOption,
                             theme,
+                            title,
                             width }) => {
   const wrapperClasses = classnames('cbn-dropdown', `cbn-theme--${theme}`, { 'cbn-dropdown--open': open });
 
@@ -31,7 +32,7 @@ const DropdownRenderer = ({ children,
   };
 
   return (
-    <div className={wrapperClasses} style={{ width: `${width}px` }}>
+    <div className={wrapperClasses} style={{ width: `${width}px` }} title={title}>
       <div className='cbn-dropdown__label' onClick={onLabelClicked}>
         <span>{selectedOption.label || defaultText}</span> <Icon type='chevronUp' theme={theme} />
       </div>
@@ -74,6 +75,7 @@ DropdownRenderer.defaultProps = {
   open: false,
   selectedOption: null,
   theme: 'light',
+  title: null,
   width: 160
 };
 
@@ -106,6 +108,10 @@ DropdownRenderer.propTypes = {
   * The theme for the component
   */
   theme: PropTypes.oneOf(['light', 'dark']),
+  /**
+  * Title text for native tooltip
+  */
+  title: PropTypes.string,
   /**
   * The width for the component. Both the label and options are the same width
   */

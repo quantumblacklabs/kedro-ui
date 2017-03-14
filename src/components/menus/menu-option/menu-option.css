@@ -21,7 +21,7 @@
   }
 
   &:active {
-    @mixin themedParent background, menu, activeColor;
+    @mixin themedParent background, menu, active;
   }
 
   &.cbn-menu-option--selected,
