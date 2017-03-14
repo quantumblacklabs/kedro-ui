@@ -29,7 +29,7 @@ themes:
     menu:
       default: rgb(255, 255, 255)
       hover: rgb(230, 232, 235)
-      active: rgb(230, 232, 235)
+      active: rgb(29, 48, 59)
       border: rgba(0, 0, 0, 0.12)
       wrapper: rgba(0, 0, 0, 0.12)
     grid:
