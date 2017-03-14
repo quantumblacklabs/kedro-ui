@@ -75,8 +75,18 @@ const _PlaygroundRenderer = ({
         <div className='cbn-sg-gutter'>
           {_.map(callbackMeta, (callbackObj, propName) => (
             <div key={propName}>
-              <p>{propName}: { callbackObj.count }</p>
               <div className='cbn-sg-playground__event'>
+                <div className='cbn-sg-playground__event-circle'>
+                  <div className={classnames(
+                      'cbn-sg-playground__event-circle-bg',
+                      { 'cbn-sg-playground__event-circle-bg--animate': callbackObj.active })}></div>
+                  <div className='cbn-sg-playground__event-number'>
+                    { callbackObj.count }
+                  </div>
+                </div>
+                <div className='cbn-sg-playground__event-name'>
+                  { propName }
+                </div>
               </div>
             </div>
           ))}
@@ -111,13 +121,19 @@ const PlaygroundRenderer = React.createClass({
     const newObj = {};
 
     if (name in callbackMeta) {
-      newObj[name] = { count: callbackMeta[name].count + 1 };
+      newObj[name] = {
+        count: callbackMeta[name].count + 1,
+        active: true
+      };
 
       this.setState({
         callbackMeta: Object.assign(callbackMeta, newObj)
       });
     } else {
-      newObj[name] = { count: 1 };
+      newObj[name] = {
+        count: 1,
+        active: true
+      };
 
       this.setState({
         callbackMeta: Object.assign(callbackMeta, newObj)
