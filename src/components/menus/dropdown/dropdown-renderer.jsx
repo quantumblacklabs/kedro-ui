@@ -7,20 +7,21 @@ import Icon from '../../icon/icon';
 /**
  * Renderer for the Dropdown component
  */
-const DropdownRenderer = ({ children,
-                            defaultText,
-                            onLabelClicked,
-                            onOptionSelected,
-                            open,
-                            selectedOption,
-                            theme,
-                            title,
-                            width }) => {
+const DropdownRenderer = ({
+  children,
+  defaultText,
+  onLabelClicked,
+  onOptionSelected,
+  open,
+  selectedOption,
+  theme,
+  title,
+  width
+}) => {
   const wrapperClasses = classnames('cbn-dropdown', `cbn-theme--${theme}`, { 'cbn-dropdown--open': open });
 
   /**
    * Clone a React element and extend with extra props tieing it to a new scope
-   * @type {object}
    */
   const _extendMenuOption = (element, id) => {
     const extraProps = {
