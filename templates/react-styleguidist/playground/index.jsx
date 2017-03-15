@@ -59,10 +59,9 @@ const _PlaygroundRenderer = ({ activeThemeIndex, callbackMeta, code, grid, showC
 };
 
 const PlaygroundRenderer = React.createClass({
-
   getInitialState() {
     return {
-      activeThemeIndex: 0,
+      activeThemeIndex: 1,
       grid: false,
       themes: ['light', 'dark'],
       callbackMeta: {}
