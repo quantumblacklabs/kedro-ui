@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import Editor from 'rsg-components/Editor';
 import Preview from 'rsg-components/Preview';
-import EventIndicatorRenderer from '../event-indicator';
+import EventIndicatorRenderer from 'components/indicators/event-indicator/event-indicator';
 import classnames from 'classnames';
 import _ from 'lodash';
 

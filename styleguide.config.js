@@ -44,6 +44,11 @@ const config = {
       components: getComponentsFunc('icon', 'src/components/icon/**/*.jsx')
     },
     {
+      name: 'Indicators',
+      content: './templates/components/indicators.md',
+      components: getComponentsFunc('icon', 'src/components/indicators/**/*.jsx')
+    },
+    {
       name: 'Menus',
       content: './templates/components/menus.md',
       components: getComponentsFunc('menu', 'src/components/menus/**/*.jsx')
@@ -148,6 +153,7 @@ const config = {
     },
     resolve: {
       alias: {
+        'components': path.resolve(__dirname + '/src/components'),
         'styles': path.resolve(__dirname + '/src/styles'),
         'rsg-components/ReactComponent/ReactComponentRenderer': path.resolve(__dirname + '/templates/react-styleguidist/react-component'),
         'rsg-components/Section/SectionRenderer': path.resolve(__dirname + '/templates/react-styleguidist/section'),
