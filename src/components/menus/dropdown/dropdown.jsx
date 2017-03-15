@@ -97,7 +97,6 @@ const Dropdown = React.createClass({
    * Find the selected option by traversing sections and MenuOptions
    */
   _findSelectedOptionElement() {
-
     const children = React.Children.toArray(this.props.children);
 
     // we may have an array of options

@@ -128,3 +128,35 @@ A selected option within sections.
     </section>
 </Dropdown>
 ```
+
+
+Icons within menu options.
+```
+<Dropdown
+    onChanged={ e => console.log(e) }
+    width={ 200 }
+    theme='light'>
+    <section>
+        <span>Heading One</span>
+        <MenuOption icon='paste' primaryText='Menu Item' value={ 1 } />
+        <MenuOption icon='copy' primaryText='Menu Item Two' value={ 2 } />
+        <MenuOption icon='refresh' primaryText='Menu Item Three' value={ 3 } />
+    </section>
+</Dropdown>
+```
+
+
+Icons within menu options, positioned on the left.
+```
+<Dropdown
+    onChanged={ e => console.log(e) }
+    width={ 200 }
+    theme='light'>
+    <section>
+        <span>Heading One</span>
+        <MenuOption iconPosition='left' icon='paste' primaryText='Menu Item' value={ 1 } />
+        <MenuOption iconPosition='left' icon='copy' primaryText='Menu Item Two' value={ 2 } />
+        <MenuOption iconPosition='left' icon='refresh' primaryText='Menu Item Three' value={ 3 } />
+    </section>
+</Dropdown>
+```
