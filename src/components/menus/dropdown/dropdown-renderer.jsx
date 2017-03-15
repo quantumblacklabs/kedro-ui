@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 
 // Components
-import Icon from '../../icon/icon';
+import Icon from 'components/icon';
 
 /**
  * Renderer for the Dropdown component
@@ -72,7 +72,8 @@ const DropdownRenderer = ({
   return (
     <div className={wrapperClasses} style={{ width: `${width}px` }} title={title}>
       <div className='cbn-dropdown__label' onClick={onLabelClicked}>
-        <span>{selectedOption.label || defaultText}</span> <Icon type='chevronUp' theme={theme} />
+        <span>{selectedOption.label || defaultText}</span>
+        <Icon type='chevronUp' theme={theme} />
       </div>
       <div className='cbn-dropdown__options'>
         {optionsNode}
@@ -96,7 +97,7 @@ DropdownRenderer.defaultProps = {
 
 DropdownRenderer.propTypes = {
   /**
-  * An array of child items
+  * Child items. The nodes which React will pass down, defined inside the DropdownRenderer tag.
   */
   children: PropTypes.node.isRequired,
   /**
@@ -116,9 +117,14 @@ DropdownRenderer.propTypes = {
   */
   open: PropTypes.bool,
   /**
-  * An object containing selected option details
+  * An object containing selected option details.
+  * This will be created based on the id, primaryText, value of a selected Menu Option.
   */
-  selectedOption: PropTypes.object,
+  selectedOption: PropTypes.shape({
+    id: PropTypes.string,
+    label: PropTypes.string,
+    value: PropTypes.any
+  }),
   /**
   * The theme for the component
   */

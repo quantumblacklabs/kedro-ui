@@ -14,12 +14,12 @@ const Dropdown = React.createClass({
   displayName: 'Dropdown',
   /**
   * React component spec method
-  * {@link https://facebook.github.io/react/docs/component-specs.html#proptypes}
+  * {@link https://facebook.github.io/react/docs/react-component.html#proptypes}
   * @return {object} Default properties
   */
   propTypes: {
     /**
-    * An array of child items
+    * Child items. The nodes which React will pass down, defined inside the DropdownRenderer tag
     */
     children: PropTypes.node.isRequired,
     /**
@@ -49,7 +49,7 @@ const Dropdown = React.createClass({
   },
   /**
    * React component spec method
-   * {@link https://facebook.github.io/react/docs/component-specs.html#getdefaultprops}
+   * {@link https://facebook.github.io/react/docs/react-component.html#getdefaultprops}
    * @return {object} Default properties
    */
   getDefaultProps() {
@@ -65,7 +65,7 @@ const Dropdown = React.createClass({
   },
   /**
   * React component spec method
-  * {@link https://facebook.github.io/react/docs/component-specs.html#getinitialstate}
+  * {@link https://facebook.github.io/react/docs/react-component.html#getinitialstate}
   * @return {object} An object to be used as the initial state
   */
   getInitialState() {
@@ -174,7 +174,7 @@ const Dropdown = React.createClass({
   },
   /**
    * React lifecycle method
-   * {@link https://facebook.github.io/react/docs/component-specs.html#render}
+   * {@link https://facebook.github.io/react/docs/react-component.html#render}
    * @return {object} JSX for this component
    */
   render() {
