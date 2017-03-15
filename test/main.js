@@ -1,5 +1,10 @@
 import test from 'ava';
-import { Insights } from '../src/index';
+import {
+  Dropdown,
+  Icon,
+  Insights,
+  MenuOption
+} from '../src/index';
 
 test('Browser enviromnent should be mocked', t => {
     const div = document.createElement('div');
@@ -9,6 +14,14 @@ test('Browser enviromnent should be mocked', t => {
 
 test('Insights Components should be exposed', t => {
   t.is(typeof Insights.DataSummary, 'function');
+  t.is(typeof Insights.ExpandablePanel, 'function');
+  t.is(typeof Insights.Satellite, 'function');
+});
+
+test('Components should be exposed', t => {
+  t.is(typeof Dropdown, 'function');
+  t.is(typeof Icon, 'function');
+  t.is(typeof MenuOption, 'function');
   t.is(typeof Insights.ExpandablePanel, 'function');
   t.is(typeof Insights.Satellite, 'function');
 });
