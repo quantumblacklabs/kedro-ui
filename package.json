@@ -4,7 +4,7 @@
   "description": "A collection of React components which are used in Carbon UI",
   "main": "dist/index.js",
   "scripts": {
-    "start": "npm run build && npm run docs:server",
+    "start": "npm run docs:server",
     "docs:server": "styleguidist server",
     "static": "node server.js",
     "build": "webpack -p --config webpack.build.config.js",

@@ -24,7 +24,8 @@ module.exports = {
   },
   resolve: {
     alias: {
-      'styles': path.resolve(__dirname + '/src/styles')
+      'styles': path.resolve(__dirname, 'src/styles'),
+      'components': path.resolve(__dirname, 'src/components')
     },
     modules: [
       __dirname,
@@ -54,7 +55,22 @@ module.exports = {
           fallback: 'style-loader',
           use: [
             'css-loader',
-            'postcss-loader'
+            {
+              loader: 'postcss-loader',
+              options: {
+                plugins: function () {
+                  return [
+                    require('stylelint'),
+                    require('precss'),
+                    require('postcss-cssnext'),
+                    require('postcss-map')({
+                      basePath: 'src/styles/themes',
+                      maps: ['palette.yml']
+                    })
+                  ];
+                }
+              }
+            }
           ]
         })
       },

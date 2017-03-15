@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 
+// Components
+import Icon from 'components/icon';
+
 // Styles
 import './menu-option.css';
-
-// Components
-import Icon from '../../icon/icon';
 
 /**
  * A menu option, which sits within a dropdown component.

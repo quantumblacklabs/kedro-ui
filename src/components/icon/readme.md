@@ -1,16 +1,18 @@
-## A menu icon, in a variety of sizes (tiny = 16px, default = 24px, large = 48px)
+## Icon Demos
+
+Some sample icons.
+
+small = 16px, default/medium = 24px, large = 36px, xlarge = 48px
 ```
 <section>
-    <Icon type='cut' size='large' title='' theme='light' />
-    <Icon type='paste' size='large' title='' theme='light' />
+    <Icon type='cut' size='small' title='' theme='light' />
+    <Icon type='paste' size='medium' title='' theme='light' />
     <Icon type='copy' size='large' title='' theme='light' />
-    <Icon type='undo' size='large' title='' theme='light' />
-    <Icon type='refresh' size='large' title='' theme='light' />
-    <Icon type='chevronUp' size='large' title='' theme='light' />
+    <Icon type='undo' size='xlarge' title='' theme='light' />
 </section>
 ```
 
-## Color overrides
+Overriding colors, which take priority over theme coloring.
 ```
 <section>
     <Icon type='refresh' size='large' title='' color='cornflowerblue' theme='light' />

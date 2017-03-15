@@ -1,5 +1,5 @@
 
-## Dropdown Component
+## Dropdown Component Demos
 
 A dropdown component with no selected options by default, and default unselected text.
 A plain array of Menu Options will get wrapped inside a padded section automatically.

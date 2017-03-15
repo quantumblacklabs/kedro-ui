@@ -72,7 +72,7 @@ const config = {
 
     return 'import { ' + name + ' } from \'carbon-ui\';';
   },
-  defaultExample: true,
+  defaultExample: false,
   showCode: false,
   serverPort: 3500,
   highlightTheme: 'material',
@@ -143,8 +143,10 @@ const config = {
       ]
     },
     resolve: {
+      extensions: ['.js', '.jsx', '.css'],
       alias: {
-        'styles': path.resolve(__dirname + '/src/styles'),
+        'styles': path.resolve(__dirname, 'src/styles'),
+        'components': path.resolve(__dirname, 'src/components'),
         'rsg-components/ReactComponent/ReactComponentRenderer': path.resolve(__dirname + '/templates/react-styleguidist/react-component'),
         'rsg-components/Section/SectionRenderer': path.resolve(__dirname + '/templates/react-styleguidist/section'),
         'rsg-components/StyleGuide/StyleGuideRenderer': path.resolve(__dirname + '/templates/react-styleguidist/styleguide'),

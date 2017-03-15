@@ -32,22 +32,6 @@ $min-tree-height: 660px;
 $toggle-height: 32px;
 $toggle-height-xlarge: 40px;
 
-/** Menu Variables */
-
-/* the height of each item/row */
-$menu-item-height: 40px;
-
-/* paddint at the top and bottom of each group of items */
-$menu-group-padding: 4px;
-
-/* the padding of each item
-  (either side of the text */
-$menu-item-padding: 0 12px;
-
-/* the padding either side of the label in the main dropdown
-  (this doesn't apply to the sub dropdown) */
-$menu-label-padding: 0 12px;
-
 /** Easing Functions **/
 
 /** Cubic */
