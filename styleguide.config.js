@@ -77,10 +77,6 @@ const config = {
   serverPort: 3500,
   highlightTheme: 'material',
   webpackConfig: {
-    entry: [
-      path.resolve(__dirname + '/src/styles/app.css'),
-      path.resolve(__dirname + '/src/styles/react-styleguidist.css')
-    ],
     module: {
       rules: [
         {
