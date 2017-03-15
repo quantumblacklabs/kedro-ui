@@ -74,7 +74,7 @@ const config = {
   },
   defaultExample: true,
   showCode: false,
-  serverPort: process.env.PORT || 3500,
+  serverPort: 3500,
   highlightTheme: 'material',
   webpackConfig: {
     entry: [
