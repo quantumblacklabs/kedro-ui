@@ -15,7 +15,7 @@
     "eslint": "eslint src/*.js src/**/*.js src/**/*.jsx",
     "ava": "CONFIG=$(pwd)/webpack.ava.config.js NODE_ENV=AVA BABEL_DISABLE_CACHE=1 ava",
     "test": "npm run eslint && npm run ava",
-    "e2e": "cypress run --config fileServerFolder=styleguide"
+    "e2e": "cypress run --config fileServerFolder=styleguide,baseUrl="
   },
   "ava": {
     "files": [
