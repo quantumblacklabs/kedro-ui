@@ -1,6 +1,8 @@
 {
   "name":"Carbon UI Components",
   "scripts": {
-    "postdeploy": "npm run docs:build"
+    "dokku": {
+      "postdeploy": "npm run docs:build"
+    }
   }
 }
