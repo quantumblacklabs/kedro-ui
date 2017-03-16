@@ -12,14 +12,13 @@ machine:
 #     commands:
 #       - "[[ ! -s \"$(git rev-parse --git-dir)/shallow\" ]] || git fetch --unshallow"
 #       - git push dokku@5.148.131.186:carbon-ui-components-staging develop:master -f
-# dependencies:
-#   post:
-#     - npm install -g cypress-cli
-#   cache_directories:
-#     - /home/ubuntu/.cypress/Cypress
-# test:
-#   pre:
-#     - npm run docs:server:
-#         background: true
-#   override:
-#     - cypress run --record
+dependencies:
+  post:
+    - npm install -g cypress-cli
+  cache_directories:
+    - /home/ubuntu/.cypress/Cypress
+test:
+  pre:
+    - npm run build && npm run docs:build
+  override:
+    - cypress run --record
