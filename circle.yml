@@ -15,8 +15,10 @@ machine:
 dependencies:
   post:
     - npm install -g cypress-cli
-    - npm run build && npm run docs:build
   cache_directories:
     - /home/ubuntu/.cypress/Cypress
+test:
+  pre:
+    - npm run build && npm run docs:build
   override:
     - cypress run --record
