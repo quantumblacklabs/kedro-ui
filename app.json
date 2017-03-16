@@ -2,7 +2,7 @@
   "name":"Carbon UI Components",
   "scripts": {
     "dokku": {
-      "postdeploy": "npm run docs:build && chown -R herokuishuser:herokuishuser stylguide && ls -l"
+      "postdeploy": "ls -l && npm run docs:build && chown -R herokuishuser:herokuishuser styleguide && ls -l"
     }
   }
 }
