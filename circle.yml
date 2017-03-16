@@ -20,5 +20,7 @@ dependencies:
 test:
   pre:
     - npm run build && npm run docs:build
+    - npm run static:
+        background: true
   override:
     - cypress run --record
