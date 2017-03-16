@@ -57,7 +57,7 @@ const EventIndicatorRenderer = React.createClass({
    * Animation wrapper made with GSAP.
    */
   _createAnimation({ target }) {
-    const indicator = document.querySelector(`[name='${this.props.name}']`);
+    const indicator = this._indicator.querySelector(`[name='${this.props.name}']`);
 
     return new TimelineMax()
       .to(indicator, 0.2, { scale: 1, opacity: 0.2 })
@@ -68,10 +68,12 @@ const EventIndicatorRenderer = React.createClass({
 
   render() {
     return (
-      <SimpleEventIndicator
-        color={this.props.color}
-        count={this.props.count}
-        name={this.props.name} />
+      <div ref={indicator => { this._indicator = indicator; }}>
+        <SimpleEventIndicator
+          color={this.props.color}
+          count={this.props.count}
+          name={this.props.name} />
+      </div>
     );
   }
 });
