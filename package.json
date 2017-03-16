@@ -8,7 +8,7 @@
     "docs:server": "styleguidist server",
     "static": "node server.js",
     "build": "webpack -p --config webpack.build.config.js",
-    "docs:build": "styleguidist build && cp -r dist styleguide",
+    "docs:build": "styleguidist build",
     "postinstall": "npm run build",
     "prepush": "npm run test",
     "prepublish": "npm run test",
