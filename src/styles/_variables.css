@@ -32,6 +32,9 @@ $min-tree-height: 660px;
 $toggle-height: 32px;
 $toggle-height-xlarge: 40px;
 
+/** Sizing **/
+$size-icon-base: 24px;
+
 /** Easing Functions **/
 
 /** Cubic */

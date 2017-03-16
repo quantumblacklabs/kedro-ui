@@ -35,7 +35,7 @@
   display: flex;
   align-items: center;
   height: $menu-item-height;
-  padding: $menu-item-padding;
+  padding: 0 $menu-item-padding;
   overflow: hidden;
 
   @mixin themedParent background, menu, default;
@@ -110,7 +110,7 @@
       align-items: center;
 
       height: $menu-item-height;
-      padding: $menu-item-padding;
+      padding: 0 $menu-item-padding;
       text-transform: uppercase;
 
       line-height: 1.43;

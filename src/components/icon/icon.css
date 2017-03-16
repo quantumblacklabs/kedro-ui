@@ -1,4 +1,4 @@
-$size-icon-base: 24px;
+@import '../../styles/includes';
 
 .cbn-icon {
   display: inline-block;

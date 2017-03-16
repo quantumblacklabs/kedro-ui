@@ -7,7 +7,7 @@
   box-sizing: border-box;
 
   height: $menu-item-height;
-  padding: $menu-item-padding;
+  padding: 0 $menu-item-padding;
 
   @mixin themed color, text;
   @mixin themed background, menu, default;
@@ -42,14 +42,18 @@
   text-overflow: ellipsis;
 
   .cbn-menu-option--icon-left & {
-    padding-left: 36px;
+    padding-left: calc($size-icon-base + $menu-item-padding);
+  }
+
+  .cbn-menu-option--icon-right & {
+    padding-right: calc($size-icon-base + $menu-item-padding);
   }
 
   > .cbn-icon {
     position: absolute;
     right: 0;
 
-    margin: $menu-menu-item-padding;
+    margin: 0 $menu-menu-item-padding;
 
     .cbn-menu-option--icon-left & {
       left: 0;

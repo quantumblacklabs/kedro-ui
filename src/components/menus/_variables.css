@@ -7,7 +7,4 @@ $menu-item-height: 40px;
 $menu-group-padding: 4px;
 
 /* the padding of each item (either side of the text ) */
-$menu-item-padding: 0 12px;
-
-/* the padding either side of the label in the main dropdown (this doesn't apply to the sub dropdown) */
-$menu-label-padding: 0 12px;
+$menu-item-padding: 12px;
