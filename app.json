@@ -2,7 +2,7 @@
   "name":"Carbon UI Components",
   "scripts": {
     "dokku": {
-      "postdeploy": "npm run docs:build"
+      "postdeploy": "mkdir andy && echo 'Folder is ' && pwd && npm run docs:build && ls -l"
     }
   }
 }
