@@ -72,7 +72,10 @@ const config = {
 
     return 'import { ' + name + ' } from \'carbon-ui\';';
   },
-  defaultExample: 'readme.md',
+  getExampleFilename: function(componentpath) {
+    return 'readme.md';
+  },
+  defaultExample: false,
   showCode: false,
   serverPort: 3500,
   highlightTheme: 'material',
