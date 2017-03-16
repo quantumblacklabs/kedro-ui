@@ -1,0 +1,112 @@
+.cbn-sg-body {
+  color: black;
+}
+
+.cbn-sg-gutter {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.cbn-sg-root {
+  font-size: 16px;
+
+  color: black;
+  background: white;
+}
+
+.cbn-sg-content {
+  margin: 0 auto;
+  padding: 0;
+
+  background: white;
+}
+
+.cbn-sg__header {
+  padding: 0 0 50px;
+}
+
+.cbn-sg__props {
+  padding: 0 0 60px;
+}
+
+.cbn-sg-sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+
+  width: 239px;
+
+  overflow: scroll;
+}
+
+.cbn-sg__pathLine {
+  margin: 10px 0;
+  padding: 20px;
+
+  font-size: 2.4rem;
+  line-height: 3.2rem;
+
+  color: white;
+  background: black;
+
+  letter-spacing: -0.1px;
+}
+
+.cbn-sg-components {
+  background: white;
+
+  overflow: auto; /* to prevent the pane from growing out of the screen */
+}
+
+.cbn-sg-header {
+  padding: 100px 0 40px;
+
+  background: rgba(239, 239, 239, 1);
+}
+
+.cbn-sg-header > div {
+  max-width: 1239px;
+  margin: 0 auto;
+}
+
+.CodeMirror-lines {
+  font-size: 16px;
+
+  line-height: 20px;
+}
+
+.cm-s-material.CodeMirror {
+  background-color: rgb(23, 23, 23) !important;
+}
+
+.cbn-sg__props .rsg--common__font {
+  font-family: 'Titillium Web', sans-serif;
+}
+
+.cbn-sg__props .rsg--Markdown__pre {
+  margin-bottom: 20px;
+  padding: 20px;
+
+  font-family: 'Source Code Pro', monospace;
+  font-size: 18px;
+}
+
+.rsg--Props--table {
+  tr {
+    border-bottom: 1px solid rgb(241, 241, 241);
+  }
+
+  .rsg--Props--cell {
+    min-width: 130px;
+    padding-bottom: 5px;
+  }
+
+  .rsg--Props--name {
+    color: cornflowerblue;
+  }
+
+  .rsg--Props--type {
+    color: hotpink;
+  }
+}

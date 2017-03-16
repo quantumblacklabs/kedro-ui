@@ -1,0 +1,70 @@
+@import '../../styles/includes';
+
+.cbn-icon {
+  display: inline-block;
+  width: $size-icon-base;
+  height: $size-icon-base;
+
+  /* size variants */
+  &--small {
+    width: calc($size-icon-base * 0.5);
+    height: calc($size-icon-base * 0.5);
+  }
+
+  &--large {
+    width: calc($size-icon-base * 1.5);
+    height: calc($size-icon-base * 1.5);
+  }
+
+  &--xlarge {
+    width: calc($size-icon-base * 2);
+    height: calc($size-icon-base * 2);
+  }
+
+  /* interactive */
+  &--tappable {
+    cursor: pointer;
+  }
+
+  &--double {
+    position: relative;
+
+    > .cbn-icon__graphics {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transition: opacity 0.8s;
+    }
+
+    /* show index 0 icon by default
+    hide index 1 icon by default */
+    > .cbn-icon__graphics:nth-child(2) {
+      opacity: 0;
+    }
+  }
+
+  &--index-1 {
+    > .cbn-icon__graphics:nth-child(1) {
+      opacity: 0;
+    }
+
+    > .cbn-icon__graphics:nth-child(2) {
+      opacity: 1;
+    }
+  }
+}
+
+.cbn-icon__graphics {
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+
+  /* theme variants */
+  &--light {
+    fill: black;
+  }
+
+  &--dark {
+    fill: white;
+  }
+}

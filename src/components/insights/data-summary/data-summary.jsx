@@ -51,12 +51,12 @@ const DataSummary = ({
             height={row.iconProps.height}>
             { icon && typeof icon === 'function' && icon(row.iconProps) }
           </svg>
-          <span className="qb-data-summary-item__title">
+          <span className='qb-data-summary-item__title'>
             { row.label }
           </span>
         </div>
         <div>
-          { typeof row.value !== 'undefined' && <span className="qb-data-summary-item__value">{ row.value }</span> }
+          { typeof row.value !== 'undefined' && <span className='qb-data-summary-item__value'>{ row.value }</span> }
         </div>
       </div>
     );
@@ -65,7 +65,7 @@ const DataSummary = ({
   // interactive modifier class will style components on hover and selected state
   return (
     <div className={classnames('qb-data-summary', { 'qb-data-summary--interactive': typeof onTapped === 'function' })}>
-      <h3 className="qb-data-summary__heading">{ heading }</h3>
+      <h3 className='qb-data-summary__heading'>{ heading }</h3>
       { rows }
     </div>
   );

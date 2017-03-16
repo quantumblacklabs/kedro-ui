@@ -25,8 +25,8 @@ const ExpandablePanel = ({
     <div
       style={wrapperStyle}
       className={`qb-expandable-panel qb-expandable-panel--${isOpen ? 'open' : 'closed'}`}>
-      <div style={bgStyle} className="qb-expandable-panel__arrow" />
-      <div style={bgStyle} className="qb-expandable-panel__container">
+      <div style={bgStyle} className='qb-expandable-panel__arrow' />
+      <div style={bgStyle} className='qb-expandable-panel__container'>
         { children }
       </div>
     </div>

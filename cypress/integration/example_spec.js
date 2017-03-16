@@ -32,7 +32,7 @@ describe('Kitchen Sink', function(){
   it('cy.should - assert that <title> is correct', function(){
 
     // https://on.cypress.io/api/visit
-    cy.visit('https://example.cypress.io')
+    cy.visit('/');
 
     // **** Making Assertions ****
     //
@@ -45,7 +45,7 @@ describe('Kitchen Sink', function(){
     // https://on.cypress.io/api/and
 
     // https://on.cypress.io/api/title
-    cy.title().should('include', 'Kitchen Sink')
+    cy.title().should('include', 'Carbon UI');
     //   ↲               ↲            ↲
     // subject        chainer      value
   })
