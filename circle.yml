@@ -28,4 +28,5 @@ test:
     - npm run static:
         background: true
   override:
+    - google-chrome --version
     - cypress run --record
