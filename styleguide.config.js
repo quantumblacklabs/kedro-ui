@@ -1,39 +1,62 @@
-var path = require('path');
-var pkg = require('./package.json');
-var corePkg = require('@quantumblack/carbon-ui-core/package.json');
-var _ = require('lodash');
-var glob = require('glob');
-var stylelint = require('stylelint');
+const path = require('path');
+const pkg = require('./package.json');
+const _ = require('lodash');
+const glob = require('glob');
+const stylelint = require('stylelint');
 
-var dirs = [
+const dirs = [
   path.resolve(__dirname, 'src'),
   path.resolve(__dirname, 'templates')
 ];
 
-var config = {
+/**
+ * A function to search directories for components to render within the styleguide
+ * @param  {string} pattern Glob pattern to match against path
+ * @return {object}         Array of components
+ */
+const searchPath = pattern => _(glob.sync(path.resolve(__dirname, pattern)))
+  .reject(c => /renderer\.jsx$/.test(c))
+  .sortBy(c => _.last(c.split('/')))
+  .value();
+
+/**
+ * Returns a function to search for components within the project
+ * by patching a path by pattern
+ * @param  {string} name    The type of component
+ * @param  {string} pattern Glob pattern to match against path
+ * @return {function}         The search function
+ */
+const getComponentsFunc = (name, pattern) => {
+  return () => {
+    const components = searchPath(pattern);
+    console.log(`Found ${components.length} ${name} components from pattern ${pattern}`);
+    return components;
+  }
+};
+
+const config = {
   title: pkg.name + ' v' + pkg.version,
   template: './templates/index.html',
   sections: [
     {
-      name: 'Components', content: './templates/components/index.md'
+      name: 'Icons',
+      content: './templates/components/icons.md',
+      components: getComponentsFunc('icon', 'src/components/icon/**/*.jsx')
+    },
+    {
+      name: 'Menus',
+      content: './templates/components/menus.md',
+      components: getComponentsFunc('menu', 'src/components/menus/**/*.jsx')
     },
     {
       name: 'Project: Insights',
       content: './templates/projects/insights.md',
-      components: function() {
-        const components = _.sortBy(glob.sync(path.resolve(__dirname, 'src/components/insights/**/*.jsx')), c => _.last(c.split('/')));
-        console.log(`Found ${ components.length } components in ${ path.resolve(__dirname, 'src/components/insights/**/*.jsx') }`);
-        return components;
-      }
+      components: getComponentsFunc('menu', 'src/components/insights/**/*.jsx')
     },
     {
       name: 'Modules',
       content: './templates/modules/index.md',
-      components: function() {
-        const modules = _.sortBy(glob.sync(path.resolve(__dirname, 'src/modules/**/*.jsx')), c => _.last(c.split('/')));
-        console.log(`Found ${ modules.length } components in ${ path.resolve(__dirname, 'src/modules/**/*.jsx') }`);
-        return modules;
-      }
+      components: getComponentsFunc('module', 'src/components/modules/**/*.jsx')
     }
   ],
   getComponentPathLine: function(componentPath) {
@@ -47,11 +70,11 @@ var config = {
     // capitalize first letter
     name = name.charAt(0).toUpperCase() + name.slice(1);
 
-    return 'import { ' + name + ' } from \'qb-components\';';
+    return 'import { ' + name + ' } from \'carbon-ui\';';
   },
-  defaultExample: true,
+  defaultExample: false,
   showCode: false,
-  serverPort: process.env.PORT || 3500,
+  serverPort: 3500,
   highlightTheme: 'material',
   webpackConfig: {
     module: {
@@ -72,7 +95,12 @@ var config = {
                 plugins: function () {
                   return [
                     require('stylelint'),
-                    require('postcss-cssnext')
+                    require('precss'),
+                    require('postcss-cssnext'),
+                    require('postcss-map')({
+                      basePath: 'src/styles/themes',
+                      maps: ['palette.yml']
+                    })
                   ];
                 }
               }
@@ -87,30 +115,47 @@ var config = {
         },
         {
           test: /\.(png|jpg|woff|eot|ttf)$/,
-          loader: 'file',
+          loader: 'file-loader',
           include: dirs
         },
         {
           test: /\.svg$/,
-          loaders: ['babel-loader', 'svg-react-loader'],
+          use: [
+            { loader: 'babel-loader' },
+            { loader: 'svg-react-loader' },
+            {
+              loader: 'svgo-loader',
+              options: {
+                plugins: [
+                  { removeUnusedNS: true },
+                  { removeAttrs: { attrs: ['fill', 'fill-rule'] } },
+                  { removeDesc: true },
+                  { removeTitle: true },
+                  { removeXMLNS: true },
+                  { removeUnknownsAndDefaults: true },
+                  { removeEditorsNSData: true }
+                ]
+              }
+            }
+          ],
           include: dirs
         }
       ]
     },
     resolve: {
+      extensions: ['.js', '.jsx', '.css'],
       alias: {
-        'rsg-components/ReactComponent/ReactComponentRenderer': path.resolve(__dirname + '/templates/custom-renderers/react-component'),
-        'rsg-components/Section/SectionRenderer': path.resolve(__dirname + '/templates/custom-renderers/section'),
-        'rsg-components/StyleGuide/StyleGuideRenderer': path.resolve(__dirname + '/templates/custom-renderers/styleguide'),
-        'rsg-components/Playground/PlaygroundRenderer': path.resolve(__dirname + '/templates/custom-renderers/playground'),
-        'rsg-components/Examples': path.resolve(__dirname + '/templates/custom-renderers/examples')
-        // 'rsg-components/Editor/Editor': path.resolve(__dirname + '/templates/custom-renderers/editor'),
-        // 'rsg-components/Editor/EditorLoader': path.resolve(__dirname + '/templates/custom-renderers/editor/editor-loader')
+        'styles': path.resolve(__dirname, 'src/styles'),
+        'components': path.resolve(__dirname, 'src/components'),
+        'rsg-components/ReactComponent/ReactComponentRenderer': path.resolve(__dirname + '/templates/react-styleguidist/react-component'),
+        'rsg-components/Section/SectionRenderer': path.resolve(__dirname + '/templates/react-styleguidist/section'),
+        'rsg-components/StyleGuide/StyleGuideRenderer': path.resolve(__dirname + '/templates/react-styleguidist/styleguide'),
+        'rsg-components/Playground/PlaygroundRenderer': path.resolve(__dirname + '/templates/react-styleguidist/playground'),
+        'rsg-components/Examples': path.resolve(__dirname + '/templates/react-styleguidist/examples'),
+        'rsg-components/Preview': path.resolve(__dirname + '/templates/react-styleguidist/preview')
       }
     }
   }
 };
-
-console.log(path.resolve(__dirname + '/templates/custom-renderers/ReactComponent'));
 
 module.exports = config;

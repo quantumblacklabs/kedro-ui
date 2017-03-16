@@ -27,9 +27,9 @@ jspm_packages
 bower_components
 
 # Compiled code
-tmp/
-dist/
-styleguide/
+/tmp/
+/dist/
+/styleguide/
 
 # Cypress.io
 cypress/screenshots

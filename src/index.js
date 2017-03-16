@@ -1,6 +1,9 @@
-import DataSummary from './components/insights/data-summary/data-summary';
-import ExpandablePanel from './components/insights/expandable-panel/expandable-panel';
-import Satellite from './components/insights/satellite/satellite';
+import DataSummary from 'components/insights/data-summary';
+import ExpandablePanel from 'components/insights/expandable-panel';
+import Satellite from 'components/insights/satellite';
+import Dropdown from 'components/menus/dropdown';
+import Icon from 'components/icon';
+import MenuOption from 'components/menus/menu-option';
 
 import './styles/app.css';
 
@@ -9,5 +12,8 @@ module.exports = {
     DataSummary,
     ExpandablePanel,
     Satellite
-  }
+  },
+  Dropdown,
+  Icon,
+  MenuOption
 };

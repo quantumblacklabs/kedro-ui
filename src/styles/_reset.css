@@ -1,3 +1,4 @@
+/* stylelint-disable */
 /**
  * Eric Meyer's Reset CSS v2.0 (http://meyerweb.com/eric/tools/css/reset/)
  * http://cssreset.com
@@ -50,3 +51,5 @@ svg rect, svg text, svg tspan {
   user-select: none;
   -webkit-user-select: none;
 }
+
+/* stylelint-enable */

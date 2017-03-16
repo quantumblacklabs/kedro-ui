@@ -1,0 +1,154 @@
+@import '../../../src/styles/includes';
+
+.cbn-sg-playground {
+  position: relative;
+
+  margin: 0 0 200px;
+
+  border-radius: 3px 3px 0;
+}
+
+.cbn-sg-playground__preview {
+  position: relative;
+
+  margin: 0;
+  padding: 0;
+
+  background: rgba(0, 0, 0, 0.06);
+
+  @mixin themed background, bg, default;
+}
+
+.cbn-sg-playground__preview > div:first-child {
+  position: relative;
+
+  min-height: 100px;
+  padding-bottom: 40px;
+}
+
+.cbn-sg-playground__preview > div:last-child {
+  text-align: center;
+}
+
+.cbn-sg-playground__preview--grid {
+  .cbn-sg-playground__preview-section {
+    &::after {
+      position: absolute;
+      top: -1px;
+      right: 0;
+      z-index: 10;
+
+      display: block;
+      width: 100%;
+      height: 0;
+      padding: 10px 0 5px 10px;
+
+      color: white;
+      background-size: 4px 4px;
+      background-color: transparent;
+
+      background-image: linear-gradient(0deg, transparent 75%, rgba(0, 0, 0, 0.5) 75%);
+
+      animation: gridEntrance 0.5s forwards;
+      pointer-events: none;
+      content: '';
+    }
+
+    &.cbn-theme--light::after {
+      background-image: linear-gradient(0deg, transparent 75%, rgba(255, 105, 180, 0.5) 75%);
+    }
+
+    &.cbn-theme--dark::after {
+      background-image: linear-gradient(0deg, transparent 75%, rgba(100, 149, 237, 0.5) 75%);
+    }
+  }
+}
+
+@keyframes gridEntrance {
+  0% {
+    height: 0;
+  }
+
+  100% {
+    height: 100%;
+  }
+}
+
+.cbn-sg-playground__preview-section {
+  position: relative;
+
+  display: none;
+  padding: 60px 0;
+
+  &.cbn-sg-playground__preview-section--show {
+    display: block;
+  }
+}
+
+.cbn-sg-controls {
+  margin: 12px 0 0;
+}
+
+.cbn-sg-btn {
+  padding: 10px;
+  border: none;
+
+  color: white;
+  background: black;
+
+  outline: none;
+  cursor: pointer;
+}
+
+.cbn-sg-btn:hover {
+  color: white;
+  background: rgb(25, 104, 209);
+}
+
+.cbn-sg-playground__events {
+  display: none;
+
+  height: 200px;
+
+  background: cornflowerblue;
+}
+
+.cbn-sg-playground__code {
+  max-height: 0;
+  padding: 0;
+
+  background: rgb(23, 23, 23) !important;
+
+  overflow: auto;
+  transition: max-height 0.4s ease;
+}
+
+.cbn-sg-playground__code > div {
+  padding: 50px 0;
+
+  opacity: 0;
+  transition: opacity 0.4s 0.1s ease;
+}
+
+.cbn-sg-playground__code--open {
+  max-height: 500px;
+
+  > div {
+    opacity: 1;
+  }
+}
+
+.cbn-sg-playground__code-toggle {
+  position: absolute;
+  bottom: -26px;
+  right: -1px;
+
+  padding: 4px 8px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-top: 0;
+
+  font-size: 14px;
+
+  cursor: pointer;
+}

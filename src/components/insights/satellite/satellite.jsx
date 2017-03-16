@@ -77,7 +77,7 @@ const Satellite = ({
 
   return (
     <g
-      className="qb-satellite"
+      className='qb-satellite'
       transform={transform}
       {...eventHandlerProps}>
       <circle

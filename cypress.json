@@ -1,3 +1,8 @@
 {
-  "projectId": "x4tjns"
+  "integrationFolder": "cypress/tests",
+  "pageLoadTimeout": 10000,
+  "projectId": "x4tjns",
+  "fileServerFolder": "styleguide",
+  "viewportWidth": 1440,
+  "viewportHeight": 900
 }

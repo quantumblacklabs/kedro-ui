@@ -1,0 +1,63 @@
+@import '../../../styles/includes';
+@import '../variables';
+
+.cbn-menu-option {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+
+  height: $menu-item-height;
+  padding: 0 $menu-item-padding;
+
+  @mixin themed color, text;
+  @mixin themed background, menu, default;
+
+  white-space: nowrap;
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+
+  &:hover {
+    @mixin themedParent background, menu, hover;
+  }
+
+  &.cbn-menu-option--selected,
+  &:hover {
+    @mixin themedParent background, menu, hover;
+  }
+
+  &:active {
+    @mixin themedParent background, menu, active;
+    @mixin themedParent color, menu, activeColor;
+  }
+}
+
+.cbn-menu-option__content {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  text-overflow: ellipsis;
+
+  .cbn-menu-option--icon-left & {
+    padding-left: calc($size-icon-base + $menu-item-padding);
+  }
+
+  .cbn-menu-option--icon-right & {
+    padding-right: calc($size-icon-base + $menu-item-padding);
+  }
+
+  > .cbn-icon {
+    position: absolute;
+    right: 0;
+
+    margin: 0 $menu-menu-item-padding;
+
+    .cbn-menu-option--icon-left & {
+      left: 0;
+      right: auto;
+    }
+  }
+}
