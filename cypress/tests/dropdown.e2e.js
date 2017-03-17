@@ -5,14 +5,13 @@ describe('Dropdown component', () => {
   });
 
   it('assert that we have more than 2 demos rendering root nodes correctly', () => {
-    cy.get('.cbn-dropdown')
+    cy.get('.cbn-sg-playground__preview-section .cbn-dropdown:visible')
       .should('to.have.length.above', 2);
   });
 
   it('assert that Dropdown opens and closes correctly', () => {
-    cy.get('.cbn-dropdown')
+    cy.get('.cbn-sg-playground__preview-section .cbn-dropdown:visible')
       .each(($el, index, $list) => {
-
         const originalLabel = $el.find('.cbn-dropdown__label>span').html();
         const optionLabel = $el.find('.cbn-menu-option:first span').html();
 
@@ -55,8 +54,6 @@ describe('Dropdown component', () => {
             .find('.cbn-dropdown__label>span')
             .should('not.contain', originalLabel);
         }
-
-
       });
   });
 

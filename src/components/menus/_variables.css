@@ -1,0 +1,10 @@
+/** Variables */
+
+/* the height of each item/row */
+$menu-item-height: 40px;
+
+/* padding at the top and bottom of each group of items */
+$menu-group-padding: 4px;
+
+/* the padding of each item (either side of the text ) */
+$menu-item-padding: 12px;

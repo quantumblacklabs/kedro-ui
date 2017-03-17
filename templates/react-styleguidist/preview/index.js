@@ -115,7 +115,7 @@ export default class Preview extends Component {
 			ReactDOM.unmountComponentAtNode(this.mountNode);
 			this.setState({
 				error: err.toString(),
-			});
+			}, () => console.error(err));
 		}
 	}
 
@@ -123,7 +123,6 @@ export default class Preview extends Component {
 		const { error } = this.state;
 		return (
 			<div>
-        <h1>Custom Preview</h1>
 				<div ref={ref => (this.mountNode = ref)}></div>
 				{error && <PlaygroundError message={error} />}
 			</div>

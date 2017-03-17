@@ -80,7 +80,7 @@ Icon.propTypes = {
   /**
    * The size of the whole icon.
    */
-  size: PropTypes.oneOf(['tiny', 'small', 'medium', 'large']),
+  size: PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']),
   /**
    * Theme name for component, allowed [dark, light]
    */
@@ -105,7 +105,7 @@ Icon.defaultProps = {
   index: 0,
   onClick: null,
   size: 'medium',
-  theme: 'dark',
+  theme: 'light',
   title: '',
   type2: null
 };

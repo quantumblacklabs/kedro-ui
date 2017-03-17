@@ -91,10 +91,9 @@ const _PlaygroundRenderer = ({
 };
 
 const PlaygroundRenderer = React.createClass({
-
   getInitialState() {
     return {
-      activeThemeIndex: 0,
+      activeThemeIndex: 1,
       grid: false,
       themes: ['light', 'dark'],
       callbackMeta: {}

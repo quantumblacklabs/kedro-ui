@@ -1,4 +1,5 @@
 @import '../../../styles/includes';
+@import '../variables';
 
 .cbn-dropdown {
   position: relative;
@@ -6,7 +7,6 @@
   display: inline-block;
   box-sizing: border-box;
 
-  @mixin themed background, menu, default;
   @mixin themed color, text;
 
   border: 1px solid rgba(0, 0, 0, 0.12);
@@ -30,12 +30,12 @@
 
 .cbn-dropdown__label {
   position: relative;
-  z-index: 2;
+  z-index: 10;
 
   display: flex;
   align-items: center;
   height: $menu-item-height;
-  padding: $menu-item-padding;
+  padding: 0 $menu-item-padding;
   overflow: hidden;
 
   @mixin themedParent background, menu, default;
@@ -43,10 +43,6 @@
 
   cursor: pointer;
   user-select: none;
-
-  &:active {
-    @mixin themedParent background, menu, active;
-  }
 
   > .cbn-icon {
     position: absolute;
@@ -65,7 +61,7 @@
 
 .cbn-dropdown__options {
   position: absolute;
-  z-index: 1;
+  z-index: 9;
 
   display: none;
   width: 100%;
@@ -79,11 +75,6 @@
 
   animation: dropdownEntrance 0.3s;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 0 2px 0 rgba(0, 0, 0, 0.12);
-
-  /* custom style overrides */
-  .cbn-theme--dark & {
-    box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 2px 0 rgba(0, 0, 0, 0.24), inset 0 1px 0 0 rgba(255, 255, 255, 0.06);
-  }
 
   .cbn-dropdown--open & {
     display: block;
@@ -119,7 +110,7 @@
       align-items: center;
 
       height: $menu-item-height;
-      padding: $menu-item-padding;
+      padding: 0 $menu-item-padding;
       text-transform: uppercase;
 
       line-height: 1.43;

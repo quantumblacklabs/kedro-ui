@@ -1,17 +1,22 @@
 import React, { PropTypes } from 'react';
 import cx from 'classnames';
 
+
+  import '../../../src/styles/app.css';
+  import '../../../src/styles/react-styleguidist.css';
+
+
 import './styles.css';
 
 const StyleGuideRenderer = ({
   classes,
-  title,
-  homepageUrl,
-  components,
-  toc,
-  sidebar
+	title,
+	homepageUrl,
+	children,
+	toc,
+	hasSidebar
 }) =>  (
-	<div className={cx('cbn-sg-root', sidebar && 'cbn-sg-root--sidebar-open')}>
+	<div className={cx('cbn-sg-root', hasSidebar && 'cbn-sg-root--sidebar-open')}>
     <header className='cbn-sg-header'>
       <div>
         <h3>QUANTUMBLACK</h3>
@@ -20,10 +25,10 @@ const StyleGuideRenderer = ({
     </header>
 		<main className='cbn-sg-content'>
 			<div className='cbn-sg-components'>
-				{components}
+				{children}
 			</div>
 		</main>
-		{sidebar && false &&
+		{hasSidebar && false &&
 			<div className='cbn-sg-sidebar'>
 				<h1>{title}</h1>
 				{toc}
@@ -36,9 +41,9 @@ StyleGuideRenderer.propTypes = {
   classes: PropTypes.object,
 	title: PropTypes.string.isRequired,
 	homepageUrl: PropTypes.string.isRequired,
-	components: PropTypes.node.isRequired,
+	children: PropTypes.node.isRequired,
 	toc: PropTypes.node.isRequired,
-	sidebar: PropTypes.bool
+	hasSidebar: PropTypes.bool
 };
 
 export default StyleGuideRenderer;

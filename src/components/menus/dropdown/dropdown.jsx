@@ -7,16 +7,19 @@ import './dropdown.css';
 // Renderer
 import DropdownRenderer from './dropdown-renderer';
 
+/**
+ * This is a stateful component providing a rich version of a native select box.
+ */
 const Dropdown = React.createClass({
   displayName: 'Dropdown',
   /**
   * React component spec method
-  * {@link https://facebook.github.io/react/docs/component-specs.html#proptypes}
+  * {@link https://facebook.github.io/react/docs/react-component.html#proptypes}
   * @return {object} Default properties
   */
   propTypes: {
     /**
-    * An array of child items
+    * Child items. The nodes which React will pass down, defined inside the DropdownRenderer tag
     */
     children: PropTypes.node.isRequired,
     /**
@@ -46,7 +49,7 @@ const Dropdown = React.createClass({
   },
   /**
    * React component spec method
-   * {@link https://facebook.github.io/react/docs/component-specs.html#getdefaultprops}
+   * {@link https://facebook.github.io/react/docs/react-component.html#getdefaultprops}
    * @return {object} Default properties
    */
   getDefaultProps() {
@@ -62,13 +65,12 @@ const Dropdown = React.createClass({
   },
   /**
   * React component spec method
-  * {@link https://facebook.github.io/react/docs/component-specs.html#getinitialstate}
+  * {@link https://facebook.github.io/react/docs/react-component.html#getinitialstate}
   * @return {object} An object to be used as the initial state
   */
   getInitialState() {
     // check children for a selected option
     // otherwise, default to first
-
     let selectedOption = {
       id: null,
       label: null,
@@ -91,16 +93,21 @@ const Dropdown = React.createClass({
       open: false
     };
   },
+  /**
+   * Find the selected option by traversing sections and MenuOptions
+   */
   _findSelectedOptionElement() {
+    const children = React.Children.toArray(this.props.children);
+
     // we may have an array of options
     // or an array of sections, containing options
-    return (this.props.children[0].type === 'section')
-      ? _(this.props.children)
+    return (children[0].type === 'section')
+      ? _(children)
         .map(section => section.props.children)
         .flatten()
         .value()
         .find(c => c.props.selected)
-      : _.find(this.props.children, c => c.props.selected);
+      : _.find(children, c => c.props.selected);
   },
   /**
    * Event handler which is fired when the label is clicked
@@ -124,13 +131,13 @@ const Dropdown = React.createClass({
    * Event handler which is fired when a child item is selected
    */
   _handleOptionSelected(obj) {
-    const { label, index, value } = obj;
+    const { label, id, value } = obj;
     const { onChanged, onClosed } = this.props;
 
     // detect if the selected item has changed
     const hasChanged = value !== this.state.selectedOption.value;
     if (hasChanged) {
-      const selectedOption = { label, value, index };
+      const selectedOption = { label, value, id };
       this.setState({ open: false, selectedOption }, () => {
         if (typeof onChanged === 'function') {
           onChanged(obj);
@@ -144,8 +151,30 @@ const Dropdown = React.createClass({
     }
   },
   /**
+   * API method to open the dropdown
+   */
+  open() {
+    const { onOpened } = this.props;
+    this.setState({ open: true }, () => {
+      if (typeof onOpened === 'function') {
+        onOpened();
+      }
+    });
+  },
+  /**
+   * API method to close the dropdown
+   */
+  close() {
+    const { onClosed } = this.props;
+    this.setState({ open: false }, () => {
+      if (typeof onClosed === 'function') {
+        onClosed();
+      }
+    });
+  },
+  /**
    * React lifecycle method
-   * {@link https://facebook.github.io/react/docs/component-specs.html#render}
+   * {@link https://facebook.github.io/react/docs/react-component.html#render}
    * @return {object} JSX for this component
    */
   render() {

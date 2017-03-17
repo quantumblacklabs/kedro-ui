@@ -1,4 +1,5 @@
 @import '../../../styles/includes';
+@import '../variables';
 
 .cbn-menu-option {
   display: flex;
@@ -6,7 +7,7 @@
   box-sizing: border-box;
 
   height: $menu-item-height;
-  padding: $menu-item-padding;
+  padding: 0 $menu-item-padding;
 
   @mixin themed color, text;
   @mixin themed background, menu, default;
@@ -17,16 +18,17 @@
   user-select: none;
 
   &:hover {
-    @mixin themedParent background, menu, border;
-  }
-
-  &:active {
-    @mixin themedParent background, menu, activeColor;
+    @mixin themedParent background, menu, hover;
   }
 
   &.cbn-menu-option--selected,
   &:hover {
-    @mixin themedParent background, active, default;
+    @mixin themedParent background, menu, hover;
+  }
+
+  &:active {
+    @mixin themedParent background, menu, active;
+    @mixin themedParent color, menu, activeColor;
   }
 }
 
@@ -40,14 +42,18 @@
   text-overflow: ellipsis;
 
   .cbn-menu-option--icon-left & {
-    padding-left: 36px;
+    padding-left: calc($size-icon-base + $menu-item-padding);
+  }
+
+  .cbn-menu-option--icon-right & {
+    padding-right: calc($size-icon-base + $menu-item-padding);
   }
 
   > .cbn-icon {
     position: absolute;
     right: 0;
 
-    margin: $menu-menu-item-padding;
+    margin: 0 $menu-menu-item-padding;
 
     .cbn-menu-option--icon-left & {
       left: 0;

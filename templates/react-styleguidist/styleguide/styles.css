@@ -44,8 +44,13 @@
   margin: 10px 0;
   padding: 20px;
 
+  font-size: 2.4rem;
+  line-height: 3.2rem;
+
   color: white;
   background: black;
+
+  letter-spacing: -0.1px;
 }
 
 .cbn-sg-components {
@@ -87,19 +92,21 @@
   font-size: 18px;
 }
 
-.cbn-sg__props .rsg--Props__tableBody > tr:nth-child(odd) {
-  background: rgb(247, 247, 251);
-}
+.rsg--Props--table {
+  tr {
+    border-bottom: 1px solid rgb(241, 241, 241);
+  }
 
-.cbn-sg__props .rsg--Props--cell {
-  min-width: 110px;
-  padding-left: 4px;
-}
+  .rsg--Props--cell {
+    min-width: 130px;
+    padding-bottom: 5px;
+  }
 
-.cbn-sg__props .rsg--Props--name {
-  color: cornflowerblue;
-}
+  .rsg--Props--name {
+    color: cornflowerblue;
+  }
 
-.cbn-sg__props .rsg--Props--type {
-  color: hotpink;
+  .rsg--Props--type {
+    color: hotpink;
+  }
 }

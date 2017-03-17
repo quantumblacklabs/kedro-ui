@@ -3,7 +3,6 @@ import Playground from 'rsg-components/Playground';
 import Markdown from 'rsg-components/Markdown';
 
 export default function Examples({ examples, name }, { codeKey }) {
-  console.log('examples', examples);
 	return (
 		<article>
 			{examples.map((example, index) => {

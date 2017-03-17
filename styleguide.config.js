@@ -77,15 +77,14 @@ const config = {
 
     return 'import { ' + name + ' } from \'carbon-ui\';';
   },
-  defaultExample: true,
+  getExampleFilename(componentPath) {
+    return componentPath.replace(/\.jsx?$/, '.examples.md');
+  },
+  defaultExample: false,
   showCode: false,
-  serverPort: process.env.PORT || 3500,
+  serverPort: 3500,
   highlightTheme: 'material',
   webpackConfig: {
-    entry: [
-      path.resolve(__dirname + '/src/styles/app.css'),
-      path.resolve(__dirname + '/src/styles/react-styleguidist.css')
-    ],
     module: {
       rules: [
         {
@@ -152,9 +151,10 @@ const config = {
       ]
     },
     resolve: {
+      extensions: ['.js', '.jsx', '.css'],
       alias: {
-        'components': path.resolve(__dirname + '/src/components'),
-        'styles': path.resolve(__dirname + '/src/styles'),
+        'styles': path.resolve(__dirname, 'src/styles'),
+        'components': path.resolve(__dirname, 'src/components'),
         'rsg-components/ReactComponent/ReactComponentRenderer': path.resolve(__dirname + '/templates/react-styleguidist/react-component'),
         'rsg-components/Section/SectionRenderer': path.resolve(__dirname + '/templates/react-styleguidist/section'),
         'rsg-components/StyleGuide/StyleGuideRenderer': path.resolve(__dirname + '/templates/react-styleguidist/styleguide'),
