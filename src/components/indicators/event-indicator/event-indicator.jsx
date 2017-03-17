@@ -56,7 +56,7 @@ const EventIndicatorRenderer = React.createClass({
   /**
    * Animation wrapper made with GSAP.
    */
-  _createAnimation({ target }) {
+  _createAnimation() {
     const indicator = this._indicator.querySelector(`[name='${this.props.name}']`);
 
     return new TimelineMax()
