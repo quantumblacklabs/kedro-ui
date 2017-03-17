@@ -72,6 +72,9 @@ const config = {
 
     return 'import { ' + name + ' } from \'carbon-ui\';';
   },
+  getExampleFilename(componentPath) {
+    return componentPath.replace(/\.jsx?$/, '.examples.md');
+  },
   defaultExample: false,
   showCode: false,
   serverPort: 3500,
