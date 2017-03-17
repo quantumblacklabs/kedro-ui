@@ -1,0 +1,8 @@
+{
+  "name":"Carbon UI Components",
+  "scripts": {
+    "dokku": {
+      "predeploy": "ls -l && npm run docs:build && ls -l"
+    }
+  }
+}
