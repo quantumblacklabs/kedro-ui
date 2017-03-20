@@ -68,7 +68,9 @@ const EventIndicatorRenderer = React.createClass({
 
   render() {
     return (
-      <div ref={indicator => { this._indicator = indicator; }}>
+      <div
+        className='cbn-sg-playground__event-wrapper'
+        ref={indicator => { this._indicator = indicator; }}>
         <SimpleEventIndicator
           color={this.props.color}
           count={this.props.count}

@@ -1,6 +1,6 @@
 .cbn-sg-playground__events {
-  height: 100px;
-
+  min-height: 0;
+  max-height: 100px;
   background: cornflowerblue;
 }
 
@@ -8,7 +8,7 @@
   float: left;
 
   width: 100px;
-  height: auto;
+  height: 80px;
   margin: 10px;
 
   text-align: center;
