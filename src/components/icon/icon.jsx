@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
-import _ from 'lodash';
+import { pickBy } from 'lodash';
 import IconAssets from './assets';
 
 import './icon.css';
@@ -24,7 +24,7 @@ const Icon = props => {
   } = props;
 
   // filter props for data attributes to attach to the node
-  const dataProps = _.pickBy(props, (val, key) => /^data-.*/.test(key));
+  const dataProps = pickBy(props, (val, key) => /^data-.*/.test(key));
 
   // ensure we have a corresponding icon SVG file for this type
   const iconType = type in IconAssets ? type : 'missing';
