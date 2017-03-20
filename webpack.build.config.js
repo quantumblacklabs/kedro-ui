@@ -3,6 +3,7 @@
 const webpack = require('webpack');
 const pkg = require('./package.json');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const path = require('path');
 
 module.exports = {
@@ -34,6 +35,7 @@ module.exports = {
     extensions: ['.js', '.jsx', '.css']
   },
   plugins: [
+    new LodashModuleReplacementPlugin(),
     new ExtractTextPlugin('carbon-ui.css'),
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.optimize.UglifyJsPlugin({
