@@ -28,7 +28,7 @@ const _PlaygroundRenderer = ({
 
   const indicators = (!_.isEmpty(callbackMeta))
     ? (
-      <div className='indicators-wrapper'>
+      <div className='cbn-sg-playground__events-wrapper'>
         {
           _.map(callbackMeta, (callbackObj, propName) => {
             return (

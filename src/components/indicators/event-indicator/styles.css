@@ -1,6 +1,8 @@
+.cbn-sg-playground__events-wrapper {
+  height: 100px;
+}
+
 .cbn-sg-playground__events {
-  min-height: 0;
-  max-height: 100px;
   background: cornflowerblue;
 }
 
