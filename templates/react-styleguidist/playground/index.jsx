@@ -27,17 +27,17 @@ const _PlaygroundRenderer = ({
   const themedCodeBlocks = themeable ? _.map(themes, t => code.replace(/theme='light'/g, `theme='${t}'`)) : [];
 
   const indicators = (!_.isEmpty(callbackMeta))
-    ? (
-      <div className='cbn-sg-playground__events-wrapper'>
+    && (
+      <div className={classnames('cbn-sg-playground__events', { 'cbn-sg-playground__events--open': true })}>
         {
-          _.map(callbackMeta, (callbackObj, propName) => {
-            return (
-              <EventIndicatorRenderer key={propName} color='blue' count={callbackObj.count} name={propName} />
-            );
-          })
+          Object.keys(callbackMeta)
+            .map((name, i) => (
+              <EventIndicatorRenderer key={name} colorIndex={i} count={callbackMeta[name].count} name={name} />
+            )
+          )
         }
       </div>
-    ) : '';
+    );
 
   return (
     <div ref='playground' className='cbn-sg-playground'>
@@ -84,11 +84,7 @@ const _PlaygroundRenderer = ({
             )}
           </div>
         </div>
-      </div>
-      <div className={classnames('cbn-sg-playground__events', { 'cbn-sg-playground__events--open': true })}>
-        <div className='cbn-sg-gutter'>
-          { indicators }
-        </div>
+        { indicators }
       </div>
       <div className={classnames('cbn-sg-playground__code', { 'cbn-sg-playground__code--open': showCode })}>
         <div className='cbn-sg-gutter'>

@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
-import classnames from 'classnames';
 import GSAP from 'react-gsap-enhancer';
-import { TimelineMax } from 'gsap';
+import { TimelineLite, SlowMo } from 'gsap';
 
 import './styles.css';
 
@@ -10,23 +9,40 @@ import './styles.css';
  */
 const SimpleEventIndicator = ({ color, count, name }) => (
   <div className='cbn-sg-playground__event'>
-    <div
-      className={classnames(
-        'cbn-sg-playground__event-circle',
-        `cbn-sg-playground__event-circle-${color}`)}>
-      <div
-        name={name}
-        className={classnames(
-          'cbn-sg-playground__event-circle-bg',
-          `cbn-sg-playground__event-circle-bg--${name}`,
-          `cbn-sg-playground__event-circle-${color}`)} />
-      <div className='cbn-sg-playground__event-number'>
+    <svg width='80' height='80'>
+      <circle
+        cx='50%'
+        cy='50%'
+        r='5'
+        stroke={color}
+        strokeWidth='1'
+        fill='rgba(255, 255, 255, 0)'
+        name={`${name}-border`} />
+      <circle
+        cx='50%'
+        cy='50%'
+        r='10'
+        fill={color}
+        name={`${name}-circle`} />
+      <text
+        x='50%'
+        y='51%'
+        fontSize='12px'
+        textAnchor='middle'
+        alignmentBaseline='middle'
+        fill='white'>
         { count }
-      </div>
-    </div>
-    <div className='cbn-sg-playground__event-name'>
-      { name }
-    </div>
+      </text>
+      <text
+        x='50%'
+        y='85%'
+        fontSize='13px'
+        textAnchor='middle'
+        alignmentBaseline='middle'
+        className='cbn-sg-playground__event-name'>
+        { name }
+      </text>
+    </svg>
   </div>
 );
 
@@ -38,7 +54,7 @@ const EventIndicatorRenderer = React.createClass({
   displayName: 'EventIndicatorRenderer',
 
   propTypes: {
-    color: PropTypes.string.isRequired,
+    colorIndex: PropTypes.number.isRequired,
     count: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired
   },
@@ -53,17 +69,51 @@ const EventIndicatorRenderer = React.createClass({
     }
   },
 
+  _color(colorIndex) {
+    return [
+      'rgb(24, 117, 240)',
+      'rgb(34, 153, 153)',
+      'rgb(255, 173, 19)',
+      'rgb(68, 136, 17)',
+      'rgb(153, 34, 136)'
+    ][colorIndex];
+  },
+
   /**
    * Animation wrapper made with GSAP.
    */
   _createAnimation() {
-    const indicator = this._indicator.querySelector(`[name='${this.props.name}']`);
+    const border = this._indicator.querySelector(`[name='${this.props.name}-border']`);
+    const circle = this._indicator.querySelector(`[name='${this.props.name}-circle']`);
 
-    return new TimelineMax()
-      .to(indicator, 0.2, { scale: 1, opacity: 0.2 })
-      .to(indicator, 0.3, { scale: 2, opacity: 1 })
-      .to(indicator, 0.3, { scale: 2, opacity: 0 })
-      .to(indicator, 0.2, { scale: 1, opacity: 0 });
+    const animationTimeline = new TimelineLite();
+
+    animationTimeline
+      // start position of the circle
+      .to(circle, 0.1, { scale: 1, opacity: 1, transformOrigin: '50% 50%' }, 0)
+      // scale the circle
+      .to(circle, 0.2, { scale: 1.5, opacity: 1, transformOrigin: '50% 50%' })
+      // reset the circle to the start position
+      .to(circle, 0.2, { scale: 1, opacity: 1, transformOrigin: '50% 50%' })
+      // start position of the border
+      .to(border, 0.1, { scale: 1, opacity: 1, transformOrigin: '50% 50%' }, 0)
+      // slow motion scale of the border
+      .to(border, 0.7, { scale: 5, opacity: 0, ease: SlowMo.ease.config(0.5, 0.4, false), transformOrigin: '50% 50%' })
+      // reset the border to the start position
+      .to(border, 0.1, { scale: 1, opacity: 0, transformOrigin: '50% 50%' })
+
+    // animationTimeline
+    //   .to(circle, 0.1, { scale: 1, opacity: 1 }, 0)
+    //   .to(border, 0.1, { scale: 0.8, opacity: 1 }, 0)
+    //   .to(circle, 0.3, { scale: 1.2, opacity: 1 })
+    //   .to(border, 0.3, { scale: 1.3, opacity: 1 })
+    //   .to(circle, 0.3, { scale: 1.3, opacity: 1 })
+    //   .to(border, 0.3, { scale: 1.5, opacity: 0.8 })
+    //   .to(border, 0.3, { scale: 2, opacity: 0 })
+    //   .to(circle, 0.3, { scale: 1, opacity: 1 })
+    //   .to(border, 0.3, { scale: 0.8, opacity: 0 })
+
+    return animationTimeline;
   },
 
   render() {
@@ -72,13 +122,19 @@ const EventIndicatorRenderer = React.createClass({
         className='cbn-sg-playground__event-wrapper'
         ref={indicator => { this._indicator = indicator; }}>
         <SimpleEventIndicator
-          color={this.props.color}
+          color={this._color(this.props.colorIndex)}
           count={this.props.count}
           name={this.props.name} />
       </div>
     );
   }
 });
+
+SimpleEventIndicator.defaultProps = {
+  color: 'rgb(24, 117, 240)',
+  count: 1,
+  name: '--'
+};
 
 SimpleEventIndicator.propTypes = {
   color: PropTypes.string.isRequired,
