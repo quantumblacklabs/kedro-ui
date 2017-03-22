@@ -1,29 +1,38 @@
-@define-mixin themed $propName, $category: base, $variant: default {
-  &.cbn-theme--light {
+@define-mixin themeBase $propName, $type, $category, $variant: default, $invert {
+  @if ($invert == true) {
+    $(propName): map(themes, dark, $category, $variant);
+  }
+  @else {
     $(propName): map(themes, light, $category, $variant);
+  }
+}
+
+@define-mixin themed $propName, $category: base, $variant: default, $invert: false {
+  &.cbn-theme--light {
+    @mixin themeBase $propName, light, $category, $variant, $invert;
   }
 
   &.cbn-theme--dark {
-    $(propName): map(themes, dark, $category, $variant);
+    @mixin themeBase $propName, dark, $category, $variant, $invert;
   }
 }
 
-@define-mixin themedParent $propName, $category: base, $variant: default {
+@define-mixin themedParent $propName, $category: base, $variant: default, $invert: false {
   .cbn-theme--light & {
-    $(propName): map(themes, light, $category, $variant);
+    @mixin themeBase $propName, light, $category, $variant, $invert;
   }
 
   .cbn-theme--dark & {
-    $(propName): map(themes, dark, $category, $variant);
+    @mixin themeBase $propName, dark, $category, $variant, $invert;
   }
 }
 
-@define-mixin themedState $state, $propName, $category: base, $variant: default {
+@define-mixin themedState $state, $propName, $category: base, $variant: default, $invert: false {
   .cbn-theme--light &:$(state) {
-    $(propName): map(themes, light, $category, $variant);
+    @mixin themeBase $propName, light, $category, $variant, $invert;
   }
 
   .cbn-theme--dark &:$(state) {
-    $(propName): map(themes, dark, $category, $variant);
+    @mixin themeBase $propName, dark, $category, $variant, $invert;
   }
 }

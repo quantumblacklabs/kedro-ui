@@ -33,6 +33,9 @@ themes:
       activeColor: rgb(255, 255, 255)
       border: rgba(0, 0, 0, 0.12)
       wrapper: rgba(0, 0, 0, 0.12)
+    radiobutton:
+      default: rgba(0, 0, 0, 0.85)
+      disabled: rgba(0, 0, 0, 0.3)
     grid:
       default: rgba(255, 105, 180, 0.5)
   dark:
@@ -68,5 +71,8 @@ themes:
       activeColor: rgb(255, 255, 255)
       border: rgba(255, 255, 255, 0.12)
       wrapper: rgba(0, 0, 0, 0)
+    radiobutton:
+      default: rgba(255, 255, 255, 0.85)
+      disabled: rgba(255, 255, 255, 0.3)
     grid:
       default: rgba(100, 149, 237, 0.5)
