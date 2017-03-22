@@ -3,6 +3,7 @@ const pkg = require('./package.json');
 const _ = require('lodash');
 const glob = require('glob');
 const stylelint = require('stylelint');
+const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 
 const dirs = [
   path.resolve(__dirname, 'src'),
@@ -157,7 +158,10 @@ const config = {
         'rsg-components/Examples': path.resolve(__dirname + '/templates/react-styleguidist/examples'),
         'rsg-components/Preview': path.resolve(__dirname + '/templates/react-styleguidist/preview')
       }
-    }
+    },
+    plugins: [
+      new LodashModuleReplacementPlugin()
+    ]
   }
 };
 
