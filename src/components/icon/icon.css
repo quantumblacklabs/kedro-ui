@@ -5,7 +5,7 @@
   width: $size-icon-base;
   height: $size-icon-base;
 
-  /* size variants */
+  /** size variants **/
   &--small {
     width: calc($size-icon-base * 0.5);
     height: calc($size-icon-base * 0.5);
@@ -21,7 +21,7 @@
     height: calc($size-icon-base * 2);
   }
 
-  /* interactive */
+  /** interactive **/
   &--tappable {
     cursor: pointer;
   }
@@ -36,8 +36,10 @@
       transition: opacity 0.8s;
     }
 
-    /* show index 0 icon by default
-    hide index 1 icon by default */
+    /**
+     * show index 0 icon by default
+     * hide index 1 icon by default
+     **/
     > .cbn-icon__graphics:nth-child(2) {
       opacity: 0;
     }
@@ -59,7 +61,7 @@
   height: 100%;
   pointer-events: none;
 
-  /* theme variants */
+  /** theme variants **/
   &--light {
     fill: black;
   }

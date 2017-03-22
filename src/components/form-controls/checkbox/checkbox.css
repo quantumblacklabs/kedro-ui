@@ -10,7 +10,7 @@ $size-radio-button-spacing: 14px;
 /** Implementation **/
 
 .cbn-switch-checkbox__box {
-  @mixin themedParent border-color, radiobutton, default;
+  @mixin themedParent border-color, radiobutton;
 
   position: relative;
 
@@ -22,8 +22,6 @@ $size-radio-button-spacing: 14px;
   margin-right: $size-radio-button-spacing;
 
   border: 2px solid;
-
-  color: black;
 
   &::before {
     @mixin themedParent background, radiobutton, default;
@@ -45,23 +43,6 @@ $size-radio-button-spacing: 14px;
     transition: all 0.3s;
   }
 
-  &::after {
-    position: absolute;
-
-    top: 50%;
-    left: 50%;
-
-    content: '✓';
-
-    max-width: 0;
-
-    opacity: 0;
-
-    transform: translate(-50%, -50%);
-
-    transition: all 0.1s;
-  }
-
   .cbn-switch__input:checked + .cbn-switch-checkbox__label & {
     &::before {
       width: 100%;
@@ -70,9 +51,7 @@ $size-radio-button-spacing: 14px;
       opacity: 1;
     }
 
-    &::after {
-      max-width: 25px;
-
+    .cbn-icon {
       opacity: 1;
     }
   }
@@ -80,12 +59,29 @@ $size-radio-button-spacing: 14px;
   .cbn-switch-checkbox--disabled & {
     @mixin themedParent border-color, radiobutton, disabled;
   }
+
+  .cbn-icon {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    width: 12px;
+
+    opacity: 0;
+
+    transform: translate(-50%, -50%);
+
+    svg {
+      @mixin themedParent fill, checkbox;
+    }
+  }
 }
 
 .cbn-switch-checkbox__label {
   @extend %type--subhead-2;
 
-  @mixin themedParent color, radiobutton, default;
+  @mixin themedParent color, text;
 
   display: flex;
   flex-direction: row;

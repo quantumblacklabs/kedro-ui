@@ -4,6 +4,7 @@ import darkPaste from './dark-paste.svg';
 import darkRefresh from './dark-refresh.svg';
 import darkUndo from './dark-undo.svg';
 import darkSortingAscending from './dark-sorting-ascending.svg';
+import tick from './tick.svg';
 
 export default {
   copy: darkCopy,
@@ -11,5 +12,6 @@ export default {
   paste: darkPaste,
   refresh: darkRefresh,
   undo: darkUndo,
-  chevronUp: darkSortingAscending
+  chevronUp: darkSortingAscending,
+  tick
 };

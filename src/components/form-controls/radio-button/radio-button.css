@@ -27,8 +27,6 @@ $size-radio-button-spacing: 14px;
   &::before {
     @mixin themedParent background, radiobutton, default;
 
-    transition: all 0.3s;
-
     position: absolute;
 
     top: 50%;
@@ -44,6 +42,8 @@ $size-radio-button-spacing: 14px;
     opacity: 0;
 
     transform: translate(-50%, -50%);
+
+    transition: all 0.3s;
   }
 
   .cbn-switch__input:checked + .cbn-switch-radio__label & {
@@ -63,7 +63,7 @@ $size-radio-button-spacing: 14px;
 .cbn-switch-radio__label {
   @extend %type--subhead-2;
 
-  @mixin themedParent color, radiobutton, default;
+  @mixin themedParent color, text;
 
   display: flex;
   flex-direction: row;

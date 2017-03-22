@@ -3,16 +3,18 @@
 import React, { PropTypes } from 'react';
 import { uniqueId } from 'lodash';
 import Switch from '../switch';
+import Icon from '../../icon';
 
 // Styles
 
 import './checkbox.css';
 
 /**
- * Checkbox, in a group you may select 1 or more
+ * Radio button, when a user selects one, all other radio buttons with the same
+ * name will become unchecked i.e. you can only select one
  */
 const Checkbox = ({ disabled, label, name, onChange, theme, value }) => {
-  const id = uniqueId('checkbox');
+  const id = uniqueId('radiobutton');
 
   return (
     <Switch
@@ -24,7 +26,14 @@ const Checkbox = ({ disabled, label, name, onChange, theme, value }) => {
       theme={theme}
       value={value}>
       <label className='cbn-switch-checkbox__label' htmlFor={id}>
-        <span className='cbn-switch-checkbox__box' />
+        <div className='cbn-switch-checkbox__box' />
+        <svg viewBox="0 0 342.357 342.357">
+          <defs>
+            <clipPath id='clip-svg'>
+              <polygon points='290.040 33.286, 118.861 204.427, 52.320 137.907, 0.000 190.226, 118.862 309.071, 342.357 85.606' />
+            </clipPath>
+          </defs>
+        </svg>
         {label}
       </label>
     </Switch>
