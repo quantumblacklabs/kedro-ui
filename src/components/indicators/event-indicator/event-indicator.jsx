@@ -22,7 +22,9 @@ const SimpleEventIndicator = ({ color, count, name }) => (
         cx='50%'
         cy='50%'
         r='10'
-        fill={color}
+        fill='transparent'
+        stroke='lightgrey'
+        strokeWidth='1'
         name={`${name}-circle`} />
       <text
         x='50%'
@@ -30,13 +32,14 @@ const SimpleEventIndicator = ({ color, count, name }) => (
         fontSize='12px'
         textAnchor='middle'
         alignmentBaseline='middle'
-        fill='white'>
+        fill='grey'>
         { count }
       </text>
       <text
         x='50%'
         y='85%'
-        fontSize='13px'
+        fontSize='10px'
+        fill='grey'
         textAnchor='middle'
         alignmentBaseline='middle'
         className='cbn-sg-playground__event-name'>
