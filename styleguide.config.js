@@ -160,7 +160,10 @@ const config = {
       }
     },
     plugins: [
-      new LodashModuleReplacementPlugin()
+      new LodashModuleReplacementPlugin({
+        'currying': true,
+        'flattening': true
+      })
     ]
   }
 };

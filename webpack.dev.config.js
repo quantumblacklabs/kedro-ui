@@ -35,7 +35,10 @@ module.exports = {
     extensions: ['.js', '.jsx', '.css']
   },
   plugins: [
-    new LodashModuleReplacementPlugin(),
+    new LodashModuleReplacementPlugin({
+      'currying': true,
+      'flattening': true
+    }),
     new ExtractTextPlugin('carbon-ui.css'),
     new webpack.NoEmitOnErrorsPlugin()
   ],
