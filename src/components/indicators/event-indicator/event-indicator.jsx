@@ -92,7 +92,7 @@ const EventIndicatorRenderer = React.createClass({
       // scale the circle
       .to(circle, 0.2, { scale: 1.5, opacity: 1, transformOrigin: '50% 50%' })
       // reset the circle to the start position
-      .to(circle, 0.1, { scale: 1, opacity: 1, transformOrigin: '50% 50%' })
+      .to(circle, 0.1, { scale: 1, opacity: 1, transformOrigin: '50% 50%' });
 
     const border = this._indicator.querySelector(`[name='${this.props.name}-border']`);
     // animation timeline for the border - animations will be sequenced after the previous one
