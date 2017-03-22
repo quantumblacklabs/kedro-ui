@@ -41,6 +41,8 @@ $size-radio-button-spacing: 14px;
     transform: translate(-50%, -50%);
 
     transition: all 0.3s;
+
+    clip-path: url('#clip-svg');
   }
 
   .cbn-switch__input:checked + .cbn-switch-checkbox__label & {
