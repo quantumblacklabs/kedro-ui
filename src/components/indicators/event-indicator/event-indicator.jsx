@@ -83,35 +83,32 @@ const EventIndicatorRenderer = React.createClass({
    * Animation wrapper made with GSAP.
    */
   _createAnimation() {
-    const border = this._indicator.querySelector(`[name='${this.props.name}-border']`);
     const circle = this._indicator.querySelector(`[name='${this.props.name}-circle']`);
-
-    const animationTimeline = new TimelineLite();
-
-    animationTimeline
+    // animation timeline for the circle - animations will be sequenced after the previous one
+    const circleTimeline = new TimelineLite();
+    circleTimeline
       // start position of the circle
-      .to(circle, 0.1, { scale: 1, opacity: 1, transformOrigin: '50% 50%' }, 0)
+      .to(circle, 0.1, { scale: 1, opacity: 1, transformOrigin: '50% 50%' })
       // scale the circle
       .to(circle, 0.2, { scale: 1.5, opacity: 1, transformOrigin: '50% 50%' })
       // reset the circle to the start position
       .to(circle, 0.1, { scale: 1, opacity: 1, transformOrigin: '50% 50%' })
-      // start position of the border
-      .to(border, 0.1, { scale: 1, opacity: 1, transformOrigin: '50% 50%' }, 0)
-      // slow motion scale of the border
-      .to(border, 0.7, { scale: 5, opacity: 0, ease: SlowMo.ease.config(0.5, 0.4, false), transformOrigin: '50% 50%' }, 0.1)
-      // reset the border to the start position
-      .to(border, 0.1, { scale: 1, opacity: 0, transformOrigin: '50% 50%' }, 0.8)
 
-    // animationTimeline
-    //   .to(circle, 0.1, { scale: 1, opacity: 1 }, 0)
-    //   .to(border, 0.1, { scale: 0.8, opacity: 1 }, 0)
-    //   .to(circle, 0.3, { scale: 1.2, opacity: 1 })
-    //   .to(border, 0.3, { scale: 1.3, opacity: 1 })
-    //   .to(circle, 0.3, { scale: 1.3, opacity: 1 })
-    //   .to(border, 0.3, { scale: 1.5, opacity: 0.8 })
-    //   .to(border, 0.3, { scale: 2, opacity: 0 })
-    //   .to(circle, 0.3, { scale: 1, opacity: 1 })
-    //   .to(border, 0.3, { scale: 0.8, opacity: 0 })
+    const border = this._indicator.querySelector(`[name='${this.props.name}-border']`);
+    // animation timeline for the border - animations will be sequenced after the previous one
+    const borderTimeline = new TimelineLite();
+    borderTimeline
+      // start position of the border
+      .to(border, 0.1, { scale: 1, opacity: 1, transformOrigin: '50% 50%' })
+      // slow motion scale of the border
+      .to(border, 0.7, { scale: 5, opacity: 0, ease: SlowMo.ease.config(0.5, 0.4, false), transformOrigin: '50% 50%' })
+      // reset the border to the start position
+      .to(border, 0.1, { scale: 1, opacity: 0, transformOrigin: '50% 50%' });
+
+    // add the two animations into one animation timeline and let them both start at the start (0 seconds)
+    const animationTimeline = new TimelineLite();
+    animationTimeline.add(circleTimeline, 0);
+    animationTimeline.add(borderTimeline, 0);
 
     return animationTimeline;
   },
