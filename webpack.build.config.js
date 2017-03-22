@@ -11,9 +11,9 @@ module.exports = {
     './src/index'
   ],
   output: {
-    path: './dist',
+    path: path.resolve(__dirname, 'dist'),
     filename: 'index.min.js',
-    publicPath: './dist',
+    publicPath: path.resolve(__dirname, 'dist'),
     libraryTarget: 'commonjs2',
     library: 'flames'
   },
@@ -35,7 +35,10 @@ module.exports = {
     extensions: ['.js', '.jsx', '.css']
   },
   plugins: [
-    new LodashModuleReplacementPlugin(),
+    new LodashModuleReplacementPlugin({
+      'currying': true,
+      'flattening': true
+    }),
     new ExtractTextPlugin('carbon-ui.min.css'),
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.optimize.UglifyJsPlugin({
