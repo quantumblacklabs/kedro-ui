@@ -41,6 +41,10 @@
 
   text-overflow: ellipsis;
 
+  @extend %type--subhead-2;
+
+  line-height: 1.25;
+
   .cbn-menu-option--icon-left & {
     padding-left: calc($size-icon-base + $menu-item-padding);
   }
