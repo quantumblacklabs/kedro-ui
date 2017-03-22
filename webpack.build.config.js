@@ -11,9 +11,9 @@ module.exports = {
     './src/index'
   ],
   output: {
-    path: './dist',
+    path: path.resolve(__dirname, 'dist'),
     filename: 'index.min.js',
-    publicPath: './dist',
+    publicPath: path.resolve(__dirname, 'dist'),
     libraryTarget: 'commonjs2',
     library: 'flames'
   },
