@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 
+import './input-field.css';
+
 const InputField = ({ name, placeholder, theme }) => {
   return (
     <div
