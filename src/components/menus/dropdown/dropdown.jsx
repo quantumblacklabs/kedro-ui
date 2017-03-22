@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import _ from 'lodash';
+import { flatten, find, flow, map } from 'lodash/fp';
 
 // Styles
 import './dropdown.css';
@@ -101,13 +101,13 @@ const Dropdown = React.createClass({
 
     // we may have an array of options
     // or an array of sections, containing options
-    return (children[0].type === 'section')
-      ? _(children)
-        .map(section => section.props.children)
-        .flatten()
-        .value()
-        .find(c => c.props.selected)
-      : _.find(children, c => c.props.selected);
+    return children[0].type === 'section'
+    ? flow(
+        map(x => x.props.children),
+        flatten,
+        find(x => x.props.selected)
+      )(children)
+    : find(children, c => c.props.selected);
   },
   /**
    * Event handler which is fired when the label is clicked

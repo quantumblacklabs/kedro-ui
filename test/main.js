@@ -19,9 +19,19 @@ test('Insights Components should be exposed', t => {
 });
 
 test('Components should be exposed', t => {
-  t.is(typeof Dropdown, 'function');
-  t.is(typeof Icon, 'function');
   t.is(typeof MenuOption, 'function');
   t.is(typeof Insights.ExpandablePanel, 'function');
   t.is(typeof Insights.Satellite, 'function');
+});
+
+test('Dropdown should be exposed', t => {
+  t.is(typeof Dropdown, 'function');
+});
+
+test('Icon should be exposed', t => {
+  t.is(typeof Icon, 'function');
+});
+
+test('MenuOption should be exposed', t => {
+  t.is(typeof MenuOption, 'function');
 });

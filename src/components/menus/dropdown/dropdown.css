@@ -38,6 +38,10 @@
   padding: 0 $menu-item-padding;
   overflow: hidden;
 
+  @extend %type--subhead-2;
+
+  line-height: 1.25rem;
+
   @mixin themedParent background, menu, default;
   @mixin themedParent color, text;
 
