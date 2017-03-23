@@ -12,11 +12,12 @@ import './checkbox.css';
  * Radio button, when a user selects one, all other radio buttons with the same
  * name will become unchecked i.e. you can only select one
  */
-const Checkbox = ({ disabled, label, name, onChange, theme, value }) => {
+const Checkbox = ({ checked, disabled, label, name, onChange, theme, value }) => {
   const id = uniqueId('radiobutton');
 
   return (
     <Switch
+      checked={checked}
       id={id}
       disabled={disabled}
       name={name}
@@ -25,17 +26,17 @@ const Checkbox = ({ disabled, label, name, onChange, theme, value }) => {
       theme={theme}
       value={value}>
       <label className='cbn-switch-checkbox__label' htmlFor={id}>
-        <div className='cbn-switch-checkbox__box' />
-        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 342.357 342.357'>
-          <defs>
-            <clipPath id='tick-clip'>
+        <div className='cbn-switch-checkbox__box'>
+          <svg className='cbn-switch-checkbox__inner' viewBox='0 0 24 24'>
+            <g fill='none' fillRule='evenodd'>
+              <path d='M0 0h24v24H0z' />
               <path
-                fill='#FFFFFF'
-                d='M290.04 33.286L118.861 204.427l-66.541-66.52L0
-                   190.226l118.862 118.845L342.357 85.606z' />
-            </clipPath>
-          </defs>
-        </svg>
+                className='cbn-switch-checkbox__innerfill'
+                d='M2 2h20v20H2V2zm7.923 12.362l-2.538-2.418L6
+                   13.263 9.923 17 18 9.32 16.615 8l-6.692 6.362z' />
+            </g>
+          </svg>
+        </div>
         {label}
       </label>
     </Switch>
@@ -45,12 +46,17 @@ const Checkbox = ({ disabled, label, name, onChange, theme, value }) => {
 // Props
 
 Checkbox.defaultProps = {
+  checked: null,
   disabled: false,
   onChange: null,
   theme: 'dark'
 };
 
 Checkbox.propTypes = {
+  /**
+   * Set the selected / deselected state to switch component
+   */
+  checked: React.PropTypes.bool,
   /**
    * Set the radio button to disabled
    */
