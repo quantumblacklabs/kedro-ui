@@ -41,8 +41,7 @@ $size-radio-button-spacing: 14px;
     transform: translate(-50%, -50%);
 
     transition: all 0.3s;
-
-    clip-path: polygon(0% 0%, 0% 100%, 25% 100%, 25% 25%, 75% 25%, 75% 75%, 25% 75%, 25% 100%, 100% 100%, 100% 0%);
+    clip-path: url(#tick-clip);
   }
 
   .cbn-switch__input:checked + .cbn-switch-checkbox__label & {
@@ -60,23 +59,6 @@ $size-radio-button-spacing: 14px;
 
   .cbn-switch-checkbox--disabled & {
     @mixin themedParent border-color, radiobutton, disabled;
-  }
-
-  .cbn-icon {
-    position: absolute;
-
-    top: 50%;
-    left: 50%;
-
-    width: 12px;
-
-    opacity: 0;
-
-    transform: translate(-50%, -50%);
-
-    svg {
-      @mixin themedParent fill, checkbox;
-    }
   }
 }
 
