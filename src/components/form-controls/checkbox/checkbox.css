@@ -60,23 +60,6 @@ $size-radio-button-spacing: 14px;
   .cbn-switch-checkbox--disabled & {
     @mixin themedParent border-color, radiobutton, disabled;
   }
-
-  .cbn-icon {
-    position: absolute;
-
-    top: 50%;
-    left: 50%;
-
-    width: 12px;
-
-    opacity: 0;
-
-    transform: translate(-50%, -50%);
-
-    svg {
-      @mixin themedParent fill, checkbox;
-    }
-  }
 }
 
 .cbn-switch-checkbox__label {
