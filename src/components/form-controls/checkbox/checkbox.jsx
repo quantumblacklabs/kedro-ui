@@ -26,13 +26,13 @@ const Checkbox = ({ disabled, label, name, onChange, theme, value }) => {
       value={value}>
       <label className='cbn-switch-checkbox__label' htmlFor={id}>
         <div className='cbn-switch-checkbox__box' />
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 342.357 342.357">
+        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 342.357 342.357'>
           <defs>
             <clipPath id='tick-clip'>
               <path
-                fill="#FFFFFF"
-                d="M290.04 33.286L118.861 204.427l-66.541-66.52L0
-                   190.226l118.862 118.845L342.357 85.606z"/>
+                fill='#FFFFFF'
+                d='M290.04 33.286L118.861 204.427l-66.541-66.52L0
+                   190.226l118.862 118.845L342.357 85.606z' />
             </clipPath>
           </defs>
         </svg>
