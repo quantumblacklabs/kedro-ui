@@ -5,7 +5,7 @@ import sinon from 'sinon';
 import Switch from './switch';
 
 test('Switch should be a function', t => {
-  t.is(typeof RadioButton, 'function');
+  t.is(typeof Switch, 'function');
 });
 
 test('Switch should create a valid React Component when called with required props', t => {
@@ -17,7 +17,8 @@ test('Switch should create a valid React Component when called with required pro
       value={1} />
   );
 
-  t.true(wrapper.children().length === 2);
+  t.true(wrapper.children().length === 1);
+  t.is(wrapper.find('input').length, 1);
 });
 
 test('Switch should trigger onChange event when clicked', t => {
@@ -25,13 +26,14 @@ test('Switch should trigger onChange event when clicked', t => {
 
   const wrapper = shallow(
     <Switch
+      onChange={onChanged}
       id={1}
       name='test'
-      type='checkbox'
+      type='radio'
       value={1} />
   );
 
-  wrapper.find('input')
+  wrapper.find('.cbn-switch__input')
          .simulate('change', { target: { checked: true } });
 
   t.is(onChanged.callCount, 1);

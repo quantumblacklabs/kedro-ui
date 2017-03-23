@@ -3,7 +3,6 @@
 import React, { PropTypes } from 'react';
 import { uniqueId } from 'lodash';
 import Switch from '../switch';
-import Icon from '../../icon';
 
 // Styles
 
@@ -30,7 +29,9 @@ const Checkbox = ({ disabled, label, name, onChange, theme, value }) => {
         <svg viewBox='0 0 20 20'>
           <defs>
             <clipPath id='clip-svg'>
-              <polygon points='290.040 33.286, 118.861 204.427, 52.320 137.907, 0.000 190.226, 118.862 309.071, 342.357 85.606' />
+              <polygon
+                points='290.040 33.286, 118.861 204.427, 52.320 137.907,
+                0.000 190.226, 118.862 309.071, 342.357 85.606' />
             </clipPath>
           </defs>
         </svg>
