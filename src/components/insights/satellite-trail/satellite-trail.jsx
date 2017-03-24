@@ -23,15 +23,14 @@ const SatelliteTrail = ({
   startPos,
   tappedPropName
 }) => {
-
-  let dotStyles = {
+  const dotStyles = {
     stroke: 'none',
     fill: color
   };
 
   if (borderColor && borderWidth) {
     dotStyles.strokeWidth = borderWidth;
-    dotStyles.stroke = borderColor; 
+    dotStyles.stroke = borderColor;
   }
 
   const radiusDiff = lastDotRadius - firstDotRadius;
@@ -44,54 +43,54 @@ const SatelliteTrail = ({
   // change in position between each dot
   const stepDistance = {
     x: (endPos.x - startPos.x) / (dots - 1),
-    y: (endPos.y - startPos.y) / (dots - 1),
+    y: (endPos.y - startPos.y) / (dots - 1)
   };
 
   let extraGroupStyles = {};
 
   if (mask) {
     extraGroupStyles = {
-      mask: `url(#${ mask })`
+      mask: `url(#${mask})`
     };
   }
 
   return (
     <g
       className='qb-satellite-trail'
-      transform={ `translate(${ startPos.x }, ${ startPos.y })` }
-      { ...extraGroupStyles }>
+      transform={`translate(${startPos.x}, ${startPos.y})`}
+      {...extraGroupStyles}>
       {
-        _.times(dots).map(i => {
+        _.times(dots)
+          .map(i => {
+            const eventHandlerProps = {};
+            const eventData = { ...data, index: dots - i - 1 };
 
-          let eventHandlerProps = {};
-          const eventData = { ...data, index: dots - i - 1 };
+            if (onTrailItemTapped && typeof onTrailItemTapped === 'function') {
+              eventHandlerProps[tappedPropName] = () => onTrailItemTapped(eventData);
+            }
 
-          if (onTrailItemTapped && typeof onTrailItemTapped === 'function') {
-            eventHandlerProps[tappedPropName] = () => onTrailItemTapped(eventData);
-          }
+            if (onTrailItemHoverIn && typeof onTrailItemHoverIn === 'function') {
+              eventHandlerProps.onMouseEnter = () => onTrailItemHoverIn(eventData);
+            }
 
-          if (onTrailItemHoverIn && typeof onTrailItemHoverIn === 'function') {
-            eventHandlerProps.onMouseEnter = () => onTrailItemHoverIn(eventData);
-          }
+            if (onTrailItemHoverOut && typeof onTrailItemHoverOut === 'function') {
+              eventHandlerProps.onMouseLeave = () => onTrailItemHoverOut(eventData);
+            }
 
-          if (onTrailItemHoverOut && typeof onTrailItemHoverOut === 'function') {
-            eventHandlerProps.onMouseLeave = () => onTrailItemHoverOut(eventData);
-          }
+            // dot radius may get smaller / larger each time
+            const dotRadius = firstDotRadius + (radiusDiff * (i / dots));
 
-          // dot radius may get smaller / larger each time
-          const dotRadius = firstDotRadius + (radiusDiff * (i / dots));
-
-          return (
-            <circle
-              className='qb-satellite-trail__shape'
-              key={ i }
-              style={ dotStyles }
-              r={ dotRadius }
-              cx={ stepDistance.x * i }
-              cy={ stepDistance.y * i }
-              { ...eventHandlerProps } />
-          );
-        })
+            return (
+              <circle
+                className='qb-satellite-trail__shape'
+                key={i}
+                style={dotStyles}
+                r={dotRadius}
+                cx={stepDistance.x * i}
+                cy={stepDistance.y * i}
+                {...eventHandlerProps} />
+            );
+          })
       }
     </g>
   );
@@ -105,6 +104,10 @@ SatelliteTrail.defaultProps = {
   data: null,
   dots: 4,
   endPos: { x: 100, y: 100 },
+  mask: '',
+  onTrailItemHoverIn: () => {},
+  onTrailItemHoverOut: () => {},
+  onTrailItemTapped: () => {},
   startPos: { x: 0, y: 0 },
   tappedPropName: 'onClick'
 };

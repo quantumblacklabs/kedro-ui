@@ -1,8 +1,7 @@
 import test from 'ava';
 import React from 'react';
-import SatelliteTrail from './satellite-trail';
 import { shallow } from 'enzyme';
-import sinon from 'sinon';
+import SatelliteTrail from './satellite-trail';
 
 const mockData = [
   {
@@ -21,7 +20,7 @@ const mockData = [
     lastDotRadius: 200,
     startPos: { x: 100, y: 2000 }
   },
-  { 
+  {
     borderColor: 'black',
     borderWidth: 10,
     color: 'red',
@@ -38,21 +37,21 @@ test('SatelliteTrail should be a function', t => {
 });
 
 // check all valid props work
-for (let i in mockData) {
+// for (let i in mockData) {
+mockData.forEach(datum => {
   test('SatelliteTrail should create a valid React Component when called with required props', t => {
-    let instance = React.createElement(SatelliteTrail, mockData[i]);
+    const instance = React.createElement(SatelliteTrail, datum);
     t.is(instance.constructor.name, 'Object');
 
-    const wrapper = shallow(<SatelliteTrail { ...mockData[i] } />);
+    const wrapper = shallow(<SatelliteTrail {...datum} />);
 
     // assert shape is present in dom
-    t.true(wrapper.find('.qb-satellite-trail__shape').length === mockData[i].dots);
+    t.true(wrapper.find('.qb-satellite-trail__shape').length === datum.dots);
 
     // assert all props have been set
-    for (let p in mockData[i]) {
-      t.true(instance.props[p] === mockData[i][p]);
-    }
+    Object.keys(datum)
+      .forEach(key => {
+        t.true(instance.props[key] === datum[key]);
+      });
   });
-}
-
-
+});

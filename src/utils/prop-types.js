@@ -16,23 +16,24 @@ const ReactPropTypeLocationNames = {
  * @return {function}          The chained validator
  */
 const createChainableTypeChecker = validate => {
-  const checkType = (isRequired, props, propName, componentName, location) => {
-    componentName = componentName || 'ANONYMOUS';
+  /**
+   * TODO Add jsdoc description
+   */
+  const checkType = (isRequired, props, propName, componentName = 'ANONYMOUS', location) => {
     if (props[propName] == null) {
       const locationName = ReactPropTypeLocationNames[location];
       if (isRequired) {
         return new Error(
-          `Required ${ locationName } ${ propName } was not specified in ${ componentName }.`
+          `Required ${locationName} ${propName} was not specified in ${componentName}.`
         );
       }
       return null;
-    } else {
-      // use our custom validator
-      return validate(props, propName, componentName, location);
     }
+    // use our custom validator
+    return validate(props, propName, componentName, location);
   };
 
-  let chainedCheckType = checkType.bind(null, false);
+  const chainedCheckType = checkType.bind(null, false);
   chainedCheckType.isRequired = checkType.bind(null, true);
 
   return chainedCheckType;
@@ -45,17 +46,17 @@ const createChainableTypeChecker = validate => {
  * @param  {number} max The maximum the value can be
  * @return {object}     null if valid, Error object if not
  */
-const checkNumberBetween = (min, max) => {
-  return (props, propName, componentName) => {
-    const propVal = props[propName];
+const checkNumberBetween = (min, max) => (props, propName, componentName) => {
+  const propVal = props[propName];
 
-    // throw an error if prop val exists and either isn't a number or is out of range
-    if ((propVal && (propVal < min || propVal > max)) || isNaN(propVal)) {
-      return new Error(
-        `Invalid prop ${ propName } supplied to ${ componentName } (${ propVal }). Prop must be in the range ${ min } - ${ max }/`
-      );
-    }
-  };
+  // throw an error if prop val exists and either isn't a number or is out of range
+  if ((propVal && (propVal < min || propVal > max)) || isNaN(propVal)) {
+    return new Error(
+      `Invalid prop ${propName} supplied to ${componentName} (${propVal}). Prop must be in the range ${min} - ${max}/`
+    );
+  }
+
+  return null;
 };
 
 /**
@@ -71,12 +72,15 @@ const checkPosition = (props, propName, componentName) => {
 
   if (!('x' in propVal && 'y' in propVal)
     || (Object.keys(propVal).length !== 2)
-    || isNaN(propVal['x'])
-    || isNaN(propVal['y'])) {
+    || isNaN(propVal.x)
+    || isNaN(propVal.y)) {
     return new Error(
-      `Invalid prop ${ propName } supplied to ${ componentName } (${ JSON.stringify(propVal) }). Prop must be an object with x and y properties`
+      `Invalid prop ${propName} supplied to ${componentName} (${JSON.stringify(propVal)}). `
+      + 'Prop must be an object with x and y properties'
     );
   }
+
+  return null;
 };
 
 /**
