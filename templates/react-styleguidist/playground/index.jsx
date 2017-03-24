@@ -6,7 +6,7 @@ import _ from 'lodash';
 
 import './styles.css';
 
-const _PlaygroundRenderer = ({ activeThemeIndex, callbackMeta, code, grid, showCode, evalInContext, onChange, onCallbackFired, onCodeToggle, onGridToggled, onResetTapped, onThemeChanged, themes }) => {
+const _PlaygroundRenderer = ({ activeThemeIndex, callbackMeta, code, grid, showCode, evalInContext, onChange, onCallbackFired, onCodeToggle, onGridToggled, onResetTapped, onThemeChanged, shouldReset, themes }) => {
 
   const themeable = true;///\stheme=/.test(code);
   const themedCodeBlocks = themeable ? _.map(themes, t => code.replace(/theme='light'/g, `theme='${t}'`)) : [];
@@ -50,7 +50,7 @@ const _PlaygroundRenderer = ({ activeThemeIndex, callbackMeta, code, grid, showC
   		</div>
   		<div className={ classnames('cbn-sg-playground__code', { 'cbn-sg-playground__code--open': showCode }) }>
         <div className='cbn-sg-gutter'>
-  				<Editor code={code} onChange={onChange} />
+  				<Editor shouldReset={shouldReset} code={code} onReset={() => {alert('hello')}} onChange={onChange} />
         </div>
   		</div>
   	</div>
@@ -64,14 +64,14 @@ const PlaygroundRenderer = React.createClass({
       activeThemeIndex: 1,
       grid: false,
       themes: ['light', 'dark'],
-      callbackMeta: {}
+      callbackMeta: {},
+      shouldReset: false
     };
   },
 
   _handleEventCallbackFired({ name }) {
     console.log('_handleEventCallbackFired', name);
     this._incCallbackCounts(name);
-
   },
 
   _incCallbackCounts(name) {
@@ -85,13 +85,15 @@ const PlaygroundRenderer = React.createClass({
   },
 
   _handleResetTapped() {
-    console.log('Implement reset');
+    this.setState({
+      shouldReset: true
+    });
   },
 
   _handleThemeChanged(e) {
     this.setState({
       activeThemeIndex: e.value
-    })
+    });
   },
 
   render() {
@@ -104,17 +106,18 @@ const PlaygroundRenderer = React.createClass({
       onGridToggled: this._handleGridToggled,
       onResetTapped: this._handleResetTapped,
       onThemeChanged: this._handleThemeChanged,
+      shouldRest: this.state.shouldReset,
       themes: this.state.themes
     });
   }
 });
 
 PlaygroundRenderer.propTypes = {
-	code: PropTypes.string.isRequired,
-	showCode: PropTypes.bool.isRequired,
-	evalInContext: PropTypes.func.isRequired,
-	onChange: PropTypes.func.isRequired,
-	onCodeToggle: PropTypes.func.isRequired
+  code: PropTypes.string.isRequired,
+  showCode: PropTypes.bool.isRequired,
+  evalInContext: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  onCodeToggle: PropTypes.func.isRequired
 };
 
 export default PlaygroundRenderer;
