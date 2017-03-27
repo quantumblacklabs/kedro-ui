@@ -35,7 +35,7 @@ const EventIndicatorRenderer = ({ color, count, name, theme }) => (
         x='50%'
         y='85%'
         fontSize='10px'
-        fill='grey'
+        fill={theme === 'dark' ? 'white' : 'grey'}
         textAnchor='middle'
         alignmentBaseline='middle'
         className='cbn-sg-playground__event-name'>
