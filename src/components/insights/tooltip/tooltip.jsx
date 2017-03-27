@@ -11,8 +11,8 @@ const Tooltip = React.createClass({
      */
     className: PropTypes.string,
     /**
-     * The content of the tooltip, it can be a function which returns a value based on the payload 
-     * or a React component that will be used as render 
+     * The content of the tooltip, it can be a function which returns a value based on the payload
+     * or a React component that will be used as render
      */
     content: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
     /**
@@ -20,14 +20,13 @@ const Tooltip = React.createClass({
      */
     offset: PropTypes.number,
     /**
-     * Coordinates of the tooltip 
+     * Coordinates of the tooltip
      */
     coordinate: PropTypes.shape({
       x: PropTypes.number,
-      y: PropTypes.number,
+      y: PropTypes.number
     }),
 
-    label: PropTypes.any,
     /**
      * Entry from the data related to item selected
      */
@@ -36,27 +35,30 @@ const Tooltip = React.createClass({
 
   getDefaultProps() {
     return {
-      offset: 10,
+      className: '',
+      content: null,
       coordinate: { x: 0, y: 0 },
+      offset: 10,
+      payload: null
     };
   },
 
   render() {
-
     const { className, content, coordinate, offset, payload } = this.props;
 
     const outerStyle = {
       color: 'white',
       position: 'absolute',
-      top: coordinate.y + 'px',
-      left: (coordinate.x + offset) + 'px',
+      top: `${coordinate.y}px`,
+      left: `${coordinate.x + offset}px`
     };
 
     return (
-        <div className={ classNames('qb-tooltip-wrapper', className) }
-          style={outerStyle}>
-            { (typeof content === 'function') ? <span>{ content(payload) }</span> : content }
-        </div>
+      <div
+        className={classNames('qb-tooltip-wrapper', className)}
+        style={outerStyle}>
+        { (typeof content === 'function') ? <span>{ content(payload) }</span> : content }
+      </div>
     );
   }
 });
