@@ -43,7 +43,7 @@ const EventIndicator = React.createClass({
   getDefaultProps() {
     return {
       theme: 'dark'
-    }
+    };
   },
 
   /**
