@@ -1,7 +1,11 @@
 import React, { PropTypes } from 'react';
+
 import Editor from 'rsg-components/Editor';
 import Preview from 'rsg-components/Preview';
-import EventIndicatorRenderer from 'components/indicators/event-indicator';
+import EventIndicator from 'components/indicators/event-indicator';
+import Dropdown from 'components/menus/dropdown';
+import MenuOption from 'components/menus/menu-option';
+
 import classnames from 'classnames';
 import _ from 'lodash';
 
@@ -23,7 +27,6 @@ const PlaygroundRenderer = ({
   onThemeChanged,
   themes
 }) => {
-
   const themeable = true;
   const themedCodeBlocks = themeable ? _.map(themes, t => code.replace(/theme='light'/g, `theme='${t}'`)) : [];
 
@@ -33,7 +36,7 @@ const PlaygroundRenderer = ({
         {
           Object.keys(callbackMeta)
             .map((name, i) => (
-              <EventIndicatorRenderer
+              <EventIndicator
                 key={name}
                 colorIndex={i}
                 count={callbackMeta[name].count}
@@ -105,11 +108,16 @@ PlaygroundRenderer.propTypes = {
   activeThemeIndex: PropTypes.number.isRequired,
   callbackMeta: PropTypes.object.isRequired,
   code: PropTypes.string.isRequired,
-  grid: PropTypes.string.isRequired,
+  grid: PropTypes.bool.isRequired,
   showCode: PropTypes.bool.isRequired,
   evalInContext: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
-  onCodeToggle: PropTypes.func.isRequired
+  onCallbackFired: PropTypes.func.isRequired,
+  onCodeToggle: PropTypes.func.isRequired,
+  onGridToggled: PropTypes.func.isRequired,
+  onResetTapped: PropTypes.func.isRequired,
+  onThemeChanged: PropTypes.func.isRequired,
+  themes: PropTypes.array.isRequired
 };
 
 export default PlaygroundRenderer;
