@@ -19,47 +19,49 @@ const Swatch = ({
   onTapped,
   size,
   tappedPropName,
-  title,
+  title
 }) => {
-
-  const handleTapped = (e) => {
+  /**
+   * Excecute onTap event
+   */
+  const handleTapped = e => {
     onTapped({ e, data });
   };
 
-  let eventHandlerProps = {};
+  const eventHandlerProps = {};
 
   if (onTapped && typeof onTapped === 'function') {
     eventHandlerProps[tappedPropName] = handleTapped;
   }
 
   const satelliteStyle = {
-    margin: `${ margin }px`,
+    margin: `${margin}px`,
     cursor: typeof onTapped === 'function' ? 'pointer' : 'inherit'
   };
 
-  const classNames = classnames('qb-swatch', `qb-swatch--label-${ labelPosition }`);
+  const classNames = classnames('qb-swatch', `qb-swatch--label-${labelPosition}`);
 
   return (
     <div
-      className={ classNames }
-      { ...eventHandlerProps }>
+      className={classNames}
+      {...eventHandlerProps}>
       <svg
         className='qb-swatch__shape'
-        width={ size + 2 * borderWidth }
-        height={ size + 2 * borderWidth }
-        style={ satelliteStyle }>
+        width={size + (2 * borderWidth)}
+        height={size + (2 * borderWidth)}
+        style={satelliteStyle}>
         <g>
           { title ? <title>{ title }</title> : ''}
           <Satellite
-            active={ true }
+            active={true}
             state='normal'
-            x={ size / 2 + borderWidth }
-            y={ size / 2 + borderWidth }
-            radius={ size / 2 }
-            borderWidth={ borderWidth }
-            color={ color }
-            centreColor={ color }
-            centreRadius={ 1.5 } />
+            x={(size / 2) + borderWidth}
+            y={(size / 2) + borderWidth}
+            radius={size / 2}
+            borderWidth={borderWidth}
+            color={color}
+            centreColor={color}
+            centreRadius={1.5} />
         </g>
       </svg>
       { label ? <span className='qb-swatch__label'>{ label }</span> : '' }
@@ -70,10 +72,13 @@ const Swatch = ({
 Swatch.defaultProps = {
   borderWidth: 1,
   data: null,
+  label: '',
   labelPosition: 'bottom',
   margin: 6,
+  onTapped: null,
   size: 20,
   tappedPropName: 'onClick',
+  title: ''
 };
 
 Swatch.propTypes = {
