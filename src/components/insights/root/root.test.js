@@ -1,7 +1,7 @@
 import test from 'ava';
 import React from 'react';
-import Root from './root';
 import { shallow } from 'enzyme';
+import Root from './root';
 
 test('Root should be a function', t => {
   t.is(typeof Root, 'function');
@@ -42,15 +42,16 @@ const mockData = [
   }
 ];
 
-for (let i in mockData) {
+mockData.forEach(datum => {
   test('ExpandablePanel should create a valid React Component when called with required props', t => {
-    let instance = React.createElement(Root, mockData[i]);
+    const instance = React.createElement(Root, datum);
 
     t.is(instance.constructor.name, 'Object');
 
     // assert all props have been set
-    for (let p in mockData[i]) {
-      t.true(instance.props[p] === mockData[i][p]);
-    }
+    Object.keys(datum)
+      .forEach(key => {
+        t.true(instance.props[key] === datum[key]);
+      });
   });
-}
+});

@@ -20,44 +20,43 @@ const Root = ({
    * @param {Number} percentage width of prop supplied
    * @param {String} dash array options
    * @param {String} color of circle
-   * @return {Object} properties of the circle including cx, cy, r, stroke, strokeWidth, fill and strokeDasharray parameters
+   * @return {Object} properties of the circle including cx, cy, r, stroke,
+   * strokeWidth, fill and strokeDasharray parameters
    */
-  const getCircleProps = (width, dashed = '', color = colorMain) => {
-    return {
-      cx: x,
-      cy: y,
-      r: radius,
-      stroke: color,
-      strokeWidth: `${ width }px`,
-      fill: 'transparent',
-      strokeDasharray: `${ dashed }`
-    };
-  };
+  const getCircleProps = (width, dashed = '', color = colorMain) => ({
+    cx: x,
+    cy: y,
+    r: radius,
+    stroke: color,
+    strokeWidth: `${width}px`,
+    fill: 'transparent',
+    strokeDasharray: `${dashed}`
+  });
 
   // calculate label positions based on radius
-  const valueYPos = y - radius / 6;
-  const contextLabelYPos = y + radius / 3;
+  const valueYPos = y - (radius / 6);
+  const contextLabelYPos = y + (radius / 3);
 
   return (
     <g className='qb-root'>
       <text
         className='qb-root__valuelabel'
         fill='white'
-        style={ { fontSize: `${ radius < 140 ? 72 : 86 }px` } }
-        x={ x }
-        y={ valueYPos }>
+        style={{ fontSize: `${radius < 140 ? 72 : 86}px` }}
+        x={x}
+        y={valueYPos}>
         <tspan className='qb-root__valuespan'>{ value }</tspan>
       </text>
       <text
         className='qb-root__contextlabel'
         fill='white'
-        style={ { fontSize: `${ radius < 140 ? 24 : 34 }px` } }
-        x={ x }
-        y={ contextLabelYPos }>
+        style={{ fontSize: `${radius < 140 ? 24 : 34}px` }}
+        x={x}
+        y={contextLabelYPos}>
         <tspan className='qb-root__valuespan'>{ label }</tspan>
       </text>
-      <circle className='qb-root__main' { ...getCircleProps(10) } />
-      <circle className='qb-root__dashed' { ...getCircleProps(1, '5, 5', colorSecondary) } />
+      <circle className='qb-root__main' {...getCircleProps(10)} />
+      <circle className='qb-root__dashed' {...getCircleProps(1, '5, 5', colorSecondary)} />
     </g>
   );
 };
