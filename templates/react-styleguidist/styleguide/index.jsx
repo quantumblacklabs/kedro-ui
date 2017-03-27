@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
 import cx from 'classnames';
 
-import '../../../src/styles/app.css';
-import '../../../src/styles/react-styleguidist.css';
+import 'styles/app.css';
+import 'styles/react-styleguidist.css';
 
 import './styles.css';
 

@@ -1,0 +1,69 @@
+import React, { PropTypes } from 'react';
+
+/**
+ * Event Indicator renders a component containing circle with number (count) inside and a name of the Event.
+ */
+const EventIndicatorRenderer = ({ color, count, name }) => (
+  <div className='cbn-sg-playground__event'>
+    <svg width='80' height='80'>
+      <circle
+        cx='50%'
+        cy='50%'
+        r='5'
+        stroke={color}
+        strokeWidth='1'
+        fill='rgba(255, 255, 255, 0)'
+        name={`${name}-border`} />
+      <circle
+        cx='50%'
+        cy='50%'
+        r='10'
+        fill='transparent'
+        stroke='lightgrey'
+        strokeWidth='1'
+        name={`${name}-circle`} />
+      <text
+        x='50%'
+        y='51%'
+        fontSize='12px'
+        textAnchor='middle'
+        alignmentBaseline='middle'
+        fill='grey'>
+        { count }
+      </text>
+      <text
+        x='50%'
+        y='85%'
+        fontSize='10px'
+        fill='grey'
+        textAnchor='middle'
+        alignmentBaseline='middle'
+        className='cbn-sg-playground__event-name'>
+        { name }
+      </text>
+    </svg>
+  </div>
+);
+
+EventIndicatorRenderer.defaultProps = {
+  color: 'rgb(24, 117, 240)',
+  count: 1,
+  name: '--'
+};
+
+EventIndicatorRenderer.propTypes = {
+  /**
+   * Color of the animated ring of the indicator.
+   */
+  color: PropTypes.string.isRequired,
+  /**
+   * The number which should be displayed inside the indicator, usually the number of callbacks.
+   */
+  count: PropTypes.number.isRequired,
+  /**
+   * The name which should be displayed below the indicator, usually the name of the callback function.
+   */
+  name: PropTypes.string.isRequired
+};
+
+export default EventIndicatorRenderer;

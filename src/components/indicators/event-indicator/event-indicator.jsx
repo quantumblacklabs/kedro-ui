@@ -1,60 +1,32 @@
 import React, { PropTypes } from 'react';
 import GSAP from 'react-gsap-enhancer';
 import { TimelineLite, SlowMo } from 'gsap';
+import EventIndicatorRenderer from './event-indicator-renderer';
 
-import './styles.css';
+import './event-indicator.css';
 
 /**
- * Event Indicator renders a component containing circle with number (count) inside and a name of the Event.
+ * Returns the color for a given index.
+ * @param {number} colorIndex
+ * @return {string} matching color
  */
-const SimpleEventIndicator = ({ color, count, name }) => (
-  <div className='cbn-sg-playground__event'>
-    <svg width='80' height='80'>
-      <circle
-        cx='50%'
-        cy='50%'
-        r='5'
-        stroke={color}
-        strokeWidth='1'
-        fill='rgba(255, 255, 255, 0)'
-        name={`${name}-border`} />
-      <circle
-        cx='50%'
-        cy='50%'
-        r='10'
-        fill='transparent'
-        stroke='lightgrey'
-        strokeWidth='1'
-        name={`${name}-circle`} />
-      <text
-        x='50%'
-        y='51%'
-        fontSize='12px'
-        textAnchor='middle'
-        alignmentBaseline='middle'
-        fill='grey'>
-        { count }
-      </text>
-      <text
-        x='50%'
-        y='85%'
-        fontSize='10px'
-        fill='grey'
-        textAnchor='middle'
-        alignmentBaseline='middle'
-        className='cbn-sg-playground__event-name'>
-        { name }
-      </text>
-    </svg>
-  </div>
+const _getColor = colorIndex => (
+  [
+    'rgb(24, 117, 240)',
+    'rgb(34, 153, 153)',
+    'rgb(255, 173, 19)',
+    'rgb(68, 136, 17)',
+    'rgb(153, 34, 136)'
+  ][colorIndex]
 );
 
 /**
- * Event Indicator wrapper.
+ * Event Indicator is an interactive circle created for each callback prefixed with 'on';
+ * a number inside the circle indicates the number of times it was called.
  */
-const EventIndicatorRenderer = React.createClass({
+const EventIndicator = React.createClass({
 
-  displayName: 'EventIndicatorRenderer',
+  displayName: 'EventIndicator',
 
   propTypes: {
     colorIndex: PropTypes.number.isRequired,
@@ -62,28 +34,40 @@ const EventIndicatorRenderer = React.createClass({
     name: PropTypes.string.isRequired
   },
 
+  /**
+   * React lifecycle method
+   * Adds the animation via GSAP-enhancer to the component.
+   * {@link https://facebook.github.io/react/docs/react-component.html#componentDidMount}
+   * @return {object} JSX for this component
+   */
   componentDidMount() {
     this._anim = this.addAnimation(this._createAnimation);
   },
 
+  /**
+   * React lifecycle method
+   * {@link https://facebook.github.io/react/docs/react-component.html#componentDidUpdate}
+   * @return {object} JSX for this component
+   */
   componentDidUpdate(nextProps) {
     if (nextProps.count !== this.props.count && this._anim) {
       this._anim.restart();
     }
   },
 
-  _color(colorIndex) {
-    return [
-      'rgb(24, 117, 240)',
-      'rgb(34, 153, 153)',
-      'rgb(255, 173, 19)',
-      'rgb(68, 136, 17)',
-      'rgb(153, 34, 136)'
-    ][colorIndex];
+  /**
+   * React lifecycle method
+   * Removes the animation created with GSAP-enhancer from the component.
+   * {@link https://facebook.github.io/react/docs/react-component.html#componentWillUnmount}
+   * @return {object} JSX for this component
+   */
+  componentWillUnmount() {
+    this._anim = this.removeAnimation(this._createAnimation);
   },
 
   /**
    * Animation wrapper made with GSAP.
+   * @return {GSAP}
    */
   _createAnimation() {
     const circle = this._indicator.querySelector(`[name='${this.props.name}-circle']`);
@@ -108,7 +92,7 @@ const EventIndicatorRenderer = React.createClass({
       // reset the border to the start position
       .to(border, 0.1, { scale: 1, opacity: 0, transformOrigin: '50% 50%' });
 
-    // add the two animations into one animation timeline and let them both start at the start (0 seconds)
+    // add the two animations into one animation timeline and let them both start at 0 second
     const animationTimeline = new TimelineLite();
     animationTimeline.add(circleTimeline, 0);
     animationTimeline.add(borderTimeline, 0);
@@ -116,13 +100,18 @@ const EventIndicatorRenderer = React.createClass({
     return animationTimeline;
   },
 
+  /**
+   * React lifecycle method
+   * {@link https://facebook.github.io/react/docs/react-component.html#render}
+   * @return {object} JSX for this component
+   */
   render() {
     return (
       <div
         className='cbn-sg-playground__event-wrapper'
         ref={indicator => { this._indicator = indicator; }}>
-        <SimpleEventIndicator
-          color={this._color(this.props.colorIndex)}
+        <EventIndicatorRenderer
+          color={_getColor(this.props.colorIndex)}
           count={this.props.count}
           name={this.props.name} />
       </div>
@@ -130,16 +119,4 @@ const EventIndicatorRenderer = React.createClass({
   }
 });
 
-SimpleEventIndicator.defaultProps = {
-  color: 'rgb(24, 117, 240)',
-  count: 1,
-  name: '--'
-};
-
-SimpleEventIndicator.propTypes = {
-  color: PropTypes.string.isRequired,
-  count: PropTypes.number.isRequired,
-  name: PropTypes.string.isRequired
-};
-
-export default GSAP()(EventIndicatorRenderer);
+export default GSAP()(EventIndicator);
