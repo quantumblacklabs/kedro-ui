@@ -25,7 +25,7 @@ const Switch = ({ checked,
 
   if (checked) {
     _extraProps = {
-      checked: true
+      defaultChecked: true
     };
   }
 
