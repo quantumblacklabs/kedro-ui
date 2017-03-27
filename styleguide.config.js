@@ -157,8 +157,7 @@ const config = {
         'rsg-components/Playground/PlaygroundRenderer': path.resolve(__dirname + '/templates/react-styleguidist/playground'),
         'rsg-components/Examples': path.resolve(__dirname + '/templates/react-styleguidist/examples'),
         'rsg-components/Preview': path.resolve(__dirname + '/templates/react-styleguidist/preview'),
-        'rsg-components/Editor': path.resolve(__dirname + '/templates/react-styleguidist/editor'),
-        'rsg-components/EditorLoader': path.resolve(__dirname + '/templates/react-styleguidist/editor/loader')
+        'rsg-components/Editor': path.resolve(__dirname + '/templates/react-styleguidist/editor')
       }
     },
     plugins: [

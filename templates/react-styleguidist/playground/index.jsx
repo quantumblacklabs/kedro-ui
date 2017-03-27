@@ -2,12 +2,13 @@ import React, { PropTypes } from 'react';
 import Editor from 'rsg-components/Editor';
 import Preview from 'rsg-components/Preview';
 import classnames from 'classnames';
+import debounce from 'lodash/debounce';
+
 import _ from 'lodash';
 
 import './styles.css';
 
 const _PlaygroundRenderer = ({ activeThemeIndex, callbackMeta, code, grid, showCode, evalInContext, onChange, onCallbackFired, onCodeToggle, onGridToggled, onResetTapped, onThemeChanged, shouldReset, themes }) => {
-
   const themeable = true;///\stheme=/.test(code);
   const themedCodeBlocks = themeable ? _.map(themes, t => code.replace(/theme='light'/g, `theme='${t}'`)) : [];
 
@@ -50,7 +51,7 @@ const _PlaygroundRenderer = ({ activeThemeIndex, callbackMeta, code, grid, showC
   		</div>
   		<div className={ classnames('cbn-sg-playground__code', { 'cbn-sg-playground__code--open': showCode }) }>
         <div className='cbn-sg-gutter'>
-  				<Editor shouldReset={shouldReset} code={code} onReset={() => {alert('hello')}} onChange={onChange} />
+  				<Editor code={code} onChange={onChange} />
         </div>
   		</div>
   	</div>
@@ -60,12 +61,18 @@ const _PlaygroundRenderer = ({ activeThemeIndex, callbackMeta, code, grid, showC
 
 const PlaygroundRenderer = React.createClass({
   getInitialState() {
+    // store initial code for resetting later
+    this.initialCode = this.props.code;
+
+    // don't trigger the change on every change, wait to apply
+    this._onCodeChange = debounce(this._onCodeChange.bind(this), 500);
+
     return {
       activeThemeIndex: 1,
       grid: false,
       themes: ['light', 'dark'],
       callbackMeta: {},
-      shouldReset: false
+      code: this.props.code
     };
   },
 
@@ -86,7 +93,7 @@ const PlaygroundRenderer = React.createClass({
 
   _handleResetTapped() {
     this.setState({
-      shouldReset: true
+      code: this.initialCode
     });
   },
 
@@ -96,17 +103,24 @@ const PlaygroundRenderer = React.createClass({
     });
   },
 
+  _onCodeChange(code) {
+    this.setState({
+      code
+    });
+  },
+
   render() {
     return _PlaygroundRenderer({
       ...this.props,
+      code: this.state.code,
       activeThemeIndex: this.state.activeThemeIndex,
       callbackMeta: this.state.callbackMeta,
       grid: this.state.grid,
       onCallbackFired: this._handleEventCallbackFired,
+      onChange: this._onCodeChange,
       onGridToggled: this._handleGridToggled,
       onResetTapped: this._handleResetTapped,
       onThemeChanged: this._handleThemeChanged,
-      shouldRest: this.state.shouldReset,
       themes: this.state.themes
     });
   }
