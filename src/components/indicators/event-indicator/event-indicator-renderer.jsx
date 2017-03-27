@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 /**
  * Event Indicator renders a component containing circle with number (count) inside and a name of the Event.
  */
-const EventIndicatorRenderer = ({ color, count, name }) => (
+const EventIndicatorRenderer = ({ color, count, name, theme }) => (
   <div className='cbn-sg-playground__event'>
     <svg width='80' height='80'>
       <circle
@@ -19,7 +19,7 @@ const EventIndicatorRenderer = ({ color, count, name }) => (
         cy='50%'
         r='10'
         fill='transparent'
-        stroke='lightgrey'
+        stroke={theme === 'dark' ? 'white' : 'lightgrey'}
         strokeWidth='1'
         name={`${name}-circle`} />
       <text
@@ -28,7 +28,7 @@ const EventIndicatorRenderer = ({ color, count, name }) => (
         fontSize='12px'
         textAnchor='middle'
         alignmentBaseline='middle'
-        fill='grey'>
+        fill={theme === 'dark' ? 'white' : 'grey'}>
         { count }
       </text>
       <text
@@ -48,7 +48,8 @@ const EventIndicatorRenderer = ({ color, count, name }) => (
 EventIndicatorRenderer.defaultProps = {
   color: 'rgb(24, 117, 240)',
   count: 1,
-  name: '--'
+  name: '--',
+  theme: 'dark'
 };
 
 EventIndicatorRenderer.propTypes = {
@@ -63,7 +64,11 @@ EventIndicatorRenderer.propTypes = {
   /**
    * The name which should be displayed below the indicator, usually the name of the callback function.
    */
-  name: PropTypes.string.isRequired
+  name: PropTypes.string.isRequired,
+  /**
+   * The color theme for indicator's circles and text.
+   */
+  theme: PropTypes.oneOf(['dark', 'light'])
 };
 
 export default EventIndicatorRenderer;

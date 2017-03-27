@@ -31,7 +31,19 @@ const EventIndicator = React.createClass({
   propTypes: {
     colorIndex: PropTypes.number.isRequired,
     count: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired
+    name: PropTypes.string.isRequired,
+    theme: PropTypes.oneOf(['dark', 'light'])
+  },
+
+  /**
+   * React component spec method
+   * {@link https://facebook.github.io/react/docs/react-component.html#getdefaultprops}
+   * @return {object} Default properties
+   */
+  getDefaultProps() {
+    return {
+      theme: 'dark'
+    }
   },
 
   /**
@@ -113,7 +125,8 @@ const EventIndicator = React.createClass({
         <EventIndicatorRenderer
           color={_getColor(this.props.colorIndex)}
           count={this.props.count}
-          name={this.props.name} />
+          name={this.props.name}
+          theme={this.props.theme} />
       </div>
     );
   }
