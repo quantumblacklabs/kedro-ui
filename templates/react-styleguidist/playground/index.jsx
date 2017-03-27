@@ -8,7 +8,7 @@ import _ from 'lodash';
 
 import './styles.css';
 
-const _PlaygroundRenderer = ({ activeThemeIndex, callbackMeta, code, grid, showCode, evalInContext, onChange, onCallbackFired, onCodeToggle, onGridToggled, onResetTapped, onThemeChanged, shouldReset, themes }) => {
+const _PlaygroundRenderer = ({ activeThemeIndex, callbackMeta, code, grid, showCode, evalInContext, onChange, onCallbackFired, onCodeToggle, onGridToggled, onResetTapped, onThemeChanged, themes }) => {
   const themeable = true;///\stheme=/.test(code);
   const themedCodeBlocks = themeable ? _.map(themes, t => code.replace(/theme='light'/g, `theme='${t}'`)) : [];
 
