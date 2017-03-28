@@ -1,6 +1,6 @@
 {
   "name": "@quantumblack/carbon-ui-components",
-  "version": "0.3.7",
+  "version": "0.4.0",
   "description": "A collection of React components which are used in Carbon UI",
   "main": "dist/index.js",
   "scripts": {
@@ -16,8 +16,9 @@
     "stylelint": "stylelint templates/**/*.css --config stylelint.config.js",
     "eslint": "eslint src/*.js src/**/*.js src/**/*.jsx",
     "ava": "CONFIG=$(pwd)/webpack.ava.config.js NODE_ENV=AVA BABEL_DISABLE_CACHE=1 ava",
+    "test:coverage": "nyc npm test",
     "test": "npm run eslint && npm run ava",
-    "e2e": "cypress run --config fileServerFolder=styleguide,baseUrl="
+    "e2e": "npm run docs:build && cypress run --config fileServerFolder=styleguide,baseUrl="
   },
   "ava": {
     "files": [
@@ -30,6 +31,17 @@
       "babel-register",
       "ignore-styles",
       "./test/helpers/setup-browser-env.js"
+    ]
+  },
+  "nyc": {
+    "reporter": [
+      "lcov",
+      "cobertura",
+      "text",
+      "html"
+    ],
+    "extension": [
+      ".jsx"
     ]
   },
   "repository": {
@@ -106,6 +118,7 @@
     "eslint-plugin-react": "^6.9.0",
     "eslint-plugin-require-jsdoc": "^1.0.4",
     "ignore-styles": "^5.0.1",
+    "nyc": "^10.1.2",
     "react-addons-test-utils": "^15.4.2",
     "sinon": "^1.17.7"
   },

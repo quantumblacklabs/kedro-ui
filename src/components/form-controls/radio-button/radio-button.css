@@ -1,0 +1,81 @@
+/** Imports **/
+
+@import '../../../styles/includes';
+
+/** Variables **/
+
+$size-dot-dimension: 20px;
+$size-radio-button-spacing: 14px;
+
+/** Implementation **/
+
+.cbn-switch-radio__box {
+  @mixin themedParent border-color, radiobutton, default;
+
+  position: relative;
+
+  display: inline-block;
+
+  width: $size-dot-dimension;
+  height: $size-dot-dimension;
+
+  margin-right: $size-radio-button-spacing;
+
+  border: 2px solid;
+  border-radius: 50%;
+
+  &::before {
+    @mixin themedParent background, radiobutton, default;
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    content: ' ';
+
+    width: 0%;
+    height: 0%;
+
+    border-radius: 50%;
+
+    opacity: 0;
+
+    transform: translate(-50%, -50%);
+
+    transition: all 0.3s;
+  }
+
+  .cbn-switch__input:checked + .cbn-switch-radio__label & {
+    &::before {
+      width: 80%;
+      height: 80%;
+
+      opacity: 1;
+    }
+  }
+
+  .cbn-switch-radio--disabled & {
+    @mixin themedParent border-color, radiobutton, disabled;
+  }
+}
+
+.cbn-switch-radio__label {
+  @extend %type--subhead-2;
+
+  @mixin themedParent color, text;
+
+  display: flex;
+  flex-direction: row;
+
+  align-items: center;
+
+  user-select: none;
+  cursor: pointer;
+
+  .cbn-switch-radio--disabled & {
+    @mixin themedParent color, radiobutton, disabled;
+
+    cursor: not-allowed;
+  }
+}
