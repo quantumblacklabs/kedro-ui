@@ -4,6 +4,7 @@ import Satellite from 'components/insights/satellite';
 import Dropdown from 'components/menus/dropdown';
 import Icon from 'components/icon';
 import MenuOption from 'components/menus/menu-option';
+import SearchBar from 'components/search-bar';
 
 import './styles/app.css';
 
@@ -15,5 +16,6 @@ module.exports = {
   },
   Dropdown,
   Icon,
-  MenuOption
+  MenuOption,
+  SearchBar
 };
