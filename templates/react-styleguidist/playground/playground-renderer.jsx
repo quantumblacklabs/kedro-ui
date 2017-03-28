@@ -74,7 +74,7 @@ const PlaygroundRenderer = ({
             </div>
           )
         }
-
+        { indicators }
         <div className='cbn-sg-gutter'>
           <div className='cbn-sg-controls'>
             {showCode ? (
@@ -93,7 +93,6 @@ const PlaygroundRenderer = ({
             )}
           </div>
         </div>
-        { indicators }
       </div>
       <div className={classnames('cbn-sg-playground__code', { 'cbn-sg-playground__code--open': showCode })}>
         <div className='cbn-sg-gutter'>

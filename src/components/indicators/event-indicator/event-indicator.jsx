@@ -74,7 +74,7 @@ const EventIndicator = React.createClass({
    * @return {object} JSX for this component
    */
   componentWillUnmount() {
-    this._anim = this.removeAnimation(this._createAnimation);
+    this._anim.kill();
   },
 
   /**
