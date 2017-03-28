@@ -23,6 +23,7 @@ const EventIndicatorRenderer = ({ color, count, name, theme }) => (
         strokeWidth='1'
         name={`${name}-circle`} />
       <text
+        className='cbn-sg-playground__event-count'
         x='50%'
         y='51%'
         fontSize='12px'
@@ -32,13 +33,13 @@ const EventIndicatorRenderer = ({ color, count, name, theme }) => (
         { count }
       </text>
       <text
+        className='cbn-sg-playground__event-name'
         x='50%'
         y='85%'
         fontSize='10px'
         fill={theme === 'dark' ? 'white' : 'grey'}
         textAnchor='middle'
-        alignmentBaseline='middle'
-        className='cbn-sg-playground__event-name'>
+        alignmentBaseline='middle'>
         { name }
       </text>
     </svg>
