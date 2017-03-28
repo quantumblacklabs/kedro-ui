@@ -4,6 +4,7 @@
 
   margin: 0;
   padding: 0;
+
   text-align: center;
 
   &.qb-swatch--label-top {
@@ -22,7 +23,9 @@
 }
 
 .qb-swatch__label {
-  font-size: 16px;
   display: block;
+
+  font-size: 16px;
+
   text-align: center;
 }
