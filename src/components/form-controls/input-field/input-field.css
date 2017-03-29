@@ -1,0 +1,117 @@
+/** Imports **/
+
+@import '../../../styles/includes';
+
+/** Variables **/
+
+$default-input-width: 296px;
+
+/** Implementation **/
+
+.cbn-input-field {
+  position: relative;
+  display: inline-block;
+
+  &[disabled] .cbn-input-field__line {
+    display: none;
+  }
+
+  &--disabled .cbn-input-field__label {
+    /* TODO - text color */
+    @mixin themed color, radiobutton, disabled;
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+  }
+}
+
+.cbn-input-field__text {
+  @mixin themedParent background-color, menu;
+  @mixin themedParent color, text;
+
+  @extend %type--subhead-2;
+
+  width: $default-input-width;
+
+  /** padding top can be overriden if label is generated (see below) **/
+  padding: 8px 12px 12px;
+
+  border: 1px solid rgba(0, 0, 0, 0.12);
+
+  outline: none;
+  box-sizing: border-box;
+
+  .cbn-input-field.cbn-input-field--disabled & {
+
+    background-color: rgba(0, 0, 0, 0.04);
+
+    cursor: not-allowed;
+
+    &::placeholder {
+      @mixin themedParent color, inputfield, placeholder;
+    }
+  }
+
+  &:hover:not([disabled]) {
+    @extend %shadow-light--hover;
+  }
+
+  &:focus {
+    @extend %shadow-light--active;
+
+    &::placeholder {
+      @mixin themedParent color, text, secondary;
+    }
+  }
+
+  &::placeholder {
+    @mixin themedParent color, inputfield, placeholder;
+  }
+}
+
+.cbn-theme--dark .cbn-input-field__text {
+  @extend %shadow-dark;
+
+  &:hover {
+    @extend %shadow-dark--hover;
+  }
+}
+
+.cbn-input-field--labeled .cbn-input-field__text {
+  padding-top: 32px;
+}
+
+.cbn-input-field__label {
+  @extend %type--body-1;
+
+  @mixin themedParent color, text, secondary;
+
+  position: relative;
+  top: 28px;
+  left: 12px;
+}
+
+.cbn-input-field__line {
+  @mixin themedParent background-color, menu, border;
+
+  position: relative;
+  bottom: 8px;
+  left: 0;
+
+  width: calc(100% - 24px);
+  height: 1px;
+  margin: 0 12px;
+
+  pointer-events: none;
+}
+
+.cbn-input-field--success .cbn-input-field__line {
+  /* NOTE: TOOD refactor - how can this be changed to use the palette? */
+  background-color: rgb(0, 195, 41);
+}
+
+.cbn-input-field--error .cbn-input-field__line {
+  /* NOTE: TOOD refactor - how can this be changed to use the palette? */
+  background-color: rgb(236, 53, 8);
+}
