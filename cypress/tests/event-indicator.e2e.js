@@ -29,22 +29,26 @@ describe('Event Indicator component', () => {
   });
 
   it('assert that clickable indicator is updating its counter correctly', () => {
-    // cy
-    //   .get('.example-indicator')
-    //   .each(($el, index, $list) => {
-    //
-    //     // find count in $el
-    //     const countNode = cy.find('.cbn-sg-playground__event-count');
-    //     const initialValue = parseInt(countNode.text(), 10);
-    //
-    //     cy.wrap($el)
-    //       .click();
-    //
-    //     // find count, verify it's gone up 1
-    //     const afterClickValue = parseInt(countNode.text(), 10);
-    //
-    //     expect(initialValue).eq(afterClickValue);
-    //   });
+    cy
+      .get('.example-indicator:visible')
+      .should(($el, index, $list) => {
+        // fistly click on the element, so that the indicator appears
+        cy.wrap($el)
+          .click();
+
+        // the inicator should show "1" as a value as it has been clicked only once
+        cy.get('.cbn-sg-playground__event-count')
+          .last()
+          .contains('text', 1);
+
+        cy.wrap($el)
+          .click();
+
+        // click again and verify that it has gone up by one
+        cy.get('.cbn-sg-playground__event-count')
+          .last()
+          .contains('text', 2);
+      });
   });
 
 });

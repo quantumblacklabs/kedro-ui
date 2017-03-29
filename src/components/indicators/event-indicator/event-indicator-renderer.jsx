@@ -47,9 +47,6 @@ const EventIndicatorRenderer = ({ color, count, name, theme }) => (
 );
 
 EventIndicatorRenderer.defaultProps = {
-  color: 'rgb(24, 117, 240)',
-  count: 1,
-  name: '--',
   theme: 'dark'
 };
 
