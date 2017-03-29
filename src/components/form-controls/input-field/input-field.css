@@ -12,17 +12,18 @@ $default-input-width: 296px;
   position: relative;
   display: inline-block;
 
-  &[disabled] .cbn-input-field__line {
-    display: none;
-  }
-
-  &--disabled .cbn-input-field__label {
-    /* TODO - text color */
-    @mixin themed color, radiobutton, disabled;
-  }
-
   &--disabled {
+
     cursor: not-allowed;
+
+    .cbn-input-field__line {
+      display: none;
+    }
+
+    .cbn-input-field__line,
+    .cbn-input-field__label {
+      @mixin themedParent color, inputfield, placeholder;
+    }
   }
 }
 
