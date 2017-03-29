@@ -24,7 +24,7 @@ class SearchBar extends React.Component {
     };
 
     this.onChange = this.onChange.bind(this);
-    this.onClose = this.onClose.bind(this);
+    this.onClear = this.onClear.bind(this);
   }
 
   // Events
@@ -37,6 +37,11 @@ class SearchBar extends React.Component {
     this.setState({
       currentText: e.target.value
     });
+
+    // trigger onChange prop if available
+    if (typeof this.props.onChange === 'function') {
+      this.props.onChange(e.target.value);
+    }
   }
 
   /**
@@ -44,10 +49,15 @@ class SearchBar extends React.Component {
    * @param  {type} e description
    * @return {type}   description
    */
-  onClose() {
+  onClear() {
     this.setState({
       currentText: ''
     });
+
+    // trigger onClose prop if available
+    if (typeof this.props.onClear === 'function') {
+      this.props.onClear();
+    }
   }
 
   // Rendering
@@ -61,7 +71,7 @@ class SearchBar extends React.Component {
       <SearchBarRenderer
         iconType={this.props.iconType}
         onChange={this.onChange}
-        onClose={this.onClose}
+        onClear={this.onClear}
         value={this.state.currentText}
         theme={this.props.theme} />
     );
@@ -70,7 +80,8 @@ class SearchBar extends React.Component {
 
 SearchBar.defaultProps = {
   iconType: 'refresh',
-  theme: 'dark'
+  onChange: null,
+  onClear: null
 };
 
 SearchBar.propTypes = {
@@ -79,9 +90,17 @@ SearchBar.propTypes = {
    */
   iconType: PropTypes.string,
   /**
+   * Subscribe to change events from input field
+   */
+  onChange: PropTypes.func,
+  /**
+   * On clear, triggered when clear buttong is pressed
+   */
+  onClear: PropTypes.func,
+  /**
    * Theme of the component
    */
-  theme: PropTypes.string
+  theme: PropTypes.string.isRequired
 };
 
 export default SearchBar;

@@ -8,15 +8,18 @@ import Icon from '../icon';
 /**
  * SearchBarRenderer, used to output the actual DOM makeup for the component
  */
-const SearchBarRenderer = ({ iconType, onChange, onClose, theme, value }) => {
-  return (
+const SearchBarRenderer = ({ iconType,
+                             onChange,
+                             onClear,
+                             theme,
+                             value }) =>
+  (
     <div className={`cbn-searchbar cbn-theme--${theme}`}>
       <Icon type={iconType} size='medium' />
       <input value={value} onChange={onChange} />
-      <Icon onClick={onClose} type='cut' size='medium' />
+      <Icon onClick={onClear} type='cut' size='medium' />
     </div>
   );
-};
 
 SearchBarRenderer.propTypes = {
   /**
@@ -30,7 +33,7 @@ SearchBarRenderer.propTypes = {
   /**
    * On close method, triggered by icon click
    */
-  onClose: PropTypes.func.isRequired,
+  onClear: PropTypes.func.isRequired,
   /**
    * Theme of the component
    */
