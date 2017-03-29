@@ -1,15 +1,28 @@
+/** Imports **/
+
 @import '../../../styles/includes';
 
+/** Variables **/
+
+$default-input-width: 296px;
+
+/** Implementation **/
+
 .cbn-input-field {
+  position: relative;
   display: inline-block;
 
   &[disabled] .cbn-input-field__line {
     display: none;
   }
 
-  &[disabled] .cbn-input-field__label {
+  &--disabled .cbn-input-field__label {
     /* TODO - text color */
     @mixin themed color, radiobutton, disabled;
+  }
+
+  &--disabled {
+    cursor: not-allowed;
   }
 }
 
@@ -19,8 +32,9 @@
 
   @extend %type--subhead-2;
 
-  width: 296px;
-  /* padding top can be overriden if label is generated (see below) */
+  width: $default-input-width;
+
+  /** padding top can be overriden if label is generated (see below) **/
   padding: 8px 12px 12px;
 
   border: 1px solid rgba(0, 0, 0, 0.12);
@@ -28,9 +42,15 @@
   outline: none;
   box-sizing: border-box;
 
-  &[disabled] {
-    cursor: not-allowed;
+  .cbn-input-field.cbn-input-field--disabled & {
+
     background-color: rgba(0, 0, 0, 0.04);
+
+    cursor: not-allowed;
+
+    &::placeholder {
+      @mixin themedParent color, inputfield, placeholder;
+    }
   }
 
   &:hover:not([disabled]) {
@@ -39,6 +59,14 @@
 
   &:focus {
     @extend %shadow-light--active;
+
+    &::placeholder {
+      @mixin themedParent color, text, secondary;
+    }
+  }
+
+  &::placeholder {
+    @mixin themedParent color, inputfield, placeholder;
   }
 }
 
@@ -69,9 +97,9 @@
 
   position: relative;
   bottom: 8px;
-  left: 0px;
+  left: 0;
 
-  width: 272px;
+  width: calc(100% - 24px);
   height: 1px;
   margin: 0 12px;
 

@@ -26,9 +26,9 @@ const InputField = ({ disabled, label, placeholder, status, statusDescription, t
         'cbn-input-field',
         `cbn-theme--${theme}`,
         { [`cbn-input-field--${validatedStatus}`]: !!validatedStatus },
-        { 'cbn-input-field--labeled': !!labelWrapper }
-      )}
-      disabled={disabled}>
+        { 'cbn-input-field--labeled': !!labelWrapper },
+        { 'cbn-input-field--disabled': disabled }
+      )}>
       {labelWrapper}
       <input
         className={classnames('cbn-input-field__text')}
@@ -54,7 +54,7 @@ InputField.propTypes = {
   disabled: PropTypes.bool,
   label: PropTypes.string,
   placeholder: PropTypes.string,
-  status: PropTypes.oneOf(['error', 'success', 'defaut']),
+  status: PropTypes.oneOf(['error', 'success', 'default']),
   statusDescription: PropTypes.string,
   theme: PropTypes.oneOf(['dark', 'light'])
 };
