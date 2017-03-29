@@ -29,7 +29,7 @@ describe('Checkbox Button component', () => {
 
     cy
       .get('.cbn-switch-checkbox:visible input:checked')
-      .should('to.have.length', 4);
+      .should('to.have.length', 3);
 
     cy.get('.cbn-switch-checkbox:visible')
       .each(($el, index, $list) => {

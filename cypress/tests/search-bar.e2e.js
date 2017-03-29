@@ -4,21 +4,21 @@ describe('SearchBar component', () => {
     cy.visit('/#!/SearchBar');
   });
 
-  it('assert that we have more than 2 demos rendering root nodes correctly', () => {
+  it('assert that it clears the text correctly', () => {
     cy
-      .get('.cbn-icon')
-      .should('to.have.length.above', 2);
-  });
-
-  it('assert that each icon has rendered a visible SVG node', () => {
-    cy
-      .get('.cbn-icon svg')
-      .each(($el, index, $list) => {
+      .get('.cbn-searchbar:visible')
+      .each(($el, index) => {
         cy.wrap($el)
-          .should('be.visible')
-          .children()
-          .should('to.have.length.above', 0);
+          .find('input')
+          .type('Hello World');
+
+        cy.wrap($el)
+          .find('.cbn-icon--cut')
+          .click();
+
+        cy.wrap($el)
+          .find('input')
+          .should('contain', '');
       });
   });
-
 });
