@@ -5,6 +5,8 @@ import SearchBarRenderer from './search-bar-renderer';
 
 // Styles
 
+import './search-bar.css';
+
 /**
  * Searchbar is usually used in a search setting i.e. user types and updates
  * some other component with the entered text
@@ -20,7 +22,8 @@ class SearchBar extends React.Component {
     super(props);
 
     this.state = {
-      currentText: ''
+      currentText: '',
+      showClearButton: false
     };
 
     this.onChange = this.onChange.bind(this);
@@ -34,8 +37,11 @@ class SearchBar extends React.Component {
    * @param  {Event} e native change event
    */
   onChange(e) {
+    console.log(e.target.value !== '');
+
     this.setState({
-      currentText: e.target.value
+      currentText: e.target.value,
+      showClearButton: e.target.value !== ''
     });
 
     // trigger onChange prop if available
@@ -67,11 +73,14 @@ class SearchBar extends React.Component {
    * @return {ReactElement} markup
    */
   render() {
+    console.log(this.state.showClearButton);
+
     return (
       <SearchBarRenderer
         iconType={this.props.iconType}
         onChange={this.onChange}
         onClear={this.onClear}
+        showClearButton={this.state.showClearButton}
         value={this.state.currentText}
         theme={this.props.theme} />
     );
@@ -81,7 +90,8 @@ class SearchBar extends React.Component {
 SearchBar.defaultProps = {
   iconType: 'refresh',
   onChange: null,
-  onClear: null
+  onClear: null,
+  theme: 'dark'
 };
 
 SearchBar.propTypes = {
@@ -96,11 +106,7 @@ SearchBar.propTypes = {
   /**
    * On clear, triggered when clear buttong is pressed
    */
-  onClear: PropTypes.func,
-  /**
-   * Theme of the component
-   */
-  theme: PropTypes.string.isRequired
+  onClear: PropTypes.func
 };
 
 export default SearchBar;

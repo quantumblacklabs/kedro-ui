@@ -2,6 +2,7 @@
 
 import React, { PropTypes } from 'react';
 import Icon from '../icon';
+import Input from '../form-controls/input-field/input-field';
 
 // Styles
 
@@ -12,12 +13,19 @@ const SearchBarRenderer = ({ iconType,
                              onChange,
                              onClear,
                              theme,
+                             showClearButton,
                              value }) =>
   (
     <div className={`cbn-searchbar cbn-theme--${theme}`}>
-      <Icon type={iconType} size='medium' />
-      <input value={value} onChange={onChange} />
-      <Icon onClick={onClear} type='cut' size='medium' />
+      <Icon type={iconType} size='medium' theme={theme}/>
+      <Input
+          name='Something 2'
+          placeholder='Type here 2'
+          theme='light'/>
+      {
+        showClearButton &&
+          <Icon onClick={onClear} type='cut' size='medium' theme={theme} />
+      }
     </div>
   );
 
@@ -38,6 +46,10 @@ SearchBarRenderer.propTypes = {
    * Theme of the component
    */
   theme: PropTypes.string.isRequired,
+  /**
+   * Show clear button on right
+   */
+  showClearButton: PropTypes.bool.isRequired,
   /**
    * Text value for the input
    */

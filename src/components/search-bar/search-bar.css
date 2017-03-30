@@ -1,0 +1,38 @@
+.cbn-searchbar {
+  position: relative;
+
+  display: inline-block;
+}
+
+.cbn-input-field__text {
+  .cbn-searchbar & {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
+.cbn-icon--cut {
+  right: 10px;
+
+  width: 14px;
+  height: 14px;
+}
+
+.cbn-icon--refresh {
+  left: 10px;
+
+  width: 17px;
+  height: 17px;
+}
+
+.cbn-icon {
+  .cbn-searchbar & {
+    position: absolute;
+
+    top: 50%;
+
+    z-index: 1;
+
+    transform: translate(0, -50%);
+  }
+}
