@@ -15,15 +15,6 @@ $default-input-width: 296px;
 
   &--disabled {
     cursor: not-allowed;
-
-    .cbn-input-field__line {
-      display: none;
-    }
-
-    .cbn-input-field__line,
-    .cbn-input-field__label {
-      @mixin themedParent color, inputfield, placeholder;
-    }
   }
 }
 
@@ -43,6 +34,7 @@ $default-input-width: 296px;
   outline: none;
   box-sizing: border-box;
 
+  /** more specific selector needs to be stated so the changes apply **/
   .cbn-input-field.cbn-input-field--disabled & {
     background-color: rgba(0, 0, 0, 0.04);
 
@@ -90,11 +82,13 @@ $default-input-width: 296px;
   position: relative;
   top: 28px;
   left: 12px;
+
+  .cbn-input-field--disabled & {
+    @mixin themedParent color, inputfield, placeholder;
+  }
 }
 
 .cbn-input-field__line {
-  @mixin themedParent background-color, menu, border;
-
   position: relative;
   bottom: 8px;
   left: 0;
@@ -103,7 +97,19 @@ $default-input-width: 296px;
   height: 1px;
   margin: 0 12px;
 
+  /** by default the background color is transparent; when in active/focus it is visible **/
+  background-color: transparent;
+
   pointer-events: none;
+
+  .cbn-input-field__text:active + & {
+    @mixin themedParent background-color, menu, border;
+  }
+
+  .cbn-input-field__text:focus + &,
+  .cbn-input-field__text:active + & {
+    @mixin themedParent background-color, menu, border;
+  }
 }
 
 .cbn-input-field--success .cbn-input-field__line {
