@@ -2,24 +2,24 @@
 
 ```
 <section style={{margin: '20px'}}>
-    <InputField
+    <Input
         name='Something 1'
         placeholder='Type here 1'
         label='Label duh'/>
     <br />
     <br />
-    <InputField
+    <Input
         name='Something 2'
         placeholder='Type here 2'
         theme='light'/>
     <br />
     <br />
-    <InputField
+    <Input
         name='Something 3'
         placeholder='Type here 3'
         disabled={true}/>
     <br />
-    <InputField
+    <Input
         name='Something 3'
         placeholder='Type here 3'
         disabled={true}

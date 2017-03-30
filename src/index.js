@@ -4,7 +4,7 @@ import Satellite from 'components/insights/satellite';
 import Dropdown from 'components/menus/dropdown';
 import Icon from 'components/icon';
 import MenuOption from 'components/menus/menu-option';
-import { Checkbox, RadioButton } from 'components/form-controls';
+import { Checkbox, Input, RadioButton } from 'components/form-controls';
 
 import './styles/app.css';
 
@@ -17,6 +17,7 @@ module.exports = {
   Checkbox,
   Dropdown,
   Icon,
+  Input,
   MenuOption,
   RadioButton
 };

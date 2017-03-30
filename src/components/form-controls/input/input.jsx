@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 
-import './input-field.css';
+import './input.css';
 
-const InputField = ({ disabled, label, placeholder, status, statusDescription, theme }) => {
+const Input = ({ disabled, label, placeholder, status, statusDescription, theme }) => {
   // status indicating error or success; ignored when it is default
   const validatedStatus = status !== 'default' ? status : false;
 
@@ -41,7 +41,7 @@ const InputField = ({ disabled, label, placeholder, status, statusDescription, t
   );
 };
 
-InputField.defaultProps = {
+Input.defaultProps = {
   disabled: false,
   label: '',
   placeholder: '',
@@ -50,7 +50,7 @@ InputField.defaultProps = {
   theme: 'dark'
 };
 
-InputField.propTypes = {
+Input.propTypes = {
   disabled: PropTypes.bool,
   label: PropTypes.string,
   placeholder: PropTypes.string,
@@ -59,4 +59,4 @@ InputField.propTypes = {
   theme: PropTypes.oneOf(['dark', 'light'])
 };
 
-export default InputField;
+export default Input;

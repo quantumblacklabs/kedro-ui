@@ -10,10 +10,10 @@ $default-input-width: 296px;
 
 .cbn-input-field {
   position: relative;
+
   display: inline-block;
 
   &--disabled {
-
     cursor: not-allowed;
 
     .cbn-input-field__line {
@@ -44,7 +44,6 @@ $default-input-width: 296px;
   box-sizing: border-box;
 
   .cbn-input-field.cbn-input-field--disabled & {
-
     background-color: rgba(0, 0, 0, 0.04);
 
     cursor: not-allowed;
