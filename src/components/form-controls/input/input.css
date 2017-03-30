@@ -8,25 +8,17 @@ $default-input-width: 296px;
 
 /** Implementation **/
 
-.cbn-input-field {
+.cbn-input {
   position: relative;
+
   display: inline-block;
-
-  &[disabled] .cbn-input-field__line {
-    display: none;
-  }
-
-  &--disabled .cbn-input-field__label {
-    /* TODO - text color */
-    @mixin themed color, radiobutton, disabled;
-  }
 
   &--disabled {
     cursor: not-allowed;
   }
 }
 
-.cbn-input-field__text {
+.cbn-input__field {
   @mixin themedParent background-color, menu;
   @mixin themedParent color, text;
 
@@ -42,8 +34,8 @@ $default-input-width: 296px;
   outline: none;
   box-sizing: border-box;
 
-  .cbn-input-field.cbn-input-field--disabled & {
-
+  /** more specific selector needs to be stated so the changes apply **/
+  .cbn-input.cbn-input--disabled & {
     background-color: rgba(0, 0, 0, 0.04);
 
     cursor: not-allowed;
@@ -70,7 +62,7 @@ $default-input-width: 296px;
   }
 }
 
-.cbn-theme--dark .cbn-input-field__text {
+.cbn-theme--dark .cbn-input__field {
   @extend %shadow-dark;
 
   &:hover {
@@ -78,11 +70,11 @@ $default-input-width: 296px;
   }
 }
 
-.cbn-input-field--labeled .cbn-input-field__text {
+.cbn-input--labeled .cbn-input__field {
   padding-top: 32px;
 }
 
-.cbn-input-field__label {
+.cbn-input__label {
   @extend %type--body-1;
 
   @mixin themedParent color, text, secondary;
@@ -90,11 +82,13 @@ $default-input-width: 296px;
   position: relative;
   top: 28px;
   left: 12px;
+
+  .cbn-input--disabled & {
+    @mixin themedParent color, inputfield, placeholder;
+  }
 }
 
-.cbn-input-field__line {
-  @mixin themedParent background-color, menu, border;
-
+.cbn-input__line {
   position: relative;
   bottom: 8px;
   left: 0;
@@ -103,15 +97,27 @@ $default-input-width: 296px;
   height: 1px;
   margin: 0 12px;
 
+  /** by default the background color is transparent; when in active/focus it is visible **/
+  background-color: transparent;
+
   pointer-events: none;
+
+  .cbn-input__field:active + & {
+    @mixin themedParent background-color, menu, border;
+  }
+
+  .cbn-input__field:focus + &,
+  .cbn-input__field:active + & {
+    @mixin themedParent background-color, menu, border;
+  }
 }
 
-.cbn-input-field--success .cbn-input-field__line {
+.cbn-input--success .cbn-input__line {
   /* NOTE: TOOD refactor - how can this be changed to use the palette? */
   background-color: rgb(0, 195, 41);
 }
 
-.cbn-input-field--error .cbn-input-field__line {
+.cbn-input--error .cbn-input__line {
   /* NOTE: TOOD refactor - how can this be changed to use the palette? */
   background-color: rgb(236, 53, 8);
 }

@@ -1,21 +1,35 @@
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 
-import './input-field.css';
+import './input.css';
 
-const InputField = ({ disabled, label, placeholder, status, statusDescription, theme }) => {
+/**
+ * Text input component supporting placeholder, label, default value, disabled state,
+ * error/success state and status description.
+ * Even listener on change provided.
+ */
+const Input = ({
+  disabled,
+  label,
+  onChange,
+  placeholder,
+  status,
+  statusDescription,
+  theme,
+  value
+}) => {
   // status indicating error or success; ignored when it is default
   const validatedStatus = status !== 'default' ? status : false;
 
   const labelWrapper = label && (
-    <div className='cbn-input-field__label'>
+    <div className='cbn-input__label'>
       {label}
     </div>
   );
 
   // status description shown only if status is relevant and description is passed
   const description = status !== 'default' && statusDescription && (
-    <div className='cbn-input-field__description'>
+    <div className='cbn-input__description'>
       {statusDescription}
     </div>
   );
@@ -23,40 +37,46 @@ const InputField = ({ disabled, label, placeholder, status, statusDescription, t
   return (
     <div
       className={classnames(
-        'cbn-input-field',
+        'cbn-input',
         `cbn-theme--${theme}`,
-        { [`cbn-input-field--${validatedStatus}`]: !!validatedStatus },
-        { 'cbn-input-field--labeled': !!labelWrapper },
-        { 'cbn-input-field--disabled': disabled }
+        { [`cbn-input--${validatedStatus}`]: !!validatedStatus },
+        { 'cbn-input--labeled': !!labelWrapper },
+        { 'cbn-input--disabled': disabled }
       )}>
       {labelWrapper}
       <input
-        className={classnames('cbn-input-field__text')}
+        className={classnames('cbn-input__field')}
         type='text'
         placeholder={placeholder}
-        disabled={disabled} />
-      <div className='cbn-input-field__line' />
+        disabled={disabled}
+        value={value}
+        onChange={onChange} />
+      <div className='cbn-input__line' />
       {description}
     </div>
   );
 };
 
-InputField.defaultProps = {
+Input.defaultProps = {
   disabled: false,
   label: '',
+  onChange: null,
   placeholder: '',
   status: 'default',
   statusDescription: '',
-  theme: 'dark'
+  theme: 'dark',
+  value: ''
 };
 
-InputField.propTypes = {
+Input.propTypes = {
   disabled: PropTypes.bool,
   label: PropTypes.string,
+  onChange: PropTypes.func,
   placeholder: PropTypes.string,
   status: PropTypes.oneOf(['error', 'success', 'default']),
   statusDescription: PropTypes.string,
-  theme: PropTypes.oneOf(['dark', 'light'])
+  theme: PropTypes.oneOf(['dark', 'light']),
+  value: PropTypes.string
 };
 
-export default InputField;
+export default Input;
