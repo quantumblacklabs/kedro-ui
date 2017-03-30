@@ -4,7 +4,7 @@
   display: inline-block;
 }
 
-.cbn-input-field__text {
+.cbn-input__field {
   .cbn-searchbar & {
     padding-left: 44px;
     padding-right: 44px;

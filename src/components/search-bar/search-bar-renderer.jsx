@@ -2,7 +2,9 @@
 
 import React, { PropTypes } from 'react';
 import Icon from '../icon';
-import Input from '../form-controls/input-field/input-field';
+import { Input } from '../form-controls';
+
+console.log(Input);
 
 // Styles
 
@@ -20,7 +22,10 @@ const SearchBarRenderer = ({ iconType,
       <Icon type={iconType} size='medium' theme={theme}/>
       <Input
           name='Something 2'
-          placeholder='Type here 2'
+          placeholder='Search'
+          label='hello'
+          onChange={onChange}
+          value={value}
           theme='light'/>
       {
         showClearButton &&
