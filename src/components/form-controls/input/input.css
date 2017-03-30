@@ -8,7 +8,7 @@ $default-input-width: 296px;
 
 /** Implementation **/
 
-.cbn-input-field {
+.cbn-input {
   position: relative;
 
   display: inline-block;
@@ -18,7 +18,7 @@ $default-input-width: 296px;
   }
 }
 
-.cbn-input-field__text {
+.cbn-input__field {
   @mixin themedParent background-color, menu;
   @mixin themedParent color, text;
 
@@ -35,7 +35,7 @@ $default-input-width: 296px;
   box-sizing: border-box;
 
   /** more specific selector needs to be stated so the changes apply **/
-  .cbn-input-field.cbn-input-field--disabled & {
+  .cbn-input.cbn-input--disabled & {
     background-color: rgba(0, 0, 0, 0.04);
 
     cursor: not-allowed;
@@ -62,7 +62,7 @@ $default-input-width: 296px;
   }
 }
 
-.cbn-theme--dark .cbn-input-field__text {
+.cbn-theme--dark .cbn-input__field {
   @extend %shadow-dark;
 
   &:hover {
@@ -70,11 +70,11 @@ $default-input-width: 296px;
   }
 }
 
-.cbn-input-field--labeled .cbn-input-field__text {
+.cbn-input--labeled .cbn-input__field {
   padding-top: 32px;
 }
 
-.cbn-input-field__label {
+.cbn-input__label {
   @extend %type--body-1;
 
   @mixin themedParent color, text, secondary;
@@ -83,12 +83,12 @@ $default-input-width: 296px;
   top: 28px;
   left: 12px;
 
-  .cbn-input-field--disabled & {
+  .cbn-input--disabled & {
     @mixin themedParent color, inputfield, placeholder;
   }
 }
 
-.cbn-input-field__line {
+.cbn-input__line {
   position: relative;
   bottom: 8px;
   left: 0;
@@ -102,22 +102,22 @@ $default-input-width: 296px;
 
   pointer-events: none;
 
-  .cbn-input-field__text:active + & {
+  .cbn-input__field:active + & {
     @mixin themedParent background-color, menu, border;
   }
 
-  .cbn-input-field__text:focus + &,
-  .cbn-input-field__text:active + & {
+  .cbn-input__field:focus + &,
+  .cbn-input__field:active + & {
     @mixin themedParent background-color, menu, border;
   }
 }
 
-.cbn-input-field--success .cbn-input-field__line {
+.cbn-input--success .cbn-input__line {
   /* NOTE: TOOD refactor - how can this be changed to use the palette? */
   background-color: rgb(0, 195, 41);
 }
 
-.cbn-input-field--error .cbn-input-field__line {
+.cbn-input--error .cbn-input__line {
   /* NOTE: TOOD refactor - how can this be changed to use the palette? */
   background-color: rgb(236, 53, 8);
 }
