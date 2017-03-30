@@ -88,7 +88,7 @@ class SearchBar extends React.Component {
 }
 
 SearchBar.defaultProps = {
-  iconType: 'refresh',
+  iconType: 'search',
   onChange: null,
   onClear: null,
   theme: 'dark'

@@ -5,6 +5,7 @@ import darkRefresh from './dark-refresh.svg';
 import darkUndo from './dark-undo.svg';
 import darkSortingAscending from './dark-sorting-ascending.svg';
 import tick from './tick.svg';
+import search from './search.svg';
 
 export default {
   copy: darkCopy,
@@ -13,5 +14,6 @@ export default {
   refresh: darkRefresh,
   undo: darkUndo,
   chevronUp: darkSortingAscending,
+  search,
   tick
 };

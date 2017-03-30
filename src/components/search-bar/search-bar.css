@@ -6,23 +6,23 @@
 
 .cbn-input-field__text {
   .cbn-searchbar & {
-    padding-left: 40px;
-    padding-right: 40px;
+    padding-left: 44px;
+    padding-right: 44px;
   }
 }
 
 .cbn-icon--cut {
   right: 10px;
 
-  width: 14px;
-  height: 14px;
+  width: 24px;
+  height: 24px;
 }
 
-.cbn-icon--refresh {
-  left: 10px;
+.cbn-icon--search {
+  left: 12px;
 
-  width: 17px;
-  height: 17px;
+  width: 24px;
+  height: 24px;
 }
 
 .cbn-icon {
