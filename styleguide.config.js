@@ -154,6 +154,7 @@ const config = {
     resolve: {
       extensions: ['.js', '.jsx', '.css'],
       alias: {
+        'utils': path.resolve(__dirname, 'src/utils'),
         'styles': path.resolve(__dirname, 'src/styles'),
         'components': path.resolve(__dirname, 'src/components'),
         'rsg-components/ReactComponent/ReactComponentRenderer': path.resolve(__dirname + '/templates/react-styleguidist/react-component'),
