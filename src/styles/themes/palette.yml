@@ -43,6 +43,7 @@ themes:
       textfilled: rgb(0, 0, 0)
       error: rgb(236, 53, 8)
       success: rgb(0, 195, 41)
+      status: rgb(255, 255, 255)
     grid:
       default: rgba(255, 105, 180, 0.5)
   dark:
@@ -88,5 +89,6 @@ themes:
       textfilled: rgb(255, 255, 255)
       error: rgb(236, 53, 8)
       success: rgb(0, 195, 41)
+      status: rgb(255, 255, 255)
     grid:
       default: rgba(100, 149, 237, 0.5)
