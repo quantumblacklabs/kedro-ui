@@ -16,7 +16,11 @@ class Input extends React.Component {
     this.state = {
       focused: false,
       value: undefined
-    }
+    };
+
+    this._handleFocused = this._handleFocused.bind(this);
+    this._handleBlured = this._handleBlured.bind(this);
+    this._handleChanged = this._handleChanged.bind(this);
   }
 
   _handleFocused() {
@@ -36,7 +40,7 @@ class Input extends React.Component {
       value: event.target.value
     });
 
-    this.props.onChange;
+    this.props.onChange();
   }
 
   /**
@@ -70,8 +74,8 @@ class Input extends React.Component {
             { 'cbn-input--disabled': this.props.disabled },
             { 'cbn-input--focused': this.state.focused }
           )}
-          onFocus={this._handleFocused.bind(this)}
-          onBlur={this._handleBlured.bind(this)}>
+          onFocus={this._handleFocused}
+          onBlur={this._handleBlured}>
           {labelWrapper}
           <input
             className='cbn-input__field'
@@ -79,7 +83,7 @@ class Input extends React.Component {
             placeholder={this.props.placeholder}
             disabled={this.props.disabled}
             value={this.props.value}
-            onChange={this._handleChanged.bind(this)} />
+            onChange={this._handleChanged} />
           <div className='cbn-input__line'>
             <div className='cbn-input__line--filled'>
               {this.state.value}
@@ -104,13 +108,39 @@ Input.defaultProps = {
 };
 
 Input.propTypes = {
+  /**
+   * Whether the input should be editable or not.
+   */
   disabled: PropTypes.bool,
+  /**
+   * Label indicating what should be written in the input.
+   */
   label: PropTypes.string,
+  /**
+   * Event listener which will be trigerred on change of the input.
+   */
   onChange: PropTypes.func,
+  /**
+   * Placeholder hint text which is displayed inside the input field and dissapers when something is written inside.
+   */
   placeholder: PropTypes.string,
+  /**
+   * Status of the input - either 'default', 'success' or 'error'.
+   * Will trigger change in colouring of the component.
+   */
   status: PropTypes.oneOf(['error', 'success', 'default']),
+  /**
+   * Description of the status - either message on success or an error.
+   * Will be displayed only if the status is different than 'default'.
+   */
   statusDescription: PropTypes.string,
+  /**
+   * Theme of the input - either 'dark' or 'light'.
+   */
   theme: PropTypes.oneOf(['dark', 'light']),
+  /**
+   * Value to be displayed inside the input field, it is editable and can change if not disabled.
+   */
   value: PropTypes.string
 };
 
