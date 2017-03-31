@@ -8,54 +8,89 @@ import './input.css';
  * error/success state and status description.
  * Even listener on change provided.
  */
-const Input = ({
-  disabled,
-  label,
-  onChange,
-  placeholder,
-  status,
-  statusDescription,
-  theme,
-  value
-}) => {
-  // status indicating error or success; ignored when it is default
-  const validatedStatus = status !== 'default' ? status : false;
+class Input extends React.Component {
 
-  const labelWrapper = label && (
-    <div className='cbn-input__label'>
-      {label}
-    </div>
-  );
+  constructor(props) {
+    super(props);
 
-  // status description shown only if status is relevant and description is passed
-  const description = status !== 'default' && statusDescription && (
-    <div className='cbn-input__description'>
-      {statusDescription}
-    </div>
-  );
+    this.state = {
+      focused: false,
+      value: undefined
+    }
+  }
 
-  return (
-    <div
-      className={classnames(
-        'cbn-input',
-        `cbn-theme--${theme}`,
-        { [`cbn-input--${validatedStatus}`]: !!validatedStatus },
-        { 'cbn-input--labeled': !!labelWrapper },
-        { 'cbn-input--disabled': disabled }
-      )}>
-      {labelWrapper}
-      <input
-        className={classnames('cbn-input__field')}
-        type='text'
-        placeholder={placeholder}
-        disabled={disabled}
-        value={value}
-        onChange={onChange} />
-      <div className='cbn-input__line' />
-      {description}
-    </div>
-  );
-};
+  _handleFocused() {
+    this.setState({
+      focused: true
+    });
+  }
+
+  _handleBlured() {
+    this.setState({
+      focused: false
+    });
+  }
+
+  _handleChanged(event) {
+    this.setState({
+      value: event.target.value
+    });
+
+    this.props.onChange;
+  }
+
+  /**
+   * render - description
+   * @return {type}  description
+   */
+  render() {
+    // status indicating error or success; ignored when it is default
+    const validatedStatus = this.props.status !== 'default' ? this.props.status : false;
+
+    const labelWrapper = this.props.label && (
+      <div className='cbn-input__label'>
+        {this.props.label}
+      </div>
+    );
+
+    // status description shown only if status is relevant and description is passed
+    const description = this.props.status !== 'default' && this.props.statusDescription && (
+      <div className='cbn-input__description'>
+        {this.props.statusDescription}
+      </div>
+    );
+
+    return (
+      <div className='cbn-input-wrapper'>
+        <div
+          className={classnames(
+            'cbn-input',
+            `cbn-theme--${this.props.theme}`,
+            { [`cbn-input--${validatedStatus}`]: !!validatedStatus },
+            { 'cbn-input--disabled': this.props.disabled },
+            { 'cbn-input--focused': this.state.focused }
+          )}
+          onFocus={this._handleFocused.bind(this)}
+          onBlur={this._handleBlured.bind(this)}>
+          {labelWrapper}
+          <input
+            className='cbn-input__field'
+            type='text'
+            placeholder={this.props.placeholder}
+            disabled={this.props.disabled}
+            value={this.props.value}
+            onChange={this._handleChanged.bind(this)} />
+          <div className='cbn-input__line'>
+            <div className='cbn-input__line--filled'>
+              {this.state.value}
+            </div>
+          </div>
+        </div>
+        {description}
+      </div>
+    );
+  }
+}
 
 Input.defaultProps = {
   disabled: false,
@@ -65,7 +100,7 @@ Input.defaultProps = {
   status: 'default',
   statusDescription: '',
   theme: 'dark',
-  value: ''
+  value: undefined
 };
 
 Input.propTypes = {

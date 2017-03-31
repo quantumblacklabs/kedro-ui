@@ -7,12 +7,12 @@
         placeholder='Type here 1'
         label='Label duh'/>
     <br />
-    <br />
     <Input
         name='Something 2'
         placeholder='Type here 2'
-        theme='light'/>
-    <br />
+        theme='light'
+        status='error'
+        statusDescription='something'/>
     <br />
     <Input
         name='Something 3'
