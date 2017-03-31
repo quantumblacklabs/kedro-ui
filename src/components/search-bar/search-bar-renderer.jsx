@@ -23,7 +23,6 @@ const SearchBarRenderer = ({ iconType,
       <Input
           name='Something 2'
           placeholder='Search'
-          label='hello'
           onChange={onChange}
           value={value}
           theme='light'/>
