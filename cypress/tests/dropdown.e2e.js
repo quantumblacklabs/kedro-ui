@@ -15,8 +15,8 @@ describe('Dropdown component', () => {
         const originalLabel = $el.find('.cbn-dropdown__label>span').html();
         const optionLabel = $el.find('.cbn-menu-option:first span').html();
 
-        cy.log('originalLabel', originalLabel);
-        cy.log('optionLabel', optionLabel);
+        console.log('originalLabel', originalLabel);
+        console.log('optionLabel', optionLabel);
 
         cy.wrap($el)
           .children()
