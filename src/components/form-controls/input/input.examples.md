@@ -1,7 +1,26 @@
-## Input fields examples
+## Default Input component with minimum and maximum number of properties
 
 ```
 <section style={{margin: '20px'}}>
+    <Input />
+    <br />
+    <Input
+        label='Label duh'
+        disabled={false}
+        label='Text input'
+        onChange={console.log('Input changed')}
+        placeholder='Input some text'
+        status='success'
+        statusDescription='Success!'
+        theme='dark'
+        value={undefined} />
+    <br />
+</section>
+```
+
+```
+<section style={{margin: '20px'}}>
+    <Input />
     <Input
         name='Something 1'
         placeholder='Type here 1'

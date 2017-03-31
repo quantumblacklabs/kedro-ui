@@ -98,9 +98,8 @@ $offset-input: 12px;
     }
   }
 
-  .cbn-input:focus &::placeholder {
-    background-color: blue;
-    /*@mixin themed color, text, secondary;*/
+  .cbn-input--focused &::placeholder {
+    @mixin themed color, text, secondary;
   }
 
   /* <-- VARIANT THREE */
@@ -123,6 +122,14 @@ $offset-input: 12px;
 
   .cbn-input--disabled & {
     @mixin themedParent color, input, placeholder;
+  }
+
+  .cbn-input--success & {
+    @mixin themedParent color, input, status;
+  }
+
+  .cbn-input--error & {
+    @mixin themedParent color, input, status;
   }
 }
 
@@ -150,7 +157,7 @@ $offset-input: 12px;
     background-color: transparent;
   }
 
-  .cbn-input--success &,
+  /*.cbn-input--success &,
   .cbn-input--success .cbn-input__field:focus + &,
   .cbn-input--success .cbn-input__field:active + & {
     @mixin themedParent background-color, input, success;
@@ -160,7 +167,7 @@ $offset-input: 12px;
   .cbn-input--error .cbn-input__field:focus + &,
   .cbn-input--error .cbn-input__field:active + & {
     @mixin themedParent background-color, input, error;
-  }
+  }*/
 
   /* <-- VARIANT THREE */
   .cbn-input--success & {

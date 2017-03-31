@@ -9,7 +9,10 @@ import './input.css';
  * Even listener on change provided.
  */
 class Input extends React.Component {
-
+  /**
+   * constructor - create new component with given props.
+   * @param  {object} props
+   */
   constructor(props) {
     super(props);
 
@@ -23,29 +26,42 @@ class Input extends React.Component {
     this._handleChanged = this._handleChanged.bind(this);
   }
 
+  /**
+   * _handleFocused - changes the focus to enabled state.
+   */
   _handleFocused() {
     this.setState({
       focused: true
     });
   }
 
+  /**
+   * _handleBlured - changes the focus to disabled state.
+   */
   _handleBlured() {
     this.setState({
       focused: false
     });
   }
 
+  /**
+   * _handleChanged - updates the state with the value from the input and triggers the passed on change callback.
+   * @param  {object} event
+   */
   _handleChanged(event) {
     this.setState({
       value: event.target.value
     });
 
-    this.props.onChange();
+    if (typeof this.props.onChange === 'function') {
+      this.props.onChange(event);
+    }
   }
 
   /**
-   * render - description
-   * @return {type}  description
+   * React lifecycle method
+   * {@link https://facebook.github.io/react/docs/react-component.html#render}
+   * @return {object} JSX for this component
    */
   render() {
     // status indicating error or success; ignored when it is default
