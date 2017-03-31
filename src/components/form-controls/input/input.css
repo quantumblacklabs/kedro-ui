@@ -145,7 +145,8 @@ $offset-input: 12px;
     @mixin themedParent background-color, menu, border;
   }
 
-  .cbn-input--disabled & {
+  .cbn-input--disabled .cbn-input__field:focus + &,
+  .cbn-input--disabled .cbn-input__field:active + & {
     background-color: transparent;
   }
 
