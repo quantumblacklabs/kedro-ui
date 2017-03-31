@@ -18,7 +18,7 @@ class Input extends React.Component {
 
     this.state = {
       focused: false,
-      value: undefined
+      value: this.props.value
     };
 
     this._handleFocused = this._handleFocused.bind(this);
@@ -98,7 +98,7 @@ class Input extends React.Component {
             type='text'
             placeholder={this.props.placeholder}
             disabled={this.props.disabled}
-            value={this.props.value}
+            value={this.state.value}
             onChange={this._handleChanged} />
           <div className='cbn-input__line'>
             <div className='cbn-input__line--filled'>
