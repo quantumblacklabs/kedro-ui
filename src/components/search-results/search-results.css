@@ -1,0 +1,49 @@
+@import '../../styles/includes';
+
+.cbn-searchresults {
+  position: relative;
+
+  max-width: 300px;
+  max-height: 300px;
+  overflow: auto;
+  transition: all ease 0.3s;
+
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+
+  @mixin themed background, menu, default;
+  @mixin themed color, text;
+
+  &--hidden {
+    max-height: 0;
+  }
+
+  &__row {
+    position: relative;
+
+    display: block;
+
+    padding: 11px 44px;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+      @mixin themedParent background, menu, hover;
+    }
+  }
+
+  &__label {
+    span {
+      opacity: 0.6;
+    }
+
+    b {
+      font-weight: bold;
+    }
+  }
+
+  .cbn-icon {
+    position: absolute;
+    left: 10px;
+  }
+}

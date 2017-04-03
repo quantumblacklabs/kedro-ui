@@ -50,6 +50,11 @@ const config = {
       components: getComponentsFunc('menu', 'src/components/menus/**/*.jsx')
     },
     {
+      name: 'Search Results',
+      content: './templates/components/search-results.md',
+      components: getComponentsFunc('form', 'src/components/search-results/**/*.jsx')
+    },
+    {
       name: 'Form Controls',
       content: './templates/components/form-controls.md',
       components: getComponentsFunc('form', 'src/components/form-controls/**/*.jsx')
