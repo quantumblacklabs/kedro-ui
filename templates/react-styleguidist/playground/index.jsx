@@ -1,16 +1,23 @@
 import React from 'react';
 import PlaygroundRenderer from './playground-renderer';
+import debounce from 'lodash/debounce';
 
 import './styles.css';
 
 const Playground = React.createClass({
-
   getInitialState() {
+    // store initial code for resetting later
+    this.initialCode = this.props.code;
+
+    // don't trigger the change on every change, wait to apply
+    this._handleCodeChange = debounce(this._handleCodeChange.bind(this), 500);
+
     return {
-      activeThemeIndex: 0,
+      activeThemeIndex: 1,
       grid: false,
       themes: ['light', 'dark'],
-      callbackMeta: {}
+      callbackMeta: {},
+      code: this.props.code
     };
   },
 
@@ -50,7 +57,9 @@ const Playground = React.createClass({
   },
 
   _handleResetTapped() {
-    console.log('Implement reset');
+    this.setState({
+      code: this.initialCode
+    });
   },
 
   _handleThemeChanged(e) {
@@ -59,13 +68,21 @@ const Playground = React.createClass({
     });
   },
 
+  _handleCodeChange(code) {
+    this.setState({
+      code
+    });
+  },
+
   render() {
     return PlaygroundRenderer({
       ...this.props,
+      code: this.state.code,
       activeThemeIndex: this.state.activeThemeIndex,
       callbackMeta: this.state.callbackMeta,
       grid: this.state.grid,
       onCallbackFired: this._handleEventCallbackFired,
+      onChange: this._handleCodeChange,
       onGridToggled: this._handleGridToggled,
       onResetTapped: this._handleResetTapped,
       onThemeChanged: this._handleThemeChanged,
