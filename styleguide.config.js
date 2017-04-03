@@ -45,6 +45,11 @@ const config = {
       components: getComponentsFunc('icon', 'src/components/icon/**/*.jsx')
     },
     {
+      name: 'Indicators',
+      content: './templates/components/indicators.md',
+      components: getComponentsFunc('icon', 'src/components/indicators/**/*.jsx')
+    },
+    {
       name: 'Menus',
       content: './templates/components/menus.md',
       components: getComponentsFunc('menu', 'src/components/menus/**/*.jsx')
