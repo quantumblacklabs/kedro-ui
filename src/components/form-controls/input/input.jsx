@@ -2,6 +2,8 @@ import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 
 import './input.css';
+// import './input-status-v2.css';
+// import './input-status-v3.css';
 
 /**
  * Text input component supporting placeholder, label, default value, disabled state,

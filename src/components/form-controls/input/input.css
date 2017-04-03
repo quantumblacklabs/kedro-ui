@@ -44,21 +44,6 @@ $offset-input: 12px;
       @extend %shadow-dark--hover;
     }
   }
-
-  /* <-- VARIANT THREE */
-  &.cbn-input--success,
-  &.cbn-input--error {
-    @mixin themed color, input, status;
-  }
-
-  &.cbn-input--success {
-    @mixin themed background-color, input, success;
-  }
-
-  &.cbn-input--error {
-    @mixin themed background-color, input, error;
-  }
-  /* VARIANT THREE  --> */
 }
 
 .cbn-input--focused {
@@ -101,16 +86,6 @@ $offset-input: 12px;
   .cbn-input--focused &::placeholder {
     @mixin themed color, text, secondary;
   }
-
-  /* <-- VARIANT THREE */
-  .cbn-input--success & {
-    @mixin themedParent background-color, input, success;
-  }
-
-  .cbn-input--error & {
-    @mixin themedParent background-color, input, error;
-  }
-  /* VARIANT THREE  --> */
 }
 
 .cbn-input__label {
@@ -157,7 +132,7 @@ $offset-input: 12px;
     background-color: transparent;
   }
 
-  /*.cbn-input--success &,
+  .cbn-input--success &,
   .cbn-input--success .cbn-input__field:focus + &,
   .cbn-input--success .cbn-input__field:active + & {
     @mixin themedParent background-color, input, success;
@@ -167,17 +142,7 @@ $offset-input: 12px;
   .cbn-input--error .cbn-input__field:focus + &,
   .cbn-input--error .cbn-input__field:active + & {
     @mixin themedParent background-color, input, error;
-  }*/
-
-  /* <-- VARIANT THREE */
-  .cbn-input--success & {
-    @mixin themedParent background-color, input, status;
   }
-
-  .cbn-input--error & {
-    @mixin themedParent background-color, input, status;
-  }
-  /* VARIANT THREE  --> */
 }
 
 .cbn-input__line--filled {
@@ -200,51 +165,8 @@ $offset-input: 12px;
   .cbn-input--error & {
     @mixin themedParent background-color, input, error;
   }
-
-  /** <-- VARIANT THREE - NO BACKGROUND COLOR + COLOURED TEXT **/
-  .cbn-input--success & {
-    @mixin themedParent background-color, input, status;
-  }
-
-  .cbn-input--error & {
-    @mixin themedParent background-color, input, status;
-  }
-  /** VARIANT THREE - NO BACKGROUND COLOR + COLOURED TEXT --> **/
 }
 
-/** VARIANT ONE - STATUS BACKGROUND COLOR + WHITE TEXT **/
-/*.cbn-input__description {
-  @mixin themedParent color, input, status;
-
-  display: flex;
-
-  padding: 4px $offset-input 4px;
-
-  .cbn-input--success + & {
-    @mixin themedParent background-color, input, success;
-  }
-
-  .cbn-input--error + & {
-    @mixin themedParent background-color, input, error;
-  }
-}*/
-
-/** VARIANT TWO - NO BACKGROUND COLOR + COLOURED TEXT **/
-/*.cbn-input__description {
-  display: flex;
-
-  padding: 4px $offset-input 4px;
-
-  .cbn-input--success + & {
-    @mixin themedParent color, input, success;
-  }
-
-  .cbn-input--error + & {
-    @mixin themedParent color, input, error;
-  }
-}*/
-
-/** VARIANT THREE - NO BACKGROUND COLOR + COLOURED TEXT **/
 .cbn-input__description {
   display: flex;
 

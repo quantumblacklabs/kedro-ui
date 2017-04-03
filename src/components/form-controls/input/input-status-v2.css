@@ -1,0 +1,69 @@
+/** Imports **/
+
+@import '../../../styles/includes';
+
+/** Variables **/
+
+$default-input-width: 296px;
+$offset-input: 12px;
+
+/** Implementation **/
+
+.cbn-input {
+  &.cbn-input--success,
+  &.cbn-input--error {
+    @mixin themed color, input, status;
+  }
+
+  &.cbn-input--success {
+    @mixin themed background-color, input, success;
+  }
+
+  &.cbn-input--error {
+    @mixin themed background-color, input, error;
+  }
+}
+
+.cbn-input__field {
+  .cbn-input--success & {
+    @mixin themedParent background-color, input, success;
+  }
+
+  .cbn-input--error & {
+    @mixin themedParent background-color, input, error;
+  }
+}
+
+.cbn-input__line {
+  .cbn-input--success & {
+    @mixin themedParent background-color, input, status;
+  }
+
+  .cbn-input--error & {
+    @mixin themedParent background-color, input, status;
+  }
+}
+
+.cbn-input__line--filled {
+  .cbn-input--success & {
+    @mixin themedParent background-color, input, status;
+  }
+
+  .cbn-input--error & {
+    @mixin themedParent background-color, input, status;
+  }
+}
+
+.cbn-input__description {
+  display: flex;
+
+  padding: 4px $offset-input 4px;
+
+  .cbn-input--success + & {
+    @mixin themedParent color, input, success;
+  }
+
+  .cbn-input--error + & {
+    @mixin themedParent color, input, error;
+  }
+}
