@@ -11,9 +11,9 @@ module.exports = {
     './src/index'
   ],
   output: {
-    path: './dist',
+    path: path.resolve(__dirname, 'dist'),
     filename: 'index.js',
-    publicPath: './dist',
+    publicPath: path.resolve(__dirname, 'dist'),
     libraryTarget: 'commonjs2',
     library: 'flames'
   },
@@ -26,7 +26,8 @@ module.exports = {
   resolve: {
     alias: {
       'styles': path.resolve(__dirname, 'src/styles'),
-      'components': path.resolve(__dirname, 'src/components')
+      'components': path.resolve(__dirname, 'src/components'),
+      'utils': path.resolve(__dirname, 'src/utils')
     },
     modules: [
       __dirname,

@@ -50,6 +50,11 @@ const config = {
       components: getComponentsFunc('menu', 'src/components/menus/**/*.jsx')
     },
     {
+      name: 'Form Controls',
+      content: './templates/components/form-controls.md',
+      components: getComponentsFunc('form', 'src/components/form-controls/**/*.jsx')
+    },
+    {
       name: 'Project: Insights',
       content: './templates/projects/insights.md',
       components: getComponentsFunc('menu', 'src/components/insights/**/*.jsx')
@@ -149,6 +154,7 @@ const config = {
     resolve: {
       extensions: ['.js', '.jsx', '.css'],
       alias: {
+        'utils': path.resolve(__dirname, 'src/utils'),
         'styles': path.resolve(__dirname, 'src/styles'),
         'components': path.resolve(__dirname, 'src/components'),
         'rsg-components/ReactComponent/ReactComponentRenderer': path.resolve(__dirname + '/templates/react-styleguidist/react-component'),

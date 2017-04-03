@@ -1,0 +1,21 @@
+/** Imports **/
+
+@import '../../../styles/includes';
+
+/** Variables **/
+
+$size-switch-spacing: 14px;
+
+/** Implementation **/
+
+.cbn-switch__input {
+  display: none;
+}
+
+.cbn-switch {
+  margin-bottom: $size-switch-spacing;
+
+  &:active {
+    opacity: 0.7;
+  }
+}
