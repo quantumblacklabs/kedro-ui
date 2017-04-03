@@ -103,12 +103,17 @@ class Dropdown extends React.Component {
         if (typeof onChanged === 'function') {
           onChanged(obj);
         }
+
         if (typeof onClosed === 'function') {
           onClosed();
         }
       });
     } else {
-      this.setState({ open: false });
+      this.setState({ open: false }, () => {
+        if (typeof onClosed === 'function') {
+          onClosed();
+        }
+      });
     }
   }
 
