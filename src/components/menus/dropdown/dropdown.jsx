@@ -10,65 +10,23 @@ import DropdownRenderer from './dropdown-renderer';
 /**
  * This is a stateful component providing a rich version of a native select box.
  */
-const Dropdown = React.createClass({
-  displayName: 'Dropdown',
+class Dropdown extends React.Component {
   /**
-  * React component spec method
-  * {@link https://facebook.github.io/react/docs/react-component.html#proptypes}
-  * @return {object} Default properties
-  */
-  propTypes: {
-    /**
-    * Child items. The nodes which React will pass down, defined inside the DropdownRenderer tag
-    */
-    children: PropTypes.node.isRequired,
-    /**
-    * Default text to show in a closed unselected state
-    */
-    defaultText: PropTypes.string,
-    /**
-     * Callback function to be executed when a menu item is clicked, other than the one currently selected.
-     */
-    onChanged: PropTypes.func,
-    /**
-    * Callback to be executed after menu opens
-    */
-    onOpened: PropTypes.func,
-    /**
-    * Callback to be executed after menu closed
-    */
-    onClosed: PropTypes.func,
-    /**
-    * The theme for the component
-    */
-    theme: PropTypes.oneOf(['light', 'dark']),
-    /**
-    * The width for the component. Both the label and options are the same width
-    */
-    width: PropTypes.number
-  },
-  /**
-   * React component spec method
-   * {@link https://facebook.github.io/react/docs/react-component.html#getdefaultprops}
-   * @return {object} Default properties
+   * Create a new Dropdown view
+   * @param  {Object} props
    */
-  getDefaultProps() {
-    return {
-      children: null,
-      defaultText: 'Please select...',
-      onChanged: null,
-      onClosed: null,
-      onOpened: null,
-      theme: 'light',
-      width: 160
-    };
-  },
-  /**
-  * React component spec method
-  * {@link https://facebook.github.io/react/docs/react-component.html#getinitialstate}
-  * @return {object} An object to be used as the initial state
-  */
-  getInitialState() {
+  constructor(props) {
+    super(props);
+
+    this.displayName = 'Dropdown';
+
+    // bind method scope
+    this._findSelectedOptionElement = this._findSelectedOptionElement.bind(this);
+    this._handleLabelClicked = this._handleLabelClicked.bind(this);
+    this._handleOptionSelected = this._handleOptionSelected.bind(this);
+    this.open = this.open.bind(this);
+    this.close = this.close.bind(this);
+
     // check children for a selected option
     // otherwise, default to first
     let selectedOption = {
@@ -88,11 +46,12 @@ const Dropdown = React.createClass({
       };
     }
 
-    return {
+    this.state = {
       selectedOption,
       open: false
     };
-  },
+  }
+
   /**
    * Find the selected option by traversing sections and MenuOptions
    */
@@ -108,7 +67,8 @@ const Dropdown = React.createClass({
         find(x => x.props.selected)
       )(children)
     : find(children, c => c.props.selected);
-  },
+  }
+
   /**
    * Event handler which is fired when the label is clicked
    */
@@ -126,7 +86,8 @@ const Dropdown = React.createClass({
     }
 
     this.setState({ open: !open }, callback);
-  },
+  }
+
   /**
    * Event handler which is fired when a child item is selected
    */
@@ -149,7 +110,8 @@ const Dropdown = React.createClass({
     } else {
       this.setState({ open: false });
     }
-  },
+  }
+
   /**
    * API method to open the dropdown
    */
@@ -160,7 +122,8 @@ const Dropdown = React.createClass({
         onOpened();
       }
     });
-  },
+  }
+
   /**
    * API method to close the dropdown
    */
@@ -171,7 +134,8 @@ const Dropdown = React.createClass({
         onClosed();
       }
     });
-  },
+  }
+
   /**
    * React lifecycle method
    * {@link https://facebook.github.io/react/docs/react-component.html#render}
@@ -194,6 +158,47 @@ const Dropdown = React.createClass({
       </DropdownRenderer>
     );
   }
-});
+}
+
+Dropdown.defaultProps = {
+  children: null,
+  defaultText: 'Please select...',
+  onChanged: null,
+  onClosed: null,
+  onOpened: null,
+  theme: 'light',
+  width: 160
+};
+
+Dropdown.propTypes = {
+  /**
+  * Child items. The nodes which React will pass down, defined inside the DropdownRenderer tag
+  */
+  children: PropTypes.node.isRequired,
+  /**
+  * Default text to show in a closed unselected state
+  */
+  defaultText: PropTypes.string,
+  /**
+   * Callback function to be executed when a menu item is clicked, other than the one currently selected.
+   */
+  onChanged: PropTypes.func,
+  /**
+  * Callback to be executed after menu opens
+  */
+  onOpened: PropTypes.func,
+  /**
+  * Callback to be executed after menu closed
+  */
+  onClosed: PropTypes.func,
+  /**
+  * The theme for the component
+  */
+  theme: PropTypes.oneOf(['light', 'dark']),
+  /**
+  * The width for the component. Both the label and options are the same width
+  */
+  width: PropTypes.number
+};
 
 export default Dropdown;
