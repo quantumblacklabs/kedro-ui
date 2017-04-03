@@ -9,7 +9,7 @@ import './search-results.css';
 
 const dummyData = [
   {
-    type: 'cut',
+    type: 'copy',
     label: 'Misc Foo utilities foot'
   },
   {
@@ -17,7 +17,19 @@ const dummyData = [
     label: 'Personfoo McNamerson fOO'
   },
   {
-    label: 'FOOOSome generic FOO item'
+    type: 'undo',
+    label: 'FOOO Some ssgeneric FOO item'
+  },
+  {
+    type: 'cut',
+    label: 'Misc Foo utiasfoodflities foot'
+  },
+  {
+    type: 'refresh',
+    label: 'Personfoo McasdasdNamerson fOO'
+  },
+  {
+    label: 'FOOOSome asdfkjlasdlfjkb FOO item'
   }
 ];
 
