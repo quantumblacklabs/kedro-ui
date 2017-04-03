@@ -3,7 +3,6 @@
 ```
 <section>
   <Checkbox
-    checked={true}
     label='Hello World'
     name='test-1'
     value={1}

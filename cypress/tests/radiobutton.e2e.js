@@ -31,3 +31,4 @@ describe('Radio Button component', () => {
       .get('.cbn-switch-radio:visible input:checked')
       .should('to.have.length', 1);
   });
+});
