@@ -1,24 +1,34 @@
 import React, { PropTypes } from 'react';
+import chroma from 'chroma-js';
 import GSAP from 'react-gsap-enhancer';
 import { TimelineLite, SlowMo } from 'gsap';
 import EventIndicatorRenderer from './event-indicator-renderer';
 
 import './event-indicator.css';
 
+let colorScale = null;
+
 /**
  * Returns the color for a given index.
  * @param {number} colorIndex
  * @return {string} matching color
  */
-const _getColor = colorIndex => (
-  [
-    'rgb(24, 117, 240)',
-    'rgb(34, 153, 153)',
-    'rgb(255, 173, 19)',
-    'rgb(68, 136, 17)',
-    'rgb(153, 34, 136)'
-  ][colorIndex]
-);
+const _getColor = (colorIndex, colorsCount) => {
+  if (colorScale === null) {
+    const colors = [
+      'rgb(24, 117, 240)',
+      'rgb(34, 153, 153)',
+      'rgb(255, 173, 19)',
+      'rgb(68, 136, 17)',
+      'rgb(153, 34, 136)'
+    ];
+
+    colorScale = chroma.scale(colors)
+      .domain([0, colorsCount - 1]);
+  }
+
+  return colorScale.colors(colorsCount)[colorIndex];
+};
 
 /**
  * Event Indicator is an interactive circle created for each callback prefixed with 'on';
@@ -30,6 +40,7 @@ const EventIndicator = React.createClass({
 
   propTypes: {
     colorIndex: PropTypes.number.isRequired,
+    colorsCount: PropTypes.number,
     count: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     theme: PropTypes.oneOf(['dark', 'light'])
@@ -42,6 +53,7 @@ const EventIndicator = React.createClass({
    */
   getDefaultProps() {
     return {
+      colorsCount: 5,
       theme: 'dark'
     };
   },
@@ -123,7 +135,7 @@ const EventIndicator = React.createClass({
         className='cbn-sg-playground__event-wrapper'
         ref={indicator => { this._indicator = indicator; }}>
         <EventIndicatorRenderer
-          color={_getColor(this.props.colorIndex)}
+          color={_getColor(this.props.colorIndex, this.props.colorsCount)}
           count={this.props.count}
           name={this.props.name}
           theme={this.props.theme} />

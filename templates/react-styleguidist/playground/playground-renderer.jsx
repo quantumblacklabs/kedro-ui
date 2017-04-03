@@ -39,6 +39,7 @@ const PlaygroundRenderer = ({
               <EventIndicator
                 key={name}
                 colorIndex={i}
+                colorsCount={Object.keys(callbackMeta).length}
                 count={callbackMeta[name].count}
                 name={name}
                 theme={themes[activeThemeIndex]} />

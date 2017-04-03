@@ -69,6 +69,7 @@
     "babel-preset-env": "^1.2.1",
     "babel-preset-react": "^6.11.1",
     "babel-register": "^6.18.0",
+    "chroma-js": "^1.2.2",
     "classnames": "^2.2.5",
     "css-loader": "^0.26.1",
     "es6-object-assign": "^1.0.3",

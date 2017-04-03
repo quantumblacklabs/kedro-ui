@@ -38,6 +38,8 @@
 <div
     className='example-indicator'
     onClick={ null }
+    onMouseOver={ null }
+    onMouseOut={ null }
     style={{ cursor: 'pointer' }}>
     <Icon type='refresh' size='large' title='' color='cornflowerblue' theme='light' />
     <span style={{ display: 'block' }}>Click!</span>
