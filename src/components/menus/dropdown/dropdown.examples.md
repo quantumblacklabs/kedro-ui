@@ -65,7 +65,11 @@ A default selected null first option can be used to provide an alternative to de
 Programmatic opening and closing of the Dropdown via `.open()` and `.close()` API methods.
 
 ```
-const Wrap = React.createClass({
+class Wrap extends React.Component {
+    constructor(props) {
+      super(props);
+    }
+
     render() {
         return (
             <div>
@@ -81,7 +85,7 @@ const Wrap = React.createClass({
             </div>
         );
     }
-});
+}
 
 <Wrap />
 

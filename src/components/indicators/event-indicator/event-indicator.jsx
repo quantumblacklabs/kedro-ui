@@ -34,29 +34,18 @@ const _getColor = (colorIndex, colorsCount) => {
  * Event Indicator is an interactive circle created for each callback prefixed with 'on';
  * a number inside the circle indicates the number of times it was called.
  */
-const EventIndicator = React.createClass({
-
-  displayName: 'EventIndicator',
-
-  propTypes: {
-    colorIndex: PropTypes.number.isRequired,
-    colorsCount: PropTypes.number,
-    count: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    theme: PropTypes.oneOf(['dark', 'light'])
-  },
-
+class EventIndicator extends React.Component {
   /**
-   * React component spec method
-   * {@link https://facebook.github.io/react/docs/react-component.html#getdefaultprops}
-   * @return {object} Default properties
+   * Create new EventIndicator component
+   * @param  {Object} props for component
    */
-  getDefaultProps() {
-    return {
-      colorsCount: 5,
-      theme: 'dark'
-    };
-  },
+  constructor(props) {
+    super(props);
+
+    this.displayName = 'EventIndicator';
+
+    this._createAnimation = this._createAnimation.bind(this);
+  }
 
   /**
    * React lifecycle method
@@ -66,7 +55,7 @@ const EventIndicator = React.createClass({
    */
   componentDidMount() {
     this._anim = this.addAnimation(this._createAnimation);
-  },
+  }
 
   /**
    * React lifecycle method
@@ -77,7 +66,7 @@ const EventIndicator = React.createClass({
     if (nextProps.count !== this.props.count && this._anim) {
       this._anim.restart();
     }
-  },
+  }
 
   /**
    * React lifecycle method
@@ -87,7 +76,7 @@ const EventIndicator = React.createClass({
    */
   componentWillUnmount() {
     this._anim.kill();
-  },
+  }
 
   /**
    * Animation wrapper made with GSAP.
@@ -122,7 +111,7 @@ const EventIndicator = React.createClass({
     animationTimeline.add(borderTimeline, 0);
 
     return animationTimeline;
-  },
+  }
 
   /**
    * React lifecycle method
@@ -142,6 +131,34 @@ const EventIndicator = React.createClass({
       </div>
     );
   }
-});
+}
+
+EventIndicator.defaultProps = {
+  colorsCount: 5,
+  theme: 'dark'
+};
+
+EventIndicator.propTypes = {
+  /**
+   * Index of color to fetch
+   */
+  colorIndex: PropTypes.number.isRequired,
+  /**
+   * Number of colors
+   */
+  colorsCount: PropTypes.number,
+  /**
+   * Current count on indicator
+   */
+  count: PropTypes.number.isRequired,
+  /**
+   * Name of indicator
+   */
+  name: PropTypes.string.isRequired,
+  /**
+   * Current component theme
+   */
+  theme: PropTypes.oneOf(['dark', 'light'])
+};
 
 export default GSAP()(EventIndicator);
