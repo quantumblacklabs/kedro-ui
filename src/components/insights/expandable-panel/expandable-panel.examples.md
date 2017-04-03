@@ -22,16 +22,20 @@
 
 ## An expandable-panel showing a potential parent interaction
 ```
-const SectionView = React.createClass({
-    getInitialState() {
-      return {
+class SectionView extends React.Component {
+    constructor(props) {
+      super(props);
+
+      this.onClick = this.onClick.bind(this);
+
+      this.state = {
         isOpen: true
       }
-    },
+    }
 
     onClick() {
       this.setState({ isOpen: !this.state.isOpen});
-    },
+    }
 
     render() {
       const style = { background: "#FFFFFF", padding: '20px' };
@@ -54,7 +58,7 @@ const SectionView = React.createClass({
                 </ExpandablePanel>
              </section>
     }
-});
+};
 
 <SectionView></SectionView>
 ```

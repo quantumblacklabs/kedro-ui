@@ -4,26 +4,34 @@ import debounce from 'lodash/debounce';
 
 import './styles.css';
 
-const Playground = React.createClass({
-  getInitialState() {
+class Playground extends React.Component {
+  constructor(props) {
+    super(props);
+
     // store initial code for resetting later
     this.initialCode = this.props.code;
 
     // don't trigger the change on every change, wait to apply
     this._handleCodeChange = debounce(this._handleCodeChange.bind(this), 500);
+    this._handleEventCallbackFired = this._handleEventCallbackFired.bind(this);
+    this._incCallbackCounts = this._incCallbackCounts.bind(this);
+    this._handleGridToggled = this._handleGridToggled.bind(this);
+    this._handleResetTapped = this._handleResetTapped.bind(this);
+    this._handleThemeChanged = this._handleThemeChanged.bind(this);
+    this._handleCodeChange = this._handleCodeChange.bind(this);
 
-    return {
+    this.state = {
       activeThemeIndex: 1,
       grid: false,
       themes: ['light', 'dark'],
       callbackMeta: {},
       code: this.props.code
     };
-  },
+  }
 
   _handleEventCallbackFired({ name }) {
     this._incCallbackCounts(name);
-  },
+  }
 
   _incCallbackCounts(name) {
     const { callbackMeta } = this.state;
@@ -48,31 +56,31 @@ const Playground = React.createClass({
         callbackMeta: Object.assign(callbackMeta, newObj)
       });
     }
-  },
+  }
 
   _handleGridToggled() {
     this.setState({
       grid: !this.state.grid
     });
-  },
+  }
 
   _handleResetTapped() {
     this.setState({
       code: this.initialCode
     });
-  },
+  }
 
   _handleThemeChanged(e) {
     this.setState({
       activeThemeIndex: e.value
     });
-  },
+  }
 
   _handleCodeChange(code) {
     this.setState({
       code
     });
-  },
+  }
 
   render() {
     return PlaygroundRenderer({
@@ -89,6 +97,6 @@ const Playground = React.createClass({
       themes: this.state.themes
     });
   }
-});
+}
 
 export default Playground;
