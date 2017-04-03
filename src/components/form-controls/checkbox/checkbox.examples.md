@@ -4,22 +4,23 @@
 <section>
   <Checkbox
     label='Hello World'
-    name='test'
+    name='test-1'
     value={1}
   />
   <Checkbox
     label='Hello World'
-    name='test'
+    disabled={true}
+    name='test-2'
     value={1}
   />
   <Checkbox
     label='Hello World'
-    name='test'
+    name='test-3'
     value={1}
   />
   <Checkbox
     label='Hello World'
-    name='test'
+    name='test-4'
     value={1}
   />
 </section>

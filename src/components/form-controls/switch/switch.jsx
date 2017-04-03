@@ -11,7 +11,8 @@ import './switch.css';
  * Generic switch view, used to create controls such as radio buttons and
  * toggle buttons
  */
-const Switch = ({ children,
+const Switch = ({ checked,
+                  children,
                   disabled,
                   id,
                   name,
@@ -20,6 +21,13 @@ const Switch = ({ children,
                   type,
                   value }) => {
   let _handleOnChange = null;
+  let _extraProps = {};
+
+  if (checked) {
+    _extraProps = {
+      defaultChecked: true
+    };
+  }
 
   // if onChange function has been supplied
   // fire with event and radio value
@@ -44,6 +52,7 @@ const Switch = ({ children,
   return (
     <div className={_containerClassNames}>
       <input
+        {..._extraProps}
         className='cbn-switch__input'
         disabled={disabled}
         id={id}
@@ -59,6 +68,7 @@ const Switch = ({ children,
 // Props
 
 Switch.defaultProps = {
+  checked: false,
   children: null,
   disabled: false,
   onChange: null,
@@ -66,6 +76,10 @@ Switch.defaultProps = {
 };
 
 Switch.propTypes = {
+  /**
+   * Set the selected / deselected state to switch component
+   */
+  checked: React.PropTypes.bool,
   /**
    * If needed, you can supply the switch with extra elements
    */

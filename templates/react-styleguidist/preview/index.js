@@ -84,9 +84,10 @@ export default class Preview extends Component {
 
         // create a callback function which will call this class' props.onCallbackFired
         // which is used to visually show when a callback is firing!
-        createCallback(cb, details) {
+        createCallback(cb, details, originalCb) {
           return e => {
             cb({ e, ...details });
+            typeof originalCb === 'function' && originalCb(e);
           }
         }
 
@@ -96,7 +97,9 @@ export default class Preview extends Component {
           // extend props by overriding any null callbacks with our fancy callback indicators
           let newProps = {};
           for (var key in one.props) {
-            newProps[key] = one.props[key] === null && /^on/.test(key) ? this.createCallback(this.props.onCallbackFired, { name: key }) : one.props[key];
+            newProps[key] = /^on[A-Z]/.test(key)
+              ? this.createCallback(this.props.onCallbackFired, { name: key }, one.props[key])
+              : one.props[key];
           }
 
           return React.cloneElement(one, newProps);

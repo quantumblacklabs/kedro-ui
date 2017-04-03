@@ -6,6 +6,7 @@
     checked={true}
     label='Hello World'
     name='test'
+    checked={true}
     value={1}
   />
   <RadioButton

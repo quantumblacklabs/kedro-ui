@@ -1,4 +1,4 @@
-var path = require('path');
+const path = require('path');
 
 module.exports = {
   resolve: {
@@ -7,7 +7,9 @@ module.exports = {
       'node_modules',
       path.resolve(__dirname, 'src')
     ],
-    alias: {},
+    alias: {
+      'components': path.resolve(__dirname + '/src/components')
+    },
     extensions: ['.js', '.jsx', '.css']
   },
   module: {

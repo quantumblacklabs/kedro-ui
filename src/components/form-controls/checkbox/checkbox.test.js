@@ -1,15 +1,15 @@
 import test from 'ava';
 import React from 'react';
 import { shallow } from 'enzyme';
-import RadioButton from './radio-button';
+import Checkbox from './checkbox';
 
-test('RadioButton should be a function', t => {
-  t.is(typeof RadioButton, 'function');
+test('Checkbox should be a function', t => {
+  t.is(typeof Checkbox, 'function');
 });
 
-test('RadioButton should create a valid React Component when called with required props', t => {
+test('Checkbox should create a valid React Component when called with required props', t => {
   const wrapper = shallow(
-    <RadioButton
+    <Checkbox
       label='hello world'
       name='test'
       value={1} />

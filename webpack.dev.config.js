@@ -12,7 +12,7 @@ module.exports = {
   ],
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'index.min.js',
+    filename: 'index.js',
     publicPath: path.resolve(__dirname, 'dist'),
     libraryTarget: 'commonjs2',
     library: 'flames'
@@ -40,14 +40,8 @@ module.exports = {
       'currying': true,
       'flattening': true
     }),
-    new ExtractTextPlugin('carbon-ui.min.css'),
-    new webpack.NoEmitOnErrorsPlugin(),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      },
-      sourceMap: false
-    })
+    new ExtractTextPlugin('carbon-ui.css'),
+    new webpack.NoEmitOnErrorsPlugin()
   ],
   module: {
     rules: [

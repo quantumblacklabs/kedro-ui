@@ -6,6 +6,7 @@
 
 $size-dot-dimension: 20px;
 $size-radio-button-spacing: 14px;
+$size-checkmark: 24px;
 
 /** Implementation **/
 
@@ -23,60 +24,42 @@ $size-radio-button-spacing: 14px;
 
   border: 2px solid;
 
-  &::before {
-    @mixin themedParent background, radiobutton, default;
-
-    position: absolute;
-
-    top: 50%;
-    left: 50%;
-
-    content: ' ';
-
-    width: 0%;
-    height: 0%;
-
-    opacity: 0;
-
-    transform: translate(-50%, -50%);
-
-    transition: all 0.3s;
-
-    clip-path: url('#clip-svg');
-  }
-
   .cbn-switch__input:checked + .cbn-switch-checkbox__label & {
-    &::before {
-      width: 100%;
-      height: 100%;
-
-      opacity: 1;
-    }
-
-    .cbn-icon {
-      opacity: 1;
-    }
+    opacity: 1;
   }
 
   .cbn-switch-checkbox--disabled & {
     @mixin themedParent border-color, radiobutton, disabled;
   }
+}
 
-  .cbn-icon {
-    position: absolute;
+.cbn-switch-checkbox__label {
+  position: relative;
+}
 
-    top: 50%;
-    left: 50%;
+.cbn-switch-checkbox__inner {
+  position: absolute;
 
-    width: 12px;
+  top: 50%;
+  left: 50%;
 
-    opacity: 0;
+  width: 1px;
+  height: 1px;
 
-    transform: translate(-50%, -50%);
+  transition: 0.2s all;
+  transform: translate(-50%, -50%);
 
-    svg {
-      @mixin themedParent fill, checkbox;
-    }
+  .cbn-switch__input:checked + .cbn-switch-checkbox__label & {
+    width: $size-checkmark;
+    height: $size-checkmark;
+
+    transition: 0.2s all;
+  }
+}
+
+.cbn-switch-checkbox__innerfill {
+  .cbn-switch__input:checked + .cbn-switch-checkbox__label & {
+    @mixin themedParent fill, radiobutton;
   }
 }
 

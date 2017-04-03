@@ -1,6 +1,6 @@
 {
   "name": "@quantumblack/carbon-ui-components",
-  "version": "0.3.4",
+  "version": "0.4.0",
   "description": "A collection of React components which are used in Carbon UI",
   "main": "dist/index.js",
   "scripts": {
@@ -8,15 +8,17 @@
     "docs:server": "styleguidist server",
     "static": "node server.js",
     "build": "webpack -p --config webpack.build.config.js",
+    "build:dev": "webpack -d --config webpack.dev.config.js",
     "docs:build": "styleguidist build",
-    "postinstall": "npm run build",
+    "postinstall": "npm run build:dev && npm run build",
     "prepush": "npm run test",
     "prepublish": "npm run test",
     "stylelint": "stylelint templates/**/*.css --config stylelint.config.js",
-    "eslint": "eslint src/*.js src/**/*.js src/**/*.jsx",
+    "eslint": "eslint src/**/*.js src/**/*.jsx",
     "ava": "CONFIG=$(pwd)/webpack.ava.config.js NODE_ENV=AVA BABEL_DISABLE_CACHE=1 ava",
+    "test:coverage": "nyc npm test",
     "test": "npm run eslint && npm run ava",
-    "e2e": "cypress run --config fileServerFolder=styleguide,baseUrl="
+    "e2e": "npm run docs:build && cypress run --config fileServerFolder=styleguide,baseUrl="
   },
   "ava": {
     "files": [
@@ -29,6 +31,17 @@
       "babel-register",
       "ignore-styles",
       "./test/helpers/setup-browser-env.js"
+    ]
+  },
+  "nyc": {
+    "reporter": [
+      "lcov",
+      "cobertura",
+      "text",
+      "html"
+    ],
+    "extension": [
+      ".jsx"
     ]
   },
   "repository": {
@@ -50,8 +63,8 @@
       "email": "susana.costa@quantumblack.com"
     },
     {
-      "name": "Lucia Koncincova",
-      "email": "lucia.koncincova@quantumblack.com"
+      "name": "Lucia Kocincova",
+      "email": "lucia.kocincova@quantumblack.com"
     },
     {
       "name": "Ottis Kelleghan",
@@ -59,7 +72,7 @@
     }
   ],
   "dependencies": {
-    "@quantumblack/carbon-ui-core": "^1.1.0",
+    "@quantumblack/carbon-ui-core": "^1.1.1",
     "@quantumblack/javascript-standards": "^1.6.1",
     "autoprefixer": "^6.7.2",
     "babel-core": "^6.21.0",
@@ -70,6 +83,7 @@
     "babel-preset-env": "^1.2.1",
     "babel-preset-react": "^6.11.1",
     "babel-register": "^6.18.0",
+    "chroma-js": "^1.2.2",
     "classnames": "^2.2.5",
     "css-loader": "^0.26.1",
     "es6-object-assign": "^1.0.3",
@@ -77,6 +91,7 @@
     "extract-text-webpack-plugin": "^2.0.0-rc.3",
     "file-loader": "^0.10.1",
     "glob": "^7.1.1",
+    "gsap": "^1.19.1",
     "lodash": "^4.17.4",
     "lodash-webpack-plugin": "^0.11.2",
     "postcss-cssnext": "^2.9.0",
@@ -85,6 +100,7 @@
     "precss": "^1.4.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
+    "react-gsap-enhancer": "^0.3.0",
     "react-styleguidist": "5.0.0-beta.15",
     "style-loader": "^0.13.1",
     "stylelint": "^7.9.0",
@@ -105,6 +121,7 @@
     "eslint-plugin-react": "^6.9.0",
     "eslint-plugin-require-jsdoc": "^1.0.4",
     "ignore-styles": "^5.0.1",
+    "nyc": "^10.1.2",
     "react-addons-test-utils": "^15.4.2",
     "sinon": "^1.17.7"
   },
