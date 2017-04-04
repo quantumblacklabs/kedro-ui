@@ -59,12 +59,8 @@
   }
 
   &__label {
-    span {
-      opacity: 0.6;
-    }
-
     b {
-      font-weight: bold;
+      opacity: 0.5;
     }
   }
 

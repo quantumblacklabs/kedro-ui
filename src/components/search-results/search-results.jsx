@@ -7,61 +7,6 @@ import SearchResultsRenderer from './search-results-renderer';
 
 import './search-results.css';
 
-const dummyData = [
-  {
-    type: 'copy',
-    label: 'Misc Foo utilities foot'
-  },
-  {
-    type: 'paste',
-    label: 'Personfoo McNamerson fOO'
-  },
-  {
-    type: 'undo',
-    label: 'FOOO Some ssgeneric FOO item'
-  },
-  {
-    type: 'cut',
-    label: 'Misc Foo utiasfoodflities foot'
-  },
-  {
-    type: 'refresh',
-    label: 'Personfoo McasdasdNamerson fOO'
-  },
-  {
-    label: 'FOOOSome asdfkjlasdlfjkb FOO item'
-  }
-];
-
-
-/**
- * Find and highlight relevant keywords within a block of text
- * @param  {string} text - The text to parse
- * @return {object} A JSX object containing an array of alternating strings and JSX
- */
-const highlightSearchValue = (text, value) => {
-  const matches = text.match(value);
-
-  if (!value || !matches) {
-    return text;
-  }
-
-  return (<div className='cbn-searchresults__label'>
-    { text.split(value)
-      .reduce((prev, current, i) => {
-        if (!i) {
-          return [
-            <span key={current}>{ current }</span>
-          ];
-        }
-        return prev.concat(
-          <b key={matches[i - 1] + current}>{ matches[i - 1] }</b>,
-          <span key={current}>{ current }</span>
-        );
-      }, [])
-    }
-  </div>);
-};
 
 /**
  * SearchResults is usually used in a search setting alongside SearchBar
@@ -70,8 +15,33 @@ const highlightSearchValue = (text, value) => {
  */
 class SearchResults extends React.Component {
   /**
+   * Find and highlight relevant keywords within a block of text
+   * @param  {string} text - The text to parse
+   * @param  {string} value - The search keyword to highlight
+   * @return {object} A JSX object containing an array of alternating strings and JSX
+   */
+  static highlightSearchValue(text, value) {
+    const matches = text.match(value);
+
+    if (!value || !matches) {
+      return text;
+    }
+
+    return (<div className='cbn-searchresults__label'>
+      { text.split(value)
+        .reduce((prev, current, i) => {
+          if (i) {
+            prev.push(<b key={matches[i - 1] + current}>{ matches[i - 1] }</b>);
+          }
+          return prev.concat(current);
+        }, [])
+      }
+    </div>);
+  }
+
+  /**
    * Create new SearchResults
-   * @param  {type} props - properties passed to component
+   * @param  {object} props - properties passed to component
    */
   constructor(props) {
     super(props);
@@ -101,11 +71,11 @@ class SearchResults extends React.Component {
    */
   render() {
     const { results, theme, value } = this.props;
-    const valueRegex = new RegExp(value, 'gi');
+    const valueRegex = value ? new RegExp(value, 'gi') : '';
 
     const filteredResults = results.filter(({ label }) => label.match(valueRegex))
       .map(result => ({
-        formattedLabel: highlightSearchValue(result.label, valueRegex),
+        formattedLabel: SearchResults.highlightSearchValue(result.label, valueRegex),
         ...result
       }));
 
@@ -121,7 +91,7 @@ class SearchResults extends React.Component {
 
 SearchResults.defaultProps = {
   onChange: null,
-  results: dummyData || [],
+  results: [],
   theme: 'dark',
   value: 'foo'
 };
