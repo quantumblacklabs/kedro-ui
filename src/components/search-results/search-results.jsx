@@ -31,7 +31,7 @@ class SearchResults extends React.Component {
       { text.split(value)
         .reduce((prev, current, i) => {
           if (i) {
-            prev.push(<b key={matches[i - 1] + current}>{ matches[i - 1] }</b>);
+            prev.push(<b key={matches[i - 1] + current + i}>{ matches[i - 1] }</b>);
           }
           return prev.concat(current);
         }, [])
@@ -41,29 +41,32 @@ class SearchResults extends React.Component {
 
   /**
    * Create new SearchResults
-   * @param  {object} props - properties passed to component
+   * @param {object} props - properties passed to component
    */
   constructor(props) {
     super(props);
 
     this.state = {
+      activeRow: null,
       hidden: !props.value
     };
   }
 
   /**
-   * Update hidden state when the input value changes
-   * @param  {object} newProps - properties passed to component
+   * Update state when the input value / results list change
+   * @param {object} newProps - properties passed to component
    */
-  componentWillReceiveProps(newProps) {
-    this.setState({
-      hidden: !newProps.value
-    });
+  componentWillReceiveProps({ results, value }) {
+    if (value !== this.props.value) {
+      this.setState({
+        hidden: !value
+      });
+    }
   }
 
   /**
    * Perform an action when a row is selected
-   * @param  {Event} e - native change event
+   * @param {object} e - native change event
    */
   onChange(value) {
     this.setState({
@@ -76,24 +79,34 @@ class SearchResults extends React.Component {
   }
 
   /**
+   * TODO
+   */
+  filterResults() {
+    const { results, value } = this.props;
+    const valueRegex = value ? new RegExp(value, 'gi') : '';
+    const highlight = label => 
+      SearchResults.highlightSearchValue(label, valueRegex);
+
+    return results.filter(({ label }) => label.match(valueRegex))
+      .map(result => ({
+        formattedLabel: highlight(result.label),
+        ...result
+      }));
+  }
+
+  /**
    * Render the component
    * @return {ReactElement} markup
    */
   render() {
-    const { results, theme, value } = this.props;
-    const valueRegex = value ? new RegExp(value, 'gi') : '';
-
-    const filteredResults = results.filter(({ label }) => label.match(valueRegex))
-      .map(result => ({
-        formattedLabel: SearchResults.highlightSearchValue(result.label, valueRegex),
-        ...result
-      }));
+    const { theme } = this.props;
+    const { hidden } = this.state;
 
     return (
       <SearchResultsRenderer
-        hidden={this.state.hidden}
+        hidden={hidden}
         onChange={d => this.onChange(d)}
-        results={filteredResults}
+        results={this.filterResults()}
         theme={theme} />
     );
   }
