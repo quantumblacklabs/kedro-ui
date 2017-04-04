@@ -5,7 +5,8 @@
 /** Variables **/
 
 $default-input-width: 320px;
-$offset-input: 12px;
+$padding-left-right: 11px;
+$padding-top-bottom: 7px;
 
 /** Implementation **/
 
@@ -20,7 +21,7 @@ $offset-input: 12px;
   flex-direction: column;
 
   /** padding top can be overriden if label is generated (see below) **/
-  padding: 8px $offset-input 7px;
+  padding: $padding-top-bottom $padding-left-right;
 
   border: 1px solid rgba(0, 0, 0, 0.12);
   box-sizing: border-box;
@@ -97,7 +98,7 @@ $offset-input: 12px;
 
   display: flex;
 
-  margin-bottom: 3px;
+  margin-bottom: 4px;
 
   .cbn-input--disabled & {
     @mixin themedParent color, input, placeholder;
@@ -167,7 +168,7 @@ $offset-input: 12px;
 .cbn-input__description {
   display: flex;
 
-  padding: 4px $offset-input 4px;
+  padding: 4px $padding-left-right 4px;
 
   .cbn-input--success + & {
     @mixin themedParent color, input, success;
