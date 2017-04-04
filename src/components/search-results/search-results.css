@@ -3,16 +3,28 @@
 .cbn-searchresults {
   position: relative;
 
+  margin-top: 4px;
+
   &__wrapper {
     position: absolute;
-
+    overflow: hidden;
     width: 320px;
-    max-height: 200px;
+    transition: all ease 0.3s;
+    height: 200px;
+
+    &--hidden {
+      height: 0;
+    }
+  }
+
+  &__list {
+    max-height: 100%;
     overflow: auto;
+    border-top: 1px solid map(themes, light, menu, border);
+    padding: 3px 0 4px;
     transition: all ease 0.3s;
 
-    border-top: 1px solid rgba(0, 0, 0, 0.12);
-
+    @mixin themed border-color, menu, border;
     @mixin themed background, menu, default;
     @mixin themed color, text;
 
@@ -37,10 +49,6 @@
     &.cbn-theme--dark::-webkit-scrollbar-thumb {
       background-color: map(themes, dark, menu, hover);
     }
-
-    &--hidden {
-      max-height: 0;
-    }
   }
 
   &__row {
@@ -48,7 +56,7 @@
 
     display: block;
 
-    padding: 11px 44px;
+    padding: 8px 20px 12px 44px;
     text-decoration: none;
     cursor: pointer;
 

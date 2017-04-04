@@ -15,27 +15,28 @@ const SearchResultsRenderer = ({
   results,
   theme
 }) => (
-  <div
-    className='cbn-searchresults'>
-    <ul
+  <div className='cbn-searchresults'>
+    <div
       className={classnames(
         'cbn-searchresults__wrapper',
         { 'cbn-searchresults__wrapper--hidden': hidden },
         `cbn-theme--${theme}`
       )}>
-      { results.map(result =>
-        <li
-          key={result.label}
-          className='cbn-searchresults__row'
-          onClick={() => onChange(result.label)}
-          role='option'
-          aria-selected='false'
-          tabIndex='-1'>
-          { result.type && <Icon type={result.type} size='medium' theme={theme} /> }
-          { result.formattedLabel }
-        </li>
-      ) }
-    </ul>
+      <ul className={`cbn-searchresults__list cbn-theme--${theme}`}>
+        { results.map(result =>
+          <li
+            key={result.label}
+            className='cbn-searchresults__row'
+            onClick={() => onChange(result.label)}
+            role='option'
+            aria-selected='false'
+            tabIndex='-1'>
+            { result.type && <Icon type={result.type} size='medium' theme={theme} /> }
+            { result.formattedLabel }
+          </li>
+        ) }
+      </ul>
+    </div>
   </div>
 );
 
