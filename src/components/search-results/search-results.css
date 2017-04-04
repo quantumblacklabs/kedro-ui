@@ -8,6 +8,7 @@
   &__wrapper {
     position: absolute;
     overflow: hidden;
+
     width: 320px;
     transition: all ease 0.3s;
     height: 200px;
@@ -20,35 +21,14 @@
   &__list {
     max-height: 100%;
     overflow: auto;
-    border-top: 1px solid map(themes, light, menu, border);
+
     padding: 3px 0 4px;
+    border-top: 1px solid map(themes, light, menu, border);
     transition: all ease 0.3s;
 
     @mixin themed border-color, menu, border;
     @mixin themed background, menu, default;
     @mixin themed color, text;
-
-    &::-webkit-scrollbar {
-      -webkit-appearance: none;
-
-      width: 8px;
-    }
-
-    &::-webkit-scrollbar-track {
-      opacity: 0;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      min-height: 25px;
-    }
-
-    &.cbn-theme--light::-webkit-scrollbar-thumb {
-      background-color: map(themes, light, menu, hover);
-    }
-
-    &.cbn-theme--dark::-webkit-scrollbar-thumb {
-      background-color: map(themes, dark, menu, hover);
-    }
   }
 
   &__row {
