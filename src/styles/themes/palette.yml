@@ -40,7 +40,8 @@ themes:
       disabled: rgba(0, 0, 0, 0.35)
     input:
       placeholder: rgba(0, 0, 0, 0.3)
-      textfilled: rgb(0, 0, 0)
+      placeholderFocused: rgba(0, 0, 0, 0.55)
+      textFilled: rgb(0, 0, 0)
       error: rgb(236, 53, 8)
       success: rgb(0, 195, 41)
       status: rgb(255, 255, 255)
@@ -86,7 +87,8 @@ themes:
       disabled: rgba(255, 255, 255, 0.35)
     input:
       placeholder: rgba(255, 255, 255, 0.3)
-      textfilled: rgb(255, 255, 255)
+      placeholderFocused: rgba(255, 255, 255, 0.55)
+      textFilled: rgb(255, 255, 255)
       error: rgb(236, 53, 8)
       success: rgb(0, 195, 41)
       status: rgb(255, 255, 255)

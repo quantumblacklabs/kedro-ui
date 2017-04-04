@@ -86,7 +86,7 @@ $offset-input: 12px;
   }
 
   .cbn-input--focused &::placeholder {
-    @mixin themed color, text, secondary;
+    @mixin themedParent color, input, placeholderFocused;
   }
 }
 
@@ -152,7 +152,7 @@ $offset-input: 12px;
   overflow: hidden;
 
   .cbn-input--focused & {
-    @mixin themedParent background-color, input, textfilled;
+    @mixin themedParent background-color, input, textFilled;
   }
 
   .cbn-input--success & {
