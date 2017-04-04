@@ -15,14 +15,15 @@ const SearchResultsRenderer = ({
   results,
   theme
 }) => (
-  <ul
-    className={classnames(
-      'cbn-searchresults',
-      { 'cbn-searchresults--hidden': hidden },
-      `cbn-theme--${theme}`
-    )}>
-    {
-      results.map(result =>
+  <div
+    className='cbn-searchresults'>
+    <ul
+      className={classnames(
+        'cbn-searchresults__wrapper',
+        { 'cbn-searchresults__wrapper--hidden': hidden },
+        `cbn-theme--${theme}`
+      )}>
+      { results.map(result =>
         <li
           key={result.label}
           className='cbn-searchresults__row'
@@ -33,9 +34,9 @@ const SearchResultsRenderer = ({
           { result.type && <Icon type={result.type} size='medium' theme={theme} /> }
           { result.formattedLabel }
         </li>
-      )
-    }
-  </ul>
+      ) }
+    </ul>
+  </div>
 );
 
 SearchResultsRenderer.defaultProps = {

@@ -3,40 +3,44 @@
 .cbn-searchresults {
   position: relative;
 
-  max-width: 340px;
-  max-height: 200px;
-  overflow: auto;
-  transition: all ease 0.3s;
+  &__wrapper {
+    position: absolute;
 
-  border-top: 1px solid rgba(0, 0, 0, 0.12);
+    width: 320px;
+    max-height: 200px;
+    overflow: auto;
+    transition: all ease 0.3s;
 
-  @mixin themed background, menu, default;
-  @mixin themed color, text;
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
 
-  &::-webkit-scrollbar {
-    -webkit-appearance: none;
+    @mixin themed background, menu, default;
+    @mixin themed color, text;
 
-    width: 8px;
-  }
+    &::-webkit-scrollbar {
+      -webkit-appearance: none;
 
-  &::-webkit-scrollbar-track {
-    opacity: 0;
-  }
+      width: 8px;
+    }
 
-  &::-webkit-scrollbar-thumb {
-    min-height: 25px;
-  }
+    &::-webkit-scrollbar-track {
+      opacity: 0;
+    }
 
-  &.cbn-theme--light::-webkit-scrollbar-thumb {
-    background-color: map(themes, light, menu, hover);
-  }
+    &::-webkit-scrollbar-thumb {
+      min-height: 25px;
+    }
 
-  &.cbn-theme--dark::-webkit-scrollbar-thumb {
-    background-color: map(themes, dark, menu, hover);
-  }
+    &.cbn-theme--light::-webkit-scrollbar-thumb {
+      background-color: map(themes, light, menu, hover);
+    }
 
-  &--hidden {
-    max-height: 0;
+    &.cbn-theme--dark::-webkit-scrollbar-thumb {
+      background-color: map(themes, dark, menu, hover);
+    }
+
+    &--hidden {
+      max-height: 0;
+    }
   }
 
   &__row {
