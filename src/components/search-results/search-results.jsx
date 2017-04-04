@@ -47,12 +47,22 @@ class SearchResults extends React.Component {
     super(props);
 
     this.state = {
-      hidden: false
+      hidden: !props.value
     };
   }
 
   /**
-   * Perform an action when a row is select
+   * Update hidden state when the input value changes
+   * @param  {object} newProps - properties passed to component
+   */
+  componentWillReceiveProps(newProps) {
+    this.setState({
+      hidden: !newProps.value
+    });
+  }
+
+  /**
+   * Perform an action when a row is selected
    * @param  {Event} e - native change event
    */
   onChange(value) {
