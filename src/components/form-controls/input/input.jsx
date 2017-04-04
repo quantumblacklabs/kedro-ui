@@ -6,7 +6,7 @@ import './input.css';
 // import './input-status-v3.css';
 
 /**
- * Text input component supporting placeholder, label, default value, disabled state,
+ * Controlled input component for one line of text; supporting placeholder, label, default value, disabled state,
  * error/success state and status description.
  * Even listener on change provided.
  */
@@ -122,7 +122,7 @@ Input.defaultProps = {
   status: 'default',
   statusDescription: '',
   theme: 'dark',
-  value: undefined
+  value: ''
 };
 
 Input.propTypes = {

@@ -4,7 +4,7 @@
 
 /** Variables **/
 
-$default-input-width: 296px;
+$default-input-width: 320px;
 $offset-input: 12px;
 
 /** Implementation **/
@@ -20,7 +20,7 @@ $offset-input: 12px;
   flex-direction: column;
 
   /** padding top can be overriden if label is generated (see below) **/
-  padding: 8px $offset-input $offset-input;
+  padding: 8px $offset-input 7px;
 
   border: 1px solid rgba(0, 0, 0, 0.12);
   box-sizing: border-box;
@@ -57,6 +57,8 @@ $offset-input: 12px;
   @extend %type--subhead-2;
 
   display: flex;
+
+  padding: 0;
 
   border: none;
   outline: none;
@@ -95,16 +97,10 @@ $offset-input: 12px;
 
   display: flex;
 
+  margin-bottom: 3px;
+
   .cbn-input--disabled & {
     @mixin themedParent color, input, placeholder;
-  }
-
-  .cbn-input--success & {
-    @mixin themedParent color, input, status;
-  }
-
-  .cbn-input--error & {
-    @mixin themedParent color, input, status;
   }
 }
 
@@ -112,6 +108,7 @@ $offset-input: 12px;
   display: flex;
 
   height: 1px;
+  margin-top: 3px;
 
   /** by default the background color is transparent; when in active/focus it is visible **/
   background-color: transparent;
