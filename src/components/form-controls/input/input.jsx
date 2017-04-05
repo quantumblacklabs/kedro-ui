@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
+import GSAP from 'react-gsap-enhancer';
+import { TimelineLite, Elastic } from 'gsap';
 
 import './input.css';
 // import './input-status-v2.css';
@@ -18,6 +20,8 @@ class Input extends React.Component {
   constructor(props) {
     super(props);
 
+    this.displayName = 'Input';
+
     this.state = {
       focused: false,
       value: this.props.value
@@ -26,12 +30,63 @@ class Input extends React.Component {
     this._handleFocused = this._handleFocused.bind(this);
     this._handleBlured = this._handleBlured.bind(this);
     this._handleChanged = this._handleChanged.bind(this);
+
+    this._createAnimation = this._createAnimation.bind(this);
+  }
+
+  /**
+   * React lifecycle method
+   * Adds the animation via GSAP-enhancer to the component.
+   * {@link https://facebook.github.io/react/docs/react-component.html#componentDidMount}
+   * @return {object} JSX for this component
+   */
+  componentDidMount() {
+    this._anim = this.addAnimation(this._createAnimation);
+  }
+
+  /**
+   * React lifecycle method
+   * {@link https://facebook.github.io/react/docs/react-component.html#componentDidUpdate}
+   * @return {object} JSX for this component
+   */
+  componentDidUpdate() {
+    this._anim.restart();
+  }
+
+  /**
+   * React lifecycle method
+   * Removes the animation created with GSAP-enhancer from the component.
+   * {@link https://facebook.github.io/react/docs/react-component.html#componentWillUnmount}
+   * @return {object} JSX for this component
+   */
+  componentWillUnmount() {
+    this._anim.kill();
+  }
+
+  /**
+   * Animation wrapper made with GSAP.
+   * @return {GSAP}
+   */
+  _createAnimation() {
+    const line = this._line;
+
+    const lineTimeline = new TimelineLite();
+    lineTimeline
+      .to(line, 0, { width: 0 })
+      .to(line, 1.1, { width: '100%', ease: Elastic.easeOut.config(0.6, 1) });
+
+    const animationTimeline = new TimelineLite();
+    animationTimeline.add(lineTimeline, 0);
+
+    return animationTimeline;
   }
 
   /**
    * _handleFocused - changes the focus to enabled state.
    */
   _handleFocused() {
+    this._anim.restart();
+
     this.setState({
       focused: true
     });
@@ -102,7 +157,7 @@ class Input extends React.Component {
             disabled={this.props.disabled}
             value={this.state.value}
             onChange={this._handleChanged} />
-          <div className='cbn-input__line'>
+          <div className='cbn-input__line' ref={line => { this._line = line; }}>
             <div className='cbn-input__line--filled'>
               {this.state.value}
             </div>
@@ -162,4 +217,4 @@ Input.propTypes = {
   value: PropTypes.string
 };
 
-export default Input;
+export default GSAP()(Input);
