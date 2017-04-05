@@ -26,12 +26,13 @@ class SearchResults extends React.Component {
     if (!value || !matches) {
       return text;
     }
-
+    let counter = 1;
     return (<div className='cbn-searchresults__label'>
       { text.split(value)
         .reduce((prev, current, i) => {
           if (i) {
-            prev.push(<b key={matches[i - 1] + current + i}>{ matches[i - 1] }</b>);
+            const key = matches[i - 1] + current + (counter += 1);
+            prev.push(<b key={key}>{ matches[i - 1] }</b>);
           }
           return prev.concat(current);
         }, [])
