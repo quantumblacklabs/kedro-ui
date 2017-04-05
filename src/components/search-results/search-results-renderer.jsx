@@ -11,6 +11,7 @@ import Icon from '../icon';
  */
 const SearchResultsRenderer = ({
   activeRow,
+  height,
   hidden,
   onClick,
   onMouseOver,
@@ -23,7 +24,8 @@ const SearchResultsRenderer = ({
         'cbn-searchresults__wrapper',
         { 'cbn-searchresults__wrapper--hidden': hidden },
         `cbn-theme--${theme}`
-      )}>
+      )}
+      style={{height}}>
       <ul className={`cbn-searchresults__list cbn-theme--${theme}`}>
         { results.map((result, i) =>
           <li
@@ -46,6 +48,7 @@ const SearchResultsRenderer = ({
 );
 
 SearchResultsRenderer.defaultProps = {
+  height: null,
   hidden: false,
   onClick: () => {},
   results: [],
@@ -53,6 +56,10 @@ SearchResultsRenderer.defaultProps = {
 };
 
 SearchResultsRenderer.propTypes = {
+  /**
+   * Height for the results box, to prevent it expanding before close animation
+   */
+  height: PropTypes.string,
   /**
    * Subscribe to change events when a row is selected
    */

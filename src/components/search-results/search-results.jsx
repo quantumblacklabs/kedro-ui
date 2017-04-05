@@ -40,6 +40,18 @@ class SearchResults extends React.Component {
   }
 
   /**
+   * Calculate height of scrollable results container
+   */
+  getBoxHeight() {
+    const { hidden, results } = this.props;
+    const rowCount = results.length;
+    const rowHeight = 40;
+    const rowPadding = 8;
+    const boxHeight = (rowCount * rowHeight) + rowPadding;
+    return hidden ? null : `${boxHeight}px`;
+  }
+
+  /**
    * Add a new formattedLabel field to each of the results
    * @return {object} The results array with a new field added
    */
@@ -72,6 +84,7 @@ class SearchResults extends React.Component {
     return (
       <SearchResultsRenderer
         activeRow={activeRow}
+        height={this.getBoxHeight()}
         hidden={hidden || !results.length}
         onClick={onClick}
         onMouseOver={onMouseOver}
