@@ -46,17 +46,6 @@ class Input extends React.Component {
 
   /**
    * React lifecycle method
-   * {@link https://facebook.github.io/react/docs/react-component.html#componentDidUpdate}
-   * @return {object} JSX for this component
-   */
-  componentDidUpdate() {
-    if (this.props.status === 'default') {
-      this._anim.restart();
-    }
-  }
-
-  /**
-   * React lifecycle method
    * Removes the animation created with GSAP-enhancer from the component.
    * {@link https://facebook.github.io/react/docs/react-component.html#componentWillUnmount}
    * @return {object} JSX for this component
@@ -71,14 +60,30 @@ class Input extends React.Component {
    */
   _createAnimation() {
     const line = this._line;
-
     const lineTimeline = new TimelineLite();
     lineTimeline
       .to(line, 0, { width: 0 })
       .to(line, 1.1, { width: '100%', ease: Elastic.easeOut.config(0.6, 1) });
 
+    const desc = this._description;
+    const descTimeline = new TimelineLite();
+    if (desc) {
+      // descTimeline
+      //   .to(desc, 0, { y: '-50px', opacity: 0 })
+      //   .to(desc, 1, { y: 0, opacity: 1 });
+      // descTimeline
+      //   .to(desc, 0, { x: '-10px', opacity: 0 })
+      //   .to(desc, 1, { x: 0, opacity: 1 });
+      descTimeline
+        .to(desc, 0, { opacity: 0 })
+        .to(desc, 1, { opacity: 1 });
+    }
+
     const animationTimeline = new TimelineLite();
     animationTimeline.add(lineTimeline, 0);
+    if (desc) {
+      animationTimeline.add(descTimeline, 0);
+    }
 
     return animationTimeline;
   }
@@ -136,7 +141,7 @@ class Input extends React.Component {
 
     // status description shown only if status is relevant and description is passed
     const description = this.props.status !== 'default' && this.props.statusDescription && (
-      <div className='cbn-input__description'>
+      <div className='cbn-input__description' ref={desc => { this._description = desc; }}>
         {this.props.statusDescription}
       </div>
     );
