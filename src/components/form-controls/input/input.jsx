@@ -50,7 +50,9 @@ class Input extends React.Component {
    * @return {object} JSX for this component
    */
   componentDidUpdate() {
-    this._anim.restart();
+    if (this.props.status === 'default') {
+      this._anim.restart();
+    }
   }
 
   /**
@@ -85,7 +87,9 @@ class Input extends React.Component {
    * _handleFocused - changes the focus to enabled state.
    */
   _handleFocused() {
-    this._anim.restart();
+    if (this.props.status === 'default') {
+      this._anim.restart();
+    }
 
     this.setState({
       focused: true
