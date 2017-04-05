@@ -25,6 +25,7 @@
     padding: 3px 0 4px;
     border-top: 1px solid map(themes, light, menu, border);
     transition: all ease 0.3s;
+    box-sizing: border-box;
 
     @mixin themed border-color, menu, border;
     @mixin themed background, menu, default;
@@ -40,6 +41,7 @@
     text-decoration: none;
     cursor: pointer;
 
+    &--active,
     &:hover,
     &:focus {
       @mixin themedParent background, menu, hover;

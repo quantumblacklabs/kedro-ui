@@ -40,58 +40,19 @@ class SearchResults extends React.Component {
   }
 
   /**
-   * Create new SearchResults
-   * @param {object} props - properties passed to component
+   * Add a new formattedLabel field to each of the results
+   * @return {object} The results array with a new field added
    */
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      activeRow: null,
-      hidden: !props.value
-    };
-  }
-
-  /**
-   * Update state when the input value / results list change
-   * @param {object} newProps - properties passed to component
-   */
-  componentWillReceiveProps({ results, value }) {
-    if (value !== this.props.value) {
-      this.setState({
-        hidden: !value
-      });
-    }
-  }
-
-  /**
-   * Perform an action when a row is selected
-   * @param {object} e - native change event
-   */
-  onChange(value) {
-    this.setState({
-      hidden: true
-    });
-
-    if (typeof this.props.onChange === 'function') {
-      this.props.onChange(value);
-    }
-  }
-
-  /**
-   * TODO
-   */
-  filterResults() {
+  formatResults() {
     const { results, value } = this.props;
     const valueRegex = value ? new RegExp(value, 'gi') : '';
     const highlight = label => 
       SearchResults.highlightSearchValue(label, valueRegex);
 
-    return results.filter(({ label }) => label.match(valueRegex))
-      .map(result => ({
-        formattedLabel: highlight(result.label),
-        ...result
-      }));
+    return results.map(result => ({
+      formattedLabel: highlight(result.label),
+      ...result
+    }));
   }
 
   /**
@@ -99,39 +60,64 @@ class SearchResults extends React.Component {
    * @return {ReactElement} markup
    */
   render() {
-    const { theme } = this.props;
-    const { hidden } = this.state;
+    const {
+      activeRow,
+      hidden,
+      onClick,
+      onMouseOver,
+      results,
+      theme
+    } = this.props;
 
     return (
       <SearchResultsRenderer
-        hidden={hidden}
-        onChange={d => this.onChange(d)}
-        results={this.filterResults()}
+        activeRow={activeRow}
+        hidden={hidden || !results.length}
+        onClick={onClick}
+        onMouseOver={onMouseOver}
+        results={this.formatResults()}
         theme={theme} />
     );
   }
 }
 
 SearchResults.defaultProps = {
-  onChange: null,
+  activeRow: null,
+  hidden: true,
+  onClick: () => {},
+  onMouseOver: () => {},
   results: [],
   theme: 'dark',
-  value: 'foo'
+  value: ''
 };
 
 SearchResults.propTypes = {
   /**
-   * Subscribe to change events when a row is selected
+   * The index for an active (keyboard-selected) row
    */
-  onChange: PropTypes.func,
+  activeRow: PropTypes.number,
   /**
-   * An unfiltered array of results
+   * Show/hide the menu
+   */
+  hidden: PropTypes.bool,
+  /**
+   * Handle click events, e.g. when selecting a row
+   */
+  onClick: PropTypes.func,
+  /**
+   * Handle mouseover events, e.g. for deselecting the active row
+   */
+  onMouseOver: PropTypes.func,
+  /**
+   * A pre-filtered array of results to show.
+   * Each row should contain a required 'label' text property (string),
+   * and an optional 'type' property (string) for the icon
    */
   results: PropTypes.array.isRequired,
   /**
    * Theme of the component
    */
-  theme: PropTypes.string.isRequired,
+  theme: PropTypes.string,
   /**
    * User-input search string
    */

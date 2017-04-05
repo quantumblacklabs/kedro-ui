@@ -10,12 +10,14 @@ import Icon from '../icon';
  * SearchResultsRenderer, used to output the actual DOM makeup for the component
  */
 const SearchResultsRenderer = ({
+  activeRow,
   hidden,
-  onChange,
+  onClick,
+  onMouseOver,
   results,
   theme
 }) => (
-  <div className='cbn-searchresults'>
+  <div className='cbn-searchresults' onMouseOver={onMouseOver}>
     <div
       className={classnames(
         'cbn-searchresults__wrapper',
@@ -23,13 +25,16 @@ const SearchResultsRenderer = ({
         `cbn-theme--${theme}`
       )}>
       <ul className={`cbn-searchresults__list cbn-theme--${theme}`}>
-        { results.map(result =>
+        { results.map((result, i) =>
           <li
             key={result.label}
-            className='cbn-searchresults__row'
-            onClick={() => onChange(result.label)}
+            className={classnames(
+              'cbn-searchresults__row',
+              { 'cbn-searchresults__row--active': activeRow === i }
+            )}
+            onClick={() => onClick(result.label)}
             role='option'
-            aria-selected='false'
+            aria-selected={activeRow === i ? 'true' : 'false'}
             tabIndex='-1'>
             { result.type && <Icon type={result.type} size='medium' theme={theme} /> }
             { result.formattedLabel }
@@ -42,7 +47,7 @@ const SearchResultsRenderer = ({
 
 SearchResultsRenderer.defaultProps = {
   hidden: false,
-  onChange: () => {},
+  onClick: () => {},
   results: [],
   theme: 'dark'
 };
@@ -55,7 +60,7 @@ SearchResultsRenderer.propTypes = {
   /**
    * Subscribe to change events when a row is selected
    */
-  onChange: PropTypes.func,
+  onClick: PropTypes.func,
   /**
    * A filtered array of results
    */
