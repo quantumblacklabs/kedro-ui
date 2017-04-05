@@ -20,7 +20,7 @@ class SearchResults extends React.Component {
    * @param  {string} value - The search keyword to highlight
    * @return {object} A JSX object containing an array of alternating strings and JSX
    */
-  static highlightSearchValue(text, value) {
+  static highlightSearchTerm(text, value) {
     const matches = text.match(value);
 
     if (!value || !matches) {
@@ -41,6 +41,24 @@ class SearchResults extends React.Component {
   }
 
   /**
+   * …
+   */
+  static truncateString(text, value) {
+    const maxLength = 30;
+    if (text.length < maxLength || !value) {
+      return text;
+    }
+    if (text.search(value) > maxLength) {
+      const start = Math.min(
+        text.length - maxLength,
+        text.search(value),
+      );
+      return `…${text.substr(start, maxLength)}`;
+    }
+    return `${text.substr(0, maxLength)}…`;
+  }
+
+  /**
    * Calculate height of scrollable results container
    */
   getBoxHeight() {
@@ -57,13 +75,15 @@ class SearchResults extends React.Component {
    * @return {object} The results array with a new field added
    */
   formatResults() {
+    const { highlightSearchTerm, truncateString } = SearchResults;
     const { results, value } = this.props;
     const valueRegex = value ? new RegExp(value, 'gi') : '';
-    const highlight = label => 
-      SearchResults.highlightSearchValue(label, valueRegex);
 
     return results.map(result => ({
-      formattedLabel: highlight(result.label),
+      formattedLabel: highlightSearchTerm(
+        truncateString(result.label, valueRegex),
+        valueRegex
+      ),
       ...result
     }));
   }
