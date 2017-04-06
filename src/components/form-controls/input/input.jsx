@@ -73,8 +73,17 @@ class Input extends React.Component {
     const line = this._line;
     const lineTimeline = new TimelineLite();
     lineTimeline
-      .to(line, 0, { width: 0 })
-      .to(line, 1.1, { width: '100%', ease: Elastic.easeOut.config(0.6, 1) });
+      .to(line, 0, {
+        width: 0,
+        height: '3px',
+        marginTop: 0
+      })
+      .to(line, 1, {
+        width: '100%',
+        height: '1px',
+        marginTop: '2px',
+        ease: Elastic.easeOut.config(0.3, 1)
+      });
 
     const desc = this._description;
     const descTimeline = new TimelineLite();
