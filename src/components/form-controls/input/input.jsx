@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 import GSAP from 'react-gsap-enhancer';
-import { TimelineLite, Elastic } from 'gsap';
+import { TimelineLite, Elastic, Power1 } from 'gsap';
 
 import './input.css';
 // import './input-status-v2.css';
@@ -87,23 +87,19 @@ class Input extends React.Component {
 
     const desc = this._description;
     const descTimeline = new TimelineLite();
-    if (desc) {
-      // descTimeline
-      //   .to(desc, 0, { y: '-50px', opacity: 0 })
-      //   .to(desc, 1, { y: 0, opacity: 1 });
-      // descTimeline
-      //   .to(desc, 0, { x: '-10px', opacity: 0 })
-      //   .to(desc, 1, { x: 0, opacity: 1 });
-      descTimeline
-        .to(desc, 0, { opacity: 0 })
-        .to(desc, 1, { opacity: 1 });
-    }
+    // descTimeline
+    //   .to(desc, 0, { y: '-50px', opacity: 0 })
+    //   .to(desc, 1, { y: 0, opacity: 1 });
+    // descTimeline
+    //   .to(desc, 0, { x: '-10px', opacity: 0 })
+    //   .to(desc, 1, { x: 0, opacity: 1 });
+    descTimeline
+      .to(desc, 0, { opacity: 0.1, ease: Power1.easeIn })
+      .to(desc, 0.7, { opacity: 1, ease: Power1.easeIn });
 
     const animationTimeline = new TimelineLite();
     animationTimeline.add(lineTimeline, 0);
-    if (desc) {
-      animationTimeline.add(descTimeline, 0);
-    }
+    animationTimeline.add(descTimeline, 0);
 
     return animationTimeline;
   }
@@ -159,13 +155,6 @@ class Input extends React.Component {
       </div>
     );
 
-    // status description shown only if status is relevant and description is passed
-    const description = this.props.status !== 'default' && this.props.statusDescription && (
-      <div className='cbn-input__description' ref={desc => { this._description = desc; }}>
-        {this.props.statusDescription}
-      </div>
-    );
-
     return (
       <div className='cbn-input-wrapper'>
         <div
@@ -192,7 +181,9 @@ class Input extends React.Component {
             </div>
           </div>
         </div>
-        {description}
+        <div className='cbn-input__description' ref={desc => { this._description = desc; }}>
+          {this.props.status !== 'default' && this.props.statusDescription && this.props.statusDescription}
+        </div>
       </div>
     );
   }
