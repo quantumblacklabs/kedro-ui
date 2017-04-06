@@ -46,6 +46,17 @@ class Input extends React.Component {
 
   /**
    * React lifecycle method
+   * {@link https://facebook.github.io/react/docs/react-component.html#componentDidUpdate}
+   * @return {object} JSX for this component
+   */
+  componentDidUpdate(nextProps) {
+    if (!this.state.focused || this.props.status !== nextProps.status) {
+      this._anim.restart();
+    }
+  }
+
+  /**
+   * React lifecycle method
    * Removes the animation created with GSAP-enhancer from the component.
    * {@link https://facebook.github.io/react/docs/react-component.html#componentWillUnmount}
    * @return {object} JSX for this component
@@ -214,6 +225,7 @@ Input.propTypes = {
   /**
    * Description of the status - either message on success or an error.
    * Will be displayed only if the status is different than 'default'.
+   * Can be only a string of arbitrary length, but not HTML or other formats.
    */
   statusDescription: PropTypes.string,
   /**

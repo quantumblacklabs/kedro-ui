@@ -97,3 +97,85 @@
         value='Light is a wave and a particle.' />
 </section>
 ```
+
+## Example of a form with dummy validation
+```
+const data = [
+    {
+        label: 'Name',
+        placeholder: 'Enter you first names',
+        status: 'error',
+        statusDescription: 'Something went wrong... Correct the input.',
+        key: 'input-1'
+    },
+    {
+        label: 'Surname',
+        placeholder: 'Enter you surnames',
+        status: 'error',
+        key: 'input-2'
+    },    
+    {
+        label: 'Address',
+        placeholder: 'Enter your street name',
+        status: 'success',
+        key: 'input-3'
+    },
+    {
+        label: 'Postcode',
+        placeholder: 'Enter your postcode',
+        status: 'error',
+        statusDescription: 'Something went wrong... Please make sure that your entered postcode is a correct UK postcode. If you do not live in the UK, please enter "N/A". Postcodes of other countries are not allowed to be entered here. Yeah, this is a long message. Quite long.',
+        key: 'input-4'
+    },
+    {
+        label: 'City',
+        placeholder: 'Enter your city',
+        status: 'success',
+        statusDescription: 'You live on Earth, yay!',
+        key: 'input-5'
+    },
+];
+
+class Wrap extends React.Component {
+    constructor(props) {
+      super(props);
+
+      this.state = {
+          displayStatus: false
+      };
+
+      this._validate = this._validate.bind(this);
+    }
+
+    _validate() {
+        this.setState({
+            displayStatus: !this.state.displayStatus
+        });
+    }
+
+    render() {
+        return (
+            <div>
+                { data.map(d => (
+                    <div key={d.key}>
+                        <Input
+                            label={d.label}
+                            placeholder={d.placeholder}
+                            status={this.state.displayStatus ? d.status : 'default'}
+                            statusDescription={d.statusDescription} />
+                        <br />
+                    </div>
+                ))}
+                <Icon
+                    type='tick'
+                    size='large'
+                    title='Validate'
+                    color='rgb(0, 195, 41)'
+                    onClick={this._validate} />
+            </div>
+        );
+    }
+}
+
+<Wrap />
+```
