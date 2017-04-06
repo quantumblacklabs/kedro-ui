@@ -7,7 +7,6 @@ import SearchResultsRenderer from './search-results-renderer';
 
 import './search-results.css';
 
-
 /**
  * SearchResults is usually used in a search setting alongside SearchBar
  * i.e. user types into search input, and SearchResults receives the
@@ -17,18 +16,18 @@ class SearchResults extends React.Component {
   /**
    * Find and highlight relevant keywords within a block of text
    * @param  {string} text - The text to parse
-   * @param  {string} value - The search keyword to highlight
+   * @param  {RegExp} valueRegex - The search keyword to highlight
    * @return {object} A JSX object containing an array of alternating strings and JSX
    */
-  static highlightSearchTerm(text, value) {
-    const matches = text.match(value);
+  static highlightSearchTerm(text, valueRegex) {
+    const matches = text.match(valueRegex);
 
-    if (!value || !matches) {
+    if (!valueRegex || !matches) {
       return text;
     }
     let counter = 1;
     return (<div className='cbn-searchresults__label'>
-      { text.split(value)
+      { text.split(valueRegex)
         .reduce((prev, current, i) => {
           if (i) {
             const key = matches[i - 1] + current + (counter += 1);
@@ -38,24 +37,6 @@ class SearchResults extends React.Component {
         }, [])
       }
     </div>);
-  }
-
-  /**
-   * …
-   */
-  static truncateString(text, value) {
-    const maxLength = 30;
-    if (text.length < maxLength || !value) {
-      return text;
-    }
-    if (text.search(value) > maxLength) {
-      const start = Math.min(
-        text.length - maxLength,
-        text.search(value),
-      );
-      return `…${text.substr(start, maxLength)}`;
-    }
-    return `${text.substr(0, maxLength)}…`;
   }
 
   /**
@@ -71,17 +52,40 @@ class SearchResults extends React.Component {
   }
 
   /**
+   * Truncate a text label with an ellipsis, to fit the container
+   * @param  {string} text - The text to parse
+   * @param  {RegExp} valueRegex - The search keyword to highlight
+   * @param  {number} valueLength - The length of the search keyword text
+   * @return {string} A (truncated?) text string
+   */
+  truncateString(text, valueRegex, valueLength) {
+    const { maxLabelLength } = this.props;
+    if (text.length < maxLabelLength || !valueRegex) {
+      return text;
+    }
+    const matchStart = text.search(valueRegex);
+    const matchEnd = matchStart + valueLength;
+
+    if (matchEnd < maxLabelLength) {
+      return `${text.substr(0, maxLabelLength)}…`;
+    } else if (matchStart > text.length - maxLabelLength) {
+      return `…${text.substr(text.length - maxLabelLength)}`;
+    }
+    const start = matchStart - (maxLabelLength / 2);
+    return `…${text.substr(start, start + maxLabelLength)}…`;
+  }
+
+  /**
    * Add a new formattedLabel field to each of the results
    * @return {object} The results array with a new field added
    */
   formatResults() {
-    const { highlightSearchTerm, truncateString } = SearchResults;
     const { results, value } = this.props;
     const valueRegex = value ? new RegExp(value, 'gi') : '';
 
     return results.map(result => ({
-      formattedLabel: highlightSearchTerm(
-        truncateString(result.label, valueRegex),
+      formattedLabel: SearchResults.highlightSearchTerm(
+        this.truncateString(result.label, valueRegex, value.length),
         valueRegex
       ),
       ...result
@@ -96,6 +100,7 @@ class SearchResults extends React.Component {
     const {
       activeRow,
       hidden,
+      maxLabelLength,
       onClick,
       onMouseOver,
       results,
@@ -107,6 +112,7 @@ class SearchResults extends React.Component {
         activeRow={activeRow}
         height={this.getBoxHeight()}
         hidden={hidden || !results.length}
+        maxLabelLength={maxLabelLength}
         onClick={onClick}
         onMouseOver={onMouseOver}
         results={this.formatResults()}
@@ -118,6 +124,7 @@ class SearchResults extends React.Component {
 SearchResults.defaultProps = {
   activeRow: null,
   hidden: true,
+  maxLabelLength: 32,
   onClick: () => {},
   onMouseOver: () => {},
   results: [],
@@ -134,6 +141,10 @@ SearchResults.propTypes = {
    * Show/hide the menu
    */
   hidden: PropTypes.bool,
+  /**
+   * The maximum length of a text label
+   */
+  maxLabelLength: PropTypes.number,
   /**
    * Handle click events, e.g. when selecting a row
    */
