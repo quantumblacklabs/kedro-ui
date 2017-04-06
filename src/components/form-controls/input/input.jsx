@@ -71,37 +71,42 @@ class Input extends React.Component {
    */
   _createAnimation() {
     const line = this._line;
-    const lineTimeline = new TimelineLite();
-    lineTimeline
+    const lineWidthTimeline = new TimelineLite();
+    lineWidthTimeline
       .to(line, 0, {
-        width: 0,
-        height: '3px',
-        marginTop: 0
+        width: 0
       })
       .to(line, 1, {
         width: '100%',
-        height: '1px',
-        marginTop: '2px',
         ease: Elastic.easeOut.config(0.3, 1)
+      });
+    const lineOpacityTimeline = new TimelineLite();
+    lineOpacityTimeline
+      .to(line, 0, {
+        opacity: 0
+      })
+      .to(line, 1, {
+        opacity: 1
       });
 
     const desc = this._description;
     const descTimeline = new TimelineLite();
-    // descTimeline
-    //   .to(desc, 0, { y: '-50px', opacity: 0 })
-    //   .to(desc, 1, { y: 0, opacity: 1 });
+    descTimeline
+      .to(desc, 0, { y: '-20px', opacity: 0 })
+      .to(desc, 0.7, { y: 0, opacity: 1 });
     // descTimeline
     //   .to(desc, 0, { x: '-10px', opacity: 0 })
     //   .to(desc, 1, { x: 0, opacity: 1 });
-    descTimeline
-      .to(desc, 0, { opacity: 0.1, ease: Power1.easeIn })
-      .to(desc, 0.7, { opacity: 1, ease: Power1.easeIn });
+    // descTimeline
+    //   .to(desc, 0, { opacity: 0.1, ease: Power1.easeIn })
+    //   .to(desc, 0.7, { opacity: 1, ease: Power1.easeIn });
 
     const animationTimeline = new TimelineLite();
-    animationTimeline.add(lineTimeline, 0);
+    animationTimeline.add(lineWidthTimeline, 0);
+    animationTimeline.add(lineOpacityTimeline, 0);
     animationTimeline.add(descTimeline, 0);
 
-    return animationTimeline;
+    return animationTimeline.timeScale(1);
   }
 
   /**
