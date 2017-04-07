@@ -19,10 +19,10 @@ class SearchResultsRenderer extends React.Component {
       activeRow,
       height,
       hidden,
-      maxLabelLength,
       onClick,
       onMouseOver,
       results,
+      row,
       theme
     } = this.props;
 
@@ -47,7 +47,7 @@ class SearchResultsRenderer extends React.Component {
                 onClick={() => onClick(result.label)}
                 role='option'
                 tabIndex='-1'
-                title={result.label.length > maxLabelLength ? result.label : null}>
+                title={result.label.length > row.labelLength ? result.label : null}>
                 { result.type && <Icon type={result.type} size='medium' theme={theme} /> }
                 { result.formattedLabel }
               </li>
@@ -63,7 +63,6 @@ SearchResultsRenderer.defaultProps = {
   activeRow: null,
   height: null,
   hidden: false,
-  maxLabelLength: 32,
   onClick: () => {},
   onMouseOver: () => {},
   results: [],
@@ -84,9 +83,12 @@ SearchResultsRenderer.propTypes = {
    */
   hidden: PropTypes.bool,
   /**
-   * The maximum length of a text label
+   * Magic constants for the height, width and padding for a row item
+   * row.height: The height of a row
+   * row.labelLength: The maximum length of a text label
+   * row.padding: The padding above and below the top/bottom rows
    */
-  maxLabelLength: PropTypes.number,
+  row: PropTypes.object.isRequired,
   /**
    * Subscribe to change events when a row is selected
    */

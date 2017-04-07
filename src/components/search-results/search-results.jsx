@@ -43,11 +43,9 @@ class SearchResults extends React.Component {
    * Calculate height of scrollable results container
    */
   getBoxHeight() {
-    const { hidden, results } = this.props;
+    const { hidden, results, row } = this.props;
     const rowCount = results.length;
-    const rowHeight = 40;
-    const rowPadding = 8;
-    const boxHeight = (rowCount * rowHeight) + rowPadding;
+    const boxHeight = (rowCount * row.height) + row.padding;
     return hidden ? null : `${boxHeight}px`;
   }
 
@@ -59,20 +57,20 @@ class SearchResults extends React.Component {
    * @return {string} A (truncated?) text string
    */
   truncateString(text, valueRegex, valueLength) {
-    const { maxLabelLength } = this.props;
-    if (text.length < maxLabelLength || !valueRegex) {
+    const { labelLength } = this.props.row;
+    if (text.length < labelLength || !valueRegex) {
       return text;
     }
     const matchStart = text.search(valueRegex);
     const matchEnd = matchStart + valueLength;
 
-    if (matchEnd < maxLabelLength) {
-      return `${text.substr(0, maxLabelLength)}…`;
-    } else if (matchStart > text.length - maxLabelLength) {
-      return `…${text.substr(text.length - maxLabelLength)}`;
+    if (matchEnd < labelLength) {
+      return `${text.substr(0, labelLength)}…`;
+    } else if (matchStart > text.length - labelLength) {
+      return `…${text.substr(text.length - labelLength)}`;
     }
-    const start = matchStart - (maxLabelLength / 2);
-    return `…${text.substr(start, start + maxLabelLength)}…`;
+    const start = matchStart - (labelLength / 2);
+    return `…${text.substr(start, start + labelLength)}…`;
   }
 
   /**
@@ -100,10 +98,10 @@ class SearchResults extends React.Component {
     const {
       activeRow,
       hidden,
-      maxLabelLength,
       onClick,
       onMouseOver,
       results,
+      row,
       theme
     } = this.props;
 
@@ -112,10 +110,10 @@ class SearchResults extends React.Component {
         activeRow={activeRow}
         height={this.getBoxHeight()}
         hidden={hidden || !results.length}
-        maxLabelLength={maxLabelLength}
         onClick={onClick}
         onMouseOver={onMouseOver}
         results={this.formatResults()}
+        row={row}
         theme={theme} />
     );
   }
@@ -124,10 +122,14 @@ class SearchResults extends React.Component {
 SearchResults.defaultProps = {
   activeRow: null,
   hidden: true,
-  maxLabelLength: 32,
   onClick: () => {},
   onMouseOver: () => {},
   results: [],
+  row: {
+    height: 40,
+    labelLength: 32,
+    padding: 8
+  },
   theme: 'dark',
   value: ''
 };
@@ -142,10 +144,6 @@ SearchResults.propTypes = {
    */
   hidden: PropTypes.bool,
   /**
-   * The maximum length of a text label
-   */
-  maxLabelLength: PropTypes.number,
-  /**
    * Handle click events, e.g. when selecting a row
    */
   onClick: PropTypes.func,
@@ -159,6 +157,13 @@ SearchResults.propTypes = {
    * and an optional 'type' property (string) for the icon
    */
   results: PropTypes.array.isRequired,
+  /**
+   * Magic constants for the height, width and padding for a row item
+   * row.height: The height of a row
+   * row.labelLength: The maximum length of a text label
+   * row.padding: The padding above and below the top/bottom rows
+   */
+  row: PropTypes.object,
   /**
    * Theme of the component
    */
