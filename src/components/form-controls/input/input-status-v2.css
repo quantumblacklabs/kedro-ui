@@ -27,20 +27,14 @@
 }
 
 .cbn-input__line {
-  .cbn-input--success & {
-    @mixin themedParent background-color, input, status;
-  }
-
+  .cbn-input--success &,
   .cbn-input--error & {
     @mixin themedParent background-color, input, status;
   }
 }
 
 .cbn-input__line--filled {
-  .cbn-input--success & {
-    @mixin themedParent background-color, input, status;
-  }
-
+  .cbn-input--success &,
   .cbn-input--error & {
     @mixin themedParent background-color, input, status;
   }

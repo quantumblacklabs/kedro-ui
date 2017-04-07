@@ -14,10 +14,7 @@
     @mixin themedParent background-color, input, error;
   }
 
-  .cbn-input--success + & {
-    @mixin themedParent color, input, status;
-  }
-
+  .cbn-input--success + &,
   .cbn-input--error + & {
     @mixin themedParent color, input, status;
   }
