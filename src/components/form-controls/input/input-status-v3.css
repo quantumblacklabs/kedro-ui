@@ -2,17 +2,9 @@
 
 @import '../../../styles/includes';
 
-/** Variables **/
-
-/** Implementation **/
-
 /** VARIANT THREE - STATUS BACKGROUND COLOR + WHITE TEXT **/
 .cbn-input__description {
   @mixin themedParent color, input, status;
-
-  display: flex;
-
-  padding: 4px $offset-input 4px;
 
   .cbn-input--success + & {
     @mixin themedParent background-color, input, success;

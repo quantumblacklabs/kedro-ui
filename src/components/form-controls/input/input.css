@@ -7,6 +7,9 @@
 $default-input-width: 320px;
 $padding-left-right: 11px;
 $padding-top-bottom: 7px;
+$offset-top-bottom-small: 4px;
+$margin-top-line: 3px;
+$height-tiny: 1px;
 
 /** Implementation **/
 
@@ -26,7 +29,7 @@ $padding-top-bottom: 7px;
   /** padding top can be overriden if label is generated (see below) **/
   padding: $padding-top-bottom $padding-left-right;
 
-  border: 1px solid rgba(0, 0, 0, 0.12);
+  border: $height-tiny solid rgba(0, 0, 0, 0.12);
   box-sizing: border-box;
 
   outline: none;
@@ -104,7 +107,7 @@ $padding-top-bottom: 7px;
 
   display: flex;
 
-  margin-bottom: 4px;
+  margin-bottom: $offset-top-bottom-small;
 
   .cbn-input--disabled & {
     @mixin themedParent color, input, placeholder;
@@ -114,8 +117,8 @@ $padding-top-bottom: 7px;
 .cbn-input__line {
   display: flex;
 
-  height: 1px;
-  margin-top: 3px;
+  height: $height-tiny;
+  margin-top: $margin-top-line;
 
   /** by default the background color is transparent; when in active/focus it is visible **/
   background-color: transparent;
@@ -152,7 +155,7 @@ $padding-top-bottom: 7px;
 .cbn-input__line--filled {
   @extend %type--subhead-2;
 
-  height: 1px;
+  height: $height-tiny;
 
   font: inherit;
 
@@ -177,7 +180,7 @@ $padding-top-bottom: 7px;
 
   display: flex;
 
-  padding: 4px $padding-left-right 4px;
+  padding: $offset-top-bottom-small $padding-left-right;
 
   .cbn-input--success + & {
     @mixin themedParent color, input, success;
