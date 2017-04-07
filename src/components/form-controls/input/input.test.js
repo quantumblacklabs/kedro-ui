@@ -41,7 +41,7 @@ test('Input should correctly have light theme class', t => {
 
 test('Input should correctly have dark theme class', t => {
   // dark theme is default, so it should be automatically assigned
-  const wrapper = shallow(<Input />);
+  const wrapper = shallow(<Input theme='dark' />);
 
   t.true(wrapper.find('.cbn-theme--dark').length === 1);
 });
