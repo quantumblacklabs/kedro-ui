@@ -1,8 +1,7 @@
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 import GSAP from 'react-gsap-enhancer';
-import { TimelineLite, Elastic } from 'gsap';
-// import { TimelineLite, Elastic, Power1 } from 'gsap';
+import { TimelineLite, Elastic, Power1 } from 'gsap';
 
 import './input.css';
 // import './input-status-v2.css';
@@ -74,40 +73,21 @@ class Input extends React.Component {
     const line = this._line;
     const lineWidthTimeline = new TimelineLite();
     lineWidthTimeline
-      .to(line, 0, {
-        width: 0
-      })
-      .to(line, 1, {
-        width: '100%',
-        ease: Elastic.easeOut.config(0.3, 1)
-      });
-    const lineOpacityTimeline = new TimelineLite();
-    lineOpacityTimeline
-      .to(line, 0, {
-        opacity: 0
-      })
-      .to(line, 1, {
-        opacity: 1
-      });
+      .to(line, 0, { width: 0 })
+      .to(line, 1, { width: '100%', ease: Elastic.easeOut.config(0.3, 1) });
 
     const desc = this._description;
     const descTimeline = new TimelineLite();
     descTimeline
-      .to(desc, 0, { y: '-20px', opacity: 0 })
-      .to(desc, 0.7, { y: 0, opacity: 1 });
-    // descTimeline
-    //   .to(desc, 0, { x: '-10px', opacity: 0 })
-    //   .to(desc, 1, { x: 0, opacity: 1 });
-    // descTimeline
-    //   .to(desc, 0, { opacity: 0.1, ease: Power1.easeIn })
-    //   .to(desc, 0.7, { opacity: 1, ease: Power1.easeIn });
+      .to(desc, 0, { opacity: 0, ease: Power1.easeIn })
+      .to(desc, 0.7, { opacity: 1, ease: Power1.easeIn });
 
+    // add the thwo animations on the timeline; both will start at zero seconds
     const animationTimeline = new TimelineLite();
     animationTimeline.add(lineWidthTimeline, 0);
-    animationTimeline.add(lineOpacityTimeline, 0);
     animationTimeline.add(descTimeline, 0);
 
-    return animationTimeline.timeScale(1);
+    return animationTimeline;
   }
 
   /**

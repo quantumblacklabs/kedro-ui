@@ -2,18 +2,25 @@
 
 @import '../../../styles/includes';
 
-/** STATUS DESCRIPTION - VARIANT TWO - INPUT BACKGROUND COLOR + WHITE TEXT **/
-.cbn-input.cbn-input--success,
-.cbn-input.cbn-input--error {
+/** STATUS DESCRIPTION - VARIANT TWO - INPUT BACKGROUND COLOR + WHITE INPUT TEXT + BLACK / WHITE DESCRIIPTION TEXT  **/
+.cbn-input--success,
+.cbn-input--error {
   @mixin themed color, input, status;
 }
 
-.cbn-input.cbn-input--success {
+.cbn-input--success {
   @mixin themed background-color, input, success;
 }
 
-.cbn-input.cbn-input--error {
+.cbn-input--error {
   @mixin themed background-color, input, error;
+}
+
+.cbn-input__label {
+  .cbn-input--success &,
+  .cbn-input--error & {
+    @mixin themedParent color, input, status;
+  }
 }
 
 .cbn-input__field {
@@ -23,6 +30,11 @@
 
   .cbn-input--error & {
     @mixin themedParent background-color, input, error;
+  }
+
+  .cbn-input--success &,
+  .cbn-input--error & {
+    @mixin themedParent color, input, status;
   }
 }
 
@@ -41,11 +53,8 @@
 }
 
 .cbn-input__description {
-  .cbn-input--success + & {
-    @mixin themedParent color, input, success;
-  }
-
+  .cbn-input--success + &,
   .cbn-input--error + & {
-    @mixin themedParent color, input, error;
+    @mixin themedParent color, input, textFilled;
   }
 }
