@@ -51,7 +51,7 @@ class Input extends React.Component {
    * @return {object} JSX for this component
    */
   componentDidUpdate(nextProps) {
-    if (!this.state.focused || this.props.status !== nextProps.status) {
+    if (!this.state.focused && (this.props.status === 'default' || nextProps.status === 'default')) {
       this._anim.restart();
     }
   }
