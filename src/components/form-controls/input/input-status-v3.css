@@ -2,7 +2,7 @@
 
 @import '../../../styles/includes';
 
-/** VARIANT THREE - STATUS BACKGROUND COLOR + WHITE TEXT **/
+/** STATUS DESCRIPTION - VARIANT THREE - DESCRIPTION BACKGROUND COLOR + WHITE TEXT **/
 .cbn-input__description {
   @mixin themedParent color, input, status;
 

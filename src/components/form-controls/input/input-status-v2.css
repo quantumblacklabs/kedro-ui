@@ -2,8 +2,7 @@
 
 @import '../../../styles/includes';
 
-/** Implementation **/
-
+/** STATUS DESCRIPTION - VARIANT TWO - INPUT BACKGROUND COLOR + WHITE TEXT **/
 .cbn-input.cbn-input--success,
 .cbn-input.cbn-input--error {
   @mixin themed color, input, status;
