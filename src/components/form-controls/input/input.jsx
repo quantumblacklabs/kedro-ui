@@ -202,7 +202,7 @@ Input.defaultProps = {
   placeholder: '',
   status: 'default',
   statusDescription: '',
-  theme: 'dark',
+  theme: 'light',
   value: ''
 };
 

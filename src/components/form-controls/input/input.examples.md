@@ -2,7 +2,7 @@
 
 ```
 <section style={{margin: '20px'}}>
-    <Input />
+    <Input theme='light' />
     <br />
     <Input
         disabled={false}
@@ -11,7 +11,7 @@
         placeholder='Input text.. e.g. what color is grass?'
         status='success'
         statusDescription='Success!'
-        theme='dark'
+        theme='light'
         value='Grass can be green' />
     <br />
 </section>
@@ -23,12 +23,14 @@
     <Input
         label='Company address'
         disabled={true}
-        placeholder='Alternative address' />
+        placeholder='Alternative address'
+        theme='light' />
     <br />
     <Input
         label='P.O.Box'
         disabled={true}
-        placeholder='Alternative address' />
+        placeholder='Alternative address'
+        theme='light' />
 </section>
 ```
 
@@ -39,7 +41,7 @@
     <Input
         disabled={false}
         label='Name'
-        theme='dark'
+        theme='light'
         placeholder='Type some input in here...' />
     <br />
     <Input
@@ -47,7 +49,7 @@
         placeholder='Input some text'
         status='success'
         statusDescription='Success!'
-        theme='dark'
+        theme='light'
         value='Grass can be green' />
 </section>
 ```
@@ -162,7 +164,8 @@ class Wrap extends React.Component {
                             label={d.label}
                             placeholder={d.placeholder}
                             status={this.state.displayStatus ? d.status : 'default'}
-                            statusDescription={d.statusDescription} />
+                            statusDescription={d.statusDescription}
+                            theme='light' />
                         <br />
                     </div>
                 ))}
