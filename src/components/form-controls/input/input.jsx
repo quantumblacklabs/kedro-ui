@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 import GSAP from 'react-gsap-enhancer';
 import { TimelineLite, Elastic } from 'gsap';
-//import { TimelineLite, Elastic, Power1 } from 'gsap';
+// import { TimelineLite, Elastic, Power1 } from 'gsap';
 
 import './input.css';
 // import './input-status-v2.css';
