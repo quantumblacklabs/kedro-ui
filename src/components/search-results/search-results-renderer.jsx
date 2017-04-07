@@ -9,45 +9,55 @@ import Icon from '../icon';
 /**
  * SearchResultsRenderer, used to output the actual DOM makeup for the component
  */
-const SearchResultsRenderer = ({
-  activeRow,
-  height,
-  hidden,
-  maxLabelLength,
-  onClick,
-  onMouseOver,
-  results,
-  theme
-}) => (
-  <div className='cbn-searchresults' onMouseOver={onMouseOver}>
-    <div
-      className={classnames(
-        'cbn-searchresults__wrapper',
-        { 'cbn-searchresults__wrapper--hidden': hidden },
-        `cbn-theme--${theme}`
-      )}
-      style={{ height }}>
-      <ul className={`cbn-searchresults__list cbn-theme--${theme}`}>
-        { results.map((result, i) =>
-          <li
-            aria-selected={activeRow === i ? 'true' : 'false'}
-            className={classnames(
-              'cbn-searchresults__row',
-              { 'cbn-searchresults__row--active': activeRow === i }
-            )}
-            key={result.label}
-            onClick={() => onClick(result.label)}
-            role='option'
-            tabIndex='-1'
-            title={result.label.length > maxLabelLength ? result.label : null}>
-            { result.type && <Icon type={result.type} size='medium' theme={theme} /> }
-            { result.formattedLabel }
-          </li>
-        ) }
-      </ul>
-    </div>
-  </div>
-);
+class SearchResultsRenderer extends React.Component {
+  /**
+   * Render the component
+   * @return {ReactElement} markup
+   */
+  render() {
+    const {
+      activeRow,
+      height,
+      hidden,
+      maxLabelLength,
+      onClick,
+      onMouseOver,
+      results,
+      theme
+    } = this.props;
+
+    return (
+      <div className='cbn-searchresults' onMouseOver={onMouseOver}>
+        <div
+          className={classnames(
+            'cbn-searchresults__wrapper',
+            { 'cbn-searchresults__wrapper--hidden': hidden },
+            `cbn-theme--${theme}`
+          )}
+          style={{ height }}>
+          <ul className={`cbn-searchresults__list cbn-theme--${theme}`}>
+            { results.map((result, i) =>
+              <li
+                aria-selected={activeRow === i ? 'true' : 'false'}
+                className={classnames(
+                  'cbn-searchresults__row',
+                  { 'cbn-searchresults__row--active': activeRow === i }
+                )}
+                key={result.label}
+                onClick={() => onClick(result.label)}
+                role='option'
+                tabIndex='-1'
+                title={result.label.length > maxLabelLength ? result.label : null}>
+                { result.type && <Icon type={result.type} size='medium' theme={theme} /> }
+                { result.formattedLabel }
+              </li>
+            ) }
+          </ul>
+        </div>
+      </div>
+    );
+  }
+}
 
 SearchResultsRenderer.defaultProps = {
   activeRow: null,
