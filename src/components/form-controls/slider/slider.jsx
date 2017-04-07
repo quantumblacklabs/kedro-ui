@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import classnames from 'classnames';
 
 import './slider.css';
 
@@ -38,7 +39,11 @@ class Slider extends React.Component {
    */
   render() {
     return (
-      <div className='cbn-slider'>
+      <div
+        className={classnames(
+          'cbn-slider',
+          `cbn-slider--${this.props.theme}`
+        )}>
         <input
           type='range'
           name={this.props.name}
@@ -55,7 +60,8 @@ Slider.defaultProps = {
   min: 0,
   name: 'slider',
   onChange: null,
-  step: 1
+  step: 1,
+  theme: 'light'
 };
 
 Slider.propTypes = {
@@ -80,7 +86,11 @@ Slider.propTypes = {
   /**
    * Step of the slider.
    */
-  step: PropTypes.number
+  step: PropTypes.number,
+  /**
+   * Theme of the component, either 'dark' or 'light'
+   */
+  theme: PropTypes.oneOf(['dark', 'light'])
 };
 
 export default Slider;
