@@ -1,9 +1,6 @@
 machine:
   node:
     version: 6.9.0
-dependencies:
-  pre:
-    - npm cache clean
 # deployment:
 #   production:
 #     branch: master
