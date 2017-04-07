@@ -1,0 +1,13 @@
+/** Imports **/
+
+@import '../../../styles/includes';
+
+/** Variables **/
+
+$default-width: 310px;
+
+/** Implementation **/
+
+.cbn-slider {
+  width: $default-width;
+}
