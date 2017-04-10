@@ -64,7 +64,7 @@ class SearchResults extends React.Component {
     const matchStart = text.search(valueRegex);
     const matchEnd = matchStart + valueLength;
 
-    if (matchEnd < labelLength) {
+    if (matchEnd < labelLength || valueLength >= labelLength) {
       return `${text.substr(0, labelLength)}…`;
     } else if (matchStart > text.length - labelLength) {
       return `…${text.substr(text.length - labelLength)}`;
