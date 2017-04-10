@@ -11,6 +11,35 @@ import Icon from '../icon';
  */
 class SearchResultsRenderer extends React.Component {
   /**
+   * Update state when the input value / results list change
+   * @param {object} newProps - Properties passed to component
+   */
+  componentWillReceiveProps(newProps) {
+    const newActiveRow = typeof newProps.activeRow === 'number'
+      && newProps.activeRow !== this.props.activeRow;
+
+    if (newActiveRow) {
+      this.scrollToActiveRow(newProps.activeRow);
+    }
+  }
+
+  /**
+   * If a selected row is not visible (because it's off the top/bottom of
+   * the scrollable area), then auto-scroll to it, to make it visible
+   * @param {number} activeRow - The index of the active row
+   */
+  scrollToActiveRow(activeRow) {
+    const { row } = this.props;
+    const { scrollTop } = this.list;
+    const scrollTooLow = activeRow * row.height < scrollTop;
+    const scrollTooHigh = ((activeRow + 1) * row.height) - scrollTop > row.maxHeight;
+
+    if (scrollTooLow || scrollTooHigh) {
+      this.list.scrollTop = (activeRow * row.height) - (row.maxHeight / 2);
+    }
+  }
+
+  /**
    * Render the component
    * @return {ReactElement} markup
    */
@@ -34,8 +63,10 @@ class SearchResultsRenderer extends React.Component {
             { 'cbn-searchresults__wrapper--hidden': hidden },
             `cbn-theme--${theme}`
           )}
-          style={{ height }}>
-          <ul className={`cbn-searchresults__list cbn-theme--${theme}`}>
+          style={{ height, maxHeight: row.maxHeight }}>
+          <ul
+            ref={el => { this.list = el; }}
+            className={`cbn-searchresults__list cbn-theme--${theme}`}>
             { results.map((result, i) =>
               <li
                 aria-selected={activeRow === i ? 'true' : 'false'}
@@ -77,18 +108,24 @@ SearchResultsRenderer.propTypes = {
   /**
    * Height for the results box, to prevent it expanding before close animation
    */
-  height: PropTypes.string,
+  height: PropTypes.number,
   /**
    * Subscribe to change events when a row is selected
    */
   hidden: PropTypes.bool,
   /**
-   * Magic constants for the height, width and padding for a row item
+   * Magic constants for the dimensions of a row item and its container
    * row.height: The height of a row
    * row.labelLength: The maximum length of a text label
+   * row.maxRows: The maximum number of visible rows before you must scroll
    * row.padding: The padding above and below the top/bottom rows
    */
-  row: PropTypes.object.isRequired,
+  row: PropTypes.shape({
+    height: PropTypes.number,
+    labelLength: PropTypes.number,
+    maxRows: PropTypes.number,
+    padding: PropTypes.number
+  }).isRequired,
   /**
    * Subscribe to change events when a row is selected
    */

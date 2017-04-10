@@ -11,8 +11,6 @@
 
     width: 320px;
     transition: all ease 0.3s;
-    max-height: 208px;
-    height: 208px;
 
     &--hidden {
       height: 0;

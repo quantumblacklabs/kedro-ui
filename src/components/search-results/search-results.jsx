@@ -46,7 +46,7 @@ class SearchResults extends React.Component {
     const { hidden, results, row } = this.props;
     const rowCount = results.length;
     const boxHeight = (rowCount * row.height) + row.padding;
-    return hidden ? null : `${boxHeight}px`;
+    return hidden ? null : boxHeight;
   }
 
   /**
@@ -105,6 +105,8 @@ class SearchResults extends React.Component {
       theme
     } = this.props;
 
+    row.maxHeight = (row.maxRows * row.height) + row.padding;
+
     return (
       <SearchResultsRenderer
         activeRow={activeRow}
@@ -127,6 +129,7 @@ SearchResults.defaultProps = {
   results: [],
   row: {
     height: 40,
+    maxRows: 5,
     labelLength: 32,
     padding: 8
   },
@@ -158,12 +161,18 @@ SearchResults.propTypes = {
    */
   results: PropTypes.array.isRequired,
   /**
-   * Magic constants for the height, width and padding for a row item
+   * Magic constants for the dimensions of a row item and its container
    * row.height: The height of a row
    * row.labelLength: The maximum length of a text label
+   * row.maxRows: The maximum number of visible rows before you must scroll
    * row.padding: The padding above and below the top/bottom rows
    */
-  row: PropTypes.object,
+  row: PropTypes.shape({
+    height: PropTypes.number,
+    labelLength: PropTypes.number,
+    maxRows: PropTypes.number,
+    padding: PropTypes.number
+  }),
   /**
    * Theme of the component
    */
