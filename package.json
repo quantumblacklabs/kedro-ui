@@ -11,10 +11,11 @@
     "build:dev": "webpack -d --config webpack.dev.config.js",
     "docs:build": "styleguidist build",
     "postinstall": "npm run build:dev && npm run build",
+    "preinstall": "npm update",
     "prepush": "npm run test",
     "prepublish": "npm run test",
     "stylelint": "stylelint templates/**/*.css --config stylelint.config.js",
-    "eslint": "eslint src/*.js src/**/*.js src/**/*.jsx",
+    "eslint": "eslint src/**/*.js src/**/*.jsx",
     "ava": "CONFIG=$(pwd)/webpack.ava.config.js NODE_ENV=AVA BABEL_DISABLE_CACHE=1 ava",
     "test:coverage": "nyc npm test",
     "test": "npm run eslint && npm run ava",
@@ -63,8 +64,8 @@
       "email": "susana.costa@quantumblack.com"
     },
     {
-      "name": "Lucia Koncincova",
-      "email": "lucia.koncincova@quantumblack.com"
+      "name": "Lucia Kocincova",
+      "email": "lucia.kocincova@quantumblack.com"
     },
     {
       "name": "Ottis Kelleghan",
@@ -83,6 +84,7 @@
     "babel-preset-env": "^1.2.1",
     "babel-preset-react": "^6.11.1",
     "babel-register": "^6.18.0",
+    "chroma-js": "^1.2.2",
     "classnames": "^2.2.5",
     "css-loader": "^0.26.1",
     "es6-object-assign": "^1.0.3",
@@ -90,6 +92,7 @@
     "extract-text-webpack-plugin": "^2.0.0-rc.3",
     "file-loader": "^0.10.1",
     "glob": "^7.1.1",
+    "gsap": "^1.19.1",
     "lodash": "^4.17.4",
     "lodash-webpack-plugin": "^0.11.2",
     "postcss-cssnext": "^2.9.0",
@@ -98,6 +101,7 @@
     "precss": "^1.4.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
+    "react-gsap-enhancer": "^0.3.0",
     "react-styleguidist": "5.0.0-beta.15",
     "style-loader": "^0.13.1",
     "stylelint": "^7.9.0",

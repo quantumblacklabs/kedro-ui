@@ -45,6 +45,11 @@ const config = {
       components: getComponentsFunc('icon', 'src/components/icon/**/*.jsx')
     },
     {
+      name: 'Indicators',
+      content: './templates/components/indicators.md',
+      components: getComponentsFunc('icon', 'src/components/indicators/**/*.jsx')
+    },
+    {
       name: 'Menus',
       content: './templates/components/menus.md',
       components: getComponentsFunc('menu', 'src/components/menus/**/*.jsx')
@@ -120,7 +125,7 @@ const config = {
               }
             }
           ],
-          include: dirs,
+          include: dirs
         },
         {
           test: /\.json$/,
@@ -159,6 +164,7 @@ const config = {
     resolve: {
       extensions: ['.js', '.jsx', '.css'],
       alias: {
+        'utils': path.resolve(__dirname, 'src/utils'),
         'styles': path.resolve(__dirname, 'src/styles'),
         'components': path.resolve(__dirname, 'src/components'),
         'rsg-components/ReactComponent/ReactComponentRenderer': path.resolve(__dirname + '/templates/react-styleguidist/react-component'),
@@ -166,7 +172,8 @@ const config = {
         'rsg-components/StyleGuide/StyleGuideRenderer': path.resolve(__dirname + '/templates/react-styleguidist/styleguide'),
         'rsg-components/Playground/PlaygroundRenderer': path.resolve(__dirname + '/templates/react-styleguidist/playground'),
         'rsg-components/Examples': path.resolve(__dirname + '/templates/react-styleguidist/examples'),
-        'rsg-components/Preview': path.resolve(__dirname + '/templates/react-styleguidist/preview')
+        'rsg-components/Preview': path.resolve(__dirname + '/templates/react-styleguidist/preview'),
+        'rsg-components/Editor': path.resolve(__dirname + '/templates/react-styleguidist/editor')
       }
     },
     plugins: [

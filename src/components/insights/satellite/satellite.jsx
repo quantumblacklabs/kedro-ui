@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import { CustomPropTypes } from 'utils';
 
 import './satellite.css';
 
@@ -98,7 +99,7 @@ Satellite.propTypes = {
   /**
    * Define the Satellite outer border
    */
-  borderWidth: PropTypes.number,
+  borderWidth: CustomPropTypes.numberBetween(0, 999),
   /**
    * The color of the satellite centre circle
    */
@@ -106,7 +107,7 @@ Satellite.propTypes = {
   /**
    * The radius of the satellite centre circle
    */
-  centreRadius: PropTypes.number,
+  centreRadius: CustomPropTypes.numberBetween(0, 999),
   /**
    * The satellite color.
    */

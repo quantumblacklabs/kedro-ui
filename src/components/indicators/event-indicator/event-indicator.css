@@ -1,0 +1,16 @@
+$size: 80px;
+
+.cbn-sg-playground__events {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  margin-right: 30px;
+}
+
+.cbn-sg-playground__event-wrapper {
+  float: right;
+
+  width: $size;
+  height: $size;
+}
