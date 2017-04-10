@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
-import classnames from 'classnames';
-
-import './slider.css';
+import SliderRenderer from './slider-renderer';
+import RangedSliderRenderer from './ranged-slider-renderer';
 
 /**
  * Creates a slider component.
@@ -15,21 +14,6 @@ class Slider extends React.Component {
     super(props);
 
     this.displayName = 'Slider';
-
-    this.state = {
-    };
-
-    this._handleChanged = this._handleChanged.bind(this);
-  }
-
-  /**
-   * _handleChanged - updates the state with the value from the slider and triggers the passed on change callback.
-   * @param  {object} event
-   */
-  _handleChanged(event) {
-    if (typeof this.props.onChange === 'function') {
-      this.props.onChange(event);
-    }
   }
 
   /**
@@ -38,19 +22,17 @@ class Slider extends React.Component {
    * @return {object} JSX for this component
    */
   render() {
+    const RendererType = this.props.type === 'single' ? SliderRenderer : RangedSliderRenderer;
+
     return (
-      <div
-        className={classnames(
-          'cbn-slider',
-          `cbn-slider--${this.props.theme}`
-        )}>
-        <input
-          type='range'
-          name={this.props.name}
-          min={this.props.min}
-          max={this.props.max}
-          step={this.props.step} />
-      </div>
+      <RendererType
+        min={this.props.min}
+        max={this.props.max}
+        name={this.props.name}
+        onChange={this.props.onChange}
+        step={this.props.step}
+        theme={this.props.theme}
+        value={this.props.value} />
     );
   }
 }
@@ -61,7 +43,9 @@ Slider.defaultProps = {
   name: 'slider',
   onChange: null,
   step: 1,
-  theme: 'light'
+  theme: 'light',
+  type: 'single',
+  value: 50
 };
 
 Slider.propTypes = {
@@ -90,7 +74,15 @@ Slider.propTypes = {
   /**
    * Theme of the component, either 'dark' or 'light'
    */
-  theme: PropTypes.oneOf(['dark', 'light'])
+  theme: PropTypes.oneOf(['dark', 'light']),
+  /**
+   * Type of the slider - either single input slider or multiple input (ranged) slider
+   */
+  type: PropTypes.oneOf(['single', 'multi']),
+  /**
+   * The value of the slider - either array for ranged slider or a single number for simple slider.
+   */
+  value: PropTypes.oneOf([PropTypes.array, PropTypes.number])
 };
 
 export default Slider;
