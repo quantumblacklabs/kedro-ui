@@ -8,9 +8,18 @@ $default-width: 310px;
 
 /** Implementation **/
 
-.cbn-slider {
+@define-mixin thumb {
   position: relative;
+  pointer-events: all;
 
+  z-index: 2;
+}
+
+@define-mixin track {
+  pointer-events: all;
+}
+
+.cbn-slider {
   width: $default-width;
 }
 
@@ -27,8 +36,26 @@ $default-width: 310px;
 }
 
 .cbn-slider-multiple::-webkit-slider-thumb {
-  position: relative;
-  pointer-events: all;
+  @mixin thumb;
+}
 
-  z-index: 2;
+.cbn-slider-multiple::-moz-range-thumb {
+  @mixin thumb;
+}
+
+.cbn-slider-multiple::-ms-thumb {
+  @mixin thumb;
+}
+
+/** because the track overlaps, allow only the one on top to listen to all ppointer eventss **/
+.cbn-slider-multiple--top::-webkit-slider-runnable-track {
+  @mixin track;
+}
+
+.cbn-slider-multiple--top::-moz-range-track {
+  @mixin track;
+}
+
+.cbn-slider-multiple--top::-ms-track {
+  @mixin track;
 }

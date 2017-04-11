@@ -17,16 +17,37 @@ class RangedSliderRenderer extends React.Component {
     this.displayName = 'RangedSliderRenderer';
 
     this.state = {
+      minRange: this.props.value[0],
+      maxRange: this.props.value[1]
     };
 
-    this._handleChanged = this._handleChanged.bind(this);
+    this._handleTopChanged = this._handleTopChanged.bind(this);
+    this._handleBottomChanged = this._handleBottomChanged.bind(this);
   }
 
   /**
-   * _handleChanged - updates the state with the value from the slider and triggers the passed on change callback.
+   * _handleBottomChanged -
    * @param  {object} event
    */
-  _handleChanged(event) {
+  _handleBottomChanged(event) {
+    this.setState({
+      minRange: event.target.value
+    });
+
+    if (typeof this.props.onChange === 'function') {
+      this.props.onChange(event);
+    }
+  }
+
+  /**
+   * _handleTopChanged -
+   * @param  {object} event
+   */
+  _handleTopChanged(event) {
+    this.setState({
+      maxRange: event.target.value
+    });
+
     if (typeof this.props.onChange === 'function') {
       this.props.onChange(event);
     }
@@ -54,6 +75,8 @@ class RangedSliderRenderer extends React.Component {
           min={this.props.min}
           max={this.props.max}
           step={this.props.step}
+          value={this.state.minRange}
+          onChange={this._handleBottomChanged}
           multiple />
         <input
           className={classnames(
@@ -65,6 +88,8 @@ class RangedSliderRenderer extends React.Component {
           min={this.props.min}
           max={this.props.max}
           step={this.props.step}
+          value={this.state.maxRange}
+          onChange={this._handleTopChanged}
           multiple />
       </div>
     );
@@ -111,7 +136,7 @@ RangedSliderRenderer.propTypes = {
   /**
    * Min and max values for the value.
    */
-  value: PropTypes.array
+  value: PropTypes.arrayOf(PropTypes.number)
 };
 
 export default RangedSliderRenderer;

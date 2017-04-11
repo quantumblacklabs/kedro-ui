@@ -22,6 +22,7 @@ class Slider extends React.Component {
    * @return {object} JSX for this component
    */
   render() {
+    // determine the type of correct renderer
     const RendererType = this.props.type === 'single' ? SliderRenderer : RangedSliderRenderer;
 
     return (
@@ -31,7 +32,8 @@ class Slider extends React.Component {
         name={this.props.name}
         onChange={this.props.onChange}
         step={this.props.step}
-        theme={this.props.theme} />
+        theme={this.props.theme}
+        value={this.props.value} />
     );
   }
 }
@@ -44,7 +46,7 @@ Slider.defaultProps = {
   step: 1,
   theme: 'light',
   type: 'single',
-  value: 50
+  value: undefined
 };
 
 Slider.propTypes = {
@@ -81,7 +83,7 @@ Slider.propTypes = {
   /**
    * The value of the slider - either array for ranged slider or a single number for simple slider.
    */
-  value: PropTypes.oneOf([PropTypes.array, PropTypes.number])
+  value: PropTypes.oneOfType([PropTypes.array, PropTypes.number])
 };
 
 export default Slider;

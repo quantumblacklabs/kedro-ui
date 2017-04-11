@@ -17,6 +17,7 @@ class SliderRenderer extends React.Component {
     this.displayName = 'SliderRenderer';
 
     this.state = {
+      value: this.props.value
     };
 
     this._handleChanged = this._handleChanged.bind(this);
@@ -27,6 +28,10 @@ class SliderRenderer extends React.Component {
    * @param  {object} event
    */
   _handleChanged(event) {
+    this.setState({
+      value: event.target.value
+    });
+
     if (typeof this.props.onChange === 'function') {
       this.props.onChange(event);
     }
@@ -50,7 +55,9 @@ class SliderRenderer extends React.Component {
           name={this.props.name}
           min={this.props.min}
           max={this.props.max}
-          step={this.props.step} />
+          step={this.props.step}
+          value={this.state.value}
+          onChange={this._handleChanged} />
       </div>
     );
   }
@@ -60,7 +67,7 @@ SliderRenderer.defaultProps = {
   max: 100,
   min: 0,
   name: 'slider',
-  onChange: null,
+  onChange: undefined,
   step: 1,
   theme: 'light',
   value: 50
