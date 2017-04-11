@@ -60,8 +60,7 @@ class SearchResultsRenderer extends React.Component {
         <div
           className={classnames(
             'cbn-searchresults__wrapper',
-            { 'cbn-searchresults__wrapper--hidden': hidden },
-            `cbn-theme--${theme}`
+            { 'cbn-searchresults__wrapper--hidden': hidden }
           )}
           style={{ height, maxHeight: row.maxHeight }}>
           <ul
@@ -97,6 +96,12 @@ SearchResultsRenderer.defaultProps = {
   onClick: () => {},
   onMouseOver: () => {},
   results: [],
+  row: {
+    height: 40,
+    maxRows: 5,
+    labelLength: 32,
+    padding: 8
+  },
   theme: 'dark'
 };
 
