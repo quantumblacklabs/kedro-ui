@@ -105,7 +105,7 @@ class SearchResults extends React.Component {
       theme
     } = this.props;
 
-    row.maxHeight = (row.maxRows * row.height) + row.padding;
+    row.maxHeight = results.length ? (row.maxRows * row.height) + row.padding : 0;
 
     return (
       <SearchResultsRenderer
