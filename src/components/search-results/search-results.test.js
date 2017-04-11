@@ -15,7 +15,6 @@ test('SearchResults should render correctly', t => {
     <SearchResults />
   );
 
-  t.is(wrapper.props().iconType, 'refresh');
-  t.is(typeof wrapper.props().onChange, 'function');
-  t.is(typeof wrapper.props().onClear, 'function');
+  t.is(typeof wrapper.props().onClick, 'function');
+  t.is(typeof wrapper.props().onMouseOver, 'function');
 });
