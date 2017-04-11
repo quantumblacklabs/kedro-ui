@@ -63,20 +63,12 @@ class SearchBoxWithResults extends React.Component {
     }
     render() {
         const { activeRow, hideResults, results, value } = this.state;
-        const inputStyles = {
-            display: 'block',
-            width: '320px',
-            padding: '5px',
-            fontSize: '20px'
-        };
         return (
-            <div>
-                <input
+            <div onKeyDown={e => this.onKeyDown(e.keyCode)}>
+                <Input
                     onChange={e => this.onChange(e.target.value)}
-                    onKeyDown={e => this.onKeyDown(e.keyCode)}
                     placeholder='Search'
-                    style={inputStyles}
-                    type='search'
+                    theme='light'
                     value={this.state.value} />
                 <SearchResults
                     activeRow={activeRow}
@@ -84,6 +76,7 @@ class SearchBoxWithResults extends React.Component {
                     onClick={value => this.onClick(value)}
                     onMouseOver={() => this.onMouseOver()}
                     results={results}
+                    theme='light'
                     value={value} />
             </div>
         );
@@ -136,6 +129,7 @@ const dummyData = [
         activeRow={1}
         hidden={false}
         results={dummyData}
+        theme='light'
         value='lor' />
 </div>
 ```
