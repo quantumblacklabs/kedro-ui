@@ -50,8 +50,7 @@ class SliderRenderer extends React.Component {
           name={this.props.name}
           min={this.props.min}
           max={this.props.max}
-          step={this.props.step}
-          value={this.props.value} />
+          step={this.props.step} />
       </div>
     );
   }

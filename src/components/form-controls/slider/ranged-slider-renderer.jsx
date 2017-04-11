@@ -42,24 +42,29 @@ class RangedSliderRenderer extends React.Component {
       <div
         className={classnames(
           'cbn-slider',
-          'cbn-slider-multiple',
           `cbn-slider--${this.props.theme}`
         )}>
         <input
+          className={classnames(
+            'cbn-slider-multiple',
+            'cbn-slider-multiple--bottom'
+          )}
           type='range'
           name={this.props.name}
           min={this.props.min}
           max={this.props.max}
           step={this.props.step}
-          value={this.props.value[0]}
           multiple />
         <input
+          className={classnames(
+            'cbn-slider-multiple',
+            'cbn-slider-multiple--top'
+          )}
           type='range'
           name={this.props.name}
           min={this.props.min}
           max={this.props.max}
           step={this.props.step}
-          value={this.props.value[1]}
           multiple />
       </div>
     );

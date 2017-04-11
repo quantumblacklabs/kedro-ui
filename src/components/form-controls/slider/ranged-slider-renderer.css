@@ -9,5 +9,26 @@ $default-width: 310px;
 /** Implementation **/
 
 .cbn-slider {
+  position: relative;
+
   width: $default-width;
+}
+
+.cbn-slider-multiple--bottom {
+  position: absolute;
+}
+
+.cbn-slider-multiple--top {
+  position: relative;
+}
+
+.cbn-slider-multiple {
+  pointer-events: none;
+}
+
+.cbn-slider-multiple::-webkit-slider-thumb {
+  position: relative;
+  pointer-events: all;
+
+  z-index: 2;
 }
