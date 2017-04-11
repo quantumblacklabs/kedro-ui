@@ -97,7 +97,23 @@ SearchBoxWithResults.defaultProps = {
         { type: 'undo', label: 'Sed diam nonumy eirmod tempor' },
         { type: 'cut', label: 'Invidunt ut labore et dolore magna aliquyam erat' },
         { type: 'refresh', label: 'Sed diam voluptua' },
-        { label: 'At vero eos et accusam et justo duo dolores et ea rebum' }
+        { label: 'At vero eos et accusam et justo duo dolores et ea rebum' },
+        { label: 'Vel, facere officia consectetur labore' },
+        { label: 'Quaerat quo reprehenderit' },
+        { label: 'Nisi ipsam totam optio illo' },
+        { label: 'Delectus hic aspernatur corporis culpa' },
+        { label: 'Placeat eveniet quod, illum' },
+        { label: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque' },
+        { label: 'Laudantium, totam rem aperiam' },
+        { label: 'Eaque ipsa quae ab illo inventore veritatis' },
+        { label: 'Et quasi architecto beatae vitae dicta sunt explicabo' },
+        { label: 'Nemo enim ipsam' },
+        { label: 'Voluptatem quia voluptas sit aspernatur aut odit' },
+        { label: 'Aut fugit, sed quia consequuntur magni dolores eos qui' },
+        { label: 'Ratione voluptatem sequi nesciunt' },
+        { label: 'Neque porro quisquam est, qui dolorem ipsum quia dolor' },
+        { label: 'Sit amet, consectetur, adipisci velit, sed quia non numquam eius' },
+        { label: 'Modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem' }
     ]
 };
 
