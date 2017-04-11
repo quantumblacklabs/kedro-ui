@@ -66,6 +66,10 @@ class SearchBoxWithResults extends React.Component {
         return (
             <div onKeyDown={e => this.onKeyDown(e.keyCode)}>
                 <Input
+                    aria={{
+                        expanded: !hideResults,
+                        activedescendant: hideResults ? null : 'cbn-searchresults-selected'
+                    }}
                     onChange={e => this.onChange(e.target.value)}
                     placeholder='Search'
                     theme='light'

@@ -58,16 +58,19 @@ class SearchResultsRenderer extends React.Component {
     return (
       <div className='cbn-searchresults' onMouseOver={onMouseOver}>
         <div
+          aria-hidden={hidden}
           className={classnames(
             'cbn-searchresults__wrapper',
             { 'cbn-searchresults__wrapper--hidden': hidden }
           )}
           style={{ height, maxHeight: row.maxHeight }}>
           <ul
+            className={`cbn-searchresults__list cbn-theme--${theme}`}
             ref={el => { this.list = el; }}
-            className={`cbn-searchresults__list cbn-theme--${theme}`}>
+            role='listbox'>
             { results.map((result, i) =>
               <li
+                id={activeRow === i ? 'cbn-searchresults-selected' : null}
                 aria-selected={activeRow === i ? 'true' : 'false'}
                 className={classnames(
                   'cbn-searchresults__row',
