@@ -99,7 +99,7 @@ SearchResultsRenderer.defaultProps = {
   row: {
     height: 40,
     maxRows: 5,
-    labelLength: 32,
+    labelLength: 30,
     padding: 8
   },
   theme: 'dark'
