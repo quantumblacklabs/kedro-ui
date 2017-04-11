@@ -1,4 +1,5 @@
 import DataSummary from 'components/insights/data-summary';
+import EventIndicator from 'components/indicators/event-indicator';
 import ExpandablePanel from 'components/insights/expandable-panel';
 import Satellite from 'components/insights/satellite';
 import SatelliteTrail from 'components/insights/satellite-trail';
@@ -9,7 +10,7 @@ import Dropdown from 'components/menus/dropdown';
 import Icon from 'components/icon';
 import MenuOption from 'components/menus/menu-option';
 import SearchResults from 'components/search-results';
-import { Checkbox, RadioButton } from 'components/form-controls';
+import { Checkbox, Input, RadioButton } from 'components/form-controls';
 
 import './styles/app.css';
 
@@ -25,7 +26,9 @@ module.exports = {
   },
   Checkbox,
   Dropdown,
+  EventIndicator,
   Icon,
+  Input,
   MenuOption,
   SearchResults,
   RadioButton

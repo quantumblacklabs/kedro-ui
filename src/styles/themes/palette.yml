@@ -38,6 +38,13 @@ themes:
     radiobutton:
       default: rgba(0, 0, 0, 0.55)
       disabled: rgba(0, 0, 0, 0.35)
+    input:
+      placeholder: rgba(0, 0, 0, 0.3)
+      placeholderFocused: rgba(0, 0, 0, 0.55)
+      textFilled: rgb(0, 0, 0)
+      error: rgb(236, 53, 8)
+      success: rgb(0, 195, 41)
+      status: rgb(255, 255, 255)
     grid:
       default: rgba(255, 105, 180, 0.5)
   dark:
@@ -78,5 +85,12 @@ themes:
     radiobutton:
       default: rgba(255, 255, 255, 0.55)
       disabled: rgba(255, 255, 255, 0.35)
+    input:
+      placeholder: rgba(255, 255, 255, 0.3)
+      placeholderFocused: rgba(255, 255, 255, 0.55)
+      textFilled: rgb(255, 255, 255)
+      error: rgb(236, 53, 8)
+      success: rgb(0, 195, 41)
+      status: rgb(255, 255, 255)
     grid:
       default: rgba(100, 149, 237, 0.5)

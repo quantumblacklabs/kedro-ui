@@ -15,15 +15,15 @@
 
   &:hover {
     &:not(.cbn-dropdown--open) {
-      box-shadow: -2px 0 4px 0 rgba(0, 0, 0, 0.08), 2px 0 4px 0 rgba(0, 0, 0, 0.08), 0 2px 4px 0 rgba(0, 0, 0, 0.12), 0 0 2px 0 rgba(0, 0, 0, 0.12);
+      @extend %shadow-light--hover;
     }
   }
 
   &.cbn-theme--dark {
-    box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.24), 0 0 2px 0 rgba(0, 0, 0, 0.08), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+    @extend %shadow-dark;
 
     &:hover {
-      box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 2px 0 rgba(0, 0, 0, 0.24), inset 0 1px 0 0 rgba(255, 255, 255, 0.06);
+      @extend %shadow-dark--hover;
     }
   }
 }
@@ -78,7 +78,8 @@
   @mixin themedParent background, menu, default;
 
   animation: dropdownEntrance 0.3s;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 0 2px 0 rgba(0, 0, 0, 0.12);
+
+  @extend %shadow-light--active;
 
   .cbn-dropdown--open & {
     display: block;
