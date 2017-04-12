@@ -67,7 +67,6 @@ class SearchResultsRenderer extends React.Component {
       activeRow,
       height,
       hidden,
-      onClick,
       onMouseOver,
       results,
       row,

@@ -14,7 +14,6 @@ test('SearchResults should highlight search terms', t => {
   );
 
   // Check successful matches
-  t.true(highlight.hasClass('cbn-searchresults__label'));
   t.is(highlight.find('b').length, 1);
   t.is(highlight.find('b').text(), 'amet');
   // Check failed match

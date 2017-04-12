@@ -15,6 +15,6 @@ test('SearchResults should render correctly', t => {
       results={[]} />
   );
 
-  t.is(typeof wrapper.props().onClick, 'function');
-  t.is(typeof wrapper.props().onMouseOver, 'function');
+  t.is(typeof wrapper.props().row, 'object');
+  t.is(typeof wrapper.props().results, 'object');
 });
