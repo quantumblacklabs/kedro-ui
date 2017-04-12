@@ -1,38 +1,74 @@
+/** Imports **/
+
+@import '../../styles/includes';
+
+/** Variables **/
+$size-icon: 24px;
+$size-input-offset: 44px;
+$size-pos-base: 10px;
+
+/** Implementation **/
+
 .cbn-searchbar {
   position: relative;
 
   display: inline-block;
 }
 
-.cbn-input__field {
+.cbn-input {
   .cbn-searchbar & {
-    padding-left: 44px;
-    padding-right: 44px;
+    padding-left: $size-input-offset;
   }
 }
 
-.cbn-icon--cut {
-  right: 10px;
+.cbn-icon--close {
+  right: $size-pos-base;
 
-  width: 24px;
-  height: 24px;
+  width: $size-icon;
+  height: $size-icon;
 }
 
-.cbn-icon--search {
-  left: 12px;
+.cbn-searchbar__dynamicicon {
+  .cbn-icon {
+    top: calc($size-pos-base * 2);
+    left: calc($size-icon / 2);
 
-  width: 24px;
-  height: 24px;
+    width: $size-icon;
+    height: $size-icon;
+  }
+}
+
+.cbn-input__field {
+  .cbn-searchbar & {
+    max-width: calc(100% - $size-icon);
+  }
+}
+
+.cbn-input__line--filled {
+  .cbn-searchbar & {
+    /** Needs to be important as style is applied inline */
+    max-width: calc(100% - $size-icon);
+  }
 }
 
 .cbn-icon {
   .cbn-searchbar & {
     position: absolute;
-
     top: 50%;
-
     z-index: 1;
 
     transform: translate(0, -50%);
+
+    svg {
+      @mixin themedParent fill, search, icon;
+    }
   }
+}
+
+.cbn-searchbar__iconwrapper {
+  transition: 0.3s opacity;
+}
+
+.cbn-searchbar__dynamicicon {
+
 }

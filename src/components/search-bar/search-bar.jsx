@@ -37,8 +37,6 @@ class SearchBar extends React.Component {
    * @param  {Event} e native change event
    */
   onChange(e) {
-    console.log(e.target.value !== '');
-
     this.setState({
       currentText: e.target.value,
       showClearButton: e.target.value !== ''
@@ -57,7 +55,8 @@ class SearchBar extends React.Component {
    */
   onClear() {
     this.setState({
-      currentText: ''
+      currentText: '',
+      showClearButton: false
     });
 
     // trigger onClose prop if available
@@ -73,11 +72,10 @@ class SearchBar extends React.Component {
    * @return {ReactElement} markup
    */
   render() {
-    console.log(this.state.showClearButton);
-
     return (
       <SearchBarRenderer
         iconType={this.props.iconType}
+        placeholder={this.props.placeholder}
         onChange={this.onChange}
         onClear={this.onClear}
         showClearButton={this.state.showClearButton}
@@ -89,6 +87,7 @@ class SearchBar extends React.Component {
 
 SearchBar.defaultProps = {
   iconType: 'search',
+  placeholder: 'Search Here...',
   onChange: null,
   onClear: null,
   theme: 'dark'
@@ -106,7 +105,15 @@ SearchBar.propTypes = {
   /**
    * On clear, triggered when clear buttong is pressed
    */
-  onClear: PropTypes.func
+  onClear: PropTypes.func,
+  /**
+   * Place holder text for search input
+   */
+  placeholder: PropTypes.string,
+  /**
+   * Theme of the component
+   */
+  theme: PropTypes.string
 };
 
 export default SearchBar;

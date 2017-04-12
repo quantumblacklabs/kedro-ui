@@ -13,7 +13,7 @@ describe('SearchBar component', () => {
           .type('Hello World');
 
         cy.wrap($el)
-          .find('.cbn-icon--cut')
+          .find('.cbn-icon--close')
           .click();
 
         cy.wrap($el)

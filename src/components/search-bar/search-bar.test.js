@@ -15,7 +15,7 @@ test('SearchBar should render correctly', t => {
     <SearchBar />
   );
 
-  t.is(wrapper.props().iconType, 'refresh');
+  t.is(wrapper.props().iconType, 'search');
   t.is(typeof wrapper.props().onChange, 'function');
   t.is(typeof wrapper.props().onClear, 'function');
 });
