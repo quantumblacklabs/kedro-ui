@@ -1,0 +1,101 @@
+/** Imports **/
+
+@import '../../../styles/includes';
+
+/** Variables **/
+
+$default-width: 310px;
+
+/** Mixins **/
+
+@define-mixin thumb-style {
+  @mixin themedParent background, slider, thumbCenter;
+  @mixin themedParent border-color, slider, thumbBorder;
+
+  width: 3px;
+  height: 3px;
+  margin-top: -6px;
+
+  border-width: 5px;
+  border-style: solid;
+  border-radius: 50%;
+  box-shadow: none;
+}
+
+@define-mixin track-style {
+  @mixin themedParent background, slider, default;
+
+  width: 100%;
+  height: 2px;
+
+  border: 0;
+
+  cursor: pointer;
+}
+
+/** Implementation **/
+
+.cbn-slider {
+  width: $default-width;
+}
+
+.cbn-slider__input {
+  -webkit-appearance: none;
+
+  height: 24px;
+
+  padding: 0;
+
+  background: transparent;
+  box-shadow: none;
+
+  &:focus,
+  &:active {
+    outline: none;
+  }
+}
+
+.cbn-slider__filled {
+  @mixin themedParent background, slider, filled;
+}
+
+.cbn-slider__input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+
+  @mixin thumb-style;
+
+  box-sizing: content-box;
+}
+
+.cbn-slider__input::-moz-range-thumb {
+  @mixin thumb-style;
+}
+
+.cbn-slider__input::-ms-thumb {
+  @mixin thumb-style;
+}
+
+.cbn-slider__input::-webkit-slider-runnable-track {
+  -webkit-appearance: none;
+
+  @mixin track-style;
+}
+
+.cbn-slider__input::-moz-range-track {
+  @mixin track-style;
+}
+
+.cbn-slider__input::-ms-track {
+  /** TODO: IE and MS Edge require a transparent color and border-color on the track,
+      or they will show (parts of) the native track design.
+      Also, they may need different margins for the thumb than the other browsers.
+  **/
+  @mixin track-style;
+
+  /** In IE, but not in Edge, the slider as a whole has a padding **/
+  padding: 0;
+
+  border-color: transparent;
+
+  color: transparent;
+}

@@ -67,6 +67,7 @@ class RangedSliderRenderer extends React.Component {
         )}>
         <input
           className={classnames(
+            'cbn-slider__input',
             'cbn-slider-multiple',
             'cbn-slider-multiple--bottom'
           )}
@@ -80,6 +81,7 @@ class RangedSliderRenderer extends React.Component {
           multiple />
         <input
           className={classnames(
+            'cbn-slider__input',
             'cbn-slider-multiple',
             'cbn-slider-multiple--top'
           )}

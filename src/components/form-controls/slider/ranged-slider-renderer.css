@@ -6,7 +6,7 @@
 
 $default-width: 310px;
 
-/** Implementation **/
+/** Mixins **/
 
 @define-mixin thumb {
   position: relative;
@@ -18,6 +18,8 @@ $default-width: 310px;
 @define-mixin track {
   pointer-events: all;
 }
+
+/** Implementation **/
 
 .cbn-slider {
   width: $default-width;

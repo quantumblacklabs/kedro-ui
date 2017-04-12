@@ -3,6 +3,8 @@ import classnames from 'classnames';
 
 import './slider-renderer.css';
 
+import './slider.css';
+
 /**
  * Creates a single slider component.
  */
@@ -51,6 +53,7 @@ class SliderRenderer extends React.Component {
           `cbn-slider--${this.props.theme}`
         )}>
         <input
+          className='cbn-slider__input'
           type='range'
           name={this.props.name}
           min={this.props.min}
@@ -58,6 +61,9 @@ class SliderRenderer extends React.Component {
           step={this.props.step}
           value={this.state.value}
           onChange={this._handleChanged} />
+        <div
+          className='cbn-slider__filled'
+          style={{}} />
       </div>
     );
   }

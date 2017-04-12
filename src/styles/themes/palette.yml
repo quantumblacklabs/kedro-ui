@@ -38,6 +38,11 @@ themes:
     radiobutton:
       default: rgba(0, 0, 0, 0.55)
       disabled: rgba(0, 0, 0, 0.35)
+    slider:
+      default: rgba(0, 0, 0, 0.12)
+      filled: rgb(0, 0, 0)
+      thumbCenter: rgb(255, 255, 255)
+      thumbBorder: rgb(0, 0, 0)
     grid:
       default: rgba(255, 105, 180, 0.5)
   dark:
@@ -78,5 +83,10 @@ themes:
     radiobutton:
       default: rgba(255, 255, 255, 0.55)
       disabled: rgba(255, 255, 255, 0.35)
+    slider:
+      default: rgba(255, 255, 255, 0.3)
+      filled: rgb(255, 255, 255)
+      thumbCenter: rgb(0, 0, 0)
+      thumbBorder: rgb(255, 255, 255)
     grid:
       default: rgba(100, 149, 237, 0.5)
