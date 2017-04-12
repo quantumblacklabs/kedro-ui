@@ -74,7 +74,7 @@
   ],
   "dependencies": {
     "@quantumblack/carbon-ui-core": "^1.1.1",
-    "@quantumblack/javascript-standards": "^1.6.1",
+    "@quantumblack/javascript-standards": "^1.6.3",
     "autoprefixer": "^6.7.2",
     "babel-core": "^6.21.0",
     "babel-loader": "^6.2.10",

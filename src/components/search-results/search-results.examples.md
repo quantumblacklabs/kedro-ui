@@ -1,6 +1,4 @@
-## SearchResults component demos
-
-Search results component used alongside a search input:
+## Search results component used alongside a search input:
 
 ```
 class SearchBoxWithResults extends React.Component {
@@ -9,35 +7,35 @@ class SearchBoxWithResults extends React.Component {
         this.state = {
             activeRow: null,
             hideResults: false,
-            results: this.filterResults('Lor'),
+            results: this._filterResults('Lor'),
             value: 'Lor'
         };
     }
-    onChange(value) {
+    _handleChange({ target: { value } }) {
         this.setState({
             hideResults: !value,
-            results: this.filterResults(value),
+            results: this._filterResults(value),
             value
         });
     }
-    onClick(value) {
+    _handleClick({ data }) {
         this.setState({
             hideResults: true,
-            value
+            value: data.label
         });
     }
-    onMouseOver() {
+    _handleMouseOver() {
         this.setState({
             activeRow: null
         })
     }
-    filterResults(value) {
+    _filterResults(value) {
         const { results } = this.props;
         const valueRegex = value ? new RegExp(value, 'gi') : '';
 
         return results.filter(({ label }) => label.match(valueRegex));
     }
-    onKeyDown(keyCode) {
+    _handleKeyDown({ keyCode }) {
         const { results } = this.state;
         const KEYS = {
             '38': -1,
@@ -64,21 +62,21 @@ class SearchBoxWithResults extends React.Component {
     render() {
         const { activeRow, hideResults, results, value } = this.state;
         return (
-            <div onKeyDown={e => this.onKeyDown(e.keyCode)}>
+            <div onKeyDown={this._handleKeyDown.bind(this)}>
                 <Input
                     aria={{
                         expanded: !hideResults,
                         activedescendant: hideResults ? null : 'cbn-searchresults-selected'
                     }}
-                    onChange={e => this.onChange(e.target.value)}
+                    onChange={this._handleChange.bind(this)}
                     placeholder='Search'
                     theme='light'
-                    value={this.state.value} />
+                    value={value} />
                 <SearchResults
                     activeRow={activeRow}
                     hidden={hideResults}
-                    onClick={value => this.onClick(value)}
-                    onMouseOver={() => this.onMouseOver()}
+                    onClick={this._handleClick.bind(this)}
+                    onMouseOver={this._handleMouseOver.bind(this)}
                     results={results}
                     theme='light'
                     value={value} />
@@ -117,7 +115,7 @@ SearchBoxWithResults.defaultProps = {
 <SearchBoxWithResults />
 ```
 
-Search results component on its own:
+## Search results component on its own:
 
 ```
 const dummyData = [

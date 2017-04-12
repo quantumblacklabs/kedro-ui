@@ -4,53 +4,47 @@
   position: relative;
 
   margin-top: 4px;
+}
 
-  &__wrapper {
-    position: absolute;
-    overflow: hidden;
+.cbn-searchresults__wrapper {
+  position: absolute;
+  overflow: hidden;
 
-    width: 320px;
-    transition: all ease 0.3s;
+  width: 320px;
+  transition: all ease 0.3s;
 
-    &--hidden {
-      height: 0;
-    }
+  &--hidden {
+    height: 0;
   }
+}
 
-  &__list {
-    height: 100%;
-    overflow: auto;
+.cbn-searchresults__list {
+  height: 100%;
+  overflow: auto;
 
-    padding: 3px 0 4px;
-    border-top: 1px solid map(themes, light, menu, border);
-    transition: all ease 0.2s;
-    box-sizing: border-box;
+  padding: 3px 0 4px;
+  border-top: 1px solid map(themes, light, menu, border);
+  transition: all ease 0.2s;
+  box-sizing: border-box;
 
-    @mixin themed border-color, menu, border;
-    @mixin themed background, menu, default;
-    @mixin themed color, text;
-  }
+  @mixin themed border-color, menu, border;
+  @mixin themed background, menu, default;
+  @mixin themed color, text;
+}
 
-  &__row {
-    position: relative;
+.cbn-searchresults__row {
+  position: relative;
 
-    display: block;
+  display: block;
 
-    padding: 8px 20px 12px 44px;
-    text-decoration: none;
-    cursor: pointer;
+  padding: 8px 20px 12px 44px;
+  text-decoration: none;
+  cursor: pointer;
 
-    &--active,
-    &:hover,
-    &:focus {
-      @mixin themedParent background, menu, hover;
-    }
-  }
-
-  &__label {
-    b {
-      opacity: 0.5;
-    }
+  &--active,
+  &:hover,
+  &:focus {
+    @mixin themedParent background, menu, hover;
   }
 
   .cbn-icon {
@@ -58,4 +52,8 @@
     left: 10px;
     opacity: 0.6;
   }
+}
+
+.cbn-searchresults__highlight {
+  opacity: 0.5;
 }

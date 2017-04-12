@@ -11,7 +11,9 @@ import Icon from '../icon';
  */
 class SearchResultsRenderer extends React.Component {
   /**
+   * React lifecycle method
    * Update state when the input value / results list change
+   * {@link https://facebook.github.io/react/docs/react-component.html#componentwillreceiveprops}
    * @param {object} newProps - Properties passed to component
    */
   componentWillReceiveProps(newProps) {
@@ -19,7 +21,7 @@ class SearchResultsRenderer extends React.Component {
       && newProps.activeRow !== this.props.activeRow;
 
     if (newActiveRow) {
-      this.scrollToActiveRow(newProps.activeRow);
+      this._scrollToActiveRow(newProps.activeRow);
     }
   }
 
@@ -28,7 +30,7 @@ class SearchResultsRenderer extends React.Component {
    * the scrollable area), then auto-scroll to it, to make it visible
    * @param {number} activeRow - The index of the active row
    */
-  scrollToActiveRow(activeRow) {
+  _scrollToActiveRow(activeRow) {
     const { row } = this.props;
     const { scrollTop } = this.list;
     const scrollTooLow = activeRow * row.height < scrollTop;
@@ -40,8 +42,25 @@ class SearchResultsRenderer extends React.Component {
   }
 
   /**
-   * Render the component
-   * @return {ReactElement} markup
+   * Handle selection click events on the rows
+   * @param  {[object]} e     - Native onClick event
+   * @param  {[string]} label - The text of the selected label
+   */
+  _handleClicked(e, label) {
+    const { onClick } = this.props;
+
+    if (onClick) {
+      onClick({
+        e,
+        data: { label }
+      });
+    }
+  }
+
+  /**
+   * React lifecycle method
+   * {@link https://facebook.github.io/react/docs/react-component.html#render}
+   * @return {object} JSX for this component
    */
   render() {
     const {
@@ -71,16 +90,16 @@ class SearchResultsRenderer extends React.Component {
             { results.map((result, i) =>
               <li
                 id={activeRow === i ? 'cbn-searchresults-selected' : null}
-                aria-selected={activeRow === i ? 'true' : 'false'}
+                aria-selected={activeRow === i}
                 className={classnames(
                   'cbn-searchresults__row',
                   { 'cbn-searchresults__row--active': activeRow === i }
                 )}
                 key={result.label}
-                onClick={() => onClick(result.label)}
+                onClick={e => this._handleClicked(e, result.label)}
                 role='option'
                 tabIndex='-1'
-                title={result.label.length > row.labelLength ? result.label : null}>
+                title={result.label}>
                 { result.type && <Icon type={result.type} size='medium' theme={theme} /> }
                 { result.formattedLabel }
               </li>
@@ -96,9 +115,8 @@ SearchResultsRenderer.defaultProps = {
   activeRow: null,
   height: null,
   hidden: false,
-  onClick: () => {},
-  onMouseOver: () => {},
-  results: [],
+  onClick: null,
+  onMouseOver: null,
   row: {
     height: 40,
     maxRows: 5,
@@ -118,11 +136,11 @@ SearchResultsRenderer.propTypes = {
    */
   height: PropTypes.number,
   /**
-   * Subscribe to change events when a row is selected
+   * Flag whether to show/hide the menu
    */
   hidden: PropTypes.bool,
   /**
-   * Magic constants for the dimensions of a row item and its container
+   * Constants for the dimensions of a row item and its container
    * row.height: The height of a row
    * row.labelLength: The maximum length of a text label
    * row.maxRows: The maximum number of visible rows before you must scroll
@@ -133,9 +151,9 @@ SearchResultsRenderer.propTypes = {
     labelLength: PropTypes.number,
     maxRows: PropTypes.number,
     padding: PropTypes.number
-  }).isRequired,
+  }),
   /**
-   * Subscribe to change events when a row is selected
+   * Method that is fired when an option is clicked
    */
   onClick: PropTypes.func,
   /**
@@ -144,12 +162,15 @@ SearchResultsRenderer.propTypes = {
   onMouseOver: PropTypes.func,
   /**
    * A filtered array of results
+   * Each row should contain a required 'label' text property (string),
+   * and a 'formattedLabel' property (JSX/string),
+   * and an optional 'type' property (string) for the icon
    */
   results: PropTypes.array.isRequired,
   /**
    * Theme of the component
    */
-  theme: PropTypes.string.isRequired
+  theme: PropTypes.oneOf(['light', 'dark'])
 };
 
 export default SearchResultsRenderer;

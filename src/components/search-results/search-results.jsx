@@ -2,6 +2,10 @@
 
 import React, { PropTypes } from 'react';
 import SearchResultsRenderer from './search-results-renderer';
+import {
+  highlightSearchTerm,
+  truncateString
+} from './search-results-utils';
 
 // Styles
 
@@ -14,85 +18,37 @@ import './search-results.css';
  */
 class SearchResults extends React.Component {
   /**
-   * Find and highlight relevant keywords within a block of text
-   * @param  {string} text - The text to parse
-   * @param  {RegExp} valueRegex - The search keyword to highlight
-   * @return {object} A JSX object containing an array of alternating strings and JSX
+   * Calculate height of scrollable results container,
+   * so that it can vary by number of rows, to improve the animations
+   * @return {number|object} The height of the results container, or null
    */
-  static highlightSearchTerm(text, valueRegex) {
-    const matches = text.match(valueRegex);
-
-    if (!valueRegex || !matches) {
-      return text;
-    }
-    let counter = 1;
-    return (<div className='cbn-searchresults__label'>
-      { text.split(valueRegex)
-        .reduce((prev, current, i) => {
-          if (i) {
-            const key = matches[i - 1] + current + (counter += 1);
-            prev.push(<b key={key}>{ matches[i - 1] }</b>);
-          }
-          return prev.concat(current);
-        }, [])
-      }
-    </div>);
-  }
-
-  /**
-   * Calculate height of scrollable results container
-   */
-  getBoxHeight() {
+  _getBoxHeight() {
     const { hidden, results, row } = this.props;
-    const rowCount = results.length;
-    const boxHeight = (rowCount * row.height) + row.padding;
+    const boxHeight = (results.length * row.height) + row.padding;
+
     return hidden ? null : boxHeight;
-  }
-
-  /**
-   * Truncate a text label with an ellipsis, to fit the container
-   * @param  {string} text - The text to parse
-   * @param  {RegExp} valueRegex - The search keyword to highlight
-   * @param  {number} valueLength - The length of the search keyword text
-   * @return {string} A (truncated?) text string
-   */
-  truncateString(text, valueRegex, valueLength) {
-    const { labelLength } = this.props.row;
-    if (text.length < labelLength || !valueRegex) {
-      return text;
-    }
-    const matchStart = text.search(valueRegex);
-    const matchEnd = matchStart + valueLength;
-
-    if (matchEnd < labelLength || valueLength >= labelLength) {
-      return `${text.substr(0, labelLength)}…`;
-    } else if (matchStart > text.length - labelLength) {
-      return `…${text.substr(text.length - labelLength)}`;
-    }
-    const start = matchStart - (labelLength / 2);
-    return `…${text.substr(start, start + labelLength)}…`;
   }
 
   /**
    * Add a new formattedLabel field to each of the results
    * @return {object} The results array with a new field added
    */
-  formatResults() {
-    const { results, value } = this.props;
-    const valueRegex = value ? new RegExp(value, 'gi') : '';
+  _formatResults() {
+    const { results, value, row } = this.props;
 
     return results.map(result => ({
-      formattedLabel: SearchResults.highlightSearchTerm(
-        this.truncateString(result.label, valueRegex, value.length),
-        valueRegex
+      formattedLabel: highlightSearchTerm(
+        truncateString(result.label, row.labelLength, value),
+        value
       ),
       ...result
     }));
   }
 
   /**
-   * Render the component
-   * @return {ReactElement} markup
+   * React lifecycle method
+   * {@link https://facebook.github.io/react/docs/react-component.html#render}
+   * @return {object} JSX for this component
    */
   render() {
     const {
@@ -105,16 +61,17 @@ class SearchResults extends React.Component {
       theme
     } = this.props;
 
+    // Calculate max height for the container and add it to the row prop object
     row.maxHeight = results.length ? (row.maxRows * row.height) + row.padding : 0;
 
     return (
       <SearchResultsRenderer
         activeRow={activeRow}
-        height={this.getBoxHeight()}
+        height={this._getBoxHeight()}
         hidden={hidden || !results.length}
         onClick={onClick}
         onMouseOver={onMouseOver}
-        results={this.formatResults()}
+        results={this._formatResults()}
         row={row}
         theme={theme} />
     );
@@ -124,17 +81,15 @@ class SearchResults extends React.Component {
 SearchResults.defaultProps = {
   activeRow: null,
   hidden: true,
-  onClick: () => {},
-  onMouseOver: () => {},
-  results: [],
+  onClick: null,
+  onMouseOver: null,
   row: {
     height: 40,
     maxRows: 5,
     labelLength: 30,
     padding: 8
   },
-  theme: 'dark',
-  value: ''
+  theme: 'dark'
 };
 
 SearchResults.propTypes = {
@@ -143,7 +98,7 @@ SearchResults.propTypes = {
    */
   activeRow: PropTypes.number,
   /**
-   * Show/hide the menu
+   * Flag whether to show/hide the menu
    */
   hidden: PropTypes.bool,
   /**
@@ -161,7 +116,7 @@ SearchResults.propTypes = {
    */
   results: PropTypes.array.isRequired,
   /**
-   * Magic constants for the dimensions of a row item and its container
+   * Constants for the dimensions of a row item and its container
    * row.height: The height of a row
    * row.labelLength: The maximum length of a text label
    * row.maxRows: The maximum number of visible rows before you must scroll
@@ -176,7 +131,7 @@ SearchResults.propTypes = {
   /**
    * Theme of the component
    */
-  theme: PropTypes.string,
+  theme: PropTypes.oneOf(['light', 'dark']),
   /**
    * User-input search string
    */
