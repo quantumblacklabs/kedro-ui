@@ -54,6 +54,12 @@
   }
 }
 
+.cbn-searchresults__label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .cbn-searchresults__highlight {
   opacity: 0.5;
 }

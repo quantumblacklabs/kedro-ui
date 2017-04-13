@@ -2,10 +2,7 @@
 
 import React, { PropTypes } from 'react';
 import SearchResultsRenderer from './search-results-renderer';
-import {
-  highlightSearchTerm,
-  truncateString
-} from './search-results-utils';
+import { highlightSearchTerm } from './search-results-utils';
 
 // Styles
 
@@ -34,11 +31,11 @@ class SearchResults extends React.Component {
    * @return {object} The results array with a new field added
    */
   _getFormattedResults() {
-    const { results, value, row } = this.props;
+    const { results, value } = this.props;
 
     return results.map(result => ({
       formattedLabel: highlightSearchTerm(
-        truncateString(result.label, row.labelLength, value),
+        result.label,
         value
       ),
       ...result
@@ -86,7 +83,6 @@ SearchResults.defaultProps = {
   row: {
     height: 40,
     maxRows: 5,
-    labelLength: 30,
     padding: 8
   },
   theme: 'dark'
@@ -118,13 +114,11 @@ SearchResults.propTypes = {
   /**
    * Constants for the dimensions of a row item and its container
    * row.height: The height of a row
-   * row.labelLength: The maximum length of a text label
    * row.maxRows: The maximum number of visible rows before you must scroll
    * row.padding: The padding above and below the top/bottom rows
    */
   row: PropTypes.shape({
     height: PropTypes.number,
-    labelLength: PropTypes.number,
     maxRows: PropTypes.number,
     padding: PropTypes.number
   }),

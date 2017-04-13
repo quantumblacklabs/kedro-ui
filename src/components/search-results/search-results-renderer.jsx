@@ -119,7 +119,6 @@ SearchResultsRenderer.defaultProps = {
   row: {
     height: 40,
     maxRows: 5,
-    labelLength: 30,
     padding: 8
   },
   theme: 'dark'
@@ -141,13 +140,11 @@ SearchResultsRenderer.propTypes = {
   /**
    * Constants for the dimensions of a row item and its container
    * row.height: The height of a row
-   * row.labelLength: The maximum length of a text label
    * row.maxRows: The maximum number of visible rows before you must scroll
    * row.padding: The padding above and below the top/bottom rows
    */
   row: PropTypes.shape({
     height: PropTypes.number,
-    labelLength: PropTypes.number,
     maxRows: PropTypes.number,
     padding: PropTypes.number
   }),
