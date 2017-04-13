@@ -114,7 +114,7 @@
   "devDependencies": {
     "ava": "^0.17.0",
     "browser-env": "^2.0.21",
-    "enzyme": "^2.7.1",
+    "enzyme": "^2.8.1",
     "eslint": "^3.14.1",
     "eslint-config-airbnb": "^14.0.0",
     "eslint-plugin-import": "^2.2.0",
@@ -123,7 +123,8 @@
     "eslint-plugin-require-jsdoc": "^1.0.4",
     "ignore-styles": "^5.0.1",
     "nyc": "^10.1.2",
-    "react-addons-test-utils": "^15.4.2",
+    "react-addons-test-utils": "^15.5.1",
+    "react-test-renderer": "^15.5.4",
     "sinon": "^1.17.7"
   },
   "engines": {
