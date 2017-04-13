@@ -4,9 +4,9 @@ import { shallow } from 'enzyme';
 import { getValueRegex, highlightSearchTerm } from './search-results-utils';
 
 test('getValueRegex should return a regular expression', t => {
-  t.false(getValueRegex());
-  t.false(getValueRegex(''));
-  t.is(getValueRegex('foo'), new RegExp('foo', 'gi'));
+  t.true(typeof getValueRegex() === 'undefined');
+  t.is(getValueRegex(''), '');
+  t.is(getValueRegex('foo').toString(), '/foo/gi');
 });
 
 test('highlightSearchTerm should highlight search terms', t => {
