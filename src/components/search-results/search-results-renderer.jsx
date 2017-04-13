@@ -32,27 +32,27 @@ class SearchResultsRenderer extends React.Component {
    */
   _scrollToActiveRow(activeRow) {
     const { row } = this.props;
-    const { scrollTop } = this.list;
+    const { scrollTop } = this._list;
     const scrollTooLow = activeRow * row.height < scrollTop;
     const scrollTooHigh = ((activeRow + 1) * row.height) - scrollTop > row.maxHeight;
 
     if (scrollTooLow || scrollTooHigh) {
-      this.list.scrollTop = (activeRow * row.height) - (row.maxHeight / 2);
+      this._list.scrollTop = (activeRow * row.height) - (row.maxHeight / 2);
     }
   }
 
   /**
    * Handle selection click events on the rows
-   * @param  {[object]} e     - Native onClick event
-   * @param  {[string]} label - The text of the selected label
+   * @param  {[object]} e      - Native onClick event
+   * @param  {[object]} result - The data for the selected label
    */
-  _handleClicked(e, label) {
+  _handleRowClicked(e, result) {
     const { onClick } = this.props;
 
     if (onClick) {
       onClick({
         e,
-        data: { label }
+        data: { result }
       });
     }
   }
@@ -84,7 +84,7 @@ class SearchResultsRenderer extends React.Component {
           style={{ height, maxHeight: row.maxHeight }}>
           <ul
             className={`cbn-searchresults__list cbn-theme--${theme}`}
-            ref={el => { this.list = el; }}
+            ref={el => { this._list = el; }}
             role='listbox'>
             { results.map((result, i) =>
               <li
@@ -95,11 +95,11 @@ class SearchResultsRenderer extends React.Component {
                   { 'cbn-searchresults__row--active': activeRow === i }
                 )}
                 key={result.label}
-                onClick={e => this._handleClicked(e, result.label)}
+                onClick={e => this._handleRowClicked(e, result)}
                 role='option'
                 tabIndex='-1'
                 title={result.label}>
-                { result.type && <Icon type={result.type} size='medium' theme={theme} /> }
+                { result.icon && <Icon type={result.icon} size='medium' theme={theme} /> }
                 { result.formattedLabel }
               </li>
             ) }

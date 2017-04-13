@@ -21,7 +21,7 @@ class SearchBoxWithResults extends React.Component {
     _handleClick({ data }) {
         this.setState({
             hideResults: true,
-            value: data.label
+            value: data.result.label
         });
     }
     _handleMouseOver() {
@@ -87,11 +87,11 @@ class SearchBoxWithResults extends React.Component {
 
 SearchBoxWithResults.defaultProps = {
     results: [
-        { type: 'copy', label: 'Lorem ipsum dolor sit amet' },
-        { type: 'paste', label: 'Consetetur sadipscing elitr' },
-        { type: 'undo', label: 'Sed diam nonumy eirmod tempor' },
-        { type: 'cut', label: 'Invidunt ut labore et dolore magna aliquyam erat' },
-        { type: 'refresh', label: 'Sed diam voluptua' },
+        { icon: 'copy', label: 'Lorem ipsum dolor sit amet' },
+        { icon: 'paste', label: 'Consetetur sadipscing elitr' },
+        { icon: 'undo', label: 'Sed diam nonumy eirmod tempor' },
+        { icon: 'cut', label: 'Invidunt ut labore et dolore magna aliquyam erat' },
+        { icon: 'refresh', label: 'Sed diam voluptua' },
         { label: 'At vero eos et accusam et justo duo dolores et ea rebum' },
         { label: 'Vel, facere officia consectetur labore' },
         { label: 'Quaerat quo reprehenderit' },
@@ -119,11 +119,11 @@ SearchBoxWithResults.defaultProps = {
 
 ```
 const dummyData = [
-    { type: 'copy', label: 'Lorem ipsum dolor sit amet' },
-    { type: 'paste', label: 'Consetetur sadipscing elitr' },
-    { type: 'undo', label: 'Sed diam nonumy eirmod tempor' },
-    { type: 'cut', label: 'Invidunt ut labore et dolore magna aliquyam erat' },
-    { type: 'refresh', label: 'Sed diam voluptua' },
+    { icon: 'copy', label: 'Lorem ipsum dolor sit amet' },
+    { icon: 'paste', label: 'Consetetur sadipscing elitr' },
+    { icon: 'undo', label: 'Sed diam nonumy eirmod tempor' },
+    { icon: 'cut', label: 'Invidunt ut labore et dolore magna aliquyam erat' },
+    { icon: 'refresh', label: 'Sed diam voluptua' },
     { label: 'At vero eos et accusam et justo duo dolores et ea rebum' }
 ];
 <div style={{paddingBottom:'200px'}}>

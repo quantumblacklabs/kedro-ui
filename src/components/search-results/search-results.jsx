@@ -33,7 +33,7 @@ class SearchResults extends React.Component {
    * Add a new formattedLabel field to each of the results
    * @return {object} The results array with a new field added
    */
-  _formatResults() {
+  _getFormattedResults() {
     const { results, value, row } = this.props;
 
     return results.map(result => ({
@@ -71,7 +71,7 @@ class SearchResults extends React.Component {
         hidden={hidden || !results.length}
         onClick={onClick}
         onMouseOver={onMouseOver}
-        results={this._formatResults()}
+        results={this._getFormattedResults()}
         row={row}
         theme={theme} />
     );
@@ -112,7 +112,7 @@ SearchResults.propTypes = {
   /**
    * A pre-filtered array of results to show.
    * Each row should contain a required 'label' text property (string),
-   * and an optional 'type' property (string) for the icon
+   * and an optional 'icon' property (string) for the icon type
    */
   results: PropTypes.array.isRequired,
   /**
