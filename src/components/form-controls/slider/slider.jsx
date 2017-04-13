@@ -2,6 +2,8 @@ import React, { PropTypes } from 'react';
 import SliderRenderer from './slider-renderer';
 import RangedSliderRenderer from './ranged-slider-renderer';
 
+import './slider-common.css';
+
 /**
  * Creates a slider component.
  */

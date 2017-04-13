@@ -1,18 +1,12 @@
 /** Imports **/
 
-@import '../../../styles/includes';
-
 /** Variables **/
-
-$default-width: 310px;
 
 /** Mixins **/
 
 @define-mixin thumb {
   position: relative;
   pointer-events: all;
-
-  z-index: 2;
 }
 
 @define-mixin track {
@@ -20,10 +14,6 @@ $default-width: 310px;
 }
 
 /** Implementation **/
-
-.cbn-slider {
-  width: $default-width;
-}
 
 .cbn-slider-multiple--bottom {
   position: absolute;
