@@ -27,9 +27,31 @@ const ReactComponentRenderer = ({
             <h2 className={ 'cbn-sg__heading' }>{ name }</h2>
           </a>
           <div className={ 'cbn-sg__description' }>
+            <h2>Definition</h2>
             { description }
           </div>
+          <div className={ 'cbn-sg__gallery' }></div>
+          <div className={ 'cbn-sg__best-practice' }>
+            <h2>Best practice</h2>
+            <div>
+              <h4>Dos</h4>
+              <ul>
+                <li>Lorem Ipsum</li>
+                <li>Lorem Ipsum</li>
+                <li>Lorem Ipsum</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Don'ts</h4>
+              <ul>
+                <li>Lorem Ipsum</li>
+                <li>Lorem Ipsum</li>
+                <li>Lorem Ipsum</li>
+              </ul>
+            </div>
+          </div>
           <div className={ 'cbn-sg__links' }>
+            <h2>Implementation</h2>
           {isolated ? (
             <Link href='/'>← Back</Link>
           ) : (

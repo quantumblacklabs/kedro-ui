@@ -15,10 +15,14 @@
 }
 
 .cbn-sg-content {
-  margin: 0 auto;
+  margin: 0;
   padding: 0;
 
   background: white;
+
+  .cbn-sg-root--sidebar-open & {
+    margin-left: 243px;
+  }
 }
 
 .cbn-sg__header {
@@ -35,9 +39,17 @@
   bottom: 0;
   left: 0;
 
-  width: 239px;
+  display: none;
+
+  width: 243px;
 
   overflow: scroll;
+
+  background: white;
+
+  .cbn-sg-root--sidebar-open & {
+    display: block;
+  }
 }
 
 .cbn-sg__pathLine {
@@ -63,6 +75,10 @@
   padding: 100px 0 40px;
 
   background: rgba(239, 239, 239, 1);
+
+  .cbn-sg-root--sidebar-open & {
+    margin-left: 243px;
+  }
 }
 
 .cbn-sg-header > div {

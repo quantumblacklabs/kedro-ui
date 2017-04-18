@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import cx from 'classnames';
+import pkg from 'package';
 
 import 'styles/app.css';
 import 'styles/react-styleguidist.css';
@@ -18,7 +19,7 @@ const StyleGuideRenderer = ({
     <header className='cbn-sg-header'>
       <div>
         <h3>QUANTUMBLACK</h3>
-        <h1>Carbon UI Design System</h1>
+        <h1>Carbon UI Design System - Release {pkg.version}</h1>
       </div>
     </header>
 		<main className='cbn-sg-content'>
@@ -26,9 +27,8 @@ const StyleGuideRenderer = ({
 				{children}
 			</div>
 		</main>
-		{hasSidebar && false &&
+		{hasSidebar &&
 			<div className='cbn-sg-sidebar'>
-				<h1>{title}</h1>
 				{toc}
 			</div>
 		}
