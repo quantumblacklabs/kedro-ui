@@ -6,16 +6,12 @@
 
 $wrapper-width: 310px;
 $input-width: 166px;
+$input-height: 24px;
 
 $thumb-size: 3px;
 $thumb-border-width: 5px;
 
 $track-height: 2px;
-
-:root {
-  --low: 0;
-  --high: 0;
-}
 
 /** Mixins **/
 
@@ -23,18 +19,24 @@ $track-height: 2px;
   @mixin themedParent background, slider, thumbCenter;
   @mixin themedParent border-color, slider, thumbBorder;
 
+  display: relative;
+
   width: $thumb-size;
   height: $thumb-size;
-  margin-top: -6px;
+  margin-top: calc(-2 * $thumb-size);
 
   border-width: $thumb-border-width;
   border-style: solid;
   border-radius: 50%;
   box-shadow: none;
+
+  box-sizing: border-box;
 }
 
 @define-mixin track-style {
   @mixin themedParent background, slider, default;
+
+  display: relative;
 
   width: 100%;
   height: $track-height;
@@ -42,9 +44,31 @@ $track-height: 2px;
   border: 0;
 
   cursor: pointer;
+  box-sizing: border-box;
 }
 
 /** Implementation **/
+
+.cbn-slider__box {
+  position: relative;
+
+  width: $input-width;
+
+  box-sizing: border-box;
+}
+
+.cbn-slider__line {
+  position: absolute;
+  top: calc(50% - $track-height - 1px);
+
+  z-index: 0;
+
+  height: $track-height;
+
+  background: red;
+
+  box-sizing: border-box;
+}
 
 .cbn-slider {
   width: $wrapper-width;
@@ -53,23 +77,21 @@ $track-height: 2px;
 .cbn-slider__input {
   -webkit-appearance: none;
 
+  position: relative;
+  z-index: 1;
+
   width: $input-width;
-  height: 24px;
+  height: $input-height;
+  margin: 0;
   padding: 0;
+
+  background: transparent;
 
   box-shadow: none;
 
   &:focus,
   &:active {
     outline: none;
-  }
-
-  .cbn-theme--dark & {
-    background: linear-gradient(to right, transparent var(--low), map(themes, dark, slider, thumbBorder) 0, map(themes, dark, slider, thumbBorder) var(--high), transparent 0) no-repeat 0 45% / 100% 40%;
-  }
-
-  .cbn-theme--light & {
-    background: linear-gradient(to right, transparent var(--low), map(themes, dark, slider, thumbBorder) 0, map(themes, dark, slider, thumbBorder) var(--high), transparent 0) no-repeat 0 45% / 100% 40%;
   }
 }
 
@@ -100,15 +122,14 @@ $track-height: 2px;
 }
 
 .cbn-slider__input::-ms-track {
-  /** TODO: IE and MS Edge require a transparent color and border-color on the track,
-      or they will show (parts of) the native track design.
-      Also, they may need different margins for the thumb than the other browsers.
-  **/
   @mixin track-style;
 
   /** In IE, but not in Edge, the slider as a whole has a padding **/
   padding: 0;
+  margin: 0;
 
+  /** IE and MS Edge require a transparent color and border-color on the track,
+      or they will show (parts of) the native track design. **/
   border-color: transparent;
 
   color: transparent;

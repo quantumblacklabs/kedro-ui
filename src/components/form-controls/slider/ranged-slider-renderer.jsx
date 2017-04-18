@@ -26,6 +26,24 @@ class RangedSliderRenderer extends React.Component {
   }
 
   /**
+   * React lifecycle method
+   * {@link https://facebook.github.io/react/docs/react-component.html#componentdidmount}
+   * @return {object} JSX for this component
+   */
+  componentDidMount() {
+    this._updatePercentage();
+  }
+
+  /**
+   * React lifecycle method
+   * {@link https://facebook.github.io/react/docs/react-component.html#componentdidupdate}
+   * @return {object} JSX for this component
+   */
+  componentDidUpdate() {
+    this._updatePercentage();
+  }
+
+  /**
    * _handleBottomChanged -
    * @param  {object} event
    */
@@ -54,6 +72,21 @@ class RangedSliderRenderer extends React.Component {
   }
 
   /**
+   * _updatePercentage - injects the CSS variables into the child to correctly update the input
+   */
+  _updatePercentage() {
+    this._line.style.setProperty('--low', `${this._getPercentage(this.state.minRange)}%`);
+    this._line.style.setProperty('--high', `${this._getPercentage(this.state.maxRange)}%`);
+  }
+
+  /**
+   * _getPercentage - calculate the percentage of the range
+   */
+  _getPercentage(value) {
+    return value * ((this.props.max - this.props.min) / 100);
+  }
+
+  /**
    * React lifecycle method
    * {@link https://facebook.github.io/react/docs/react-component.html#render}
    * @return {object} JSX for this component
@@ -63,36 +96,39 @@ class RangedSliderRenderer extends React.Component {
       <div
         className={classnames(
           'cbn-slider',
-          `cbn-slider--${this.props.theme}`
+          `cbn-theme--${this.props.theme}`
         )}>
-        <input
-          className={classnames(
-            'cbn-slider__input',
-            'cbn-slider-multiple',
-            'cbn-slider-multiple--bottom'
-          )}
-          type='range'
-          name={this.props.name}
-          min={this.props.min}
-          max={this.props.max}
-          step={this.props.step}
-          value={this.state.minRange}
-          onChange={this._handleBottomChanged}
-          multiple />
-        <input
-          className={classnames(
-            'cbn-slider__input',
-            'cbn-slider-multiple',
-            'cbn-slider-multiple--top'
-          )}
-          type='range'
-          name={this.props.name}
-          min={this.props.min}
-          max={this.props.max}
-          step={this.props.step}
-          value={this.state.maxRange}
-          onChange={this._handleTopChanged}
-          multiple />
+        <div className='cbn-slider__box'>
+          <input
+            className={classnames(
+              'cbn-slider__input',
+              'cbn-slider-multiple',
+              'cbn-slider-multiple--bottom'
+            )}
+            type='range'
+            name={this.props.name}
+            min={this.props.min}
+            max={this.props.max}
+            step={this.props.step}
+            value={this.state.minRange}
+            onChange={this._handleBottomChanged}
+            multiple />
+          <input
+            className={classnames(
+              'cbn-slider__input',
+              'cbn-slider-multiple',
+              'cbn-slider-multiple--top'
+            )}
+            type='range'
+            name={this.props.name}
+            min={this.props.min}
+            max={this.props.max}
+            step={this.props.step}
+            value={this.state.maxRange}
+            onChange={this._handleTopChanged}
+            multiple />
+          <div ref={line => { this._line = line; }} className='cbn-slider__line-multiple' />
+        </div>
       </div>
     );
   }

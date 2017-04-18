@@ -1,5 +1,7 @@
 /** Imports **/
 
+@import './slider-common.css';
+
 /** Variables **/
 
 /** Mixins **/
@@ -15,12 +17,55 @@
 
 /** Implementation **/
 
-.cbn-slider-multiple--bottom {
+.cbn-slider__line-multiple {
   position: absolute;
+  top: calc(50% - $track-height - 1px);
+
+  z-index: 10;
+
+  width: 100%;
+  height: $track-height;
+
+  background: linear-gradient(
+    to right,
+    transparent var(--low),
+    red 0,
+    red var(--high),
+    transparent 0)
+    no-repeat 0 45% / 100% 40%;
+
+  /*.cbn-theme--dark & {
+    background: linear-gradient(
+      to right,
+      transparent var(--low),
+      map(themes, dark, slider, thumbBorder) 0,
+      map(themes, dark, slider, thumbBorder) var(--high),
+      transparent 0)
+      no-repeat 0 45% / 100% 40%;
+  }
+
+  .cbn-theme--light & {
+    background: linear-gradient(
+      to right,
+      transparent var(--low),
+      map(themes, light, slider, thumbBorder) 0,
+      map(themes, light, slider, thumbBorder) var(--high),
+      transparent 0)
+      no-repeat 0 45% / 100% 40%;
+  }*/
+
 }
 
-.cbn-slider-multiple--top {
-  position: relative;
+.cbn-slider__input {
+  &.cbn-slider-multiple--bottom {
+    position: absolute;
+    z-index: 1;
+  }
+
+  &.cbn-slider-multiple--top {
+    position: relative;
+    z-index: 2;
+  }
 }
 
 .cbn-slider-multiple {
