@@ -9,7 +9,12 @@ $input-width: 166px;
 $input-height: 24px;
 
 $thumb-size: 3px;
+$thumb-size--hover: 10px;
+$thumb-size--active: 8px;
+
 $thumb-border-width: 5px;
+$thumb-border-width--hover: 6px;
+$thumb-border-width--active: 8px;
 
 $track-height: 2px;
 
@@ -31,6 +36,22 @@ $track-height: 2px;
   box-shadow: none;
 
   box-sizing: border-box;
+
+  &:hover {
+    width: $thumb-size--hover;
+    height: $thumb-size--hover;
+    margin-top: calc(-1 * $thumb-size--hover);
+
+    border-width: $thumb-border-width--hover;
+  }
+
+  &:active {
+    width: $thumb-size--active;
+    height: $thumb-size--active;
+    margin-top: calc(-1.5 * $thumb-size--active);
+
+    border-width: $thumb-border-width--active;
+  }
 }
 
 @define-mixin track-style {
@@ -53,8 +74,6 @@ $track-height: 2px;
   position: relative;
 
   width: $input-width;
-
-  box-sizing: border-box;
 }
 
 .cbn-slider__line {
@@ -102,6 +121,7 @@ $track-height: 2px;
   background: transparent;
 
   box-shadow: none;
+  box-sizing: content-box;
 
   &:focus,
   &:active {
@@ -109,6 +129,7 @@ $track-height: 2px;
   }
 }
 
+/** THUMB **/
 .cbn-slider__input::-webkit-slider-thumb {
   -webkit-appearance: none;
 
@@ -125,6 +146,7 @@ $track-height: 2px;
   @mixin thumb-style;
 }
 
+/** TRACK **/
 .cbn-slider__input::-webkit-slider-runnable-track {
   -webkit-appearance: none;
 

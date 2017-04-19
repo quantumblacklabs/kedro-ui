@@ -2,8 +2,6 @@
 
 @import './slider-common.css';
 
-/** Variables **/
-
 /** Mixins **/
 
 @define-mixin thumb {
@@ -17,8 +15,8 @@
 
 /** Implementation **/
 
-/** this selector is needed to override the selector for single input
-    if it is present on the same page**/
+/** selector is needed to override the selector for single input
+    if it is present on the same page **/
 .cbn-slider-multiple .cbn-slider__line {
   .cbn-theme--dark & {
     background: linear-gradient(
@@ -53,6 +51,7 @@
   pointer-events: none;
 }
 
+/** THUMB **/
 .cbn-slider__input--multiple::-webkit-slider-thumb {
   @mixin thumb;
 }
@@ -65,7 +64,7 @@
   @mixin thumb;
 }
 
-/** because the track overlaps, allow only the one on top to listen to all ppointer eventss **/
+/** TRACK **/
 .cbn-slider__input--top::-webkit-slider-runnable-track {
   @mixin track;
 }
