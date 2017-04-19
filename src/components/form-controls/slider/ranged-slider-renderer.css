@@ -17,82 +17,63 @@
 
 /** Implementation **/
 
-.cbn-slider__line-multiple {
-  position: absolute;
-  top: calc(50% - $track-height - 1px);
-
-  z-index: 10;
-
-  width: 100%;
-  height: $track-height;
-
-  background: linear-gradient(
-    to right,
-    transparent var(--low),
-    red 0,
-    red var(--high),
-    transparent 0)
-    no-repeat 0 45% / 100% 40%;
-
-  /*.cbn-theme--dark & {
+/** this selector is needed to override the selector for single input
+    if it is present on the same page**/
+.cbn-slider-multiple .cbn-slider__line {
+  .cbn-theme--dark & {
     background: linear-gradient(
       to right,
-      transparent var(--low),
+      map(themes, dark, slider, default) var(--low),
       map(themes, dark, slider, thumbBorder) 0,
       map(themes, dark, slider, thumbBorder) var(--high),
-      transparent 0)
-      no-repeat 0 45% / 100% 40%;
+      map(themes, dark, slider, default) 0);
   }
 
   .cbn-theme--light & {
     background: linear-gradient(
       to right,
-      transparent var(--low),
+      map(themes, light, slider, default) var(--low),
       map(themes, light, slider, thumbBorder) 0,
       map(themes, light, slider, thumbBorder) var(--high),
-      transparent 0)
-      no-repeat 0 45% / 100% 40%;
-  }*/
-
+      map(themes, light, slider, default) 0);
+  }
 }
 
 .cbn-slider__input {
-  &.cbn-slider-multiple--bottom {
+  &.cbn-slider__input--bottom {
     position: absolute;
-    z-index: 1;
   }
 
-  &.cbn-slider-multiple--top {
+  &.cbn-slider__input--top {
     position: relative;
-    z-index: 2;
   }
 }
 
-.cbn-slider-multiple {
+.cbn-slider__input--multiple {
   pointer-events: none;
 }
 
-.cbn-slider-multiple::-webkit-slider-thumb {
+.cbn-slider__input--multiple::-webkit-slider-thumb {
   @mixin thumb;
 }
 
-.cbn-slider-multiple::-moz-range-thumb {
+.cbn-slider__input--multiple::-moz-range-thumb {
   @mixin thumb;
 }
 
-.cbn-slider-multiple::-ms-thumb {
+.cbn-slider__input--multiple::-ms-thumb {
   @mixin thumb;
 }
 
 /** because the track overlaps, allow only the one on top to listen to all ppointer eventss **/
-.cbn-slider-multiple--top::-webkit-slider-runnable-track {
+.cbn-slider__input--top::-webkit-slider-runnable-track {
   @mixin track;
 }
 
-.cbn-slider-multiple--top::-moz-range-track {
+.cbn-slider__input--top::-moz-range-track {
   @mixin track;
 }
 
-.cbn-slider-multiple--top::-ms-track {
+.cbn-slider__input--top::-ms-track {
   @mixin track;
 }

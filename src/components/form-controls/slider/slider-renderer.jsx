@@ -22,6 +22,24 @@ class SliderRenderer extends React.Component {
   }
 
   /**
+   * React lifecycle method
+   * {@link https://facebook.github.io/react/docs/react-component.html#componentdidmount}
+   * @return {object} JSX for this component
+   */
+  componentDidMount() {
+    this._updatePercentage();
+  }
+
+  /**
+   * React lifecycle method
+   * {@link https://facebook.github.io/react/docs/react-component.html#componentdidupdate}
+   * @return {object} JSX for this component
+   */
+  componentDidUpdate() {
+    this._updatePercentage();
+  }
+
+  /**
    * _handleChanged - updates the state with the value from the slider and triggers the passed on change callback.
    * @param  {object} event
    */
@@ -33,6 +51,13 @@ class SliderRenderer extends React.Component {
     if (typeof this.props.onChange === 'function') {
       this.props.onChange(event);
     }
+  }
+
+  /**
+   * _updatePercentage - injects the CSS variables into the child to correctly update the input
+   */
+  _updatePercentage() {
+    this._lineFilled.style.setProperty('--high', `${this._getPercentage()}%`);
   }
 
   /**
@@ -53,11 +78,12 @@ class SliderRenderer extends React.Component {
         className={classnames(
           'cbn-slider',
           'cbn-slider-single',
-          `cbn-theme--${this.props.theme}`
-        )}>
-        <div className='cbn-slider__box'>
+          `cbn-theme--${this.props.theme}`)}>
+        <div
+          ref={lineFilled => { this._lineFilled = lineFilled; }}
+          className='cbn-slider__box'>
+          <div className='cbn-slider__line' />
           <input
-            ref={input => { this._input = input; }}
             className='cbn-slider__input'
             type='range'
             name={this.props.name}
@@ -66,9 +92,6 @@ class SliderRenderer extends React.Component {
             step={this.props.step}
             value={this.state.value}
             onChange={this._handleChanged} />
-          <div
-            className='cbn-slider__line'
-            style={{ width: `${this._getPercentage()}%` }} />
         </div>
       </div>
     );

@@ -75,8 +75,8 @@ class RangedSliderRenderer extends React.Component {
    * _updatePercentage - injects the CSS variables into the child to correctly update the input
    */
   _updatePercentage() {
-    this._line.style.setProperty('--low', `${this._getPercentage(this.state.minRange)}%`);
-    this._line.style.setProperty('--high', `${this._getPercentage(this.state.maxRange)}%`);
+    this._lineFilled.style.setProperty('--low', `${this._getPercentage(this.state.minRange)}%`);
+    this._lineFilled.style.setProperty('--high', `${this._getPercentage(this.state.maxRange)}%`);
   }
 
   /**
@@ -96,14 +96,17 @@ class RangedSliderRenderer extends React.Component {
       <div
         className={classnames(
           'cbn-slider',
-          `cbn-theme--${this.props.theme}`
-        )}>
+          'cbn-slider-multiple',
+          `cbn-theme--${this.props.theme}`)}>
         <div className='cbn-slider__box'>
+          <div
+            ref={lineFilled => { this._lineFilled = lineFilled; }}
+            className='cbn-slider__line' />
           <input
             className={classnames(
               'cbn-slider__input',
-              'cbn-slider-multiple',
-              'cbn-slider-multiple--bottom'
+              'cbn-slider__input--multiple',
+              'cbn-slider__input--bottom'
             )}
             type='range'
             name={this.props.name}
@@ -116,8 +119,8 @@ class RangedSliderRenderer extends React.Component {
           <input
             className={classnames(
               'cbn-slider__input',
-              'cbn-slider-multiple',
-              'cbn-slider-multiple--top'
+              'cbn-slider__input--multiple',
+              'cbn-slider__input--top'
             )}
             type='range'
             name={this.props.name}
@@ -127,7 +130,6 @@ class RangedSliderRenderer extends React.Component {
             value={this.state.maxRange}
             onChange={this._handleTopChanged}
             multiple />
-          <div ref={line => { this._line = line; }} className='cbn-slider__line-multiple' />
         </div>
       </div>
     );
