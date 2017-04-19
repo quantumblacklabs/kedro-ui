@@ -11,7 +11,7 @@ class SearchBoxWithResults extends React.Component {
             value: 'Lor'
         };
     }
-    _handleChange({ target: { value } }) {
+    _handleChange(value) {
         this.setState({
             hideResults: !value,
             results: this._filterResults(value),
@@ -61,9 +61,10 @@ class SearchBoxWithResults extends React.Component {
     }
     render() {
         const { activeRow, hideResults, results, value } = this.state;
+
         return (
             <div onKeyDown={this._handleKeyDown.bind(this)}>
-                <Input
+                <SearchBar
                     aria={{
                         expanded: !hideResults,
                         activedescendant: hideResults ? null : 'cbn-searchresults-selected'
