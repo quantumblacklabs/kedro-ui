@@ -1,32 +1,30 @@
 .cbn-sg-body {
   color: black;
+  background-color: rgb(250, 250, 250);
 }
 
 .cbn-sg-gutter {
-  max-width: 1200px;
   margin: 0 auto;
+  padding: 0 32px;
 }
 
 .cbn-sg-root {
   font-size: 16px;
 
   color: black;
-  background: white;
+}
+
+.cbn-sg__section {
+  padding-top: 64px;
 }
 
 .cbn-sg-content {
   margin: 0;
   padding: 0;
 
-  background: white;
-
   .cbn-sg-root--sidebar-open & {
     margin-left: 243px;
   }
-}
-
-.cbn-sg__header {
-  padding: 0 0 50px;
 }
 
 .cbn-sg__props {
@@ -66,15 +64,13 @@
 }
 
 .cbn-sg-components {
-  background: white;
-
   overflow: auto; /* to prevent the pane from growing out of the screen */
 }
 
 .cbn-sg-header {
   padding: 100px 0 40px;
 
-  background: rgba(239, 239, 239, 1);
+  background: white;
 
   .cbn-sg-root--sidebar-open & {
     margin-left: 243px;
