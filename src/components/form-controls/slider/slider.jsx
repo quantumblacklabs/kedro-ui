@@ -15,7 +15,38 @@ class Slider extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      colors: undefined
+    };
+
     this.displayName = 'Slider';
+  }
+
+  /**
+   * React lifecycle method
+   * {@link https://facebook.github.io/react/docs/react-component.html#componentdidmount}
+   * @return {object} JSX for this component
+   */
+  componentDidMount() {
+    // store the correct colors
+    if (!this.state.colors) {
+      this._setColors();
+    }
+  }
+
+  /**
+   * _setColors - store the colors in the state for usage in gradient
+   */
+  _setColors() {
+    const fill = window.getComputedStyle(this._hiddenFill).backgroundColor;
+    const background = window.getComputedStyle(this._hiddenBackground).backgroundColor;
+
+    this.setState({
+      colors: {
+        fill,
+        background
+      }
+    });
   }
 
   /**
@@ -27,15 +58,31 @@ class Slider extends React.Component {
     // determine the type of correct renderer
     const RendererType = this.props.type === 'single' ? SliderRenderer : RangedSliderRenderer;
 
+    const hiddenElements = !this.state.colors && (
+      <div className='cbn-slider__hidden'>
+        <div
+          ref={hiddenFill => { this._hiddenFill = hiddenFill; }}
+          className='cbn-slider__hidden--fill' />
+        <div
+          ref={hiddenBackground => { this._hiddenBackground = hiddenBackground; }}
+          className='cbn-slider__hidden--background' />
+      </div>
+    );
+
     return (
-      <RendererType
-        min={this.props.min}
-        max={this.props.max}
-        name={this.props.name}
-        onChange={this.props.onChange}
-        step={this.props.step}
-        theme={this.props.theme}
-        value={this.props.value} />
+      <div className='cbn-slider-wraper'>
+        <RendererType
+          min={this.props.min}
+          max={this.props.max}
+          name={this.props.name}
+          onChange={this.props.onChange}
+          step={this.props.step}
+          theme={this.props.theme}
+          value={this.props.value}
+          fillColor={this.state.colors ? this.state.colors.fill : 'transparent'}
+          backgroundColor={this.state.colors ? this.state.colors.background : 'transparent'} />
+        {hiddenElements}
+      </div>
     );
   }
 }

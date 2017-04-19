@@ -15,8 +15,7 @@ class SliderRenderer extends React.Component {
     this.displayName = 'SliderRenderer';
 
     this.state = {
-      value: this.props.value,
-      colors: undefined
+      value: this.props.value
     };
 
     this._handleChanged = this._handleChanged.bind(this);
@@ -28,11 +27,6 @@ class SliderRenderer extends React.Component {
    * @return {object} JSX for this component
    */
   componentDidMount() {
-    // store the correct colors
-    if (!this.state.colors) {
-      this._setColors();
-    }
-
     this._updatePercentage();
   }
 
@@ -43,21 +37,6 @@ class SliderRenderer extends React.Component {
    */
   componentDidUpdate() {
     this._updatePercentage();
-  }
-
-  /**
-   * _setColors - store the colors in the state for usage in gradient
-   */
-  _setColors() {
-    const fill = window.getComputedStyle(this._hiddenFill).backgroundColor;
-    const background = window.getComputedStyle(this._hiddenBackground).backgroundColor;
-
-    this.setState({
-      colors: {
-        fill,
-        background
-      }
-    });
   }
 
   /**
@@ -78,15 +57,12 @@ class SliderRenderer extends React.Component {
    * _updatePercentage - injects the CSS variables into the child to correctly update the input
    */
   _updatePercentage() {
-    const fill = this.state.colors ? this.state.colors.fill : 'transparent';
-    const background = this.state.colors ? this.state.colors.background : 'transparent';
-
     this._lineFilled.style.setProperty('background', `
       linear-gradient(to right,
-      ${background} 0,
-      ${fill} 0,
-      ${fill} ${this._getPercentage()}%,
-      ${background} 0)
+      ${this.props.backgroundColor} 0,
+      ${this.props.fillColor} 0,
+      ${this.props.fillColor} ${this._getPercentage()}%,
+      ${this.props.backgroundColor} 0)
      `);
   }
 
@@ -141,6 +117,8 @@ class SliderRenderer extends React.Component {
 }
 
 SliderRenderer.defaultProps = {
+  backgroundColor: 'transparent',
+  fillColor: 'transparent',
   max: 100,
   min: 0,
   name: 'slider',
@@ -151,6 +129,14 @@ SliderRenderer.defaultProps = {
 };
 
 SliderRenderer.propTypes = {
+  /**
+   * Color used for the background of the range.
+   */
+  backgroundColor: PropTypes.string,
+  /**
+   * Color used for highlighting the selected range.
+   */
+  fillColor: PropTypes.string,
   /**
    * Minimal value of the slider.
    */

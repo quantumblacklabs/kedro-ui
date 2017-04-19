@@ -18,8 +18,7 @@ class RangedSliderRenderer extends React.Component {
 
     this.state = {
       minRange: this.props.value[0],
-      maxRange: this.props.value[1],
-      colors: undefined
+      maxRange: this.props.value[1]
     };
 
     this._handleTopChanged = this._handleTopChanged.bind(this);
@@ -32,11 +31,6 @@ class RangedSliderRenderer extends React.Component {
    * @return {object} JSX for this component
    */
   componentDidMount() {
-    // store the correct colors
-    if (!this.state.colors) {
-      this._setColors();
-    }
-
     this._updatePercentage();
   }
 
@@ -47,21 +41,6 @@ class RangedSliderRenderer extends React.Component {
    */
   componentDidUpdate() {
     this._updatePercentage();
-  }
-
-  /**
-   * _setColors - store the colors in the state for usage in gradient
-   */
-  _setColors() {
-    const fill = window.getComputedStyle(this._hiddenFill).backgroundColor;
-    const background = window.getComputedStyle(this._hiddenBackground).backgroundColor;
-
-    this.setState({
-      colors: {
-        fill,
-        background
-      }
-    });
   }
 
   /**
@@ -96,18 +75,15 @@ class RangedSliderRenderer extends React.Component {
    * _updatePercentage - injects the CSS variables into the child to correctly update the input
    */
   _updatePercentage() {
-    const fill = this.state.colors ? this.state.colors.fill : 'transparent';
-    const background = this.state.colors ? this.state.colors.background : 'transparent';
-
     const minRange = this._getPercentage(this.state.minRange);
     const maxRange = this._getPercentage(this.state.maxRange);
 
     this._lineFilled.style.setProperty('background', `
       linear-gradient(to right,
-      ${background} ${minRange}%,
-      ${fill} 0,
-      ${fill} ${maxRange}%,
-      ${background} 0)
+      ${this.props.backgroundColor} ${minRange}%,
+      ${this.props.fillColor} 0,
+      ${this.props.fillColor} ${maxRange}%,
+      ${this.props.backgroundColor} 0)
     `);
   }
 
@@ -181,6 +157,8 @@ class RangedSliderRenderer extends React.Component {
 }
 
 RangedSliderRenderer.defaultProps = {
+  backgroundColor: 'transparent',
+  fillColor: 'transparent',
   max: 100,
   min: 0,
   name: 'slider',
@@ -191,6 +169,14 @@ RangedSliderRenderer.defaultProps = {
 };
 
 RangedSliderRenderer.propTypes = {
+  /**
+   * Color used for the background of the range.
+   */
+  backgroundColor: PropTypes.string,
+  /**
+   * Color used for highlighting the selected range.
+   */
+  fillColor: PropTypes.string,
   /**
    * Minimal value of the slider.
    */
