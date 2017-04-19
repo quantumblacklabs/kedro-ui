@@ -2,6 +2,25 @@
   padding: 100px 0;
 }
 
+.cbn-sg-heading-underlined {
+  position: relative;
+
+  margin-bottom: 40px;
+
+  &::after {
+    position: absolute;
+    bottom: -16px;
+    left: 0;
+
+    display: block;
+    width: 40px;
+    height: 1px;
+
+    background: black;
+    content: '';
+  }
+}
+
 .cbn-sg__header {
   position: relative;
 
@@ -13,4 +32,52 @@
 .cbn-sg__component-nav {
   position: absolute;
   right: 0;
+}
+
+.cbn-sg__best-practice {
+  display: flex;
+  flex-direction: row;
+
+  > h2 {
+    display: block;
+  }
+
+  > div {
+    min-width: 360px;
+    width: 30%;
+    padding: 0 30px 0 0;
+  }
+}
+
+.cbn-sg__dos {
+  padding-top: 20px;
+  border-top: 2px solid rgb(0, 195, 41);
+}
+
+.cbn-sg__donts {
+  padding-top: 20px;
+  border-top: 2px solid rgb(236, 53, 8);
+
+  > li::after {
+    background: rgb(236, 53, 8);
+  }
+}
+
+li {
+  position: relative;
+
+  padding-left: 32px;
+
+  &::after {
+    position: absolute;
+    top: 10px;
+    left: 0;
+
+    display: block;
+    width: 16px;
+    height: 1px;
+
+    background: rgb(0, 195, 41);
+    content: '';
+  }
 }

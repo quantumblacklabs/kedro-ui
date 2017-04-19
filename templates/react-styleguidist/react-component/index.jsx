@@ -38,35 +38,37 @@ const ReactComponentRenderer = ({
         </header>
         <section className={ 'cbn-sg__section cbn-sg-gutter' }>
           <div className={ 'cbn-sg__description' }>
-            <h2>Definition</h2>
+            <h2 className={ 'cbn-sg-heading-underlined' }>Definition</h2>
             { description }
           </div>
-          <section className={ 'cbn-sg__section cbn-sg-gutter' }>
-            <div className={ 'cbn-sg__gallery' }></div>
-          </section>
+        </section>
+        <section className={ 'cbn-sg__section cbn-sg-gutter' }>
+          <div className={ 'cbn-sg__gallery' }></div>
+        </section>
+        <section className={ 'cbn-sg__section cbn-sg-gutter' }>
+          <h2 className={ 'cbn-sg-heading-underlined' }>Best practice</h2>
           <div className={ 'cbn-sg__best-practice' }>
-            <h2>Best practice</h2>
             <div>
               <h4>Dos</h4>
-              <ul>
+              <ul className={ 'cbn-sg__dos' }>
+                <li>Lorem Ipsum</li>
+                <li>Lorem Ipsum</li>
+                <li>Lorem Ipsum</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Don'ts</h4>
+              <ul className={ 'cbn-sg__donts' }>
                 <li>Lorem Ipsum</li>
                 <li>Lorem Ipsum</li>
                 <li>Lorem Ipsum</li>
               </ul>
             </div>
           </div>
-          <div>
-            <h4>Don'ts</h4>
-            <ul>
-              <li>Lorem Ipsum</li>
-              <li>Lorem Ipsum</li>
-              <li>Lorem Ipsum</li>
-            </ul>
-          </div>
         </section>
         <section className={ 'cbn-sg__section cbn-sg-gutter' }>
           <div className={ 'cbn-sg__links' }>
-            <h2>Implementation</h2>
+            <h2 className={ 'cbn-sg-heading-underlined' }>Implementation</h2>
           {isolated ? (
             <Link href='/'>← Back</Link>
           ) : (
@@ -84,7 +86,7 @@ const ReactComponentRenderer = ({
 
       {examples && (
         <div className={ 'cbn-sg__examples' }>
-          <div className='cbn-sg-gutter'><h2>Variants</h2></div>
+          <div className='cbn-sg-gutter'><h2 className={ 'cbn-sg-heading-underlined' }>Variants</h2></div>
           { examples }
         </div>
         )}
