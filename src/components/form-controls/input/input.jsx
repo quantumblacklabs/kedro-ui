@@ -46,6 +46,23 @@ class Input extends React.Component {
 
   /**
    * React lifecycle method
+   * Update the value in state if props chage
+   * {@link https://facebook.github.io/react/docs/react-component.html#componentwillreceiveprops}
+   * @return {object} JSX for this component
+   */
+  componentWillReceiveProps(newProps) {
+    if (newProps.value !== this.state.value) {
+      this.setState({
+        value: newProps.value
+      });
+    }
+
+    // reset the animation
+    this._anim = this.addAnimation(this._createAnimation);
+  }
+
+  /**
+   * React lifecycle method
    * {@link https://facebook.github.io/react/docs/react-component.html#componentDidUpdate}
    * @return {object} JSX for this component
    */
@@ -70,22 +87,26 @@ class Input extends React.Component {
    * @return {GSAP}
    */
   _createAnimation() {
+    const animationTimeline = new TimelineLite();
+
     const line = this._line;
     const lineWidthTimeline = new TimelineLite();
     lineWidthTimeline
       .to(line, 0, { width: 0 })
       .to(line, 1, { width: '100%', ease: Elastic.easeOut.config(0.3, 1) });
 
-    const desc = this._description;
-    const descTimeline = new TimelineLite();
-    descTimeline
-      .to(desc, 0, { opacity: 0, ease: Power1.easeIn })
-      .to(desc, 0.7, { opacity: 1, ease: Power1.easeIn });
-
-    // add the thwo animations on the timeline; both will start at zero seconds
-    const animationTimeline = new TimelineLite();
     animationTimeline.add(lineWidthTimeline, 0);
-    animationTimeline.add(descTimeline, 0);
+
+    const desc = this._description;
+
+    if (desc) {
+      const descTimeline = new TimelineLite();
+      descTimeline
+        .to(desc, 0, { opacity: 0, ease: Power1.easeIn })
+        .to(desc, 0.7, { opacity: 1, ease: Power1.easeIn });
+
+      animationTimeline.add(descTimeline, 0);
+    }
 
     return animationTimeline;
   }
@@ -141,6 +162,8 @@ class Input extends React.Component {
       </div>
     );
 
+    const hasDescription = this.props.status !== 'default' && this.props.statusDescription;
+
     return (
       <div className='cbn-input-wrapper'>
         <div
@@ -167,9 +190,11 @@ class Input extends React.Component {
             </div>
           </div>
         </div>
-        <div className='cbn-input__description' ref={desc => { this._description = desc; }}>
-          {this.props.status !== 'default' && this.props.statusDescription && this.props.statusDescription}
-        </div>
+        {
+          hasDescription && (<div className='cbn-input__description' ref={desc => { this._description = desc; }}>
+            {this.props.statusDescription}
+          </div>)
+        }
       </div>
     );
   }

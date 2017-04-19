@@ -9,6 +9,7 @@ import Tooltip from 'components/insights/tooltip';
 import Dropdown from 'components/menus/dropdown';
 import Icon from 'components/icon';
 import MenuOption from 'components/menus/menu-option';
+import SearchBar from 'components/search-bar';
 import SearchResults from 'components/search-results';
 import { Checkbox, Input, RadioButton } from 'components/form-controls';
 
@@ -30,6 +31,7 @@ module.exports = {
   Icon,
   Input,
   MenuOption,
+  SearchBar,
   SearchResults,
   RadioButton
 };
