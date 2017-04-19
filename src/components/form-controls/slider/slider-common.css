@@ -70,11 +70,6 @@ $track-height: 2px;
 
 /** Implementation **/
 
-:root {
-  --low: 20%;
-  --high: 80%;
-}
-
 .cbn-slider__box {
   position: relative;
 
@@ -89,14 +84,6 @@ $track-height: 2px;
   height: $track-height;
 
   box-sizing: border-box;
-
-  .cbn-theme--dark & {
-    background: linear-gradient(to right, map(themes, dark, slider, default) 0, map(themes, dark, slider, thumbBorder) 0, map(themes, dark, slider, thumbBorder) var(--high), map(themes, dark, slider, default) 0);
-  }
-
-  .cbn-theme--light & {
-    background: linear-gradient(to right, map(themes, light, slider, default) 0, map(themes, light, slider, thumbBorder) 0, map(themes, light, slider, thumbBorder) var(--high), map(themes, light, slider, default) 0);
-  }
 }
 
 .cbn-slider {
