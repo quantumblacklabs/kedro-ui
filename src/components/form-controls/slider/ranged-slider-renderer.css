@@ -19,21 +19,11 @@
     if it is present on the same page **/
 .cbn-slider-multiple .cbn-slider__line {
   .cbn-theme--dark & {
-    background: linear-gradient(
-      to right,
-      map(themes, dark, slider, default) var(--low),
-      map(themes, dark, slider, thumbBorder) 0,
-      map(themes, dark, slider, thumbBorder) var(--high),
-      map(themes, dark, slider, default) 0);
+    background: linear-gradient(to right, map(themes, dark, slider, default) var(--low), map(themes, dark, slider, thumbBorder) 0, map(themes, dark, slider, thumbBorder) var(--high), map(themes, dark, slider, default) 0);
   }
 
   .cbn-theme--light & {
-    background: linear-gradient(
-      to right,
-      map(themes, light, slider, default) var(--low),
-      map(themes, light, slider, thumbBorder) 0,
-      map(themes, light, slider, thumbBorder) var(--high),
-      map(themes, light, slider, default) 0);
+    background: linear-gradient(to right, map(themes, light, slider, default) var(--low), map(themes, light, slider, thumbBorder) 0, map(themes, light, slider, thumbBorder) var(--high), map(themes, light, slider, default) 0);
   }
 }
 
