@@ -2,7 +2,7 @@
 
 ```
 <section>
-    <Slider type='multi' theme='light' />
+    <Slider type='single' theme='light' />
 </section>
 ```
 

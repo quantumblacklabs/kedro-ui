@@ -15,7 +15,8 @@ class SliderRenderer extends React.Component {
     this.displayName = 'SliderRenderer';
 
     this.state = {
-      value: this.props.value
+      value: this.props.value,
+      colors: undefined
     };
 
     this._handleChanged = this._handleChanged.bind(this);
@@ -27,6 +28,11 @@ class SliderRenderer extends React.Component {
    * @return {object} JSX for this component
    */
   componentDidMount() {
+    // store the correct colors
+    if (!this.state.colors) {
+      this._setColors();
+    }
+
     this._updatePercentage();
   }
 
@@ -37,6 +43,21 @@ class SliderRenderer extends React.Component {
    */
   componentDidUpdate() {
     this._updatePercentage();
+  }
+
+  /**
+   * _setColors - store the colors in the state for usage in gradient
+   */
+  _setColors() {
+    const fill = window.getComputedStyle(this._hiddenFill).backgroundColor;
+    const background = window.getComputedStyle(this._hiddenBackground).backgroundColor;
+
+    this.setState({
+      colors: {
+        fill,
+        background
+      }
+    });
   }
 
   /**
@@ -57,7 +78,16 @@ class SliderRenderer extends React.Component {
    * _updatePercentage - injects the CSS variables into the child to correctly update the input
    */
   _updatePercentage() {
-    this._lineFilled.style.setProperty('--high', `${this._getPercentage()}%`);
+    const fill = this.state.colors ? this.state.colors.fill : 'transparent';
+    const background = this.state.colors ? this.state.colors.background : 'transparent';
+
+    this._lineFilled.style.setProperty('background', `
+      linear-gradient(to right,
+      ${background} 0,
+      ${fill} 0,
+      ${fill} ${this._getPercentage()}%,
+      ${background} 0)
+     `);
   }
 
   /**
@@ -73,16 +103,27 @@ class SliderRenderer extends React.Component {
    * @return {object} JSX for this component
    */
   render() {
+    const hiddenElements = !this.state.colors && (
+      <div className='cbn-slider__hidden'>
+        <div
+          ref={hiddenFill => { this._hiddenFill = hiddenFill; }}
+          className='cbn-slider__hidden--fill' />
+        <div
+          ref={hiddenBackground => { this._hiddenBackground = hiddenBackground; }}
+          className='cbn-slider__hidden--background' />
+      </div>
+    );
+
     return (
       <div
         className={classnames(
           'cbn-slider',
           'cbn-slider-single',
           `cbn-theme--${this.props.theme}`)}>
-        <div
-          ref={lineFilled => { this._lineFilled = lineFilled; }}
-          className='cbn-slider__box'>
-          <div className='cbn-slider__line' />
+        <div className='cbn-slider__box'>
+          <div
+            ref={lineFilled => { this._lineFilled = lineFilled; }}
+            className='cbn-slider__line' />
           <input
             className='cbn-slider__input'
             type='range'
@@ -93,6 +134,7 @@ class SliderRenderer extends React.Component {
             value={this.state.value}
             onChange={this._handleChanged} />
         </div>
+        {hiddenElements}
       </div>
     );
   }

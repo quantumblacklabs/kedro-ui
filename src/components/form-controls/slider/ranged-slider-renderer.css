@@ -54,35 +54,3 @@
 .cbn-slider__input--top::-ms-track {
   @mixin track;
 }
-
-/** RENDERED BUT NOT VISIBLE IN VIEWPORT **/
-.cbn-slider__hidden {
-  position: fixed;
-  left: -9999px;
-
-  opacity: 0;
-
-  &--fill {
-    height: 1px;
-
-    .cbn-theme--dark & {
-      @mixin themedParent background, slider, thumbCenter;
-    }
-
-    .cbn-theme--light & {
-      @mixin themedParent background, slider, thumbCenter;
-    }
-  }
-
-  &--background {
-    height: 1px;
-
-    .cbn-theme--dark & {
-      @mixin themedParent background, slider, default;
-    }
-
-    .cbn-theme--light & {
-      @mixin themedParent background, slider, default;
-    }
-  }
-}
