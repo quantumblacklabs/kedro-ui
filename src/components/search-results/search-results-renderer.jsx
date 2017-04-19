@@ -79,11 +79,12 @@ class SearchResultsRenderer extends React.Component {
           aria-hidden={hidden}
           className={classnames(
             'cbn-searchresults__wrapper',
-            { 'cbn-searchresults__wrapper--hidden': hidden }
+            { 'cbn-searchresults__wrapper--hidden': hidden },
+            `cbn-theme--${theme}`
           )}
           style={{ height, maxHeight: row.maxHeight }}>
           <ul
-            className={`cbn-searchresults__list cbn-theme--${theme}`}
+            className='cbn-searchresults__list'
             ref={el => { this._list = el; }}
             role='listbox'>
             { results.map((result, i) =>

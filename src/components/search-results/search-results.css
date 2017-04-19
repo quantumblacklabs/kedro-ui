@@ -1,17 +1,40 @@
+/** Imports **/
+
 @import '../../styles/includes';
+
+/** Variables **/
+
+$default-input-width: 320px;
+$row-padding: 8px 20px 12px 44px;
+$list-margin-top: 4px;
+$list-vertical-padding: 4px;
+
+/** Implementation **/
 
 .cbn-searchresults {
   position: relative;
 
-  margin-top: 4px;
+  margin-top: $list-margin-top;
 }
 
 .cbn-searchresults__wrapper {
   position: absolute;
   overflow: hidden;
 
-  width: 320px;
+  width: $default-input-width;
   transition: all ease 0.3s;
+  box-sizing: border-box;
+
+  @mixin themed background, menu, default;
+  @mixin themed color, text;
+
+  &.cbn-theme--light {
+    @extend %shadow-light;
+  }
+
+  &.cbn-theme--dark {
+    @extend %shadow-dark;
+  }
 
   &--hidden {
     height: 0;
@@ -22,14 +45,10 @@
   height: 100%;
   overflow: auto;
 
-  padding: 3px 0 4px;
-  border-top: 1px solid map(themes, light, menu, border);
+  padding: $list-vertical-padding 0;
   transition: all ease 0.2s;
   box-sizing: border-box;
-
-  @mixin themed border-color, menu, border;
-  @mixin themed background, menu, default;
-  @mixin themed color, text;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12) inset;
 }
 
 .cbn-searchresults__row {
@@ -37,7 +56,7 @@
 
   display: block;
 
-  padding: 8px 20px 12px 44px;
+  padding: $row-padding;
   text-decoration: none;
   cursor: pointer;
 
