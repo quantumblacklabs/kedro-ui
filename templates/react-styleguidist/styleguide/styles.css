@@ -122,3 +122,32 @@
     color: hotpink;
   }
 }
+
+.rsg--ComponentsList--list {
+  margin: 0;
+  padding: 0 0 0 32px;
+
+  .rsg--Link--link {
+    display: block;
+
+    margin: 0;
+    padding: 14px 0;
+
+    font-size: 16px;
+    line-height: 1;
+
+    color: black;
+  }
+}
+
+
+.rsg--ComponentsList--item {
+  margin: 0;
+  padding: 0;
+
+  font-size: 16px;
+
+  &::after {
+    display: none;
+  }
+}
