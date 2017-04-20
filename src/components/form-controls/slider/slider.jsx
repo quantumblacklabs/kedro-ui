@@ -1,4 +1,7 @@
 import React, { PropTypes } from 'react';
+import classnames from 'classnames';
+import { rangeStep } from 'lodash/fp';
+
 import SliderRenderer from './slider-renderer';
 import RangedSliderRenderer from './ranged-slider-renderer';
 
@@ -69,8 +72,31 @@ class Slider extends React.Component {
       </div>
     );
 
+    const tickStep = this.props.tickStep ? this.props.tickStep : this.props.max;
+    // create a range of values
+    const tickNumbers = rangeStep(tickStep, this.props.min, this.props.max);
+    // and add the max into the array
+    tickNumbers.push(this.props.max);
+
+    console.log(tickNumbers)
+
+    const ticks = this.props.showTicks && (
+      <div className='cbn-slider__ticks'>
+        {tickNumbers.map(tickNumber => (
+          <div className='cbn-slider__tick'>
+            {tickNumber}
+          </div>
+          )
+        )}
+      </div>
+    );
+
     return (
-      <div className='cbn-slider-wraper'>
+      <div
+        className={classnames(
+          'cbn-slider',
+          `cbn-slider--${this.props.type}`,
+          `cbn-theme--${this.props.theme}`)}>
         <RendererType
           min={this.props.min}
           max={this.props.max}
@@ -81,6 +107,7 @@ class Slider extends React.Component {
           value={this.props.value}
           fillColor={this.state.colors ? this.state.colors.fill : 'transparent'}
           backgroundColor={this.state.colors ? this.state.colors.background : 'transparent'} />
+        {ticks}
         {hiddenElements}
       </div>
     );
@@ -92,7 +119,9 @@ Slider.defaultProps = {
   min: 0,
   name: 'slider',
   onChange: null,
+  showTicks: true,
   step: 1,
+  tickStep: 0,
   theme: 'light',
   type: 'single',
   value: undefined
@@ -118,9 +147,19 @@ Slider.propTypes = {
    */
   onChange: PropTypes.func,
   /**
+   * Whether the ticks indicating values of the slider should be shown.
+   * By default only the min and max is shown, changing the tickStep value modifies the number of ticks.
+   */
+  showTicks: PropTypes.bool,
+  /**
    * Step of the slider.
    */
   step: PropTypes.number,
+  /**
+   * Step of the ticks shown below the slider.
+   * By default only the min and max is shown.
+   */
+  tickStep: PropTypes.number,
   /**
    * Theme of the component, either 'dark' or 'light'
    */
@@ -128,7 +167,7 @@ Slider.propTypes = {
   /**
    * Type of the slider - either single input slider or multiple input (ranged) slider
    */
-  type: PropTypes.oneOf(['single', 'multi']),
+  type: PropTypes.oneOf(['single', 'multiple']),
   /**
    * The value of the slider - either array for ranged slider or a single number for simple slider.
    */

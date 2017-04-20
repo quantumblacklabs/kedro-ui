@@ -10,6 +10,6 @@
 
 ```
 <section>
-    <Slider type='multi' theme='light' />
+    <Slider type='multiple' theme='light' />
 </section>
 ```

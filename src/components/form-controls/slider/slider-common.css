@@ -111,6 +111,19 @@ $track-height: 2px;
   }
 }
 
+.cbn-slider__ticks {
+  display: flex;
+  justify-content: space-between;
+
+  width: $input-width;
+}
+
+.cbn-slider__tick {
+  display: inline-block;
+
+  text-align: center;
+}
+
 /** THUMB **/
 .cbn-slider__input::-webkit-slider-thumb {
   -webkit-appearance: none;

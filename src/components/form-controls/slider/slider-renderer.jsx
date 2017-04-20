@@ -79,38 +79,20 @@ class SliderRenderer extends React.Component {
    * @return {object} JSX for this component
    */
   render() {
-    const hiddenElements = !this.state.colors && (
-      <div className='cbn-slider__hidden'>
-        <div
-          ref={hiddenFill => { this._hiddenFill = hiddenFill; }}
-          className='cbn-slider__hidden--fill' />
-        <div
-          ref={hiddenBackground => { this._hiddenBackground = hiddenBackground; }}
-          className='cbn-slider__hidden--background' />
-      </div>
-    );
-
     return (
-      <div
-        className={classnames(
-          'cbn-slider',
-          'cbn-slider-single',
-          `cbn-theme--${this.props.theme}`)}>
-        <div className='cbn-slider__box'>
-          <div
-            ref={lineFilled => { this._lineFilled = lineFilled; }}
-            className='cbn-slider__line' />
-          <input
-            className='cbn-slider__input'
-            type='range'
-            name={this.props.name}
-            min={this.props.min}
-            max={this.props.max}
-            step={this.props.step}
-            value={this.state.value}
-            onChange={this._handleChanged} />
-        </div>
-        {hiddenElements}
+      <div className='cbn-slider__box'>
+        <div
+          ref={lineFilled => { this._lineFilled = lineFilled; }}
+          className='cbn-slider__line' />
+        <input
+          className='cbn-slider__input'
+          type='range'
+          name={this.props.name}
+          min={this.props.min}
+          max={this.props.max}
+          step={this.props.step}
+          value={this.state.value}
+          onChange={this._handleChanged} />
       </div>
     );
   }
@@ -124,7 +106,6 @@ SliderRenderer.defaultProps = {
   name: 'slider',
   onChange: undefined,
   step: 1,
-  theme: 'light',
   value: 50
 };
 
@@ -159,10 +140,6 @@ SliderRenderer.propTypes = {
    * Step of the slider.
    */
   step: PropTypes.number,
-  /**
-   * Theme of the component, either 'dark' or 'light'.
-   */
-  theme: PropTypes.oneOf(['dark', 'light']),
   /**
    * The pre-selected value of the slider.
    */
