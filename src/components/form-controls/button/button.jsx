@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import classnames from 'classnames';
 
 import './button.css';
 
@@ -7,11 +8,15 @@ import './button.css';
  */
 class Button extends React.Component {
   /**
-   * constructor - create new component with given props.
-   * @param  {object} props
+   * Handle onClick events
+   * @param  {object} e - onClick event object
    */
-  constructor(props) {
-    super(props);
+  _handleClick(e) {
+    const { onClick } = this.props;
+
+    if (typeof onClick === 'function') {
+      onClick(e);
+    }
   }
 
   /**
@@ -20,18 +25,63 @@ class Button extends React.Component {
    * @return {object} JSX for this component
    */
   render() {
+    const {
+      children,
+      disabled,
+      theme,
+      type,
+      size
+    } = this.props;
+
     return (
-      <button className='cbn-button'>
-        Hello world!
+      <button
+        className={classnames(
+          'cbn-button',
+          `cbn-button--${type}`,
+          `cbn-button--${size}`,
+          `cbn-theme--${theme}`
+        )}
+        disabled={disabled}
+        onClick={e => this._handleClick(e)}>
+        { children }
       </button>
     );
   }
 }
 
 Button.defaultProps = {
+  disabled: false,
+  onClick: null,
+  theme: 'light',
+  type: 'primary',
+  size: 'regular'
 };
 
 Button.propTypes = {
+  /**
+   * The displayed button value
+   */
+  children: PropTypes.node.isRequired,
+  /**
+   * Handle click events
+   */
+  onClick: PropTypes.func,
+  /**
+   * True if disabled
+   */
+  disabled: PropTypes.bool,
+  /**
+   * Theme of the button - either 'dark' or 'light'.
+   */
+  theme: PropTypes.oneOf(['dark', 'light']),
+  /**
+   * Button style - either 'primary' or 'secondary'.
+   */
+  type: PropTypes.oneOf(['primary', 'secondary']),
+  /**
+   * Button size - either 'regular' or 'small'.
+   */
+  size: PropTypes.oneOf(['regular', 'small'])
 };
 
 export default Button;

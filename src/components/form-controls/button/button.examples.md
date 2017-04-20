@@ -1,5 +1,11 @@
-## Button component
+## Regular button
 
 ```
-<Button theme='light' />
+<Button>Hello world!</Button>
+```
+
+## Disabled button
+
+```
+<Button disabled>Hello world!</Button>
 ```
