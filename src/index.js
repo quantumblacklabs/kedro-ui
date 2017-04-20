@@ -10,6 +10,7 @@ import Dropdown from 'components/menus/dropdown';
 import Icon from 'components/icon';
 import MenuOption from 'components/menus/menu-option';
 import {
+  Button,
   Checkbox,
   Input,
   RadioButton,
@@ -28,6 +29,7 @@ module.exports = {
     Swatch,
     Tooltip
   },
+  Button,
   Checkbox,
   Dropdown,
   EventIndicator,
