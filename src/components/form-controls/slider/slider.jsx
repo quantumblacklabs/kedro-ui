@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
-import { rangeStep } from 'lodash/fp';
+import { rangeStep, uniqueId } from 'lodash/fp';
 
 import SliderRenderer from './slider-renderer';
 import RangedSliderRenderer from './ranged-slider-renderer';
@@ -21,6 +21,8 @@ class Slider extends React.Component {
     this.state = {
       colors: undefined
     };
+
+    this._id = uniqueId(`cbn-slider--${this.props.type}-`);
 
     this.displayName = 'Slider';
   }
@@ -78,17 +80,23 @@ class Slider extends React.Component {
     // and add the max into the array
     tickNumbers.push(this.props.max);
 
-    console.log(tickNumbers)
-
     const ticks = this.props.showTicks && (
-      <div className='cbn-slider__ticks'>
-        {tickNumbers.map(tickNumber => (
-          <div className='cbn-slider__tick'>
-            {tickNumber}
-          </div>
+      <datalist
+        id={this._id}
+        className='cbn-slider__ticks'>
+        {tickNumbers.map((tickNumber, i) => (
+          <option
+            key={tickNumbers[i]}
+            className={classnames(
+              'cbn-slider__tick',
+              { 'cbn-slider__tick--min': i === 0 },
+              { 'cbn-slider__tick--max': i === (tickNumbers.length - 1) })}
+            value={tickNumber}>
+            {}
+          </option>
           )
         )}
-      </div>
+      </datalist>
     );
 
     return (
@@ -106,7 +114,8 @@ class Slider extends React.Component {
           theme={this.props.theme}
           value={this.props.value}
           fillColor={this.state.colors ? this.state.colors.fill : 'transparent'}
-          backgroundColor={this.state.colors ? this.state.colors.background : 'transparent'} />
+          backgroundColor={this.state.colors ? this.state.colors.background : 'transparent'}
+          listId={this._id} />
         {ticks}
         {hiddenElements}
       </div>

@@ -16,6 +16,8 @@ $thumb-border-width: 5px;
 $thumb-border-width--hover: 6px;
 $thumb-border-width--active: 8px;
 
+$thumb-width: calc($thumb-size + $thumb-size + $thumb-border-width);
+
 $track-height: 2px;
 
 /** Mixins **/
@@ -38,19 +40,21 @@ $track-height: 2px;
   box-sizing: border-box;
 
   &:hover {
-    width: $thumb-size--hover;
+    /*width: $thumb-size--hover;
     height: $thumb-size--hover;
     margin-top: calc(-1 * $thumb-size--hover);
 
-    border-width: $thumb-border-width--hover;
+    border-width: $thumb-border-width--hover;*/
+
+    transform: scale(2);
   }
 
   &:active {
-    width: $thumb-size--active;
+    /*width: $thumb-size--active;
     height: $thumb-size--active;
     margin-top: calc(-1.5 * $thumb-size--active);
 
-    border-width: $thumb-border-width--active;
+    border-width: $thumb-border-width--active;*/
   }
 }
 
@@ -79,7 +83,9 @@ $track-height: 2px;
 .cbn-slider__line {
   position: absolute;
   top: calc(50% - $track-height - 1px);
+  /*left: calc($thumb-width / 2);*/
 
+  /*width: calc(100% - $thumb-width);*/
   width: 100%;
   height: $track-height;
 
@@ -119,9 +125,35 @@ $track-height: 2px;
 }
 
 .cbn-slider__tick {
-  display: inline-block;
+  position: relative;
 
-  text-align: center;
+  background: yellow;
+  padding: 0;
+  margin: 0;
+
+  /*transform: translateX(50%);*/
+
+  &:before {
+    display: flex;
+    position: relative;
+    top: -21px;
+
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+
+    background: orange;
+
+    content: '';
+  }
+
+  /*&--min {
+    transform: translateX(calc(-50% + $thumb-width / 2));
+  }
+
+  &--max {
+    transform: translateX(calc(50% - $thumb-width / 2));
+  }*/
 }
 
 /** THUMB **/

@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-import classnames from 'classnames';
 
 /**
  * Creates a single slider component.
@@ -87,6 +86,7 @@ class SliderRenderer extends React.Component {
         <input
           className='cbn-slider__input'
           type='range'
+          list={this.props.listId}
           name={this.props.name}
           min={this.props.min}
           max={this.props.max}
@@ -101,6 +101,7 @@ class SliderRenderer extends React.Component {
 SliderRenderer.defaultProps = {
   backgroundColor: 'transparent',
   fillColor: 'transparent',
+  listId: 'slider-simple-list',
   max: 100,
   min: 0,
   name: 'slider',
@@ -118,6 +119,10 @@ SliderRenderer.propTypes = {
    * Color used for highlighting the selected range.
    */
   fillColor: PropTypes.string,
+  /**
+   * The ID used for list attribute - ticks.
+   */
+  listId: PropTypes.string,
   /**
    * Minimal value of the slider.
    */
