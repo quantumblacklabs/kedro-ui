@@ -9,7 +9,12 @@ import Tooltip from 'components/insights/tooltip';
 import Dropdown from 'components/menus/dropdown';
 import Icon from 'components/icon';
 import MenuOption from 'components/menus/menu-option';
-import { Checkbox, Input, RadioButton } from 'components/form-controls';
+import {
+  Checkbox,
+  Input,
+  RadioButton,
+  Switch
+} from 'components/form-controls';
 
 import './styles/app.css';
 
@@ -29,5 +34,6 @@ module.exports = {
   Icon,
   Input,
   MenuOption,
-  RadioButton
+  RadioButton,
+  Switch
 };
