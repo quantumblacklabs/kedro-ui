@@ -18,7 +18,7 @@ const StyleGuideRenderer = ({
 	<div className={cx('cbn-sg-root', hasSidebar && 'cbn-sg-root--sidebar-open')}>
     <header className='cbn-sg-header'>
       <div>
-        <h1>Carbon UI Design System - Release {pkg.version}</h1>
+        <h1><span className='cbn-sg-header__logo'>C / UI</span>Carbon UI Design System - Release {pkg.version}</h1>
       </div>
     </header>
 		<main className='cbn-sg-content'>
