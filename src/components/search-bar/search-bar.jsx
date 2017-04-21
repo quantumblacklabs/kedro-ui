@@ -103,7 +103,7 @@ SearchBar.propTypes = {
    */
   onChange: PropTypes.func,
   /**
-   * On clear, triggered when clear buttong is pressed
+   * On clear, triggered when clear button is pressed
    */
   onClear: PropTypes.func,
   /**
