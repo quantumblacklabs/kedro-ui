@@ -9,7 +9,8 @@ import './icon.css';
  * An icon component.
  * This creates an SVG node containing the icon graphics.
  * Icons are generated via npm.
- * The graphics should render sharply at 16, 24, 48, if the designer adheres to the 24px grid.
+ *
+ * *The graphics should render sharply at 16, 24, 48, if the designer adheres to the 24px grid.*
  */
 const Icon = props => {
   const {

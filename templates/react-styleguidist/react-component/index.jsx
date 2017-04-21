@@ -42,9 +42,6 @@ const ReactComponentRenderer = ({
             { description }
           </div>
         </section>
-        <section className={ 'cbn-sg__section cbn-sg-gutter' }>
-          <div className={ 'cbn-sg__gallery' }></div>
-        </section>
         <section className={ 'cbn-sg__section cbn-sg-gutter' } id={ `${slug}-practice` }>
           <h4 className={ 'cbn-sg-heading-underlined' }>Best practice</h4>
           <div className={ 'cbn-sg__best-practice' }>
