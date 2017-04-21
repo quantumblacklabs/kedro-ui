@@ -25,6 +25,8 @@ class Slider extends React.Component {
     this._id = uniqueId(`cbn-slider--${this.props.type}-`);
 
     this.displayName = 'Slider';
+
+    this._handleChanged = this._handleChanged.bind(this);
   }
 
   /**
@@ -55,15 +57,24 @@ class Slider extends React.Component {
   }
 
   /**
+   * _handleChanged -
+   */
+  _handleChanged(e) {
+    console.log(e.target.value);
+
+    if (typeof this.props.onChange === 'function') {
+      this.props.onChange(e);
+    }
+  }
+
+  /**
    * React lifecycle method
    * {@link https://facebook.github.io/react/docs/react-component.html#render}
    * @return {object} JSX for this component
    */
   render() {
-    // determine the type of correct renderer
-    const RendererType = this.props.type === 'single' ? SliderRenderer : RangedSliderRenderer;
-
-    const hiddenElements = !this.state.colors && (
+    // const hiddenElements = !this.state.colors && (
+    const hiddenElements = (
       <div className='cbn-slider__hidden'>
         <div
           ref={hiddenFill => { this._hiddenFill = hiddenFill; }}
@@ -76,29 +87,61 @@ class Slider extends React.Component {
 
     const tickStep = this.props.tickStep ? this.props.tickStep : this.props.max;
     // create a range of values
-    const tickNumbers = rangeStep(tickStep, this.props.min, this.props.max);
+    const tickValues = rangeStep(tickStep, this.props.min, this.props.max);
     // and add the max into the array
-    tickNumbers.push(this.props.max);
+    tickValues.push(this.props.max);
 
-    const ticks = this.props.showTicks && (
+    const tickNumbers = this.props.showTicks && (
       <datalist
         id={this._id}
-        className='cbn-slider__ticks'>
-        {tickNumbers.map((tickNumber, i) => (
+        className='cbn-slider__tick-numbers'>
+        {tickValues.map((tickValue, i) => (
           <option
-            key={tickNumbers[i]}
+            key={`tick-number-${tickValues[i]}`}
             className={classnames(
-              'cbn-slider__tick',
-              { 'cbn-slider__tick--min': i === 0 },
-              { 'cbn-slider__tick--max': i === (tickNumbers.length - 1) })}
-            value={tickNumber}>
-            {}
+              'cbn-slider__tick-number',
+              { 'cbn-slider__tick-number--min': i === 0 },
+              { 'cbn-slider__tick-number--max': i === (tickValues.length - 1) })}
+            value={tickValue}
+            style={{ transform: (
+              (i === 0 || i === (tickValues.length - 1))
+              ? false
+              : 'translateX(50%)'
+            ) }}>
+            {tickValue}
           </option>
           )
         )}
       </datalist>
     );
 
+    const tickSymbols = this.props.showTicks && (
+      <datalist
+        id={this._id}
+        className='cbn-slider__tick-symbols'>
+        {tickValues.map((tickValue, i) => (
+          <option
+            key={`tick-symbol-${tickValues[i]}`}
+            className={classnames(
+              'cbn-slider__tick-symbol',
+              { 'cbn-slider__tick-symbol--min': i === 0 },
+              { 'cbn-slider__tick-symbol--max': i === (tickValues.length - 1) }
+            )}
+            value={tickValue} />
+          )
+        )}
+      </datalist>
+    );
+
+    // determine the type of correct renderer
+    const RendererType = this.props.type === 'single' ? SliderRenderer : RangedSliderRenderer;
+
+    /**
+     * TODO:
+     *  <SliderRenderer ...>
+     *    {typeRenderer}
+     *  </SliderRenderer>
+     */
     return (
       <div
         className={classnames(
@@ -109,14 +152,15 @@ class Slider extends React.Component {
           min={this.props.min}
           max={this.props.max}
           name={this.props.name}
-          onChange={this.props.onChange}
+          onChange={this._handleChanged}
           step={this.props.step}
           theme={this.props.theme}
           value={this.props.value}
           fillColor={this.state.colors ? this.state.colors.fill : 'transparent'}
           backgroundColor={this.state.colors ? this.state.colors.background : 'transparent'}
           listId={this._id} />
-        {ticks}
+        {tickSymbols}
+        {tickNumbers}
         {hiddenElements}
       </div>
     );
