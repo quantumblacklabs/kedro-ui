@@ -38,7 +38,7 @@ const ReactComponentRenderer = ({
         </header>
         <section className={ 'cbn-sg__section cbn-sg-gutter' }>
           <div className={ 'cbn-sg__description' } id={ `${slug}-definition` }>
-            <h2 className={ 'cbn-sg-heading-underlined' }>Definition</h2>
+            <h4 className={ 'cbn-sg-heading-underlined' }>Definition</h4>
             { description }
           </div>
         </section>
@@ -46,7 +46,7 @@ const ReactComponentRenderer = ({
           <div className={ 'cbn-sg__gallery' }></div>
         </section>
         <section className={ 'cbn-sg__section cbn-sg-gutter' } id={ `${slug}-practice` }>
-          <h2 className={ 'cbn-sg-heading-underlined' }>Best practice</h2>
+          <h4 className={ 'cbn-sg-heading-underlined' }>Best practice</h4>
           <div className={ 'cbn-sg__best-practice' }>
             <div>
               <h4>Dos</h4>
@@ -68,7 +68,7 @@ const ReactComponentRenderer = ({
         </section>
         <section className={ 'cbn-sg__section cbn-sg-gutter' } id={ `${slug}-implementation` }>
           <div className={ 'cbn-sg__links' }>
-            <h2 className={ 'cbn-sg-heading-underlined' }>Implementation</h2>
+            <h4 className={ 'cbn-sg-heading-underlined' }>Implementation</h4>
           {isolated ? (
             <Link href='/'>← Back</Link>
           ) : (
@@ -86,13 +86,13 @@ const ReactComponentRenderer = ({
 
       {examples && (
         <div className={ 'cbn-sg__examples' } id={ `${slug}-variants` }>
-          <div className='cbn-sg-gutter'><h2 className={ 'cbn-sg-heading-underlined' }>Variants</h2></div>
+          <div className='cbn-sg-gutter'><h4 className={ 'cbn-sg-heading-underlined' }>Variants</h4></div>
           { examples }
         </div>
         )}
       {methods && (
 				<div className={ 'cbn-sg__methods' }>
-					<div className='cbn-sg-gutter'><h3>Methods</h3></div>
+					<div className='cbn-sg-gutter'><h4>Methods</h4></div>
 					{methods}
 				</div>
 			)}
