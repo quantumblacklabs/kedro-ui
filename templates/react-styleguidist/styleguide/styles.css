@@ -91,6 +91,14 @@
     line-height: 1.4;
   }
 
+  em {
+    margin-left: 6px;
+
+    font-size: 14px;
+    line-height: 1.43;
+    letter-spacing: 0.1px;
+  }
+
   .cbn-sg-root--sidebar-open & {
     left: 243px;
   }

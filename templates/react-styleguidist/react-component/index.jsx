@@ -30,14 +30,14 @@ const ReactComponentRenderer = ({
             </a>
           </section>
           <nav className='cbn-sg__component-nav'>
-            <a href='#'>Definition</a>
-            <a href='#'>Best Practice</a>
-            <a href='#'>Implementation</a>
-            <a href='#'>Variants</a>
+            <a href={ `#${slug}-definition` }>Definition</a>
+            <a href={ `#${slug}-practice` }>Best Practice</a>
+            <a href={ `#${slug}-implementation` }>Implementation</a>
+            <a href={ `#${slug}-variants` }>Variants</a>
           </nav>
         </header>
         <section className={ 'cbn-sg__section cbn-sg-gutter' }>
-          <div className={ 'cbn-sg__description' }>
+          <div className={ 'cbn-sg__description' } id={ `${slug}-definition` }>
             <h2 className={ 'cbn-sg-heading-underlined' }>Definition</h2>
             { description }
           </div>
@@ -45,7 +45,7 @@ const ReactComponentRenderer = ({
         <section className={ 'cbn-sg__section cbn-sg-gutter' }>
           <div className={ 'cbn-sg__gallery' }></div>
         </section>
-        <section className={ 'cbn-sg__section cbn-sg-gutter' }>
+        <section className={ 'cbn-sg__section cbn-sg-gutter' } id={ `${slug}-practice` }>
           <h2 className={ 'cbn-sg-heading-underlined' }>Best practice</h2>
           <div className={ 'cbn-sg__best-practice' }>
             <div>
@@ -66,7 +66,7 @@ const ReactComponentRenderer = ({
             </div>
           </div>
         </section>
-        <section className={ 'cbn-sg__section cbn-sg-gutter' }>
+        <section className={ 'cbn-sg__section cbn-sg-gutter' } id={ `${slug}-implementation` }>
           <div className={ 'cbn-sg__links' }>
             <h2 className={ 'cbn-sg-heading-underlined' }>Implementation</h2>
           {isolated ? (
@@ -85,7 +85,7 @@ const ReactComponentRenderer = ({
       </div>
 
       {examples && (
-        <div className={ 'cbn-sg__examples' }>
+        <div className={ 'cbn-sg__examples' } id={ `${slug}-variants` }>
           <div className='cbn-sg-gutter'><h2 className={ 'cbn-sg-heading-underlined' }>Variants</h2></div>
           { examples }
         </div>
