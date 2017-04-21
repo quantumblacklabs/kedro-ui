@@ -17,6 +17,7 @@ const SearchBarRenderer = ({ iconType,
                              showClearButton,
                              value }) => {
   const style = { opacity: showClearButton ? 1 : 0 };
+
   return (
     <div className={`cbn-searchbar cbn-theme--${theme}`}>
       <div className='cbn-searchbar__dynamicicon'>
