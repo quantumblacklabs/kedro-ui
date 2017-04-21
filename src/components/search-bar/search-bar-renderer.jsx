@@ -56,7 +56,7 @@ SearchBarRenderer.propTypes = {
   /**
    * Theme of the component
    */
-  theme: PropTypes.string.isRequired,
+  theme: PropTypes.oneOf(['light', 'dark']).isRequired,
   /**
    * Show clear button on right
    */

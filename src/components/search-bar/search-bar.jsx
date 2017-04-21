@@ -113,7 +113,7 @@ SearchBar.propTypes = {
   /**
    * Theme of the component
    */
-  theme: PropTypes.string
+  theme: PropTypes.oneOf(['light', 'dark']).isRequired
 };
 
 export default SearchBar;
