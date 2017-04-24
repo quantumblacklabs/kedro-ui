@@ -47,20 +47,6 @@ An initial selected menu option.
 
 ```
 
-A default selected null first option can be used to provide an alternative to default label text.
-
-```
-<Dropdown
-    theme='light'
-    onChanged={ e => console.log(e) }
-    width={ 200 }>
-    <MenuOption primaryText='All' selected={ true } value={ null } />
-    <MenuOption primaryText='Menu Item One' value={ 1 } />
-    <MenuOption primaryText='Menu Item Two' value={ 2 } />
-    <MenuOption primaryText='Menu Item Three' value={ 3 } />
-</Dropdown>
-
-```
 
 Programmatic opening and closing of the Dropdown via `.open()` and `.close()` API methods.
 
@@ -128,7 +114,7 @@ A selected option within sections.
     <section>
         <span>Heading Two</span>
         <MenuOption primaryText='Menu Item Four' value={ 4 } />
-        <MenuOption primaryText='Menu Item Five' selected={ true }  value={ 5 } />
+        <MenuOption primaryText='Menu Item Five' selected={ true } value={ 5 } />
     </section>
 </Dropdown>
 ```

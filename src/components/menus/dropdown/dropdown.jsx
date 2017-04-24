@@ -66,7 +66,7 @@ class Dropdown extends React.Component {
         flatten,
         find(x => x.props.selected)
       )(children)
-    : find(children, c => c.props.selected);
+    : find(c => c.props.selected)(children);
   }
 
   /**
