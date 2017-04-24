@@ -24,17 +24,23 @@ const ReactComponentRenderer = ({
       <div className={ 'cbn-sg__meta' }>
         <header className={ 'cbn-sg__header' }>
           <section className={ 'cbn-sg__section cbn-sg-gutter' }>
+            <div>
+            { isolated
+              ? <Link href={'#' + slug}>&larr;</Link>
+              : <Link href={'#!/' + name}>&rarr;</Link>
+            }
+            </div>
             <span>Components /</span>
-            <Link href={'#!/' + name}>
-              <h2 className={ 'cbn-sg__heading' }>{ name }</h2>
-            </Link>
+            <h2 className={ 'cbn-sg__heading' }>{ name }</h2>
           </section>
-          <nav className='cbn-sg__component-nav'>
-            <a href={ `#${slug}-definition` }>Definition</a>
-            <a href={ `#${slug}-practice` }>Best Practice</a>
-            <a href={ `#${slug}-implementation` }>Implementation</a>
-            <a href={ `#${slug}-variants` }>Variants</a>
-          </nav>
+          { !isolated && (
+            <nav className='cbn-sg__component-nav'>
+              <a href={ `#${slug}-definition` }>Definition</a>
+              <a href={ `#${slug}-practice` }>Best Practice</a>
+              <a href={ `#${slug}-implementation` }>Implementation</a>
+              <a href={ `#${slug}-variants` }>Variants</a>
+            </nav>
+          )}
         </header>
         <section className={ 'cbn-sg__section cbn-sg-gutter' }>
           <div className={ 'cbn-sg__description' } id={ `${slug}-definition` }>
