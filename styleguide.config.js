@@ -40,6 +40,10 @@ const config = {
   template: './templates/index.html',
   sections: [
     {
+      name: 'Development Mode',
+      content: './README.md'
+    },
+    {
       name: 'Icons',
       content: './templates/components/icons.md',
       components: getComponentsFunc('icon', 'src/components/icon/**/*.jsx')
