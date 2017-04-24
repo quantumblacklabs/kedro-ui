@@ -56,9 +56,6 @@ class Input extends React.Component {
         value: newProps.value
       });
     }
-
-    // reset the animation
-    this._anim = this.addAnimation(this._createAnimation);
   }
 
   /**
