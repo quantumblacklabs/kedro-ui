@@ -1,7 +1,7 @@
 {
   "name": "@quantumblack/carbon-ui-components",
   "version": "0.5.0",
-  "description": "A collection of React components which are used in Carbon UI",
+  "description": "Carbon UI Components",
   "main": "dist/index.min.js",
   "scripts": {
     "start": "npm run docs:server",
