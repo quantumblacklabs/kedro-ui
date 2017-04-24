@@ -52,8 +52,9 @@ class ChangeParent extends React.Component {
 
     return (
       <div>
-        <SearchBar onChange={this.onChange} theme='light' iconType='refresh'/>
+        <SearchBar value={this.state.currentText} onChange={this.onChange} theme='light' iconType='refresh'/>
         <div style={style}>Text From SearchBar: {this.state.currentText}</div>
+        <button style={{marginTop: '20px'}} onClick={()=> { this.setState({currentText: 'something'}); }}>Set External Value</button>
       </div>
     );
   }
