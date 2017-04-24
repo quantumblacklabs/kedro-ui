@@ -9,13 +9,14 @@ import { Input } from '../form-controls';
 /**
  * SearchBarRenderer, used to output the actual DOM makeup for the component
  */
-const SearchBarRenderer = ({ iconType,
-                             placeholder,
-                             onChange,
-                             onClear,
-                             theme,
-                             showClearButton,
-                             value }) => {
+const SearchBarRenderer = ({
+  iconType,
+  placeholder,
+  onChange,
+  onClear,
+  theme,
+  showClearButton,
+  value }) => {
   const style = { opacity: showClearButton ? 1 : 0 };
 
   return (
