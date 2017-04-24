@@ -25,7 +25,6 @@ const SearchBarRenderer = ({
         <Icon type={iconType} size='medium' theme={theme} />
       </div>
       <Input
-        name='Something 2'
         placeholder={placeholder}
         onChange={onChange}
         value={value}
