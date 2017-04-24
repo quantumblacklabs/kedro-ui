@@ -26,8 +26,8 @@ class SearchBar extends React.Component {
       showClearButton: false
     };
 
-    this.onChange = this.onChange.bind(this);
-    this.onClear = this.onClear.bind(this);
+    this.onChange = this._handleChanged.bind(this);
+    this.onClear = this._handleCleared.bind(this);
   }
 
   // Events
@@ -36,7 +36,7 @@ class SearchBar extends React.Component {
    * onChange - fired for onChange events in input field
    * @param  {Event} e native change event
    */
-  onChange(e) {
+  _handleChanged(e) {
     this.setState({
       currentText: e.target.value,
       showClearButton: e.target.value !== ''
@@ -53,7 +53,7 @@ class SearchBar extends React.Component {
    * @param  {type} e description
    * @return {type}   description
    */
-  onClear() {
+  _handleCleared() {
     this.setState({
       currentText: '',
       showClearButton: false
@@ -76,8 +76,8 @@ class SearchBar extends React.Component {
       <SearchBarRenderer
         iconType={this.props.iconType}
         placeholder={this.props.placeholder}
-        onChange={this.onChange}
-        onClear={this.onClear}
+        onChange={this._handleChanged}
+        onClear={this._handleCleared}
         showClearButton={this.state.showClearButton}
         value={this.state.currentText}
         theme={this.props.theme} />

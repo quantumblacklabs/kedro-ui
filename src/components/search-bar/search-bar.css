@@ -3,6 +3,7 @@
 @import '../../styles/includes';
 
 /** Variables **/
+
 $size-icon: 24px;
 $size-input-offset: 44px;
 $size-pos-base: 10px;
@@ -46,7 +47,6 @@ $size-pos-base: 10px;
 
 .cbn-input__line--filled {
   .cbn-searchbar & {
-    /** Needs to be important as style is applied inline */
     max-width: calc(100% - $size-icon);
   }
 }
