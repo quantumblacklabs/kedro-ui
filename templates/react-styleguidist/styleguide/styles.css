@@ -105,6 +105,10 @@
   .cbn-sg-root--sidebar-open & {
     left: 243px;
   }
+
+  .rsg--Link--link {
+    color: inherit;
+  }
 }
 
 .cbn-sg-header__logo {

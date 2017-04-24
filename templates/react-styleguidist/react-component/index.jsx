@@ -25,9 +25,9 @@ const ReactComponentRenderer = ({
         <header className={ 'cbn-sg__header' }>
           <section className={ 'cbn-sg__section cbn-sg-gutter' }>
             <span>Components /</span>
-            <a className={ 'cbn-sg__anchor' } href={ '#' + name }>
+            <Link href={'#!/' + name}>
               <h2 className={ 'cbn-sg__heading' }>{ name }</h2>
-            </a>
+            </Link>
           </section>
           <nav className='cbn-sg__component-nav'>
             <a href={ `#${slug}-definition` }>Definition</a>
@@ -64,14 +64,7 @@ const ReactComponentRenderer = ({
           </div>
         </section>
         <section className={ 'cbn-sg__section cbn-sg-gutter' } id={ `${slug}-implementation` }>
-          <div className={ 'cbn-sg__links' }>
-            <h4 className={ 'cbn-sg-heading-underlined' }>Implementation</h4>
-          {isolated ? (
-            <Link href='/'>← Back</Link>
-          ) : (
-            <Link href={'#!/' + slug}>Open isolated ⇢</Link>
-          )}
-          </div>
+          <h4 className={ 'cbn-sg-heading-underlined' }>Implementation</h4>
           <p className={ 'cbn-sg__pathLine' }>
             {pathLine}
           </p>

@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import Link from 'rsg-components/Link';
 import cx from 'classnames';
 import pkg from 'package';
 
@@ -18,7 +19,9 @@ const StyleGuideRenderer = ({
 	<div className={cx('cbn-sg-root', hasSidebar && 'cbn-sg-root--sidebar-open')}>
     <header className='cbn-sg-header'>
       <div>
-        <h1><span className='cbn-sg-header__logo'>C / UI</span>Carbon UI Design System — <em>Release {pkg.version}</em></h1>
+        <Link href='#'>
+          <h1><span className='cbn-sg-header__logo'>C / UI</span>Carbon UI Design System — <em>Release {pkg.version}</em></h1>
+        </Link>
       </div>
     </header>
 		<main className='cbn-sg-content'>
