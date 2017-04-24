@@ -55,6 +55,11 @@ const config = {
       components: getComponentsFunc('menu', 'src/components/menus/**/*.jsx')
     },
     {
+      name: 'Searchbar',
+      content: './templates/components/search-bar.md',
+      components: getComponentsFunc('searchbar', 'src/components/search-bar/**/*.jsx')
+    },
+    {
       name: 'Form Controls',
       content: './templates/components/form-controls.md',
       components: getComponentsFunc('form', 'src/components/form-controls/**/*.jsx')
