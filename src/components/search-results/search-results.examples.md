@@ -1,4 +1,4 @@
-## Search results component used alongside a search input:
+Search results component used alongside a search input:
 
 ```
 class SearchBoxWithResults extends React.Component {
@@ -116,7 +116,7 @@ SearchBoxWithResults.defaultProps = {
 <SearchBoxWithResults />
 ```
 
-## Search results component on its own:
+Search results component on its own:
 
 ```
 const dummyData = [
