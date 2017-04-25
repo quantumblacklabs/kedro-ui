@@ -14,18 +14,21 @@ test('Button should include only one button field', t => {
   t.true(wrapper.find('button').length === 1);
 });
 
-test('Button should correctly render the value', () => {
-  const valueText = 'Value of button!';
-  const wrapper = shallow(<Button value={valueText} />);
+test('Button should correctly render its text value', t => {
+  const text = 'I am a button!';
+  const wrapper = shallow(<Button>{ text }</Button>);
 
-  wrapper
-    .find('button')
-    .html()
-    .includes(`value="${valueText}"`);
+  t.is(wrapper.find('button').text(), text);
+});
+
+test('Button should handle click events', t => {
+  const wrapper = shallow(<Button onClick={e => e} />);
+
+  t.is(typeof wrapper.props().onClick, 'function');
 });
 
 test('Button should correctly be disabled', () => {
-  const wrapper = shallow(<Button disabled={true} />);
+  const wrapper = shallow(<Button disabled />);
 
   wrapper
     .find('button')
@@ -36,12 +39,12 @@ test('Button should correctly be disabled', () => {
 test('Button should correctly have light theme class', t => {
   const wrapper = shallow(<Button theme='light' />);
 
-  t.true(wrapper.find('.cbn-theme--light').length === 1);
+  t.is(wrapper.find('.cbn-theme--light').length, 1);
 });
 
 test('Button should correctly have dark theme class', t => {
   // dark theme is default, so it should be automatically assigned
   const wrapper = shallow(<Button theme='dark' />);
 
-  t.true(wrapper.find('.cbn-theme--dark').length === 1);
+  t.is(wrapper.find('.cbn-theme--dark').length, 1);
 });
