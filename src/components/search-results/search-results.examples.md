@@ -69,6 +69,7 @@ class SearchBoxWithResults extends React.Component {
                         expanded: !hideResults,
                         activedescendant: hideResults ? null : 'cbn-searchresults-selected'
                     }}
+                    onClear={this._handleChange.bind(this)}
                     onChange={this._handleChange.bind(this)}
                     placeholder='Search'
                     theme='light'
