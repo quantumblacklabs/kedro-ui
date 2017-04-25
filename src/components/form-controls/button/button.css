@@ -49,7 +49,7 @@ $primaryDuration: 0.2s;
   @mixin themedState hover, color, button, textHover;
   @mixin themedState active, color, button, textHover;
   @mixin themedState hover, background, button, outline;
-  @mixin themedState active, background, button, outline;
+  @mixin themedState active, background, button, active;
   @mixin themedState disabled, color, text;
 
   &.cbn-theme--light:focus {
@@ -61,6 +61,7 @@ $primaryDuration: 0.2s;
   }
 
   &:active {
+    transition: none;
     outline-width: 0;
   }
 
