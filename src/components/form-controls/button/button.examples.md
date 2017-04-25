@@ -1,4 +1,4 @@
-## Regular buttons
+Regular buttons
 
 ```
 <div>
@@ -13,7 +13,7 @@
     <Button theme='light' type='secondary'>Hello world!</Button>
 </div>
 ```
-## Small buttons
+Small buttons
 
 ```
 <div>
@@ -22,7 +22,7 @@
 </div>
 ```
 
-## Disabled buttons
+Disabled buttons
 
 ```
 <div>
@@ -33,7 +33,7 @@
 </div>
 ```
 
-## Button with Icon
+Button with Icon
 
 ```
 <div>
@@ -42,7 +42,7 @@
 </div>
 ```
 
-## Button with 'wipe' hover effect
+Button with 'wipe' hover effect
 
 ```
 <div>
