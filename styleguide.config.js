@@ -65,6 +65,11 @@ const config = {
       components: getComponentsFunc('form', 'src/components/form-controls/**/*.jsx')
     },
     {
+      name: 'Tooltip',
+      content: './templates/components/tooltip.md',
+      components: getComponentsFunc('tooltip', 'src/components/tooltip/**/*.jsx')
+    },
+    {
       name: 'Project: Insights',
       content: './templates/projects/insights.md',
       components: getComponentsFunc('menu', 'src/components/insights/**/*.jsx')

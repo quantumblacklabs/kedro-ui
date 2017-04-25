@@ -105,7 +105,7 @@ SearchBar.defaultProps = {
   onChange: null,
   onClear: null,
   theme: 'dark',
-  value: 'Hello'
+  value: ''
 };
 
 SearchBar.propTypes = {

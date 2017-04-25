@@ -1,0 +1,29 @@
+/** Imports */
+
+@import '../../styles/includes';
+
+/** Variables */
+
+$size-padding: 4px 8px;
+
+/** Implementation */
+
+.cbn-tooltip {
+  @mixin themed color, tooltip, text;
+  @mixin themed background, tooltip;
+
+  @extend %type--body-2;
+
+  display: inline-block;
+
+  padding: $size-padding;
+
+  font-weight: 600;
+
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.cbn-tooltip__header {
+  display: block;
+}
