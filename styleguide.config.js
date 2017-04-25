@@ -72,12 +72,7 @@ const config = {
     //   name: 'Project: Insights',
     //   content: './templates/projects/insights.md',
     //   components: getComponentsFunc('menu', 'src/components/insights/**/*.jsx')
-    // },
-    {
-      name: 'Modules',
-      content: './templates/modules/index.md',
-      components: getComponentsFunc('module', 'src/components/modules/**/*.jsx')
-    }
+    // }
   ],
   getComponentPathLine: function(componentPath) {
     var originalName = path.basename(componentPath, '.jsx');

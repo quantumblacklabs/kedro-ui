@@ -1,7 +1,5 @@
 **If you're reading this, you've stumbled upon the Carbon UI Components project, which is a dependency of Carbon UI. You're probably looking for the  [@quantumblack/carbon-ui](https://www.npmjs.com/package/@quantumblack/carbon-ui) package.**
 
-**This project should not be installed to any project except [@quantumblack/carbon-ui](https://www.npmjs.com/package/@quantumblack/carbon-ui).**
-
 <hr class='hr--warning' />
 
 ## Build Status
