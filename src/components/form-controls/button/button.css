@@ -4,6 +4,112 @@
 
 /** Variables **/
 
+$secondaryActiveColor: rgba(0, 0, 0, 0.12);
 
 /** Implementation **/
 
+.cbn-button {
+  display: inline-block;
+  padding: 8px 12px 12px;
+  border: none;
+  vertical-align: middle;
+
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1;
+
+  background: none;
+  cursor: pointer;
+  transition: background ease 0.1s, outline-color ease 0.1s, color ease 0.1s;
+  outline: 2px solid transparent;
+
+  @mixin themed color, text;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.3;
+  }
+}
+
+.cbn-button--small {
+  padding: 8px 12px 10px;
+
+  font-size: 14px;
+}
+
+.cbn-button--primary {
+  @mixin themed outline-color, button, outline;
+  @mixin themedState hover, color, button, textHover;
+  @mixin themedState active, color, button, textHover;
+  @mixin themedState hover, background, button, outline;
+  @mixin themedState active, background, button, outline;
+  @mixin themedState disabled, color, text;
+
+  &.cbn-theme--light:focus {
+    box-shadow: 0 0 0 4px map(themes, light, button, focus);
+  }
+
+  &.cbn-theme--dark:focus {
+    box-shadow: 0 0 0 4px map(themes, dark, button, focus);
+  }
+
+  &:active {
+    outline-width: 0;
+  }
+
+  &:disabled,
+  &.cbn-theme--light:disabled,
+  &.cbn-theme--dark:disabled {
+    background: none;
+  }
+
+  .cbn-icon__graphics {
+    transition: fill ease 0.1s;
+  }
+
+  &.cbn-theme--light:hover,
+  &.cbn-theme--light:active {
+    .cbn-icon__graphics {
+      fill: map(themes, light, button, textHover);
+    }
+  }
+
+  &.cbn-theme--dark:hover,
+  &.cbn-theme--dark:active {
+    .cbn-icon__graphics {
+      fill: map(themes, dark, button, textHover);
+    }
+  }
+}
+
+.cbn-button--secondary {
+  @mixin themedState focus::after, background, button, focus;
+  @mixin themedState hover::after, background, button, outline;
+
+  &::after {
+    display: block;
+    content: '';
+
+    width: 100%;
+    height: 2px;
+    margin-bottom: -2px;
+    transform: translateY(8px);
+    transition: all ease 0.1s;
+
+    background: none;
+  }
+
+  &:hover::after,
+  &:focus::after {
+    transform: translateY(4px);
+  }
+
+  &:active {
+    background-color: $secondaryActiveColor;
+    outline-color: $secondaryActiveColor;
+  }
+
+  &:disabled::after {
+    display: none;
+  }
+}

@@ -52,7 +52,7 @@ class Button extends React.Component {
 Button.defaultProps = {
   disabled: false,
   onClick: null,
-  theme: 'light',
+  theme: 'dark',
   type: 'primary',
   size: 'regular'
 };
