@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import chroma from 'chroma-js';
 import GSAP from 'react-gsap-enhancer';
 import { TimelineLite, SlowMo } from 'gsap';
