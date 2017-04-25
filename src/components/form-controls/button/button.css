@@ -5,6 +5,7 @@
 /** Variables **/
 
 $secondaryActiveColor: rgba(0, 0, 0, 0.12);
+$primaryDuration: 0.2s;
 
 /** Implementation **/
 
@@ -20,7 +21,10 @@ $secondaryActiveColor: rgba(0, 0, 0, 0.12);
 
   background: none;
   cursor: pointer;
-  transition: background ease 0.1s, outline-color ease 0.1s, color ease 0.1s;
+  transition:
+    background ease $primaryDuration,
+    outline-color ease $primaryDuration,
+    color ease $primaryDuration;
   outline: 2px solid transparent;
 
   @mixin themed color, text;
@@ -64,7 +68,7 @@ $secondaryActiveColor: rgba(0, 0, 0, 0.12);
   }
 
   .cbn-icon__graphics {
-    transition: fill ease 0.1s;
+    transition: fill ease $primaryDuration;
   }
 
   &.cbn-theme--light:hover,
@@ -78,6 +82,40 @@ $secondaryActiveColor: rgba(0, 0, 0, 0.12);
   &.cbn-theme--dark:active {
     .cbn-icon__graphics {
       fill: map(themes, dark, button, textHover);
+    }
+  }
+
+  &.cbn-button--wipe {
+    position: relative;
+
+    /**
+     * Force a new z-index stacking context without invoking z-index
+     * See https://philipwalton.com/articles/what-no-one-told-you-about-z-index/
+     */
+    transform: translate(0, 0);
+
+    &:active,
+    &:hover {
+      background: none;
+    }
+
+    &::after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      content: '';
+
+      width: 0;
+      height: 100%;
+      transition: all ease $primaryDuration;
+    }
+
+    @mixin themedState :after, background, button, outline;
+
+    &:active::after,
+    &:hover::after {
+      width: 100%;
     }
   }
 }
@@ -111,5 +149,21 @@ $secondaryActiveColor: rgba(0, 0, 0, 0.12);
 
   &:disabled::after {
     display: none;
+  }
+
+  &.cbn-button--wipe {
+    &::after {
+      width: 0;
+      transition: all ease 0.2s;
+      transform: translateY(4px);
+    }
+
+    @mixin themedState :after, background, button, outline;
+
+    &:active::after,
+    &:focus::after,
+    &:hover::after {
+      width: 100%;
+    }
   }
 }

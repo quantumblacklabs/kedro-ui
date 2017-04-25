@@ -26,19 +26,21 @@ class Button extends React.Component {
    */
   render() {
     const {
+      animation,
       children,
       disabled,
+      size,
       theme,
-      type,
-      size
+      type
     } = this.props;
 
     return (
       <button
         className={classnames(
           'cbn-button',
-          `cbn-button--${type}`,
+          `cbn-button--${animation}`,
           `cbn-button--${size}`,
+          `cbn-button--${type}`,
           `cbn-theme--${theme}`
         )}
         disabled={disabled}
@@ -50,26 +52,35 @@ class Button extends React.Component {
 }
 
 Button.defaultProps = {
+  animation: 'fade',
   disabled: false,
   onClick: null,
+  size: 'regular',
   theme: 'dark',
-  type: 'primary',
-  size: 'regular'
+  type: 'primary'
 };
 
 Button.propTypes = {
+  /**
+   * The style of hover animation
+   */
+  animation: PropTypes.oneOf(['fade', 'wipe']),
   /**
    * The displayed button value
    */
   children: PropTypes.node.isRequired,
   /**
+   * True if disabled
+   */
+  disabled: PropTypes.bool,
+  /**
    * Handle click events
    */
   onClick: PropTypes.func,
   /**
-   * True if disabled
+   * Button size - either 'regular' or 'small'.
    */
-  disabled: PropTypes.bool,
+  size: PropTypes.oneOf(['regular', 'small']),
   /**
    * Theme of the button - either 'dark' or 'light'.
    */
@@ -77,11 +88,7 @@ Button.propTypes = {
   /**
    * Button style - either 'primary' or 'secondary'.
    */
-  type: PropTypes.oneOf(['primary', 'secondary']),
-  /**
-   * Button size - either 'regular' or 'small'.
-   */
-  size: PropTypes.oneOf(['regular', 'small'])
+  type: PropTypes.oneOf(['primary', 'secondary'])
 };
 
 export default Button;

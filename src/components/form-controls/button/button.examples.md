@@ -41,3 +41,12 @@
     <Button theme='light' type='secondary'><Icon type='paste' size='small' theme='light' /> Hello world!</Button>
 </div>
 ```
+
+## Button with 'wipe' hover effect
+
+```
+<div>
+    <Button theme='light' animation='wipe'>Hello world!</Button>
+    <Button theme='light' animation='wipe' type='secondary'>Hello world!</Button>
+</div>
+```
