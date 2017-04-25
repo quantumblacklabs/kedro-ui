@@ -5,7 +5,7 @@ import Satellite from 'components/insights/satellite';
 import SatelliteTrail from 'components/insights/satellite-trail';
 import Progress from 'components/insights/progress';
 import Swatch from 'components/insights/swatch';
-import Tooltip from 'components/tooltip';
+import { Tooltip, TooltipTrigger } from 'components/tooltip';
 import Dropdown from 'components/menus/dropdown';
 import Icon from 'components/icon';
 import MenuOption from 'components/menus/menu-option';
@@ -31,5 +31,6 @@ module.exports = {
   MenuOption,
   SearchBar,
   RadioButton,
-  Tooltip
+  Tooltip,
+  TooltipTrigger
 };

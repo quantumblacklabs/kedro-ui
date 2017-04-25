@@ -11,11 +11,14 @@ import './tooltip.css';
  */
 const Tooltip = ({
   header,
+  show,
   theme,
+  tooltipId,
   value,
   width
 }) => {
   const style = {
+    opacity: show ? 1 : 0,
     whiteSpace: header ? 'normal' : 'nowrap',
     width
   };
@@ -27,7 +30,7 @@ const Tooltip = ({
   }
 
   return (
-    <div style={style} className={`cbn-tooltip cbn-theme--${theme}`}>
+    <div data-tooltip-id={tooltipId} style={style} className={`cbn-tooltip cbn-theme--${theme}`}>
       {headerContent}
       <span className='cbn-tooltip__text'>{value}</span>
     </div>
@@ -36,6 +39,8 @@ const Tooltip = ({
 
 Tooltip.defaultProps = {
   header: null,
+  show: false,
+  tooltipId: null,
   theme: 'light',
   width: 'auto'
 };
@@ -46,9 +51,17 @@ Tooltip.propTypes = {
    */
   header: PropTypes.string,
   /**
+   * Show the tooltip, sets the display property to none / block
+   */
+  show: PropTypes.bool,
+  /**
    * Theme of the component
    */
   theme: PropTypes.oneOf(['light', 'dark']).isRequired,
+  /**
+   * Optional ID, used in conjunction with tooltip trigger
+   */
+  tooltipId: PropTypes.string,
   /**
    * Value, text the tooltip will display
    */

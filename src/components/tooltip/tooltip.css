@@ -22,6 +22,7 @@ $size-padding: 4px 8px;
 
   text-overflow: ellipsis;
   overflow: hidden;
+  transform: translateZ(0);
 }
 
 .cbn-tooltip__header {
