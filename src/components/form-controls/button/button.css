@@ -11,9 +11,8 @@ $primaryDuration: 0.2s;
 
 .cbn-button {
   display: inline-block;
-  padding: 8px 12px 12px;
+  padding: 9px 12px 11px;
   border: none;
-  vertical-align: middle;
 
   font-size: 16px;
   font-weight: 600;
@@ -32,6 +31,10 @@ $primaryDuration: 0.2s;
   &:disabled {
     cursor: not-allowed;
     opacity: 0.3;
+  }
+
+  .cbn-icon {
+    margin-right: 2px;
   }
 }
 
