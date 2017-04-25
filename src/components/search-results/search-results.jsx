@@ -2,7 +2,7 @@
 
 import React, { PropTypes } from 'react';
 import SearchResultsRenderer from './search-results-renderer';
-import { highlightSearchTerm } from './search-results-utils';
+import { getHighlightedText } from './search-results-utils';
 
 // Styles
 
@@ -27,14 +27,14 @@ class SearchResults extends React.Component {
   }
 
   /**
-   * Add a new formattedLabel field to each of the results
+   * Add a new highlightedLabel field to each of the results
    * @return {object} The results array with a new field added
    */
   _getFormattedResults() {
     const { results, value } = this.props;
 
     return results.map(result => ({
-      formattedLabel: highlightSearchTerm(
+      highlightedLabel: getHighlightedText(
         result.label,
         value
       ),

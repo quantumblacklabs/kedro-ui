@@ -3,7 +3,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import SearchResultsRenderer from './search-results-renderer';
-import { highlightSearchTerm } from './search-results-utils';
+import { getHighlightedText } from './search-results-utils';
 
 const dummyProps = {
   value: '',
@@ -21,7 +21,7 @@ const dummyProps = {
     { label: 'Placeat eveniet quod, illum' },
     { label: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque' }
   ].map(result => ({
-    formattedLabel: highlightSearchTerm(result.label),
+    formattedLabel: getHighlightedText(result.label),
     ...result
   }))
 };
