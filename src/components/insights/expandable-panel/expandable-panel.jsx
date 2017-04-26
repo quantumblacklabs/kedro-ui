@@ -56,7 +56,7 @@ ExpandablePanel.propTypes = {
    * Children passed to control
    * Child elements can be of any type e.g. React Element, DIV, UL etc.
    */
-  children: React.PropTypes.node,
+  children: PropTypes.node,
 
   /**
    * Boolean for open state of control
