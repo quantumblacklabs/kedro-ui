@@ -57,7 +57,7 @@ Checkbox.propTypes = {
   /**
    * Set the selected / deselected state to switch component
    */
-  checked: React.PropTypes.bool,
+  checked: PropTypes.bool,
   /**
    * Set the radio button to disabled
    */
