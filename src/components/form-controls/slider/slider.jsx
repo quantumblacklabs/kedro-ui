@@ -69,6 +69,34 @@ class Slider extends React.Component {
   }
 
   /**
+   * _getNumberShift - calculates the shift of a tick number from the left side of the slider
+   * @param {number} value the value displayed as a tick
+   * @param {number} index the index number of the given value
+   * @param {number} lastValueIndex index of the tick
+   * @return {number} shift in pixels from the left side of the slider
+   */
+  _getNumberShift(value, index, lastValueIndex) {
+    // get the value into percentage value and then convert to a decimal value
+    const decimalValue = (value * ((this.props.max - this.props.min) / 100)) / 100;
+    // TODO: how to get from styles?
+    const inputWidth = 166;
+    // TODO: how to get from styles?
+    const numberWidth = 24;
+    // by default, shift the number by half of the box's width
+    let numberBoxShift = numberWidth / 2;
+
+    if (index === 0) {
+      // if the number is the first value shift by quarter of the box's width to align with the first symbol
+      numberBoxShift = numberWidth / 4;
+    } else if (index === lastValueIndex) {
+      // if the number is the last value shift by threequarters of the box's width to align with the last symbol
+      numberBoxShift = (numberWidth / 4) * 3;
+    }
+
+    return (decimalValue * inputWidth) - numberBoxShift;
+  }
+
+  /**
    * React lifecycle method
    * {@link https://facebook.github.io/react/docs/react-component.html#render}
    * @return {object} JSX for this component
@@ -104,11 +132,7 @@ class Slider extends React.Component {
               { 'cbn-slider__tick-number--min': i === 0 },
               { 'cbn-slider__tick-number--max': i === (tickValues.length - 1) })}
             value={tickValue}
-            style={{ transform: (
-              (i === 0 || i === (tickValues.length - 1))
-              ? false
-              : 'translateX(50%)'
-            ) }}>
+            style={{ transform: `translateX(${this._getNumberShift(tickValue, i, tickValues.length - 1)}px)` }}>
             {tickValue}
           </option>
           )

@@ -20,6 +20,8 @@ $thumb-width: calc($thumb-size + $thumb-border-width / 2);
 
 $track-height: 2px;
 
+$tick-number-width: 24px;
+
 /** Mixins **/
 
 @define-mixin thumb-style {
@@ -129,19 +131,16 @@ $track-height: 2px;
 }
 
 .cbn-slider__tick-number {
-  position: relative;
+  @mixin themedParent color, slider, tickNumber;
+  @extend %type--body-1;
 
-  background: yellow;
+  position: absolute;
+
+  width: $tick-number-width;
   padding: 0;
   margin: 0;
 
-  &--min {
-    transform: translateX(calc(-50% + $thumb-width));
-  }
-
-  &--max {
-    transform: translateX(calc(50% - $thumb-width));
-  }
+  text-align: center;
 }
 
 .cbn-slider__tick-symbol {

@@ -1,4 +1,4 @@
-## Single-handler slider component with minimum and maximum number of properties
+Single-handler slider component with minimum and maximum number of properties
 
 ```
 <section>
@@ -6,7 +6,7 @@
 </section>
 ```
 
-## Multi-ranged slider component with minimum and maximum number of properties
+Multi-ranged slider component with minimum and maximum number of properties
 
 ```
 <section>
