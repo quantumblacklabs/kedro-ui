@@ -1,3 +1,5 @@
+/* eslint-disable react/no-danger */
+
 // Imports
 
 import React, { PropTypes } from 'react';
@@ -73,27 +75,6 @@ class SearchResultsRenderer extends React.Component {
       theme
     } = this.props;
 
-    /**
-     * Convert the pre-formatted highlighted labels into JSX
-     * @param label {string|object} Either an array containing alternating strings & objects, or just the text
-     * @return {object} An array of JSX highlights and strings
-     */
-    const renderLabel = label => {
-      if (typeof label === 'string') {
-        return label;
-      }
-      return label.map(segment => {
-        if (typeof segment === 'string') {
-          return segment;
-        }
-        return (
-          <b className='cbn-searchresults__highlight' key={segment.key}>
-            { segment.value }
-          </b>
-        );
-      });
-    };
-
     return (
       <div className='cbn-searchresults' onMouseOver={onMouseOver}>
         <div
@@ -122,9 +103,9 @@ class SearchResultsRenderer extends React.Component {
                 tabIndex='-1'
                 title={result.label}>
                 { result.icon && <Icon type={result.icon} size='medium' theme={theme} /> }
-                <div className='cbn-searchresults__label'>
-                  { renderLabel(result.highlightedLabel) }
-                </div>
+                <div
+                  className='cbn-searchresults__label'
+                  dangerouslySetInnerHTML={{ __html: result.highlightedLabel }} />
               </li>
             ) }
           </ul>

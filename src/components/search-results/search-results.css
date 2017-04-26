@@ -77,8 +77,9 @@ $list-vertical-padding: 4px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+
+  b {
+    opacity: 0.5;
+  }
 }
 
-.cbn-searchresults__highlight {
-  opacity: 0.5;
-}
