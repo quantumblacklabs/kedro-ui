@@ -5,7 +5,7 @@ import './styles.css';
 
 export function SectionRenderer({ classes, name, slug, content, components, sections }) {
 	return (
-		<section className='cbn-sg-section'>
+		<section className='cbn-sg-section' id={slug}>
 			<div className='cbn-sg-gutter'>{name && <h2>{name}</h2>}</div>
 			{content}
 			{components}
