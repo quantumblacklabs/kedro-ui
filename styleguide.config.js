@@ -40,6 +40,10 @@ const config = {
   template: './templates/index.html',
   sections: [
     {
+      name: 'Development Mode',
+      content: './README.md'
+    },
+    {
       name: 'Icons',
       content: './templates/components/icons.md',
       components: getComponentsFunc('icon', 'src/components/icon/**/*.jsx')
@@ -63,16 +67,6 @@ const config = {
       name: 'Form Controls',
       content: './templates/components/form-controls.md',
       components: getComponentsFunc('form', 'src/components/form-controls/**/*.jsx')
-    },
-    {
-      name: 'Project: Insights',
-      content: './templates/projects/insights.md',
-      components: getComponentsFunc('menu', 'src/components/insights/**/*.jsx')
-    },
-    {
-      name: 'Modules',
-      content: './templates/modules/index.md',
-      components: getComponentsFunc('module', 'src/components/modules/**/*.jsx')
     }
   ],
   getComponentPathLine: function(componentPath) {
@@ -165,6 +159,7 @@ const config = {
       extensions: ['.js', '.jsx', '.css'],
       alias: {
         'utils': path.resolve(__dirname, 'src/utils'),
+        'package': path.resolve(__dirname, 'package.json'),
         'styles': path.resolve(__dirname, 'src/styles'),
         'components': path.resolve(__dirname, 'src/components'),
         'rsg-components/ReactComponent/ReactComponentRenderer': path.resolve(__dirname + '/templates/react-styleguidist/react-component'),
