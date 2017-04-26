@@ -35,10 +35,13 @@
   }
 
   a {
-    display: block;
     text-decoration: none;
 
     color: inherit;
+  }
+
+  > .cbn-sg__section > a {
+    display: block;
   }
 }
 
