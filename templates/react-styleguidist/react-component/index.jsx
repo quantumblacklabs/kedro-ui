@@ -30,12 +30,10 @@ const ReactComponentRenderer = ({
       <div className={ 'cbn-sg__meta' }>
         <header className={ 'cbn-sg__header' }>
           <section className={ 'cbn-sg__section cbn-sg-gutter' }>
-            <div>
             { isolated
               ? <Link href={'#' + slug}>&larr;</Link>
               : <Link href={'#!/' + name}>&rarr;</Link>
             }
-            </div>
             <span>Components /</span>
             <h2 className={ 'cbn-sg__heading' }>{ name }</h2>
           </section>
