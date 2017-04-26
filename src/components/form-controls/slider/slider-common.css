@@ -85,10 +85,11 @@ $track-height: 2px;
 .cbn-slider__line {
   position: absolute;
   top: calc(50% - $track-height - 1px);
-  /*left: calc($thumb-width / 2);*/
+  /** slider's 0% will appear to be in thumb's center **/
+  left: calc($thumb-width);
 
-  /*width: calc(100% - $thumb-width);*/
-  width: 100%;
+  /** slider's 100% will appear to be in thumb's center **/
+  width: calc(100% - $thumb-width * 2);
   height: $track-height;
 
   box-sizing: border-box;
