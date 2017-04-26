@@ -14,6 +14,8 @@ $size-padding: 4px 8px;
 
   @extend %type--body-2;
 
+  position: fixed;
+
   display: inline-block;
 
   padding: $size-padding;
@@ -22,9 +24,32 @@ $size-padding: 4px 8px;
 
   text-overflow: ellipsis;
   overflow: hidden;
-  transform: translateZ(0);
+
+  transition: opacity 0.3s;
 }
 
 .cbn-tooltip__header {
   display: block;
+}
+
+.cbn-tooltip-trigger {
+  display: inline-block;
+}
+
+/** Directions */
+
+.cbn-tooltip--top {
+  transform: translate(0, -100%);
+}
+
+.cbn-tooltip--bottom {
+  transform: translate(0, 0);
+}
+
+.cbn-tooltip--left {
+  transform: translate(-100%, 0);
+}
+
+.cbn-tooltip--right {
+  transform: translate(0, 0);
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 
 /**
- * To create a component with tooltip triggering abilities
+ * Create a component with tooltip triggering abilities
  */
 const TooltipTrigger = WrapperComponent => {
   const component = React.Component;
@@ -16,28 +16,85 @@ const TooltipTrigger = WrapperComponent => {
       super(props);
 
       this.showTooltip = false;
+      this.offset = props.spacer || 10;
+
       this._handleEvent = this._handleEvent.bind(this);
       this._showTooltip = this._showTooltip.bind(this);
+      this._getEventHandlers = this._getEventHandlers.bind(this);
     }
 
-    _showTooltip(value) {
-      const tooltip = document.querySelector(`.cbn-tooltip[data-tooltip-id="${this.props.tooltipId}"]`);
+    /**
+     * _showTooltip allows you to toggle a tooltip tip into view, based on the
+     * tooltipId prop and display direction prop
+     * @param  {Object} opts { show, position, tooltips }
+     */
+    _showTooltip(opts) {
+      const tooltip = opts.tooltip;
 
-      if (tooltip) {
-        tooltip.style.opacity = value ? 1 : 0;
-        console.log(tooltip);
-      }
+      tooltip.style.opacity = +opts.show;
+
+      Object.keys(opts.position)
+            .forEach(key => {
+              tooltip.style[key] = `${opts.position[key]}px`;
+              tooltip.classList.add(`cbn-tooltip--${this.props.displayDirection}`);
+            });
     }
 
     /**
      * _handleEvent - used to handle the provided action type e.g onClick
      * will display the tooltip with the same ID as provided in props
-     * @param  {type} e Native event
      */
-    _handleEvent(e) {
-      e.preventDefault();
+    _handleEvent() {
+      const tooltip = document.querySelector(`.cbn-tooltip[data-tooltip-id="${this.props.tooltipId}"]`);
+      const box = this._wrapper.getBoundingClientRect();
+      const tbox = tooltip.getBoundingClientRect();
+      const position = {};
 
-      this._showTooltip(this.showTooltip = !this.showTooltip);
+      // no tooltips found, bail out
+      if (!tooltip) {
+        return;
+      }
+
+      // position the tooltip, always centering
+      switch (this.props.displayDirection) {
+        case 'top':
+          position.top = box.top - this.offset;
+          position.left = box.left + ((box.width / 2) - (tbox.width / 2));
+          break;
+        case 'bottom':
+          position.top = box.bottom + this.offset;
+          position.left = box.left + ((box.width / 2) - (tbox.width / 2));
+          break;
+        case 'left':
+          position.top = box.top + ((box.height / 2) - (tbox.height / 2));
+          position.left = box.left - this.offset;
+          break;
+        case 'right':
+          position.top = box.top + ((box.height / 2) - (tbox.height / 2));
+          position.left = box.right + this.offset;
+          break;
+        default:
+          throw new Error('Unknown display direction for tooltip');
+      }
+
+      this._showTooltip({
+        show: this.showTooltip = !this.showTooltip,
+        position,
+        tooltip
+      });
+    }
+
+    /**
+     * _getEventHandlers returns an object of event handlers to control when
+     * the tooltip is displayed / removed
+     * @return {object} event handlers object
+     */
+    _getEventHandlers() {
+      // support only mouse over / out events for now
+      return {
+        onMouseOver: this._handleEvent,
+        onMouseOut: this._handleEvent
+      };
     }
 
     /**
@@ -46,11 +103,8 @@ const TooltipTrigger = WrapperComponent => {
      * @return {object} JSX for this component
      */
     render() {
-      const eventHandler = {};
-      eventHandler[this.props.eventType] = this._handleEvent;
-
       return (
-        <div {...eventHandler}>
+        <div ref={c => { this._wrapper = c; }} className='cbn-tooltip-trigger' {...this._getEventHandlers()}>
           <WrapperComponent {...this.props} />
         </div>);
     }
