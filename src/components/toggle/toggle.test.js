@@ -46,7 +46,7 @@ test('Toggle should be created with all the user defined props', t => {
   wrapper.find('.cbn-toggle__switch')
     .children()
     .last()
-    .simulate('click');
+    .simulate('click', { target: { dataset: { value: 'off' } } });
 
   t.is(spy.callCount, 1);
 

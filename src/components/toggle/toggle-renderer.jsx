@@ -17,19 +17,8 @@ const ToggleRenderer = ({
    * @param {HTMLElement} the element that triggered the event
    */
   const _onChange = e => {
-    // defaults to off, it's here mainly because Sinon can't read the dataset attribute
-    // the value assignments below will always find the correct value for the real user
-    let newValue = 'off';
-
-    // try to read the value from parent element (when the user clicks on the text or underline)
-    newValue = e.target.parentElement.dataset ? e.target.parentElement.dataset.value : newValue;
-
-    if (!newValue) {
-      // try to read from the actual element
-      newValue = e.target.dataset ? e.target.dataset.value : newValue;
-    }
-
-    onChange(newValue);
+    // the user can click the button, text or the underline, cover all cases
+    onChange(e.target.dataset.value || e.target.parentElement.dataset.value);
   };
 
   return (
