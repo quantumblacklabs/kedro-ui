@@ -54,12 +54,14 @@ class RangedSliderRenderer extends React.Component {
    * @param  {object} event
    */
   _handleBottomChanged(event) {
+    const minValue = parseFloat(event.target.value);
+
     this.setState({
-      minRange: event.target.value
+      minRange: minValue < this.state.maxRange ? minValue : this.state.maxRange
     });
 
     if (typeof this.props.onChange === 'function') {
-      this.props.onChange(event, event.target.value, this.state.maxRange);
+      this.props.onChange(event, minValue, this.state.maxRange);
     }
   }
 
@@ -68,12 +70,14 @@ class RangedSliderRenderer extends React.Component {
    * @param  {object} event
    */
   _handleTopChanged(event) {
+    const maxValue = parseFloat(event.target.value);
+
     this.setState({
-      maxRange: event.target.value
+      maxRange: this.state.minRange < maxValue ? maxValue : this.state.minRange
     });
 
     if (typeof this.props.onChange === 'function') {
-      this.props.onChange(event, this.state.minRange, event.target.value);
+      this.props.onChange(event, this.state.minRange, maxValue);
     }
   }
 

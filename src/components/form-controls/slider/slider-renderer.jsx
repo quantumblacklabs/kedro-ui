@@ -49,12 +49,14 @@ class SliderRenderer extends React.Component {
    * @param  {object} event
    */
   _handleChanged(event) {
+    const value = parseFloat(event.target.value);
+
     this.setState({
-      value: event.target.value
+      value
     });
 
     if (typeof this.props.onChange === 'function') {
-      this.props.onChange(event, 0, event.target.value);
+      this.props.onChange(event, 0, value);
     }
   }
 
