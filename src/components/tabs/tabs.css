@@ -12,7 +12,7 @@ $size-tab-margin-small: 10px;
 $size-underline-height: 4px;
 $size-underline-height-hovered: 1px;
 $size-underline-height-selected: 2px;
-$duration-underline-hovered: 0.7s;
+$duration-underline-hovered: 0.5s;
 
 .cbn-tabs {
   position: relative;
