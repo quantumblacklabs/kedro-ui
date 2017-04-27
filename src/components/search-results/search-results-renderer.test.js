@@ -21,7 +21,7 @@ const dummyProps = {
     { label: 'Placeat eveniet quod, illum' },
     { label: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque' }
   ].map(result => ({
-    formattedLabel: getHighlightedText(result.label),
+    highlightedLabel: getHighlightedText(result.label),
     ...result
   }))
 };
@@ -60,9 +60,7 @@ test('SearchResults should highlight the active row', t => {
 
   t.is(wrapper.find('.cbn-searchresults__row--active').length, 1);
   t.is(
-    wrapper.find('.cbn-searchresults__row--active')
-      .find('.cbn-searchresults__label')
-      .text(),
+    wrapper.find('.cbn-searchresults__row--active').prop('title'),
     dummyProps.results[activeRow].label
   );
 });
