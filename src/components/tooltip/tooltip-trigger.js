@@ -57,7 +57,9 @@ const TooltipTriggerHOC = WrapperComponent => {
      * Convenience method, hide the tooltip, used when scrolling
      */
     _hideTooltip() {
-      this.tooltip.style.opacity = 0;
+      if (this.tooltip) {
+        this.tooltip.style.opacity = 0;
+      }
     }
 
     /**
