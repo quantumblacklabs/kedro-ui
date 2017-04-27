@@ -108,43 +108,56 @@ class RangedSliderRenderer extends React.Component {
    */
   render() {
     return (
-      <div className='cbn-slider__box'>
-        <div className='cbn-slider__track-line'>
-          <div
-            ref={lineFilled => { this._lineFilled = lineFilled; }}
-            className='cbn-slider__line' />
-          {this.props.tickSymbols}
+      <div
+        className={classnames(
+          'cbn-slider__wrapper',
+          'cbn-slider__wrapper--multiple')}>
+        <div
+          className={classnames(
+            'cbn-slider__label',
+            'cbn-slider__label--multiple')}>
+          {this.props.label}
         </div>
-        {this.props.tickNumbers}
-        <input
-          className={classnames(
-            'cbn-slider__input',
-            'cbn-slider__input--multiple',
-            'cbn-slider__input--bottom'
-          )}
-          type='range'
-          name={this.props.name}
-          min={this.props.min}
-          max={this.props.max}
-          step={this.props.step}
-          value={this.state.minRange}
-          onChange={this._handleBottomChanged}
-          multiple />
-        <input
-          className={classnames(
-            'cbn-slider__input',
-            'cbn-slider__input--multiple',
-            'cbn-slider__input--top'
-          )}
-          type='range'
-          list={this.props.listId}
-          name={this.props.name}
-          min={this.props.min}
-          max={this.props.max}
-          step={this.props.step}
-          value={this.state.maxRange}
-          onChange={this._handleTopChanged}
-          multiple />
+        <div className='cbn-slider__box-inputs'>
+          <div className='cbn-slider__box'>
+            <div className='cbn-slider__track-line'>
+              <div
+                ref={lineFilled => { this._lineFilled = lineFilled; }}
+                className='cbn-slider__line' />
+              {this.props.tickSymbols}
+            </div>
+            {this.props.tickNumbers}
+            <input
+              className={classnames(
+                'cbn-slider__input',
+                'cbn-slider__input--multiple',
+                'cbn-slider__input--bottom'
+              )}
+              type='range'
+              name={this.props.name}
+              min={this.props.min}
+              max={this.props.max}
+              step={this.props.step}
+              value={this.state.minRange}
+              onChange={this._handleBottomChanged}
+              multiple />
+            <input
+              className={classnames(
+                'cbn-slider__input',
+                'cbn-slider__input--multiple',
+                'cbn-slider__input--top'
+              )}
+              type='range'
+              list={this.props.listId}
+              name={this.props.name}
+              min={this.props.min}
+              max={this.props.max}
+              step={this.props.step}
+              value={this.state.maxRange}
+              onChange={this._handleTopChanged}
+              multiple />
+          </div>
+        </div>
       </div>
     );
   }
@@ -153,6 +166,7 @@ class RangedSliderRenderer extends React.Component {
 RangedSliderRenderer.defaultProps = {
   backgroundColor: 'transparent',
   fillColor: 'transparent',
+  label: '',
   listId: 'slider-multiple-list',
   max: 100,
   min: 0,
@@ -173,6 +187,10 @@ RangedSliderRenderer.propTypes = {
    * Color used for highlighting the selected range.
    */
   fillColor: PropTypes.string,
+  /**
+   * Label to be shown for the slider.
+   */
+  label: PropTypes.string,
   /**
    * The ID used for list attribute - ticks.
    */

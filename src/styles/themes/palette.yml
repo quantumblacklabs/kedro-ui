@@ -40,6 +40,7 @@ themes:
       disabled: rgba(0, 0, 0, 0.35)
     slider:
       default: rgba(0, 0, 0, 0.12)
+      label: rgba(0, 0, 0, 0.85)
       thumbCenter: rgb(255, 255, 255)
       thumbBorder: rgb(0, 0, 0)
       tickNumber: rgba(0, 0, 0, 0.55)
@@ -85,6 +86,7 @@ themes:
       disabled: rgba(255, 255, 255, 0.35)
     slider:
       default: rgba(255, 255, 255, 0.3)
+      label: rgba(255, 255, 255, 0.85)
       thumbCenter: rgb(0, 0, 0)
       thumbBorder: rgb(255, 255, 255)
       tickNumber: rgba(255, 255, 255, 0.55)

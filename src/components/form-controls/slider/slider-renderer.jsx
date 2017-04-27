@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
 /**
  * Creates a single slider component.
@@ -87,24 +88,32 @@ class SliderRenderer extends React.Component {
    */
   render() {
     return (
-      <div className='cbn-slider__box'>
-        <div className='cbn-slider__track-line'>
-          <div
-            ref={lineFilled => { this._lineFilled = lineFilled; }}
-            className='cbn-slider__line' />
-          {this.props.tickSymbols}
+      <div className='cbn-slider__wrapper'>
+        <div
+          className={classnames(
+            'cbn-slider__label',
+            'cbn-slider__label--single')}>
+          {this.props.label}
         </div>
-        {this.props.tickNumbers}
-        <input
-          className='cbn-slider__input'
-          type='range'
-          list={this.props.listId}
-          name={this.props.name}
-          min={this.props.min}
-          max={this.props.max}
-          step={this.props.step}
-          value={this.state.value}
-          onChange={this._handleChanged} />
+        <div className='cbn-slider__box'>
+          <div className='cbn-slider__track-line'>
+            <div
+              ref={lineFilled => { this._lineFilled = lineFilled; }}
+              className='cbn-slider__line' />
+            {this.props.tickSymbols}
+          </div>
+          {this.props.tickNumbers}
+          <input
+            className='cbn-slider__input'
+            type='range'
+            list={this.props.listId}
+            name={this.props.name}
+            min={this.props.min}
+            max={this.props.max}
+            step={this.props.step}
+            value={this.state.value}
+            onChange={this._handleChanged} />
+        </div>
       </div>
     );
   }
@@ -113,6 +122,7 @@ class SliderRenderer extends React.Component {
 SliderRenderer.defaultProps = {
   backgroundColor: 'transparent',
   fillColor: 'transparent',
+  label: '',
   listId: 'slider-simple-list',
   max: 100,
   min: 0,
@@ -133,6 +143,10 @@ SliderRenderer.propTypes = {
    * Color used for highlighting the selected range.
    */
   fillColor: PropTypes.string,
+  /**
+   * Label to be shown for the slider.
+   */
+  label: PropTypes.string,
   /**
    * The ID used for list attribute - ticks.
    */

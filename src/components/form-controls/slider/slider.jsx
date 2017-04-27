@@ -182,18 +182,19 @@ class Slider extends React.Component {
           `cbn-slider--${this.props.type}`,
           `cbn-theme--${this.props.theme}`)}>
         <RendererType
+          backgroundColor={this.state.colors ? this.state.colors.background : 'transparent'}
+          fillColor={this.state.colors ? this.state.colors.fill : 'transparent'}
+          listId={this._id}
+          label={this.props.label}
           min={this.props.min}
           max={this.props.max}
           name={this.props.name}
           onChange={this._handleChanged}
           step={this.props.step}
           theme={this.props.theme}
-          value={this.props.value}
-          fillColor={this.state.colors ? this.state.colors.fill : 'transparent'}
-          backgroundColor={this.state.colors ? this.state.colors.background : 'transparent'}
-          listId={this._id}
           tickNumbers={tickNumbers}
-          tickSymbols={tickSymbols} />
+          tickSymbols={tickSymbols}
+          value={this.props.value} />
         {hiddenElements}
       </div>
     );
@@ -201,6 +202,7 @@ class Slider extends React.Component {
 }
 
 Slider.defaultProps = {
+  label: '',
   max: 100,
   min: 0,
   name: 'slider',
@@ -214,6 +216,10 @@ Slider.defaultProps = {
 };
 
 Slider.propTypes = {
+  /**
+   * Label to be shown for the slider.
+   */
+  label: PropTypes.string,
   /**
    * Minimal value of the slider.
    */

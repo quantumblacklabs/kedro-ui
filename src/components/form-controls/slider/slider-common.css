@@ -42,22 +42,8 @@ $tick-number-width: 24px;
   box-sizing: border-box;
 
   &:hover {
-    /*width: $thumb-size--hover;
-    height: $thumb-size--hover;
-    margin-top: calc(-1 * $thumb-size--hover);
-
-    border-width: $thumb-border-width--hover;*/
-
     transition: all .2s ease-in-out;
     transform: scale(1.5);
-  }
-
-  &:active {
-    /*width: $thumb-size--active;
-    height: $thumb-size--active;
-    margin-top: calc(-1.5 * $thumb-size--active);
-
-    border-width: $thumb-border-width--active;*/
   }
 }
 
@@ -76,6 +62,36 @@ $tick-number-width: 24px;
 }
 
 /** Implementation **/
+
+.cbn-slider {
+  display: flex;
+}
+
+.cbn-slider__wrapper {
+  display: flex;
+
+  &--multiple {
+    flex-direction: column;
+  }
+}
+
+.cbn-slider__label {
+  @mixin themedParent color, slider, label;
+
+  &--single {
+    @extend %type--body-1;
+
+    margin: 6px 22px 0 0;
+  }
+
+  &--multiple {
+    @extend %type--subhead-2;
+
+    margin: 0 0 18px 0;
+
+    font-weight: bold;
+  }
+}
 
 .cbn-slider__box {
   position: relative;
