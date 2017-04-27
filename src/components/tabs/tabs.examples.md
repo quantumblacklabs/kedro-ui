@@ -9,8 +9,7 @@ const tabs = [
 ];
 
 <Tabs
-    tabs={tabs}>
-</Tabs>
+    tabs={tabs} />
 ```
 
 ```
@@ -25,8 +24,7 @@ const tabs = [
 <Tabs
     selectedIndex={1}
     size='small'
-    tabs={tabs}>
-</Tabs>
+    tabs={tabs} />
 ```
 
 ```
@@ -56,11 +54,10 @@ class Wrap extends React.Component {
         return (
             <div>
                 <Tabs
-                    onSelected={this._selectedTabChanged}
+                    onSelect={this._selectedTabChanged}
                     selectedIndex={0}
                     size='small'
-                    tabs={this.tabs}>
-                </Tabs>
+                    tabs={this.tabs} />
                 <span style={{position: 'relative', top: 40, color: 'rgb(255, 255, 255)'}}>Selected Menu: {this.state.selectedMenu}</span>
             </div>
         );

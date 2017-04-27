@@ -7,7 +7,7 @@ import classnames from 'classnames';
  */
 const TabsRenderer = ({
   selectedIndex,
-  onSelected,
+  onSelect,
   size,
   tabs,
   theme
@@ -18,7 +18,7 @@ const TabsRenderer = ({
    */
   const _onSelectTab = e => {
     // trigger on selected when rendered
-    onSelected(parseInt(e.target.dataset.tabindex, 10));
+    onSelect(parseInt(e.target.dataset.tabindex, 10));
   };
 
   return (
@@ -50,7 +50,7 @@ TabsRenderer.propTypes = {
   /**
    * Callback when tab is selected
    */
-  onSelected: PropTypes.func.isRequired,
+  onSelect: PropTypes.func.isRequired,
   /**
    * The tabs size, allowed [regular, small]
    */

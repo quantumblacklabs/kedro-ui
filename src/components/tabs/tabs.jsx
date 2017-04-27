@@ -20,7 +20,7 @@ class Tabs extends React.Component {
       selectedIndex: props.selectedIndex
     };
 
-    this._onSelectedTrigger = this._onSelectedTrigger.bind(this);
+    this._onSelectTrigger = this._onSelectTrigger.bind(this);
   }
 
   /**
@@ -30,16 +30,16 @@ class Tabs extends React.Component {
    */
   componentDidMount() {
     // trigger on selected when rendered
-    this.props.onSelected(this.state.selectedIndex);
+    this.props.onSelect(this.state.selectedIndex);
   }
 
   /**
    * Callback function for selection change
    * @param {number} newSelectedIndex The index of the newly selected tab
    */
-  _onSelectedTrigger(newSelectedIndex) {
+  _onSelectTrigger(newSelectedIndex) {
     // call the user defined callback
-    this.props.onSelected(newSelectedIndex);
+    this.props.onSelect(newSelectedIndex);
 
     this.setState({
       selectedIndex: newSelectedIndex
@@ -55,7 +55,7 @@ class Tabs extends React.Component {
     return (
       <TabsRenderer
         selectedIndex={this.state.selectedIndex}
-        onSelected={this._onSelectedTrigger}
+        onSelect={this._onSelectTrigger}
         size={this.props.size}
         tabs={this.props.tabs}
         theme={this.props.theme} />
@@ -64,7 +64,7 @@ class Tabs extends React.Component {
 }
 
 Tabs.defaultProps = {
-  onSelected: () => {},
+  onSelect: () => {},
   selectedIndex: 0,
   size: 'regular',
   theme: 'dark'
@@ -78,7 +78,7 @@ Tabs.propTypes = {
   /**
    * Callback when tab is selected
    */
-  onSelected: PropTypes.func,
+  onSelect: PropTypes.func,
   /**
    * The tabs size
    */
