@@ -10,15 +10,13 @@ test('Toggle should be a function', t => {
 });
 
 test('Toggle should create a valid React Component when called with required props', t => {
-  const jsx = <Toggle />;
-  const wrapper = shallow(jsx);
+  const wrapper = shallow(<Toggle />);
 
   t.true(wrapper.length === 1);
 });
 
 test('Toggle should be created with the correct default props', t => {
-  const jsx = <Toggle />;
-  const wrapper = shallow(jsx);
+  const wrapper = shallow(<Toggle />);
 
   t.is(typeof wrapper.props().onChange, 'function');
   t.is(wrapper.props().value, 'on');
