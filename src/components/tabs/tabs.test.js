@@ -39,8 +39,8 @@ const spy = sinon.spy();
 
 const jsx = (
   <Tabs
-    selectedIndex={1}
     onSelect={spy}
+    selectedIndex={1}
     size='small'
     tabs={['One', 'Two', 'Three']}
     theme='light' />

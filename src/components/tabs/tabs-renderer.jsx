@@ -44,13 +44,13 @@ const TabsRenderer = ({
 
 TabsRenderer.propTypes = {
   /**
-   * Sets the initially selected tab
-   */
-  selectedIndex: PropTypes.number.isRequired,
-  /**
    * Callback when tab is selected
    */
   onSelect: PropTypes.func.isRequired,
+  /**
+   * Sets the initially selected tab
+   */
+  selectedIndex: PropTypes.number.isRequired,
   /**
    * The tabs size, allowed [regular, small]
    */
