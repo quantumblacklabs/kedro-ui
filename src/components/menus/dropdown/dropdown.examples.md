@@ -1,6 +1,3 @@
-
-## Dropdown Component Demos
-
 A dropdown component with no selected options by default, and default unselected text.
 A plain array of Menu Options will get wrapped inside a padded section automatically.
 
@@ -61,13 +58,13 @@ class Wrap extends React.Component {
             <div>
                 <Dropdown
                     theme='light'
-                    ref='dropdown'>
+                    ref={ dropdown => { this._dropdown = dropdown; } }>
                     <MenuOption primaryText='All' selected={ true } value={ null } />
                     <MenuOption primaryText='One' value={ 1 } />
                     <MenuOption primaryText='Two' value={ 2 } />
                 </Dropdown>
-                <button onClick={ () => this.refs.dropdown.open() }>Open</button>
-                <button onClick={ () => this.refs.dropdown.close() }>Close</button>
+                <button onClick={ () => this._dropdown.open() }>Open</button>
+                <button onClick={ () => this._dropdown.close() }>Close</button>
             </div>
         );
     }

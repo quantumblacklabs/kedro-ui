@@ -6,11 +6,11 @@ import SatelliteTrail from 'components/insights/satellite-trail';
 import Progress from 'components/insights/progress';
 import Swatch from 'components/insights/swatch';
 import { Tooltip, TooltipTrigger } from 'components/tooltip';
+import { Checkbox, Input, RadioButton } from 'components/form-controls';
 import Dropdown from 'components/menus/dropdown';
 import Icon from 'components/icon';
 import MenuOption from 'components/menus/menu-option';
 import SearchBar from 'components/search-bar';
-import { Checkbox, Input, RadioButton } from 'components/form-controls';
 
 import './styles/app.css';
 

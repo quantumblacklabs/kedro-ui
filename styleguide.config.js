@@ -40,6 +40,10 @@ const config = {
   template: './templates/index.html',
   sections: [
     {
+      name: 'Development Mode',
+      content: './README.md'
+    },
+    {
       name: 'Icons',
       content: './templates/components/icons.md',
       components: getComponentsFunc('icon', 'src/components/icon/**/*.jsx')
@@ -55,8 +59,8 @@ const config = {
       components: getComponentsFunc('menu', 'src/components/menus/**/*.jsx')
     },
     {
-      name: 'Searchbar',
-      content: './templates/components/search-bar.md',
+      name: 'Search',
+      content: './templates/components/search.md',
       components: getComponentsFunc('searchbar', 'src/components/search-bar/**/*.jsx')
     },
     {
@@ -170,6 +174,7 @@ const config = {
       extensions: ['.js', '.jsx', '.css'],
       alias: {
         'utils': path.resolve(__dirname, 'src/utils'),
+        'package': path.resolve(__dirname, 'package.json'),
         'styles': path.resolve(__dirname, 'src/styles'),
         'components': path.resolve(__dirname, 'src/components'),
         'rsg-components/ReactComponent/ReactComponentRenderer': path.resolve(__dirname + '/templates/react-styleguidist/react-component'),
