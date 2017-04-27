@@ -6,8 +6,8 @@ import classnames from 'classnames';
  * TabsRenderer, used to output the actual DOM makeup for the component
  */
 const TabsRenderer = ({
-  selectedIndex,
   onSelect,
+  selectedIndex,
   size,
   tabs,
   theme
