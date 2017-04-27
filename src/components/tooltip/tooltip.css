@@ -14,8 +14,6 @@ $size-padding: 4px 8px;
 
   @extend %type--body-2;
 
-  position: fixed;
-
   display: inline-block;
 
   padding: $size-padding;
@@ -26,6 +24,10 @@ $size-padding: 4px 8px;
   overflow: hidden;
 
   transition: opacity 0.3s;
+}
+
+.cbn-tooltip--fixed {
+  position: fixed;
 }
 
 .cbn-tooltip__header {

@@ -51,7 +51,7 @@ Tooltip.propTypes = {
    */
   header: PropTypes.string,
   /**
-   * Show the tooltip, sets the display property to none / block
+   * Show the tooltip, sets the opacity to 0 / 1
    */
   show: PropTypes.bool,
   /**
