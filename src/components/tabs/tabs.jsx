@@ -24,16 +24,6 @@ class Tabs extends React.Component {
   }
 
   /**
-   * React lifecycle method
-   * {@link https://facebook.github.io/react/docs/react-component.html#componentdidmount}
-   * @return {object} JSX for this component
-   */
-  componentDidMount() {
-    // trigger on selected when rendered
-    this.props.onSelect(this.state.selectedIndex);
-  }
-
-  /**
    * Callback function for selection change
    * @param {number} newSelectedIndex The index of the newly selected tab
    */
@@ -54,8 +44,8 @@ class Tabs extends React.Component {
   render() {
     return (
       <TabsRenderer
-        selectedIndex={this.state.selectedIndex}
         onSelect={this._onSelectTrigger}
+        selectedIndex={this.state.selectedIndex}
         size={this.props.size}
         tabs={this.props.tabs}
         theme={this.props.theme} />
@@ -88,7 +78,7 @@ Tabs.propTypes = {
    */
   tabs: PropTypes.arrayOf(PropTypes.string).isRequired,
   /**
-   * Theme name for component, allowed [dark, light]
+   * Theme name for component
    */
   theme: PropTypes.oneOf(['dark', 'light'])
 };

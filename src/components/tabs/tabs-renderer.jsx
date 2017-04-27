@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 /**
- * TabsRenderer, used to output the actual DOM makeup for the component
+ * TabsRenderer, used to output the actual DOM markup for the component
  */
 const TabsRenderer = ({
   onSelect,
@@ -14,10 +14,9 @@ const TabsRenderer = ({
 }) => {
   /**
    * Triggered when a tab is clicked
-   * @param {HTMLElement} the element that triggered the event
+   * @param {HTMLElement} e The element that triggered the event
    */
   const _onSelectTab = e => {
-    // trigger on selected when rendered
     onSelect(parseInt(e.target.dataset.tabindex, 10));
   };
 
@@ -60,7 +59,7 @@ TabsRenderer.propTypes = {
    */
   tabs: PropTypes.arrayOf(PropTypes.string).isRequired,
   /**
-   * Theme name for component, allowed [dark, light]
+   * Theme name for component
    */
   theme: PropTypes.oneOf(['dark', 'light']).isRequired
 };

@@ -9,7 +9,6 @@ $size-tab-margin: 12px;
 $size-tab-padding: 4px;
 $size-tab-text-margin: 2px;
 $size-tab-margin-small: 10px;
-$size-underline-height: 4px;
 $size-underline-height-hovered: 1px;
 $size-underline-height-selected: 2px;
 $duration-underline-hovered: 0.5s;
@@ -61,15 +60,15 @@ $duration-underline-hovered: 0.5s;
   user-select: none;
   cursor: pointer;
 
-  &:active {
-    .cbn-tabs__text {
-      @mixin themedParent background-color, tabs, active;
-    }
-  }
-
   &:hover {
     .cbn-tabs__underline {
       transform: scaleX(1);
+    }
+  }
+
+  &:active {
+    .cbn-tabs__text {
+      @mixin themedParent background-color, tabs, active;
     }
   }
 
@@ -89,16 +88,16 @@ $duration-underline-hovered: 0.5s;
     height: $size-underline-height-hovered;
     transition: transform $duration-underline-hovered;
   }
-}
 
-.cbn-tabs__tab--selected {
-  @mixin themedParent color, text;
+  &.cbn-tabs__tab--selected {
+    @mixin themedParent color, text;
 
-  .cbn-tabs__underline {
-    transform: scaleX(1);
+    .cbn-tabs__underline {
+      transform: scaleX(1);
 
-    @mixin themedParent background-color, tabs, selected;
+      @mixin themedParent background-color, tabs, selected;
 
-    height: $size-underline-height-selected;
+      height: $size-underline-height-selected;
+    }
   }
 }

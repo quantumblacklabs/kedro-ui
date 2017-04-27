@@ -1,4 +1,4 @@
-A basic tabs example (dark)
+A basic tabs example
 ```
 const tabs = [
     'Overview',
