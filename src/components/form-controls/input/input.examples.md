@@ -1,4 +1,4 @@
-## Default Input component with minimum and maximum number of properties
+Default Input component with minimum and maximum number of properties
 
 ```
 <section style={{margin: '20px'}}>
@@ -17,7 +17,7 @@
 </section>
 ```
 
-## Disabled inputs
+Disabled inputs
 ```
 <section style={{margin: '20px'}}>
     <Input
@@ -34,7 +34,7 @@
 </section>
 ```
 
-## Labeled inputs
+Labeled inputs
 
 ```
 <section style={{margin: '20px'}}>
@@ -54,7 +54,7 @@
 </section>
 ```
 
-## Three different statuses of an input
+Three different statuses of an input
 
 ```
 <section style={{margin: '20px'}}>
@@ -100,7 +100,7 @@
 </section>
 ```
 
-## Example of a form with dummy validation
+Example of a form with dummy validation
 ```
 const data = [
     {

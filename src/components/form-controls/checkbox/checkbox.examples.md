@@ -1,4 +1,4 @@
-## Checkbox Examples
+Checkbox Examples
 
 ```
 <section>

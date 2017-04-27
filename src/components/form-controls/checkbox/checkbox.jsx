@@ -1,6 +1,7 @@
 // Imports
 
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { uniqueId } from 'lodash';
 import Switch from '../switch';
 
@@ -56,7 +57,7 @@ Checkbox.propTypes = {
   /**
    * Set the selected / deselected state to switch component
    */
-  checked: React.PropTypes.bool,
+  checked: PropTypes.bool,
   /**
    * Set the radio button to disabled
    */

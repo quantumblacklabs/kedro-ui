@@ -52,6 +52,8 @@ themes:
       status: rgb(255, 255, 255)
     grid:
       default: rgba(255, 105, 180, 0.5)
+    search:
+      icon: rgba(0, 0, 0, 0.55)
   dark:
     base:
       primary: rgb(27, 117, 240)
@@ -104,3 +106,5 @@ themes:
       status: rgb(255, 255, 255)
     grid:
       default: rgba(100, 149, 237, 0.5)
+    search:
+      icon: rgba(255, 255, 255, 0.55)
