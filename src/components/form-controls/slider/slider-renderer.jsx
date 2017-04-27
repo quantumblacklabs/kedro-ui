@@ -28,6 +28,11 @@ class SliderRenderer extends React.Component {
    */
   componentDidMount() {
     this._updatePercentage();
+
+    // fire the onchange with the range values
+    if (typeof this.props.onChange === 'function') {
+      this.props.onChange(undefined, 0, this.state.value);
+    }
   }
 
   /**
@@ -49,7 +54,7 @@ class SliderRenderer extends React.Component {
     });
 
     if (typeof this.props.onChange === 'function') {
-      this.props.onChange(event);
+      this.props.onChange(event, 0, event.target.value);
     }
   }
 
@@ -81,9 +86,13 @@ class SliderRenderer extends React.Component {
   render() {
     return (
       <div className='cbn-slider__box'>
-        <div
-          ref={lineFilled => { this._lineFilled = lineFilled; }}
-          className='cbn-slider__line' />
+        <div className='cbn-slider__track-line'>
+          <div
+            ref={lineFilled => { this._lineFilled = lineFilled; }}
+            className='cbn-slider__line' />
+          {this.props.tickSymbols}
+        </div>
+        {this.props.tickNumbers}
         <input
           className='cbn-slider__input'
           type='range'
@@ -108,6 +117,8 @@ SliderRenderer.defaultProps = {
   name: 'slider',
   onChange: undefined,
   step: 1,
+  tickNumbers: undefined,
+  tickSymbols: undefined,
   value: 50
 };
 
@@ -146,6 +157,14 @@ SliderRenderer.propTypes = {
    * Step of the slider.
    */
   step: PropTypes.number,
+  /**
+   * Numbers indicating the ticks of the slider.
+   */
+  tickNumbers: PropTypes.element,
+  /**
+   * Symbols indicating the ticks of the slider, positioned in the middle of the slider.
+   */
+  tickSymbols: PropTypes.element,
   /**
    * The pre-selected value of the slider.
    */

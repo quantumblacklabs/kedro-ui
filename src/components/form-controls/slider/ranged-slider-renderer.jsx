@@ -33,6 +33,11 @@ class RangedSliderRenderer extends React.Component {
    */
   componentDidMount() {
     this._updatePercentage();
+
+    // fire the onchange with the range values
+    if (typeof this.props.onChange === 'function') {
+      this.props.onChange(undefined, this.state.minRange, this.state.maxRange);
+    }
   }
 
   /**
@@ -54,7 +59,7 @@ class RangedSliderRenderer extends React.Component {
     });
 
     if (typeof this.props.onChange === 'function') {
-      this.props.onChange(event);
+      this.props.onChange(event, event.target.value, this.state.maxRange);
     }
   }
 
@@ -68,7 +73,7 @@ class RangedSliderRenderer extends React.Component {
     });
 
     if (typeof this.props.onChange === 'function') {
-      this.props.onChange(event);
+      this.props.onChange(event, this.state.minRange, event.target.value);
     }
   }
 
@@ -76,14 +81,11 @@ class RangedSliderRenderer extends React.Component {
    * _updatePercentage - injects the CSS variables into the child to correctly update the input
    */
   _updatePercentage() {
-    const minRange = this._getPercentage(this.state.minRange);
-    const maxRange = this._getPercentage(this.state.maxRange);
-
     this._lineFilled.style.setProperty('background', `
       linear-gradient(to right,
-      ${this.props.backgroundColor} ${minRange}%,
+      ${this.props.backgroundColor} ${this._getPercentage(this.state.minRange)}%,
       ${this.props.fillColor} 0,
-      ${this.props.fillColor} ${maxRange}%,
+      ${this.props.fillColor} ${this._getPercentage(this.state.maxRange)}%,
       ${this.props.backgroundColor} 0)
     `);
   }
@@ -103,9 +105,13 @@ class RangedSliderRenderer extends React.Component {
   render() {
     return (
       <div className='cbn-slider__box'>
-        <div
-          ref={lineFilled => { this._lineFilled = lineFilled; }}
-          className='cbn-slider__line' />
+        <div className='cbn-slider__track-line'>
+          <div
+            ref={lineFilled => { this._lineFilled = lineFilled; }}
+            className='cbn-slider__line' />
+          {this.props.tickSymbols}
+        </div>
+        {this.props.tickNumbers}
         <input
           className={classnames(
             'cbn-slider__input',
@@ -149,6 +155,8 @@ RangedSliderRenderer.defaultProps = {
   name: 'slider',
   onChange: null,
   step: 1,
+  tickNumbers: undefined,
+  tickSymbols: undefined,
   value: [0, 50]
 };
 
@@ -187,6 +195,14 @@ RangedSliderRenderer.propTypes = {
    * Step of the slider.
    */
   step: PropTypes.number,
+  /**
+   * Numbers indicating the ticks of the slider.
+   */
+  tickNumbers: PropTypes.element,
+  /**
+   * Symbols indicating the ticks of the slider, positioned in the middle of the slider.
+   */
+  tickSymbols: PropTypes.element,
   /**
    * Min and max values for the value.
    */

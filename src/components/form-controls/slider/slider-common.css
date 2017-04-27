@@ -86,7 +86,7 @@ $tick-number-width: 24px;
 
 .cbn-slider__line {
   position: absolute;
-  top: calc(50% - $track-height - 1px);
+  top: 50%;
   /** slider's 0% will appear to be in thumb's center **/
   left: calc($thumb-width);
 
@@ -95,6 +95,16 @@ $tick-number-width: 24px;
   height: $track-height;
 
   box-sizing: border-box;
+}
+
+.cbn-slider__track-line {
+  /*.cbn-theme--light & {
+    opacity: 0.12;
+  }
+
+  .cbn-theme--dark & {
+    opacity: 0.3;
+  }*/
 }
 
 .cbn-slider {
@@ -135,6 +145,7 @@ $tick-number-width: 24px;
   @extend %type--body-1;
 
   position: absolute;
+  top: 38px;
 
   width: $tick-number-width;
   padding: 0;
@@ -145,17 +156,17 @@ $tick-number-width: 24px;
 
 .cbn-slider__tick-symbol {
   position: relative;
-  top: -19px;
+  top: 15px;
   z-index: 2;
 
   width: 6px;
-  height: 6px;
   min-height: 6px;
+  height: 6px;
   border-radius: 50%;
   padding: 0;
   margin: 0;
 
-  @mixin themedParent background, slider, thumbBorder;
+  @mixin themedParent background, slider, default;
 
   &--min {
     transform: translateX(calc(-50% + $thumb-width));
@@ -163,6 +174,10 @@ $tick-number-width: 24px;
 
   &--max {
     transform: translateX(calc(50% - $thumb-width));
+  }
+
+  &--range {
+    @mixin themedParent background, slider, thumbBorder;
   }
 }
 

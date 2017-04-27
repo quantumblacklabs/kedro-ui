@@ -20,7 +20,8 @@ class Slider extends React.Component {
     super(props);
 
     this.state = {
-      colors: undefined
+      colors: undefined,
+      ticks: this._getTicks(this.props.min, this.props.max)
     };
 
     this._id = uniqueId(`cbn-slider--${this.props.type}-`);
@@ -58,10 +59,31 @@ class Slider extends React.Component {
   }
 
   /**
+   * _getTicks -
+   */
+  _getTicks(min, max) {
+    const tickStep = this.props.tickStep ? this.props.tickStep : this.props.max;
+    // create a range of values
+    const tickValues = rangeStep(tickStep, this.props.min, this.props.max);
+    // and add the max into the array
+    tickValues.push(this.props.max);
+
+    // create an array with all the ticks, where value and whether it should be specially coloured is stored
+    return tickValues.map(tickValue => (
+      {
+        range: min <= tickValue && tickValue <= max,
+        value: tickValue
+      }
+    ));
+  }
+
+  /**
    * _handleChanged -
    */
-  _handleChanged(e) {
-    console.log(e.target.value);
+  _handleChanged(e, min, max) {
+    this.setState({
+      ticks: this._getTicks(min, max)
+    });
 
     if (typeof this.props.onChange === 'function') {
       this.props.onChange(e);
@@ -102,8 +124,7 @@ class Slider extends React.Component {
    * @return {object} JSX for this component
    */
   render() {
-    // const hiddenElements = !this.state.colors && (
-    const hiddenElements = (
+    const hiddenElements = !this.state.colors && (
       <div className='cbn-slider__hidden'>
         <div
           ref={hiddenFill => { this._hiddenFill = hiddenFill; }}
@@ -114,29 +135,22 @@ class Slider extends React.Component {
       </div>
     );
 
-    const tickStep = this.props.tickStep ? this.props.tickStep : this.props.max;
-    // create a range of values
-    const tickValues = rangeStep(tickStep, this.props.min, this.props.max);
-    // and add the max into the array
-    tickValues.push(this.props.max);
-
     const tickNumbers = this.props.showTicks && (
       <datalist
         id={this._id}
         className='cbn-slider__tick-numbers'>
-        {tickValues.map((tickValue, i) => (
+        {this.state.ticks.map((tick, i) => (
           <option
-            key={`tick-number-${tickValues[i]}`}
+            key={`tick-number-${tick.value}`}
             className={classnames(
               'cbn-slider__tick-number',
               { 'cbn-slider__tick-number--min': i === 0 },
-              { 'cbn-slider__tick-number--max': i === (tickValues.length - 1) })}
-            value={tickValue}
-            style={{ transform: `translateX(${this._getNumberShift(tickValue, i, tickValues.length - 1)}px)` }}>
-            {tickValue}
+              { 'cbn-slider__tick-number--max': i === (this.state.ticks.length - 1) })}
+            value={tick.value}
+            style={{ transform: `translateX(${this._getNumberShift(tick.value, i, this.state.ticks.length - 1)}px)` }}>
+            {tick.value}
           </option>
-          )
-        )}
+        ))}
       </datalist>
     );
 
@@ -144,29 +158,23 @@ class Slider extends React.Component {
       <datalist
         id={this._id}
         className='cbn-slider__tick-symbols'>
-        {tickValues.map((tickValue, i) => (
+        {this.state.ticks.map((tick, i) => (
           <option
-            key={`tick-symbol-${tickValues[i]}`}
+            key={`tick-symbol-${tick.value}`}
             className={classnames(
               'cbn-slider__tick-symbol',
               { 'cbn-slider__tick-symbol--min': i === 0 },
-              { 'cbn-slider__tick-symbol--max': i === (tickValues.length - 1) }
+              { 'cbn-slider__tick-symbol--max': i === (this.state.ticks.length - 1) },
+              { 'cbn-slider__tick-symbol--range': tick.range }
             )}
-            value={tickValue} />
-          )
-        )}
+            value={tick.value} />
+        ))}
       </datalist>
     );
 
     // determine the type of correct renderer
     const RendererType = this.props.type === 'single' ? SliderRenderer : RangedSliderRenderer;
 
-    /**
-     * TODO:
-     *  <SliderRenderer ...>
-     *    {typeRenderer}
-     *  </SliderRenderer>
-     */
     return (
       <div
         className={classnames(
@@ -183,9 +191,9 @@ class Slider extends React.Component {
           value={this.props.value}
           fillColor={this.state.colors ? this.state.colors.fill : 'transparent'}
           backgroundColor={this.state.colors ? this.state.colors.background : 'transparent'}
-          listId={this._id} />
-        {tickSymbols}
-        {tickNumbers}
+          listId={this._id}
+          tickNumbers={tickNumbers}
+          tickSymbols={tickSymbols} />
         {hiddenElements}
       </div>
     );
