@@ -4,8 +4,11 @@
 
 /** Variables **/
 
-$secondaryActiveColor: rgba(0, 0, 0, 0.12);
-$primaryDuration: 0.2s;
+$color-secondary-active: rgba(0, 0, 0, 0.12);
+$timing-primary: 0.2s;
+$secondary-underline-height: 2px;
+$secondary-underline-offset: 8px;
+$secondary-underline-offset-hover: 4px;
 
 /** Implementation **/
 
@@ -21,9 +24,9 @@ $primaryDuration: 0.2s;
   background: none;
   cursor: pointer;
   transition:
-    background ease $primaryDuration,
-    outline-color ease $primaryDuration,
-    color ease $primaryDuration;
+    background ease $timing-primary,
+    outline-color ease $timing-primary,
+    color ease $timing-primary;
   outline: 2px solid transparent;
 
   @mixin themed color, text;
@@ -72,7 +75,7 @@ $primaryDuration: 0.2s;
   }
 
   .cbn-icon__graphics {
-    transition: fill ease $primaryDuration;
+    transition: fill ease $timing-primary;
   }
 
   &.cbn-theme--light:hover,
@@ -112,7 +115,7 @@ $primaryDuration: 0.2s;
 
       width: 0;
       height: 100%;
-      transition: all ease $primaryDuration;
+      transition: all ease $timing-primary;
     }
 
     @mixin themedState :after, background, button, outline;
@@ -133,9 +136,11 @@ $primaryDuration: 0.2s;
     content: '';
 
     width: 100%;
-    height: 2px;
-    margin-bottom: -2px;
-    transform: translateY(8px);
+    height: $secondary-underline-height;
+
+    /* Offset the underline height so it doesn't affect text vertical alignment */
+    margin-bottom: -$secondary-underline-height;
+    transform: translateY($secondary-underline-offset-hover);
     transition: all ease 0.1s;
 
     background: none;
@@ -143,12 +148,12 @@ $primaryDuration: 0.2s;
 
   &:hover::after,
   &:focus::after {
-    transform: translateY(4px);
+    transform: translateY($secondary-underline-offset);
   }
 
   &:active {
-    background-color: $secondaryActiveColor;
-    outline-color: $secondaryActiveColor;
+    background-color: $color-secondary-active;
+    outline-color: $color-secondary-active;
   }
 
   &:disabled::after {
