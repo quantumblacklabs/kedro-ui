@@ -72,16 +72,6 @@ const config = {
       name: 'Tooltip',
       content: './templates/components/tooltip.md',
       components: getComponentsFunc('tooltip', 'src/components/tooltip/**/*.jsx')
-    },
-    {
-      name: 'Project: Insights',
-      content: './templates/projects/insights.md',
-      components: getComponentsFunc('menu', 'src/components/insights/**/*.jsx')
-    },
-    {
-      name: 'Modules',
-      content: './templates/modules/index.md',
-      components: getComponentsFunc('module', 'src/components/modules/**/*.jsx')
     }
   ],
   getComponentPathLine: function(componentPath) {

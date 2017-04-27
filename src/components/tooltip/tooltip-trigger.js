@@ -16,8 +16,7 @@ const TooltipTriggerHOC = WrapperComponent => {
   class TooltipTrigger extends component {
     /**
      * constructor - create new TooltipTrigger
-     * @param  {type} props description
-     * @return {type}       description
+     * @param  {Object} props
      */
     constructor(props) {
       super(props);
