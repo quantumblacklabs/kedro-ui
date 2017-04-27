@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import GSAP from 'react-gsap-enhancer';
 import { TimelineLite, Elastic, Power1 } from 'gsap';
@@ -56,9 +57,6 @@ class Input extends React.Component {
         value: newProps.value
       });
     }
-
-    // reset the animation
-    this._anim = this.addAnimation(this._createAnimation);
   }
 
   /**

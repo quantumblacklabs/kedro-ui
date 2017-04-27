@@ -5,8 +5,8 @@ import 'codemirror/mode/jsx/jsx';
 
 // We’re explicitly specifying Webpack loaders here so we could skip specifying them in Webpack configuration.
 // That way we could avoid clashes between our loaders and user loaders.
-require('!!../../../node_modules/react-styleguidist/loaders/style-loader!../../../node_modules/react-styleguidist/loaders/css-loader!codemirror/lib/codemirror.css');
-require('!!../../../node_modules/react-styleguidist/loaders/style-loader!../../../node_modules/react-styleguidist/loaders/css-loader!rsg-codemirror-theme.css');
+require('react-styleguidist/loaders/style-loader!react-styleguidist/loaders/css-loader!codemirror/lib/codemirror.css');
+require('react-styleguidist/loaders/style-loader!react-styleguidist/loaders/css-loader!rsg-codemirror-theme.css');
 
 const codemirrorOptions = {
 	mode: 'jsx',

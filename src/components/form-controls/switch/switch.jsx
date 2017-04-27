@@ -1,6 +1,7 @@
 // Imports
 
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 // Styles
@@ -79,11 +80,11 @@ Switch.propTypes = {
   /**
    * Set the selected / deselected state to switch component
    */
-  checked: React.PropTypes.bool,
+  checked: PropTypes.bool,
   /**
    * If needed, you can supply the switch with extra elements
    */
-  children: React.PropTypes.node,
+  children: PropTypes.node,
   /**
    * Set the radio button to disabled
    */

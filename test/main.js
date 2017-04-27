@@ -1,8 +1,10 @@
 import test from 'ava';
 import {
+  Checkbox,
   Dropdown,
   Icon,
-  Insights,
+  Input,
+  RadioButton,
   MenuOption
 } from '../src/index';
 
@@ -12,16 +14,8 @@ test('Browser enviromnent should be mocked', t => {
     t.is(document.querySelector('div'), div);
 });
 
-test('Insights Components should be exposed', t => {
-  t.is(typeof Insights.DataSummary, 'function');
-  t.is(typeof Insights.ExpandablePanel, 'function');
-  t.is(typeof Insights.Satellite, 'function');
-});
-
-test('Components should be exposed', t => {
+test('MenuOption should be exposed', t => {
   t.is(typeof MenuOption, 'function');
-  t.is(typeof Insights.ExpandablePanel, 'function');
-  t.is(typeof Insights.Satellite, 'function');
 });
 
 test('Dropdown should be exposed', t => {
@@ -32,6 +26,14 @@ test('Icon should be exposed', t => {
   t.is(typeof Icon, 'function');
 });
 
-test('MenuOption should be exposed', t => {
-  t.is(typeof MenuOption, 'function');
+test('Checkbox should be exposed', t => {
+  t.is(typeof Checkbox, 'function');
+});
+
+test('Input should be exposed', t => {
+  t.is(typeof Input, 'function');
+});
+
+test('RadioButton should be exposed', t => {
+  t.is(typeof RadioButton, 'function');
 });

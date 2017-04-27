@@ -1,6 +1,7 @@
 // Imports
 
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Icon from '../icon';
 import { Input } from '../form-controls';
 
@@ -9,21 +10,22 @@ import { Input } from '../form-controls';
 /**
  * SearchBarRenderer, used to output the actual DOM makeup for the component
  */
-const SearchBarRenderer = ({ iconType,
-                             placeholder,
-                             onChange,
-                             onClear,
-                             theme,
-                             showClearButton,
-                             value }) => {
+const SearchBarRenderer = ({
+  iconType,
+  placeholder,
+  onChange,
+  onClear,
+  theme,
+  showClearButton,
+  value }) => {
   const style = { opacity: showClearButton ? 1 : 0 };
+
   return (
     <div className={`cbn-searchbar cbn-theme--${theme}`}>
       <div className='cbn-searchbar__dynamicicon'>
         <Icon type={iconType} size='medium' theme={theme} />
       </div>
       <Input
-        name='Something 2'
         placeholder={placeholder}
         onChange={onChange}
         value={value}
@@ -55,7 +57,7 @@ SearchBarRenderer.propTypes = {
   /**
    * Theme of the component
    */
-  theme: PropTypes.string.isRequired,
+  theme: PropTypes.oneOf(['light', 'dark']).isRequired,
   /**
    * Show clear button on right
    */

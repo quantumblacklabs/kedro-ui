@@ -1,6 +1,7 @@
 // Imports
 
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import SearchBarRenderer from './search-bar-renderer';
 
 // Styles
@@ -22,12 +23,26 @@ class SearchBar extends React.Component {
     super(props);
 
     this.state = {
-      currentText: '',
+      value: this.props.value,
       showClearButton: false
     };
 
-    this.onChange = this.onChange.bind(this);
-    this.onClear = this.onClear.bind(this);
+    this._handleChanged = this._handleChanged.bind(this);
+    this._handleCleared = this._handleCleared.bind(this);
+  }
+
+  /**
+   * React lifecycle method
+   * Update the value in state if props chage
+   * {@link https://facebook.github.io/react/docs/react-component.html#componentwillreceiveprops}
+   * @return {object} JSX for this component
+   */
+  componentWillReceiveProps(newProps) {
+    if (newProps.value !== this.state.value) {
+      this.setState({
+        value: newProps.value
+      });
+    }
   }
 
   // Events
@@ -36,9 +51,9 @@ class SearchBar extends React.Component {
    * onChange - fired for onChange events in input field
    * @param  {Event} e native change event
    */
-  onChange(e) {
+  _handleChanged(e) {
     this.setState({
-      currentText: e.target.value,
+      value: e.target.value,
       showClearButton: e.target.value !== ''
     });
 
@@ -53,9 +68,9 @@ class SearchBar extends React.Component {
    * @param  {type} e description
    * @return {type}   description
    */
-  onClear() {
+  _handleCleared() {
     this.setState({
-      currentText: '',
+      value: '',
       showClearButton: false
     });
 
@@ -76,10 +91,10 @@ class SearchBar extends React.Component {
       <SearchBarRenderer
         iconType={this.props.iconType}
         placeholder={this.props.placeholder}
-        onChange={this.onChange}
-        onClear={this.onClear}
+        onChange={this._handleChanged}
+        onClear={this._handleCleared}
         showClearButton={this.state.showClearButton}
-        value={this.state.currentText}
+        value={this.state.value}
         theme={this.props.theme} />
     );
   }
@@ -90,7 +105,8 @@ SearchBar.defaultProps = {
   placeholder: 'Search Here...',
   onChange: null,
   onClear: null,
-  theme: 'dark'
+  theme: 'dark',
+  value: 'Hello'
 };
 
 SearchBar.propTypes = {
@@ -103,7 +119,7 @@ SearchBar.propTypes = {
    */
   onChange: PropTypes.func,
   /**
-   * On clear, triggered when clear buttong is pressed
+   * On clear, triggered when clear button is pressed
    */
   onClear: PropTypes.func,
   /**
@@ -113,7 +129,11 @@ SearchBar.propTypes = {
   /**
    * Theme of the component
    */
-  theme: PropTypes.string
+  theme: PropTypes.oneOf(['light', 'dark']).isRequired,
+  /**
+   * Value of the inner input bar
+   */
+  value: PropTypes.string
 };
 
 export default SearchBar;
