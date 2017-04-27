@@ -6,50 +6,28 @@ import './button.css';
 /**
  * Button component
  */
-class Button extends React.Component {
-  /**
-   * Handle onClick events
-   * @param  {object} e - onClick event object
-   */
-  _handleClick(e) {
-    const { onClick } = this.props;
-
-    if (typeof onClick === 'function') {
-      onClick(e);
-    }
-  }
-
-  /**
-   * React lifecycle method
-   * {@link https://facebook.github.io/react/docs/react-component.html#render}
-   * @return {object} JSX for this component
-   */
-  render() {
-    const {
-      animation,
-      children,
-      disabled,
-      size,
-      theme,
-      type
-    } = this.props;
-
-    return (
-      <button
-        className={classnames(
-          'cbn-button',
-          `cbn-button--${animation}`,
-          `cbn-button--${size}`,
-          `cbn-button--${type}`,
-          `cbn-theme--${theme}`
-        )}
-        disabled={disabled}
-        onClick={e => this._handleClick(e)}>
-        { children }
-      </button>
-    );
-  }
-}
+const Button = ({
+  animation,
+  children,
+  disabled,
+  onClick,
+  size,
+  theme,
+  type
+}) => (
+  <button
+    className={classnames(
+      'cbn-button',
+      `cbn-button--${animation}`,
+      `cbn-button--${size}`,
+      `cbn-button--${type}`,
+      `cbn-theme--${theme}`
+    )}
+    disabled={disabled}
+    onClick={onClick}>
+    { children }
+  </button>
+);
 
 Button.defaultProps = {
   animation: 'fade',
