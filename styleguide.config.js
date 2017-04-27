@@ -67,6 +67,11 @@ const config = {
       name: 'Form Controls',
       content: './templates/components/form-controls.md',
       components: getComponentsFunc('form', 'src/components/form-controls/**/*.jsx')
+    },
+    {
+      name: 'Tabs',
+      content: './templates/components/tabs.md',
+      components: getComponentsFunc('form', 'src/components/tabs/**/*.jsx')
     }
   ],
   getComponentPathLine: function(componentPath) {

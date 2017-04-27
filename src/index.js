@@ -4,6 +4,7 @@ import EventIndicator from 'components/indicators/event-indicator';
 import Icon from 'components/icon';
 import MenuOption from 'components/menus/menu-option';
 import SearchBar from 'components/search-bar';
+import Tabs from 'components/tabs';
 
 import './styles/app.css';
 
@@ -15,5 +16,6 @@ module.exports = {
   Input,
   MenuOption,
   SearchBar,
-  RadioButton
+  RadioButton,
+  Tabs
 };
