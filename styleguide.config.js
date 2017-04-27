@@ -67,6 +67,11 @@ const config = {
       name: 'Form Controls',
       content: './templates/components/form-controls.md',
       components: getComponentsFunc('form', 'src/components/form-controls/**/*.jsx')
+    },
+    {
+      name: 'Toggle',
+      content: './templates/components/toggle.md',
+      components: getComponentsFunc('form', 'src/components/toggle/**/*.jsx')
     }
   ],
   getComponentPathLine: function(componentPath) {
