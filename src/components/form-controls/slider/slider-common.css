@@ -5,18 +5,12 @@
 /** Variables **/
 
 $wrapper-width: 310px;
-$input-width: 166px;
+$input-width: 174px;
 $input-height: 24px;
 
-$thumb-size: 3px;
-$thumb-size--hover: 10px;
-$thumb-size--active: 8px;
-
-$thumb-border-width: 5px;
-$thumb-border-width--hover: 6px;
-$thumb-border-width--active: 8px;
-
+$thumb-size: 4px;
 $thumb-width: calc($thumb-size + $thumb-border-width / 2);
+$thumb-border-width: 5px;
 
 $track-height: 2px;
 
@@ -42,7 +36,7 @@ $tick-number-width: 24px;
   box-sizing: border-box;
 
   &:hover {
-    transition: all .2s ease-in-out;
+    transition: all 0.2s ease-in-out;
     transform: scale(1.5);
   }
 }
@@ -81,15 +75,46 @@ $tick-number-width: 24px;
   &--single {
     @extend %type--body-1;
 
-    margin: 6px 22px 0 0;
+    width: 73px;
+    margin: 6px 18px 0 0;
   }
 
   &--multiple {
     @extend %type--subhead-2;
 
-    margin: 0 0 18px 0;
+    margin: 0 0 18px;
 
     font-weight: bold;
+  }
+}
+
+.cbn-slider__number-input {
+  .cbn-input {
+    margin: 0;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+
+    background: transparent;
+
+    &:hover,
+    &:active {
+      box-shadow: none;
+    }
+
+    &__field {
+      background: transparent;
+    }
+
+    &__line {
+      @mixin themedParent background, slider, numberInputLine;
+    }
+
+    &-wrapper {
+      width: 27px;
+      margin: 5px 0 0 18px;
+      padding: 0;
+    }
   }
 }
 
@@ -101,7 +126,8 @@ $tick-number-width: 24px;
 
 .cbn-slider__line {
   position: absolute;
-  top: 50%;
+  top: calc(50% - 1px);
+
   /** slider's 0% will appear to be in thumb's center **/
   left: calc($thumb-width);
 
@@ -110,16 +136,6 @@ $tick-number-width: 24px;
   height: $track-height;
 
   box-sizing: border-box;
-}
-
-.cbn-slider__track-line {
-  /*.cbn-theme--light & {
-    opacity: 0.12;
-  }
-
-  .cbn-theme--dark & {
-    opacity: 0.3;
-  }*/
 }
 
 .cbn-slider {
@@ -157,28 +173,29 @@ $tick-number-width: 24px;
 
 .cbn-slider__tick-number {
   @mixin themedParent color, slider, tickNumber;
+
   @extend %type--body-1;
 
   position: absolute;
   top: 38px;
 
   width: $tick-number-width;
-  padding: 0;
   margin: 0;
+  padding: 0;
 
   text-align: center;
 }
 
 .cbn-slider__tick-symbol {
   position: relative;
-  top: 15px;
+  top: 14px;
 
-  width: 6px;
-  min-height: 6px;
-  height: 6px;
-  border-radius: 50%;
-  padding: 0;
+  width: $track-height * 2;
+  min-height: $track-height * 2;
+  height: $track-height * 2;
   margin: 0;
+  padding: 0;
+  border-radius: 50%;
 
   @mixin themedParent background, slider, default;
 

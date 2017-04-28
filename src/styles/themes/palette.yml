@@ -41,6 +41,7 @@ themes:
     slider:
       default: rgba(0, 0, 0, 0.12)
       label: rgba(0, 0, 0, 0.85)
+      numberInputLine: rgba(0, 0, 0, 0.12)
       thumbCenter: rgb(255, 255, 255)
       thumbBorder: rgb(0, 0, 0)
       tickNumber: rgba(0, 0, 0, 0.55)
@@ -96,6 +97,7 @@ themes:
     slider:
       default: rgba(255, 255, 255, 0.3)
       label: rgba(255, 255, 255, 0.85)
+      numberInputLine: rgba(255, 255, 255, 0.12)
       thumbCenter: rgb(0, 0, 0)
       thumbBorder: rgb(255, 255, 255)
       tickNumber: rgba(255, 255, 255, 0.55)

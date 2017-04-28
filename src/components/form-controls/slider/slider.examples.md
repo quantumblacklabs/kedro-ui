@@ -2,7 +2,7 @@ Single-handler slider component with minimum and maximum number of properties
 
 ```
 <section>
-    <Slider type='single' theme='light' label='Range Input' />
+    <Slider type='single' theme='light' label='Range Input' value={34} />
 </section>
 ```
 

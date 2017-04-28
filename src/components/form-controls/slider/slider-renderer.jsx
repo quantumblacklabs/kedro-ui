@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
+import Input from 'components/form-controls/input';
+
 /**
  * Creates a single slider component.
  */
@@ -50,7 +52,7 @@ class SliderRenderer extends React.Component {
    * @param  {object} event
    */
   _handleChanged(event) {
-    const value = parseFloat(event.target.value);
+    const value = isNaN(parseFloat(event.target.value)) ? 0 : parseFloat(event.target.value);
 
     this.setState({
       value
@@ -112,6 +114,14 @@ class SliderRenderer extends React.Component {
             max={this.props.max}
             step={this.props.step}
             value={this.state.value}
+            onChange={this._handleChanged} />
+        </div>
+        <div
+          className={classnames(
+            'cbn-slider__number-input',
+            'cbn-slider__number-input--single')}>
+          <Input
+            value={this.state.value.toString()}
             onChange={this._handleChanged} />
         </div>
       </div>
