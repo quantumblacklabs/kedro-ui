@@ -74,9 +74,14 @@ class SearchBar extends React.Component {
       showClearButton: false
     });
 
-    // trigger onClose prop if available
+    // trigger onClear prop if available
     if (typeof this.props.onClear === 'function') {
       this.props.onClear();
+    }
+
+    // trigger onChange prop if available
+    if (typeof this.props.onChange === 'function') {
+      this.props.onChange('');
     }
   }
 
@@ -106,7 +111,7 @@ SearchBar.defaultProps = {
   onChange: null,
   onClear: null,
   theme: 'dark',
-  value: 'Hello'
+  value: ''
 };
 
 SearchBar.propTypes = {

@@ -1,0 +1,81 @@
+/** Imports **/
+
+@import '../../../styles/includes';
+
+/** Variables **/
+
+$search-input-width: 320px;
+$results-list-margin-top: 4px;
+$results-list-vertical-padding: 4px;
+$results-list-vertical-transition: 0.3s;
+$results-row-padding: 8px 20px 12px 44px;
+
+/** Implementation **/
+
+.cbn-search-results {
+  position: relative;
+
+  margin-top: $results-list-margin-top;
+}
+
+.cbn-search-results__wrapper {
+  position: absolute;
+  overflow: hidden;
+
+  width: $search-input-width;
+  transition: all ease $results-list-vertical-transition;
+  box-sizing: border-box;
+
+  @mixin themed background, menu, default;
+  @mixin themed color, text;
+
+  &.cbn-theme--dark {
+    @extend %shadow-dark;
+  }
+
+  &--hidden {
+    height: 0;
+  }
+}
+
+.cbn-search-results__list {
+  height: 100%;
+  overflow: auto;
+
+  padding: $results-list-vertical-padding 0;
+  transition: all ease $results-list-vertical-transition;
+  box-sizing: border-box;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12) inset;
+}
+
+.cbn-search-results__row {
+  position: relative;
+
+  display: block;
+
+  padding: $results-row-padding;
+  text-decoration: none;
+  cursor: pointer;
+
+  &--active,
+  &:hover,
+  &:focus {
+    @mixin themedParent background, menu, hover;
+  }
+
+  .cbn-icon {
+    position: absolute;
+    left: 10px;
+    opacity: 0.6;
+  }
+}
+
+.cbn-search-results__label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  b {
+    opacity: 0.5;
+  }
+}

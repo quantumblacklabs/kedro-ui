@@ -61,7 +61,7 @@ const config = {
     {
       name: 'Search',
       content: './templates/components/search.md',
-      components: getComponentsFunc('searchbar', 'src/components/search-bar/**/*.jsx')
+      components: getComponentsFunc('search', 'src/components/search/**/*.jsx')
     },
     {
       name: 'Form Controls',
@@ -72,6 +72,11 @@ const config = {
       name: 'Tabs',
       content: './templates/components/tabs.md',
       components: getComponentsFunc('tabs', 'src/components/tabs/**/*.jsx')
+    },
+    {
+      name: 'Tooltip',
+      content: './templates/components/tooltip.md',
+      components: getComponentsFunc('tooltip', 'src/components/tooltip/**/*.jsx')
     }
   ],
   getComponentPathLine: function(componentPath) {
