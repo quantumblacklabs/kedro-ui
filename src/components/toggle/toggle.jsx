@@ -28,12 +28,13 @@ class Toggle extends React.Component {
 
   /**
    * Callback function for selection change
+   * @param {object} e        The event object
    * @param {string} newValue The new value (on/off)
    */
-  _handleChange(newValue) {
+  _handleChange(e, newValue) {
     // call the user defined callback
     if (typeof this.props.onChange === 'function') {
-      this.props.onChange(newValue);
+      this.props.onChange(e, newValue);
     }
 
     this.setState({
