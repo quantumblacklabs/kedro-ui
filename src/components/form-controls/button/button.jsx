@@ -4,15 +4,11 @@ import classnames from 'classnames';
 import './button.css';
 
 /**
- * Button component with various prop-based styling options:
- * @param  {string}    options.animation The style of hover animation
- * @param  {object}    options.children  The displayed button value
- * @param  {boolean}   options.disabled  True if disabled
- * @param  {function}  options.onClick   Handle click events
- * @param  {string}    options.size      Button size - either 'regular' or 'small'.
- * @param  {string}    options.theme     Theme of the button - either 'dark' or 'light'.
- * @param  {string}    options.type      Button style - either 'primary' or 'secondary'.
- * @return {object}                      JSX button element
+ * Button component with various styling options:
+ * Change colour theme, style type, size and hover animation type using props.
+ * Also handles onClick events, allows any children (including Icon components),
+ * and can be disabled by passing disabled=true.
+ * @return {object} JSX button element
  */
 const Button = ({
   animation,
