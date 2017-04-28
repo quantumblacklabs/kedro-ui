@@ -20,16 +20,18 @@ class Toggle extends React.Component {
       value: props.value
     };
 
-    this._onChangeTrigger = this._onChangeTrigger.bind(this);
+    this._handleChange = this._handleChange.bind(this);
   }
 
   /**
    * Callback function for selection change
    * @param {string} newValue The new value (on/off)
    */
-  _onChangeTrigger(newValue) {
+  _handleChange(newValue) {
     // call the user defined callback
-    this.props.onChange(newValue);
+    if (typeof this.props.onChange === 'function') {
+      this.props.onChange(newValue);
+    }
 
     this.setState({
       value: newValue
@@ -45,7 +47,7 @@ class Toggle extends React.Component {
     return (
       <ToggleRenderer
         label={this.props.label}
-        onChange={this._onChangeTrigger}
+        onChange={this._handleChange}
         type={this.props.type}
         theme={this.props.theme}
         value={this.state.value} />
@@ -55,7 +57,7 @@ class Toggle extends React.Component {
 
 Toggle.defaultProps = {
   label: '',
-  onChange: () => {},
+  onChange: null,
   type: 'regular',
   theme: 'dark',
   value: 'on'

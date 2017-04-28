@@ -16,7 +16,7 @@ const ToggleRenderer = ({
    * Triggered when on/off is clicked
    * @param {HTMLElement} the element that triggered the event
    */
-  const _onChange = e => {
+  const _handleChange = e => {
     // the user can click the button, text or the underline, cover all cases
     onChange(e.target.dataset.value || e.target.parentElement.dataset.value);
   };
@@ -30,7 +30,7 @@ const ToggleRenderer = ({
       }
       <div className='cbn-toggle__switch'>
         <div
-          onClick={_onChange}
+          onClick={_handleChange}
           data-value='on'
           className={classnames('cbn-toggle__button', { 'cbn-toggle--selected': value === 'on' })}>
           <div className='cbn-toggle__text'>ON</div>
@@ -40,7 +40,7 @@ const ToggleRenderer = ({
           className={classnames('cbn-toggle__separator', { 'cbn-toggle__separator--right': value === 'off' })}>
           /</div>
         <div
-          onClick={_onChange}
+          onClick={_handleChange}
           data-value='off'
           className={classnames('cbn-toggle__button', { 'cbn-toggle--selected': value === 'off' })}>
           <div className='cbn-toggle__text'>OFF</div>
