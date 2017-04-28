@@ -44,8 +44,17 @@ themes:
       thumbCenter: rgb(255, 255, 255)
       thumbBorder: rgb(0, 0, 0)
       tickNumber: rgba(0, 0, 0, 0.55)
+    input:
+      placeholder: rgba(0, 0, 0, 0.3)
+      placeholderFocused: rgba(0, 0, 0, 0.55)
+      textFilled: rgb(0, 0, 0)
+      error: rgb(236, 53, 8)
+      success: rgb(0, 195, 41)
+      status: rgb(255, 255, 255)
     grid:
       default: rgba(255, 105, 180, 0.5)
+    search:
+      icon: rgba(0, 0, 0, 0.55)
   dark:
     base:
       primary: rgb(27, 117, 240)
@@ -90,5 +99,14 @@ themes:
       thumbCenter: rgb(0, 0, 0)
       thumbBorder: rgb(255, 255, 255)
       tickNumber: rgba(255, 255, 255, 0.55)
+    input:
+      placeholder: rgba(255, 255, 255, 0.3)
+      placeholderFocused: rgba(255, 255, 255, 0.55)
+      textFilled: rgb(255, 255, 255)
+      error: rgb(236, 53, 8)
+      success: rgb(0, 195, 41)
+      status: rgb(255, 255, 255)
     grid:
       default: rgba(100, 149, 237, 0.5)
+    search:
+      icon: rgba(255, 255, 255, 0.55)

@@ -1,4 +1,4 @@
-## Simple Event Indicator
+Simple Event Indicator
 
 ```
 <div style={{ width: '80px', height: '80px' }}>
@@ -10,7 +10,7 @@
 </div>
 ```
 
-## Multiple Event Indicators
+Multiple Event Indicators
 
 ```
 <div style={{ width: '240px', height: '80px' }}>
@@ -32,7 +32,7 @@
 </div>
 ```
 
-## Clickable Icon demonstrating event indicator updates (top right)
+Clickable Icon demonstrating event indicator updates (top right)
 
 ```
 <div

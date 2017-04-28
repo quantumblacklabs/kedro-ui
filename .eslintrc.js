@@ -14,8 +14,7 @@ baseConfig.settings = Object.assign(baseConfig.settings, {
 baseConfig.rules = Object.assign(baseConfig.rules, {
   'import/no-extraneous-dependencies': 'off',
   'import/no-unresolved': 'off',
-  'import/extensions': 'off',
-  'react/prefer-es6-class': 'off'
+  'import/extensions': 'off'
 });
 
 

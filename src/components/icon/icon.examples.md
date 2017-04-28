@@ -1,7 +1,3 @@
-## Icon Demos
-
-Some sample icons.
-
 small = 16px, default/medium = 24px, large = 36px, xlarge = 48px
 ```
 <section>

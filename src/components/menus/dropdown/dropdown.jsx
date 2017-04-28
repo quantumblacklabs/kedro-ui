@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { flatten, find, flow, map } from 'lodash/fp';
 
 // Styles
@@ -9,6 +10,8 @@ import DropdownRenderer from './dropdown-renderer';
 
 /**
  * This is a stateful component providing a rich version of a native select box.
+ *
+ * *Note: you'll also need to import MenuOption if you with to use this inside the component.*
  */
 class Dropdown extends React.Component {
   /**
@@ -66,7 +69,7 @@ class Dropdown extends React.Component {
         flatten,
         find(x => x.props.selected)
       )(children)
-    : find(children, c => c.props.selected);
+    : find(c => c.props.selected)(children);
   }
 
   /**

@@ -1,5 +1,8 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+import Link from 'rsg-components/Link';
 import cx from 'classnames';
+import pkg from 'package';
 
 import 'styles/app.css';
 import 'styles/react-styleguidist.css';
@@ -17,8 +20,9 @@ const StyleGuideRenderer = ({
 	<div className={cx('cbn-sg-root', hasSidebar && 'cbn-sg-root--sidebar-open')}>
     <header className='cbn-sg-header'>
       <div>
-        <h3>QUANTUMBLACK</h3>
-        <h1>Carbon UI Design System</h1>
+        <Link href='#'>
+          <h1><span className='cbn-sg-header__logo'>C / UI</span>Carbon UI Design System — <em>Release {pkg.version}</em></h1>
+        </Link>
       </div>
     </header>
 		<main className='cbn-sg-content'>
@@ -26,9 +30,8 @@ const StyleGuideRenderer = ({
 				{children}
 			</div>
 		</main>
-		{hasSidebar && false &&
+		{hasSidebar &&
 			<div className='cbn-sg-sidebar'>
-				<h1>{title}</h1>
 				{toc}
 			</div>
 		}
