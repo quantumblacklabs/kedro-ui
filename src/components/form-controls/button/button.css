@@ -7,8 +7,8 @@
 $color-secondary-active: rgba(0, 0, 0, 0.12);
 $timing-primary: 0.2s;
 $secondary-underline-height: 2px;
-$secondary-underline-offset: 8px;
-$secondary-underline-offset-hover: 4px;
+$secondary-underline-offset: 6px;
+$secondary-underline-offset-hover: 2px;
 
 /** Implementation **/
 
@@ -141,7 +141,7 @@ $secondary-underline-offset-hover: 4px;
 
     /* Offset the underline height so it doesn't affect text vertical alignment */
     margin-bottom: -$secondary-underline-height;
-    transform: translateY($secondary-underline-offset-hover);
+    transform: translateY($secondary-underline-offset);
     transition: all ease 0.1s;
 
     background: none;
@@ -149,7 +149,7 @@ $secondary-underline-offset-hover: 4px;
 
   &:hover::after,
   &:focus::after {
-    transform: translateY($secondary-underline-offset);
+    transform: translateY($secondary-underline-offset-hover);
   }
 
   &:active {
