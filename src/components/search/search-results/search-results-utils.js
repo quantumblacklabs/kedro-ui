@@ -1,8 +1,8 @@
 /**
  * Create a regular expression to match certain keywords
  * Note: Uses String.prototype.replace() to prevent XSS attacks
- * @param  {[string]} value - The search keyword to highlight
- * @return {[object|boolean]} Regular expression or false
+ * @param  {string} value - The search keyword to highlight
+ * @return {object|boolean} Regular expression or false
  */
 const getValueRegex = value => value && new RegExp(
   `(${value.replace(/[<>]/g, '')})`,

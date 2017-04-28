@@ -5,7 +5,7 @@ import { shallow } from 'enzyme';
 import SearchResultsRenderer from './search-results-renderer';
 import { getHighlightedText } from './search-results-utils';
 
-const dummyProps = {
+const testProps = {
   value: '',
   results: [
     { icon: 'copy', label: 'Lorem ipsum dolor sit amet' },
@@ -32,22 +32,22 @@ test('SearchResultsRenderer should be a function', t => {
 
 test('SearchResultsRenderer should render correct structure', t => {
   const wrapper = shallow(
-    <SearchResultsRenderer {...dummyProps} />
+    <SearchResultsRenderer {...testProps} />
   );
   t.is(wrapper.find('.cbn-search-results__list').length, 1);
-  t.is(wrapper.find('.cbn-search-results__row').length, dummyProps.results.length);
+  t.is(wrapper.find('.cbn-search-results__row').length, testProps.results.length);
 });
 
 test('SearchResultsRenderer should have a light theme class', t => {
   const wrapper = shallow(
-    <SearchResultsRenderer theme='light' {...dummyProps} />
+    <SearchResultsRenderer theme='light' {...testProps} />
   );
   t.true(wrapper.find('.cbn-theme--light').length === 1);
 });
 
 test('SearchResultsRenderer should have a dark theme class', t => {
   const wrapper = shallow(
-    <SearchResultsRenderer theme='dark' {...dummyProps} />
+    <SearchResultsRenderer theme='dark' {...testProps} />
   );
   t.true(wrapper.find('.cbn-theme--dark').length === 1);
 });
@@ -55,12 +55,12 @@ test('SearchResultsRenderer should have a dark theme class', t => {
 test('SearchResults should highlight the active row', t => {
   const activeRow = 6;
   const wrapper = shallow(
-    <SearchResultsRenderer activeRow={activeRow} {...dummyProps} />
+    <SearchResultsRenderer activeRow={activeRow} {...testProps} />
   );
 
   t.is(wrapper.find('.cbn-search-results__row--active').length, 1);
   t.is(
     wrapper.find('.cbn-search-results__row--active').prop('title'),
-    dummyProps.results[activeRow].label
+    testProps.results[activeRow].label
   );
 });

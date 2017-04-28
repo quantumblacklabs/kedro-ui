@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 
 import SearchResults from './search-results';
 
-const dummyProps = {
+const testProps = {
   value: '',
   results: [
     { icon: 'copy', label: 'Lorem ipsum dolor sit amet' },
@@ -28,7 +28,7 @@ test('SearchResults should be a function', t => {
 
 test('SearchResults should render correctly', t => {
   const wrapper = shallow(
-    <SearchResults {...dummyProps} />
+    <SearchResults {...testProps} />
   );
 
   t.is(typeof wrapper.props().row, 'object');

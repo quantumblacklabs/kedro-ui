@@ -10,7 +10,7 @@ import Icon from 'components/icon';
 // Styles
 
 /**
- * SearchResultsRenderer, used to output the actual DOM makeup for the component
+ * SearchResultsRenderer, used to output the actual DOM markup for the component
  */
 class SearchResultsRenderer extends React.Component {
   /**
