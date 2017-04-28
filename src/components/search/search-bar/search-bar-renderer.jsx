@@ -2,8 +2,8 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import Icon from '../icon';
-import { Input } from '../form-controls';
+import Icon from 'components/icon';
+import { Input } from 'components/form-controls';
 
 // Styles
 
