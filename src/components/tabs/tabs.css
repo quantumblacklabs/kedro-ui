@@ -93,9 +93,9 @@ $duration-underline-hovered: 0.5s;
     @mixin themedParent color, text;
 
     .cbn-tabs__underline {
-      transform: scaleX(1);
-
       @mixin themedParent background-color, tabs, selected;
+
+      transform: scaleX(1);
 
       height: $size-underline-height-selected;
     }
