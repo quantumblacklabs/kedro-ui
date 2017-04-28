@@ -36,16 +36,29 @@ class SearchBoxWithResults extends React.Component {
         return results.filter(({ label }) => label.match(valueRegex));
     }
     _handleKeyDown({ keyCode }) {
-        const { results } = this.state;
         const KEYS = {
-            '38': -1,
-            '40': 1
+            '13': 'Enter',
+            '27': 'Escape',
+            '38': 'Up',
+            '40': 'Down'
         };
-        if (!(keyCode in KEYS)) {
-            return;
+        switch (KEYS[keyCode]) {
+            case 'Enter':
+                this._hideResults();
+                break;
+            case 'Escape':
+                this._clearResults();
+                break;
+            case 'Up':
+                this._changeActiveRow(-1);
+                break;
+            case 'Down':
+                this._changeActiveRow(1);
+                break;
         }
-        const direction = KEYS[keyCode];
-        let { activeRow } = this.state;
+    }
+    _changeActiveRow(direction) {
+        let { activeRow, results } = this.state;
         if (activeRow === null) {
             activeRow = (direction > 0) ? 0 : results.length - 1;
         } else {
@@ -57,6 +70,17 @@ class SearchBoxWithResults extends React.Component {
         this.setState({
             activeRow,
             value: results[activeRow] ? results[activeRow].label : this.state.value
+        });
+    }
+    _clearResults() {
+        this.setState({
+            hideResults: true,
+            value: ''
+        });
+    }
+    _hideResults() {
+        this.setState({
+            hideResults: true
         });
     }
     render() {
