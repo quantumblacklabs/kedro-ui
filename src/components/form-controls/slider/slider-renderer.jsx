@@ -15,8 +15,6 @@ class SliderRenderer extends React.Component {
   constructor(props) {
     super(props);
 
-    this.displayName = 'SliderRenderer';
-
     this.state = {
       value: this.props.value
     };

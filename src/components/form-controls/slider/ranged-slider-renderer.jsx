@@ -17,8 +17,6 @@ class RangedSliderRenderer extends React.Component {
   constructor(props) {
     super(props);
 
-    this.displayName = 'RangedSliderRenderer';
-
     this.state = {
       minRange: this.props.value[0],
       maxRange: this.props.value[1]

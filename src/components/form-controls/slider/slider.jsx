@@ -26,8 +26,6 @@ class Slider extends React.Component {
 
     this._id = uniqueId(`cbn-slider--${this.props.type}-`);
 
-    this.displayName = 'Slider';
-
     this._handleChanged = this._handleChanged.bind(this);
   }
 
