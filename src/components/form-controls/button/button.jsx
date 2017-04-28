@@ -64,15 +64,15 @@ Button.propTypes = {
    */
   onClick: PropTypes.func,
   /**
-   * Button size - either 'regular' or 'small'.
+   * Button size
    */
   size: PropTypes.oneOf(['regular', 'small']),
   /**
-   * Theme of the button - either 'dark' or 'light'.
+   * Theme of the button
    */
   theme: PropTypes.oneOf(['dark', 'light']),
   /**
-   * Button style - either 'primary' or 'secondary'.
+   * Button style - either with a border or minimal with an underline on hover
    */
   type: PropTypes.oneOf(['primary', 'secondary'])
 };
