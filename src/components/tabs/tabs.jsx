@@ -25,18 +25,16 @@ class Tabs extends React.Component {
 
   /**
    * Callback function for selection change
-   * @param {object} e                The event object
-   * @param {number} newSelectedIndex The index of the newly selected tab
+   * @param {object} e                     The event object
+   * @param {number} payload.selectedIndex The index of the newly selected tab
    */
-  _handleSelect(e, newSelectedIndex) {
+  _handleSelect(e, { selectedIndex }) {
     // call the user defined callback
     if (typeof this.props.onSelect === 'function') {
-      this.props.onSelect(e, newSelectedIndex);
+      this.props.onSelect(e, { selectedIndex });
     }
 
-    this.setState({
-      selectedIndex: newSelectedIndex
-    });
+    this.setState({ selectedIndex });
   }
 
   /**
@@ -69,7 +67,7 @@ Tabs.propTypes = {
    */
   selectedIndex: PropTypes.number,
   /**
-   * Callback when tab is selected
+   * Callback when tab is selected (params: event, payload: { selectedIndex })
    */
   onSelect: PropTypes.func,
   /**

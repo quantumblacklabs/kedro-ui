@@ -17,7 +17,7 @@ const TabsRenderer = ({
    * @param {HTMLElement} e The element that triggered the event
    */
   const _handleSelect = e => {
-    onSelect(e, parseInt(e.target.dataset.tabindex, 10));
+    onSelect(e, { selectedIndex: parseInt(e.target.dataset.tabindex, 10) });
   };
 
   return (

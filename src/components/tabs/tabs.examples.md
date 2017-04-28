@@ -46,8 +46,8 @@ class Wrap extends React.Component {
         this._selectedTabChanged = this._selectedTabChanged.bind(this);
     }
 
-    _selectedTabChanged(index) {
-        this.setState({ selectedMenu: this.tabs[index] });
+    _selectedTabChanged(e, { selectedIndex }) {
+        this.setState({ selectedMenu: this.tabs[selectedIndex] });
     }
 
     render() {
