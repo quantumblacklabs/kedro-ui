@@ -8,8 +8,9 @@ import classnames from 'classnames';
 const ToggleRenderer = ({
   label,
   onChange,
-  type,
+  texts,
   theme,
+  type,
   value
 }) => {
   /**
@@ -18,7 +19,12 @@ const ToggleRenderer = ({
    */
   const _handleChange = e => {
     // the user can click the button, text or the underline, cover all cases
-    onChange(e.target.dataset.value || e.target.parentElement.dataset.value);
+    let newValue = e.target.dataset.value || e.target.parentElement.dataset.value;
+
+    // make our newValue a boolean
+    newValue = (newValue === 'true');
+
+    onChange(newValue);
   };
 
   return (
@@ -31,19 +37,19 @@ const ToggleRenderer = ({
       <div className='cbn-toggle__switch'>
         <div
           onClick={_handleChange}
-          data-value='on'
-          className={classnames('cbn-toggle__button', { 'cbn-toggle--selected': value === 'on' })}>
-          <div className='cbn-toggle__text'>ON</div>
+          data-value={true}
+          className={classnames('cbn-toggle__button', { 'cbn-toggle--selected': value })}>
+          <div className='cbn-toggle__text'>{ texts[0] }</div>
           <div className='cbn-toggle__underline' />
         </div>
         <div
-          className={classnames('cbn-toggle__separator', { 'cbn-toggle__separator--right': value === 'off' })}>
+          className={classnames('cbn-toggle__separator', { 'cbn-toggle__separator--right': !value })}>
           /</div>
         <div
           onClick={_handleChange}
-          data-value='off'
-          className={classnames('cbn-toggle__button', { 'cbn-toggle--selected': value === 'off' })}>
-          <div className='cbn-toggle__text'>OFF</div>
+          data-value={false}
+          className={classnames('cbn-toggle__button', { 'cbn-toggle--selected': !value })}>
+          <div className='cbn-toggle__text'>{ texts[1] }</div>
           <div className='cbn-toggle__underline' />
         </div>
       </div>
@@ -61,6 +67,10 @@ ToggleRenderer.propTypes = {
    */
   onChange: PropTypes.func.isRequired,
   /**
+   * Array of 2 strings to display in the toggle
+   */
+  texts: PropTypes.arrayOf(PropTypes.string).isRequired,
+  /**
    * Theme name for component, allowed [dark, light]
    */
   theme: PropTypes.oneOf(['dark', 'light']).isRequired,
@@ -71,7 +81,7 @@ ToggleRenderer.propTypes = {
   /**
    * Initial value
    */
-  value: PropTypes.oneOf(['on', 'off']).isRequired
+  value: PropTypes.bool.isRequired
 };
 
 export default ToggleRenderer;

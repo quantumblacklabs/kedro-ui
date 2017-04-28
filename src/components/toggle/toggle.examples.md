@@ -6,7 +6,7 @@ A basic toggle example
 A bold example with label
 ```
 <section style={{ width: 150 }}>
-    <Toggle label='Wifi' type='bold' value='off' />
+    <Toggle label='Lift' texts={['UP', 'DOWN']} type='bold' value={false} />
 </section>
 ```
 
@@ -21,16 +21,16 @@ const style = {
 };
 <section style={{ width: 250 }}>
     <div style={style}>
-        <Toggle label='Wifi' type='bold' value='off' />
+        <Toggle label='Wifi' type='bold' value={false} />
     </div>
     <div style={style}>
-        <Toggle label='GPS' type='bold' value='on' />
+        <Toggle label='GPS' type='bold' value={true} />
     </div>
     <div style={style}>
-        <Toggle label='4G' type='bold' value='on' />
+        <Toggle label='4G' type='bold' value={true} />
     </div>
     <div style={style}>
-        <Toggle label='Bluetooth' type='bold' value='off' />
+        <Toggle label='Bluetooth' type='bold' value={false} />
     </div>
 </section>
 ```

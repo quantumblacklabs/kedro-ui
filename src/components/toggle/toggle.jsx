@@ -8,7 +8,6 @@ import './toggle.css';
  * Toggle (switch) control
  */
 class Toggle extends React.Component {
-
   /**
    * constructor - create new Tabs
    * @param {Object} props properties passed to component
@@ -48,8 +47,9 @@ class Toggle extends React.Component {
       <ToggleRenderer
         label={this.props.label}
         onChange={this._handleChange}
-        type={this.props.type}
+        texts={this.props.texts}
         theme={this.props.theme}
+        type={this.props.type}
         value={this.state.value} />
     );
   }
@@ -58,9 +58,10 @@ class Toggle extends React.Component {
 Toggle.defaultProps = {
   label: '',
   onChange: null,
-  type: 'regular',
+  texts: ['ON', 'OFF'],
   theme: 'dark',
-  value: 'on'
+  type: 'regular',
+  value: true
 };
 
 Toggle.propTypes = {
@@ -73,6 +74,10 @@ Toggle.propTypes = {
    */
   onChange: PropTypes.func,
   /**
+   * Array of 2 strings to display in the toggle
+   */
+  texts: PropTypes.arrayOf(PropTypes.string),
+  /**
    * Theme name for component
    */
   theme: PropTypes.oneOf(['dark', 'light']),
@@ -83,7 +88,7 @@ Toggle.propTypes = {
   /**
    * Initial value
    */
-  value: PropTypes.oneOf(['on', 'off'])
+  value: PropTypes.bool
 };
 
 export default Toggle;
