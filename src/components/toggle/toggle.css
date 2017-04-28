@@ -37,9 +37,9 @@ $duration-separator-switch: 0.5s;
 }
 
 .cbn-toggle__switch {
-  display: flex;
-
   @mixin themedParent color, toggle;
+
+  display: flex;
 }
 
 .cbn-toggle__button {
