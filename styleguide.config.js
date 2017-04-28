@@ -67,6 +67,11 @@ const config = {
       name: 'Form Controls',
       content: './templates/components/form-controls.md',
       components: getComponentsFunc('form', 'src/components/form-controls/**/*.jsx')
+    },
+    {
+      name: 'Tooltip',
+      content: './templates/components/tooltip.md',
+      components: getComponentsFunc('tooltip', 'src/components/tooltip/**/*.jsx')
     }
   ],
   getComponentPathLine: function(componentPath) {
