@@ -29,11 +29,11 @@ const Icon = props => {
   const dataProps = pickBy(props, (val, key) => /^data-.*/.test(key));
 
   // ensure we have a corresponding icon SVG file for this type
-  const iconType = type in IconAssets ? type : 'missing';
+  const iconType = type in IconAssets ? type : '';
   const iconType2 = type2 in IconAssets ? type2 : '';
 
   // load the icon for this type
-  const SvgIcon = IconAssets[iconType];
+  const SvgIcon = iconType ? IconAssets[iconType] : '';
   const SvgIcon2 = iconType2 ? IconAssets[iconType2] : '';
 
   const containerClassNames = classnames(
@@ -60,7 +60,7 @@ const Icon = props => {
 
   return (
     <div className={containerClassNames} {...dataProps} onClick={onClick}>
-      <SvgIcon title={title} className={svgClassNames} {...styleOverrides} />
+      {SvgIcon && <SvgIcon title={title} className={svgClassNames} {...styleOverrides} />}
       {SvgIcon2 && <SvgIcon2 title={title} className={svgClassNames} {...styleOverrides} />}
     </div>
   );

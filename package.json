@@ -18,6 +18,7 @@
     "ava": "CONFIG=$(pwd)/webpack.ava.config.js NODE_ENV=AVA BABEL_DISABLE_CACHE=1 ava",
     "test:coverage": "nyc npm test",
     "test": "npm run eslint && npm run ava",
+    "test:watch": "npm run eslint && npm run ava -- --watch",
     "e2e": "npm run docs:build && cypress run --config fileServerFolder=styleguide,baseUrl="
   },
   "ava": {
@@ -119,7 +120,7 @@
     "ava": "^0.17.0",
     "browser-env": "^2.0.21",
     "enzyme": "^2.8.1",
-    "eslint": "^3.14.1",
+    "eslint": "^3.19.0",
     "eslint-config-airbnb": "^14.0.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^3.0.2",

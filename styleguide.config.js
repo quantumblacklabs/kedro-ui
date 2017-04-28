@@ -61,12 +61,17 @@ const config = {
     {
       name: 'Search',
       content: './templates/components/search.md',
-      components: getComponentsFunc('searchbar', 'src/components/search-bar/**/*.jsx')
+      components: getComponentsFunc('search', 'src/components/search/**/*.jsx')
     },
     {
       name: 'Form Controls',
       content: './templates/components/form-controls.md',
       components: getComponentsFunc('form', 'src/components/form-controls/**/*.jsx')
+    },
+    {
+      name: 'Tooltip',
+      content: './templates/components/tooltip.md',
+      components: getComponentsFunc('tooltip', 'src/components/tooltip/**/*.jsx')
     }
   ],
   getComponentPathLine: function(componentPath) {

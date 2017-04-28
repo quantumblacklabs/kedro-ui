@@ -54,6 +54,9 @@ themes:
       default: rgba(255, 105, 180, 0.5)
     search:
       icon: rgba(0, 0, 0, 0.55)
+    tooltip:
+      default: rgba(132, 142, 150, 1)
+      text: rgba(255, 255, 255, 0.85)
   dark:
     base:
       primary: rgb(27, 117, 240)
@@ -108,3 +111,6 @@ themes:
       default: rgba(100, 149, 237, 0.5)
     search:
       icon: rgba(255, 255, 255, 0.55)
+    tooltip:
+      default: rgba(132, 142, 150, 1)
+      text: rgba(255, 255, 255, 0.85)
