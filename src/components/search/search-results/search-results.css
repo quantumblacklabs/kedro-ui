@@ -11,13 +11,13 @@ $list-vertical-padding: 4px;
 
 /** Implementation **/
 
-.cbn-searchresults {
+.cbn-search-results {
   position: relative;
 
   margin-top: $list-margin-top;
 }
 
-.cbn-searchresults__wrapper {
+.cbn-search-results__wrapper {
   position: absolute;
   overflow: hidden;
 
@@ -37,7 +37,7 @@ $list-vertical-padding: 4px;
   }
 }
 
-.cbn-searchresults__list {
+.cbn-search-results__list {
   height: 100%;
   overflow: auto;
 
@@ -47,7 +47,7 @@ $list-vertical-padding: 4px;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12) inset;
 }
 
-.cbn-searchresults__row {
+.cbn-search-results__row {
   position: relative;
 
   display: block;
@@ -69,7 +69,7 @@ $list-vertical-padding: 4px;
   }
 }
 
-.cbn-searchresults__label {
+.cbn-search-results__label {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

@@ -34,8 +34,8 @@ test('SearchResultsRenderer should render correct structure', t => {
   const wrapper = shallow(
     <SearchResultsRenderer {...dummyProps} />
   );
-  t.is(wrapper.find('.cbn-searchresults__list').length, 1);
-  t.is(wrapper.find('.cbn-searchresults__row').length, dummyProps.results.length);
+  t.is(wrapper.find('.cbn-search-results__list').length, 1);
+  t.is(wrapper.find('.cbn-search-results__row').length, dummyProps.results.length);
 });
 
 test('SearchResultsRenderer should have a light theme class', t => {
@@ -58,9 +58,9 @@ test('SearchResults should highlight the active row', t => {
     <SearchResultsRenderer activeRow={activeRow} {...dummyProps} />
   );
 
-  t.is(wrapper.find('.cbn-searchresults__row--active').length, 1);
+  t.is(wrapper.find('.cbn-search-results__row--active').length, 1);
   t.is(
-    wrapper.find('.cbn-searchresults__row--active').prop('title'),
+    wrapper.find('.cbn-search-results__row--active').prop('title'),
     dummyProps.results[activeRow].label
   );
 });

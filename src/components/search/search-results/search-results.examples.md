@@ -67,7 +67,7 @@ class SearchBoxWithResults extends React.Component {
                 <SearchBar
                     aria={{
                         expanded: !hideResults,
-                        activedescendant: hideResults ? null : 'cbn-searchresults-selected'
+                        activedescendant: hideResults ? null : 'cbn-search-results-selected'
                     }}
                     onClear={this._handleChange.bind(this)}
                     onChange={this._handleChange.bind(this)}

@@ -77,26 +77,26 @@ class SearchResultsRenderer extends React.Component {
     } = this.props;
 
     return (
-      <div className='cbn-searchresults' onMouseOver={onMouseOver}>
+      <div className='cbn-search-results' onMouseOver={onMouseOver}>
         <div
           aria-hidden={hidden}
           className={classnames(
-            'cbn-searchresults__wrapper',
-            { 'cbn-searchresults__wrapper--hidden': hidden },
+            'cbn-search-results__wrapper',
+            { 'cbn-search-results__wrapper--hidden': hidden },
             `cbn-theme--${theme}`
           )}
           style={{ height, maxHeight: row.maxHeight }}>
           <ul
-            className='cbn-searchresults__list'
+            className='cbn-search-results__list'
             ref={el => { this._list = el; }}
             role='listbox'>
             { results.map((result, i) =>
               <li
-                id={activeRow === i ? 'cbn-searchresults-selected' : null}
+                id={activeRow === i ? 'cbn-search-results-selected' : null}
                 aria-selected={activeRow === i}
                 className={classnames(
-                  'cbn-searchresults__row',
-                  { 'cbn-searchresults__row--active': activeRow === i }
+                  'cbn-search-results__row',
+                  { 'cbn-search-results__row--active': activeRow === i }
                 )}
                 key={result.label}
                 onClick={e => this._handleRowClicked(e, result)}
@@ -105,7 +105,7 @@ class SearchResultsRenderer extends React.Component {
                 title={result.label}>
                 { result.icon && <Icon type={result.icon} size='medium' theme={theme} /> }
                 <div
-                  className='cbn-searchresults__label'
+                  className='cbn-search-results__label'
                   dangerouslySetInnerHTML={{ __html: result.highlightedLabel }} />
               </li>
             ) }
