@@ -71,7 +71,7 @@ const config = {
     {
       name: 'Tabs',
       content: './templates/components/tabs.md',
-      components: getComponentsFunc('form', 'src/components/tabs/**/*.jsx')
+      components: getComponentsFunc('tabs', 'src/components/tabs/**/*.jsx')
     }
   ],
   getComponentPathLine: function(componentPath) {
