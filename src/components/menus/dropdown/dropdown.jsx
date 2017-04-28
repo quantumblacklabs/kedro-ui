@@ -12,6 +12,7 @@ import DropdownRenderer from './dropdown-renderer';
  * This is a stateful component providing a rich version of a native select box.
  *
  * *Note: you'll also need to import MenuOption if you with to use this inside the component.*
+ * {@see /#!/MenuOption}
  */
 class Dropdown extends React.Component {
   /**
