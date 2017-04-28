@@ -2,17 +2,29 @@
 
 Basic Tooltip component use
 ```
-<Tooltip show={true} value='Hello World, Im a tooltip!' />
+<Tooltip show={true}>
+  <span>Hello World, Im a tooltip!</span>
+</Tooltip>
 ```
 
-You can provide the Tooltip with a header, to break up the content
+You can provide the Tooltip with a complex child structure to render
 ```
-<Tooltip show={true} header='-- This is a header---' value='Hello World, Im a tooltip!' />
+<Tooltip show={true}>
+  <div>- Header -</div>
+  <span>Hello World, Im a tooltip!</span>
+  <ul>
+    <li>- one</li>
+    <li>- two</li>
+    <li>- three</li>
+  </ul>
+</Tooltip>
 ```
 
-If you want the Tooltip to adhere to a certain width, you can pass a value down, this will also trigger an ellipsis if the content extends passed the bounds
+If you want the Tooltip to adhere to a certain width, you can pass a value down, you can also specify whether or not you wish the text to wrap inside the tooltip
 ```
-<Tooltip show={true} width='200px' value='Hello World, Im a tooltip! And this is a very long piece of text that will be cut off' />
+<Tooltip show={true} width='200px' wrapText={false}>
+  <span>Hello World, Im a tooltip! And this is a very long piece of text that will be cut off!</span>
+</Tooltip>
 ```
 
 Using the Tooltip in conjunction with the HOC tooltip trigger, which allows you to compose a complex component - giving it tooltip displaying abilities.
@@ -42,7 +54,10 @@ const DropDownTTTrigger = TooltipTrigger(MyComponent);
     onChanged={ null }
     displayDirection='top'
     tooltipId={id}/>
-  <Tooltip header='-- How to use menu' tooltipId={id} value='Click the main label, and select an item'/>
+  <Tooltip tooltipId={id} width='150px' show={true}>
+    <div>-- How to use menu</div>
+    <span>Click the main label, and select an item</span>
+  </Tooltip>
 </div>
 ```
 
@@ -84,8 +99,14 @@ const IconTooltipTrigger = TooltipTrigger(MyComponent);
     theme='light'
     displayDirection='right'
     tooltipId={id3}/>
-  <Tooltip tooltipId={id1} value='Undo Action'/>
-  <Tooltip tooltipId={id2} value='Refresh Page'/>
-  <Tooltip tooltipId={id3} header='-This is an info header-' value='Refresh Page'/>
+  <Tooltip tooltipId={id1} show={true}>
+    <span>Undo Action</span>
+  </Tooltip>
+  <Tooltip tooltipId={id2} show={true}>
+    <span>Refresh Page</span>
+  </Tooltip>
+  <Tooltip tooltipId={id3} show={true}>
+    <span>Copy Page</span>
+  </Tooltip>
 </div>
 ```

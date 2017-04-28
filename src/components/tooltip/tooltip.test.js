@@ -9,21 +9,12 @@ test('Tooltip should be a function', t => {
 });
 
 test('Tooltip should render the correct structure', t => {
-  const wrapperWithoutHeader = shallow(
-    <Tooltip value='Hello World' />
+  const wrapped = shallow(
+    <Tooltip>
+      <span className='tt-test-text'>Hello</span>
+    </Tooltip>
   );
 
-  const wrapperWithHeader = shallow(
-    <Tooltip
-      header='Hello Header'
-      value='Hello World' />
-  );
-
-  t.true(wrapperWithoutHeader.find('.cbn-tooltip').length === 1);
-  t.true(wrapperWithoutHeader.find('.cbn-tooltip__text').length === 1);
-  t.true(wrapperWithoutHeader.find('.cbn-tooltip__header').length === 0);
-
-  t.true(wrapperWithHeader.find('.cbn-tooltip').length === 1);
-  t.true(wrapperWithHeader.find('.cbn-tooltip__text').length === 1);
-  t.true(wrapperWithHeader.find('.cbn-tooltip__header').length === 1);
+  t.true(wrapped.find('.cbn-tooltip').length === 1);
+  t.true(wrapped.find('.tt-test-text').length === 1);
 });

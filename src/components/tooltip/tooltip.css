@@ -31,10 +31,6 @@ $duration-opacity: 0.3s;
   position: fixed;
 }
 
-.cbn-tooltip__header {
-  display: block;
-}
-
 .cbn-tooltip-trigger {
   display: inline-block;
 }

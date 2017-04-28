@@ -11,42 +11,41 @@ import './tooltip.css';
  * Tooltip view, used to display contextual information about a control
  */
 const Tooltip = ({
-  header,
+  children,
   show,
   theme,
   tooltipId,
-  value,
-  width
+  width,
+  wrapText
 }) => {
   const style = {
     opacity: show ? 1 : 0,
-    whiteSpace: header ? 'normal' : 'nowrap',
+    whiteSpace: wrapText ? 'normal' : 'nowrap',
     width
   };
 
   return (
     <div data-tooltip-id={tooltipId} style={style} className={`cbn-tooltip cbn-theme--${theme}`}>
-      {
-        header && <span className='cbn-tooltip__header'>{header}</span>
-      }
-      <span className='cbn-tooltip__text'>{value}</span>
+      { children }
     </div>
   );
 };
 
 Tooltip.defaultProps = {
+  children: null,
   header: null,
   show: false,
   tooltipId: null,
   theme: 'light',
-  width: 'auto'
+  width: 'auto',
+  wrapText: true
 };
 
 Tooltip.propTypes = {
   /**
-   * Optional tooltip header to breakup the content
+   * Child DOM supplied to component
    */
-  header: PropTypes.string,
+  children: PropTypes.node,
   /**
    * Show the tooltip, sets the opacity to 0 / 1
    */
@@ -60,13 +59,13 @@ Tooltip.propTypes = {
    */
   tooltipId: PropTypes.string,
   /**
-   * Value, text the tooltip will display
-   */
-  value: PropTypes.string.isRequired,
-  /**
    * Width, you can specify the horizontal space this component consumes
    */
-  width: PropTypes.string
+  width: PropTypes.string,
+  /**
+   * Wrap text, this will wrap based on the width supplied
+   */
+  wrapText: PropTypes.bool
 };
 
 export default Tooltip;
