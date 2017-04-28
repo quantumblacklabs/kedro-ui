@@ -33,6 +33,11 @@ themes:
       activeColor: rgb(255, 255, 255)
       border: rgba(0, 0, 0, 0.12)
       wrapper: rgba(0, 0, 0, 0.12)
+    button:
+      active: rgba(0, 0, 0, 0.85)
+      focus: rgba(0, 0, 0, 0.12)
+      outline: rgb(0, 0, 0)
+      textHover: rgba(255, 255, 255, 0.85)
     checkbox:
       default: rgba(255, 255, 255, 0.55)
     radiobutton:
@@ -85,6 +90,11 @@ themes:
       activeColor: rgb(255, 255, 255)
       border: rgba(255, 255, 255, 0.12)
       wrapper: rgba(0, 0, 0, 0)
+    button:
+      active: rgba(255, 255, 255, 0.85)
+      focus: rgba(255, 255, 255, 0.12)
+      outline: rgb(255, 255, 255)
+      textHover: rgba(0, 0, 0, 0.85)
     checkbox:
       default: rgba(0, 0, 0, 0.55)
     radiobutton:
