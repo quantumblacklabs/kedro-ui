@@ -9,8 +9,8 @@ $input-width: 174px;
 $input-height: 24px;
 
 $thumb-size: 4px;
-$thumb-width: calc($thumb-size + $thumb-border-width / 2);
 $thumb-border-width: 5px;
+$thumb-width: calc($thumb-size + $thumb-border-width / 2);
 
 $track-height: 2px;
 
@@ -63,10 +63,6 @@ $tick-number-width: 24px;
 
 .cbn-slider__wrapper {
   display: flex;
-
-  &--multiple {
-    flex-direction: column;
-  }
 }
 
 .cbn-slider__label {
@@ -77,14 +73,6 @@ $tick-number-width: 24px;
 
     width: 73px;
     margin: 6px 18px 0 0;
-  }
-
-  &--multiple {
-    @extend %type--subhead-2;
-
-    margin: 0 0 18px;
-
-    font-weight: bold;
   }
 }
 
@@ -112,7 +100,7 @@ $tick-number-width: 24px;
 
     &-wrapper {
       width: 27px;
-      margin: 5px 0 0 18px;
+      margin: 0 0 0 18px;
       padding: 0;
     }
   }
@@ -126,7 +114,7 @@ $tick-number-width: 24px;
 
 .cbn-slider__line {
   position: absolute;
-  top: calc(50% - 1px);
+  top: calc(50% - $thumb-width / 2 - 1px);
 
   /** slider's 0% will appear to be in thumb's center **/
   left: calc($thumb-width);
@@ -188,11 +176,11 @@ $tick-number-width: 24px;
 
 .cbn-slider__tick-symbol {
   position: relative;
-  top: 14px;
+  top: 11px;
 
-  width: $track-height * 2;
-  min-height: $track-height * 2;
-  height: $track-height * 2;
+  width: calc($track-height * 2);
+  min-height: calc($track-height * 2);
+  height: calc($track-height * 2);
   margin: 0;
   padding: 0;
   border-radius: 50%;

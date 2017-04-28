@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
+import Input from 'components/form-controls/input';
+
 import './ranged-slider-renderer.css';
 
 /**
@@ -54,7 +56,7 @@ class RangedSliderRenderer extends React.Component {
    * @param  {object} event
    */
   _handleBottomChanged(event) {
-    const minValue = parseFloat(event.target.value);
+    const minValue = isNaN(parseFloat(event.target.value)) ? 0 : parseFloat(event.target.value);
 
     this.setState({
       minRange: minValue < this.state.maxRange ? minValue : this.state.maxRange
@@ -70,7 +72,7 @@ class RangedSliderRenderer extends React.Component {
    * @param  {object} event
    */
   _handleTopChanged(event) {
-    const maxValue = parseFloat(event.target.value);
+    const maxValue = isNaN(parseFloat(event.target.value)) ? 0 : parseFloat(event.target.value);
 
     this.setState({
       maxRange: this.state.minRange < maxValue ? maxValue : this.state.minRange
@@ -119,6 +121,15 @@ class RangedSliderRenderer extends React.Component {
           {this.props.label}
         </div>
         <div className='cbn-slider__box-inputs'>
+          <div
+            className={classnames(
+              'cbn-slider__number-input',
+              'cbn-slider__number-input--min',
+              'cbn-slider__number-input--multiple')}>
+            <Input
+              value={this.state.minRange.toString()}
+              onChange={this._handleBottomChanged} />
+          </div>
           <div className='cbn-slider__box'>
             <div className='cbn-slider__track-line'>
               <div
@@ -156,6 +167,15 @@ class RangedSliderRenderer extends React.Component {
               value={this.state.maxRange}
               onChange={this._handleTopChanged}
               multiple />
+          </div>
+          <div
+            className={classnames(
+              'cbn-slider__number-input',
+              'cbn-slider__number-input--max',
+              'cbn-slider__number-input--multiple')}>
+            <Input
+              value={this.state.maxRange.toString()}
+              onChange={this._handleTopChanged} />
           </div>
         </div>
       </div>
