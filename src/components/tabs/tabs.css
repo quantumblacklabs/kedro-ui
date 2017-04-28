@@ -18,9 +18,9 @@ $duration-underline-hovered: 0.5s;
 
   &.cbn-tabs--small {
     .cbn-tabs__tab {
-      margin: 0 $size-tab-margin-small;
-
       @extend %type--subhead-1;
+
+      margin: 0 $size-tab-margin-small;
     }
   }
 }
@@ -78,12 +78,12 @@ $duration-underline-hovered: 0.5s;
   }
 
   .cbn-tabs__underline {
+    @mixin themedParent background-color, tabs, selected;
+
     transform: scaleX(0);
 
     position: relative;
     top: 1px;
-
-    @mixin themedParent background-color, tabs, selected;
 
     height: $size-underline-height-hovered;
     transition: transform $duration-underline-hovered;
