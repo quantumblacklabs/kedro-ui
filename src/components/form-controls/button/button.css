@@ -13,23 +13,24 @@ $secondary-underline-offset-hover: 4px;
 /** Implementation **/
 
 .cbn-button {
+  @extend %type--subhead-2;
+  @extend %type--semibold;
+
+  @mixin themed color, text;
+
   display: inline-block;
   padding: 9px 12px 11px;
   border: none;
-
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 1;
+  border-radius: 0;
 
   background: none;
+  box-shadow: none;
   cursor: pointer;
   transition:
     background ease $timing-primary,
     outline-color ease $timing-primary,
     color ease $timing-primary;
   outline: 2px solid transparent;
-
-  @mixin themed color, text;
 
   &:disabled {
     cursor: not-allowed;
@@ -42,9 +43,9 @@ $secondary-underline-offset-hover: 4px;
 }
 
 .cbn-button--small {
-  padding: 8px 12px 10px;
+  @extend %type--body-2;
 
-  font-size: 14px;
+  padding: 5px 12px 7px;
 }
 
 .cbn-button--primary {
