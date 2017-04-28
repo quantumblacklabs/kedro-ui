@@ -19,7 +19,7 @@ test('Toggle should be created with the correct default props', t => {
   const wrapper = shallow(<Toggle />);
 
   t.is(typeof wrapper.props().onChange, 'function');
-  t.is(wrapper.props().value, 'on');
+  t.is(wrapper.props().value, true);
   t.is(wrapper.props().type, 'regular');
   t.is(wrapper.props().theme, 'dark');
 });
@@ -30,14 +30,15 @@ test('Toggle should be created with all the user defined props', t => {
     <Toggle
       label='Wifi'
       onChange={spy}
-      value='off'
+      value={false}
+      texts={['UP', 'DOWN']}
       type='bold'
       theme='light' />
   );
   const wrapper = mount(jsx);
 
   t.is(wrapper.props().label, 'Wifi');
-  t.is(wrapper.props().value, 'off');
+  t.is(wrapper.props().value, false);
   t.is(wrapper.props().type, 'bold');
   t.is(wrapper.props().theme, 'light');
 
