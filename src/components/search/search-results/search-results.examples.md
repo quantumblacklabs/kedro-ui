@@ -15,7 +15,7 @@ class SearchBoxWithResults extends React.Component {
         this.setState({
             hideResults: !value,
             results: this._filterResults(value),
-            value
+            value: value || ''
         });
     }
     _handleClick({ data }) {

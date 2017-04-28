@@ -118,6 +118,7 @@ class SearchResultsRenderer extends React.Component {
 
 SearchResultsRenderer.defaultProps = {
   activeRow: null,
+  height: null,
   onClick: null,
   onMouseOver: null
 };
@@ -130,7 +131,7 @@ SearchResultsRenderer.propTypes = {
   /**
    * Height for the results box, to prevent it expanding before close animation
    */
-  height: PropTypes.number.isRequired,
+  height: PropTypes.number,
   /**
    * Flag whether to show/hide the menu
    */
