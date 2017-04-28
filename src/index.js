@@ -1,6 +1,7 @@
+import EventIndicator from 'components/indicators/event-indicator';
+import { Tooltip, TooltipTrigger } from 'components/tooltip';
 import { Checkbox, Input, RadioButton } from 'components/form-controls';
 import Dropdown from 'components/menus/dropdown';
-import EventIndicator from 'components/indicators/event-indicator';
 import Icon from 'components/icon';
 import MenuOption from 'components/menus/menu-option';
 import SearchBar from 'components/search-bar';
@@ -15,5 +16,7 @@ module.exports = {
   Input,
   MenuOption,
   SearchBar,
-  RadioButton
+  RadioButton,
+  Tooltip,
+  TooltipTrigger
 };

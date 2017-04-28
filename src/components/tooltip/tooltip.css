@@ -1,0 +1,54 @@
+/** Imports */
+
+@import '../../styles/includes';
+
+/** Variables */
+
+$size-padding: 4px 8px;
+
+$duration-opacity: 0.3s;
+
+/** Implementation */
+
+.cbn-tooltip {
+  @mixin themed color, tooltip, text;
+  @mixin themed background, tooltip;
+
+  @extend %type--body-2;
+  @extend %type--semibold;
+
+  display: inline-block;
+
+  padding: $size-padding;
+
+  text-overflow: ellipsis;
+  overflow: hidden;
+
+  transition: opacity $duration-opacity;
+}
+
+.cbn-tooltip--fixed {
+  position: fixed;
+}
+
+.cbn-tooltip-trigger {
+  display: inline-block;
+}
+
+/** Directions */
+
+.cbn-tooltip--top {
+  transform: translate(0, -100%);
+}
+
+.cbn-tooltip--bottom {
+  transform: translate(0, 0);
+}
+
+.cbn-tooltip--left {
+  transform: translate(-100%, 0);
+}
+
+.cbn-tooltip--right {
+  transform: translate(0, 0);
+}
