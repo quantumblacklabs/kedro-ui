@@ -118,16 +118,8 @@ class SearchResultsRenderer extends React.Component {
 
 SearchResultsRenderer.defaultProps = {
   activeRow: null,
-  height: null,
-  hidden: false,
   onClick: null,
-  onMouseOver: null,
-  row: {
-    height: 40,
-    maxRows: 5,
-    padding: 8
-  },
-  theme: 'dark'
+  onMouseOver: null
 };
 
 SearchResultsRenderer.propTypes = {
@@ -138,11 +130,11 @@ SearchResultsRenderer.propTypes = {
   /**
    * Height for the results box, to prevent it expanding before close animation
    */
-  height: PropTypes.number,
+  height: PropTypes.number.isRequired,
   /**
    * Flag whether to show/hide the menu
    */
-  hidden: PropTypes.bool,
+  hidden: PropTypes.bool.isRequired,
   /**
    * Constants for the dimensions of a row item and its container
    * row.height: The height of a row
@@ -153,7 +145,7 @@ SearchResultsRenderer.propTypes = {
     height: PropTypes.number,
     maxRows: PropTypes.number,
     padding: PropTypes.number
-  }),
+  }).isRequired,
   /**
    * Method that is fired when an option is clicked
    */
@@ -172,7 +164,7 @@ SearchResultsRenderer.propTypes = {
   /**
    * Theme of the component
    */
-  theme: PropTypes.oneOf(['light', 'dark'])
+  theme: PropTypes.oneOf(['light', 'dark']).isRequired
 };
 
 export default SearchResultsRenderer;

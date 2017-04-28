@@ -6,7 +6,17 @@ import SearchResultsRenderer from './search-results-renderer';
 import { getHighlightedText } from './search-results-utils';
 
 const testProps = {
-  value: '',
+  activeRow: null,
+  height: null,
+  hidden: false,
+  onClick: null,
+  onMouseOver: null,
+  row: {
+    height: 40,
+    maxRows: 5,
+    padding: 8
+  },
+  theme: 'dark',
   results: [
     { icon: 'copy', label: 'Lorem ipsum dolor sit amet' },
     { icon: 'paste', label: 'Consetetur sadipscing elitr' },
@@ -23,7 +33,8 @@ const testProps = {
   ].map(result => ({
     highlightedLabel: getHighlightedText(result.label),
     ...result
-  }))
+  })),
+  value: ''
 };
 
 test('SearchResultsRenderer should be a function', t => {
