@@ -18,6 +18,10 @@ $duration-separator-switch: 0.5s;
 .cbn-toggle {
   display: flex;
   justify-content: space-between;
+
+  input {
+    display: none;
+  }
 }
 
 .cbn-toggle__label {
