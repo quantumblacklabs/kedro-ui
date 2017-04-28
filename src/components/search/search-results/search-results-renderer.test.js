@@ -51,14 +51,14 @@ test('SearchResultsRenderer should render correct structure', t => {
 
 test('SearchResultsRenderer should have a light theme class', t => {
   const wrapper = shallow(
-    <SearchResultsRenderer theme='light' {...testProps} />
+    <SearchResultsRenderer {...testProps} theme='light' />
   );
   t.true(wrapper.find('.cbn-theme--light').length === 1);
 });
 
 test('SearchResultsRenderer should have a dark theme class', t => {
   const wrapper = shallow(
-    <SearchResultsRenderer theme='dark' {...testProps} />
+    <SearchResultsRenderer {...testProps} theme='dark' />
   );
   t.true(wrapper.find('.cbn-theme--dark').length === 1);
 });
@@ -66,7 +66,7 @@ test('SearchResultsRenderer should have a dark theme class', t => {
 test('SearchResults should highlight the active row', t => {
   const activeRow = 6;
   const wrapper = shallow(
-    <SearchResultsRenderer activeRow={activeRow} {...testProps} />
+    <SearchResultsRenderer {...testProps} activeRow={activeRow} />
   );
 
   t.is(wrapper.find('.cbn-search-results__row--active').length, 1);
