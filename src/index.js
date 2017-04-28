@@ -3,8 +3,8 @@ import Dropdown from 'components/menus/dropdown';
 import EventIndicator from 'components/indicators/event-indicator';
 import Icon from 'components/icon';
 import MenuOption from 'components/menus/menu-option';
-import SearchBar from 'components/search-bar';
-import SearchResults from 'components/search-results';
+import SearchBar from 'components/search/search-bar';
+import SearchResults from 'components/search/search-results';
 
 import './styles/app.css';
 

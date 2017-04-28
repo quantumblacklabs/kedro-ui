@@ -1,6 +1,6 @@
 /** Imports **/
 
-@import '../../styles/includes';
+@import '../../../styles/includes';
 
 /** Variables **/
 
@@ -78,4 +78,3 @@ $list-vertical-padding: 4px;
     opacity: 0.5;
   }
 }
-
