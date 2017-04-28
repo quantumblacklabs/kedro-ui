@@ -4,10 +4,12 @@
  * @param  {string} value - The search keyword to highlight
  * @return {object|boolean} Regular expression or false
  */
-const getValueRegex = value => value && new RegExp(
-  `(${value.replace(/[<>]/g, '')})`,
-  'gi'
-);
+const getValueRegex = value => {
+  if (!value) {
+    return false;
+  }
+  return new RegExp(`(${value.replace(/[<>]/g, '')})`, 'gi');
+};
 
 /**
  * Wrap a string with a <b> tag
