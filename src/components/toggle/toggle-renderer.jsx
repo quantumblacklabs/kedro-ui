@@ -25,7 +25,7 @@ const ToggleRenderer = ({
     // make our newValue a boolean
     newValue = (newValue === 'true');
 
-    onChange(e, newValue);
+    onChange(e, { value: newValue });
   };
 
   return (

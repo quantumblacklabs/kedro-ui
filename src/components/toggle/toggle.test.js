@@ -53,3 +53,12 @@ test('Toggle should be created with all the user defined props', t => {
   t.is(wrapper.find('.cbn-toggle__label').length, 1);
   t.is(wrapper.find('.cbn-toggle__button').length, 2);
 });
+
+test('Toggle should throw an error when only 1 text is provided', t => {
+  // const jsx = (
+  //   <Toggle texts={['UP']} />
+  // );
+  // const wrapper = shallow(<Toggle texts={['UP']} />);
+
+  t.throws(() => { shallow(<Toggle texts={['UP']} />); }, Error);
+});

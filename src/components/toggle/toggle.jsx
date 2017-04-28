@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { uniqueId } from 'lodash';
+import assert from 'assert';
 import ToggleRenderer from './toggle-renderer';
 
 import './toggle.css';
@@ -16,6 +17,8 @@ class Toggle extends React.Component {
   constructor(props) {
     super(props);
 
+    assert(this.props.texts.length === 2, 'Please provide exactly 2 string for the texts prop!');
+
     // create a unique id if the user did not provide one
     this.id = this.props.id || uniqueId('toggle-');
 
@@ -28,18 +31,16 @@ class Toggle extends React.Component {
 
   /**
    * Callback function for selection change
-   * @param {object} e        The event object
-   * @param {string} newValue The new value (on/off)
+   * @param {object} e                The event object
+   * @param {string} payload.value The new value (on/off)
    */
-  _handleChange(e, newValue) {
+  _handleChange(e, { value }) {
     // call the user defined callback
     if (typeof this.props.onChange === 'function') {
-      this.props.onChange(e, newValue);
+      this.props.onChange(e, { value });
     }
 
-    this.setState({
-      value: newValue
-    });
+    this.setState({ value });
   }
 
   /**
@@ -81,7 +82,7 @@ Toggle.propTypes = {
    */
   label: PropTypes.string,
   /**
-   * Callback when the toggle changes value
+   * Callback when the toggle changes value (params: event, payload: { value })
    */
   onChange: PropTypes.func,
   /**
