@@ -10,7 +10,7 @@ A bold example with label
 </section>
 ```
 
-A list of toggles (works only on dark theme)
+A list of toggles
 ```
 const style = {
     borderTopWidth: 1,
