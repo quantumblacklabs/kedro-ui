@@ -6,6 +6,7 @@ import Icon from 'components/icon';
 import MenuOption from 'components/menus/menu-option';
 import SearchBar from 'components/search/search-bar';
 import SearchResults from 'components/search/search-results';
+import Tabs from 'components/tabs';
 
 import './styles/app.css';
 
@@ -17,9 +18,10 @@ module.exports = {
   Icon,
   Input,
   MenuOption,
+  RadioButton,
   SearchBar,
   SearchResults,
-  RadioButton,
+  Tabs,
   Tooltip,
   TooltipTrigger
 };
