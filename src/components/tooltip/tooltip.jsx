@@ -1,6 +1,7 @@
 // Imports
 
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 // Styles
 
@@ -23,15 +24,11 @@ const Tooltip = ({
     width
   };
 
-  let headerContent = null;
-
-  if (header) {
-    headerContent = <span className='cbn-tooltip__header'>{header}</span>;
-  }
-
   return (
     <div data-tooltip-id={tooltipId} style={style} className={`cbn-tooltip cbn-theme--${theme}`}>
-      {headerContent}
+      {
+        header && <span className='cbn-tooltip__header'>{header}</span>
+      }
       <span className='cbn-tooltip__text'>{value}</span>
     </div>
   );
@@ -47,7 +44,7 @@ Tooltip.defaultProps = {
 
 Tooltip.propTypes = {
   /**
-   * Display Type
+   * Optional tooltip header to breakup the content
    */
   header: PropTypes.string,
   /**

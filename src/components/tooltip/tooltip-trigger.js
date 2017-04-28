@@ -1,19 +1,17 @@
 // Imports
 
-import React, { PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 /**
  * Create a component with tooltip triggering abilities
  */
 const TooltipTriggerHOC = WrapperComponent => {
-  const component = React.Component;
-
   /**
    * TooltipTrigger class will wrap the supplied component and allow it to
    * show / hide a tooltip
-   * @param  {type} props description
    */
-  class TooltipTrigger extends component {
+  class TooltipTrigger extends Component {
     /**
      * constructor - create new TooltipTrigger
      * @param  {Object} props
@@ -71,10 +69,10 @@ const TooltipTriggerHOC = WrapperComponent => {
       this.tooltip.style.opacity = +opts.show;
 
       Object.keys(opts.position)
-            .forEach(key => {
-              this.tooltip.style[key] = `${opts.position[key]}px`;
-              this.tooltip.classList.add(`cbn-tooltip--${this.props.displayDirection}`);
-            });
+        .forEach(key => {
+          this.tooltip.style[key] = `${opts.position[key]}px`;
+          this.tooltip.classList.add(`cbn-tooltip--${this.props.displayDirection}`);
+        });
     }
 
     /**
@@ -163,7 +161,8 @@ const TooltipTriggerHOC = WrapperComponent => {
      */
     spacer: PropTypes.number,
     /**
-     * The ID of the tooltip to display
+     * The ID of the tooltip to display, this is a unique identifier that should
+     * also be passed to the tooltip component
      */
     tooltipId: PropTypes.string.isRequired
   };

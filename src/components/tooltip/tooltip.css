@@ -6,6 +6,8 @@
 
 $size-padding: 4px 8px;
 
+$duration-opacity: 0.3s;
+
 /** Implementation */
 
 .cbn-tooltip {
@@ -13,17 +15,16 @@ $size-padding: 4px 8px;
   @mixin themed background, tooltip;
 
   @extend %type--body-2;
+  @extend %type--semibold;
 
   display: inline-block;
 
   padding: $size-padding;
 
-  font-weight: 600;
-
   text-overflow: ellipsis;
   overflow: hidden;
 
-  transition: opacity 0.3s;
+  transition: opacity $duration-opacity;
 }
 
 .cbn-tooltip--fixed {
