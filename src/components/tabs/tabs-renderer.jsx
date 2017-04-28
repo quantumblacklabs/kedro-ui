@@ -16,8 +16,8 @@ const TabsRenderer = ({
    * Triggered when a tab is clicked
    * @param {HTMLElement} e The element that triggered the event
    */
-  const _onSelectTab = e => {
-    onSelect(parseInt(e.target.dataset.tabindex, 10));
+  const _handleSelect = e => {
+    onSelect(e, parseInt(e.target.dataset.tabindex, 10));
   };
 
   return (
@@ -26,7 +26,7 @@ const TabsRenderer = ({
         {
           tabs.map((tab, index) => (
             <li
-              onClick={_onSelectTab}
+              onClick={_handleSelect}
               data-tabindex={index}
               key={tab}
               className={classnames('cbn-tabs__tab', { 'cbn-tabs__tab--selected': selectedIndex === index })}>

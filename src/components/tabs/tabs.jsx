@@ -25,12 +25,13 @@ class Tabs extends React.Component {
 
   /**
    * Callback function for selection change
+   * @param {object} e                The event object
    * @param {number} newSelectedIndex The index of the newly selected tab
    */
-  _handleSelect(newSelectedIndex) {
+  _handleSelect(e, newSelectedIndex) {
     // call the user defined callback
     if (typeof this.props.onSelect === 'function') {
-      this.props.onSelect(newSelectedIndex);
+      this.props.onSelect(e, newSelectedIndex);
     }
 
     this.setState({
