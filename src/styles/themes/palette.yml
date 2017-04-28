@@ -121,19 +121,16 @@ themes:
       default: rgba(100, 149, 237, 0.5)
     search:
       icon: rgba(255, 255, 255, 0.55)
-<<<<<<< HEAD
     toggle:
       default: rgba(255, 255, 255, 0.85)
       disabled: rgba(255, 255, 255, 0.3)
       active: rgba(0, 0, 0, 0.12)
       underline: rgb(255, 255, 255)
-=======
     tabs:
       default: rgba(255, 255, 255, 0.55)
       border: rgba(255, 255, 255, 0.12)
       active: rgba(0, 0, 0, 0.12)
       selected: rgb(255, 255, 255)
->>>>>>> develop
     tooltip:
       default: rgba(132, 142, 150, 1)
       text: rgba(255, 255, 255, 0.85)
