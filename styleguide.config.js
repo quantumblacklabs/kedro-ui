@@ -71,7 +71,12 @@ const config = {
     {
       name: 'Toggle',
       content: './templates/components/toggle.md',
-      components: getComponentsFunc('form', 'src/components/toggle/**/*.jsx')
+      components: getComponentsFunc('toggle', 'src/components/toggle/**/*.jsx')
+    },
+    {
+      name: 'Tabs',
+      content: './templates/components/tabs.md',
+      components: getComponentsFunc('tabs', 'src/components/tabs/**/*.jsx')
     },
     {
       name: 'Tooltip',
