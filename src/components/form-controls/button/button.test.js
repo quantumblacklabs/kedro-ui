@@ -1,6 +1,7 @@
 import test from 'ava';
 import React from 'react';
-import { shallow, expect } from 'enzyme';
+import { shallow, mount } from 'enzyme';
+import sinon from 'sinon';
 
 import Button from './button';
 
@@ -22,9 +23,16 @@ test('Button should correctly render its text value', t => {
 });
 
 test('Button should handle click events', t => {
-  const wrapper = shallow(<Button onClick={e => e} />);
+  const spy = sinon.spy();
+  const wrapper = mount(<Button onClick={spy} />);
 
   t.is(typeof wrapper.props().onClick, 'function');
+
+  wrapper
+    .find('button')
+    .simulate('click');
+
+  t.is(spy.callCount, 1);
 });
 
 test('Button should correctly be disabled', () => {
