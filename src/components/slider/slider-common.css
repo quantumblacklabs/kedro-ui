@@ -1,0 +1,275 @@
+/** Imports **/
+
+@import '../../styles/includes';
+
+/** Variables **/
+
+$wrapper-width: 310px;
+$input-width: 174px;
+$input-height: 24px;
+
+$thumb-size: 4px;
+$thumb-border-width: 5px;
+$thumb-width: calc($thumb-size + $thumb-border-width / 2);
+
+$track-height: 2px;
+
+$tick-number-width: 24px;
+
+/** Mixins **/
+
+@define-mixin thumb-style {
+  @mixin themedParent background, slider, thumbCenter;
+  @mixin themedParent border-color, slider, thumbBorder;
+
+  display: relative;
+
+  width: $thumb-size;
+  height: $thumb-size;
+  margin-top: calc(-2 * $thumb-size);
+
+  border-width: $thumb-border-width;
+  border-style: solid;
+  border-radius: 50%;
+  box-shadow: none;
+
+  box-sizing: border-box;
+
+  &:hover {
+    transition: all 0.2s ease-in-out;
+    transform: scale(1.5);
+  }
+}
+
+@define-mixin track-style {
+  display: relative;
+
+  width: 100%;
+  height: $track-height;
+
+  border: 0;
+
+  background: transparent;
+
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+/** Implementation **/
+
+.cbn-slider {
+  display: flex;
+}
+
+.cbn-slider__wrapper {
+  display: flex;
+}
+
+.cbn-slider__label {
+  @mixin themedParent color, slider, label;
+
+  &--single {
+    @extend %type--body-1;
+
+    width: 73px;
+    margin: 6px 18px 0 0;
+  }
+}
+
+.cbn-slider__number-input {
+  .cbn-input {
+    margin: 0;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+
+    background: transparent;
+
+    &:hover,
+    &:active {
+      box-shadow: none;
+    }
+
+    &__field {
+      background: transparent;
+    }
+
+    &__line {
+      @mixin themedParent background, slider, numberInputLine;
+    }
+
+    &-wrapper {
+      width: 27px;
+      margin: 0 0 0 18px;
+      padding: 0;
+    }
+  }
+}
+
+.cbn-slider__box {
+  position: relative;
+
+  width: $input-width;
+}
+
+.cbn-slider__line {
+  position: absolute;
+  top: calc(50% - $thumb-width / 2 - 1px);
+
+  /** slider's 0% will appear to be in thumb's center **/
+  left: calc($thumb-width);
+
+  /** slider's 100% will appear to be in thumb's center **/
+  width: calc(100% - $thumb-width * 2);
+  height: $track-height;
+
+  box-sizing: border-box;
+}
+
+.cbn-slider {
+  width: $wrapper-width;
+}
+
+.cbn-slider__input {
+  -webkit-appearance: none;
+
+  position: relative;
+
+  width: $input-width;
+  height: $input-height;
+  margin: 0;
+  padding: 0;
+
+  background: transparent;
+
+  box-shadow: none;
+  box-sizing: content-box;
+
+  &:focus,
+  &:active {
+    outline: none;
+  }
+}
+
+.cbn-slider__tick-numbers,
+.cbn-slider__tick-symbols {
+  display: flex;
+  justify-content: space-between;
+
+  width: $input-width;
+}
+
+.cbn-slider__tick-number {
+  @mixin themedParent color, slider, tickNumber;
+
+  @extend %type--body-1;
+
+  position: absolute;
+  top: 38px;
+
+  width: $tick-number-width;
+  margin: 0;
+  padding: 0;
+
+  text-align: center;
+}
+
+.cbn-slider__tick-symbol {
+  position: relative;
+  top: 11px;
+
+  width: calc($track-height * 2);
+  min-height: calc($track-height * 2);
+  height: calc($track-height * 2);
+  margin: 0;
+  padding: 0;
+  border-radius: 50%;
+
+  @mixin themedParent background, slider, default;
+
+  &--min {
+    transform: translateX(calc(-50% + $thumb-width));
+  }
+
+  &--max {
+    transform: translateX(calc(50% - $thumb-width));
+  }
+
+  &--range {
+    @mixin themedParent background, slider, thumbBorder;
+  }
+}
+
+/** THUMB **/
+.cbn-slider__input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+
+  @mixin thumb-style;
+
+  box-sizing: content-box;
+}
+
+.cbn-slider__input::-moz-range-thumb {
+  @mixin thumb-style;
+}
+
+.cbn-slider__input::-ms-thumb {
+  @mixin thumb-style;
+}
+
+/** TRACK **/
+.cbn-slider__input::-webkit-slider-runnable-track {
+  -webkit-appearance: none;
+
+  @mixin track-style;
+}
+
+.cbn-slider__input::-moz-range-track {
+  @mixin track-style;
+}
+
+.cbn-slider__input::-ms-track {
+  @mixin track-style;
+
+  /** In IE, but not in Edge, the slider as a whole has a padding **/
+  margin: 0;
+  padding: 0;
+
+  /** IE and MS Edge require a transparent color and border-color on the track,
+      or they will show (parts of) the native track design. **/
+  border-color: transparent;
+
+  color: transparent;
+}
+
+/** RENDERED BUT NOT VISIBLE IN VIEWPORT **/
+.cbn-slider__hidden {
+  position: fixed;
+  left: -9999px;
+
+  opacity: 0;
+
+  &--fill {
+    height: 1px;
+
+    .cbn-theme--dark & {
+      @mixin themedParent background, slider, thumbBorder;
+    }
+
+    .cbn-theme--light & {
+      @mixin themedParent background, slider, thumbBorder;
+    }
+  }
+
+  &--background {
+    height: 1px;
+
+    .cbn-theme--dark & {
+      @mixin themedParent background, slider, default;
+    }
+
+    .cbn-theme--light & {
+      @mixin themedParent background, slider, default;
+    }
+  }
+}

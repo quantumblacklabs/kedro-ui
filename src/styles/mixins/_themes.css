@@ -19,6 +19,16 @@
 }
 
 @define-mixin themedState $state, $propName, $category: base, $variant: default {
+  &.cbn-theme--light:$(state) {
+    $(propName): map(themes, light, $category, $variant);
+  }
+
+  &.cbn-theme--dark:$(state) {
+    $(propName): map(themes, dark, $category, $variant);
+  }
+}
+
+@define-mixin themedParentState $state, $propName, $category: base, $variant: default {
   .cbn-theme--light &:$(state) {
     $(propName): map(themes, light, $category, $variant);
   }

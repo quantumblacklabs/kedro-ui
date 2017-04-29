@@ -33,11 +33,23 @@ themes:
       activeColor: rgb(255, 255, 255)
       border: rgba(0, 0, 0, 0.12)
       wrapper: rgba(0, 0, 0, 0.12)
+    button:
+      active: rgba(0, 0, 0, 0.85)
+      focus: rgba(0, 0, 0, 0.12)
+      outline: rgb(0, 0, 0)
+      textHover: rgba(255, 255, 255, 0.85)
     checkbox:
       default: rgba(255, 255, 255, 0.55)
     radiobutton:
       default: rgba(0, 0, 0, 0.55)
       disabled: rgba(0, 0, 0, 0.35)
+    slider:
+      default: rgba(0, 0, 0, 0.12)
+      label: rgba(0, 0, 0, 0.85)
+      numberInputLine: rgba(0, 0, 0, 0.12)
+      thumbCenter: rgb(255, 255, 255)
+      thumbBorder: rgb(0, 0, 0)
+      tickNumber: rgba(0, 0, 0, 0.55)
     input:
       placeholder: rgba(0, 0, 0, 0.3)
       placeholderFocused: rgba(0, 0, 0, 0.55)
@@ -49,6 +61,19 @@ themes:
       default: rgba(255, 105, 180, 0.5)
     search:
       icon: rgba(0, 0, 0, 0.55)
+    toggle:
+      default: rgba(0, 0, 0, 0.85)
+      disabled: rgba(0, 0, 0, 0.3)
+      active: rgba(0, 0, 0, 0.12)
+      underline: rgb(0, 0, 0)
+    tabs:
+      default: rgba(0, 0, 0, 0.55)
+      border: rgba(0, 0, 0, 0.12)
+      active: rgba(0, 0, 0, 0.12)
+      selected: rgb(0, 0, 0)
+    tooltip:
+      default: rgba(132, 142, 150, 1)
+      text: rgba(255, 255, 255, 0.85)
   dark:
     base:
       primary: rgb(27, 117, 240)
@@ -82,11 +107,23 @@ themes:
       activeColor: rgb(255, 255, 255)
       border: rgba(255, 255, 255, 0.12)
       wrapper: rgba(0, 0, 0, 0)
+    button:
+      active: rgba(255, 255, 255, 0.85)
+      focus: rgba(255, 255, 255, 0.12)
+      outline: rgb(255, 255, 255)
+      textHover: rgba(0, 0, 0, 0.85)
     checkbox:
       default: rgba(0, 0, 0, 0.55)
     radiobutton:
       default: rgba(255, 255, 255, 0.55)
       disabled: rgba(255, 255, 255, 0.35)
+    slider:
+      default: rgba(255, 255, 255, 0.3)
+      label: rgba(255, 255, 255, 0.85)
+      numberInputLine: rgba(255, 255, 255, 0.12)
+      thumbCenter: rgb(0, 0, 0)
+      thumbBorder: rgb(255, 255, 255)
+      tickNumber: rgba(255, 255, 255, 0.55)
     input:
       placeholder: rgba(255, 255, 255, 0.3)
       placeholderFocused: rgba(255, 255, 255, 0.55)
@@ -98,3 +135,16 @@ themes:
       default: rgba(100, 149, 237, 0.5)
     search:
       icon: rgba(255, 255, 255, 0.55)
+    toggle:
+      default: rgba(255, 255, 255, 0.85)
+      disabled: rgba(255, 255, 255, 0.3)
+      active: rgba(0, 0, 0, 0.12)
+      underline: rgb(255, 255, 255)
+    tabs:
+      default: rgba(255, 255, 255, 0.55)
+      border: rgba(255, 255, 255, 0.12)
+      active: rgba(0, 0, 0, 0.12)
+      selected: rgb(255, 255, 255)
+    tooltip:
+      default: rgba(132, 142, 150, 1)
+      text: rgba(255, 255, 255, 0.85)
