@@ -42,14 +42,14 @@
 }
 
 .cbn-slider__number-input.cbn-slider__number-input--min .cbn-input-wrapper {
-  margin: 0 18px 0 0;
+  margin: 0 $label-number-margin 0 0;
 }
 
 .cbn-slider__label {
   &--multiple {
     @extend %type--subhead-2;
 
-    margin: 0 0 18px;
+    margin: 0 0 $label-number-margin;
 
     font-weight: bold;
   }

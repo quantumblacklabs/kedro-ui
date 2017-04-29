@@ -5,6 +5,7 @@
 /** Variables **/
 
 $wrapper-width: 310px;
+
 $input-width: 174px;
 $input-height: 24px;
 
@@ -15,6 +16,16 @@ $thumb-width: calc($thumb-size + $thumb-border-width / 2);
 $track-height: 2px;
 
 $tick-number-width: 24px;
+$tick-number-top: 38px;
+$tick-symbol-top: 11px;
+
+$number-input-width: 27px;
+
+$label-number-margin: 18px;
+$label-single-margin-top: 6px;
+$label-single-width: 73px;
+
+$hidden-elements-height: 1px;
 
 /** Mixins **/
 
@@ -71,8 +82,8 @@ $tick-number-width: 24px;
   &--single {
     @extend %type--body-1;
 
-    width: 73px;
-    margin: 6px 18px 0 0;
+    width: $label-single-width;
+    margin: $label-single-margin-top $label-number-margin 0 0;
   }
 }
 
@@ -99,8 +110,8 @@ $tick-number-width: 24px;
     }
 
     &-wrapper {
-      width: 27px;
-      margin: 0 0 0 18px;
+      width: $number-input-width;
+      margin: 0 0 0 $label-number-margin;
       padding: 0;
     }
   }
@@ -165,7 +176,7 @@ $tick-number-width: 24px;
   @extend %type--body-1;
 
   position: absolute;
-  top: 38px;
+  top: $tick-number-top;
 
   width: $tick-number-width;
   margin: 0;
@@ -176,7 +187,7 @@ $tick-number-width: 24px;
 
 .cbn-slider__tick-symbol {
   position: relative;
-  top: 11px;
+  top: $tick-symbol-top;
 
   width: calc($track-height * 2);
   min-height: calc($track-height * 2);
@@ -250,7 +261,7 @@ $tick-number-width: 24px;
   opacity: 0;
 
   &--fill {
-    height: 1px;
+    height: $hidden-elements-height;
 
     .cbn-theme--dark & {
       @mixin themedParent background, slider, thumbBorder;
@@ -262,7 +273,7 @@ $tick-number-width: 24px;
   }
 
   &--background {
-    height: 1px;
+    height: $hidden-elements-height;
 
     .cbn-theme--dark & {
       @mixin themedParent background, slider, default;
