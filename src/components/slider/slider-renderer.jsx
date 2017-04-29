@@ -79,7 +79,7 @@ class SliderRenderer extends React.Component {
    * @return {number} percentage of the value selected in the slider
    */
   _getPercentage() {
-    return this.state.value * ((this.props.max - this.props.min) / 100);
+    return (this.state.value - this.props.min) * ((this.props.max - this.props.min) / 100);
   }
 
   /**

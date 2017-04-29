@@ -102,7 +102,7 @@ class Slider extends React.Component {
    */
   _getNumberShift(value, index, lastValueIndex) {
     // get the value into percentage value and then convert to a decimal value
-    const decimalValue = (value * ((this.props.max - this.props.min) / 100)) / 100;
+    const decimalValue = ((value - this.props.min) * ((this.props.max - this.props.min) / 100)) / 100;
     // TODO: how to get from styles?
     const inputWidth = 166;
     // TODO: how to get from styles?

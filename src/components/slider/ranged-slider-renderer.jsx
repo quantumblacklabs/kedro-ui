@@ -100,7 +100,7 @@ class RangedSliderRenderer extends React.Component {
    * @return {number} percentage of the value given
    */
   _getPercentage(value) {
-    return value * ((this.props.max - this.props.min) / 100);
+    return (value - this.props.min) * ((this.props.max - this.props.min) / 100);
   }
 
   /**
