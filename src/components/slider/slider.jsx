@@ -9,11 +9,11 @@ import RangedSliderRenderer from './ranged-slider-renderer';
 import './slider-common.css';
 
 /**
- * Creates a slider component.
+ * Creates a slider component, depending on the given type, it is either a single or multiple slider.
  */
 class Slider extends React.Component {
   /**
-   * constructor - create new component with given props.
+   * constructor - create new component with given props
    * @param  {object} props
    */
   constructor(props) {
@@ -57,7 +57,10 @@ class Slider extends React.Component {
   }
 
   /**
-   * _getTicks -
+   * _getTicks - creates the ticks from which the value, colour and step range is rendered
+   * @param {number} min minimum value of the selected range
+   * @param {number} max maximum value of the selected range
+   * @return {array} tick values including the value, colour and step range
    */
   _getTicks(min, max) {
     const tickStep = this.props.tickStep ? this.props.tickStep : this.props.max;
@@ -76,9 +79,11 @@ class Slider extends React.Component {
   }
 
   /**
-   * _handleChanged -
+   * _handleChanged - updates the ticks and calls the change passed in props
+   * @param  {object} event
+   * @param  {object} payload min and max values selected in the slider
    */
-  _handleChanged(e, min, max) {
+  _handleChanged(e, { min, max }) {
     this.setState({
       ticks: this._getTicks(min, max)
     });
@@ -227,9 +232,7 @@ Slider.propTypes = {
    */
   max: PropTypes.number,
   /**
-   * Name of the slider.
-   * NOTE: SHOULD THE NAME BE INCLUDED? OR BE REMOVED?
-   * FROM MDN: "The name of the control, which is submitted with the form data."
+   * Name of the slider, which is submitted with form data.
    */
   name: PropTypes.string,
   /**

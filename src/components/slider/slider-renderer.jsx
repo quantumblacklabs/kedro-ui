@@ -5,11 +5,11 @@ import classnames from 'classnames';
 import Input from 'components/input';
 
 /**
- * Creates a single slider component.
+ * Creates a single slider component consisting of single thumb and number input.
  */
 class SliderRenderer extends React.Component {
   /**
-   * constructor - create new component with given props.
+   * constructor - create new component with given props
    * @param  {object} props
    */
   constructor(props) {
@@ -32,7 +32,7 @@ class SliderRenderer extends React.Component {
 
     // fire the onchange with the range values
     if (typeof this.props.onChange === 'function') {
-      this.props.onChange(undefined, 0, this.state.value);
+      this.props.onChange(undefined, { min: 0, max: this.state.value });
     }
   }
 
@@ -46,7 +46,7 @@ class SliderRenderer extends React.Component {
   }
 
   /**
-   * _handleChanged - updates the state with the value from the slider and triggers the passed on change callback.
+   * _handleChanged - updates the state with the value from the slider and triggers the passed on change callback
    * @param  {object} event
    */
   _handleChanged(event) {
@@ -57,12 +57,12 @@ class SliderRenderer extends React.Component {
     });
 
     if (typeof this.props.onChange === 'function') {
-      this.props.onChange(event, 0, value);
+      this.props.onChange(event, { min: 0, max: value });
     }
   }
 
   /**
-   * _updatePercentage - injects the CSS variables into the child to correctly update the input
+   * _updatePercentage - injects the CSS variables into the child to correctly update the input track
    */
   _updatePercentage() {
     this._lineFilled.style.setProperty('background', `
@@ -76,6 +76,7 @@ class SliderRenderer extends React.Component {
 
   /**
    * _getPercentage - calculate the percentage of the range
+   * @return {number} percentage of the value selected in the slider
    */
   _getPercentage() {
     return this.state.value * ((this.props.max - this.props.min) / 100);
@@ -168,9 +169,7 @@ SliderRenderer.propTypes = {
    */
   max: PropTypes.number,
   /**
-   * Name of the slider.
-   * NOTE: SHOULD THE NAME BE INCLUDED? OR BE REMOVED?
-   * FROM MDN: "The name of the control, which is submitted with the form data."
+   * Name of the slider, which is submitted with form data.
    */
   name: PropTypes.string,
   /**

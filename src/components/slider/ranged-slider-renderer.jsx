@@ -7,11 +7,11 @@ import Input from 'components/input';
 import './ranged-slider-renderer.css';
 
 /**
- * Creates a ranged slider component.
+ * Creates a ranged slider component consisting of two thumbs and two number inputs.
  */
 class RangedSliderRenderer extends React.Component {
   /**
-   * constructor - create new component with given props.
+   * constructor - create new component with given props
    * @param  {object} props
    */
   constructor(props) {
@@ -36,7 +36,7 @@ class RangedSliderRenderer extends React.Component {
 
     // fire the onchange with the range values
     if (typeof this.props.onChange === 'function') {
-      this.props.onChange(undefined, this.state.minRange, this.state.maxRange);
+      this.props.onChange(undefined, { min: this.state.minRange, max: this.state.maxRange });
     }
   }
 
@@ -50,7 +50,7 @@ class RangedSliderRenderer extends React.Component {
   }
 
   /**
-   * _handleBottomChanged -
+   * _handleBottomChanged - updates the minimum range in the state and calls the onchange passed from props
    * @param  {object} event
    */
   _handleBottomChanged(event) {
@@ -61,12 +61,12 @@ class RangedSliderRenderer extends React.Component {
     });
 
     if (typeof this.props.onChange === 'function') {
-      this.props.onChange(event, minValue, this.state.maxRange);
+      this.props.onChange(event, { min: minValue, max: this.state.maxRange });
     }
   }
 
   /**
-   * _handleTopChanged -
+   * _handleTopChanged - updates the maximum range in the state and calls the onchange passed from props
    * @param  {object} event
    */
   _handleTopChanged(event) {
@@ -77,7 +77,7 @@ class RangedSliderRenderer extends React.Component {
     });
 
     if (typeof this.props.onChange === 'function') {
-      this.props.onChange(event, this.state.minRange, maxValue);
+      this.props.onChange(event, { min: this.state.minRange, max: maxValue });
     }
   }
 
@@ -95,7 +95,9 @@ class RangedSliderRenderer extends React.Component {
   }
 
   /**
-   * _getPercentage - calculate the percentage of the range
+   * _getPercentage - calculate the percentage of the given value
+   * @param {number} value the value to be calculated the percentage for
+   * @return {number} percentage of the value given
    */
   _getPercentage(value) {
     return value * ((this.props.max - this.props.min) / 100);
@@ -222,9 +224,7 @@ RangedSliderRenderer.propTypes = {
    */
   max: PropTypes.number,
   /**
-   * Name of the slider.
-   * NOTE: SHOULD THE NAME BE INCLUDED? OR BE REMOVED?
-   * FROM MDN: "The name of the control, which is submitted with the form data."
+   * Name of the slider, which is submitted with form data.
    */
   name: PropTypes.string,
   /**
