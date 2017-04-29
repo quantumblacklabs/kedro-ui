@@ -44,44 +44,9 @@ const config = {
       content: './README.md'
     },
     {
-      name: 'Icons',
-      content: './templates/components/icons.md',
-      components: getComponentsFunc('icon', 'src/components/icon/**/*.jsx')
-    },
-    {
-      name: 'Indicators',
-      content: './templates/components/indicators.md',
-      components: getComponentsFunc('icon', 'src/components/indicators/**/*.jsx')
-    },
-    {
-      name: 'Menus',
-      content: './templates/components/menus.md',
-      components: getComponentsFunc('menu', 'src/components/menus/**/*.jsx')
-    },
-    {
-      name: 'Search',
-      content: './templates/components/search.md',
-      components: getComponentsFunc('search', 'src/components/search/**/*.jsx')
-    },
-    {
-      name: 'Form Controls',
-      content: './templates/components/form-controls.md',
-      components: getComponentsFunc('form', 'src/components/form-controls/**/*.jsx')
-    },
-    {
-      name: 'Toggle',
-      content: './templates/components/toggle.md',
-      components: getComponentsFunc('toggle', 'src/components/toggle/**/*.jsx')
-    },
-    {
-      name: 'Tabs',
-      content: './templates/components/tabs.md',
-      components: getComponentsFunc('tabs', 'src/components/tabs/**/*.jsx')
-    },
-    {
-      name: 'Tooltip',
-      content: './templates/components/tooltip.md',
-      components: getComponentsFunc('tooltip', 'src/components/tooltip/**/*.jsx')
+      name: 'Components',
+      content: './templates/components/index.md',
+      components: getComponentsFunc('components', 'src/components/**/*.jsx')
     }
   ],
   getComponentPathLine: function(componentPath) {

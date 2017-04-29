@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import Input from 'components/form-controls/input';
+import Input from 'components/input';
 
 /**
  * Creates a single slider component.

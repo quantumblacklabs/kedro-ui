@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Icon from 'components/icon';
-import { Input } from 'components/form-controls';
+import Input from 'components/input';
 
 // Styles
 
