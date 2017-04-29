@@ -1,3 +1,3 @@
-import Slider from './input';
+import Slider from './slider';
 
 export default Slider;
