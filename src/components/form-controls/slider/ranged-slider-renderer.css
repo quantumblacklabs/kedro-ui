@@ -1,0 +1,82 @@
+/** Imports **/
+
+@import './slider-common.css';
+
+/** Mixins **/
+
+@define-mixin thumb {
+  position: relative;
+  pointer-events: all;
+}
+
+@define-mixin track {
+  pointer-events: all;
+}
+
+/** Implementation **/
+
+.cbn-slider__wrapper {
+  &--multiple {
+    flex-direction: column;
+  }
+}
+
+.cbn-slider__input {
+  &.cbn-slider__input--bottom {
+    position: absolute;
+  }
+
+  &.cbn-slider__input--top {
+    position: relative;
+  }
+}
+
+.cbn-slider__input--multiple {
+  pointer-events: none;
+}
+
+.cbn-slider__box-inputs {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.cbn-slider__number-input.cbn-slider__number-input--min .cbn-input-wrapper {
+  margin: 0 18px 0 0;
+}
+
+.cbn-slider__label {
+  &--multiple {
+    @extend %type--subhead-2;
+
+    margin: 0 0 18px;
+
+    font-weight: bold;
+  }
+}
+
+/** THUMB **/
+.cbn-slider__input--multiple::-webkit-slider-thumb {
+  @mixin thumb;
+}
+
+.cbn-slider__input--multiple::-moz-range-thumb {
+  @mixin thumb;
+}
+
+.cbn-slider__input--multiple::-ms-thumb {
+  @mixin thumb;
+}
+
+/** TRACK **/
+.cbn-slider__input--top::-webkit-slider-runnable-track {
+  @mixin track;
+}
+
+.cbn-slider__input--top::-moz-range-track {
+  @mixin track;
+}
+
+.cbn-slider__input--top::-ms-track {
+  @mixin track;
+}
