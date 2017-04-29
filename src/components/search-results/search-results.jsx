@@ -1,6 +1,7 @@
 // Imports
 
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import SearchResultsRenderer from './search-results-renderer';
 import { getHighlightedText } from './search-results-utils';
 
