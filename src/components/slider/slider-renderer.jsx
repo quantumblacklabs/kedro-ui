@@ -65,7 +65,10 @@ class SliderRenderer extends React.Component {
    * @param  {object} event
    */
   _handleChanged(event) {
-    const value = isNaN(parseFloat(event.target.value)) ? 0 : parseFloat(event.target.value);
+    // check if the value is a number and parse it from the event
+    let value = isNaN(parseFloat(event.target.value)) ? 0 : parseFloat(event.target.value);
+    // if the value is out of range, set the max value as a new value
+    value = value > this.props.max ? this.props.max : value;
 
     // if the slider is set to be stepped, find the correct nearest step value
     if (this.props.step !== 1 && event.target.value !== '') {
@@ -75,8 +78,8 @@ class SliderRenderer extends React.Component {
         if (valueInStepRange) {
           // TODO: change to debounce
           setTimeout(() => {
-            this._updateValue(value);
-          }, 600);
+            this._updateValue(step.value);
+          }, 300);
         }
       });
     } else {

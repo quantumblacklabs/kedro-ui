@@ -54,14 +54,19 @@ class RangedSliderRenderer extends React.Component {
    * @param  {object} event
    */
   _handleBottomChanged(event) {
-    const minValue = isNaN(parseFloat(event.target.value)) ? 0 : parseFloat(event.target.value);
+    // check if the value is a number and parse it from the event
+    let minRange = isNaN(parseFloat(event.target.value)) ? 0 : parseFloat(event.target.value);
+    // if the value is out of range, set the min value as a new value
+    minRange = minRange < this.props.min ? this.props.min : minRange;
+    // the min value cannot overlap the max value
+    minRange = minRange < this.state.maxRange ? minRange : this.state.maxRange;
 
     this.setState({
-      minRange: minValue < this.state.maxRange ? minValue : this.state.maxRange
+      minRange
     });
 
     if (typeof this.props.onChange === 'function') {
-      this.props.onChange(event, { min: minValue, max: this.state.maxRange });
+      this.props.onChange(event, { min: minRange, max: this.state.maxRange });
     }
   }
 
@@ -70,14 +75,19 @@ class RangedSliderRenderer extends React.Component {
    * @param  {object} event
    */
   _handleTopChanged(event) {
-    const maxValue = isNaN(parseFloat(event.target.value)) ? 0 : parseFloat(event.target.value);
+    // check if the value is a number and parse it from the event
+    let maxRange = isNaN(parseFloat(event.target.value)) ? 0 : parseFloat(event.target.value);
+    // if the value is out of range, set the max value as a new value
+    maxRange = maxRange > this.props.max ? this.props.max : maxRange;
+    // the max value cannot overlap the min value
+    maxRange = this.state.minRange < maxRange ? maxRange : this.state.minRange;
 
     this.setState({
-      maxRange: this.state.minRange < maxValue ? maxValue : this.state.minRange
+      maxRange
     });
 
     if (typeof this.props.onChange === 'function') {
-      this.props.onChange(event, { min: this.state.minRange, max: maxValue });
+      this.props.onChange(event, { min: this.state.minRange, max: maxRange });
     }
   }
 
