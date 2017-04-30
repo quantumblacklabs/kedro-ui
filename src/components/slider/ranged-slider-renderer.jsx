@@ -131,13 +131,13 @@ class RangedSliderRenderer extends React.Component {
               onChange={this._handleBottomChanged} />
           </div>
           <div className='cbn-slider__box'>
-            <div className='cbn-slider__track-line'>
-              <div
-                ref={lineFilled => { this._lineFilled = lineFilled; }}
-                className='cbn-slider__line' />
+            <div className='cbn-slider__ticks'>
+              {this.props.tickNumbers}
               {this.props.tickSymbols}
             </div>
-            {this.props.tickNumbers}
+            <div
+              ref={lineFilled => { this._lineFilled = lineFilled; }}
+              className='cbn-slider__line' />
             <input
               className={classnames(
                 'cbn-slider__input',

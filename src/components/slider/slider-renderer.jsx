@@ -97,13 +97,13 @@ class SliderRenderer extends React.Component {
           {this.props.label}
         </div>
         <div className='cbn-slider__box'>
-          <div className='cbn-slider__track-line'>
-            <div
-              ref={lineFilled => { this._lineFilled = lineFilled; }}
-              className='cbn-slider__line' />
+          <div className='cbn-slider__ticks'>
             {this.props.tickSymbols}
+            {this.props.tickNumbers}
           </div>
-          {this.props.tickNumbers}
+          <div
+            ref={lineFilled => { this._lineFilled = lineFilled; }}
+            className='cbn-slider__line' />
           <input
             className='cbn-slider__input'
             type='range'
