@@ -30,11 +30,11 @@ const TooltipTriggerHOC = WrapperComponent => {
 
     /**
      * React lifecycle method
-     * Grabs the tooltip and adds window scroll events
      * {@link https://facebook.github.io/react/docs/react-component.html#componentDidMount}
      * @return {object} JSX for this component
      */
     componentDidMount() {
+      // Grab the tooltip and add window scroll events
       this.tooltip = document.querySelector(`.cbn-tooltip[data-tooltip-id="${this.props.tooltipId}"]`);
       this.tooltip.classList.add('cbn-tooltip--fixed');
 
@@ -43,7 +43,6 @@ const TooltipTriggerHOC = WrapperComponent => {
 
     /**
      * React lifecycle method
-     * Adds the animation via GSAP-enhancer to the component.
      * {@link https://facebook.github.io/react/docs/react-component.html#componentDidMount}
      * @return {object} JSX for this component
      */
@@ -65,12 +64,12 @@ const TooltipTriggerHOC = WrapperComponent => {
      * tooltipId prop and display direction prop
      * @param  {Object} opts { show, position, tooltips }
      */
-    _showTooltip(opts) {
-      this.tooltip.style.opacity = +opts.show;
+    _showTooltip({ position, show }) {
+      this.tooltip.style.opacity = +show;
 
-      Object.keys(opts.position)
+      Object.keys(position)
         .forEach(key => {
-          this.tooltip.style[key] = `${opts.position[key]}px`;
+          this.tooltip.style[key] = `${position[key]}px`;
           this.tooltip.classList.add(`cbn-tooltip--${this.props.displayDirection}`);
         });
     }
