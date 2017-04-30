@@ -85,22 +85,16 @@ class RangedSliderRenderer extends React.Component {
    * _updatePercentage - injects the CSS variables into the child to correctly update the input
    */
   _updatePercentage() {
+    const min = this.props.min;
+    const max = this.props.max;
+
     this._lineFilled.style.setProperty('background', `
       linear-gradient(to right,
-      ${this.props.backgroundColor} ${this._getPercentage(this.state.minRange)}%,
+      ${this.props.backgroundColor} ${this.props.percentage(this.state.minRange, min, max)}%,
       ${this.props.fillColor} 0,
-      ${this.props.fillColor} ${this._getPercentage(this.state.maxRange)}%,
+      ${this.props.fillColor} ${this.props.percentage(this.state.maxRange, min, max)}%,
       ${this.props.backgroundColor} 0)
     `);
-  }
-
-  /**
-   * _getPercentage - calculate the percentage of the given value
-   * @param {number} value the value to be calculated the percentage for
-   * @return {number} percentage of the value given
-   */
-  _getPercentage(value) {
-    return (value - this.props.min) * ((this.props.max - this.props.min) / 100);
   }
 
   /**
@@ -192,6 +186,7 @@ RangedSliderRenderer.defaultProps = {
   min: 0,
   name: 'slider',
   onChange: null,
+  percentage: undefined,
   step: 1,
   tickNumbers: undefined,
   tickSymbols: undefined,
@@ -231,6 +226,10 @@ RangedSliderRenderer.propTypes = {
    * Event listener which will be trigerred on change of the slider.
    */
   onChange: PropTypes.func,
+  /**
+   * Function that calculates the percentage value of slider's range for given number.
+   */
+  percentage: PropTypes.func,
   /**
    * Step of the slider.
    */

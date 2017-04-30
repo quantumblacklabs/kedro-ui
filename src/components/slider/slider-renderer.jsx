@@ -69,17 +69,9 @@ class SliderRenderer extends React.Component {
       linear-gradient(to right,
       ${this.props.backgroundColor} 0,
       ${this.props.fillColor} 0,
-      ${this.props.fillColor} ${this._getPercentage()}%,
+      ${this.props.fillColor} ${this.props.percentage(this.state.value, this.props.min, this.props.max)}%,
       ${this.props.backgroundColor} 0)
      `);
-  }
-
-  /**
-   * _getPercentage - calculate the percentage of the range
-   * @return {number} percentage of the value selected in the slider
-   */
-  _getPercentage() {
-    return (this.state.value - this.props.min) * ((this.props.max - this.props.min) / 100);
   }
 
   /**
@@ -137,6 +129,7 @@ SliderRenderer.defaultProps = {
   min: 0,
   name: 'slider',
   onChange: undefined,
+  percentage: undefined,
   step: 1,
   tickNumbers: undefined,
   tickSymbols: undefined,
@@ -176,6 +169,10 @@ SliderRenderer.propTypes = {
    * Event listener which will be trigerred on change of the slider.
    */
   onChange: PropTypes.func,
+  /**
+   * Function that calculates the percentage value of slider's range for given number.
+   */
+  percentage: PropTypes.func,
   /**
    * Step of the slider.
    */

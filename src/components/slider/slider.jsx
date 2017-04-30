@@ -9,6 +9,15 @@ import RangedSliderRenderer from './ranged-slider-renderer';
 import './slider-common.css';
 
 /**
+ * getPercentage - calculate the percentage of the given value
+ * @param {number} value the value to be calculated the percentage for
+ * @param {number} min minimum value of the range
+ * @param {number} max maximum value of the range
+ * @return {number} percentage of the value given
+ */
+const getPercentage = (value, min, max) => (value - min) * ((max - min) / 100);
+
+/**
  * Creates a slider component, depending on the given type, it is either a single or multiple slider.
  */
 class Slider extends React.Component {
@@ -102,7 +111,7 @@ class Slider extends React.Component {
    */
   _getNumberShift(value, index, lastValueIndex) {
     // get the value into percentage value and then convert to a decimal value
-    const decimalValue = ((value - this.props.min) * ((this.props.max - this.props.min) / 100)) / 100;
+    const decimalValue = getPercentage(value, this.props.min, this.props.max) / 100;
     // TODO: how to get from styles?
     const inputWidth = 166;
     // TODO: how to get from styles?
@@ -193,6 +202,7 @@ class Slider extends React.Component {
           max={this.props.max}
           name={this.props.name}
           onChange={this._handleChanged}
+          percentage={getPercentage}
           step={this.props.step}
           theme={this.props.theme}
           tickNumbers={tickNumbers}
