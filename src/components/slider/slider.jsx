@@ -66,25 +66,58 @@ class Slider extends React.Component {
   }
 
   /**
-   * _getTicks - creates the ticks from which the value, colour and step range is rendered
-   * @param {number} min minimum value of the selected range
-   * @param {number} max maximum value of the selected range
-   * @return {array} tick values including the value, colour and step range
+   * _getTickValues - creates an array of tick values, including the first and last value of the range
+   * @return {array} arrya of tick values
    */
-  _getTicks(min, max) {
+  _getTickValues() {
     const tickStep = this.props.tickStep ? this.props.tickStep : this.props.max;
     // create a range of values
     const tickValues = rangeStep(tickStep, this.props.min, this.props.max);
     // and add the max into the array
     tickValues.push(this.props.max);
 
-    // create an array with all the ticks, where value and whether it should be specially coloured is stored
-    return tickValues.map(tickValue => (
-      {
-        range: min <= tickValue && tickValue <= max,
-        value: tickValue
-      }
+    return tickValues;
+  }
+
+  /**
+   * _getTicks - creates the ticks from which the value, colour and step range is rendered
+   * @param {number} min minimum value of the selected range
+   * @param {number} max maximum value of the selected range
+   * @return {array} tick values including the value, colour and step range
+   */
+  _getTicks(min, max) {
+    return this._getTickValues()
+      .map(tickValue => (
+        {
+          range: min <= tickValue && tickValue <= max,
+          value: tickValue
+        }
     ));
+  }
+
+  /**
+   * _getStepRanges - calculate the range for each step - step is the middle value of the calculated range
+   * @return {array} array of objects where value and range is defined
+   */
+  _getStepRanges() {
+    const min = this.props.min;
+    const max = this.props.max;
+    const step = this.props.step;
+
+    return this._getTickValues()
+      .map(value => {
+        let range = [value - (step / 2), value + (step / 2)];
+
+        if (value === min) {
+          range = [min, min + (step / 2)];
+        }
+
+        if (value === max) {
+          range = [max - (step / 2), max];
+        }
+
+        return { value, range };
+      });
   }
 
   /**
@@ -204,6 +237,7 @@ class Slider extends React.Component {
           onChange={this._handleChanged}
           percentage={getPercentage}
           step={this.props.step}
+          stepRanges={this._getStepRanges()}
           theme={this.props.theme}
           tickNumbers={tickNumbers}
           tickSymbols={tickSymbols}

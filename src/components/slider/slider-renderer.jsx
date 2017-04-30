@@ -46,18 +46,41 @@ class SliderRenderer extends React.Component {
   }
 
   /**
-   * _handleChanged - updates the state with the value from the slider and triggers the passed on change callback
-   * @param  {object} event
+   * _updateValue - updates the state and calls the on change callback
+   * @param {number} value the value of the new range
    */
-  _handleChanged(event) {
-    const value = isNaN(parseFloat(event.target.value)) ? 0 : parseFloat(event.target.value);
-
+  _updateValue(value) {
     this.setState({
       value
     });
 
     if (typeof this.props.onChange === 'function') {
       this.props.onChange(event, { min: 0, max: value });
+    }
+  }
+
+  /**
+   * _handleChanged - updates the state with the new value;
+   * If slider is stepped, it changes the value to the correct one and then calls the update
+   * @param  {object} event
+   */
+  _handleChanged(event) {
+    const value = isNaN(parseFloat(event.target.value)) ? 0 : parseFloat(event.target.value);
+
+    // if the slider is set to be stepped, find the correct nearest step value
+    if (this.props.step !== 1 && event.target.value !== '') {
+      this.props.stepRanges.forEach(step => {
+        const valueInStepRange = step.range[0] <= value && value <= step.range[1];
+
+        if (valueInStepRange) {
+          // TODO: change to debounce
+          setTimeout(() => {
+            this._updateValue(value);
+          }, 600);
+        }
+      });
+    } else {
+      this._updateValue(value);
     }
   }
 
@@ -131,6 +154,7 @@ SliderRenderer.defaultProps = {
   onChange: undefined,
   percentage: undefined,
   step: 1,
+  stepRanges: [],
   tickNumbers: undefined,
   tickSymbols: undefined,
   value: 50
@@ -177,6 +201,10 @@ SliderRenderer.propTypes = {
    * Step of the slider.
    */
   step: PropTypes.number,
+  /**
+   * Array of step ranges containing the value and the range where the value is in the middle of its range.
+   */
+  stepRanges: PropTypes.array,
   /**
    * Numbers indicating the ticks of the slider.
    */
