@@ -15,7 +15,7 @@ import './slider-common.css';
  * @param {number} max maximum value of the range
  * @return {number} percentage of the value given
  */
-const getPercentage = (value, min, max) => (value - min) * ((max - min) / 100);
+const getPercentage = (value, min, max) => (Math.abs(value - min) / Math.abs(max - min)) * 100;
 
 /**
  * Creates a slider component, depending on the given type, it is either a single or multiple slider.
@@ -131,7 +131,7 @@ class Slider extends React.Component {
     });
 
     if (typeof this.props.onChange === 'function') {
-      this.props.onChange(e);
+      this.props.onChange(e, { min, max });
     }
   }
 
@@ -143,10 +143,9 @@ class Slider extends React.Component {
    * @return {number} shift in pixels from the left side of the slider
    */
   _getNumberShift(value, index, lastValueIndex) {
-    // get the value into percentage value and then convert to a decimal value
     const decimalValue = getPercentage(value, this.props.min, this.props.max) / 100;
     // TODO: how to get from styles?
-    const inputWidth = 166;
+    const inputWidth = 174;
     // TODO: how to get from styles?
     const numberWidth = 24;
     // by default, shift the number by half of the box's width

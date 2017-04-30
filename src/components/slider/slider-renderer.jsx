@@ -47,9 +47,10 @@ class SliderRenderer extends React.Component {
 
   /**
    * _updateValue - updates the state and calls the on change callback
+   * @param {object} event
    * @param {number} value the value of the new range
    */
-  _updateValue(value) {
+  _updateValue(event, value) {
     this.setState({
       value
     });
@@ -78,12 +79,12 @@ class SliderRenderer extends React.Component {
         if (valueInStepRange) {
           // TODO: change to debounce
           setTimeout(() => {
-            this._updateValue(step.value);
+            this._updateValue(event, step.value);
           }, 300);
         }
       });
     } else {
-      this._updateValue(value);
+      this._updateValue(event, value);
     }
   }
 

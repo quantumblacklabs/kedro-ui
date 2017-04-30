@@ -2,16 +2,62 @@ Single-handler slider component with minimum and maximum number of properties
 
 ```
 <section>
-    <Slider type='single' theme='light' label='Range Input' value={34} />
+    <div style={{ margin: '0 0 50px 0' }}>
+        <Slider />
+    </div>
+    <div style={{ margin: '0 0 0 0' }}>
+    <Slider
+        label='Stepped'
+        min={0}
+        max={100}
+        name='slider-step'
+        onChange={(e, payload) => { console.log('slider updated', e, payload) }}
+        step={20}
+        tickStep={20}
+        theme='light'
+        type='single'
+        value={40} />
+    </div>
 </section>
 ```
 
-Multi-ranged slider component with minimum and maximum number of properties
+Single-handler slider component with different min and max range
 
 ```
 <section>
-    <Slider type='multiple' theme='light' value={[0, 76]} />
-    <br />
-    <Slider type='multiple' theme='light' step={25} tickStep={25} label='Lable goes here' />
+    <Slider
+        label='Range of values'
+        min={100}
+        max={300}
+        name='slider-percentage'
+        onChange={(e, payload) => { console.log('slider updated', e, payload) }}
+        tickStep={50}
+        theme='light'
+        type='single'
+        value={150} />
+</section>
+```
+
+Multi-ranged slider component
+
+```
+<section>
+    <div style={{ margin: '0 0 80px 0' }}>
+        <Slider
+            type='multiple'
+            theme='light'
+            value={[33, 66]}
+            min={11}
+            max={222}
+            onChange={(e, payload) => { console.log('slider updated', e, payload) }} />
+    </div>
+    <div style={{ margin: '0 0 0 0' }}>
+        <Slider
+            type='multiple'
+            theme='light'
+            step={25}
+            tickStep={25}
+            label='Selected range of values' />
+    </div>
 </section>
 ```

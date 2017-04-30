@@ -22,8 +22,9 @@ $tick-symbol-top: 12px;
 $number-input-width: 27px;
 
 $label-number-margin: 18px;
-$label-single-margin-top: 6px;
+$label-single-margin-top: 3px;
 $label-single-width: 73px;
+$label-single-height: 20px;
 
 $hidden-elements-height: 1px;
 
@@ -83,6 +84,7 @@ $hidden-elements-height: 1px;
     @extend %type--body-1;
 
     width: $label-single-width;
+    height: $label-single-height;
     margin: $label-single-margin-top $label-number-margin 0 0;
   }
 }
