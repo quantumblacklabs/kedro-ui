@@ -22,11 +22,11 @@
 }
 
 .cbn-slider__input {
-  &.cbn-slider__input--bottom {
+  &.cbn-slider__input--min {
     position: absolute;
   }
 
-  &.cbn-slider__input--top {
+  &.cbn-slider__input--max {
     position: relative;
   }
 }
@@ -69,14 +69,14 @@
 }
 
 /** TRACK **/
-.cbn-slider__input--top::-webkit-slider-runnable-track {
+.cbn-slider__input--max::-webkit-slider-runnable-track {
   @mixin track;
 }
 
-.cbn-slider__input--top::-moz-range-track {
+.cbn-slider__input--max::-moz-range-track {
   @mixin track;
 }
 
-.cbn-slider__input--top::-ms-track {
+.cbn-slider__input--max::-ms-track {
   @mixin track;
 }

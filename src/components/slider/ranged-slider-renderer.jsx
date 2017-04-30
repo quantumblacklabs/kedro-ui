@@ -22,8 +22,8 @@ class RangedSliderRenderer extends React.Component {
       maxRange: this.props.value[1]
     };
 
-    this._handleTopChanged = this._handleTopChanged.bind(this);
-    this._handleBottomChanged = this._handleBottomChanged.bind(this);
+    this._handleMaxChanged = this._handleMaxChanged.bind(this);
+    this._handleMinChanged = this._handleMinChanged.bind(this);
   }
 
   /**
@@ -50,10 +50,10 @@ class RangedSliderRenderer extends React.Component {
   }
 
   /**
-   * _handleBottomChanged - updates the minimum range in the state and calls the onchange passed from props
+   * _handleMinChanged - updates the minimum range in the state and calls the onchange passed from props
    * @param  {object} event
    */
-  _handleBottomChanged(event) {
+  _handleMinChanged(event) {
     // check if the value is a number and parse it from the event
     let minRange = isNaN(parseFloat(event.target.value)) ? 0 : parseFloat(event.target.value);
     // if the value is out of range, set the min value as a new value
@@ -71,10 +71,10 @@ class RangedSliderRenderer extends React.Component {
   }
 
   /**
-   * _handleTopChanged - updates the maximum range in the state and calls the onchange passed from props
+   * _handleMaxChanged - updates the maximum range in the state and calls the onchange passed from props
    * @param  {object} event
    */
-  _handleTopChanged(event) {
+  _handleMaxChanged(event) {
     // check if the value is a number and parse it from the event
     let maxRange = isNaN(parseFloat(event.target.value)) ? 0 : parseFloat(event.target.value);
     // if the value is out of range, set the max value as a new value
@@ -132,7 +132,7 @@ class RangedSliderRenderer extends React.Component {
               'cbn-slider__number-input--multiple')}>
             <Input
               value={this.state.minRange.toString()}
-              onChange={this._handleBottomChanged} />
+              onChange={this._handleMinChanged} />
           </div>
           <div className='cbn-slider__box'>
             <div className='cbn-slider__ticks'>
@@ -146,7 +146,7 @@ class RangedSliderRenderer extends React.Component {
               className={classnames(
                 'cbn-slider__input',
                 'cbn-slider__input--multiple',
-                'cbn-slider__input--bottom'
+                'cbn-slider__input--min'
               )}
               type='range'
               name={this.props.name}
@@ -154,13 +154,13 @@ class RangedSliderRenderer extends React.Component {
               max={this.props.max}
               step={this.props.step}
               value={this.state.minRange}
-              onChange={this._handleBottomChanged}
+              onChange={this._handleMinChanged}
               multiple />
             <input
               className={classnames(
                 'cbn-slider__input',
                 'cbn-slider__input--multiple',
-                'cbn-slider__input--top'
+                'cbn-slider__input--max'
               )}
               type='range'
               list={this.props.listId}
@@ -169,7 +169,7 @@ class RangedSliderRenderer extends React.Component {
               max={this.props.max}
               step={this.props.step}
               value={this.state.maxRange}
-              onChange={this._handleTopChanged}
+              onChange={this._handleMaxChanged}
               multiple />
           </div>
           <div
@@ -179,7 +179,7 @@ class RangedSliderRenderer extends React.Component {
               'cbn-slider__number-input--multiple')}>
             <Input
               value={this.state.maxRange.toString()}
-              onChange={this._handleTopChanged} />
+              onChange={this._handleMaxChanged} />
           </div>
         </div>
       </div>
