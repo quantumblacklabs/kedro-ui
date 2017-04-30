@@ -17,7 +17,7 @@ $track-height: 2px;
 
 $tick-number-width: 24px;
 $tick-number-top: 38px;
-$tick-symbol-top: 11px;
+$tick-symbol-top: 12px;
 
 $number-input-width: 27px;
 
@@ -125,7 +125,7 @@ $hidden-elements-height: 1px;
 
 .cbn-slider__line {
   position: absolute;
-  top: calc(50% - $thumb-width / 2 - 1px);
+  top: calc(50% - $thumb-width / 2);
 
   /** slider's 0% will appear to be in thumb's center **/
   left: calc($thumb-width);
