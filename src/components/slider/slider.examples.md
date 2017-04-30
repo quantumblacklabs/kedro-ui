@@ -47,16 +47,18 @@ Multi-ranged slider component
             type='multiple'
             theme='light'
             value={[33, 66]}
-            min={11}
-            max={222}
+            min={10}
+            max={220}
             onChange={(e, payload) => { console.log('slider updated', e, payload) }} />
     </div>
     <div style={{ margin: '0 0 0 0' }}>
         <Slider
             type='multiple'
             theme='light'
-            step={25}
-            tickStep={25}
+            step={10}
+            tickStep={10}
+            min={0}
+            max={50}
             label='Selected range of values' />
     </div>
 </section>
