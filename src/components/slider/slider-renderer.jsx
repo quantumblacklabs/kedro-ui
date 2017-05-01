@@ -66,26 +66,19 @@ class SliderRenderer extends React.Component {
    * @param  {object} event
    */
   _handleChanged(event) {
+
+    const { min, max, step } = this.props;
     // check if the value is a number and parse it from the event
     let value = isNaN(parseFloat(event.target.value)) ? 0 : parseFloat(event.target.value);
     // if the value is out of range, set the max value as a new value
-    value = value > this.props.max ? this.props.max : value;
+    value = value > max ? max : value;
 
     // if the slider is set to be stepped, find the correct nearest step value
-    if (this.props.step !== 1 && event.target.value !== '') {
-      this.props.stepRanges.forEach(step => {
-        const valueInStepRange = step.range[0] <= value && value <= step.range[1];
+    const normalisedValue = (step !== 1 && event.target.value !== '')
+      ? Math.round(value / step) * step
+      : value;
 
-        if (valueInStepRange) {
-          // TODO: change to debounce
-          setTimeout(() => {
-            this._updateValue(event, step.value);
-          }, 300);
-        }
-      });
-    } else {
-      this._updateValue(event, value);
-    }
+    this._updateValue(event, normalisedValue);
   }
 
   /**
@@ -158,7 +151,6 @@ SliderRenderer.defaultProps = {
   onChange: undefined,
   percentage: undefined,
   step: 1,
-  stepRanges: [],
   tickNumbers: undefined,
   tickSymbols: undefined,
   value: 50
@@ -205,10 +197,6 @@ SliderRenderer.propTypes = {
    * Step of the slider.
    */
   step: PropTypes.number,
-  /**
-   * Array of step ranges containing the value and the range where the value is in the middle of its range.
-   */
-  stepRanges: PropTypes.array,
   /**
    * Numbers indicating the ticks of the slider.
    */
