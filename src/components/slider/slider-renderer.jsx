@@ -66,8 +66,7 @@ class SliderRenderer extends React.Component {
    * @param  {object} event
    */
   _handleChanged(event) {
-
-    const { min, max, step } = this.props;
+    const { max, step } = this.props;
     // check if the value is a number and parse it from the event
     let value = isNaN(parseFloat(event.target.value)) ? 0 : parseFloat(event.target.value);
     // if the value is out of range, set the max value as a new value
