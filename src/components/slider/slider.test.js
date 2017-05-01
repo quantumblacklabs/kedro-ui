@@ -65,12 +65,12 @@ test('RangedSliderRenderer should correctly render the values', () => {
   const wrapper = shallow(<RangedSliderRenderer value={values} />);
 
   wrapper
-    .find('.cbn-slider__input--bottom')
+    .find('.cbn-slider__input--min')
     .html()
     .includes(`value="${values[0]}"`);
 
   wrapper
-    .find('.cbn-slider__input--top')
+    .find('.cbn-slider__input--max')
     .html()
     .includes(`value="${values[1]}"`);
 });
