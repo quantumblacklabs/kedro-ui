@@ -236,7 +236,6 @@ class Slider extends React.Component {
           onChange={this._handleChanged}
           percentage={getPercentage}
           step={this.props.step}
-          stepRanges={this._getStepRanges()}
           theme={this.props.theme}
           tickNumbers={tickNumbers}
           tickSymbols={tickSymbols}
