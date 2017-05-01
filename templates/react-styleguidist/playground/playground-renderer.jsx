@@ -50,7 +50,7 @@ const PlaygroundRenderer = ({
     );
 
   return (
-    <div ref='playground' className='cbn-sg-playground'>
+    <div className='cbn-sg-playground'>
       <div
         className={classnames(
           'cbn-sg-playground__preview',
