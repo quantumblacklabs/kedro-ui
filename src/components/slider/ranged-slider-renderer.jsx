@@ -7,11 +7,11 @@ import Input from 'components/input';
 import './ranged-slider-renderer.css';
 
 /**
- * Creates a ranged slider component.
+ * Creates a ranged slider component consisting of two thumbs and two number inputs.
  */
 class RangedSliderRenderer extends React.Component {
   /**
-   * constructor - create new component with given props.
+   * constructor - create new component with given props
    * @param  {object} props
    */
   constructor(props) {
@@ -22,8 +22,8 @@ class RangedSliderRenderer extends React.Component {
       maxRange: this.props.value[1]
     };
 
-    this._handleTopChanged = this._handleTopChanged.bind(this);
-    this._handleBottomChanged = this._handleBottomChanged.bind(this);
+    this._handleMaxChanged = this._handleMaxChanged.bind(this);
+    this._handleMinChanged = this._handleMinChanged.bind(this);
   }
 
   /**
@@ -36,7 +36,7 @@ class RangedSliderRenderer extends React.Component {
 
     // fire the onchange with the range values
     if (typeof this.props.onChange === 'function') {
-      this.props.onChange(undefined, this.state.minRange, this.state.maxRange);
+      this.props.onChange(undefined, { min: this.state.minRange, max: this.state.maxRange });
     }
   }
 
@@ -50,34 +50,44 @@ class RangedSliderRenderer extends React.Component {
   }
 
   /**
-   * _handleBottomChanged -
+   * _handleMinChanged - updates the minimum range in the state and calls the onchange passed from props
    * @param  {object} event
    */
-  _handleBottomChanged(event) {
-    const minValue = isNaN(parseFloat(event.target.value)) ? 0 : parseFloat(event.target.value);
+  _handleMinChanged(event) {
+    // check if the value is a number and parse it from the event
+    let minRange = isNaN(parseFloat(event.target.value)) ? 0 : parseFloat(event.target.value);
+    // if the value is out of range, set the min value as a new value
+    minRange = minRange < this.props.min ? this.props.min : minRange;
+    // the min value cannot overlap the max value
+    minRange = minRange < this.state.maxRange ? minRange : this.state.maxRange;
 
     this.setState({
-      minRange: minValue < this.state.maxRange ? minValue : this.state.maxRange
+      minRange
     });
 
     if (typeof this.props.onChange === 'function') {
-      this.props.onChange(event, minValue, this.state.maxRange);
+      this.props.onChange(event, { min: minRange, max: this.state.maxRange });
     }
   }
 
   /**
-   * _handleTopChanged -
+   * _handleMaxChanged - updates the maximum range in the state and calls the onchange passed from props
    * @param  {object} event
    */
-  _handleTopChanged(event) {
-    const maxValue = isNaN(parseFloat(event.target.value)) ? 0 : parseFloat(event.target.value);
+  _handleMaxChanged(event) {
+    // check if the value is a number and parse it from the event
+    let maxRange = isNaN(parseFloat(event.target.value)) ? 0 : parseFloat(event.target.value);
+    // if the value is out of range, set the max value as a new value
+    maxRange = maxRange > this.props.max ? this.props.max : maxRange;
+    // the max value cannot overlap the min value
+    maxRange = this.state.minRange < maxRange ? maxRange : this.state.minRange;
 
     this.setState({
-      maxRange: this.state.minRange < maxValue ? maxValue : this.state.minRange
+      maxRange
     });
 
     if (typeof this.props.onChange === 'function') {
-      this.props.onChange(event, this.state.minRange, maxValue);
+      this.props.onChange(event, { min: this.state.minRange, max: maxRange });
     }
   }
 
@@ -85,20 +95,16 @@ class RangedSliderRenderer extends React.Component {
    * _updatePercentage - injects the CSS variables into the child to correctly update the input
    */
   _updatePercentage() {
+    const min = this.props.min;
+    const max = this.props.max;
+
     this._lineFilled.style.setProperty('background', `
       linear-gradient(to right,
-      ${this.props.backgroundColor} ${this._getPercentage(this.state.minRange)}%,
+      ${this.props.backgroundColor} ${this.props.percentage(this.state.minRange, min, max)}%,
       ${this.props.fillColor} 0,
-      ${this.props.fillColor} ${this._getPercentage(this.state.maxRange)}%,
+      ${this.props.fillColor} ${this.props.percentage(this.state.maxRange, min, max)}%,
       ${this.props.backgroundColor} 0)
     `);
-  }
-
-  /**
-   * _getPercentage - calculate the percentage of the range
-   */
-  _getPercentage(value) {
-    return value * ((this.props.max - this.props.min) / 100);
   }
 
   /**
@@ -126,21 +132,21 @@ class RangedSliderRenderer extends React.Component {
               'cbn-slider__number-input--multiple')}>
             <Input
               value={this.state.minRange.toString()}
-              onChange={this._handleBottomChanged} />
+              onChange={this._handleMinChanged} />
           </div>
           <div className='cbn-slider__box'>
-            <div className='cbn-slider__track-line'>
-              <div
-                ref={lineFilled => { this._lineFilled = lineFilled; }}
-                className='cbn-slider__line' />
+            <div className='cbn-slider__ticks'>
+              {this.props.tickNumbers}
               {this.props.tickSymbols}
             </div>
-            {this.props.tickNumbers}
+            <div
+              ref={lineFilled => { this._lineFilled = lineFilled; }}
+              className='cbn-slider__line' />
             <input
               className={classnames(
                 'cbn-slider__input',
                 'cbn-slider__input--multiple',
-                'cbn-slider__input--bottom'
+                'cbn-slider__input--min'
               )}
               type='range'
               name={this.props.name}
@@ -148,13 +154,13 @@ class RangedSliderRenderer extends React.Component {
               max={this.props.max}
               step={this.props.step}
               value={this.state.minRange}
-              onChange={this._handleBottomChanged}
+              onChange={this._handleMinChanged}
               multiple />
             <input
               className={classnames(
                 'cbn-slider__input',
                 'cbn-slider__input--multiple',
-                'cbn-slider__input--top'
+                'cbn-slider__input--max'
               )}
               type='range'
               list={this.props.listId}
@@ -163,7 +169,7 @@ class RangedSliderRenderer extends React.Component {
               max={this.props.max}
               step={this.props.step}
               value={this.state.maxRange}
-              onChange={this._handleTopChanged}
+              onChange={this._handleMaxChanged}
               multiple />
           </div>
           <div
@@ -173,7 +179,7 @@ class RangedSliderRenderer extends React.Component {
               'cbn-slider__number-input--multiple')}>
             <Input
               value={this.state.maxRange.toString()}
-              onChange={this._handleTopChanged} />
+              onChange={this._handleMaxChanged} />
           </div>
         </div>
       </div>
@@ -190,6 +196,7 @@ RangedSliderRenderer.defaultProps = {
   min: 0,
   name: 'slider',
   onChange: null,
+  percentage: undefined,
   step: 1,
   tickNumbers: undefined,
   tickSymbols: undefined,
@@ -222,15 +229,17 @@ RangedSliderRenderer.propTypes = {
    */
   max: PropTypes.number,
   /**
-   * Name of the slider.
-   * NOTE: SHOULD THE NAME BE INCLUDED? OR BE REMOVED?
-   * FROM MDN: "The name of the control, which is submitted with the form data."
+   * Name of the slider, which is submitted with form data.
    */
   name: PropTypes.string,
   /**
    * Event listener which will be trigerred on change of the slider.
    */
   onChange: PropTypes.func,
+  /**
+   * Function that calculates the percentage value of slider's range for given number.
+   */
+  percentage: PropTypes.func,
   /**
    * Step of the slider.
    */

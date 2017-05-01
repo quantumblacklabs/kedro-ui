@@ -9,11 +9,20 @@ import RangedSliderRenderer from './ranged-slider-renderer';
 import './slider-common.css';
 
 /**
- * Creates a slider component.
+ * getPercentage - calculate the percentage of the given value
+ * @param {number} value the value to be calculated the percentage for
+ * @param {number} min minimum value of the range
+ * @param {number} max maximum value of the range
+ * @return {number} percentage of the value given
+ */
+const getPercentage = (value, min, max) => (Math.abs(value - min) / Math.abs(max - min)) * 100;
+
+/**
+ * Creates a slider component, depending on the given type, it is either a single or multiple slider.
  */
 class Slider extends React.Component {
   /**
-   * constructor - create new component with given props.
+   * constructor - create new component with given props
    * @param  {object} props
    */
   constructor(props) {
@@ -57,34 +66,72 @@ class Slider extends React.Component {
   }
 
   /**
-   * _getTicks -
+   * _getTickValues - creates an array of tick values, including the first and last value of the range
+   * @return {array} arrya of tick values
    */
-  _getTicks(min, max) {
+  _getTickValues() {
     const tickStep = this.props.tickStep ? this.props.tickStep : this.props.max;
     // create a range of values
     const tickValues = rangeStep(tickStep, this.props.min, this.props.max);
     // and add the max into the array
     tickValues.push(this.props.max);
 
-    // create an array with all the ticks, where value and whether it should be specially coloured is stored
-    return tickValues.map(tickValue => (
-      {
-        range: min <= tickValue && tickValue <= max,
-        value: tickValue
-      }
+    return tickValues;
+  }
+
+  /**
+   * _getTicks - creates the ticks from which the value, colour and step range is rendered
+   * @param {number} min minimum value of the selected range
+   * @param {number} max maximum value of the selected range
+   * @return {array} tick values including the value, colour and step range
+   */
+  _getTicks(min, max) {
+    return this._getTickValues()
+      .map(tickValue => (
+        {
+          range: min <= tickValue && tickValue <= max,
+          value: tickValue
+        }
     ));
   }
 
   /**
-   * _handleChanged -
+   * _getStepRanges - calculate the range for each step - step is the middle value of the calculated range
+   * @return {array} array of objects where value and range is defined
    */
-  _handleChanged(e, min, max) {
+  _getStepRanges() {
+    const min = this.props.min;
+    const max = this.props.max;
+    const step = this.props.step;
+
+    return this._getTickValues()
+      .map(value => {
+        let range = [value - (step / 2), value + (step / 2)];
+
+        if (value === min) {
+          range = [min, min + (step / 2)];
+        }
+
+        if (value === max) {
+          range = [max - (step / 2), max];
+        }
+
+        return { value, range };
+      });
+  }
+
+  /**
+   * _handleChanged - updates the ticks and calls the change passed in props
+   * @param  {object} event
+   * @param  {object} payload min and max values selected in the slider
+   */
+  _handleChanged(e, { min, max }) {
     this.setState({
       ticks: this._getTicks(min, max)
     });
 
     if (typeof this.props.onChange === 'function') {
-      this.props.onChange(e);
+      this.props.onChange(e, { min, max });
     }
   }
 
@@ -96,10 +143,9 @@ class Slider extends React.Component {
    * @return {number} shift in pixels from the left side of the slider
    */
   _getNumberShift(value, index, lastValueIndex) {
-    // get the value into percentage value and then convert to a decimal value
-    const decimalValue = (value * ((this.props.max - this.props.min) / 100)) / 100;
+    const decimalValue = getPercentage(value, this.props.min, this.props.max) / 100;
     // TODO: how to get from styles?
-    const inputWidth = 166;
+    const inputWidth = 174;
     // TODO: how to get from styles?
     const numberWidth = 24;
     // by default, shift the number by half of the box's width
@@ -188,7 +234,9 @@ class Slider extends React.Component {
           max={this.props.max}
           name={this.props.name}
           onChange={this._handleChanged}
+          percentage={getPercentage}
           step={this.props.step}
+          stepRanges={this._getStepRanges()}
           theme={this.props.theme}
           tickNumbers={tickNumbers}
           tickSymbols={tickSymbols}
@@ -227,9 +275,7 @@ Slider.propTypes = {
    */
   max: PropTypes.number,
   /**
-   * Name of the slider.
-   * NOTE: SHOULD THE NAME BE INCLUDED? OR BE REMOVED?
-   * FROM MDN: "The name of the control, which is submitted with the form data."
+   * Name of the slider, which is submitted with form data.
    */
   name: PropTypes.string,
   /**

@@ -5,11 +5,11 @@ import classnames from 'classnames';
 import Input from 'components/input';
 
 /**
- * Creates a single slider component.
+ * Creates a single slider component consisting of single thumb and number input.
  */
 class SliderRenderer extends React.Component {
   /**
-   * constructor - create new component with given props.
+   * constructor - create new component with given props
    * @param  {object} props
    */
   constructor(props) {
@@ -32,7 +32,7 @@ class SliderRenderer extends React.Component {
 
     // fire the onchange with the range values
     if (typeof this.props.onChange === 'function') {
-      this.props.onChange(undefined, 0, this.state.value);
+      this.props.onChange(undefined, { min: 0, max: this.state.value });
     }
   }
 
@@ -46,39 +46,59 @@ class SliderRenderer extends React.Component {
   }
 
   /**
-   * _handleChanged - updates the state with the value from the slider and triggers the passed on change callback.
-   * @param  {object} event
+   * _updateValue - updates the state and calls the on change callback
+   * @param {object} event
+   * @param {number} value the value of the new range
    */
-  _handleChanged(event) {
-    const value = isNaN(parseFloat(event.target.value)) ? 0 : parseFloat(event.target.value);
-
+  _updateValue(event, value) {
     this.setState({
       value
     });
 
     if (typeof this.props.onChange === 'function') {
-      this.props.onChange(event, 0, value);
+      this.props.onChange(event, { min: 0, max: value });
     }
   }
 
   /**
-   * _updatePercentage - injects the CSS variables into the child to correctly update the input
+   * _handleChanged - updates the state with the new value;
+   * If slider is stepped, it changes the value to the correct one and then calls the update
+   * @param  {object} event
+   */
+  _handleChanged(event) {
+    // check if the value is a number and parse it from the event
+    let value = isNaN(parseFloat(event.target.value)) ? 0 : parseFloat(event.target.value);
+    // if the value is out of range, set the max value as a new value
+    value = value > this.props.max ? this.props.max : value;
+
+    // if the slider is set to be stepped, find the correct nearest step value
+    if (this.props.step !== 1 && event.target.value !== '') {
+      this.props.stepRanges.forEach(step => {
+        const valueInStepRange = step.range[0] <= value && value <= step.range[1];
+
+        if (valueInStepRange) {
+          // TODO: change to debounce
+          setTimeout(() => {
+            this._updateValue(event, step.value);
+          }, 300);
+        }
+      });
+    } else {
+      this._updateValue(event, value);
+    }
+  }
+
+  /**
+   * _updatePercentage - injects the CSS variables into the child to correctly update the input track
    */
   _updatePercentage() {
     this._lineFilled.style.setProperty('background', `
       linear-gradient(to right,
       ${this.props.backgroundColor} 0,
       ${this.props.fillColor} 0,
-      ${this.props.fillColor} ${this._getPercentage()}%,
+      ${this.props.fillColor} ${this.props.percentage(this.state.value, this.props.min, this.props.max)}%,
       ${this.props.backgroundColor} 0)
      `);
-  }
-
-  /**
-   * _getPercentage - calculate the percentage of the range
-   */
-  _getPercentage() {
-    return this.state.value * ((this.props.max - this.props.min) / 100);
   }
 
   /**
@@ -96,13 +116,13 @@ class SliderRenderer extends React.Component {
           {this.props.label}
         </div>
         <div className='cbn-slider__box'>
-          <div className='cbn-slider__track-line'>
-            <div
-              ref={lineFilled => { this._lineFilled = lineFilled; }}
-              className='cbn-slider__line' />
+          <div className='cbn-slider__ticks'>
             {this.props.tickSymbols}
+            {this.props.tickNumbers}
           </div>
-          {this.props.tickNumbers}
+          <div
+            ref={lineFilled => { this._lineFilled = lineFilled; }}
+            className='cbn-slider__line' />
           <input
             className='cbn-slider__input'
             type='range'
@@ -136,7 +156,9 @@ SliderRenderer.defaultProps = {
   min: 0,
   name: 'slider',
   onChange: undefined,
+  percentage: undefined,
   step: 1,
+  stepRanges: [],
   tickNumbers: undefined,
   tickSymbols: undefined,
   value: 50
@@ -168,9 +190,7 @@ SliderRenderer.propTypes = {
    */
   max: PropTypes.number,
   /**
-   * Name of the slider.
-   * NOTE: SHOULD THE NAME BE INCLUDED? OR BE REMOVED?
-   * FROM MDN: "The name of the control, which is submitted with the form data."
+   * Name of the slider, which is submitted with form data.
    */
   name: PropTypes.string,
   /**
@@ -178,9 +198,17 @@ SliderRenderer.propTypes = {
    */
   onChange: PropTypes.func,
   /**
+   * Function that calculates the percentage value of slider's range for given number.
+   */
+  percentage: PropTypes.func,
+  /**
    * Step of the slider.
    */
   step: PropTypes.number,
+  /**
+   * Array of step ranges containing the value and the range where the value is in the middle of its range.
+   */
+  stepRanges: PropTypes.array,
   /**
    * Numbers indicating the ticks of the slider.
    */
