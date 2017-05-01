@@ -1,6 +1,6 @@
 {
   "name": "@quantumblack/carbon-ui-components",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "description": "Carbon UI Components",
   "main": "dist/index.min.js",
   "scripts": {
@@ -119,7 +119,7 @@
   "devDependencies": {
     "ava": "^0.17.0",
     "browser-env": "^2.0.21",
-    "enzyme": "^2.8.1",
+    "enzyme": "^2.8.2",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^14.0.0",
     "eslint-plugin-import": "^2.2.0",
