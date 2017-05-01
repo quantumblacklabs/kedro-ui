@@ -8,6 +8,7 @@ import MenuOption from 'components/menu-option';
 import RadioButton from 'components/radio-button';
 import SearchBar from 'components/search-bar';
 import SearchResults from 'components/search-results';
+import Slider from 'components/slider';
 import Tabs from 'components/tabs';
 import Toggle from 'components/toggle';
 import { Tooltip, TooltipTrigger } from 'components/tooltip';
@@ -25,6 +26,7 @@ module.exports = {
   RadioButton,
   SearchBar,
   SearchResults,
+  Slider,
   Toggle,
   Tabs,
   Tooltip,
