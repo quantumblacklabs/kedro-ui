@@ -1,5 +1,3 @@
-## Tooltip Component Demos
-
 Basic Tooltip component use
 ```
 <Tooltip show={true}>
@@ -37,8 +35,8 @@ class MyComponent extends React.Component {
   render() {
     return (
       <Dropdown {...this.props}>
-        <MenuOption primaryText='Menu Item One' value={ 1 } />
-        <MenuOption primaryText='Menu Item Two' value={ 2 } />
+        <MenuOption primaryText='Menu Item One' value={1} />
+        <MenuOption primaryText='Menu Item Two' value={2} />
       </Dropdown>
     );
   }
@@ -49,9 +47,9 @@ const DropDownTTTrigger = TooltipTrigger(MyComponent);
 <div>
   <DropDownTTTrigger
     theme='light'
-    onOpened={ null }
-    onClosed={ null }
-    onChanged={ null }
+    onOpened={null}
+    onClosed={null}
+    onChanged={null}
     displayDirection='top'
     tooltipId={id}/>
   <Tooltip tooltipId={id} width='150px' show={true}>
