@@ -43,6 +43,7 @@ themes:
     radiobutton:
       default: rgba(0, 0, 0, 0.55)
       disabled: rgba(0, 0, 0, 0.35)
+      focus: rgba(0, 0, 0, 0.2)
     slider:
       default: rgb(212, 213, 214)
       label: rgba(0, 0, 0, 0.85)
@@ -117,6 +118,7 @@ themes:
     radiobutton:
       default: rgba(255, 255, 255, 0.55)
       disabled: rgba(255, 255, 255, 0.35)
+      focus: rgba(255, 255, 255, 0.2)
     slider:
       default: rgb(96, 110, 117)
       label: rgba(255, 255, 255, 0.85)

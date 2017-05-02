@@ -23,6 +23,7 @@ $size-radio-button-spacing: 14px;
 
   border: 2px solid;
   border-radius: 50%;
+  transition: all 0.3s;
 
   &::before {
     @mixin themedParent background, radiobutton, default;
@@ -44,6 +45,16 @@ $size-radio-button-spacing: 14px;
     transform: translate(-50%, -50%);
 
     transition: all 0.3s;
+  }
+
+  .cbn-switch__input:focus + .cbn-switch-radio__label & {
+    .cbn-theme--light & {
+      box-shadow: 0 0 0 3px map(themes, light, radiobutton, focus);
+    }
+
+    .cbn-theme--dark & {
+      box-shadow: 0 0 0 3px map(themes, dark, radiobutton, focus);
+    }
   }
 
   .cbn-switch__input:checked + .cbn-switch-radio__label & {
