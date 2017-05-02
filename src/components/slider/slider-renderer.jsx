@@ -74,7 +74,7 @@ class SliderRenderer extends React.Component {
 
     // if the slider is set to be stepped, find the correct nearest step value
     const normalisedValue = (step !== 1 && event.target.value !== '')
-      ? (min % step) + Math.floor(value / step) * step
+      ? (min % step) + (Math.floor(value / step) * step)
       : value;
 
     this._updateValue(event, normalisedValue);
