@@ -1,4 +1,5 @@
 @import 'mixins/breakpoint';
 @import 'mixins/clearfix';
 @import 'mixins/font-size';
+@import 'mixins/hidden';
 @import 'mixins/themes';
