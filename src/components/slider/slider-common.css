@@ -265,24 +265,12 @@ $hidden-elements-height: 1px;
   &--fill {
     height: $hidden-elements-height;
 
-    .cbn-theme--dark & {
-      @mixin themedParent background, slider, thumbBorder;
-    }
-
-    .cbn-theme--light & {
-      @mixin themedParent background, slider, thumbBorder;
-    }
+    @mixin themed background, slider, thumbBorder;
   }
 
   &--background {
     height: $hidden-elements-height;
 
-    .cbn-theme--dark & {
-      @mixin themedParent background, slider, default;
-    }
-
-    .cbn-theme--light & {
-      @mixin themedParent background, slider, default;
-    }
+    @mixin themed background, slider, default;
   }
 }

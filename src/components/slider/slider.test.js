@@ -25,13 +25,15 @@ test('Slider of type multiple should correctly call RangedSliderRenderer', () =>
 test('Slider should correctly have light theme class', t => {
   const wrapper = shallow(<Slider theme='light' />);
 
-  t.true(wrapper.find('.cbn-theme--light').length === 1);
+  t.true(wrapper.find('.cbn-theme--light').length > 1);
+  t.true(wrapper.find('.cbn-theme--dark').length === 0);
 });
 
 test('Slider should correctly have dark theme class', t => {
   const wrapper = shallow(<Slider theme='dark' />);
 
-  t.true(wrapper.find('.cbn-theme--dark').length === 1);
+  t.true(wrapper.find('.cbn-theme--dark').length > 1);
+  t.true(wrapper.find('.cbn-theme--light').length === 0);
 });
 
 /* SINGLE SLIDER RENDERER */
