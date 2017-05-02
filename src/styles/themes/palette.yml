@@ -35,7 +35,7 @@ themes:
       wrapper: rgba(0, 0, 0, 0.12)
     button:
       active: rgba(0, 0, 0, 0.85)
-      focus: rgba(0, 0, 0, 0.12)
+      focus: rgba(0, 0, 0, 0.25)
       outline: rgb(0, 0, 0)
       textHover: rgba(255, 255, 255, 0.85)
     checkbox:
@@ -109,7 +109,7 @@ themes:
       wrapper: rgba(0, 0, 0, 0)
     button:
       active: rgba(255, 255, 255, 0.85)
-      focus: rgba(255, 255, 255, 0.12)
+      focus: rgba(255, 255, 255, 0.25)
       outline: rgb(255, 255, 255)
       textHover: rgba(0, 0, 0, 0.85)
     checkbox:
