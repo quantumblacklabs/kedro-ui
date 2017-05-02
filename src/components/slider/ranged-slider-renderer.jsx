@@ -62,7 +62,8 @@ class RangedSliderRenderer extends React.Component {
     minRange = minRange < this.state.maxRange ? minRange : this.state.maxRange;
 
     this.setState({
-      minRange
+      minRange,
+      maxRangeDisabled: (minRange === this.state.maxRange) && (this.state.maxRange === this.props.max)
     });
 
     if (typeof this.props.onChange === 'function') {
@@ -160,7 +161,8 @@ class RangedSliderRenderer extends React.Component {
               className={classnames(
                 'cbn-slider__input',
                 'cbn-slider__input--multiple',
-                'cbn-slider__input--max'
+                'cbn-slider__input--max',
+                { 'cbn-slider__input--max-disabled': this.state.maxRangeDisabled }
               )}
               type='range'
               list={this.props.listId}
