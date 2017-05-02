@@ -9,16 +9,6 @@
   pointer-events: all;
 }
 
-@define-mixin track {
-  pointer-events: all;
-}
-
-/** Thumb for maximum is disabled when both thumbs are at maximum value --
-    the minimum has to change first and it is below the maximum, so this allows to move only the min thumb **/
-@define-mixin disabled-max-thumb {
-  pointer-events: none;
-}
-
 /** Implementation **/
 
 .cbn-slider__wrapper {
@@ -74,28 +64,30 @@
   @mixin thumb;
 }
 
-/** MAX THUMB - DISABLED **/
+/** MAX THUMB - DISABLED
+    maximum is disabled when both thumbs are at maximum value --
+    the minimum has to change first and it is below the maximum, so this allows to move only the min thumb **/
 .cbn-slider__input--max-disabled::-webkit-slider-thumb {
-  @mixin disabled-max-thumb;
+  pointer-events: none;
 }
 
 .cbn-slider__input--max-disabled::-moz-range-thumb {
-  @mixin disabled-max-thumb;
+  pointer-events: none;
 }
 
 .cbn-slider__input--max-disabled::-ms-thumb {
-  @mixin disabled-max-thumb;
+  pointer-events: none;
 }
 
 /** TRACK **/
 .cbn-slider__input--max::-webkit-slider-runnable-track {
-  @mixin track;
+  pointer-events: all;
 }
 
 .cbn-slider__input--max::-moz-range-track {
-  @mixin track;
+  pointer-events: all;
 }
 
 .cbn-slider__input--max::-ms-track {
-  @mixin track;
+  pointer-events: all;
 }
