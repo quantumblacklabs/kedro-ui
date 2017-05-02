@@ -66,7 +66,7 @@ class SliderRenderer extends React.Component {
    * @param  {object} event
    */
   _handleChanged(event) {
-    const { max, step } = this.props;
+    const { max, min, step } = this.props;
     // check if the value is a number and parse it from the event
     let value = isNaN(parseFloat(event.target.value)) ? 0 : parseFloat(event.target.value);
     // if the value is out of range, set the max value as a new value
@@ -74,7 +74,7 @@ class SliderRenderer extends React.Component {
 
     // if the slider is set to be stepped, find the correct nearest step value
     const normalisedValue = (step !== 1 && event.target.value !== '')
-      ? Math.round(value / step) * step
+      ? (min % step) + Math.floor(value / step) * step
       : value;
 
     this._updateValue(event, normalisedValue);
