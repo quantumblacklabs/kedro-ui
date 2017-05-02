@@ -168,14 +168,14 @@ class Slider extends React.Component {
    * @return {object} JSX for this component
    */
   render() {
-    const hiddenElements = !this.state.colors && (
+    const hiddenElements = (
       <div className='cbn-slider__hidden'>
         <div
           ref={hiddenFill => { this._hiddenFill = hiddenFill; }}
-          className='cbn-slider__hidden--fill' />
+          className={classnames('cbn-slider__hidden--fill', `cbn-theme--${this.props.theme}`)} />
         <div
           ref={hiddenBackground => { this._hiddenBackground = hiddenBackground; }}
-          className='cbn-slider__hidden--background' />
+          className={classnames('cbn-slider__hidden--background', `cbn-theme--${this.props.theme}`)} />
       </div>
     );
 
