@@ -96,31 +96,6 @@ class Slider extends React.Component {
   }
 
   /**
-   * _getStepRanges - calculate the range for each step - step is the middle value of the calculated range
-   * @return {array} array of objects where value and range is defined
-   */
-  _getStepRanges() {
-    const min = this.props.min;
-    const max = this.props.max;
-    const step = this.props.step;
-
-    return this._getTickValues()
-      .map(value => {
-        let range = [value - (step / 2), value + (step / 2)];
-
-        if (value === min) {
-          range = [min, min + (step / 2)];
-        }
-
-        if (value === max) {
-          range = [max - (step / 2), max];
-        }
-
-        return { value, range };
-      });
-  }
-
-  /**
    * _handleChanged - updates the ticks and calls the change passed in props
    * @param  {object} event
    * @param  {object} payload min and max values selected in the slider
