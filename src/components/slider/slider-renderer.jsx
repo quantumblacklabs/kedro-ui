@@ -20,6 +20,7 @@ class SliderRenderer extends React.Component {
     };
 
     this._handleChanged = this._handleChanged.bind(this);
+    this._handleBlured = this._handleBlured.bind(this);
   }
 
   /**
@@ -61,21 +62,36 @@ class SliderRenderer extends React.Component {
   }
 
   /**
-   * _handleChanged - updates the state with the new value;
-   * If slider is stepped, it changes the value to the correct one and then calls the update
+   * _handleChanged - updates the state with the new value from the slider
    * @param  {object} event
    */
   _handleChanged(event) {
+    // check if the value is a number and parse it from the event
+    const value = isNaN(parseFloat(event.target.value)) ? 0 : parseFloat(event.target.value);
+
+    this._updateValue(event, value);
+  }
+
+  /**
+   * _handleFocused - updates the state with the new value from the input field;
+   * If slider is stepped, it changes the value to the correct one and then calls the update
+   * @param  {object} event
+   */
+  _handleBlured(event, { value }) {
     const { max, min, step } = this.props;
     // check if the value is a number and parse it from the event
-    let value = isNaN(parseFloat(event.target.value)) ? 0 : parseFloat(event.target.value);
-    // if the value is out of range, set the max value as a new value
-    value = value > max ? max : value;
+    let inputValue = isNaN(parseFloat(value)) ? 0 : parseFloat(value);
+    // if the value is out of range, set the max or min value as the new value
+    if (inputValue > max) {
+      inputValue = max;
+    } else if (inputValue < min) {
+      inputValue = min;
+    }
 
     // if the slider is set to be stepped, find the correct nearest step value
     const normalisedValue = (step !== 1 && event.target.value !== '')
-      ? (min % step) + (Math.floor(value / step) * step)
-      : value;
+      ? (min % step) + (Math.round(inputValue / step) * step)
+      : inputValue;
 
     this._updateValue(event, normalisedValue);
   }
@@ -99,6 +115,8 @@ class SliderRenderer extends React.Component {
    * @return {object} JSX for this component
    */
   render() {
+    console.log('inputted value - ', this.state.value);
+
     return (
       <div className='cbn-slider__wrapper'>
         <div
@@ -132,7 +150,7 @@ class SliderRenderer extends React.Component {
             'cbn-slider__number-input--single')}>
           <Input
             value={this.state.value.toString()}
-            onChange={this._handleChanged} />
+            onBlur={this._handleBlured} />
         </div>
       </div>
     );
