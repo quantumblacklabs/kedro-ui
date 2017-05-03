@@ -6,6 +6,8 @@
 
 $wrapper-width: 310px;
 
+$slider-height: 32px;
+
 $input-width: 174px;
 $input-height: 24px;
 
@@ -24,7 +26,6 @@ $number-input-width: 27px;
 $label-number-margin: 18px;
 $label-single-margin-top: 3px;
 $label-single-width: 73px;
-$label-single-height: 20px;
 
 $hidden-elements-height: 1px;
 
@@ -84,7 +85,6 @@ $hidden-elements-height: 1px;
     @extend %type--body-1;
 
     width: $label-single-width;
-    height: $label-single-height;
     margin: $label-single-margin-top $label-number-margin 0 0;
   }
 }
@@ -123,6 +123,7 @@ $hidden-elements-height: 1px;
   position: relative;
 
   width: $input-width;
+  height: $slider-height;
 }
 
 .cbn-slider__line {

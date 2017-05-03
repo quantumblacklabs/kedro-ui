@@ -199,7 +199,8 @@ class Slider extends React.Component {
         className={classnames(
           'cbn-slider',
           `cbn-slider--${this.props.type}`,
-          `cbn-theme--${this.props.theme}`)}>
+          `cbn-theme--${this.props.theme}`,
+          { 'cbn-slider--stepped': this.props.step !== 1 })}>
         <RendererType
           backgroundColor={this.state.colors ? this.state.colors.background : 'transparent'}
           fillColor={this.state.colors ? this.state.colors.fill : 'transparent'}

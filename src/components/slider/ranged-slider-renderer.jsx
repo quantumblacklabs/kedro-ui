@@ -24,6 +24,11 @@ class RangedSliderRenderer extends React.Component {
 
     this._handleMaxChanged = this._handleMaxChanged.bind(this);
     this._handleMinChanged = this._handleMinChanged.bind(this);
+
+    this._handleMaxBlured = this._handleMaxBlured.bind(this);
+    this._handleMinBlured = this._handleMinBlured.bind(this);
+
+    this._updateMinValue = this._updateMinValue.bind(this);
   }
 
   /**
@@ -50,24 +55,102 @@ class RangedSliderRenderer extends React.Component {
   }
 
   /**
-   * _handleMinChanged - updates the minimum range in the state and calls the onchange passed from props
-   * @param  {object} event
+   * _handleMinChanged - checks whether the passed minimum value is not greater than max and larger than min in props
+   * @param  {number} value value taken from the slider or number input which needs to be checked before updating state
+   * @return {number} updated value - new correct minimum value
    */
-  _handleMinChanged(event) {
+  _checkMinValue(value) {
     // check if the value is a number and parse it from the event
-    let minRange = isNaN(parseFloat(event.target.value)) ? 0 : parseFloat(event.target.value);
+    let minRange = isNaN(parseFloat(value)) ? 0 : parseFloat(value);
     // if the value is out of range, set the min value as a new value
     minRange = minRange < this.props.min ? this.props.min : minRange;
     // the min value cannot overlap the max value
     minRange = minRange < this.state.maxRange ? minRange : this.state.maxRange;
 
+    return minRange;
+  }
+
+  /**
+   * _handleMinChanged - checks whether the passed maximum value is not smaller than min and smaller than max in props
+   * @param  {number} value value taken from the slider or number input which needs to be checked before updating state
+   * @return {number} updated value - new correct maximum value
+   */
+  _checkMaxValue(value) {
+    // check if the value is a number and parse it from the event
+    let maxRange = isNaN(parseFloat(value)) ? 0 : parseFloat(value);
+    // if the value is out of range, set the max value as a new value
+    maxRange = maxRange > this.props.max ? this.props.max : maxRange;
+    // the max value cannot overlap the min value
+    maxRange = this.state.minRange < maxRange ? maxRange : this.state.minRange;
+
+    return maxRange;
+  }
+
+  /**
+   * _updateMinValue - updates the state with new minimum value of minRange and maxRangeDisabled
+   * @param  {number} value new minimum value
+   */
+  _updateMinValue(value) {
     this.setState({
-      minRange,
-      maxRangeDisabled: (minRange === this.state.maxRange) && (this.state.maxRange === this.props.max)
+      minRange: value,
+      maxRangeDisabled: (value === this.state.maxRange) && (this.state.maxRange === this.props.max)
     });
+  }
+
+  /**
+   * _handleMinChanged - gets the minimum range value and updates the state and calls the onchange passed from props
+   * @param  {object} event
+   */
+  _handleMinBlured(event, { value }) {
+    const { min, step } = this.props;
+    const minRange = this._checkMinValue(value);
+
+    // if the slider is set to be stepped, find the correct nearest step value
+    const normalisedValue = (step !== 1 && event.target.value !== '')
+      ? (min % step) + (Math.round(minRange / step) * step)
+      : minRange;
+
+    this._updateMinValue(normalisedValue);
+
+    // NOTE: should this be triggered?? from the slider's point of view, the value changed
+    if (typeof this.props.onChange === 'function') {
+      this.props.onChange(event, { min: normalisedValue, max: this.state.maxRange });
+    }
+  }
+
+  /**
+   * _handleMinChanged - updates the minimum range in the state and calls the onchange passed from props
+   * @param  {object} event
+   */
+  _handleMinChanged(event) {
+    const minRange = this._checkMinValue(event.target.value);
+
+    this._updateMinValue(minRange);
 
     if (typeof this.props.onChange === 'function') {
       this.props.onChange(event, { min: minRange, max: this.state.maxRange });
+    }
+  }
+
+  /**
+   * _handleMaxBlured - gets the maximum range value in the state and calls the onchange passed from props
+   * @param  {object} event
+   */
+  _handleMaxBlured(event) {
+    const { min, step } = this.props;
+    const maxRange = this._checkMaxValue(event.target.value);
+
+    // if the slider is set to be stepped, find the correct nearest step value
+    const normalisedValue = (step !== 1 && event.target.value !== '')
+      ? (min % step) + (Math.round(maxRange / step) * step)
+      : maxRange;
+
+    this.setState({
+      maxRange: normalisedValue
+    });
+
+    if (typeof this.props.onChange === 'function') {
+      this.props.onChange(event, { min: this.state.minRange, max: normalisedValue });
     }
   }
 
@@ -76,12 +159,7 @@ class RangedSliderRenderer extends React.Component {
    * @param  {object} event
    */
   _handleMaxChanged(event) {
-    // check if the value is a number and parse it from the event
-    let maxRange = isNaN(parseFloat(event.target.value)) ? 0 : parseFloat(event.target.value);
-    // if the value is out of range, set the max value as a new value
-    maxRange = maxRange > this.props.max ? this.props.max : maxRange;
-    // the max value cannot overlap the min value
-    maxRange = this.state.minRange < maxRange ? maxRange : this.state.minRange;
+    const maxRange = this._checkMaxValue(event.target.value);
 
     this.setState({
       maxRange
@@ -114,17 +192,21 @@ class RangedSliderRenderer extends React.Component {
    * @return {object} JSX for this component
    */
   render() {
+    const sliderLabel = this.props.label && (
+      <div
+        className={classnames(
+          'cbn-slider__label',
+          'cbn-slider__label--multiple')}>
+        {this.props.label}
+      </div>
+    );
+
     return (
       <div
         className={classnames(
           'cbn-slider__wrapper',
           'cbn-slider__wrapper--multiple')}>
-        <div
-          className={classnames(
-            'cbn-slider__label',
-            'cbn-slider__label--multiple')}>
-          {this.props.label}
-        </div>
+        {sliderLabel}
         <div className='cbn-slider__box-inputs'>
           <div
             className={classnames(
@@ -133,7 +215,7 @@ class RangedSliderRenderer extends React.Component {
               'cbn-slider__number-input--multiple')}>
             <Input
               value={this.state.minRange.toString()}
-              onChange={this._handleMinChanged} />
+              onBlur={this._handleMinBlured} />
           </div>
           <div className='cbn-slider__box'>
             <div className='cbn-slider__ticks'>
@@ -181,7 +263,7 @@ class RangedSliderRenderer extends React.Component {
               'cbn-slider__number-input--multiple')}>
             <Input
               value={this.state.maxRange.toString()}
-              onChange={this._handleMaxChanged} />
+              onBlur={this._handleMaxBlured} />
           </div>
         </div>
       </div>
