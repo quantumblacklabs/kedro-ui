@@ -67,8 +67,6 @@ $height-tiny: 1px;
   border: none;
   outline: none;
 
-  font: inherit;
-
   &,
   &:hover,
   &:active,
