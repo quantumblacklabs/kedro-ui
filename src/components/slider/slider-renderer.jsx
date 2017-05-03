@@ -73,7 +73,7 @@ class SliderRenderer extends React.Component {
   }
 
   /**
-   * _handleFocused - updates the state with the new value from the input field;
+   * _handleBlured - updates the state with the new value from the input field;
    * If slider is stepped, it changes the value to the correct one and then calls the update
    * @param  {object} event
    */
@@ -115,8 +115,6 @@ class SliderRenderer extends React.Component {
    * @return {object} JSX for this component
    */
   render() {
-    console.log('inputted value - ', this.state.value);
-
     return (
       <div className='cbn-slider__wrapper'>
         <div
