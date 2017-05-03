@@ -46,9 +46,9 @@ $hidden-elements-height: 1px;
   box-shadow: none;
 
   box-sizing: border-box;
+  transition: all 0.1s ease;
 
   &:hover {
-    transition: all 0.2s ease-in-out;
     transform: scale(1.5);
   }
 }
