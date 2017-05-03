@@ -21,7 +21,7 @@ $tick-number-width: 24px;
 $tick-number-top: 38px;
 $tick-symbol-top: 12px;
 
-$number-input-width: 27px;
+$number-input-width: 32px;
 
 $label-number-margin: 18px;
 $label-single-margin-top: 3px;
@@ -104,6 +104,8 @@ $hidden-elements-height: 1px;
     }
 
     &__field {
+      @extend %type--subhead-2;
+
       background: transparent;
     }
 
