@@ -14,6 +14,7 @@ $size-separator-margin: 0 8px;
 $size-separator-rotation: -45deg;
 $duration-underline-hovered: 0.5s;
 $duration-separator-switch: 0.5s;
+$duration-switch-hover: 0.1s;
 
 .cbn-toggle {
   display: flex;
@@ -54,9 +55,8 @@ $duration-separator-switch: 0.5s;
 
   display: flex;
   cursor: pointer;
-  transition: all ease 0.1s;
+  transition: $duration-switch-hover;
   outline: 10px solid transparent;
-  outline-width: 0 20px 10px;
 
   .cbn-switch__input:active + &,
   .cbn-switch__input:focus + & {
@@ -111,7 +111,7 @@ $duration-separator-switch: 0.5s;
 }
 
 .cbn-toggle__text {
-  transition: color ease 0.1s;
+  transition: color $duration-switch-hover;
 }
 
 .cbn-toggle__separator {

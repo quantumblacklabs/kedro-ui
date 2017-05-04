@@ -34,9 +34,9 @@ const ToggleRenderer = ({
       onKeyDown={onKeyDown}>
       {
         label && (
-          <p className={classnames('cbn-toggle__label', { 'cbn-toggle--bold': type === 'bold' })}>
+          <span className={classnames('cbn-toggle__label', { 'cbn-toggle--bold': type === 'bold' })}>
             { label }
-          </p>
+          </span>
         )
       }
       <Switch
