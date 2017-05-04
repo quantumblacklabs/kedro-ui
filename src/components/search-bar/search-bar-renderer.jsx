@@ -1,14 +1,11 @@
 // Imports
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import Icon from '../icon';
-import { Input } from '../form-controls';
-
-// Styles
+import Icon from 'components/icon';
+import Input from 'components/input';
 
 /**
- * SearchBarRenderer, used to output the actual DOM makeup for the component
+ * SearchBarRenderer, used to output the actual DOM markup for the component
  */
 const SearchBarRenderer = ({
   iconType,

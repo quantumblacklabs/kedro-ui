@@ -1,0 +1,179 @@
+/** Imports **/
+
+@import '../../styles/includes';
+
+/** Variables **/
+
+$color-secondary-active: rgba(0, 0, 0, 0.12);
+$timing-primary: 0.2s;
+$secondary-underline-height: 2px;
+$secondary-underline-offset: 6px;
+$secondary-underline-offset-hover: 2px;
+
+/** Implementation **/
+
+.cbn-button {
+  @extend %type--subhead-2;
+  @extend %type--semibold;
+
+  @mixin themed color, text;
+
+  display: inline-block;
+  padding: 9px 12px 11px;
+  border: none;
+  border-radius: 0;
+
+  background: none;
+  box-shadow: none;
+  cursor: pointer;
+  transition:
+    background ease $timing-primary,
+    outline-color ease $timing-primary,
+    color ease $timing-primary;
+  outline: 2px solid transparent;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.3;
+  }
+
+  .cbn-icon {
+    margin-right: 2px;
+  }
+}
+
+.cbn-button--small {
+  @extend %type--body-1;
+
+  padding: 5px 12px 7px;
+}
+
+.cbn-button--primary {
+  @mixin themed outline-color, button, outline;
+  @mixin themedState hover, color, button, textHover;
+  @mixin themedState active, color, button, textHover;
+  @mixin themedState hover, background, button, outline;
+  @mixin themedState active, background, button, active;
+  @mixin themedState disabled, color, text;
+
+  &.cbn-theme--light:focus {
+    box-shadow: 0 0 0 4px map(themes, light, button, focus);
+  }
+
+  &.cbn-theme--dark:focus {
+    box-shadow: 0 0 0 4px map(themes, dark, button, focus);
+  }
+
+  &:active {
+    transition: none;
+    outline-width: 0;
+  }
+
+  &:disabled,
+  &.cbn-theme--light:disabled,
+  &.cbn-theme--dark:disabled {
+    background: none;
+  }
+
+  .cbn-icon__graphics {
+    transition: fill ease $timing-primary;
+  }
+
+  &.cbn-theme--light:hover,
+  &.cbn-theme--light:active {
+    .cbn-icon__graphics {
+      fill: map(themes, light, button, textHover);
+    }
+  }
+
+  &.cbn-theme--dark:hover,
+  &.cbn-theme--dark:active {
+    .cbn-icon__graphics {
+      fill: map(themes, dark, button, textHover);
+    }
+  }
+
+  &.cbn-button--wipe {
+    position: relative;
+
+    /**
+     * Force a new z-index stacking context without invoking z-index
+     * See https://philipwalton.com/articles/what-no-one-told-you-about-z-index/
+     */
+    transform: translate(0, 0);
+
+    &:active,
+    &:hover {
+      background: none;
+    }
+
+    &::after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      content: '';
+
+      width: 0;
+      height: 100%;
+      transition: all ease $timing-primary;
+    }
+
+    @mixin themedState :after, background, button, outline;
+
+    &:active::after,
+    &:hover::after {
+      width: 100%;
+    }
+  }
+}
+
+.cbn-button--secondary {
+  @mixin themedState focus::after, background, button, focus;
+  @mixin themedState hover::after, background, button, outline;
+
+  &::after {
+    display: block;
+    content: '';
+
+    width: 100%;
+    height: $secondary-underline-height;
+
+    /* Offset the underline height so it doesn't affect text vertical alignment */
+    margin-bottom: -$secondary-underline-height;
+    transform: translateY($secondary-underline-offset);
+    transition: all ease 0.1s;
+
+    background: none;
+  }
+
+  &:hover::after,
+  &:focus::after {
+    transform: translateY($secondary-underline-offset-hover);
+  }
+
+  &:active {
+    background-color: $color-secondary-active;
+    outline-color: $color-secondary-active;
+  }
+
+  &:disabled::after {
+    display: none;
+  }
+
+  &.cbn-button--wipe {
+    &::after {
+      width: 0;
+      transition: all ease 0.2s;
+      transform: translateY(4px);
+    }
+
+    @mixin themedState :after, background, button, outline;
+
+    &:active::after,
+    &:focus::after,
+    &:hover::after {
+      width: 100%;
+    }
+  }
+}

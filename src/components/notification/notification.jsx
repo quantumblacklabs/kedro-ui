@@ -19,7 +19,7 @@ const Notification = ({
   label,
   theme,
   type
-}) => {  
+}) => {
   const contextIcon = !icon ? null : (
     <Icon
       size='medium'

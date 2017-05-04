@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Editor from 'rsg-components/Editor';
 import Preview from 'rsg-components/Preview';
-import EventIndicator from 'components/indicators/event-indicator';
-import Dropdown from 'components/menus/dropdown';
-import MenuOption from 'components/menus/menu-option';
+import EventIndicator from 'components/event-indicator';
+import Dropdown from 'components/dropdown';
+import MenuOption from 'components/menu-option';
 
 import classnames from 'classnames';
 import _ from 'lodash';
@@ -50,7 +50,7 @@ const PlaygroundRenderer = ({
     );
 
   return (
-    <div ref='playground' className='cbn-sg-playground'>
+    <div className='cbn-sg-playground'>
       <div
         className={classnames(
           'cbn-sg-playground__preview',
