@@ -56,7 +56,12 @@ const config = {
     {
       name: 'Menus',
       content: './templates/components/menus.md',
-      components: getComponentsFunc('menu', 'src/components/menus/**/*.jsx')
+      components: getComponentsFunc('notification', 'src/components/menus/**/*.jsx')
+    },
+    {
+      name: 'Notifications',
+      content: './templates/components/notification.md',
+      components: getComponentsFunc('menu', 'src/components/notification/**/*.jsx')
     },
     {
       name: 'Search',

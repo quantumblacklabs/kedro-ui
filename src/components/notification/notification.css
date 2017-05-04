@@ -1,0 +1,76 @@
+/** Imports **/
+
+@import '../../styles/includes';
+
+/** Variables **/
+
+$size-spacing: 22px;
+$size-icon: 24px;
+$size-inner-spacing: 8px;
+
+/** Implementation **/
+
+.cbn-notification {
+  @mixin themed background, notifications, background;
+
+  position: relative;
+
+  display: flex;
+
+  width: 100%;
+
+  padding: $size-spacing calc($size-spacing + $size-icon) $size-spacing;
+
+  &.cbn-theme--dark {
+    @extend %shadow-dark;
+  }
+
+  &.cbn-theme--light {
+    @extend %shadow-light--active;
+  }
+}
+
+.cbn-notification__content {
+  display: flex;
+
+  margin-left: $size-spacing;
+
+  .cbn-notification--inline & {
+    flex-direction: row;
+
+    .cbn-notification__label {
+      margin-left: $size-inner-spacing;
+    }
+  }
+
+  .cbn-notification--multiline & {
+    flex-direction: column;
+
+    .cbn-notification__header {
+      margin-bottom: $size-inner-spacing;
+    }
+  }
+}
+
+.cbn-notification__header {
+  @extend %type--semibold;
+
+  @mixin themedParent color, notifications, headerLabel;
+}
+
+.cbn-notification__label {
+  @mixin themedParent color, notifications, label;
+}
+
+.cbn-icon {
+  .cbn-notification & {
+    opacity: 0.55;
+  }
+
+  &.cbn-icon--close {
+    position: absolute;
+
+    top: $size-spacing;
+    right: $size-spacing;
+  }
+}

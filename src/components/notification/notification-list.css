@@ -1,0 +1,42 @@
+/** Variables **/
+
+$size-spacing: 20px;
+
+/** Implementation **/
+
+.cbn-notification-list {
+  position: fixed;
+
+  top: $size-spacing;
+  left: 50%;
+
+  z-index: 999;
+
+  transform: translate(-50%, 0);
+
+  .cbn-notification {
+    margin-bottom: $size-spacing;
+
+    transition: all 500s;
+  }
+}
+
+.cbn-notification-animation-enter {
+  opacity: 0;
+}
+
+.cbn-notification-animation-enter.cbn-notification-animation-enter-active {
+  opacity: 1;
+
+  transition: all 500ms;
+}
+
+.cbn-notification-animation-leave {
+  opacity: 1;
+}
+
+.cbn-notification-animation-leave.cbn-notification-animation-leave-active {
+  opacity: 0;
+
+  transition: all 300ms ease-in;
+}
