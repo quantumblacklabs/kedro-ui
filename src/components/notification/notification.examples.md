@@ -28,8 +28,7 @@ class Test extends React.Component {
     return (
       <div>
         <button onClick={this.onClick}>Click!</button>
-        <NotificationList
-        removeAfter={2000} currentNotification={this.state.currentNotification} />
+        <NotificationList currentNotification={this.state.currentNotification} />
       </div>
     );
   }

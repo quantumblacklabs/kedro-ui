@@ -16,8 +16,6 @@ import './notification-list.css';
  * application level information
  */
 class NotificationList extends React.Component {
-  // Life cycle
-
   /**
    * constructor - create new NotificationList
    * @param  {Object} props properties passed to component

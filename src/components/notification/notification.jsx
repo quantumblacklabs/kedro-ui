@@ -19,38 +19,46 @@ const Notification = ({
   label,
   theme,
   type
-}) =>
-  <div className={`cbn-notification cbn-notification--${type} cbn-theme--${theme}`}>
+}) => {  
+  const contextIcon = !icon ? null : (
     <Icon
       size='medium'
       theme={theme}
       title=''
       type='paste' />
-    <div className='cbn-notification__content'>
-      <span
-        className='cbn-notification__header'>
-        {headerLabel}
-      </span>
-      <span
-        className='cbn-notification__label'>
-        {label}
-      </span>
+  );
+
+  return (
+    <div className={`cbn-notification cbn-notification--${type} cbn-theme--${theme}`}>
+      {contextIcon}
+      <div className='cbn-notification__content'>
+        <span
+          className='cbn-notification__header'>
+          {headerLabel}
+        </span>
+        <span
+          className='cbn-notification__label'>
+          {label}
+        </span>
+      </div>
+      <Icon
+        onClick={onClose}
+        size='medium'
+        theme={theme}
+        title=''
+        type='close' />
     </div>
-    <Icon
-      onClick={onClose}
-      size='medium'
-      theme={theme}
-      title=''
-      type='close' />
-  </div>;
+  );
+};
 
 Notification.defaultProps = {
+  icon: null,
   onClose: null,
   type: 'multiline'
 };
 
 Notification.propTypes = {
-  icon: PropTypes.string.isRequired,
+  icon: PropTypes.string,
   onClose: PropTypes.func,
   headerLabel: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
