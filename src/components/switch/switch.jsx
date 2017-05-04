@@ -34,6 +34,7 @@ const Switch = ({ checked,
   // fire with event and radio value
   if (typeof onChange === 'function') {
     _handleOnChange = e => onChange({
+      checked: e.target.checked,
       e,
       value
     });
