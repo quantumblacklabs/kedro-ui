@@ -17,10 +17,11 @@ $duration-separator-switch: 0.5s;
 
 .cbn-toggle {
   display: flex;
+  padding-top: $size-toggle-padding;
   justify-content: space-between;
 
-  input {
-    display: none;
+  .cbn-switch {
+    margin: 0;
   }
 }
 
@@ -30,8 +31,7 @@ $duration-separator-switch: 0.5s;
 
   @mixin themedParent color, toggle;
 
-  margin-bottom: $size-toggle-text-margin;
-  padding: $size-toggle-padding 0;
+  margin: 0 0 $size-toggle-text-margin;
 
   line-height: $size-toggle-lineheight;
 
@@ -44,23 +44,25 @@ $duration-separator-switch: 0.5s;
   @mixin themedParent color, toggle;
 
   display: flex;
+  cursor: pointer;
+  transition: all ease 0.1s;
+  outline: 10px solid transparent;
+  outline-width: 0 20px 10px;
+
+  .cbn-switch__input:active + &,
+  .cbn-switch__input:focus + & {
+    @mixin themedParent outline-color, toggle, focus;
+    @mixin themedParent background-color, toggle, focus;
+  }
+
+  &:hover {
+    .cbn-toggle__text {
+      @mixin themedParent color, toggle, hover;
+    }
+  }
 }
 
 .cbn-toggle__button {
-  cursor: pointer;
-
-  &:hover {
-    .cbn-toggle__underline {
-      transform: scaleX(1);
-    }
-  }
-
-  &:active {
-    .cbn-toggle__text {
-      @mixin themedParent background-color, toggle, active;
-    }
-  }
-
   .cbn-toggle__underline {
     @mixin themedParent background-color, toggle, underline;
 
@@ -90,12 +92,17 @@ $duration-separator-switch: 0.5s;
 
 .cbn-toggle__text,
 .cbn-toggle__separator {
+  @extend %type--subhead-2;
   @extend %type--semibold;
 
   @mixin themedParent color, toggle, disabled;
 
   margin-bottom: $size-toggle-text-margin;
-  padding: $size-toggle-padding 0;
+  padding-bottom: $size-toggle-padding;
+}
+
+.cbn-toggle__text {
+  transition: color ease 0.1s;
 }
 
 .cbn-toggle__separator {

@@ -65,6 +65,8 @@ themes:
       icon: rgba(0, 0, 0, 0.55)
     toggle:
       default: rgba(0, 0, 0, 0.85)
+      hover: rgba(0, 0, 0, 0.6)
+      focus: rgba(0, 0, 0, 0.06)
       disabled: rgba(0, 0, 0, 0.3)
       active: rgba(0, 0, 0, 0.12)
       underline: rgb(0, 0, 0)
@@ -141,6 +143,8 @@ themes:
       icon: rgba(255, 255, 255, 0.55)
     toggle:
       default: rgba(255, 255, 255, 0.85)
+      hover: rgba(255, 255, 255, 0.6)
+      focus: rgba(255, 255, 255, 0.06)
       disabled: rgba(255, 255, 255, 0.3)
       active: rgba(0, 0, 0, 0.12)
       underline: rgb(255, 255, 255)

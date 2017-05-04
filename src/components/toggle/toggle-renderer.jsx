@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import Switch from '../switch';
 
 /**
  * ToggleRenderer, used to output the actual DOM markup for the component
@@ -18,47 +19,49 @@ const ToggleRenderer = ({
    * Triggered when on/off is clicked
    * @param {HTMLElement} the element that triggered the event
    */
-  const _handleChange = e => {
-    // the user can click the button, text or the underline, cover all cases
-    let newValue = e.target.dataset.value || e.target.parentElement.dataset.value;
-
-    // make our newValue a boolean
-    newValue = (newValue === 'true');
-
-    onChange(e, { value: newValue });
+  const _handleChange = ({ e, checked }) => {
+    onChange(e, { value: checked });
   };
 
   return (
-    <div className={classnames(`cbn-toggle cbn-toggle--${theme}`)}>
+    <div
+      className={classnames(
+        `cbn-toggle cbn-theme--${theme}`
+      )}>
       {
         label && (
-          <label
-            htmlFor={id}
-            className={classnames('cbn-toggle__label', { 'cbn-toggle--bold': type === 'bold' })}>
+          <p className={classnames('cbn-toggle__label', { 'cbn-toggle--bold': type === 'bold' })}>
             { label }
-          </label>
+          </p>
         )
       }
-      <input type='checkbox' id={id} checked={value} readOnly />
-      <div className='cbn-toggle__switch'>
-        <div
-          onClick={_handleChange}
-          data-value={true}
-          className={classnames('cbn-toggle__button', { 'cbn-toggle--selected': value })}>
-          <div className='cbn-toggle__text'>{ texts[0] }</div>
-          <div className='cbn-toggle__underline' />
-        </div>
-        <div
-          className={classnames('cbn-toggle__separator', { 'cbn-toggle__separator--right': !value })}>
-          /</div>
-        <div
-          onClick={_handleChange}
-          data-value={false}
-          className={classnames('cbn-toggle__button', { 'cbn-toggle--selected': !value })}>
-          <div className='cbn-toggle__text'>{ texts[1] }</div>
-          <div className='cbn-toggle__underline' />
-        </div>
-      </div>
+      <Switch
+        checked={value}
+        id={id}
+        name={name}
+        onChange={_handleChange}
+        type='checkbox'
+        theme={theme}
+        value={texts[0]}>
+        <label
+          aria-label={`${label ? `${label}: ` : null}${texts[value ? 0 : 1]}`}
+          className='cbn-toggle__switch'
+          htmlFor={id}>
+          <div
+            className={classnames('cbn-toggle__button', { 'cbn-toggle--selected': value })}>
+            <div className='cbn-toggle__text'>{ texts[0] }</div>
+            <div className='cbn-toggle__underline' />
+          </div>
+          <div
+            className={classnames('cbn-toggle__separator', { 'cbn-toggle__separator--right': !value })}>
+            /</div>
+          <div
+            className={classnames('cbn-toggle__button', { 'cbn-toggle--selected': !value })}>
+            <div className='cbn-toggle__text'>{ texts[1] }</div>
+            <div className='cbn-toggle__underline' />
+          </div>
+        </label>
+      </Switch>
     </div>
   );
 };
