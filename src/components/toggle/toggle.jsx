@@ -27,6 +27,7 @@ class Toggle extends React.Component {
     };
 
     this._handleChange = this._handleChange.bind(this);
+    this._handleKeyDown = this._handleKeyDown.bind(this);
   }
 
   /**
@@ -44,6 +45,32 @@ class Toggle extends React.Component {
   }
 
   /**
+   * Allow users to toggle the value using ←↑→↓ arrow keys
+   * @param {number} e.keyCode - The event object keyboard character code
+   */
+  _handleKeyDown({ keyCode }) {
+    const KEYS = {
+      37: 'Left',
+      38: 'Up',
+      39: 'Right',
+      40: 'Down'
+    };
+
+    switch (KEYS[keyCode]) {
+      case 'Left':
+      case 'Up':
+        this.setState({ value: true });
+        break;
+      case 'Right':
+      case 'Down':
+        this.setState({ value: false });
+        break;
+      default:
+        // do nothing
+    }
+  }
+
+  /**
    * React lifecycle method
    * {@link https://facebook.github.io/react/docs/react-component.html#render}
    * @return {object} JSX for this component
@@ -55,6 +82,7 @@ class Toggle extends React.Component {
         id={this.id}
         label={this.props.label}
         onChange={this._handleChange}
+        onKeyDown={this._handleKeyDown}
         texts={this.props.texts}
         theme={this.props.theme}
         type={this.props.type}

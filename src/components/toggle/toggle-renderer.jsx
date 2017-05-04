@@ -11,6 +11,7 @@ const ToggleRenderer = ({
   id,
   label,
   onChange,
+  onKeyDown,
   texts,
   theme,
   type,
@@ -29,7 +30,8 @@ const ToggleRenderer = ({
       className={classnames(
         `cbn-toggle cbn-theme--${theme}`,
         { 'cbn-toggle--disabled': disabled }
-      )}>
+      )}
+      onKeyDown={onKeyDown}>
       {
         label && (
           <p className={classnames('cbn-toggle__label', { 'cbn-toggle--bold': type === 'bold' })}>
@@ -45,7 +47,7 @@ const ToggleRenderer = ({
         onChange={_handleChange}
         type='checkbox'
         theme={theme}
-        value={texts[0]}>
+        value={texts.join('/')}>
         <label
           aria-label={`${label ? `${label}: ` : null}${texts[value ? 0 : 1]}`}
           className='cbn-toggle__switch'
@@ -86,6 +88,10 @@ ToggleRenderer.propTypes = {
    * Callback when the toggle changes value
    */
   onChange: PropTypes.func.isRequired,
+  /**
+   * Callback when the user presses a key while the toggle is focussed
+   */
+  onKeyDown: PropTypes.func.isRequired,
   /**
    * Array of 2 strings to display in the toggle
    */
