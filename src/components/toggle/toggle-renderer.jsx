@@ -55,7 +55,6 @@ const ToggleRenderer = ({
           <div
             className={classnames('cbn-toggle__button', { 'cbn-toggle--selected': value })}>
             <div className='cbn-toggle__text'>{ texts[0] }</div>
-            <div className='cbn-toggle__underline' />
           </div>
           <div
             className={classnames('cbn-toggle__separator', { 'cbn-toggle__separator--right': !value })}>
@@ -63,7 +62,6 @@ const ToggleRenderer = ({
           <div
             className={classnames('cbn-toggle__button', { 'cbn-toggle--selected': !value })}>
             <div className='cbn-toggle__text'>{ texts[1] }</div>
-            <div className='cbn-toggle__underline' />
           </div>
         </label>
       </Switch>
