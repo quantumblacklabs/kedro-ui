@@ -20,6 +20,15 @@ $duration-separator-switch: 0.5s;
   padding-top: $size-toggle-padding;
   justify-content: space-between;
 
+  &--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+
+    .cbn-switch {
+      pointer-events: none;
+    }
+  }
+
   .cbn-switch {
     margin: 0;
   }

@@ -10,6 +10,13 @@ A bold example with label
 </section>
 ```
 
+A disabled example
+```
+<section style={{ width: 200 }}>
+    <Toggle label='Disabled' disabled={true} texts={['TRUE', 'FALSE']} theme='light' />
+</section>
+```
+
 A list of toggles
 ```
 const style = {
