@@ -25,7 +25,7 @@ const Notification = ({
       size='medium'
       theme={theme}
       title=''
-      type='paste' />
+      type={icon} />
   );
 
   return (

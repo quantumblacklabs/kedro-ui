@@ -92,11 +92,12 @@ class NotificationList extends React.Component {
         return null;
       }
 
-      const { type, header, label } = item;
+      const { icon, type, header, label } = item;
 
       return (
         <div key={item.key}>
           <Notification
+            icon={icon}
             theme={this.props.theme}
             headerLabel={header}
             label={label}
@@ -132,6 +133,7 @@ NotificationList.propTypes = {
    */
   currentNotification: PropTypes.shape({
     header: PropTypes.string,
+    icon: PropTypes.string,
     label: PropTypes.string,
     type: PropTypes.oneOf(['inline', 'multiline'])
   }).isRequired,
