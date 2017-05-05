@@ -6,11 +6,15 @@
 
 $size-toggle-lineheight: 1.25;
 $size-toggle-margin: 12px;
+$size-toggle-outline: 7px;
 $size-toggle-padding: 4px;
-$size-toggle-text-margin: 2px;
+$size-toggle-text-margin: 8px;
+$size-toggle-margin-bottom: -3px;
 $size-toggle-margin-small: 10px;
+$size-toggle-y-offset: 5px;
 $size-underline-height: 2px;
-$size-separator-margin: 0 8px;
+$size-underline-offset: 6px;
+$size-separator-margin: -$size-toggle-y-offset 8px 0;
 $size-separator-rotation: -45deg;
 $duration-underline-hovered: 0.5s;
 $duration-separator-switch: 0.5s;
@@ -58,9 +62,11 @@ $duration-switch-hover: 0.1s;
   @mixin themedParent color, toggle;
 
   display: flex;
+  margin: 0 0 $size-toggle-text-margin;
   cursor: pointer;
   transition: $duration-switch-hover;
-  outline: 10px solid transparent;
+  outline: $size-toggle-outline solid transparent;
+  transform: translateY($size-toggle-y-offset);
 
   .cbn-switch__input:active + &,
   .cbn-switch__input:focus + & {
@@ -76,13 +82,15 @@ $duration-switch-hover: 0.1s;
 }
 
 .cbn-toggle__button {
+  transform: translateY(-$size-toggle-y-offset);
+
   &::after {
     @mixin themedParent background-color, toggle, underline;
 
     transform: scaleX(0);
 
     position: relative;
-    top: 1px;
+    top: $size-underline-offset;
 
     display: block;
     content: '';
@@ -113,8 +121,7 @@ $duration-switch-hover: 0.1s;
 
   @mixin themedParent color, toggle, disabled;
 
-  margin-bottom: $size-toggle-text-margin;
-  padding-bottom: $size-toggle-padding;
+  margin-bottom: $size-toggle-margin-bottom;
 }
 
 .cbn-toggle__text {
