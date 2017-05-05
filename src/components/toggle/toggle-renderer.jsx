@@ -49,7 +49,7 @@ const ToggleRenderer = ({
         theme={theme}
         value={texts.join('/')}>
         <label
-          aria-label={`${label ? `${label}: ` : null}${texts[value ? 0 : 1]}`}
+          aria-label={`${label ? `${label}: ` : ''}${texts[value ? 0 : 1]}`}
           className='cbn-toggle__switch'
           htmlFor={id}>
           <div
