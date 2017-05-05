@@ -54,16 +54,35 @@ const Notification = ({
 Notification.defaultProps = {
   icon: null,
   onClose: null,
-  type: 'multiline'
+  type: 'multiline',
+  theme: 'dark'
 };
 
 Notification.propTypes = {
+  /**
+   * Icon to be displayed on left of notification
+   */
   icon: PropTypes.string,
-  onClose: PropTypes.func,
+  /**
+   * Header label, used to display the header for the notification
+   */
   headerLabel: PropTypes.string.isRequired,
+  /**
+   * Label content, define the informationto be displayed to the user
+   */
   label: PropTypes.string.isRequired,
+  /**
+   * onClose method is triggered when clicking the [X] icon
+   */
+  onClose: PropTypes.func,
+  /**
+   * Theme of the component
+   */
   theme: PropTypes.oneOf(['dark', 'light']).isRequired,
-  type: PropTypes.string
+  /**
+   * Type of notification display i.e. multiline or one line
+   */
+  type: PropTypes.oneOf(['multiline', 'inline'])
 };
 
 export default Notification;

@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import _ from 'lodash';
 
+// Components
+
 import Notification from './notification';
 
 // Styles
