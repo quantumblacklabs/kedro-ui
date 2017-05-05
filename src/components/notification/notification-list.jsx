@@ -44,6 +44,7 @@ class NotificationList extends React.Component {
     const newNotifications = this.state.notifications.slice();
     const newCurrent = JSON.parse(JSON.stringify(newProps.currentNotification));
 
+    // create unique key identifier and unshift the new content onto the queue
     newCurrent.key = _.uniqueId('notification');
     newNotifications.unshift(newCurrent);
 
@@ -53,6 +54,7 @@ class NotificationList extends React.Component {
 
     // lazy create timer
     if (this.props.removeAfter && this.timer === null) {
+      // this periodically removes notifications after a given time
       this.timer = setInterval(() => {
         if (this.state.notifications.length !== 0) {
           this._removeNotification(this.state.notifications.length - 1);
