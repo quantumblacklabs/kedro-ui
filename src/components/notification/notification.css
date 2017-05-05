@@ -19,7 +19,7 @@ $size-inner-spacing: 8px;
 
   width: 100%;
 
-  padding: $size-spacing;
+  padding: $size-spacing calc($size-spacing + $size-icon) $size-spacing $size-spacing;
 
   &.cbn-theme--dark {
     @extend %shadow-dark;
@@ -61,6 +61,8 @@ $size-inner-spacing: 8px;
 }
 
 .cbn-icon {
+  flex-shrink: 0;
+
   .cbn-notification & {
     opacity: 0.55;
 
@@ -68,13 +70,11 @@ $size-inner-spacing: 8px;
   }
 
   &.cbn-icon--close {
-    margin-right: 0;
-  }
-
-  &.cbn-icon--close {
     position: absolute;
 
     top: $size-spacing;
     right: $size-spacing;
+
+    margin-right: 0;
   }
 }
