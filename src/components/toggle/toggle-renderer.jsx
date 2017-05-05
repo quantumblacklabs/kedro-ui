@@ -28,7 +28,8 @@ const ToggleRenderer = ({
   return (
     <div
       className={classnames(
-        `cbn-toggle cbn-theme--${theme}`,
+        'cbn-toggle',
+        `cbn-theme--${theme}`,
         { 'cbn-toggle--disabled': disabled }
       )}
       onKeyDown={onKeyDown}>
