@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { uniqueId } from 'lodash';
 import assert from 'assert';
+import { handleKeyEvent } from 'utils';
 import ToggleRenderer from './toggle-renderer';
 
 import './toggle.css';
@@ -49,25 +50,12 @@ class Toggle extends React.Component {
    * @param {number} e.keyCode - The event object keyboard character code
    */
   _handleKeyDown({ keyCode }) {
-    const KEYS = {
-      37: 'Left',
-      38: 'Up',
-      39: 'Right',
-      40: 'Down'
-    };
-
-    switch (KEYS[keyCode]) {
-      case 'Left':
-      case 'Up':
-        this.setState({ value: true });
-        break;
-      case 'Right':
-      case 'Down':
-        this.setState({ value: false });
-        break;
-      default:
-        // do nothing
-    }
+    handleKeyEvent(keyCode, {
+      left: () => this.setState({ value: true }),
+      up: () => this.setState({ value: true }),
+      right: () => this.setState({ value: false }),
+      down: () => this.setState({ value: false })
+    });
   }
 
   /**
