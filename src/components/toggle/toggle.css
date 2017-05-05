@@ -32,6 +32,10 @@ $duration-switch-hover: 0.1s;
 
   .cbn-switch {
     margin: 0;
+
+    &:active {
+      opacity: 1;
+    }
   }
 }
 
