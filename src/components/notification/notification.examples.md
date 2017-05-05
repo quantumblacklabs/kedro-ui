@@ -14,6 +14,7 @@ You can change the display type to multiline if you want to break up the content
 </div>
 ```
 
+Using a notification list component, allows you to display application level notifications. In this demo we can create persistent notifications that require user to close them to dismiss them from the screen.
 ```
 const _ = require('lodash');
 
@@ -59,6 +60,7 @@ class NotificationListDemo extends React.Component {
 <NotificationListDemo />
 ```
 
+If they do not need user input, you can provide the list with a removeAfter property, to automagically remove them from the screen.
 ```
 const _ = require('lodash');
 
