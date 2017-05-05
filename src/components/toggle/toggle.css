@@ -114,6 +114,7 @@ $duration-switch-hover: 0.1s;
 }
 
 .cbn-toggle__text {
+  text-transform: uppercase;
   transition: color $duration-switch-hover;
 }
 
