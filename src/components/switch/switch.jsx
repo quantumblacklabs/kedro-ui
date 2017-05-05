@@ -46,7 +46,7 @@ const Switch = ({ checked,
   const _containerClassNames = classnames(
     'cbn-switch',
     `cbn-switch-${type}`,
-    `cbn-switch-${type}--${theme}`,
+    `cbn-theme--${theme}`,
     extraClasses
   );
 
