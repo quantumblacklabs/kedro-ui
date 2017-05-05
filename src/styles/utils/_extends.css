@@ -1,7 +1,7 @@
 /**
  * Hide an element visually while making it usable by keyboards and screen-readers
  */
-@define-mixin hidden {
+%hidden {
   position: absolute;
 
   width: 1px;
