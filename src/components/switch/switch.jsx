@@ -113,7 +113,10 @@ Switch.propTypes = {
   /**
    * The underlying value of the radiobutton
    */
-  value: PropTypes.number.isRequired
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]).isRequired
 };
 
 // Exports
