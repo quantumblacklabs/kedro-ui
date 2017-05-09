@@ -1,11 +1,11 @@
 A basic tabs example
 ```
 const tabs = [
-    'Overview',
-    'Location (98)',
-    'Sensors',
-    'Log',
-    'Related'
+    { text: 'Overview' },
+    { text: 'Location (98)' },
+    { text: 'Sensors' },
+    { text: 'Log' },
+    { text: 'Related' }
 ];
 
 <Tabs
@@ -14,11 +14,11 @@ const tabs = [
 
 ```
 const tabs = [
-    'Overview',
-    'Location (98)',
-    'Sensors',
-    'Log',
-    'Related long long long long long long long'
+    { text: 'Overview' },
+    { text: 'Location (98)' },
+    { text: 'Sensors' },
+    { text: 'Log' },
+    { text: 'Related long long long long long long long' }
 ];
 
 <Tabs
@@ -33,32 +33,50 @@ class Wrap extends React.Component {
         super(props);
 
         this.tabs = [
-            'About',
-            'Work',
-            'Careers',
-            'Resources'
+            { text: 'About', href: '#about' },
+            { text: 'Work', href: '#work' },
+            { text: 'Careers', href: '#careers' },
+            { text: 'Resources', href: '#resources' }
         ];
 
         this.state = {
-            selectedMenu: this.tabs[0]
-        }
+            selectedIndex: 0
+        };
 
         this._selectedTabChanged = this._selectedTabChanged.bind(this);
     }
 
     _selectedTabChanged(e, { selectedIndex }) {
-        this.setState({ selectedMenu: this.tabs[selectedIndex] });
+        this.setState({ selectedIndex });
     }
 
     render() {
+        const { selectedIndex } = this.state;
+
         return (
             <div>
                 <Tabs
                     onSelect={this._selectedTabChanged}
-                    selectedIndex={0}
+                    selectedIndex={selectedIndex}
                     size='small'
                     tabs={this.tabs} />
-                <span style={{position: 'relative', top: 40, color: 'rgb(255, 255, 255)'}}>Selected Menu: {this.state.selectedMenu}</span>
+                {
+                    this.tabs.map((tab, i) => (
+                        <div
+                            aria-labelledby={`tab-{tab.text.toLowerCase()}`}
+                            hidden={selectedIndex !== i}
+                            id={tab.text.toLowerCase()}
+                            key={tab.text}
+                            style={{
+                                color: 'rgb(255, 255, 255)',
+                                display: selectedIndex === i ? 'block' : 'none',
+                                position: 'relative',
+                                top: 40
+                            }}>
+                            Selected Menu: { tab.text }
+                        </div>
+                    ))
+                }
             </div>
         );
     }

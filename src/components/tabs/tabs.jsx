@@ -75,9 +75,12 @@ Tabs.propTypes = {
    */
   size: PropTypes.oneOf(['regular', 'small']),
   /**
-   * Tabs to display
+   * Tabs to display, and their (optional) URLs
    */
-  tabs: PropTypes.arrayOf(PropTypes.string).isRequired,
+  tabs: PropTypes.arrayOf(PropTypes.shape({
+    text: PropTypes.string.isRequired,
+    href: PropTypes.string
+  })).isRequired,
   /**
    * Theme name for component
    */
