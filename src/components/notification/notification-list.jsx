@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import _ from 'lodash';
+import { uniqueId } from 'lodash/fp';
 
 // Components
 
@@ -47,7 +47,7 @@ class NotificationList extends React.Component {
     const newCurrent = JSON.parse(JSON.stringify(newProps.currentNotification));
 
     // create unique key identifier and unshift the new content onto the queue
-    newCurrent.key = _.uniqueId('notification');
+    newCurrent.key = uniqueId('notification');
     newNotifications.unshift(newCurrent);
 
     this.setState({
@@ -67,7 +67,7 @@ class NotificationList extends React.Component {
 
   /**
    * Remove a given notification from the list
-   * @param  {Number} index of notification in list
+   * @param  {number} index of notification in list
    */
   _removeNotification(index) {
     const newItems = this.state.notifications.slice();
@@ -80,7 +80,7 @@ class NotificationList extends React.Component {
 
   /**
    * Close click handler for notifications
-   * @param  {Number} index of notification to remove
+   * @param  {number} index of notification to remove
    */
   _handleClose(index) {
     this._removeNotification(index);

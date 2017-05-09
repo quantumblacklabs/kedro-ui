@@ -8,7 +8,7 @@ test('NotificationList should be a function', t => {
   t.is(typeof NotificationList, 'function');
 });
 
-test('Notification should include only one input field', t => {
+test('NotificationList should contain correct children', t => {
   const wrapper = shallow(
     <NotificationList
       currentNotification={{

@@ -16,8 +16,6 @@ $size-spacing: 20px;
 
   .cbn-notification {
     margin-bottom: $size-spacing;
-
-    transition: all 500s;
   }
 }
 

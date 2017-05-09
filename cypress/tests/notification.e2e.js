@@ -10,6 +10,9 @@ describe('Icon component', () => {
   });
 
   it('should display and remove persistent notifications', () => {
+    // for persistent notifications (ones that need dismissal from a user) this
+    // simulates a few click on a notification spawner, then closes them
+    // testing they are added and removed
     cy
       .get('.cbn-button:visible')
       .each(($el, index, $list) => {
@@ -36,6 +39,8 @@ describe('Icon component', () => {
   });
 
   it('should auto remove notifications with a removeAfter', () => {
+    // similar to the last test, except these notifications are automatically
+    // removed from the screen
     cy
       .get('.cbn-button:visible')
       .each(($el, index, $list) => {

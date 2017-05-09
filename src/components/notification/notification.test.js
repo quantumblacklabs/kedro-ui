@@ -8,7 +8,7 @@ test('Notification should be a function', t => {
   t.is(typeof Notification, 'function');
 });
 
-test('Notification should include only one input field', t => {
+test('Notification should contain correct children', t => {
   const wrapper = shallow(<Notification label='Hello' headerLabel='World' />);
 
   const wrapperWithIcon = shallow(<Notification icon='paste' label='Hello' headerLabel='World' />);
