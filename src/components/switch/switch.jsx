@@ -34,6 +34,7 @@ const Switch = ({ checked,
   // fire with event and radio value
   if (typeof onChange === 'function') {
     _handleOnChange = e => onChange({
+      checked: e.target.checked,
       e,
       value
     });
@@ -46,7 +47,7 @@ const Switch = ({ checked,
   const _containerClassNames = classnames(
     'cbn-switch',
     `cbn-switch-${type}`,
-    `cbn-switch-${type}--${theme}`,
+    `cbn-theme--${theme}`,
     extraClasses
   );
 
@@ -112,7 +113,10 @@ Switch.propTypes = {
   /**
    * The underlying value of the radiobutton
    */
-  value: PropTypes.number.isRequired
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]).isRequired
 };
 
 // Exports

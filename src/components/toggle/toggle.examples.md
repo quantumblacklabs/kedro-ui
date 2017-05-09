@@ -6,7 +6,14 @@ A basic toggle example
 A bold example with label
 ```
 <section style={{ width: 150 }}>
-    <Toggle label='Lift' texts={['UP', 'DOWN']} type='bold' value={false} />
+    <Toggle label='Lift' texts={['UP', 'DOWN']} type='bold' value={false} theme='light' />
+</section>
+```
+
+A disabled example
+```
+<section style={{ width: 200 }}>
+    <Toggle label='Disabled' disabled={true} texts={['TRUE', 'FALSE']} theme='light' />
 </section>
 ```
 
@@ -21,16 +28,16 @@ const style = {
 };
 <section style={{ width: 250 }}>
     <div style={style}>
-        <Toggle label='Wifi' type='bold' value={false} />
+        <Toggle label='Wifi' type='bold' value={false} theme='light' />
     </div>
     <div style={style}>
-        <Toggle label='GPS' type='bold' value={true} />
+        <Toggle label='GPS' type='bold' value={true} theme='light' />
     </div>
     <div style={style}>
-        <Toggle label='4G' type='bold' value={true} />
+        <Toggle label='4G' type='bold' value={true} theme='light' />
     </div>
     <div style={style}>
-        <Toggle label='Bluetooth' type='bold' value={false} />
+        <Toggle label='Bluetooth' type='bold' value={false} theme='light' />
     </div>
 </section>
 ```

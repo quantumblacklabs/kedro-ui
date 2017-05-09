@@ -5,7 +5,10 @@ import PropTypes from 'prop-types';
  * Event Indicator renders a component containing circle with number (count) inside and a name of the Event.
  */
 const EventIndicatorRenderer = ({ color, count, name, theme }) => (
-  <div className='cbn-sg-playground__event'>
+  <div
+    aria-label={`${name} events: ${count}`}
+    className='cbn-sg-playground__event'
+    role='marquee'>
     <svg width='80' height='80'>
       <circle
         cx='50%'

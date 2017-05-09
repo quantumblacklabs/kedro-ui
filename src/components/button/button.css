@@ -57,11 +57,11 @@ $secondary-underline-offset-hover: 2px;
   @mixin themedState disabled, color, text;
 
   &.cbn-theme--light:focus {
-    box-shadow: 0 0 0 4px map(themes, light, button, focus);
+    box-shadow: 0 0 0 5px map(themes, light, button, focus);
   }
 
   &.cbn-theme--dark:focus {
-    box-shadow: 0 0 0 4px map(themes, dark, button, focus);
+    box-shadow: 0 0 0 5px map(themes, dark, button, focus);
   }
 
   &:active {
