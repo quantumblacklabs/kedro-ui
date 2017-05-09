@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import Input from 'components/input';
+import TickRenderer from './tick-renderer';
 
 import './ranged-slider-renderer.css';
 
@@ -207,7 +208,7 @@ class RangedSliderRenderer extends React.Component {
           'cbn-slider__wrapper',
           'cbn-slider__wrapper--multiple')}>
         {sliderLabel}
-        <div className='cbn-slider__box-inputs'>
+        <div className='cbn-slider__controls'>
           <div
             className={classnames(
               'cbn-slider__number-input',
@@ -217,10 +218,32 @@ class RangedSliderRenderer extends React.Component {
               value={this.state.minRange.toString()}
               onBlur={this._handleMinBlured} />
           </div>
-          <div className='cbn-slider__box'>
+          <div className='cbn-slider__range'>
             <div className='cbn-slider__ticks'>
-              {this.props.tickNumbers}
-              {this.props.tickSymbols}
+              <TickRenderer
+                componentPrefix='cbn-slider'
+                id={this.props.listId}
+                min={this.props.min}
+                max={this.props.max}
+                minRange={this.state.minRange}
+                maxRange={this.state.maxRange}
+                numberWidth={24}
+                step={this.props.tickStep}
+                percentage={this.props.percentage}
+                type='number'
+                width={174} />
+              <TickRenderer
+                componentPrefix='cbn-slider'
+                id={this.props.listId}
+                min={this.props.min}
+                max={this.props.max}
+                minRange={this.state.minRange}
+                maxRange={this.state.maxRange}
+                numberWidth={24}
+                step={this.props.tickStep}
+                percentage={this.props.percentage}
+                type='symbol'
+                width={174} />
             </div>
             <div
               ref={lineFilled => { this._lineFilled = lineFilled; }}
@@ -280,10 +303,8 @@ RangedSliderRenderer.defaultProps = {
   min: 0,
   name: 'slider',
   onChange: null,
-  percentage: undefined,
   step: 1,
-  tickNumbers: undefined,
-  tickSymbols: undefined,
+  tickStep: 0,
   value: [0, 50]
 };
 
@@ -323,19 +344,16 @@ RangedSliderRenderer.propTypes = {
   /**
    * Function that calculates the percentage value of slider's range for given number.
    */
-  percentage: PropTypes.func,
+  percentage: PropTypes.func.isRequired,
+  /**
+   * Step of the ticks shown below the slider.
+   * By default only the min and max is shown.
+   */
+  tickStep: PropTypes.number,
   /**
    * Step of the slider.
    */
   step: PropTypes.number,
-  /**
-   * Numbers indicating the ticks of the slider.
-   */
-  tickNumbers: PropTypes.element,
-  /**
-   * Symbols indicating the ticks of the slider, positioned in the middle of the slider.
-   */
-  tickSymbols: PropTypes.element,
   /**
    * Min and max values for the value.
    */

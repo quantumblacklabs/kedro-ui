@@ -29,8 +29,7 @@ class Slider extends React.Component {
     super(props);
 
     this.state = {
-      colors: undefined,
-      ticks: this._getTicks(this.props.min, this.props.max)
+      values: undefined
     };
 
     this._id = uniqueId(`cbn-slider--${this.props.type}-`);
@@ -44,55 +43,29 @@ class Slider extends React.Component {
    * @return {object} JSX for this component
    */
   componentDidMount() {
-    // store the correct colors
-    if (!this.state.colors) {
-      this._setColors();
+    // store the correct values
+    if (!this.state.values) {
+      this._setValuesFromHidden();
     }
   }
 
   /**
-   * _setColors - store the colors in the state for usage in gradient
+   * _setValuesFromHidden - store the values in the state for usage in gradient and ticks rendering
    */
-  _setColors() {
+  _setValuesFromHidden() {
     const fill = window.getComputedStyle(this._hiddenFill).backgroundColor;
     const background = window.getComputedStyle(this._hiddenBackground).backgroundColor;
+    const tickNumberWidth = window.getComputedStyle(this._hiddenTickNumber).width;
+    const sliderLineWidth = window.getComputedStyle(this._hiddenLine).width;
 
     this.setState({
-      colors: {
+      values: {
         fill,
-        background
+        background,
+        tickNumberWidth,
+        sliderLineWidth
       }
     });
-  }
-
-  /**
-   * _getTickValues - creates an array of tick values, including the first and last value of the range
-   * @return {array} arrya of tick values
-   */
-  _getTickValues() {
-    const tickStep = this.props.tickStep ? this.props.tickStep : this.props.max;
-    // create a range of values
-    const tickValues = rangeStep(tickStep, this.props.min, this.props.max);
-    // and add the max into the array
-    tickValues.push(this.props.max);
-
-    return tickValues;
-  }
-
-  /**
-   * _getTicks - creates the ticks from which the value, colour and step range is rendered
-   * @param {number} min minimum value of the selected range
-   * @param {number} max maximum value of the selected range
-   * @return {array} tick values including the value, colour and step range
-   */
-  _getTicks(min, max) {
-    return this._getTickValues()
-      .map(tickValue => (
-        {
-          range: min <= tickValue && tickValue <= max,
-          value: tickValue
-        }
-    ));
   }
 
   /**
@@ -101,40 +74,9 @@ class Slider extends React.Component {
    * @param  {object} payload min and max values selected in the slider
    */
   _handleChanged(e, { min, max }) {
-    this.setState({
-      ticks: this._getTicks(min, max)
-    });
-
     if (typeof this.props.onChange === 'function') {
       this.props.onChange(e, { min, max });
     }
-  }
-
-  /**
-   * _getNumberShift - calculates the shift of a tick number from the left side of the slider
-   * @param {number} value the value displayed as a tick
-   * @param {number} index the index number of the given value
-   * @param {number} lastValueIndex index of the tick
-   * @return {number} shift in pixels from the left side of the slider
-   */
-  _getNumberShift(value, index, lastValueIndex) {
-    const decimalValue = getPercentage(value, this.props.min, this.props.max) / 100;
-    // TODO: how to get from styles?
-    const inputWidth = 174;
-    // TODO: how to get from styles?
-    const numberWidth = 24;
-    // by default, shift the number by half of the box's width
-    let numberBoxShift = numberWidth / 2;
-
-    if (index === 0) {
-      // if the number is the first value shift by quarter of the box's width to align with the first symbol
-      numberBoxShift = numberWidth / 4;
-    } else if (index === lastValueIndex) {
-      // if the number is the last value shift by threequarters of the box's width to align with the last symbol
-      numberBoxShift = (numberWidth / 4) * 3;
-    }
-
-    return (decimalValue * inputWidth) - numberBoxShift;
   }
 
   /**
@@ -143,7 +85,7 @@ class Slider extends React.Component {
    * @return {object} JSX for this component
    */
   render() {
-    const hiddenElements = (
+    const hiddenElements = !this.state.values && (
       <div className='cbn-slider__hidden'>
         <div
           ref={hiddenFill => { this._hiddenFill = hiddenFill; }}
@@ -151,44 +93,13 @@ class Slider extends React.Component {
         <div
           ref={hiddenBackground => { this._hiddenBackground = hiddenBackground; }}
           className={classnames('cbn-slider__hidden--background', `cbn-theme--${this.props.theme}`)} />
+        <div
+          ref={hiddenLine => { this._hiddenLine = hiddenLine; }}
+          className='cbn-slider__hidden--slider-line' />
+        <div
+          ref={hiddenTickNumber => { this._hiddenTickNumber = hiddenTickNumber; }}
+          className='cbn-slider__hidden--tick-number' />
       </div>
-    );
-
-    const tickNumbers = this.props.showTicks && (
-      <datalist
-        id={this._id}
-        className='cbn-slider__tick-numbers'>
-        {this.state.ticks.map((tick, i) => (
-          <option
-            key={`tick-number-${tick.value}`}
-            className={classnames(
-              'cbn-slider__tick-number',
-              { 'cbn-slider__tick-number--min': i === 0 },
-              { 'cbn-slider__tick-number--max': i === (this.state.ticks.length - 1) })}
-            value={tick.value}
-            style={{ transform: `translateX(${this._getNumberShift(tick.value, i, this.state.ticks.length - 1)}px)` }}>
-            {tick.value}
-          </option>
-        ))}
-      </datalist>
-    );
-
-    const tickSymbols = this.props.showTicks && (
-      <datalist
-        id={this._id}
-        className='cbn-slider__tick-symbols'>
-        {this.state.ticks.map((tick, i) => (
-          <option
-            key={`tick-symbol-${tick.value}`}
-            className={classnames(
-              'cbn-slider__tick-symbol',
-              { 'cbn-slider__tick-symbol--min': i === 0 },
-              { 'cbn-slider__tick-symbol--max': i === (this.state.ticks.length - 1) },
-              { 'cbn-slider__tick-symbol--range': tick.range }
-            )}
-            value={tick.value} />
-        ))}
-      </datalist>
     );
 
     // determine the type of correct renderer
@@ -202,8 +113,8 @@ class Slider extends React.Component {
           `cbn-theme--${this.props.theme}`,
           { 'cbn-slider--stepped': this.props.step !== 1 })}>
         <RendererType
-          backgroundColor={this.state.colors ? this.state.colors.background : 'transparent'}
-          fillColor={this.state.colors ? this.state.colors.fill : 'transparent'}
+          backgroundColor={this.state.values ? this.state.values.background : 'transparent'}
+          fillColor={this.state.values ? this.state.values.fill : 'transparent'}
           listId={this._id}
           label={this.props.label}
           min={this.props.min}
@@ -211,10 +122,11 @@ class Slider extends React.Component {
           name={this.props.name}
           onChange={this._handleChanged}
           percentage={getPercentage}
+          sliderWidth={0}
           step={this.props.step}
+          tickNumberWidth={0}
+          tickStep={this.props.tickStep}
           theme={this.props.theme}
-          tickNumbers={tickNumbers}
-          tickSymbols={tickSymbols}
           value={this.props.value} />
         {hiddenElements}
       </div>
@@ -228,7 +140,6 @@ Slider.defaultProps = {
   min: 0,
   name: 'slider',
   onChange: null,
-  showTicks: true,
   step: 1,
   tickStep: 0,
   theme: 'light',
@@ -257,11 +168,6 @@ Slider.propTypes = {
    * Event listener which will be trigerred on change of the slider.
    */
   onChange: PropTypes.func,
-  /**
-   * Whether the ticks indicating values of the slider should be shown.
-   * By default only the min and max is shown, changing the tickStep value modifies the number of ticks.
-   */
-  showTicks: PropTypes.bool,
   /**
    * Step of the slider.
    */

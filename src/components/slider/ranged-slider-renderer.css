@@ -25,13 +25,13 @@
   &.cbn-slider__input--max {
     position: relative;
   }
+
+  &--multiple {
+    pointer-events: none;
+  }
 }
 
-.cbn-slider__input--multiple {
-  pointer-events: none;
-}
-
-.cbn-slider__box-inputs {
+.cbn-slider__controls {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
