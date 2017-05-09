@@ -28,12 +28,12 @@ $duration-underline-hovered: 0.5s;
 }
 
 .cbn-tabs__list {
+  @mixin themedParent border-bottom-color, tabs, border;
+
   display: flex;
 
   border-bottom-width: 1px;
   border-bottom-style: solid;
-
-  @mixin themedParent border-bottom-color, tabs, border;
 
   .cbn-tabs__tab {
     margin: 0 $size-tab-margin;
@@ -49,8 +49,6 @@ $duration-underline-hovered: 0.5s;
 }
 
 .cbn-tabs__tab {
-  @mixin themedParent color, tabs;
-
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -61,12 +59,6 @@ $duration-underline-hovered: 0.5s;
   &:hover {
     &::after {
       transform: scaleX(1);
-    }
-  }
-
-  &:active {
-    .cbn-tabs__button {
-      @mixin themedParent background-color, tabs, active;
     }
   }
 
@@ -88,6 +80,8 @@ $duration-underline-hovered: 0.5s;
 .cbn-tabs__button {
   @extend %type--title;
 
+  @mixin themedParent color, tabs;
+
   margin-bottom: $size-tab-text-margin;
   padding: $size-tab-padding 0;
   border: none;
@@ -106,10 +100,20 @@ $duration-underline-hovered: 0.5s;
   &:hover {
     text-decoration: none;
   }
+
+  &:focus {
+    @mixin themedParent color, text;
+  }
+
+  &:active {
+    @mixin themedParent background-color, tabs, active;
+  }
 }
 
 .cbn-tabs__tab--selected {
-  @mixin themedParent color, text;
+  .cbn-tabs__button {
+    @mixin themedParent color, text;
+  }
 
   &::after {
     @mixin themedParent background-color, tabs, selected;
