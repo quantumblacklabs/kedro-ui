@@ -122,6 +122,10 @@
   cursor: pointer;
 }
 
+.cbn-sg-btn:focus {
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.8) inset;
+}
+
 .cbn-sg-btn:hover {
   color: white;
   background: rgb(25, 104, 209);
