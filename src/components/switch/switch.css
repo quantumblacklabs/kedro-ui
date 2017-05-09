@@ -9,7 +9,7 @@ $size-switch-spacing: 14px;
 /** Implementation **/
 
 .cbn-switch__input {
-  display: none;
+  @extend %hidden;
 }
 
 .cbn-switch {

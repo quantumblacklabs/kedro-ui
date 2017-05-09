@@ -35,7 +35,7 @@ themes:
       wrapper: rgba(0, 0, 0, 0.12)
     button:
       active: rgba(0, 0, 0, 0.85)
-      focus: rgba(0, 0, 0, 0.12)
+      focus: rgba(0, 0, 0, 0.3)
       outline: rgb(0, 0, 0)
       textHover: rgba(255, 255, 255, 0.85)
     checkbox:
@@ -43,8 +43,10 @@ themes:
     radiobutton:
       default: rgba(0, 0, 0, 0.55)
       disabled: rgba(0, 0, 0, 0.35)
+      focus: rgba(0, 0, 0, 0.2)
     slider:
       default: rgb(212, 213, 214)
+      focus: rgba(0, 0, 0, 0.2)
       label: rgba(0, 0, 0, 0.85)
       numberInputLine: rgba(0, 0, 0, 0.12)
       thumbCenter: rgb(255, 255, 255)
@@ -63,6 +65,8 @@ themes:
       icon: rgba(0, 0, 0, 0.55)
     toggle:
       default: rgba(0, 0, 0, 0.85)
+      hover: rgba(0, 0, 0, 0.6)
+      focus: rgba(0, 0, 0, 0.06)
       disabled: rgba(0, 0, 0, 0.3)
       active: rgba(0, 0, 0, 0.12)
       underline: rgb(0, 0, 0)
@@ -109,7 +113,7 @@ themes:
       wrapper: rgba(0, 0, 0, 0)
     button:
       active: rgba(255, 255, 255, 0.85)
-      focus: rgba(255, 255, 255, 0.12)
+      focus: rgba(255, 255, 255, 0.3)
       outline: rgb(255, 255, 255)
       textHover: rgba(0, 0, 0, 0.85)
     checkbox:
@@ -117,8 +121,10 @@ themes:
     radiobutton:
       default: rgba(255, 255, 255, 0.55)
       disabled: rgba(255, 255, 255, 0.35)
+      focus: rgba(255, 255, 255, 0.2)
     slider:
       default: rgb(96, 110, 117)
+      focus: rgba(255, 255, 255, 0.2)
       label: rgba(255, 255, 255, 0.85)
       numberInputLine: rgba(255, 255, 255, 0.12)
       thumbCenter: rgb(0, 0, 0)
@@ -137,6 +143,8 @@ themes:
       icon: rgba(255, 255, 255, 0.55)
     toggle:
       default: rgba(255, 255, 255, 0.85)
+      hover: rgba(255, 255, 255, 0.6)
+      focus: rgba(255, 255, 255, 0.06)
       disabled: rgba(255, 255, 255, 0.3)
       active: rgba(0, 0, 0, 0.12)
       underline: rgb(255, 255, 255)
