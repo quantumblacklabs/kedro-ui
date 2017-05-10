@@ -105,19 +105,21 @@ $hidden-elements-height: 1px;
   height: $range-input-height;
 }
 
+/** SLIDER LABEL **/
 .cbn-slider__label {
   @mixin themedParent color, slider, label;
-
-  &--single {
-    @extend %type--body-1;
-
-    width: $label-single-width;
-    margin: 0 $label-number-margin 0 0;
-  }
 }
 
+.cbn-slider__label--single {
+  @extend %type--body-1;
+
+  width: $label-single-width;
+  margin: 0 $label-number-margin 0 0;
+}
+
+/** SLIDER NUMBER INPUT **/
 .cbn-slider__number-input {
-  .cbn-input {
+  & .cbn-input {
     margin: 0;
     padding: 0;
     border: none;
@@ -129,25 +131,26 @@ $hidden-elements-height: 1px;
     &:active {
       box-shadow: none;
     }
+  }
 
-    &__field {
-      @extend %type--body-1;
+  & .cbn-input__field {
+    @extend %type--body-1;
 
-      background: transparent;
-    }
+    background: transparent;
+  }
 
-    &__line {
-      @mixin themedParent background, slider, numberInputLine;
-    }
+  & .cbn-input__line {
+    @mixin themedParent background, slider, numberInputLine;
+  }
 
-    &-wrapper {
-      width: $number-input-width;
-      margin: 0 0 0 $label-number-margin;
-      padding: 0;
-    }
+  & .cbn-input-wrapper {
+    width: $number-input-width;
+    margin: 0 0 0 $label-number-margin;
+    padding: 0;
   }
 }
 
+/** SLIDER LINE **/
 .cbn-slider__line {
   position: absolute;
   top: calc(50% - $thumb-width / 2);
@@ -162,6 +165,7 @@ $hidden-elements-height: 1px;
   box-sizing: border-box;
 }
 
+/** SLIDER TICKS **/
 .cbn-slider__ticks {
   position: absolute;
 
@@ -193,14 +197,14 @@ $hidden-elements-height: 1px;
   padding: 0;
 
   text-align: center;
+}
 
-  &--min {
-    margin-left: $thumb-width;
-  }
+.cbn-slider__tick-number--min {
+  margin-left: $thumb-width;
+}
 
-  &--max {
-    margin-left: -$thumb-width;
-  }
+.cbn-slider__tick-number--max {
+  margin-left: -$thumb-width;
 }
 
 .cbn-slider__tick-symbol {
@@ -215,21 +219,21 @@ $hidden-elements-height: 1px;
   border-radius: 50%;
 
   @mixin themedParent background, slider, default;
-
-  &--range {
-    @mixin themedParent background, slider, thumbBorder;
-  }
-
-  &--min {
-    transform: translateX(calc(-50% + $thumb-width));
-  }
-
-  &--max {
-    transform: translateX(calc(50% - $thumb-width));
-  }
 }
 
-/* SLIDER INPUT RANGE */
+.cbn-slider__tick-symbol--range {
+  @mixin themedParent background, slider, thumbBorder;
+}
+
+.cbn-slider__tick-symbol--min {
+  transform: translateX(calc(-50% + $thumb-width));
+}
+
+.cbn-slider__tick-symbol--max {
+  transform: translateX(calc(50% - $thumb-width));
+}
+
+/** SLIDER INPUT RANGE **/
 .cbn-slider__input {
   -webkit-appearance: none;
 
@@ -314,24 +318,24 @@ $hidden-elements-height: 1px;
   left: -9999px;
 
   opacity: 0;
+}
 
-  &--fill {
-    height: $hidden-elements-height;
+.cbn-slider__hidden--fill {
+  height: $hidden-elements-height;
 
-    @mixin themed background, slider, thumbBorder;
-  }
+  @mixin themed background, slider, thumbBorder;
+}
 
-  &--background {
-    height: $hidden-elements-height;
+.cbn-slider__hidden--background {
+  height: $hidden-elements-height;
 
-    @mixin themed background, slider, default;
-  }
+  @mixin themed background, slider, default;
+}
 
-  &--slider-line {
-    width: $range-input-width;
-  }
+.cbn-slider__hidden--slider-line {
+  width: $range-input-width;
+}
 
-  &--tick-number {
-    width: $tick-number-width;
-  }
+.cbn-slider__hidden--tick-number {
+  width: $tick-number-width;
 }

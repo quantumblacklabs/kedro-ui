@@ -16,16 +16,18 @@ class TickRenderer extends React.Component {
    * @param {number} max maximum value of the selected range
    * @return {array} tick values including the value, colour and step range
    */
-  _getTicks(min, max) {
-    const tickStep = this.props.step ? this.props.step : this.props.max;
+  _getTicks(rangeMin, rangeMax) {
+    const { min, max, step } = this.props;
+
+    const tickStep = step || max;
     // create a range of values
-    const tickValues = rangeStep(tickStep, this.props.min, this.props.max);
+    const tickValues = rangeStep(tickStep, min, max);
     // and add the max into the array
-    tickValues.push(this.props.max);
+    tickValues.push(max);
 
     return tickValues.map(tickValue => (
       {
-        range: min <= tickValue && tickValue <= max,
+        range: rangeMin <= tickValue && tickValue <= rangeMax,
         value: tickValue
       }
     ));
@@ -41,7 +43,7 @@ class TickRenderer extends React.Component {
   _getNumberShift(value) {
     const decimalValue = this.props.percentage(value, this.props.min, this.props.max) / 100;
 
-    // by default, shift the number by half of the box's width
+    // shift the number by half of the box's width
     const numberBoxShift = this.props.numberWidth / 2;
 
     return (decimalValue * this.props.width) - numberBoxShift;
@@ -53,8 +55,10 @@ class TickRenderer extends React.Component {
    * @return {object} JSX for this component
    */
   render() {
+    const { type } = this.props;
+
     const ticks = this._getTicks(this.props.minRange, this.props.maxRange);
-    const tickClass = `${this.props.componentPrefix}__tick-${this.props.type}`;
+    const tickClass = `${this.props.componentPrefix}__tick-${type}`;
 
     return (
       <datalist
@@ -62,7 +66,7 @@ class TickRenderer extends React.Component {
         className={`${tickClass}-group`}>
         {ticks.map((tick, i) => (
           <option
-            key={`tick-${this.props.type}-${tick.value}`}
+            key={`tick-${type}-${tick.value}`}
             className={classnames(
               tickClass,
               { [`${tickClass}--min`]: i === 0 },
@@ -71,10 +75,10 @@ class TickRenderer extends React.Component {
             )}
             value={tick.value}
             style={{ transform:
-              this.props.type === 'number'
+              type === 'number'
                 ? `translateX(${this._getNumberShift(tick.value)}px)`
                 : '0' }}>
-            { this.props.type === 'number' ? tick.value : undefined }
+            { type === 'number' ? tick.value : undefined }
           </option>
         ))}
       </datalist>

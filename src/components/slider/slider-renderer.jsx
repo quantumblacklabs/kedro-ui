@@ -116,14 +116,18 @@ class SliderRenderer extends React.Component {
    * @return {object} JSX for this component
    */
   render() {
+    const label = this.props.label && (
+      <div
+        className={classnames(
+          'cbn-slider__label',
+          'cbn-slider__label--single')}>
+        {this.props.label}
+      </div>
+    );
+
     return (
       <div className='cbn-slider__wrapper'>
-        <div
-          className={classnames(
-            'cbn-slider__label',
-            'cbn-slider__label--single')}>
-          {this.props.label}
-        </div>
+        {label}
         <div className='cbn-slider__controls'>
           <div className='cbn-slider__range'>
             <div className='cbn-slider__ticks'>
