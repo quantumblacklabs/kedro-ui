@@ -41,9 +41,11 @@ const Notification = ({
           {label}
         </span>
       </div>
-      <button className='cbn-notification__closebtn'>
+      <button
+        aria-label='close'
+        onClick={onClose}
+        className='cbn-notification__closebtn'>
         <Icon
-          onClick={onClose}
           size='medium'
           theme={theme}
           title=''

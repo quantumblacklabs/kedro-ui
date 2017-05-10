@@ -8,6 +8,8 @@ $size-spacing: 22px;
 $size-icon: 24px;
 $size-inner-spacing: 8px;
 
+$color-btn-focus: rgba(255, 255, 255, 0.2);
+
 /** Implementation **/
 
 .cbn-notification {
@@ -92,4 +94,22 @@ $size-inner-spacing: 8px;
   line-height: 1;
 
   background: transparent;
+
+  &:hover {
+    cursor: pointer;
+
+    .cbn-icon--close {
+      opacity: 1;
+    }
+  }
+
+  &:focus {
+    background: $color-btn-focus;
+
+    outline: none;
+
+    .cbn-icon--close {
+      opacity: 1;
+    }
+  }
 }
