@@ -42,10 +42,8 @@ test('Toggle should be created with all the user defined props', t => {
   t.is(wrapper.props().type, 'bold');
   t.is(wrapper.props().theme, 'light');
 
-  wrapper.find('.cbn-toggle__switch')
-    .children()
-    .last()
-    .simulate('click', { target: { dataset: { value: 'off' } } });
+  wrapper.find('input')
+    .simulate('change');
 
   t.is(spy.callCount, 1);
 
@@ -55,10 +53,5 @@ test('Toggle should be created with all the user defined props', t => {
 });
 
 test('Toggle should throw an error when only 1 text is provided', t => {
-  // const jsx = (
-  //   <Toggle texts={['UP']} />
-  // );
-  // const wrapper = shallow(<Toggle texts={['UP']} />);
-
   t.throws(() => { shallow(<Toggle texts={['UP']} />); }, Error);
 });

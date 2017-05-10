@@ -1,6 +1,7 @@
 // Imports
 import React from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
 // Styles
 import './tooltip.css';
@@ -17,13 +18,20 @@ const Tooltip = ({
   wrapText
 }) => {
   const style = {
-    opacity: show ? 1 : 0,
     whiteSpace: wrapText ? 'normal' : 'nowrap',
     width
   };
 
   return (
-    <div data-tooltip-id={tooltipId} style={style} className={`cbn-tooltip cbn-theme--${theme}`}>
+    <div
+      aria-hidden={!show.toString()}
+      className={classnames(
+        `cbn-tooltip cbn-theme--${theme}`,
+        { 'cbn-tooltip--hidden': !show }
+      )}
+      data-tooltip-id={tooltipId}
+      hidden={!show}
+      style={style}>
       { children }
     </div>
   );

@@ -23,6 +23,7 @@ const TooltipTriggerHOC = WrapperComponent => {
       this.tooltip = null;
 
       this._handleEvent = this._handleEvent.bind(this);
+      this._toggleTooltip = this._toggleTooltip.bind(this);
       this._showTooltip = this._showTooltip.bind(this);
       this._hideTooltip = this._hideTooltip.bind(this);
       this._getEventHandlers = this._getEventHandlers.bind(this);
@@ -55,17 +56,34 @@ const TooltipTriggerHOC = WrapperComponent => {
      */
     _hideTooltip() {
       if (this.tooltip) {
-        this.tooltip.style.opacity = 0;
+        this.tooltip.classList.add('cbn-tooltip--hidden');
+        this.tooltip.setAttribute('hidden', '');
+        this.tooltip.setAttribute('aria-hidden', 'true');
       }
     }
 
     /**
-     * _showTooltip allows you to toggle a tooltip tip into view, based on the
+     * Convenience method, show the tooltip
+     */
+    _showTooltip() {
+      if (this.tooltip) {
+        this.tooltip.classList.remove('cbn-tooltip--hidden');
+        this.tooltip.removeAttribute('hidden');
+        this.tooltip.setAttribute('aria-hidden', 'false');
+      }
+    }
+
+    /**
+     * _toggleTooltip allows you to toggle a tooltip tip into view, based on the
      * tooltipId prop and display direction prop
      * @param  {Object} opts { show, position, tooltips }
      */
-    _showTooltip({ position, show }) {
-      this.tooltip.style.opacity = +show;
+    _toggleTooltip({ position, show }) {
+      if (show) {
+        this._showTooltip();
+      } else {
+        this._hideTooltip();
+      }
 
       Object.keys(position)
         .forEach(key => {
@@ -110,7 +128,7 @@ const TooltipTriggerHOC = WrapperComponent => {
           throw new Error('Unknown display direction for tooltip');
       }
 
-      this._showTooltip({
+      this._toggleTooltip({
         show: this.showTooltip = !this.showTooltip,
         position
       });

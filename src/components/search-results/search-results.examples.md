@@ -1,6 +1,8 @@
 Search results component used alongside a search input:
 
 ```
+const { handleKeyEvent } = require('utils');
+
 class SearchBoxWithResults extends React.Component {
     constructor(props) {
         super(props);
@@ -36,26 +38,12 @@ class SearchBoxWithResults extends React.Component {
         return results.filter(({ label }) => label.match(valueRegex));
     }
     _handleKeyDown({ keyCode }) {
-        const KEYS = {
-            '13': 'Enter',
-            '27': 'Escape',
-            '38': 'Up',
-            '40': 'Down'
-        };
-        switch (KEYS[keyCode]) {
-            case 'Enter':
-                this._hideResults();
-                break;
-            case 'Escape':
-                this._clearResults();
-                break;
-            case 'Up':
-                this._changeActiveRow(-1);
-                break;
-            case 'Down':
-                this._changeActiveRow(1);
-                break;
-        }
+        handleKeyEvent(keyCode, {
+            enter: this._hideResults,
+            escape: this._clearResults,
+            up: this._changeActiveRow.bind(this, -1),
+            down: this._changeActiveRow.bind(this, 1)
+        });
     }
     _changeActiveRow(direction) {
         let { activeRow, results } = this.state;

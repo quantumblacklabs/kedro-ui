@@ -23,9 +23,15 @@ $size-checkmark: 24px;
   margin-right: $size-radio-button-spacing;
 
   border: 2px solid;
+  outline: 3px solid transparent;
+  transition: 0.2s all;
 
   .cbn-switch__input:checked + .cbn-switch-checkbox__label & {
     opacity: 1;
+  }
+
+  .cbn-switch__input:focus + .cbn-switch-checkbox__label & {
+    @mixin themedParent outline-color, radiobutton, focus;
   }
 
   .cbn-switch-checkbox--disabled & {
