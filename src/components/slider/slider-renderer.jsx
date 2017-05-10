@@ -134,11 +134,11 @@ class SliderRenderer extends React.Component {
                 max={this.props.max}
                 minRange={0}
                 maxRange={this.state.value}
-                numberWidth={24}
+                numberWidth={this.props.tickNumberWidth}
                 step={this.props.tickStep}
                 percentage={this.props.percentage}
                 type='number'
-                width={174} />
+                width={this.props.sliderWidth} />
               <TickRenderer
                 componentPrefix='cbn-slider'
                 id={this.props.listId}
@@ -146,11 +146,11 @@ class SliderRenderer extends React.Component {
                 max={this.props.max}
                 minRange={0}
                 maxRange={this.state.value}
-                numberWidth={24}
+                numberWidth={this.props.tickNumberWidth}
                 step={this.props.tickStep}
                 percentage={this.props.percentage}
                 type='symbol'
-                width={174} />
+                width={this.props.sliderWidth} />
             </div>
             <div
               ref={lineFilled => { this._lineFilled = lineFilled; }}
@@ -189,7 +189,9 @@ SliderRenderer.defaultProps = {
   min: 0,
   name: 'slider',
   onChange: null,
+  sliderWidth: 174,
   step: 1,
+  tickNumberWidth: 24,
   tickStep: 0,
   value: 50
 };
@@ -232,9 +234,17 @@ SliderRenderer.propTypes = {
    */
   percentage: PropTypes.func.isRequired,
   /**
+   * Width of the input range slider.
+   */
+  sliderWidth: PropTypes.number,
+  /**
    * Step of the slider.
    */
   step: PropTypes.number,
+  /**
+   * Width of the tick for the number.
+   */
+  tickNumberWidth: PropTypes.number,
   /**
    * Step of the ticks shown below the slider.
    * By default only the min and max is shown.

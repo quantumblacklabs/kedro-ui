@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { rangeStep, uniqueId } from 'lodash/fp';
+import { uniqueId } from 'lodash/fp';
 
 import SliderRenderer from './slider-renderer';
 import RangedSliderRenderer from './ranged-slider-renderer';
@@ -62,8 +62,8 @@ class Slider extends React.Component {
       values: {
         fill,
         background,
-        tickNumberWidth,
-        sliderLineWidth
+        tickNumberWidth: parseFloat(tickNumberWidth.replace('px', '')),
+        sliderLineWidth: parseFloat(sliderLineWidth.replace('px', ''))
       }
     });
   }
@@ -122,9 +122,9 @@ class Slider extends React.Component {
           name={this.props.name}
           onChange={this._handleChanged}
           percentage={getPercentage}
-          sliderWidth={0}
+          sliderWidth={this.state.values ? this.state.values.sliderLineWidth : 0}
           step={this.props.step}
-          tickNumberWidth={0}
+          tickNumberWidth={this.state.values ? this.state.values.tickNumberWidth : 0}
           tickStep={this.props.tickStep}
           theme={this.props.theme}
           value={this.props.value} />
