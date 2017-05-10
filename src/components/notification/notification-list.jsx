@@ -60,6 +60,8 @@ class NotificationList extends React.Component {
       this.timer = setInterval(() => {
         if (this.state.notifications.length !== 0) {
           this._removeNotification(this.state.notifications.length - 1);
+        } else {
+          clearInterval(this.timer);
         }
       }, this.props.removeAfter);
     }
