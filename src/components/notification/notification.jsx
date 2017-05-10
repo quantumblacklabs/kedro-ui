@@ -29,7 +29,11 @@ const Notification = ({
   );
 
   return (
-    <div className={`cbn-notification cbn-notification--${type} cbn-theme--${theme}`}>
+    <div
+      role='alert'
+      aria-live='assertive'
+      className={`cbn-notification cbn-notification--${type} cbn-theme--${theme}`}
+      tabIndex='-1'>
       {contextIcon}
       <div className='cbn-notification__content'>
         <span

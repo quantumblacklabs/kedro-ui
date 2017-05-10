@@ -2,7 +2,8 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import { CSSTransitionGroup } from 'react-transition-group';
+
 import { uniqueId } from 'lodash/fp';
 
 // Components
@@ -116,18 +117,19 @@ class NotificationList extends React.Component {
       <div
         style={{ width: this.props.width }}
         className='cbn-notification-list'>
-        <ReactCSSTransitionGroup
+        <CSSTransitionGroup
           transitionName='cbn-notification-animation'
           transitionEnterTimeout={500}
           transitionLeaveTimeout={300}>
           {items}
-        </ReactCSSTransitionGroup>
+        </CSSTransitionGroup>
       </div>
     );
   }
 }
 
 NotificationList.defaultProps = {
+  currentNotification: null,
   removeAfter: null,
   theme: 'dark',
   width: '500px'
@@ -142,7 +144,7 @@ NotificationList.propTypes = {
     icon: PropTypes.string,
     label: PropTypes.string,
     type: PropTypes.oneOf(['inline', 'multiline'])
-  }).isRequired,
+  }),
   /**
    * Remove the notifications after a given time (ms), will remove oldest first
    */
