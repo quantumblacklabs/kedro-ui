@@ -70,11 +70,26 @@ $size-inner-spacing: 8px;
   }
 
   &.cbn-icon--close {
-    position: absolute;
-
-    top: $size-spacing;
-    right: $size-spacing;
-
     margin-right: 0;
   }
+}
+
+.cbn-notification__closebtn {
+  position: absolute;
+
+  top: $size-spacing;
+  right: $size-spacing;
+
+  width: $size-icon;
+  height: $size-icon;
+
+  margin-right: 0;
+  padding: 0;
+
+  border: none;
+
+  font-size: 0;
+  line-height: 1;
+
+  background: transparent;
 }

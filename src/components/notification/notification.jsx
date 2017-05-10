@@ -41,12 +41,14 @@ const Notification = ({
           {label}
         </span>
       </div>
-      <Icon
-        onClick={onClose}
-        size='medium'
-        theme={theme}
-        title=''
-        type='close' />
+      <button className='cbn-notification__closebtn'>
+        <Icon
+          onClick={onClose}
+          size='medium'
+          theme={theme}
+          title=''
+          type='close' />
+      </button>
     </div>
   );
 };
