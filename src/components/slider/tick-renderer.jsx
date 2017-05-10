@@ -87,7 +87,7 @@ class TickRenderer extends React.Component {
 }
 
 TickRenderer.defaultProps = {
-  id: '',
+  id: null,
   min: 0,
   max: 100,
   minRange: 0,

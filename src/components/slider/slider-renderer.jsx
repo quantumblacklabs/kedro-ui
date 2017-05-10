@@ -145,7 +145,6 @@ class SliderRenderer extends React.Component {
                 width={this.props.sliderWidth} />
               <TickRenderer
                 componentPrefix='cbn-slider'
-                id={this.props.listId}
                 min={this.props.min}
                 max={this.props.max}
                 minRange={0}
