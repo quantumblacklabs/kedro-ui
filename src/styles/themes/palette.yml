@@ -63,6 +63,10 @@ themes:
       default: rgba(255, 105, 180, 0.5)
     search:
       icon: rgba(0, 0, 0, 0.55)
+    notifications:
+      background: rgba(255, 255, 255, 1);
+      label: rgba(0, 0, 0, 0.55)
+      headerLabel: rgba(0, 0, 0, 0.85)
     toggle:
       default: rgba(0, 0, 0, 0.85)
       hover: rgba(0, 0, 0, 0.6)
@@ -141,6 +145,10 @@ themes:
       default: rgba(100, 149, 237, 0.5)
     search:
       icon: rgba(255, 255, 255, 0.55)
+    notifications:
+      background: rgba(42, 59, 70, 1);
+      label: rgba(255, 255, 255, 0.55)
+      headerLabel: rgba(255, 255, 255, 0.85)
     toggle:
       default: rgba(255, 255, 255, 0.85)
       hover: rgba(255, 255, 255, 0.6)
