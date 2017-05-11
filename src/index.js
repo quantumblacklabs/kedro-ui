@@ -7,6 +7,7 @@ import Input from 'components/input';
 import MenuOption from 'components/menu-option';
 import RadioButton from 'components/radio-button';
 import SearchBar from 'components/search-bar';
+import Notification from 'components/notification';
 import SearchResults from 'components/search-results';
 import Slider from 'components/slider';
 import Tabs from 'components/tabs';
@@ -22,6 +23,7 @@ module.exports = {
   EventIndicator,
   Icon,
   Input,
+  Notification,
   MenuOption,
   RadioButton,
   SearchBar,

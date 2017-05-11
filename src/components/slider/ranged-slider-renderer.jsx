@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import Input from 'components/input';
+import TickRenderer from './tick-renderer';
 
 import './ranged-slider-renderer.css';
 
@@ -41,7 +42,7 @@ class RangedSliderRenderer extends React.Component {
 
     // fire the onchange with the range values
     if (typeof this.props.onChange === 'function') {
-      this.props.onChange(undefined, { min: this.state.minRange, max: this.state.maxRange });
+      this.props.onChange(null, { min: this.state.minRange, max: this.state.maxRange });
     }
   }
 
@@ -60,12 +61,15 @@ class RangedSliderRenderer extends React.Component {
    * @return {number} updated value - new correct minimum value
    */
   _checkMinValue(value) {
+    const { maxRange } = this.state;
+    const { min } = this.props;
+
     // check if the value is a number and parse it from the event
     let minRange = isNaN(parseFloat(value)) ? 0 : parseFloat(value);
     // if the value is out of range, set the min value as a new value
-    minRange = minRange < this.props.min ? this.props.min : minRange;
+    minRange = minRange < min ? min : minRange;
     // the min value cannot overlap the max value
-    minRange = minRange < this.state.maxRange ? minRange : this.state.maxRange;
+    minRange = minRange < maxRange ? minRange : maxRange;
 
     return minRange;
   }
@@ -76,12 +80,15 @@ class RangedSliderRenderer extends React.Component {
    * @return {number} updated value - new correct maximum value
    */
   _checkMaxValue(value) {
+    const { minRange } = this.state;
+    const { max } = this.props;
+
     // check if the value is a number and parse it from the event
     let maxRange = isNaN(parseFloat(value)) ? 0 : parseFloat(value);
     // if the value is out of range, set the max value as a new value
-    maxRange = maxRange > this.props.max ? this.props.max : maxRange;
+    maxRange = maxRange > max ? max : maxRange;
     // the max value cannot overlap the min value
-    maxRange = this.state.minRange < maxRange ? maxRange : this.state.minRange;
+    maxRange = minRange < maxRange ? maxRange : minRange;
 
     return maxRange;
   }
@@ -91,9 +98,11 @@ class RangedSliderRenderer extends React.Component {
    * @param  {number} value new minimum value
    */
   _updateMinValue(value) {
+    const { maxRange } = this.state;
+
     this.setState({
       minRange: value,
-      maxRangeDisabled: (value === this.state.maxRange) && (this.state.maxRange === this.props.max)
+      maxRangeDisabled: (value === maxRange) && (maxRange === this.props.max)
     });
   }
 
@@ -192,12 +201,15 @@ class RangedSliderRenderer extends React.Component {
    * @return {object} JSX for this component
    */
   render() {
-    const sliderLabel = this.props.label && (
+    const { minRange, maxRange, maxRangeDisabled } = this.state;
+    const { label, listId, min, max, name, percentage, sliderWidth, step, tickNumberWidth, tickStep } = this.props;
+
+    const sliderLabel = label && (
       <div
         className={classnames(
           'cbn-slider__label',
           'cbn-slider__label--multiple')}>
-        {this.props.label}
+        {label}
       </div>
     );
 
@@ -207,20 +219,41 @@ class RangedSliderRenderer extends React.Component {
           'cbn-slider__wrapper',
           'cbn-slider__wrapper--multiple')}>
         {sliderLabel}
-        <div className='cbn-slider__box-inputs'>
+        <div className='cbn-slider__controls'>
           <div
             className={classnames(
               'cbn-slider__number-input',
               'cbn-slider__number-input--min',
               'cbn-slider__number-input--multiple')}>
             <Input
-              value={this.state.minRange.toString()}
+              value={minRange.toString()}
               onBlur={this._handleMinBlured} />
           </div>
-          <div className='cbn-slider__box'>
+          <div className='cbn-slider__range'>
             <div className='cbn-slider__ticks'>
-              {this.props.tickNumbers}
-              {this.props.tickSymbols}
+              <TickRenderer
+                componentPrefix='cbn-slider'
+                id={listId}
+                min={min}
+                max={max}
+                minRange={minRange}
+                maxRange={maxRange}
+                numberWidth={tickNumberWidth}
+                step={tickStep}
+                percentage={percentage}
+                type='number'
+                width={sliderWidth} />
+              <TickRenderer
+                componentPrefix='cbn-slider'
+                min={min}
+                max={max}
+                minRange={minRange}
+                maxRange={maxRange}
+                numberWidth={tickNumberWidth}
+                step={tickStep}
+                percentage={percentage}
+                type='symbol'
+                width={sliderWidth} />
             </div>
             <div
               ref={lineFilled => { this._lineFilled = lineFilled; }}
@@ -232,11 +265,11 @@ class RangedSliderRenderer extends React.Component {
                 'cbn-slider__input--min'
               )}
               type='range'
-              name={this.props.name}
-              min={this.props.min}
-              max={this.props.max}
-              step={this.props.step}
-              value={this.state.minRange}
+              name={name}
+              min={min}
+              max={max}
+              step={step}
+              value={minRange}
               onChange={this._handleMinChanged}
               multiple />
             <input
@@ -244,15 +277,15 @@ class RangedSliderRenderer extends React.Component {
                 'cbn-slider__input',
                 'cbn-slider__input--multiple',
                 'cbn-slider__input--max',
-                { 'cbn-slider__input--max-disabled': this.state.maxRangeDisabled }
+                { 'cbn-slider__input--max-disabled': maxRangeDisabled }
               )}
               type='range'
-              list={this.props.listId}
-              name={this.props.name}
-              min={this.props.min}
-              max={this.props.max}
-              step={this.props.step}
-              value={this.state.maxRange}
+              list={listId}
+              name={name}
+              min={min}
+              max={max}
+              step={step}
+              value={maxRange}
               onChange={this._handleMaxChanged}
               multiple />
           </div>
@@ -262,7 +295,7 @@ class RangedSliderRenderer extends React.Component {
               'cbn-slider__number-input--max',
               'cbn-slider__number-input--multiple')}>
             <Input
-              value={this.state.maxRange.toString()}
+              value={maxRange.toString()}
               onBlur={this._handleMaxBlured} />
           </div>
         </div>
@@ -280,10 +313,10 @@ RangedSliderRenderer.defaultProps = {
   min: 0,
   name: 'slider',
   onChange: null,
-  percentage: undefined,
+  sliderWidth: 174,
   step: 1,
-  tickNumbers: undefined,
-  tickSymbols: undefined,
+  tickNumberWidth: 24,
+  tickStep: 0,
   value: [0, 50]
 };
 
@@ -323,19 +356,24 @@ RangedSliderRenderer.propTypes = {
   /**
    * Function that calculates the percentage value of slider's range for given number.
    */
-  percentage: PropTypes.func,
+  percentage: PropTypes.func.isRequired,
+  /**
+   * Width of the tick for the number.
+   */
+  tickNumberWidth: PropTypes.number,
+  /**
+   * Step of the ticks shown below the slider.
+   * By default only the min and max is shown.
+   */
+  tickStep: PropTypes.number,
+  /**
+   * Width of the input range slider.
+   */
+  sliderWidth: PropTypes.number,
   /**
    * Step of the slider.
    */
   step: PropTypes.number,
-  /**
-   * Numbers indicating the ticks of the slider.
-   */
-  tickNumbers: PropTypes.element,
-  /**
-   * Symbols indicating the ticks of the slider, positioned in the middle of the slider.
-   */
-  tickSymbols: PropTypes.element,
   /**
    * Min and max values for the value.
    */

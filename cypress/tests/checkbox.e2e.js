@@ -10,15 +10,6 @@ describe('Checkbox Button component', () => {
       .should('to.have.length.above', 2);
   });
 
-  it('assert that each Checkbox button should have an invisible input field', () => {
-    cy
-      .get('.cbn-switch-checkbox:visible input')
-      .each(($el, index, $list) => {
-        cy.wrap($el)
-          .should('not.be.visible');
-    });
-  });
-
   it('assert that Checkbox is selected correctly, with multiple available to select', () => {
     cy.get('.cbn-switch-checkbox:visible')
       .each(($el, index, $list) => {
