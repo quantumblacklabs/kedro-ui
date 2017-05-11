@@ -2,7 +2,7 @@ Single-handler slider component with minimum and maximum number of properties
 
 ```
 <section>
-    <div style={{ margin: '0 0 50px 0' }}>
+    <div style={{ margin: '0 0 50px 90px' }}>
         <Slider theme='light' />
     </div>
     <div style={{ margin: '0 0 0 0' }}>
