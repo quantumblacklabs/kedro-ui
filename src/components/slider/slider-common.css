@@ -30,6 +30,8 @@ $hidden-elements-height: 1px;
 
 /** Mixins **/
 
+/** these styles have to be defined as mixins and not as extend to avoid PostCSS merging the selectors -
+    selectors have to be defined separately - browser will ignore style if it doesn't understand a part of selection **/
 @define-mixin thumb-style {
   @mixin themedParent background, slider, thumbCenter;
   @mixin themedParent border-color, slider, thumbBorder;
