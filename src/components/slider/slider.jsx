@@ -29,7 +29,7 @@ class Slider extends React.Component {
     super(props);
 
     this.state = {
-      values: null
+      styles: null
     };
 
     this._id = uniqueId(`cbn-slider--${this.props.type}-`);
@@ -43,23 +43,23 @@ class Slider extends React.Component {
    * @return {object} JSX for this component
    */
   componentDidMount() {
-    // store the correct values
-    if (!this.state.values) {
-      this._setValuesFromHidden();
+    // store the correct values from styles
+    if (!this.state.styles) {
+      this._getStylesFromHidden();
     }
   }
 
   /**
-   * _setValuesFromHidden - store the values in the state for usage in gradient and ticks rendering
+   * _getStylesFromHidden - store the values in the state for usage in gradient and ticks rendering
    */
-  _setValuesFromHidden() {
+  _getStylesFromHidden() {
     const fill = window.getComputedStyle(this._hiddenFill).backgroundColor;
     const background = window.getComputedStyle(this._hiddenBackground).backgroundColor;
     const tickNumberWidth = window.getComputedStyle(this._hiddenTickNumber).width;
     const sliderLineWidth = window.getComputedStyle(this._hiddenLine).width;
 
     this.setState({
-      values: {
+      styles: {
         fill,
         background,
         tickNumberWidth: parseFloat(tickNumberWidth.replace('px', '')),
@@ -86,9 +86,9 @@ class Slider extends React.Component {
    */
   render() {
     const { theme, type, step } = this.props;
-    const { values } = this.state;
+    const { styles } = this.state;
 
-    const hiddenElements = !values && (
+    const hiddenElements = !styles && (
       <div className='cbn-slider__hidden'>
         <div
           ref={hiddenFill => { this._hiddenFill = hiddenFill; }}
@@ -116,8 +116,8 @@ class Slider extends React.Component {
           `cbn-theme--${theme}`,
           { 'cbn-slider--stepped': step !== 1 })}>
         <RendererType
-          backgroundColor={values ? values.background : 'transparent'}
-          fillColor={values ? values.fill : 'transparent'}
+          backgroundColor={styles ? styles.background : 'transparent'}
+          fillColor={styles ? styles.fill : 'transparent'}
           listId={this._id}
           label={this.props.label}
           min={this.props.min}
@@ -125,9 +125,9 @@ class Slider extends React.Component {
           name={this.props.name}
           onChange={this._handleChanged}
           percentage={getPercentage}
-          sliderWidth={values ? values.sliderLineWidth : 0}
+          sliderWidth={styles ? styles.sliderLineWidth : 0}
           step={step}
-          tickNumberWidth={values ? values.tickNumberWidth : 0}
+          tickNumberWidth={styles ? styles.tickNumberWidth : 0}
           tickStep={this.props.tickStep}
           theme={theme}
           value={this.props.value} />
