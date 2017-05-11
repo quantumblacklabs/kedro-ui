@@ -42,7 +42,7 @@ class RangedSliderRenderer extends React.Component {
 
     // fire the onchange with the range values
     if (typeof this.props.onChange === 'function') {
-      this.props.onChange(undefined, { min: this.state.minRange, max: this.state.maxRange });
+      this.props.onChange(null, { min: this.state.minRange, max: this.state.maxRange });
     }
   }
 

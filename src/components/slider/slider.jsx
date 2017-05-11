@@ -29,7 +29,7 @@ class Slider extends React.Component {
     super(props);
 
     this.state = {
-      values: undefined
+      values: null
     };
 
     this._id = uniqueId(`cbn-slider--${this.props.type}-`);

@@ -33,8 +33,8 @@ class SliderRenderer extends React.Component {
     this._updatePercentage();
 
     // fire the onchange with the range values
-    if (typeof this.props.onChange === 'function') {
-      this.props.onChange(undefined, { min: 0, max: this.state.value });
+    if (typeof this.props.onCshange === 'function') {
+      this.props.onChange(null, { min: 0, max: this.state.value });
     }
   }
 
