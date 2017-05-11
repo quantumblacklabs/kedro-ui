@@ -43,10 +43,14 @@ $menu-item-padding: 12px;
   z-index: 10;
 
   display: flex;
+  width: 100%;
   align-items: center;
   height: $menu-item-height;
   padding: 0 $menu-item-padding;
   overflow: hidden;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
 
   @extend %type--subhead-2;
 

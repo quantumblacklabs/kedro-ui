@@ -26,8 +26,10 @@ class Dropdown extends React.Component {
 
     // bind method scope
     this._findSelectedOptionElement = this._findSelectedOptionElement.bind(this);
+    this._getOptionsList = this._getOptionsList.bind(this);
     this._handleLabelClicked = this._handleLabelClicked.bind(this);
     this._handleOptionSelected = this._handleOptionSelected.bind(this);
+    this._handleFocusChange = this._handleFocusChange.bind(this);
     this.open = this.open.bind(this);
     this.close = this.close.bind(this);
 
@@ -51,6 +53,7 @@ class Dropdown extends React.Component {
     }
 
     this.state = {
+      focusedOption: null,
       selectedOption,
       open: false
     };
@@ -90,6 +93,54 @@ class Dropdown extends React.Component {
     }
 
     this.setState({ open: !open }, callback);
+  }
+
+  /**
+   * Todo
+   * @return {type} [description]
+   */
+  _getOptionsList() {
+    /**
+     * Recurse ALL the things
+     * @param  {[type]} prev [description]
+     * @param  {[type]} curr [description]
+     * @return {[type]}      [description]
+     */
+    const getSectionChildren = (prev, curr) => {
+      if (curr.props.primaryText) { // MenuOption
+        return prev.concat(curr);
+      } else if (curr.type === 'section') { // Section
+        return prev.concat(
+          curr.props.children.reduce(getSectionChildren, [])
+        );
+      }
+      return prev;
+    };
+
+    return React.Children.toArray(this.props.children)
+      .reduce(getSectionChildren, []);
+  }
+
+  /**
+   * TODO
+   * @param {number} direction [description]
+   */
+  _handleFocusChange(direction) {
+    let { focusedOption } = this.state;
+    const options = this._getOptionsList();
+
+    if (focusedOption === null) {
+      focusedOption = (direction > 0) ? 0 : options.length - 1;
+    } else {
+      focusedOption += direction;
+    }
+    if (focusedOption >= options.length || focusedOption < 0) {
+      focusedOption = null;
+    }
+
+    this.setState({
+      focusedOption
+    });
   }
 
   /**
@@ -152,14 +203,16 @@ class Dropdown extends React.Component {
    */
   render() {
     const { children, defaultText, theme, width } = this.props;
-    const { open, selectedOption } = this.state;
+    const { open, focusedOption, selectedOption } = this.state;
 
     return (
       <DropdownRenderer
         defaultText={defaultText}
         onLabelClicked={this._handleLabelClicked}
         onOptionSelected={this._handleOptionSelected}
+        onSelectChanged={this._handleFocusChange}
         open={open}
+        focusedOption={focusedOption}
         selectedOption={selectedOption}
         theme={theme}
         width={width}>

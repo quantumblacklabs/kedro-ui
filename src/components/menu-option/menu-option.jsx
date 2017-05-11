@@ -14,9 +14,9 @@ import './menu-option.css';
  * with it's label and value properties.
  * The parent component will override the onSelected property of this component, so you don't need to implement it.
  */
-const MenuOption = ({ icon, iconPosition, id, onSelected, primaryText, selected, theme, value }) => {
+const MenuOption = ({ focused, icon, iconPosition, id, onSelected, primaryText, selected, theme, value }) => {
   const wrapperClasses = classnames('cbn-menu-option', {
-    'cbn-menu-option--selected': selected,
+    'cbn-menu-option--selected': selected || focused,
     'cbn-menu-option--has-icon': typeof icon === 'string',
     'cbn-menu-option--icon-left': iconPosition === 'left',
     'cbn-menu-option--icon-right': iconPosition === 'right'
@@ -38,7 +38,7 @@ const MenuOption = ({ icon, iconPosition, id, onSelected, primaryText, selected,
   });
 
   return (
-    <div className={wrapperClasses} onClick={_handleClicked}>
+    <div className={wrapperClasses} onClick={_handleClicked} tabIndex='-1'>
       <div className='cbn-menu-option__content' title={primaryText}>
         {iconPosition === 'left' && icon
           && iconNode}

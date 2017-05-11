@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import { handleKeyEvent } from 'utils';
 
 // Components
 import Icon from 'components/icon';
@@ -11,8 +12,10 @@ import Icon from 'components/icon';
 const DropdownRenderer = ({
   children,
   defaultText,
+  focusedOption,
   onLabelClicked,
   onOptionSelected,
+  onSelectChanged,
   open,
   selectedOption,
   theme,
@@ -20,18 +23,42 @@ const DropdownRenderer = ({
   width
 }) => {
   const wrapperClasses = classnames('cbn-dropdown', `cbn-theme--${theme}`, { 'cbn-dropdown--open': open });
+  let optionIndex = 0;
 
   /**
    * Clone a React element and extend with extra props tieing it to a new scope
    */
-  const _extendMenuOption = (element, id) => {
+  const _extendMenuOption = (element, id, index) => {
     const extraProps = {
       id,
       onSelected: onOptionSelected,
+      focused: focusedOption === index,
       selected: selectedOption.id === id || (!selectedOption.id && element.props.selected),
       theme
     };
+    optionIndex += 1;
     return React.cloneElement(element, extraProps);
+  };
+
+  /**
+   * TODO
+   * @param  {[type]} e [description]
+   * @return {[type]}   [description]
+   */
+  const _handleKeyDown = e => {
+    if (open) {
+      handleKeyEvent(e.keyCode, {
+        escape: onLabelClicked,
+        up: () => onSelectChanged(-1),
+        down: () => onSelectChanged(1)
+      });
+    } else {
+      handleKeyEvent(e.keyCode, {
+        up: onLabelClicked,
+        down: onLabelClicked
+      });
+    }
+    handleKeyEvent(e.keyCode)('escape, up, down', () => e.preventDefault());
   };
 
   const childElements = React.Children.toArray(children);
@@ -54,7 +81,7 @@ const DropdownRenderer = ({
                   return sectionChild;
                 default:
                   // Menu Option
-                  return _extendMenuOption(sectionChild, `menu-option-${i}.${j}`);
+                  return _extendMenuOption(sectionChild, `menu-option-${i}.${j}`, optionIndex);
               }
             })}
           </section>
@@ -63,8 +90,8 @@ const DropdownRenderer = ({
         // Heading
         return child;
       default:
-        // Menu Option
-        return _extendMenuOption(child, `menu-option-${i}`);
+        // Menu Option=
+        return _extendMenuOption(child, `menu-option-${i}`, optionIndex);
     }
   });
 
@@ -72,10 +99,13 @@ const DropdownRenderer = ({
 
   return (
     <div className={wrapperClasses} style={{ width: `${width}px` }} title={title}>
-      <div className='cbn-dropdown__label' onClick={onLabelClicked}>
+      <button
+        className='cbn-dropdown__label'
+        onClick={onLabelClicked}
+        onKeyDown={_handleKeyDown}>
         <span>{selectedOption.label || defaultText}</span>
         <Icon type='chevronUp' theme={theme} />
-      </div>
+      </button>
       <div className='cbn-dropdown__options'>
         {optionsNode}
       </div>
@@ -86,9 +116,11 @@ const DropdownRenderer = ({
 DropdownRenderer.defaultProps = {
   children: null,
   defaultText: 'Please select...',
+  focusedOption: null,
   onChanged: null,
   onLabelClicked: null,
   onOptionSelected: null,
+  onSelectChanged: null,
   open: false,
   selectedOption: null,
   theme: 'light',
@@ -106,6 +138,10 @@ DropdownRenderer.propTypes = {
   */
   defaultText: PropTypes.string,
   /**
+  * TODO
+  */
+  focusedOption: PropTypes.number,
+  /**
   * Callback to be executed when the main label is clicked
   */
   onLabelClicked: PropTypes.func,
@@ -113,6 +149,10 @@ DropdownRenderer.propTypes = {
   * Callback to be executed when an option is selected
   */
   onOptionSelected: PropTypes.func,
+  /**
+  * TODO
+  */
+  onSelectChanged: PropTypes.func,
   /**
   * Whether the dropdown is in an open state
   */
