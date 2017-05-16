@@ -52,7 +52,7 @@ class Input extends React.Component {
    * @return {object} JSX for this component
    */
   componentWillReceiveProps(newProps) {
-    if (newProps.value !== this.state.value) {
+    if (newProps.value !== null && newProps.value !== this.state.value) {
       this.setState({
         value: newProps.value
       });
@@ -200,13 +200,13 @@ class Input extends React.Component {
             type='text'
             placeholder={this.props.placeholder}
             disabled={this.props.disabled}
-            value={this.state.value}
+            value={this.state.value || ''}
             onChange={this._handleChanged}
             onFocus={this._handleFocused}
             onBlur={this._handleBlured} />
           <div className='cbn-input__line' ref={line => { this._line = line; }}>
             <div className='cbn-input__line--filled'>
-              {this.state.value}
+              {this.state.value || ''}
             </div>
           </div>
         </div>
@@ -226,7 +226,7 @@ Input.defaultProps = {
   status: 'default',
   statusDescription: '',
   theme: 'light',
-  value: ''
+  value: null
 };
 
 Input.propTypes = {
