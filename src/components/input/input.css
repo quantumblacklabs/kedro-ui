@@ -58,6 +58,8 @@ $height-tiny: 1px;
   @mixin themedParent background-color, menu;
   @mixin themedParent color, text;
 
+  @extend %type--family;
+  @extend %type--regular;
   @extend %type--subhead-2;
 
   display: flex;
@@ -145,13 +147,14 @@ $height-tiny: 1px;
 }
 
 .cbn-input__line--filled {
+  @extend %type--family;
+  @extend %type--regular;
   @extend %type--subhead-2;
 
   height: $height-tiny;
 
-  font: inherit;
-
   overflow: hidden;
+  white-space: pre;
 
   .cbn-input--focused & {
     @mixin themedParent background-color, input, textFilled;
