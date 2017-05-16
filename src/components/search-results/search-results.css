@@ -71,6 +71,8 @@ $results-row-padding: 8px 20px 12px 44px;
 }
 
 .cbn-search-results__label {
+  @extend %type--subhead-2;
+
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
