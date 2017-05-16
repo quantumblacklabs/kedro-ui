@@ -83,22 +83,23 @@ $menu-item-padding: 12px;
 }
 
 .cbn-dropdown__options {
+  @extend %shadow-light--active;
+
+  @mixin themedParent border-top-color, menu, border;
+  @mixin themedParent background, menu, default;
+
   position: absolute;
   z-index: 9;
 
   display: none;
   width: 100%;
+  max-height: 300px;
+  overflow: auto;
   margin: 0;
 
   border-style: solid;
   border-width: 1px 0 0;
-
-  @mixin themedParent border-top-color, menu, border;
-  @mixin themedParent background, menu, default;
-
   animation: dropdownEntrance 0.3s;
-
-  @extend %shadow-light--active;
 
   .cbn-dropdown--open & {
     display: block;

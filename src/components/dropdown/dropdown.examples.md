@@ -147,3 +147,35 @@ Icons within menu options, positioned on the left.
     </section>
 </Dropdown>
 ```
+
+Scrollable dropdown with many children
+
+```
+<Dropdown width={ 200 } theme='light'>
+    <MenuOption primaryText='Menu Item 1' value={ 1 } />
+    <MenuOption primaryText='Menu Item 2' value={ 2 } />
+    <MenuOption primaryText='Menu Item 3' value={ 3 } />
+    <MenuOption primaryText='Menu Item 4' value={ 4 } />
+    <MenuOption primaryText='Menu Item 5' value={ 5 } />
+    <MenuOption primaryText='Menu Item 6' value={ 6 } />
+    <MenuOption primaryText='Menu Item 7' value={ 7 } />
+    <MenuOption primaryText='Menu Item 8' value={ 8 } />
+    <MenuOption primaryText='Menu Item 9' value={ 9 } />
+    <MenuOption primaryText='Menu Item 10' value={ 10 } />
+    <MenuOption primaryText='Menu Item 11' value={ 11 } />
+    <MenuOption primaryText='Menu Item 12' value={ 12 } />
+    <MenuOption primaryText='Menu Item 13' value={ 13 } />
+    <MenuOption primaryText='Menu Item 14' value={ 14 } />
+    <MenuOption primaryText='Menu Item 15' value={ 15 } />
+    <MenuOption primaryText='Menu Item 16' value={ 16 } />
+    <MenuOption primaryText='Menu Item 17' value={ 17 } />
+    <MenuOption primaryText='Menu Item 18' value={ 18 } />
+    <MenuOption primaryText='Menu Item 19' value={ 19 } />
+    <MenuOption primaryText='Menu Item 20' value={ 20 } />
+    <MenuOption primaryText='Menu Item 21' value={ 21 } />
+    <MenuOption primaryText='Menu Item 22' value={ 22 } />
+    <MenuOption primaryText='Menu Item 23' value={ 23 } />
+    <MenuOption primaryText='Menu Item 24' value={ 24 } />
+    <MenuOption primaryText='Menu Item 25' value={ 25 } />
+</Dropdown>
+```
