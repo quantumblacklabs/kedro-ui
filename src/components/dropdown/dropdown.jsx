@@ -26,6 +26,7 @@ class Dropdown extends React.Component {
 
     // bind method scope
     this._findSelectedOptionElement = this._findSelectedOptionElement.bind(this);
+    this.handleRef = this.handleRef.bind(this);
     this._getOptionsList = this._getOptionsList.bind(this);
     this._handleLabelClicked = this._handleLabelClicked.bind(this);
     this._handleOptionSelected = this._handleOptionSelected.bind(this);
@@ -93,28 +94,32 @@ class Dropdown extends React.Component {
     }
 
     this.setState({ open: !open }, callback);
+    this._focusLabel();
   }
 
   /**
-   * Todo
-   * @return {type} [description]
+   * Sort, filter and flatten the list of children to retrieve just the MenuOptions,
+   * with any Sections removed.
+   * @return {Object} A flat list of MenuOptions
    */
   _getOptionsList() {
     /**
-     * Recurse ALL the things
-     * @param  {[type]} prev [description]
-     * @param  {[type]} curr [description]
-     * @return {[type]}      [description]
+     * Recurse through sections to retrieve a list of all MenuOptions
+     * @param  {Object} previous The Options array as of the previous iteration
+     * @param  {Object} current  The current item (either a MenuOption or Section)
+     * @return {Object}          The current state of the Options array
      */
-    const getSectionChildren = (prev, curr) => {
-      if (curr.props.primaryText) { // MenuOption
-        return prev.concat(curr);
-      } else if (curr.type === 'section') { // Section
-        return prev.concat(
-          curr.props.children.reduce(getSectionChildren, [])
+    const getSectionChildren = (previous, current) => {
+      if (current.props.primaryText) {
+        // MenuOption: Add to list
+        return previous.concat(current);
+      } else if (current.type === 'section') {
+        // Section: Keep recursing
+        return previous.concat(
+          current.props.children.reduce(getSectionChildren, [])
         );
       }
-      return prev;
+      return previous;
     };
 
     return React.Children.toArray(this.props.children)
@@ -122,24 +127,41 @@ class Dropdown extends React.Component {
   }
 
   /**
-   * TODO
-   * @param {number} direction [description]
+   * Convenience method to return focus from an option to the label
+   */
+  _focusLabel() {
+    this.dropdown.querySelector('.cbn-dropdown__label')
+      .focus();
+    this.setState({
+      focusedOption: null
+    });
+  }
+
+  /**
+   * When the focused option changes (e.g. via up/down keyboard controls),
+   * update the focusedOption index state and select the new one
+   * @param {number} direction - The direction that focus is travelling through the list:
+   * negative is up and positive is down.
    */
   _handleFocusChange(direction) {
     let { focusedOption } = this.state;
-    const options = this._getOptionsList();
+    const optionsLength = this._getOptionsList().length;
 
     if (focusedOption === null) {
-      focusedOption = (direction > 0) ? 0 : options.length - 1;
+      focusedOption = (direction > 0) ? 0 : optionsLength - 1;
     } else {
       focusedOption += direction;
     }
-    if (focusedOption >= options.length || focusedOption < 0) {
+    if (focusedOption >= optionsLength || focusedOption < 0) {
       focusedOption = null;
     }
 
-    this.setState({
-      focusedOption
+    this.setState({ focusedOption }, () => {
+      const focusClass = focusedOption !== null
+        ? '.cbn-menu-option--focused'
+        : '.cbn-dropdown__label';
+      this.dropdown.querySelector(focusClass)
+        .focus();
     });
   }
 
@@ -170,6 +192,16 @@ class Dropdown extends React.Component {
         }
       });
     }
+    this._focusLabel();
+  }
+
+  /**
+   * Retrieve a reference to the dropdown DOM node (from the renderer component),
+   * and assign it to a class-wide variable property.
+   * @param {object} el - The ref for the Dropdown container node
+   */
+  handleRef(el) {
+    this.dropdown = el;
   }
 
   /**
@@ -178,6 +210,7 @@ class Dropdown extends React.Component {
   open() {
     const { onOpened } = this.props;
     this.setState({ open: true }, () => {
+      this._focusLabel();
       if (typeof onOpened === 'function') {
         onOpened();
       }
@@ -208,6 +241,7 @@ class Dropdown extends React.Component {
     return (
       <DropdownRenderer
         defaultText={defaultText}
+        handleRef={this.handleRef}
         onLabelClicked={this._handleLabelClicked}
         onOptionSelected={this._handleOptionSelected}
         onSelectChanged={this._handleFocusChange}

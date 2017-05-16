@@ -13,6 +13,7 @@ const DropdownRenderer = ({
   children,
   defaultText,
   focusedOption,
+  handleRef,
   onLabelClicked,
   onOptionSelected,
   onSelectChanged,
@@ -41,16 +42,15 @@ const DropdownRenderer = ({
   };
 
   /**
-   * TODO
-   * @param  {[type]} e [description]
-   * @return {[type]}   [description]
+   * Handle keyboard events
+   * @param {Object} e - The key event object
    */
   const _handleKeyDown = e => {
     if (open) {
       handleKeyEvent(e.keyCode, {
         escape: onLabelClicked,
-        up: () => onSelectChanged(-1),
-        down: () => onSelectChanged(1)
+        up: onSelectChanged.bind(this, -1),
+        down: onSelectChanged.bind(this, 1)
       });
     } else {
       handleKeyEvent(e.keyCode, {
@@ -98,11 +98,18 @@ const DropdownRenderer = ({
   const optionsNode = sectionWrapRequired ? <section>{options}</section> : options;
 
   return (
-    <div className={wrapperClasses} style={{ width: `${width}px` }} title={title}>
+    <div
+      aria-expanded={open.toString()}
+      aria-haspopup='true'
+      className={wrapperClasses}
+      onKeyDown={_handleKeyDown}
+      ref={handleRef}
+      role='combobox'
+      style={{ width: `${width}px` }}
+      title={title}>
       <button
         className='cbn-dropdown__label'
-        onClick={onLabelClicked}
-        onKeyDown={_handleKeyDown}>
+        onClick={onLabelClicked}>
         <span>{selectedOption.label || defaultText}</span>
         <Icon type='chevronUp' theme={theme} />
       </button>
@@ -117,6 +124,7 @@ DropdownRenderer.defaultProps = {
   children: null,
   defaultText: 'Please select...',
   focusedOption: null,
+  handleRef: null,
   onChanged: null,
   onLabelClicked: null,
   onOptionSelected: null,
@@ -138,9 +146,13 @@ DropdownRenderer.propTypes = {
   */
   defaultText: PropTypes.string,
   /**
-  * TODO
+  * The index of the currently-focused menu option
   */
   focusedOption: PropTypes.number,
+  /**
+  * Retrieve a reference to the dropdown DOM node
+  */
+  handleRef: PropTypes.func,
   /**
   * Callback to be executed when the main label is clicked
   */
@@ -150,7 +162,7 @@ DropdownRenderer.propTypes = {
   */
   onOptionSelected: PropTypes.func,
   /**
-  * TODO
+  * Callback to be executed when the focused option changes
   */
   onSelectChanged: PropTypes.func,
   /**

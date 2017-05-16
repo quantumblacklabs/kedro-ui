@@ -26,12 +26,14 @@ $menu-item-padding: 12px;
   overflow: hidden;
   cursor: pointer;
   user-select: none;
+  outline: none;
 
-  &:hover {
-    @mixin themedParent background, menu, hover;
+  &.cbn-menu-option--selected {
+    @mixin themedParent background, menu, selected;
   }
 
-  &.cbn-menu-option--selected,
+  &.cbn-menu-option--focused,
+  &:focus,
   &:hover {
     @mixin themedParent background, menu, hover;
   }

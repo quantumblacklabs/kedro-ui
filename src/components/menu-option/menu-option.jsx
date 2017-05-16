@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import { handleKeyEvent } from 'utils';
 
 // Components
 import Icon from 'components/icon';
@@ -14,9 +15,20 @@ import './menu-option.css';
  * with it's label and value properties.
  * The parent component will override the onSelected property of this component, so you don't need to implement it.
  */
-const MenuOption = ({ focused, icon, iconPosition, id, onSelected, primaryText, selected, theme, value }) => {
+const MenuOption = ({
+  focused,
+  icon,
+  iconPosition,
+  id,
+  onSelected,
+  primaryText,
+  selected,
+  theme,
+  value
+}) => {
   const wrapperClasses = classnames('cbn-menu-option', {
-    'cbn-menu-option--selected': selected || focused,
+    'cbn-menu-option--focused': focused,
+    'cbn-menu-option--selected': selected,
     'cbn-menu-option--has-icon': typeof icon === 'string',
     'cbn-menu-option--icon-left': iconPosition === 'left',
     'cbn-menu-option--icon-right': iconPosition === 'right'
@@ -37,8 +49,23 @@ const MenuOption = ({ focused, icon, iconPosition, id, onSelected, primaryText, 
     value
   });
 
+  /**
+   * Event handler executed when key events are triggered on the focused option
+   * @param {Object} e - The key event object
+   */
+  const _handleKeyDown = e => handleKeyEvent(e.keyCode)('enter, space', () => {
+    _handleClicked(e);
+    e.preventDefault();
+  });
+
   return (
-    <div className={wrapperClasses} onClick={_handleClicked} tabIndex='-1'>
+    <div
+      aria-selected={selected.toString()}
+      className={wrapperClasses}
+      onClick={_handleClicked}
+      onKeyDown={_handleKeyDown}
+      role='option'
+      tabIndex='-1'>
       <div className='cbn-menu-option__content' title={primaryText}>
         {iconPosition === 'left' && icon
           && iconNode}
@@ -51,6 +78,7 @@ const MenuOption = ({ focused, icon, iconPosition, id, onSelected, primaryText, 
 };
 
 MenuOption.defaultProps = {
+  focused: false,
   icon: null,
   iconPosition: 'right',
   id: null,
@@ -61,6 +89,10 @@ MenuOption.defaultProps = {
 };
 
 MenuOption.propTypes = {
+  /**
+   * Whether the option is focused
+   */
+  focused: PropTypes.bool,
   /**
    * Icon glyph to use next to label
    */
