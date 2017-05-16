@@ -157,7 +157,7 @@ $height-tiny: 1px;
   white-space: pre;
 
   .cbn-input--focused & {
-    @mixin themedParent background-color, input, textFilled;
+    @mixin themedStart background-color, input, textFilled;
   }
 
   .cbn-input--success & {
