@@ -27,20 +27,25 @@ test('Tabs should be created with the correct default props', t => {
 });
 
 test('Tabs should be created with all the user defined props', t => {
+  const tabData = [
+    { text: 'One' },
+    { text: 'Two' },
+    { text: 'Three' }
+  ];
   const spy = sinon.spy();
   jsx = (
     <Tabs
       onSelect={spy}
       selectedIndex={1}
       size='small'
-      tabs={['One', 'Two', 'Three']}
+      tabs={tabData}
       theme='light' />
   );
   const wrapper = mount(jsx);
 
   t.is(wrapper.props().selectedIndex, 1);
   t.is(wrapper.props().size, 'small');
-  t.deepEqual(wrapper.props().tabs, ['One', 'Two', 'Three']);
+  t.deepEqual(wrapper.props().tabs, tabData);
   t.is(wrapper.props().theme, 'light');
 
   wrapper.find('.cbn-tabs__tab')
