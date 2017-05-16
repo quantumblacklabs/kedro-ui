@@ -112,7 +112,7 @@ class Input extends React.Component {
   /**
    * _handleFocused - changes the focus to enabled state.
    */
-  _handleFocused() {
+  _handleFocused(event) {
     if (this.props.status === 'default') {
       this._anim.restart();
     }
@@ -120,15 +120,23 @@ class Input extends React.Component {
     this.setState({
       focused: true
     });
+
+    if (typeof this.props.onFocus === 'function') {
+      this.props.onFocus(event, { focused: true });
+    }
   }
 
   /**
    * _handleBlured - changes the focus to disabled state.
    */
-  _handleBlured() {
+  _handleBlured(event) {
     this.setState({
       focused: false
     });
+
+    if (typeof this.props.onBlur === 'function') {
+      this.props.onBlur(event, { focused: false, value: event.target.value });
+    }
   }
 
   /**
@@ -141,7 +149,7 @@ class Input extends React.Component {
     });
 
     if (typeof this.props.onChange === 'function') {
-      this.props.onChange(event);
+      this.props.onChange(event, { value: event.target.value });
     }
   }
 
@@ -181,7 +189,9 @@ class Input extends React.Component {
             placeholder={this.props.placeholder}
             disabled={this.props.disabled}
             value={this.state.value}
-            onChange={this._handleChanged} />
+            onChange={this._handleChanged}
+            onFocus={this._handleFocused}
+            onBlur={this._handleBlured} />
           <div className='cbn-input__line' ref={line => { this._line = line; }}>
             <div className='cbn-input__line--filled'>
               {this.state.value}
@@ -201,6 +211,8 @@ class Input extends React.Component {
 Input.defaultProps = {
   disabled: false,
   label: '',
+  onBlur: null,
+  onFocus: null,
   onChange: null,
   placeholder: '',
   status: 'default',
@@ -218,6 +230,14 @@ Input.propTypes = {
    * Label indicating what should be written in the input.
    */
   label: PropTypes.string,
+  /**
+   * Event listener which will be triggered on losing focus of the input (in other words, on blur).
+   */
+  onBlur: PropTypes.func,
+  /**
+   * Event listener which will be triggered when input will gain focus,
+   */
+  onFocus: PropTypes.func,
   /**
    * Event listener which will be trigerred on change of the input.
    */

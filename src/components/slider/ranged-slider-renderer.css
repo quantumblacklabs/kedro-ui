@@ -11,10 +11,8 @@
 
 /** Implementation **/
 
-.cbn-slider__wrapper {
-  &--multiple {
-    flex-direction: column;
-  }
+.cbn-slider__wrapper--multiple {
+  flex-direction: column;
 }
 
 .cbn-slider__input {
@@ -31,7 +29,7 @@
   pointer-events: none;
 }
 
-.cbn-slider__box-inputs {
+.cbn-slider__controls {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -41,14 +39,12 @@
   margin: 0 $label-number-margin 0 0;
 }
 
-.cbn-slider__label {
-  &--multiple {
-    @extend %type--subhead-2;
+.cbn-slider__label--multiple {
+  @extend %type--subhead-2;
 
-    margin: 0 0 $label-number-margin;
+  margin: 0 0 $label-number-margin;
 
-    font-weight: bold;
-  }
+  font-weight: bold;
 }
 
 /** THUMB **/

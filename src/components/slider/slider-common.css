@@ -5,9 +5,10 @@
 /** Variables **/
 
 $wrapper-width: 310px;
+$wrapper-height: 50px;
 
-$input-width: 174px;
-$input-height: 24px;
+$range-input-width: 174px;
+$range-input-height: 24px;
 
 $thumb-size: 4px;
 $thumb-border-width: 5px;
@@ -16,20 +17,21 @@ $thumb-width: calc($thumb-size + $thumb-border-width / 2);
 $track-height: 2px;
 
 $tick-number-width: 24px;
-$tick-number-top: 38px;
-$tick-symbol-top: 12px;
+$tick-number-top: 34px;
+$tick-symbol-top: 8px;
 
-$number-input-width: 27px;
+$number-input-width: 32px;
+$number-input-height: 24px;
 
 $label-number-margin: 18px;
-$label-single-margin-top: 3px;
 $label-single-width: 73px;
-$label-single-height: 20px;
 
 $hidden-elements-height: 1px;
 
 /** Mixins **/
 
+/** these styles have to be defined as mixins and not as extend to avoid PostCSS merging the selectors -
+    selectors have to be defined separately - browser will ignore style if it doesn't understand a part of selection **/
 @define-mixin thumb-style {
   @mixin themedParent background, slider, thumbCenter;
   @mixin themedParent border-color, slider, thumbBorder;
@@ -83,26 +85,43 @@ $hidden-elements-height: 1px;
 
 .cbn-slider {
   display: flex;
+
+  width: $wrapper-width;
 }
 
 .cbn-slider__wrapper {
   display: flex;
 }
 
-.cbn-slider__label {
-  @mixin themedParent color, slider, label;
+.cbn-slider__controls {
+  display: flex;
 
-  &--single {
-    @extend %type--body-1;
-
-    width: $label-single-width;
-    height: $label-single-height;
-    margin: $label-single-margin-top $label-number-margin 0 0;
-  }
+  /** set the correct height of the controls to include the height of the ticks **/
+  height: $wrapper-height;
 }
 
+.cbn-slider__range {
+  position: relative;
+
+  width: $range-input-width;
+  height: $range-input-height;
+}
+
+/** SLIDER LABEL **/
+.cbn-slider__label {
+  @mixin themedParent color, slider, label;
+}
+
+.cbn-slider__label--single {
+  @extend %type--body-1;
+
+  width: $label-single-width;
+  margin: 0 $label-number-margin 0 0;
+}
+
+/** SLIDER NUMBER INPUT **/
 .cbn-slider__number-input {
-  .cbn-input {
+  & .cbn-input {
     margin: 0;
     padding: 0;
     border: none;
@@ -114,35 +133,32 @@ $hidden-elements-height: 1px;
     &:active {
       box-shadow: none;
     }
+  }
 
-    &__field {
-      background: transparent;
-    }
+  & .cbn-input__field {
+    @extend %type--body-1;
 
-    &__line {
-      @mixin themedParent background, slider, numberInputLine;
-    }
+    background: transparent;
+  }
 
-    &-wrapper {
-      width: $number-input-width;
-      margin: 0 0 0 $label-number-margin;
-      padding: 0;
-    }
+  & .cbn-input__line {
+    @mixin themedParent background, slider, numberInputLine;
+  }
+
+  & .cbn-input-wrapper {
+    width: $number-input-width;
+    margin: 0 0 0 $label-number-margin;
+    padding: 0;
   }
 }
 
-.cbn-slider__box {
-  position: relative;
-
-  width: $input-width;
-}
-
+/** SLIDER LINE **/
 .cbn-slider__line {
   position: absolute;
   top: calc(50% - $thumb-width / 2);
 
   /** slider's 0% will appear to be in thumb's center **/
-  left: calc($thumb-width);
+  left: $thumb-width;
 
   /** slider's 100% will appear to be in thumb's center **/
   width: calc(100% - $thumb-width * 2);
@@ -151,37 +167,23 @@ $hidden-elements-height: 1px;
   box-sizing: border-box;
 }
 
-.cbn-slider {
-  width: $wrapper-width;
+/** SLIDER TICKS **/
+.cbn-slider__ticks {
+  position: absolute;
+
+  width: 100%;
+  height: $wrapper-height;
 }
 
-.cbn-slider__input {
-  -webkit-appearance: none;
+.cbn-slider__tick-number-group,
+.cbn-slider__tick-symbol-group {
+  position: absolute;
 
-  position: relative;
-
-  width: $input-width;
-  height: $input-height;
-  margin: 0;
-  padding: 0;
-
-  background: transparent;
-
-  box-shadow: none;
-  box-sizing: content-box;
-
-  &:focus,
-  &:active {
-    outline: none;
-  }
-}
-
-.cbn-slider__tick-numbers,
-.cbn-slider__tick-symbols {
   display: flex;
   justify-content: space-between;
 
-  width: $input-width;
+  width: 100%;
+  height: $wrapper-height;
 }
 
 .cbn-slider__tick-number {
@@ -199,6 +201,14 @@ $hidden-elements-height: 1px;
   text-align: center;
 }
 
+.cbn-slider__tick-number--min {
+  margin-left: $thumb-width;
+}
+
+.cbn-slider__tick-number--max {
+  margin-left: -$thumb-width;
+}
+
 .cbn-slider__tick-symbol {
   position: relative;
   top: $tick-symbol-top;
@@ -211,22 +221,57 @@ $hidden-elements-height: 1px;
   border-radius: 50%;
 
   @mixin themedParent background, slider, default;
-
-  &--min {
-    transform: translateX(calc(-50% + $thumb-width));
-  }
-
-  &--max {
-    transform: translateX(calc(50% - $thumb-width));
-  }
-
-  &--range {
-    @mixin themedParent background, slider, thumbBorder;
-  }
 }
 
-/** THUMB **/
+.cbn-slider__tick-symbol--range {
+  @mixin themedParent background, slider, thumbBorder;
+}
+
+.cbn-slider__tick-symbol--min {
+  transform: translateX(calc(-50% + $thumb-width));
+}
+
+.cbn-slider__tick-symbol--max {
+  transform: translateX(calc(50% - $thumb-width));
+}
+
+/** SLIDER INPUT RANGE **/
 .cbn-slider__input {
+  -webkit-appearance: none;
+
+  position: relative;
+
+  width: 100%;
+  height: $range-input-height;
+  margin: 0;
+  padding: 0;
+
+  background: transparent;
+
+  box-shadow: none;
+  box-sizing: content-box;
+
+  &:active {
+    outline: none;
+  }
+
+  &:focus {
+    outline: none;
+
+    &::-webkit-slider-thumb {
+      @mixin thumb-focus-style;
+    }
+
+    &::-moz-range-thumb {
+      @mixin thumb-focus-style;
+    }
+
+    &::-ms-thumb {
+      @mixin thumb-focus-style;
+    }
+  }
+
+  /** THUMB **/
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
 
@@ -243,44 +288,30 @@ $hidden-elements-height: 1px;
     @mixin thumb-style;
   }
 
-  &:focus {
-    &::-webkit-slider-thumb {
-      @mixin thumb-focus-style;
-    }
+  /** TRACK **/
+  &::-webkit-slider-runnable-track {
+    -webkit-appearance: none;
 
-    &::-moz-range-thumb {
-      @mixin thumb-focus-style;
-    }
-
-    &::-ms-thumb {
-      @mixin thumb-focus-style;
-    }
+    @mixin track-style;
   }
-}
 
-/** TRACK **/
-.cbn-slider__input::-webkit-slider-runnable-track {
-  -webkit-appearance: none;
+  &::-moz-range-track {
+    @mixin track-style;
+  }
 
-  @mixin track-style;
-}
+  &::-ms-track {
+    @mixin track-style;
 
-.cbn-slider__input::-moz-range-track {
-  @mixin track-style;
-}
+    /** In IE, but not in Edge, the slider as a whole has a padding **/
+    margin: 0;
+    padding: 0;
 
-.cbn-slider__input::-ms-track {
-  @mixin track-style;
+    /** IE and MS Edge require a transparent color and border-color on the track,
+        or they will show (parts of) the native track design. **/
+    border-color: transparent;
 
-  /** In IE, but not in Edge, the slider as a whole has a padding **/
-  margin: 0;
-  padding: 0;
-
-  /** IE and MS Edge require a transparent color and border-color on the track,
-      or they will show (parts of) the native track design. **/
-  border-color: transparent;
-
-  color: transparent;
+    color: transparent;
+  }
 }
 
 /** RENDERED BUT NOT VISIBLE IN VIEWPORT **/
@@ -289,16 +320,24 @@ $hidden-elements-height: 1px;
   left: -9999px;
 
   opacity: 0;
+}
 
-  &--fill {
-    height: $hidden-elements-height;
+.cbn-slider__hidden--fill {
+  height: $hidden-elements-height;
 
-    @mixin themed background, slider, thumbBorder;
-  }
+  @mixin themed background, slider, thumbBorder;
+}
 
-  &--background {
-    height: $hidden-elements-height;
+.cbn-slider__hidden--background {
+  height: $hidden-elements-height;
 
-    @mixin themed background, slider, default;
-  }
+  @mixin themed background, slider, default;
+}
+
+.cbn-slider__hidden--slider-line {
+  width: $range-input-width;
+}
+
+.cbn-slider__hidden--tick-number {
+  width: $tick-number-width;
 }

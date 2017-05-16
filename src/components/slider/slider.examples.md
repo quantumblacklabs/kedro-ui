@@ -2,21 +2,21 @@ Single-handler slider component with minimum and maximum number of properties
 
 ```
 <section>
-    <div style={{ margin: '0 0 50px 0' }}>
+    <div style={{ margin: '0 0 50px 90px' }}>
         <Slider theme='light' />
     </div>
     <div style={{ margin: '0 0 0 0' }}>
-    <Slider
-        label='Stepped'
-        min={0}
-        max={100}
-        name='slider-step'
-        onChange={(e, payload) => { console.log('slider updated', e, payload) }}
-        step={20}
-        tickStep={20}
-        theme='light'
-        type='single'
-        value={40} />
+        <Slider
+            label='Stepped'
+            min={0}
+            max={100}
+            name='slider-step'
+            onChange={(e, payload) => { console.log('slider updated', e, payload) }}
+            step={20}
+            tickStep={20}
+            theme='light'
+            type='single'
+            value={40} />
     </div>
 </section>
 ```

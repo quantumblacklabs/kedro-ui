@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import Input from 'components/input';
+import TickRenderer from './tick-renderer';
 
 /**
  * Creates a single slider component consisting of single thumb and number input.
@@ -20,6 +21,7 @@ class SliderRenderer extends React.Component {
     };
 
     this._handleChanged = this._handleChanged.bind(this);
+    this._handleBlured = this._handleBlured.bind(this);
   }
 
   /**
@@ -32,7 +34,7 @@ class SliderRenderer extends React.Component {
 
     // fire the onchange with the range values
     if (typeof this.props.onChange === 'function') {
-      this.props.onChange(undefined, { min: 0, max: this.state.value });
+      this.props.onChange(null, { min: 0, max: this.state.value });
     }
   }
 
@@ -61,21 +63,36 @@ class SliderRenderer extends React.Component {
   }
 
   /**
-   * _handleChanged - updates the state with the new value;
-   * If slider is stepped, it changes the value to the correct one and then calls the update
+   * _handleChanged - updates the state with the new value from the slider
    * @param  {object} event
    */
   _handleChanged(event) {
+    // check if the value is a number and parse it from the event
+    const value = isNaN(parseFloat(event.target.value)) ? 0 : parseFloat(event.target.value);
+
+    this._updateValue(event, value);
+  }
+
+  /**
+   * _handleBlured - updates the state with the new value from the input field;
+   * If slider is stepped, it changes the value to the correct one and then calls the update
+   * @param  {object} event
+   */
+  _handleBlured(event, { value }) {
     const { max, min, step } = this.props;
     // check if the value is a number and parse it from the event
-    let value = isNaN(parseFloat(event.target.value)) ? 0 : parseFloat(event.target.value);
-    // if the value is out of range, set the max value as a new value
-    value = value > max ? max : value;
+    let inputValue = isNaN(parseFloat(value)) ? 0 : parseFloat(value);
+    // if the value is out of range, set the max or min value as the new value
+    if (inputValue > max) {
+      inputValue = max;
+    } else if (inputValue < min) {
+      inputValue = min;
+    }
 
     // if the slider is set to be stepped, find the correct nearest step value
     const normalisedValue = (step !== 1 && event.target.value !== '')
-      ? (min % step) + (Math.floor(value / step) * step)
-      : value;
+      ? (min % step) + (Math.round(inputValue / step) * step)
+      : inputValue;
 
     this._updateValue(event, normalisedValue);
   }
@@ -99,40 +116,67 @@ class SliderRenderer extends React.Component {
    * @return {object} JSX for this component
    */
   render() {
+    const label = this.props.label && (
+      <div
+        className={classnames(
+          'cbn-slider__label',
+          'cbn-slider__label--single')}>
+        {this.props.label}
+      </div>
+    );
+
     return (
       <div className='cbn-slider__wrapper'>
-        <div
-          className={classnames(
-            'cbn-slider__label',
-            'cbn-slider__label--single')}>
-          {this.props.label}
-        </div>
-        <div className='cbn-slider__box'>
-          <div className='cbn-slider__ticks'>
-            {this.props.tickSymbols}
-            {this.props.tickNumbers}
+        {label}
+        <div className='cbn-slider__controls'>
+          <div className='cbn-slider__range'>
+            <div className='cbn-slider__ticks'>
+              <TickRenderer
+                componentPrefix='cbn-slider'
+                id={this.props.listId}
+                min={this.props.min}
+                max={this.props.max}
+                minRange={0}
+                maxRange={this.state.value}
+                numberWidth={this.props.tickNumberWidth}
+                step={this.props.tickStep}
+                percentage={this.props.percentage}
+                type='number'
+                width={this.props.sliderWidth} />
+              <TickRenderer
+                componentPrefix='cbn-slider'
+                min={this.props.min}
+                max={this.props.max}
+                minRange={0}
+                maxRange={this.state.value}
+                numberWidth={this.props.tickNumberWidth}
+                step={this.props.tickStep}
+                percentage={this.props.percentage}
+                type='symbol'
+                width={this.props.sliderWidth} />
+            </div>
+            <div
+              ref={lineFilled => { this._lineFilled = lineFilled; }}
+              className='cbn-slider__line' />
+            <input
+              className='cbn-slider__input'
+              type='range'
+              list={this.props.listId}
+              name={this.props.name}
+              min={this.props.min}
+              max={this.props.max}
+              step={this.props.step}
+              value={this.state.value}
+              onChange={this._handleChanged} />
           </div>
           <div
-            ref={lineFilled => { this._lineFilled = lineFilled; }}
-            className='cbn-slider__line' />
-          <input
-            className='cbn-slider__input'
-            type='range'
-            list={this.props.listId}
-            name={this.props.name}
-            min={this.props.min}
-            max={this.props.max}
-            step={this.props.step}
-            value={this.state.value}
-            onChange={this._handleChanged} />
-        </div>
-        <div
-          className={classnames(
-            'cbn-slider__number-input',
-            'cbn-slider__number-input--single')}>
-          <Input
-            value={this.state.value.toString()}
-            onChange={this._handleChanged} />
+            className={classnames(
+              'cbn-slider__number-input',
+              'cbn-slider__number-input--single')}>
+            <Input
+              value={this.state.value.toString()}
+              onBlur={this._handleBlured} />
+          </div>
         </div>
       </div>
     );
@@ -147,11 +191,11 @@ SliderRenderer.defaultProps = {
   max: 100,
   min: 0,
   name: 'slider',
-  onChange: undefined,
-  percentage: undefined,
+  onChange: null,
+  sliderWidth: 174,
   step: 1,
-  tickNumbers: undefined,
-  tickSymbols: undefined,
+  tickNumberWidth: 24,
+  tickStep: 0,
   value: 50
 };
 
@@ -191,19 +235,24 @@ SliderRenderer.propTypes = {
   /**
    * Function that calculates the percentage value of slider's range for given number.
    */
-  percentage: PropTypes.func,
+  percentage: PropTypes.func.isRequired,
+  /**
+   * Width of the input range slider.
+   */
+  sliderWidth: PropTypes.number,
   /**
    * Step of the slider.
    */
   step: PropTypes.number,
   /**
-   * Numbers indicating the ticks of the slider.
+   * Width of the tick for the number.
    */
-  tickNumbers: PropTypes.element,
+  tickNumberWidth: PropTypes.number,
   /**
-   * Symbols indicating the ticks of the slider, positioned in the middle of the slider.
+   * Step of the ticks shown below the slider.
+   * By default only the min and max is shown.
    */
-  tickSymbols: PropTypes.element,
+  tickStep: PropTypes.number,
   /**
    * The pre-selected value of the slider.
    */
