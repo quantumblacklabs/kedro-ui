@@ -168,7 +168,19 @@ class Input extends React.Component {
       </div>
     );
 
-    const hasDescription = this.props.status !== 'default' && this.props.statusDescription;
+    // description's div has to be always rendered, even if its content is empty
+    // to enable the animation to run when the component receives a description; otherwise the animation is ignored
+    const description = (
+      <div className='cbn-input__description' ref={desc => { this._description = desc; }}>
+        {
+          this.props.status !== 'default' && (
+            <div className='cbn-input__description-content'>
+              { this.props.statusDescription }
+            </div>
+          )
+        }
+      </div>
+    );
 
     return (
       <div className='cbn-input-wrapper'>
@@ -198,11 +210,7 @@ class Input extends React.Component {
             </div>
           </div>
         </div>
-        {
-          hasDescription && (<div className='cbn-input__description' ref={desc => { this._description = desc; }}>
-            {this.props.statusDescription}
-          </div>)
-        }
+        {description}
       </div>
     );
   }
