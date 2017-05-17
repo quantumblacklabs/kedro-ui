@@ -26,7 +26,7 @@ class Dropdown extends React.Component {
 
     // bind method scope
     this._findSelectedOptionElement = this._findSelectedOptionElement.bind(this);
-    this.handleRef = this.handleRef.bind(this);
+    this._handleRef = this._handleRef.bind(this);
     this._getOptionsList = this._getOptionsList.bind(this);
     this._handleLabelClicked = this._handleLabelClicked.bind(this);
     this._handleOptionSelected = this._handleOptionSelected.bind(this);
@@ -201,7 +201,7 @@ class Dropdown extends React.Component {
    * and assign it to a class-wide variable property.
    * @param {object} el - The ref for the Dropdown container node
    */
-  handleRef(el) {
+  _handleRef(el) {
     this.dropdown = el;
   }
 
@@ -242,7 +242,7 @@ class Dropdown extends React.Component {
     return (
       <DropdownRenderer
         defaultText={defaultText}
-        handleRef={this.handleRef}
+        handleRef={this._handleRef}
         onLabelClicked={this._handleLabelClicked}
         onOptionSelected={this._handleOptionSelected}
         onSelectChanged={this._handleFocusChange}
