@@ -127,7 +127,8 @@ class Dropdown extends React.Component {
   }
 
   /**
-   * Convenience method to return focus from an option to the label
+   * Convenience method to return focus from an option to the label.
+   * This is particularly useful for screen-readers and keyboard users.
    */
   _focusLabel() {
     this.dropdown.querySelector('.cbn-dropdown__label')
@@ -158,9 +159,12 @@ class Dropdown extends React.Component {
     }
 
     this.setState({ focusedOption }, () => {
+      // Focus either the button label or the active option.
+      // This is so screen-readers will follow the active element
       const focusClass = focusedOption !== null
         ? '.cbn-menu-option--focused'
         : '.cbn-dropdown__label';
+
       this.dropdown.querySelector(focusClass)
         .focus();
     });
