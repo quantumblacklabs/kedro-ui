@@ -132,6 +132,7 @@ class Dropdown extends React.Component {
   _focusLabel() {
     this.dropdown.querySelector('.cbn-dropdown__label')
       .focus();
+
     this.setState({
       focusedOption: null
     });

@@ -38,6 +38,7 @@ const DropdownRenderer = ({
       theme
     };
     optionIndex += 1;
+
     return React.cloneElement(element, extraProps);
   };
 
@@ -58,6 +59,7 @@ const DropdownRenderer = ({
         down: onLabelClicked
       });
     }
+    // Prevent the page from scrolling etc when using the dropdown:
     handleKeyEvent(e.keyCode)('escape, up, down', () => e.preventDefault());
   };
 
@@ -90,7 +92,7 @@ const DropdownRenderer = ({
         // Heading
         return child;
       default:
-        // Menu Option=
+        // Menu Option
         return _extendMenuOption(child, `menu-option-${i}`, optionIndex);
     }
   });

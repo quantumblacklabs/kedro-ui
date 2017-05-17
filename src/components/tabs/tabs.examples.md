@@ -11,7 +11,7 @@ const tabs = [
 <Tabs
     tabs={tabs} />
 ```
-
+Small tabs with a long text label
 ```
 const tabs = [
     { text: 'Overview' },
@@ -26,13 +26,13 @@ const tabs = [
     size='small'
     tabs={tabs} />
 ```
-
+Tabs which toggle content on the page. Note the use of IDs with aria-labelledby and focus management to improve screen-reader accessibility.
 ```
 class Wrap extends React.Component {
     constructor(props) {
         super(props);
 
-        this.tabs = [
+        this.tabData = [
             { text: 'About', href: '#about' },
             { text: 'Work', href: '#work' },
             { text: 'Careers', href: '#careers' },
@@ -46,22 +46,24 @@ class Wrap extends React.Component {
         this._selectedTabChanged = this._selectedTabChanged.bind(this);
     }
 
-    _selectedTabChanged(e, { selectedIndex }) {
-        this.setState({ selectedIndex });
+    _selectedTabChanged(e, { selectedIndex, href }) {
+        this.setState({ selectedIndex }, () => {
+            this.tabs.querySelector(href).focus();
+        });
     }
 
     render() {
         const { selectedIndex } = this.state;
 
         return (
-            <div>
+            <div ref={ el => { this.tabs = el; }}>
                 <Tabs
                     onSelect={this._selectedTabChanged}
                     selectedIndex={selectedIndex}
                     size='small'
-                    tabs={this.tabs} />
+                    tabs={this.tabData} />
                 {
-                    this.tabs.map((tab, i) => (
+                    this.tabData.map((tab, i) => (
                         <div
                             aria-labelledby={`tab-{tab.text.toLowerCase()}`}
                             hidden={selectedIndex !== i}
@@ -70,9 +72,11 @@ class Wrap extends React.Component {
                             style={{
                                 color: 'rgb(255, 255, 255)',
                                 display: selectedIndex === i ? 'block' : 'none',
+                                outline: 'none',
                                 position: 'relative',
                                 top: 40
-                            }}>
+                            }}
+                            tabIndex='-1'>
                             Selected Menu: { tab.text }
                         </div>
                     ))
@@ -83,4 +87,14 @@ class Wrap extends React.Component {
 }
 
 <Wrap />
+```
+Tabs as links to webpages. Opens Google in a new browser tab with target="_blank".
+```
+const tabs = [
+    { text: 'Home', href: '/' },
+    { text: 'Quantum Black', href: 'https://www.quantumblack.com/' },
+    { text: 'Google', href: 'https://google.com', target: '_blank' }
+];
+
+<Tabs tabs={tabs} />
 ```

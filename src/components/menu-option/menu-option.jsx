@@ -55,6 +55,7 @@ const MenuOption = ({
    */
   const _handleKeyDown = e => handleKeyEvent(e.keyCode)('enter, space', () => {
     _handleClicked(e);
+    // Prevent the page from scrolling when selecting an item:
     e.preventDefault();
   });
 

@@ -15,37 +15,44 @@ const TabsRenderer = ({
   /**
    * Triggered when a tab is clicked
    * @param {HTMLElement} e The element that triggered the event
+   * @param {number} i      Numerical index
+   * @param {Object} tab    Properties of the selected tab
    */
-  const _handleSelect = (e, i) => {
-    onSelect(e, { selectedIndex: i });
-    e.preventDefault();
+  const _handleSelect = (e, i, tab) => {
+    onSelect(e, { selectedIndex: i, ...tab });
+    // Only prevent default behaviour action if linking to an ID on page
+    if (tab.href && tab.href[0] === '#') {
+      e.preventDefault();
+    }
   };
 
   /**
-   * Remove special characters from a string and convert spaces to dashes
+   * Remove special characters from a string and convert spaces to dashes.
+   * This is necessary because each tab needs an ID so that it can be referenced
+   * on each tab with `aria-labelledby` (see the demo page for an example).
    * @param  {string} str A text string
    * @return {string}     The same string, but sanitised for IDs
    */
-  const stringToID = str => str.toLowerCase()
+  const _stringToID = str => str.toLowerCase()
     .replace(' ', '-')
     .replace(/[^a-zA-Z0-9]/g, '');
 
   /**
-   * [description]
-   * @param  {[type]} tab      [description]
-   * @param  {[type]} i        [description]
-   * @param  {[type]} children [description]
-   * @return {[type]}          [description]
+   * Render a link/button for each tab, depending on whether the tab is supplied
+   * an href to link to, or whether it should just fire an onClick event.
+   * @param  {Object} tab The datum prop for a given tab
+   * @param  {number} i   Numerical index
+   * @return {Object}     JSX element
    */
-  const tabButton = (tab, i) => {
+  const _renderTabButton = (tab, i) => {
     const props = {
       'aria-selected': `${selectedIndex === i}`,
       className: 'cbn-tabs__button',
-      id: `cbn-tab-${stringToID(tab.text)}`,
-      onClick: e => _handleSelect(e, i)
+      id: `cbn-tab-${_stringToID(tab.text)}`,
+      onClick: e => _handleSelect(e, i, tab)
     };
     return tab.href ? (
-      <a href={tab.href} {...props}>{ tab.text }</a>
+      <a href={tab.href} target={tab.target} {...props}>{ tab.text }</a>
     ) : (
       <button {...props}>{ tab.text }</button>
     );
@@ -65,7 +72,7 @@ const TabsRenderer = ({
               key={tab.text}
               className={classnames('cbn-tabs__tab', { 'cbn-tabs__tab--selected': selectedIndex === i })}
               data-tabindex={i}>
-              { tabButton(tab, i) }
+              { _renderTabButton(tab, i) }
             </li>
             )
           )
