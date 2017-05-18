@@ -65,7 +65,7 @@ class Wrap extends React.Component {
                 {
                     this.tabData.map((tab, i) => (
                         <div
-                            aria-labelledby={`tab-{tab.text.toLowerCase()}`}
+                            aria-labelledby={`tab-${tab.text.toLowerCase()}`}
                             hidden={selectedIndex !== i}
                             id={tab.text.toLowerCase()}
                             key={tab.text}
