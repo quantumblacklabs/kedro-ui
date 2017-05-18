@@ -59,10 +59,10 @@ const Icon = props => {
   const styleOverrides = typeof color === 'string' ? { style: { fill: color } } : null;
 
   return (
-    <div className={containerClassNames} {...dataProps} onClick={onClick}>
+    <span className={containerClassNames} {...dataProps} onClick={onClick}>
       {SvgIcon && <SvgIcon title={title} className={svgClassNames} {...styleOverrides} />}
       {SvgIcon2 && <SvgIcon2 title={title} className={svgClassNames} {...styleOverrides} />}
-    </div>
+    </span>
   );
 };
 

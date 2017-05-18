@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import { handleKeyEvent } from 'utils';
 
 // Components
 import Icon from 'components/icon';
@@ -11,8 +12,11 @@ import Icon from 'components/icon';
 const DropdownRenderer = ({
   children,
   defaultText,
+  focusedOption,
+  handleRef,
   onLabelClicked,
   onOptionSelected,
+  onSelectChanged,
   open,
   selectedOption,
   theme,
@@ -20,18 +24,43 @@ const DropdownRenderer = ({
   width
 }) => {
   const wrapperClasses = classnames('cbn-dropdown', `cbn-theme--${theme}`, { 'cbn-dropdown--open': open });
+  let optionIndex = 0;
 
   /**
    * Clone a React element and extend with extra props tieing it to a new scope
    */
-  const _extendMenuOption = (element, id) => {
+  const _extendMenuOption = (element, id, index) => {
     const extraProps = {
       id,
       onSelected: onOptionSelected,
+      focused: focusedOption === index,
       selected: selectedOption.id === id || (!selectedOption.id && element.props.selected),
       theme
     };
+    optionIndex += 1;
+
     return React.cloneElement(element, extraProps);
+  };
+
+  /**
+   * Handle keyboard events
+   * @param {Object} e - The key event object
+   */
+  const _handleKeyDown = e => {
+    if (open) {
+      handleKeyEvent(e.keyCode, {
+        escape: onLabelClicked,
+        up: onSelectChanged.bind(this, -1),
+        down: onSelectChanged.bind(this, 1)
+      });
+    } else {
+      handleKeyEvent(e.keyCode, {
+        up: onLabelClicked,
+        down: onLabelClicked
+      });
+    }
+    // Prevent the page from scrolling etc when using the dropdown:
+    handleKeyEvent(e.keyCode)('escape, up, down', () => e.preventDefault());
   };
 
   const childElements = React.Children.toArray(children);
@@ -54,7 +83,7 @@ const DropdownRenderer = ({
                   return sectionChild;
                 default:
                   // Menu Option
-                  return _extendMenuOption(sectionChild, `menu-option-${i}.${j}`);
+                  return _extendMenuOption(sectionChild, `menu-option-${i}.${j}`, optionIndex);
               }
             })}
           </section>
@@ -64,18 +93,28 @@ const DropdownRenderer = ({
         return child;
       default:
         // Menu Option
-        return _extendMenuOption(child, `menu-option-${i}`);
+        return _extendMenuOption(child, `menu-option-${i}`, optionIndex);
     }
   });
 
   const optionsNode = sectionWrapRequired ? <section>{options}</section> : options;
 
   return (
-    <div className={wrapperClasses} style={{ width: `${width}px` }} title={title}>
-      <div className='cbn-dropdown__label' onClick={onLabelClicked}>
+    <div
+      aria-expanded={open.toString()}
+      aria-haspopup='true'
+      className={wrapperClasses}
+      onKeyDown={_handleKeyDown}
+      ref={handleRef}
+      role='combobox'
+      style={{ width: `${width}px` }}
+      title={title}>
+      <button
+        className='cbn-dropdown__label'
+        onClick={onLabelClicked}>
         <span>{selectedOption.label || defaultText}</span>
         <Icon type='chevronUp' theme={theme} />
-      </div>
+      </button>
       <div className='cbn-dropdown__options'>
         {optionsNode}
       </div>
@@ -86,9 +125,12 @@ const DropdownRenderer = ({
 DropdownRenderer.defaultProps = {
   children: null,
   defaultText: 'Please select...',
+  focusedOption: null,
+  handleRef: null,
   onChanged: null,
   onLabelClicked: null,
   onOptionSelected: null,
+  onSelectChanged: null,
   open: false,
   selectedOption: null,
   theme: 'light',
@@ -106,6 +148,14 @@ DropdownRenderer.propTypes = {
   */
   defaultText: PropTypes.string,
   /**
+  * The index of the currently-focused menu option
+  */
+  focusedOption: PropTypes.number,
+  /**
+  * Retrieve a reference to the dropdown DOM node
+  */
+  handleRef: PropTypes.func,
+  /**
   * Callback to be executed when the main label is clicked
   */
   onLabelClicked: PropTypes.func,
@@ -113,6 +163,10 @@ DropdownRenderer.propTypes = {
   * Callback to be executed when an option is selected
   */
   onOptionSelected: PropTypes.func,
+  /**
+  * Callback to be executed when the focused option changes
+  */
+  onSelectChanged: PropTypes.func,
   /**
   * Whether the dropdown is in an open state
   */
