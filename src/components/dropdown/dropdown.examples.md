@@ -2,14 +2,26 @@ A dropdown component with no selected options by default, and default unselected
 A plain array of Menu Options will get wrapped inside a padded section automatically.
 
 ```
-<Dropdown
-    theme='light'
-    onOpened={ null }
-    onClosed={ null }
-    onChanged={ null }>
-    <MenuOption primaryText='Menu Item One' value={ 1 } />
-    <MenuOption primaryText='Menu Item Two' value={ 2 } />
-</Dropdown>
+<div style={{ display: 'flex', flexDirection: 'column' }}>
+    <Dropdown
+        theme='light'
+        onOpened={ null }
+        onClosed={ null }
+        onChanged={ null }>
+        <MenuOption primaryText='Menu Item One' value={ 1 } />
+        <MenuOption primaryText='Menu Item Two' value={ 2 } />
+    </Dropdown>
+    <Dropdown
+        theme='light'
+        onOpened={ null }
+        onClosed={ null }
+        onChanged={ null }>
+        <MenuOption primaryText='Menu Item One' value={ 1 } />
+        <MenuOption primaryText='Menu Item Two' value={ 2 } />
+        <MenuOption primaryText='Menu Item Three' value={ 3 } />
+        <MenuOption primaryText='Menu Item Four' value={ 4 } />
+    </Dropdown>
+</div>
 ```
 
 Or you can define the single section yourself. You may want to do this if you also require a heading next to the options.

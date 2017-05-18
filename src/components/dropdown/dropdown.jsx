@@ -31,6 +31,7 @@ class Dropdown extends React.Component {
     this._handleLabelClicked = this._handleLabelClicked.bind(this);
     this._handleOptionSelected = this._handleOptionSelected.bind(this);
     this._handleFocusChange = this._handleFocusChange.bind(this);
+    this._handleBodyClicked = this._handleBodyClicked.bind(this);
     this.open = this.open.bind(this);
     this.close = this.close.bind(this);
 
@@ -58,6 +59,34 @@ class Dropdown extends React.Component {
       selectedOption,
       open: false
     };
+  }
+
+  /**
+   * React lifecycle method
+   * {@link https://facebook.github.io/react/docs/react-component.html#componentdidmount}
+   * @return {object} JSX for this component
+   */
+  componentDidMount() {
+    document.body.addEventListener('click', this._handleBodyClicked);
+  }
+
+  /**
+   * React lifecycle method
+   * {@link https://facebook.github.io/react/docs/react-component.html#componentwillunmount}
+   * @return {object} JSX for this component
+   */
+  componentWillUnmount() {
+    document.body.removeEventListener('click', this._handleBodyClicked);
+  }
+
+  /**
+   * Handler for closing a dropdown if a click occured outside the dropdown.
+   * @param {object} e - event object
+   */
+  _handleBodyClicked(e) {
+    if (!this.dropdown.contains(e.target) && this.state.open) {
+      this.close();
+    }
   }
 
   /**
