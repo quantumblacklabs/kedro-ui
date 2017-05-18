@@ -5,7 +5,8 @@ Simple, single line, notification
   <Notification
     type='inline'
     headerLabel='Hello World!'
-    label='This is a notification'/>
+    label='This is a notification'
+    theme='light' />
 </div>
 ```
 
@@ -17,7 +18,8 @@ You can change the display type to multiline if you want to break up the content
     icon='refresh'
     type='multiline'
     headerLabel='Hello World!'
-    label='This is a notification, maybe it has much more content than a normal notification. This is a notification, maybe it has much more content than a normal notification. This is a notification, maybe it has much more content than a normal notification'/>
+    label='This is a notification, maybe it has much more content than a normal notification. This is a notification, maybe it has much more content than a normal notification. This is a notification, maybe it has much more content than a normal notification'
+    theme='light' />
 </div>
 ```
 

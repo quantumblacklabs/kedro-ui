@@ -9,7 +9,8 @@ const tabs = [
 ];
 
 <Tabs
-    tabs={tabs} />
+    tabs={tabs}
+    theme='light' />
 ```
 Small tabs with a long text label
 ```
@@ -24,7 +25,8 @@ const tabs = [
 <Tabs
     selectedIndex={1}
     size='small'
-    tabs={tabs} />
+    tabs={tabs}
+    theme='light' />
 ```
 Tabs which toggle content on the page. Note the use of IDs with aria-labelledby and focus management to improve screen-reader accessibility.
 ```
@@ -61,7 +63,8 @@ class Wrap extends React.Component {
                     onSelect={this._selectedTabChanged}
                     selectedIndex={selectedIndex}
                     size='small'
-                    tabs={this.tabData} />
+                    tabs={this.tabData}
+                    theme='light' />
                 {
                     this.tabData.map((tab, i) => (
                         <div
@@ -70,7 +73,7 @@ class Wrap extends React.Component {
                             id={tab.text.toLowerCase()}
                             key={tab.text}
                             style={{
-                                color: 'rgb(255, 255, 255)',
+                                color: 'grey',
                                 display: selectedIndex === i ? 'block' : 'none',
                                 outline: 'none',
                                 position: 'relative',
@@ -88,6 +91,7 @@ class Wrap extends React.Component {
 
 <Wrap />
 ```
+
 Tabs as links to webpages. Opens Google in a new browser tab with target="_blank".
 ```
 const tabs = [
@@ -96,5 +100,7 @@ const tabs = [
     { text: 'Google', href: 'https://google.com', target: '_blank' }
 ];
 
-<Tabs tabs={tabs} />
+<Tabs
+    tabs={tabs}
+    theme='light' />
 ```
