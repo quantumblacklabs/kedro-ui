@@ -38,7 +38,7 @@ describe('Dropdown component', () => {
           .should('be.visible');
 
         cy.wrap($el)
-          .find('.cbn-menu-option:first span')
+          .find('.cbn-menu-option:first')
           .click();
 
         cy.wrap($el)

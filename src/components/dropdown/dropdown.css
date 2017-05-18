@@ -2,6 +2,9 @@
 
 /** Variables */
 
+/* the maximum dropdown before a scrollbar is required */
+$menu-max-height: 300px;
+
 /* the height of each item/row */
 $menu-item-height: 40px;
 
@@ -43,10 +46,15 @@ $menu-item-padding: 12px;
   z-index: 10;
 
   display: flex;
+  width: 100%;
   align-items: center;
   height: $menu-item-height;
   padding: 0 $menu-item-padding;
   overflow: hidden;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  outline: 3px solid transparent;
 
   @extend %type--subhead-2;
 
@@ -57,6 +65,10 @@ $menu-item-padding: 12px;
 
   cursor: pointer;
   user-select: none;
+
+  &:focus {
+    @mixin themedParent outline-color, menu, hover;
+  }
 
   > .cbn-icon {
     position: absolute;
@@ -74,22 +86,23 @@ $menu-item-padding: 12px;
 }
 
 .cbn-dropdown__options {
+  @extend %shadow-light--active;
+
+  @mixin themedParent border-top-color, menu, border;
+  @mixin themedParent background, menu, default;
+
   position: absolute;
   z-index: 9;
 
   display: none;
   width: 100%;
+  max-height: $menu-max-height;
+  overflow: auto;
   margin: 0;
 
   border-style: solid;
   border-width: 1px 0 0;
-
-  @mixin themedParent border-top-color, menu, border;
-  @mixin themedParent background, menu, default;
-
   animation: dropdownEntrance 0.3s;
-
-  @extend %shadow-light--active;
 
   .cbn-dropdown--open & {
     display: block;

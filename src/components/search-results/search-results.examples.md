@@ -75,7 +75,7 @@ class SearchBoxWithResults extends React.Component {
         const { activeRow, hideResults, results, value } = this.state;
 
         return (
-            <div onKeyDown={this._handleKeyDown.bind(this)}>
+            <div role='search' onKeyDown={this._handleKeyDown.bind(this)}>
                 <SearchBar
                     aria={{
                         expanded: !hideResults,
