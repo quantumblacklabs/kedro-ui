@@ -1,18 +1,20 @@
 // Imports
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { uniqueId } from 'lodash';
 import Switch from '../switch';
 
 // Styles
+
 import './checkbox.css';
 
 /**
- * Radio button, when a user selects one, all other radio buttons with the same
- * name will become unchecked i.e. you can only select one
+ * Checkbox is a simple input element which can be either checked or unchecked;
+ * its state does not effect other checkboxes, therefore multiple checkboxes can be checked at the same time.
  */
 const Checkbox = ({ checked, disabled, label, name, onChange, theme, value }) => {
-  const id = uniqueId('radiobutton');
+  const id = uniqueId('checkbox');
 
   return (
     <Switch
@@ -57,7 +59,7 @@ Checkbox.propTypes = {
    */
   checked: PropTypes.bool,
   /**
-   * Set the radio button to disabled
+   * Set the checkbox to disabled
    */
   disabled: PropTypes.bool,
   /**
@@ -65,7 +67,7 @@ Checkbox.propTypes = {
    */
   label: PropTypes.string.isRequired,
   /**
-   * This is the name of the group the button belongs to (required for unselecting)
+   * This is the name of the group the element belongs to
    */
   name: PropTypes.string.isRequired,
   /**
@@ -77,7 +79,7 @@ Checkbox.propTypes = {
    */
   onChange: PropTypes.func,
   /**
-   * The underlying value of the radiobutton
+   * The underlying value of the checkbox
    */
   value: PropTypes.number.isRequired
 };
