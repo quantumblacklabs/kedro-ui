@@ -15,13 +15,12 @@ const TabsRenderer = ({
   /**
    * Triggered when a tab is clicked
    * @param {HTMLElement} e The element that triggered the event
-   * @param {number} i      Numerical index
-   * @param {Object} tab    Properties of the selected tab
+   * @param {Object} datum    Properties of the selected tab
    */
-  const _handleSelect = (e, i, tab) => {
-    onSelect(e, { selectedIndex: i, ...tab });
+  const _handleSelect = (e, datum) => {
+    onSelect(e, datum);
     // Only prevent default behaviour action if linking to an ID on page
-    if (tab.href && tab.href[0] === '#') {
+    if (datum.href && datum.href[0] === '#') {
       e.preventDefault();
     }
   };
@@ -49,7 +48,7 @@ const TabsRenderer = ({
       'aria-selected': `${selectedIndex === i}`,
       className: 'cbn-tabs__button',
       id: `cbn-tab-${_stringToID(tab.text)}`,
-      onClick: e => _handleSelect(e, i, tab)
+      onClick: e => _handleSelect(e, { selectedIndex: i, ...tab })
     };
     return tab.href ? (
       <a href={tab.href} target={tab.target} {...props}>{ tab.text }</a>
