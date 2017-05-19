@@ -18,7 +18,7 @@ class Dropdown extends React.Component {
 
   /**
    * Manages the attachment of the event listener when body is clicked.
-   * @param {object} eventHandler event handler which will be added
+   * @param {object} eventHandler - event handler which will be added
    */
   static _addBodyListener(eventHandler) {
     if (typeof window.__bodyEventHandlers === 'undefined') {
