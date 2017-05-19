@@ -15,8 +15,45 @@ import DropdownRenderer from './dropdown-renderer';
  * {@see /#!/MenuOption}
  */
 class Dropdown extends React.Component {
+
   /**
-   * Create a new Dropdown view
+   * Manages the attachment of the event listener when body is clicked.
+   * @param {object} eventHandler event handler which will be added
+   */
+  static _addBodyListener(eventHandler) {
+    if (typeof window.__bodyEventHandlers === 'undefined') {
+      window.__bodyEventHandlers = [];
+    }
+
+    // add event handler to the array attached to the windown so that it can be retrieved outside of component
+    window.__bodyEventHandlers.push(eventHandler);
+    // add the event handler to the body
+    document.body.addEventListener('click', eventHandler);
+
+    // indicate that event listeners are attached
+    window.__bodyListenerAttached = true;
+  }
+
+  /**
+   * Manages the removal of the event listeners when body is clicked - all event listeners added
+   * by dropdown components are removed.
+   * This method is static because it doesn't utilize 'this'.
+   */
+  static _removeBodyListeners() {
+    if (window.__bodyListenerAttached) {
+      // remove all event listeners attached to body
+      window.__bodyEventHandlers.forEach(handler => {
+        document.body.removeEventListener('click', handler);
+      });
+
+      // indicate that no listeners are attached and reset the array
+      window.__bodyEventHandlers = [];
+      window.__bodyListenerAttached = false;
+    }
+  }
+
+  /**
+   * Create a new Dropdown
    * @param  {Object} props
    */
   constructor(props) {
@@ -63,20 +100,11 @@ class Dropdown extends React.Component {
 
   /**
    * React lifecycle method
-   * {@link https://facebook.github.io/react/docs/react-component.html#componentdidmount}
-   * @return {object} JSX for this component
-   */
-  componentDidMount() {
-    document.body.addEventListener('click', this._handleBodyClicked);
-  }
-
-  /**
-   * React lifecycle method
    * {@link https://facebook.github.io/react/docs/react-component.html#componentwillunmount}
    * @return {object} JSX for this component
    */
   componentWillUnmount() {
-    document.body.removeEventListener('click', this._handleBodyClicked);
+    Dropdown._removeBodyListeners();
   }
 
   /**
@@ -120,6 +148,13 @@ class Dropdown extends React.Component {
       callback = onOpened;
     } else if (typeof onClosed === 'function' && open) {
       callback = onClosed;
+    }
+
+    // remove or add the event listeners for
+    if (open) {
+      Dropdown._removeBodyListeners();
+    } else {
+      Dropdown._addBodyListener(this._handleBodyClicked);
     }
 
     this.setState({ open: !open }, callback);
@@ -243,12 +278,16 @@ class Dropdown extends React.Component {
    */
   open() {
     const { onOpened } = this.props;
+
     this.setState({ open: true }, () => {
       this._focusLabel();
       if (typeof onOpened === 'function') {
         onOpened();
       }
     });
+
+    // add event listener to automatically close the dropdown
+    Dropdown._addBodyListener(this._handleBodyClicked);
   }
 
   /**
@@ -256,11 +295,15 @@ class Dropdown extends React.Component {
    */
   close() {
     const { onClosed } = this.props;
+
     this.setState({ open: false }, () => {
       if (typeof onClosed === 'function') {
         onClosed();
       }
     });
+
+    // remove event listener
+    Dropdown._removeBodyListeners();
   }
 
   /**
