@@ -8,50 +8,16 @@ import './dropdown.css';
 // Renderer
 import DropdownRenderer from './dropdown-renderer';
 
+// Controller
+import EventController from './event-controller';
+
 /**
  * This is a stateful component providing a rich version of a native select box.
  *
- * *Note: you'll also need to import MenuOption if you with to use this inside the component.*
+ * Note: you'll also need to import MenuOption if you want to use it inside the component.
  * {@see /#!/MenuOption}
  */
 class Dropdown extends React.Component {
-
-  /**
-   * Manages the attachment of the event listener when body is clicked.
-   * @param {object} eventHandler - event handler which will be added
-   */
-  static _addBodyListener(eventHandler) {
-    if (typeof window.__bodyEventHandlers === 'undefined') {
-      window.__bodyEventHandlers = [];
-    }
-
-    // add event handler to the array attached to the windown so that it can be retrieved outside of component
-    window.__bodyEventHandlers.push(eventHandler);
-    // add the event handler to the body
-    document.body.addEventListener('click', eventHandler);
-
-    // indicate that event listeners are attached
-    window.__bodyListenerAttached = true;
-  }
-
-  /**
-   * Manages the removal of the event listeners when body is clicked - all event listeners added
-   * by dropdown components are removed.
-   * This method is static because it doesn't utilize 'this'.
-   */
-  static _removeBodyListeners() {
-    if (window.__bodyListenerAttached) {
-      // remove all event listeners attached to body
-      window.__bodyEventHandlers.forEach(handler => {
-        document.body.removeEventListener('click', handler);
-      });
-
-      // indicate that no listeners are attached and reset the array
-      window.__bodyEventHandlers = [];
-      window.__bodyListenerAttached = false;
-    }
-  }
-
   /**
    * Create a new Dropdown
    * @param  {Object} props
@@ -104,7 +70,7 @@ class Dropdown extends React.Component {
    * @return {object} JSX for this component
    */
   componentWillUnmount() {
-    Dropdown._removeBodyListeners();
+    EventController.removeBodyListeners();
   }
 
   /**
@@ -152,9 +118,9 @@ class Dropdown extends React.Component {
 
     // remove or add the event listeners for
     if (open) {
-      Dropdown._removeBodyListeners();
+      EventController.removeBodyListeners();
     } else {
-      Dropdown._addBodyListener(this._handleBodyClicked);
+      EventController.addBodyListener(this._handleBodyClicked);
     }
 
     this.setState({ open: !open }, callback);
@@ -287,7 +253,7 @@ class Dropdown extends React.Component {
     });
 
     // add event listener to automatically close the dropdown
-    Dropdown._addBodyListener(this._handleBodyClicked);
+    EventController.addBodyListener(this._handleBodyClicked);
   }
 
   /**
@@ -303,7 +269,7 @@ class Dropdown extends React.Component {
     });
 
     // remove event listener
-    Dropdown._removeBodyListeners();
+    EventController.removeBodyListeners();
   }
 
   /**
