@@ -171,6 +171,11 @@ $height-tiny: 1px;
 
 .cbn-input__description {
   display: flex;
+  padding: 0;
+}
+
+.cbn-input__description-content {
+  padding: $offset-top-bottom-small $padding-left-right;
 
   .cbn-input--success + & {
     @mixin themedParent color, input, success;
@@ -179,8 +184,4 @@ $height-tiny: 1px;
   .cbn-input--error + & {
     @mixin themedParent color, input, error;
   }
-}
-
-.cbn-input__description-content {
-  padding: $offset-top-bottom-small $padding-left-right;
 }
