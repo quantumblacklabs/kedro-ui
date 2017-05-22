@@ -173,7 +173,7 @@ class Input extends React.Component {
     const description = (
       <div className='cbn-input__description' ref={desc => { this._description = desc; }}>
         {
-          this.props.status !== 'default' && (
+          this.props.status !== 'default' && this.props.statusDescription && (
             <div className='cbn-input__description-content'>
               { this.props.statusDescription }
             </div>
@@ -198,7 +198,7 @@ class Input extends React.Component {
           <input
             className='cbn-input__field'
             type='text'
-            placeholder={this.props.placeholder}
+            placeholder={this.props.placeholder || ''}
             disabled={this.props.disabled}
             value={this.state.value || ''}
             onChange={this._handleChanged}
@@ -218,13 +218,13 @@ class Input extends React.Component {
 
 Input.defaultProps = {
   disabled: false,
-  label: '',
+  label: null,
   onBlur: null,
   onFocus: null,
   onChange: null,
-  placeholder: '',
+  placeholder: null,
   status: 'default',
-  statusDescription: '',
+  statusDescription: null,
   theme: 'light',
   value: null
 };
