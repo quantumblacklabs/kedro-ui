@@ -175,13 +175,15 @@ $height-tiny: 1px;
 }
 
 .cbn-input__description-content {
+  @extend %type--body-1;
+
   padding: $offset-top-bottom-small $padding-left-right;
 
-  .cbn-input--success + & {
+  .cbn-input--success + .cbn-input__description & {
     @mixin themedParent color, input, success;
   }
 
-  .cbn-input--error + & {
+  .cbn-input--error + .cbn-input__description & {
     @mixin themedParent color, input, error;
   }
 }
