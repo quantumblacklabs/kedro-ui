@@ -8,15 +8,18 @@ import './dropdown.css';
 // Renderer
 import DropdownRenderer from './dropdown-renderer';
 
+// Controller
+import EventController from './event-controller';
+
 /**
  * This is a stateful component providing a rich version of a native select box.
  *
- * *Note: you'll also need to import MenuOption if you with to use this inside the component.*
+ * Note: you'll also need to import MenuOption if you want to use it inside the component.
  * {@see /#!/MenuOption}
  */
 class Dropdown extends React.Component {
   /**
-   * Create a new Dropdown view
+   * Create a new Dropdown
    * @param  {Object} props
    */
   constructor(props) {
@@ -31,6 +34,7 @@ class Dropdown extends React.Component {
     this._handleLabelClicked = this._handleLabelClicked.bind(this);
     this._handleOptionSelected = this._handleOptionSelected.bind(this);
     this._handleFocusChange = this._handleFocusChange.bind(this);
+    this._handleBodyClicked = this._handleBodyClicked.bind(this);
     this.open = this.open.bind(this);
     this.close = this.close.bind(this);
 
@@ -58,6 +62,25 @@ class Dropdown extends React.Component {
       selectedOption,
       open: false
     };
+  }
+
+  /**
+   * React lifecycle method
+   * {@link https://facebook.github.io/react/docs/react-component.html#componentwillunmount}
+   * @return {object} JSX for this component
+   */
+  componentWillUnmount() {
+    EventController.removeBodyListeners();
+  }
+
+  /**
+   * Handler for closing a dropdown if a click occured outside the dropdown.
+   * @param {object} e - event object
+   */
+  _handleBodyClicked(e) {
+    if (!this.dropdown.contains(e.target) && this.state.open) {
+      this.close();
+    }
   }
 
   /**
@@ -91,6 +114,13 @@ class Dropdown extends React.Component {
       callback = onOpened;
     } else if (typeof onClosed === 'function' && open) {
       callback = onClosed;
+    }
+
+    // remove or add the event listeners for
+    if (open) {
+      EventController.removeBodyListeners();
+    } else {
+      EventController.addBodyListener(this._handleBodyClicked);
     }
 
     this.setState({ open: !open }, callback);
@@ -214,12 +244,16 @@ class Dropdown extends React.Component {
    */
   open() {
     const { onOpened } = this.props;
+
     this.setState({ open: true }, () => {
       this._focusLabel();
       if (typeof onOpened === 'function') {
         onOpened();
       }
     });
+
+    // add event listener to automatically close the dropdown
+    EventController.addBodyListener(this._handleBodyClicked);
   }
 
   /**
@@ -227,11 +261,15 @@ class Dropdown extends React.Component {
    */
   close() {
     const { onClosed } = this.props;
+
     this.setState({ open: false }, () => {
       if (typeof onClosed === 'function') {
         onClosed();
       }
     });
+
+    // remove event listener
+    EventController.removeBodyListeners();
   }
 
   /**

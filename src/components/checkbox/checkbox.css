@@ -27,6 +27,10 @@ $size-checkmark: 24px;
   transition: 0.2s all;
 
   .cbn-switch__input:checked + .cbn-switch-checkbox__label & {
+    border-color: transparent;
+  }
+
+  .cbn-switch__input:checked + .cbn-switch-checkbox__label & {
     opacity: 1;
   }
 

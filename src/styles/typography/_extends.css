@@ -1,3 +1,8 @@
+/* Family */
+%type--family {
+  font-family: 'Titillium Web', sans-serif;
+}
+
 /* Weights */
 %type--light {
   font-weight: 300;

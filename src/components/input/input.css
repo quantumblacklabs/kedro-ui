@@ -58,6 +58,8 @@ $height-tiny: 1px;
   @mixin themedParent background-color, menu;
   @mixin themedParent color, text;
 
+  @extend %type--family;
+  @extend %type--regular;
   @extend %type--subhead-2;
 
   display: flex;
@@ -145,37 +147,45 @@ $height-tiny: 1px;
 }
 
 .cbn-input__line--filled {
+  @extend %type--family;
+  @extend %type--regular;
   @extend %type--subhead-2;
 
   height: $height-tiny;
 
-  font: inherit;
-
   overflow: hidden;
+  white-space: pre;
 
   .cbn-input--focused & {
-    @mixin themedParent background-color, input, textFilled;
+    @mixin themedStart background-color, input, textFilled;
   }
 
   .cbn-input--success & {
-    @mixin themedParent background-color, input, success;
+    @mixin themedStart background-color, input, success;
   }
 
   .cbn-input--error & {
-    @mixin themedParent background-color, input, error;
+    @mixin themedStart background-color, input, error;
   }
 }
 
 .cbn-input__description {
   display: flex;
+  padding: 0;
+}
+
+.cbn-input__description-content {
+  @extend %type--family;
+  @extend %type--regular;
+  @extend %type--body-1;
 
   padding: $offset-top-bottom-small $padding-left-right;
 
-  .cbn-input--success + & {
-    @mixin themedParent color, input, success;
+  .cbn-input--success + .cbn-input__description & {
+    @mixin themedStart color, input, success;
   }
 
-  .cbn-input--error + & {
-    @mixin themedParent color, input, error;
+  .cbn-input--error + .cbn-input__description & {
+    @mixin themedStart color, input, error;
   }
 }
