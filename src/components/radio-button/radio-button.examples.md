@@ -2,7 +2,7 @@ Radio Button Example - preselected first example and second example disabled
 
 ```
 <section>
-    <form>
+    <form className='cbn-demo-form'>
         <RadioButton
             checked={true}
             label='Hello World'
@@ -28,7 +28,7 @@ Radio Button Example - four options all clickable
 
 ```
 <section>
-    <form>
+    <form className='cbn-demo-form'>
         <RadioButton
             label='First option'
             name='test'
