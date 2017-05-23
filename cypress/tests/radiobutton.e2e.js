@@ -20,15 +20,19 @@ describe('Radio Button component', () => {
   });
 
   it('assert that RadioButton is selected correctly and others deselect correctly', () => {
-    cy.get('.cbn-switch-radio:visible')
+    cy.get('.cbn-demo-form:visible')
       .each(($el, index, $list) => {
         cy.wrap($el)
-          .find('label')
-          .click();
-    });
+          .find('.cbn-switch-radio:visible')
+          .each(($el, index, $list) => {
+            cy.wrap($el)
+              .find('label')
+              .click();
+            });
 
-    cy
-      .get('.cbn-switch-radio:visible input:checked')
-      .should('to.have.length', 1);
+        cy.wrap($el)
+          .find('.cbn-switch-radio:visible input:checked')
+          .should('to.have.length', 1);
+      });
   });
 });
