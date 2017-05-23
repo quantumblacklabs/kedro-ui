@@ -21,7 +21,7 @@ const ToggleRenderer = ({
    * Triggered when on/off is clicked
    * @param {HTMLElement} the element that triggered the event
    */
-  const _handleChange = ({ e, checked }) => {
+  const _handleChange = (e, { checked }) => {
     onChange(e, { value: checked });
   };
 
@@ -55,14 +55,14 @@ const ToggleRenderer = ({
           htmlFor={id}>
           <div
             className={classnames('cbn-toggle__button', { 'cbn-toggle--selected': value })}>
-            <div className='cbn-toggle__text'>{ texts[0] }</div>
+            <div className='cbn-toggle__text'>{texts[0]}</div>
           </div>
           <div
             className={classnames('cbn-toggle__separator', { 'cbn-toggle__separator--right': !value })}>
             /</div>
           <div
             className={classnames('cbn-toggle__button', { 'cbn-toggle--selected': !value })}>
-            <div className='cbn-toggle__text'>{ texts[1] }</div>
+            <div className='cbn-toggle__text'>{texts[1]}</div>
           </div>
         </label>
       </Switch>

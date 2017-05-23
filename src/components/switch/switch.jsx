@@ -9,18 +9,19 @@ import classnames from 'classnames';
 import './switch.css';
 
 /**
- * Generic switch view, used to create controls such as radio buttons and
- * toggle buttons
+ * Generic switch view, used to create controls such as radio buttons and toggle buttons.
  */
-const Switch = ({ checked,
-                  children,
-                  disabled,
-                  id,
-                  name,
-                  onChange,
-                  theme,
-                  type,
-                  value }) => {
+const Switch = ({
+  checked,
+  children,
+  disabled,
+  id,
+  name,
+  onChange,
+  theme,
+  type,
+  value
+}) => {
   let _handleOnChange = null;
   let _extraProps = {};
 
@@ -30,12 +31,10 @@ const Switch = ({ checked,
     };
   }
 
-  // if onChange function has been supplied
-  // fire with event and radio value
+  // if onChange function has been supplied, fire with event and payload - value and checked
   if (typeof onChange === 'function') {
-    _handleOnChange = e => onChange({
+    _handleOnChange = e => onChange(e, {
       checked: e.target.checked,
-      e,
       value
     });
   }
@@ -87,7 +86,7 @@ Switch.propTypes = {
    */
   children: PropTypes.node,
   /**
-   * Set the radio button to disabled
+   * Set the element to disabled
    */
   disabled: PropTypes.bool,
   /**
@@ -111,7 +110,7 @@ Switch.propTypes = {
    */
   onChange: PropTypes.func,
   /**
-   * The underlying value of the radiobutton
+   * The underlying value of the element
    */
   value: PropTypes.oneOfType([
     PropTypes.string,

@@ -42,6 +42,6 @@ Clickable Icon demonstrating event indicator updates (top right)
     onMouseOut={ null }
     style={{ cursor: 'pointer' }}>
     <Icon type='refresh' size='large' title='' color='cornflowerblue' theme='light' />
-    <span style={{ display: 'block' }}>Click!</span>
+    <span style={{ display: 'block', color: 'grey' }}>Click!</span>
 </div>
 ```

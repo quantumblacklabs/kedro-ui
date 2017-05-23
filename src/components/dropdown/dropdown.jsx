@@ -8,15 +8,18 @@ import './dropdown.css';
 // Renderer
 import DropdownRenderer from './dropdown-renderer';
 
+// Controller
+import EventController from './event-controller';
+
 /**
  * This is a stateful component providing a rich version of a native select box.
  *
- * *Note: you'll also need to import MenuOption if you with to use this inside the component.*
+ * Note: you'll also need to import MenuOption if you want to use it inside the component.
  * {@see /#!/MenuOption}
  */
 class Dropdown extends React.Component {
   /**
-   * Create a new Dropdown view
+   * Create a new Dropdown
    * @param  {Object} props
    */
   constructor(props) {
@@ -26,8 +29,12 @@ class Dropdown extends React.Component {
 
     // bind method scope
     this._findSelectedOptionElement = this._findSelectedOptionElement.bind(this);
+    this._handleRef = this._handleRef.bind(this);
+    this._getOptionsList = this._getOptionsList.bind(this);
     this._handleLabelClicked = this._handleLabelClicked.bind(this);
     this._handleOptionSelected = this._handleOptionSelected.bind(this);
+    this._handleFocusChange = this._handleFocusChange.bind(this);
+    this._handleBodyClicked = this._handleBodyClicked.bind(this);
     this.open = this.open.bind(this);
     this.close = this.close.bind(this);
 
@@ -51,9 +58,29 @@ class Dropdown extends React.Component {
     }
 
     this.state = {
+      focusedOption: null,
       selectedOption,
       open: false
     };
+  }
+
+  /**
+   * React lifecycle method
+   * {@link https://facebook.github.io/react/docs/react-component.html#componentwillunmount}
+   * @return {object} JSX for this component
+   */
+  componentWillUnmount() {
+    EventController.removeBodyListeners();
+  }
+
+  /**
+   * Handler for closing a dropdown if a click occured outside the dropdown.
+   * @param {object} e - event object
+   */
+  _handleBodyClicked(e) {
+    if (!this.dropdown.contains(e.target) && this.state.open) {
+      this.close();
+    }
   }
 
   /**
@@ -89,7 +116,88 @@ class Dropdown extends React.Component {
       callback = onClosed;
     }
 
+    // remove or add the event listeners for
+    if (open) {
+      EventController.removeBodyListeners();
+    } else {
+      EventController.addBodyListener(this._handleBodyClicked);
+    }
+
     this.setState({ open: !open }, callback);
+    this._focusLabel();
+  }
+
+  /**
+   * Sort, filter and flatten the list of children to retrieve just the MenuOptions,
+   * with any Sections removed.
+   * @return {Object} A flat list of MenuOptions
+   */
+  _getOptionsList() {
+    /**
+     * Recurse through sections to retrieve a list of all MenuOptions
+     * @param  {Object} previous The Options array as of the previous iteration
+     * @param  {Object} current  The current item (either a MenuOption or Section)
+     * @return {Object}          The current state of the Options array
+     */
+    const getSectionChildren = (previous, current) => {
+      if (current.props.primaryText) {
+        // MenuOption: Add to list
+        return previous.concat(current);
+      } else if (current.type === 'section') {
+        // Section: Keep recursing
+        return previous.concat(
+          current.props.children.reduce(getSectionChildren, [])
+        );
+      }
+      return previous;
+    };
+
+    return React.Children.toArray(this.props.children)
+      .reduce(getSectionChildren, []);
+  }
+
+  /**
+   * Convenience method to return focus from an option to the label.
+   * This is particularly useful for screen-readers and keyboard users.
+   */
+  _focusLabel() {
+    this.dropdown.querySelector('.cbn-dropdown__label')
+      .focus();
+
+    this.setState({
+      focusedOption: null
+    });
+  }
+
+  /**
+   * When the focused option changes (e.g. via up/down keyboard controls),
+   * update the focusedOption index state and select the new one
+   * @param {number} direction - The direction that focus is travelling through the list:
+   * negative is up and positive is down.
+   */
+  _handleFocusChange(direction) {
+    let { focusedOption } = this.state;
+    const optionsLength = this._getOptionsList().length;
+
+    if (focusedOption === null) {
+      focusedOption = (direction > 0) ? 0 : optionsLength - 1;
+    } else {
+      focusedOption += direction;
+    }
+    if (focusedOption >= optionsLength || focusedOption < 0) {
+      focusedOption = null;
+    }
+
+    this.setState({ focusedOption }, () => {
+      // Focus either the button label or the active option.
+      // This is so screen-readers will follow the active element
+      const focusClass = focusedOption !== null
+        ? '.cbn-menu-option--focused'
+        : '.cbn-dropdown__label';
+
+      this.dropdown.querySelector(focusClass)
+        .focus();
+    });
   }
 
   /**
@@ -119,6 +227,16 @@ class Dropdown extends React.Component {
         }
       });
     }
+    this._focusLabel();
+  }
+
+  /**
+   * Retrieve a reference to the dropdown DOM node (from the renderer component),
+   * and assign it to a class-wide variable property.
+   * @param {object} el - The ref for the Dropdown container node
+   */
+  _handleRef(el) {
+    this.dropdown = el;
   }
 
   /**
@@ -126,11 +244,16 @@ class Dropdown extends React.Component {
    */
   open() {
     const { onOpened } = this.props;
+
     this.setState({ open: true }, () => {
+      this._focusLabel();
       if (typeof onOpened === 'function') {
         onOpened();
       }
     });
+
+    // add event listener to automatically close the dropdown
+    EventController.addBodyListener(this._handleBodyClicked);
   }
 
   /**
@@ -138,11 +261,15 @@ class Dropdown extends React.Component {
    */
   close() {
     const { onClosed } = this.props;
+
     this.setState({ open: false }, () => {
       if (typeof onClosed === 'function') {
         onClosed();
       }
     });
+
+    // remove event listener
+    EventController.removeBodyListeners();
   }
 
   /**
@@ -152,14 +279,17 @@ class Dropdown extends React.Component {
    */
   render() {
     const { children, defaultText, theme, width } = this.props;
-    const { open, selectedOption } = this.state;
+    const { open, focusedOption, selectedOption } = this.state;
 
     return (
       <DropdownRenderer
         defaultText={defaultText}
+        handleRef={this._handleRef}
         onLabelClicked={this._handleLabelClicked}
         onOptionSelected={this._handleOptionSelected}
+        onSelectChanged={this._handleFocusChange}
         open={open}
+        focusedOption={focusedOption}
         selectedOption={selectedOption}
         theme={theme}
         width={width}>

@@ -52,7 +52,7 @@ class Input extends React.Component {
    * @return {object} JSX for this component
    */
   componentWillReceiveProps(newProps) {
-    if (newProps.value !== this.state.value) {
+    if (newProps.value !== null && newProps.value !== this.state.value) {
       this.setState({
         value: newProps.value
       });
@@ -168,7 +168,19 @@ class Input extends React.Component {
       </div>
     );
 
-    const hasDescription = this.props.status !== 'default' && this.props.statusDescription;
+    // description's div has to be always rendered, even if its content is empty
+    // to enable the animation to run when the component receives a description; otherwise the animation is ignored
+    const description = (
+      <div className='cbn-input__description' ref={desc => { this._description = desc; }}>
+        {
+          this.props.status !== 'default' && this.props.statusDescription && (
+            <div className='cbn-input__description-content'>
+              { this.props.statusDescription }
+            </div>
+          )
+        }
+      </div>
+    );
 
     return (
       <div className='cbn-input-wrapper'>
@@ -186,23 +198,19 @@ class Input extends React.Component {
           <input
             className='cbn-input__field'
             type='text'
-            placeholder={this.props.placeholder}
+            placeholder={this.props.placeholder || ''}
             disabled={this.props.disabled}
-            value={this.state.value}
+            value={this.state.value || ''}
             onChange={this._handleChanged}
             onFocus={this._handleFocused}
             onBlur={this._handleBlured} />
           <div className='cbn-input__line' ref={line => { this._line = line; }}>
             <div className='cbn-input__line--filled'>
-              {this.state.value}
+              {this.state.value || ''}
             </div>
           </div>
         </div>
-        {
-          hasDescription && (<div className='cbn-input__description' ref={desc => { this._description = desc; }}>
-            {this.props.statusDescription}
-          </div>)
-        }
+        {description}
       </div>
     );
   }
@@ -210,15 +218,15 @@ class Input extends React.Component {
 
 Input.defaultProps = {
   disabled: false,
-  label: '',
+  label: null,
   onBlur: null,
   onFocus: null,
   onChange: null,
-  placeholder: '',
+  placeholder: null,
   status: 'default',
-  statusDescription: '',
+  statusDescription: null,
   theme: 'light',
-  value: ''
+  value: null
 };
 
 Input.propTypes = {

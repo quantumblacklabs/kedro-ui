@@ -1,6 +1,6 @@
 A basic toggle example
 ```
-<Toggle />
+<Toggle theme='light' />
 ```
 
 A bold example with label

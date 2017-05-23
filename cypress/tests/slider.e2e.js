@@ -1,4 +1,4 @@
-describe('Input component', () => {
+describe('Slider component', () => {
 
   beforeEach(() => {
     cy.visit('/#!/Slider');
