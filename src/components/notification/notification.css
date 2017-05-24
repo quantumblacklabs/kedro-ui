@@ -5,6 +5,7 @@
 /** Variables **/
 
 $size-spacing: 22px;
+$size-spacing-top: 23px;
 $size-icon: 24px;
 $size-inner-spacing: 8px;
 
@@ -21,7 +22,7 @@ $color-btn-focus: rgba(255, 255, 255, 0.2);
 
   width: 100%;
 
-  padding: $size-spacing calc(($size-spacing * 2) + $size-icon) $size-spacing $size-spacing;
+  padding: $size-spacing-top calc(($size-spacing * 2) + $size-icon) $size-spacing $size-spacing;
 
   &.cbn-theme--dark {
     @extend %shadow-dark;
@@ -58,11 +59,14 @@ $color-btn-focus: rgba(255, 255, 255, 0.2);
 
 .cbn-notification__header {
   @extend %type--semibold;
+  @extend %type--subhead-2;
 
   @mixin themedParent color, notifications, headerLabel;
 }
 
 .cbn-notification__label {
+  @extend %type--subhead-2;
+
   @mixin themedParent color, notifications, label;
 }
 
