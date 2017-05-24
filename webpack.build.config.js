@@ -66,7 +66,6 @@ module.exports = {
               options: {
                 plugins: function () {
                   return [
-                    require('stylelint'),
                     require('precss'),
                     require('postcss-cssnext'),
                     require('postcss-map')({
