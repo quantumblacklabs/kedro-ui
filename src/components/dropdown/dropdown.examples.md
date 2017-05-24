@@ -6,7 +6,8 @@ A plain array of Menu Options will get wrapped inside a padded section automatic
         theme='light'
         onOpened={ null }
         onClosed={ null }
-        onChanged={ null }>
+        onChanged={ null }
+        width={ 170 }>
         <MenuOption primaryText='Menu Item One' value={ 1 } />
         <MenuOption primaryText='Menu Item Two' value={ 2 } />
     </Dropdown>
@@ -14,7 +15,8 @@ A plain array of Menu Options will get wrapped inside a padded section automatic
         theme='light'
         onOpened={ null }
         onClosed={ null }
-        onChanged={ null }>
+        onChanged={ null }
+        width={ 170 }>
         <MenuOption primaryText='Menu Item One' value={ 1 } />
         <MenuOption primaryText='Menu Item Two' value={ 2 } />
         <MenuOption primaryText='Menu Item Three' value={ 3 } />
@@ -30,7 +32,8 @@ Or you can define the single section yourself. You may want to do this if you al
     theme='light'
     onOpened={ null }
     onClosed={ null }
-    onChanged={ null }>
+    onChanged={ null }
+    width={ 170 }>
     <section>
         <span>Heading</span>
         <MenuOption primaryText='Menu Item One' value={ 1 } />

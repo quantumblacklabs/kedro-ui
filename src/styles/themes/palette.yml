@@ -153,7 +153,7 @@ themes:
       headerLabel: rgba(255, 255, 255, 0.85)
     toggle:
       default: rgba(255, 255, 255, 0.85)
-      hover: rgba(255, 255, 255, 0.6)
+      hover: rgba(255, 255, 255, 0.12)
       focus: rgba(255, 255, 255, 0.06)
       disabled: rgba(255, 255, 255, 0.3)
       active: rgba(0, 0, 0, 0.12)
