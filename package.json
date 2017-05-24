@@ -1,6 +1,6 @@
 {
   "name": "@quantumblack/carbon-ui-components",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Carbon UI Components",
   "main": "dist/index.min.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "build": "webpack -p --config webpack.build.config.js",
     "build:dev": "webpack -d --config webpack.dev.config.js",
     "docs:build": "styleguidist build",
-    "postinstall": "npm run build:dev && npm run build",
+    "postinstall": "npm run build",
     "prepush": "npm run test",
     "prepublish": "npm run test",
     "stylelint": "stylelint templates/**/*.css --config stylelint.config.js",
