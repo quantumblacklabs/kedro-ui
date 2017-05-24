@@ -1,3 +1,0 @@
-@function clamp($value, $min, $max) {
-	@return if($value > $max, $max, if($value < $min, $min, $value));
-}
