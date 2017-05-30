@@ -5,8 +5,8 @@ import GSAP from 'react-gsap-enhancer';
 import { TimelineLite, Elastic, Power1 } from 'gsap';
 
 import './input.css';
-// import './input-status-v2.css';
-// import './input-status-v3.css';
+import './input-status-v1.css';
+import './input-status-v2.css';
 
 /**
  * Controlled input component for one line of text; supporting placeholder, label, default value, disabled state,
@@ -190,7 +190,8 @@ class Input extends React.Component {
             `cbn-theme--${this.props.theme}`,
             { [`cbn-input--${validatedStatus}`]: !!validatedStatus },
             { 'cbn-input--disabled': this.props.disabled },
-            { 'cbn-input--focused': this.state.focused }
+            { 'cbn-input--focused': this.state.focused },
+            { [`cbn-input--variant-${this.props.variant}`]: this.props.variant !== 0 }
           )}
           onFocus={this._handleFocused}
           onBlur={this._handleBlured}>
@@ -226,7 +227,8 @@ Input.defaultProps = {
   status: 'default',
   statusDescription: null,
   theme: 'light',
-  value: null
+  value: null,
+  variant: 0
 };
 
 Input.propTypes = {
@@ -272,7 +274,11 @@ Input.propTypes = {
   /**
    * Value to be displayed inside the input field, it is editable and can change if not disabled.
    */
-  value: PropTypes.string
+  value: PropTypes.string,
+  /**
+   * Style variant for displaying status.
+   */
+  variant: PropTypes.oneOf([0, 1, 2])
 };
 
 export default GSAP()(Input);

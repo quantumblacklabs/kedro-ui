@@ -39,9 +39,11 @@ $height-tiny: 1px;
     @extend %shadow-light--focus;
   }
 
-  &:active:not(&--disabled) {
+  &:active {
     @extend %shadow-light--active;
+  }
 
+  &:active:not(&--disabled) {
     @mixin themedStart background-color, input, backgroundActive;
   }
 
@@ -193,10 +195,10 @@ $height-tiny: 1px;
   padding: $offset-top-bottom-small $padding-left-right;
 
   .cbn-input--success + .cbn-input__description & {
-    @mixin themedStart color, input, success;
+    @mixin themedStart color, input, status;
   }
 
   .cbn-input--error + .cbn-input__description & {
-    @mixin themedStart color, input, error;
+    @mixin themedStart color, input, status;
   }
 }
