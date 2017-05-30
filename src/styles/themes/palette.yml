@@ -60,6 +60,7 @@ themes:
       error: rgb(236, 53, 8)
       success: rgb(0, 195, 41)
       status: rgb(255, 255, 255)
+      backgroundActive: rgb(248, 248, 248)
     grid:
       default: rgba(255, 105, 180, 0.5)
     search:
@@ -143,6 +144,7 @@ themes:
       error: rgb(236, 53, 8)
       success: rgb(0, 195, 41)
       status: rgb(255, 255, 255)
+      backgroundActive: rgb(50, 66, 75)
     grid:
       default: rgba(100, 149, 237, 0.5)
     search:
