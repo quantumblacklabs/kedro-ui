@@ -25,11 +25,11 @@ $color-btn-focus: rgba(255, 255, 255, 0.2);
   padding: $size-spacing-top calc(($size-spacing * 2) + $size-icon) $size-spacing $size-spacing;
 
   &.cbn-theme--dark {
-    @extend %shadow-dark;
+    @extend %shadow-dark--notification;
   }
 
   &.cbn-theme--light {
-    @extend %shadow-light--active;
+    @extend %shadow-light--notification;
   }
 
   &:focus {
