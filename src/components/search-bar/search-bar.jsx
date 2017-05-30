@@ -160,7 +160,7 @@ SearchBar.propTypes = {
   /**
    * On blur method, triggered by clicking outside the input
    */
-  onBlur: PropTypes.func.isRequired,
+  onBlur: PropTypes.func,
   /**
    * Subscribe to change events from input field
    */
