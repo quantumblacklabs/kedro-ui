@@ -35,8 +35,18 @@ $height-tiny: 1px;
     @extend %shadow-light--hover;
   }
 
+  &:focus {
+    @extend %shadow-light--focus;
+  }
+
+  &:active:not(&--disabled) {
+    @extend %shadow-light--active;
+
+    @mixin themedStart background-color, input, backgroundActive;
+  }
+
   &--disabled {
-    background-color: rgba(0, 0, 0, 0.04);
+    opacity: 0.5;
 
     cursor: not-allowed;
   }
@@ -55,7 +65,6 @@ $height-tiny: 1px;
 }
 
 .cbn-input__field {
-  @mixin themedParent background-color, menu;
   @mixin themedParent color, text;
 
   @extend %type--family;
@@ -67,6 +76,8 @@ $height-tiny: 1px;
   padding: 0;
 
   border: none;
+
+  background: transparent;
   outline: none;
 
   &,
