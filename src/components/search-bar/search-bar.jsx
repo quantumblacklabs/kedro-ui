@@ -75,7 +75,7 @@ class SearchBar extends React.Component {
       isFocused: true
     });
 
-    // trigger onChange prop if available
+    // trigger onFocus prop if available
     if (typeof this.props.onFocus === 'function') {
       this.props.onFocus(e.target.value);
     }
@@ -90,7 +90,7 @@ class SearchBar extends React.Component {
       isFocused: false
     });
 
-    // trigger onChange prop if available
+    // trigger onBlur prop if available
     if (typeof this.props.onBlur === 'function') {
       this.props.onBlur(e.target.value);
     }
