@@ -41,6 +41,12 @@ $menu-item-padding: 12px;
   }
 }
 
+.cbn-dropdown--open {
+  position: relative;
+
+  z-index: 9;
+}
+
 .cbn-dropdown__label {
   position: relative;
   z-index: 8;
@@ -92,7 +98,6 @@ $menu-item-padding: 12px;
   @mixin themedParent background, menu, default;
 
   position: absolute;
-  z-index: 9;
 
   display: none;
   width: 100%;
