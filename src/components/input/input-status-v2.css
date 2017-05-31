@@ -4,16 +4,16 @@
 
 /** STATUS DESCRIPTION - VARIANT THREE - DESCRIPTION BACKGROUND COLOR + WHITE TEXT **/
 .cbn-input__description {
-  .cbn-input--variant-2.cbn-input--success + & {
+  .cbn-input--variant-two.cbn-input--success + & {
     @mixin themedParent background-color, input, success;
   }
 
-  .cbn-input--variant-2.cbn-input--error + & {
+  .cbn-input--variant-two.cbn-input--error + & {
     @mixin themedParent background-color, input, error;
   }
 
-  .cbn-input--variant-2.cbn-input--success + &,
-  .cbn-input--variant-2.cbn-input--error + & {
+  .cbn-input--variant-two.cbn-input--success + &,
+  .cbn-input--variant-two.cbn-input--error + & {
     @mixin themedParent color, input, status;
   }
 }

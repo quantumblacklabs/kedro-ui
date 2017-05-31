@@ -191,7 +191,8 @@ class Input extends React.Component {
             { [`cbn-input--${validatedStatus}`]: !!validatedStatus },
             { 'cbn-input--disabled': this.props.disabled },
             { 'cbn-input--focused': this.state.focused },
-            { [`cbn-input--variant-${this.props.variant}`]: this.props.variant !== 0 }
+            { 'cbn-input--variant-one': this.props.variant === 1 },
+            { 'cbn-input--variant-two': this.props.variant === 2 }
           )}
           onFocus={this._handleFocused}
           onBlur={this._handleBlured}>
