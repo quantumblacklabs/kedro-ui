@@ -82,6 +82,8 @@ $menu-item-padding: 12px;
 
     margin: 0 8px 0 12px;
 
+    opacity: 0.5;
+
     transition: transform 0.2s;
     transform: rotate(180deg); /* chevron pointing up */
 
@@ -159,7 +161,7 @@ $menu-item-padding: 12px;
 @keyframes dropdownEntrance {
   0% {
     opacity: 0.5;
-    transform: translateY(-20px);
+    transform: translateY(-10px);
   }
 
   100% {

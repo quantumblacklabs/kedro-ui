@@ -54,7 +54,7 @@ Labeled inputs
 </section>
 ```
 
-Three different statuses of an input
+Three different statuses of an input, default styling
 
 ```
 <section style={{margin: '20px'}}>
@@ -97,6 +97,52 @@ Three different statuses of an input
         status='success'
         statusDescription='True!'
         value='Light is a wave and a particle.' />
+</section>
+```
+
+First variant of input's status style
+
+```
+<section style={{margin: '20px'}}>
+    <Input
+        label='Input with label and error status'
+        placeholder='What shape does the Earth have?'
+        theme='light'
+        status='error'
+        statusDescription='Something went wrong...'
+        value='Earth is flat.'
+        variant={1} />
+    <br />
+    <Input
+        placeholder='Is light a wave or a particle?'
+        theme='light'
+        status='success'
+        statusDescription='True!'
+        value='Light is a wave and a particle.'
+        variant={1} />
+</section>
+```
+
+Second variant of input's status style
+
+```
+<section style={{margin: '20px'}}>
+    <Input
+        label='Input with label and error status'
+        placeholder='What shape does the Earth have?'
+        theme='light'
+        status='error'
+        statusDescription='Something went wrong...'
+        value='Earth is flat.'
+        variant={2} />
+    <br />
+    <Input
+        placeholder='Is light a wave or a particle?'
+        theme='light'
+        status='success'
+        statusDescription='True!'
+        value='Light is a wave and a particle.'
+        variant={2} />
 </section>
 ```
 
