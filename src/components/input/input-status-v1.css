@@ -1,0 +1,68 @@
+/** Imports **/
+
+@import '../../styles/includes';
+
+/** STATUS DESCRIPTION - VARIANT TWO - INPUT BACKGROUND COLOR + WHITE INPUT TEXT + BLACK / WHITE DESCRIIPTION TEXT  **/
+.cbn-input--variant-one.cbn-input--success,
+.cbn-input--variant-one.cbn-input--error {
+  @mixin themed color, input, status;
+}
+
+.cbn-input--variant-one.cbn-input--success {
+  @mixin themed background-color, input, success;
+
+  &:active {
+    @mixin themed background-color, input, success;
+  }
+}
+
+.cbn-input--variant-one.cbn-input--error {
+  @mixin themed background-color, input, error;
+
+  &:active {
+    @mixin themed background-color, input, error;
+  }
+}
+
+.cbn-input__label {
+  .cbn-input--variant-one.cbn-input--success &,
+  .cbn-input--variant-one.cbn-input--error & {
+    @mixin themedParent color, input, status;
+  }
+}
+
+.cbn-input__field {
+  .cbn-input--variant-one.cbn-input--success & {
+    @mixin themedParent background-color, input, success;
+  }
+
+  .cbn-input--variant-one.cbn-input--error & {
+    @mixin themedParent background-color, input, error;
+  }
+
+  .cbn-input--variant-one.cbn-input--success &,
+  .cbn-input--variant-one.cbn-input--error & {
+    @mixin themedParent color, input, status;
+  }
+}
+
+.cbn-input__line {
+  .cbn-input--variant-one.cbn-input--success &,
+  .cbn-input--variant-one.cbn-input--error & {
+    @mixin themedParent background-color, input, status;
+  }
+}
+
+.cbn-input__line--filled {
+  .cbn-input--variant-one.cbn-input--success &,
+  .cbn-input--variant-one.cbn-input--error & {
+    @mixin themedParent background-color, input, status;
+  }
+}
+
+.cbn-input__description {
+  .cbn-input--variant-one.cbn-input--success + &,
+  .cbn-input--variant-one.cbn-input--error + & {
+    @mixin themedParent color, input, textFilled;
+  }
+}

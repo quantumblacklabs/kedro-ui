@@ -65,10 +65,6 @@ $size-radio-button-spacing: 14px;
       opacity: 1;
     }
   }
-
-  .cbn-switch-radio--disabled & {
-    @mixin themedParent border-color, radiobutton, disabled;
-  }
 }
 
 .cbn-switch-radio__label {
@@ -85,8 +81,7 @@ $size-radio-button-spacing: 14px;
   cursor: pointer;
 
   .cbn-switch-radio--disabled & {
-    @mixin themedParent color, radiobutton, disabled;
-
+    opacity: 0.5;
     cursor: not-allowed;
   }
 }

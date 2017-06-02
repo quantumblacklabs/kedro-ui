@@ -37,10 +37,6 @@ $size-checkmark: 24px;
   .cbn-switch__input:focus + .cbn-switch-checkbox__label & {
     @mixin themedParent outline-color, radiobutton, focus;
   }
-
-  .cbn-switch-checkbox--disabled & {
-    @mixin themedParent border-color, radiobutton, disabled;
-  }
 }
 
 .cbn-switch-checkbox__label {
@@ -87,8 +83,7 @@ $size-checkmark: 24px;
   cursor: pointer;
 
   .cbn-switch-checkbox--disabled & {
-    @mixin themedParent color, radiobutton, disabled;
-
+    opacity: 0.5;
     cursor: not-allowed;
   }
 }

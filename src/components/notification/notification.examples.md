@@ -4,8 +4,21 @@ Simple, single line, notification
 <div style={{ width: '500px' }}>
   <Notification
     type='inline'
-    headerLabel='Hello World!'
+    headerLabel='— Hello World!'
     label='This is a notification'
+    theme='light' />
+</div>
+```
+
+Single line notification with an icon
+
+```
+<div style={{ width: '500px' }}>
+  <Notification
+    icon='undo'
+    type='inline'
+    headerLabel='— Notification:'
+    label='Here is the information or directions'
     theme='light' />
 </div>
 ```
@@ -17,7 +30,7 @@ You can change the display type to multiline if you want to break up the content
   <Notification
     icon='refresh'
     type='multiline'
-    headerLabel='Hello World!'
+    headerLabel='— Hello World!'
     label='This is a notification, maybe it has much more content than a normal notification. This is a notification, maybe it has much more content than a normal notification. This is a notification, maybe it has much more content than a normal notification'
     theme='light' />
 </div>

@@ -22,7 +22,7 @@ $size-pos-base: 10px;
   }
 }
 
-.cbn-searchbar__dynamicicon {
+.cbn-searchbar__iconwrapper {
   .cbn-icon {
     top: calc($size-pos-base * 2);
     left: calc($size-icon / 2);
@@ -45,16 +45,24 @@ $size-pos-base: 10px;
 }
 
 .cbn-icon {
+  transition: 0.3s opacity;
+
   .cbn-searchbar & {
     position: absolute;
     top: 50%;
     z-index: 1;
+
+    opacity: 0.3;
 
     transform: translate(0, -50%);
 
     svg {
       @mixin themedParent fill, search, icon;
     }
+  }
+
+  .cbn-searchbar--focused & {
+    opacity: 1;
   }
 }
 

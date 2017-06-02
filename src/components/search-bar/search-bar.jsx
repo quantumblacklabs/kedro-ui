@@ -24,9 +24,12 @@ class SearchBar extends React.Component {
 
     this.state = {
       value: this.props.value,
+      isFocused: false,
       showClearButton: false
     };
 
+    this._handleBlurred = this._handleBlurred.bind(this);
+    this._handleFocused = this._handleFocused.bind(this);
     this._handleChanged = this._handleChanged.bind(this);
     this._handleCleared = this._handleCleared.bind(this);
   }
@@ -64,6 +67,36 @@ class SearchBar extends React.Component {
   }
 
   /**
+   * onFocus - fired for onFocus events in input field
+   * @param  {Event} e native change event
+   */
+  _handleFocused(e) {
+    this.setState({
+      isFocused: true
+    });
+
+    // trigger onFocus prop if available
+    if (typeof this.props.onFocus === 'function') {
+      this.props.onFocus(e.target.value);
+    }
+  }
+
+  /**
+   * onBlurred - fired for onBlur events in input field
+   * @param  {Event} e native change event
+   */
+  _handleBlurred(e) {
+    this.setState({
+      isFocused: false
+    });
+
+    // trigger onBlur prop if available
+    if (typeof this.props.onBlur === 'function') {
+      this.props.onBlur(e.target.value);
+    }
+  }
+
+  /**
    * onClose - clear the text in the input
    * @param  {type} e description
    * @return {type}   description
@@ -95,9 +128,12 @@ class SearchBar extends React.Component {
     return (
       <SearchBarRenderer
         iconType={this.props.iconType}
+        onBlur={this._handleBlurred}
+        isFocused={this.state.isFocused}
         placeholder={this.props.placeholder}
         onChange={this._handleChanged}
         onClear={this._handleCleared}
+        onFocus={this._handleFocused}
         showClearButton={this.state.showClearButton}
         value={this.state.value}
         theme={this.props.theme} />
@@ -108,8 +144,10 @@ class SearchBar extends React.Component {
 SearchBar.defaultProps = {
   iconType: 'search',
   placeholder: 'Search Here...',
+  onBlur: null,
   onChange: null,
   onClear: null,
+  onFocus: null,
   theme: 'dark',
   value: ''
 };
@@ -120,6 +158,10 @@ SearchBar.propTypes = {
    */
   iconType: PropTypes.string,
   /**
+   * On blur method, triggered by clicking outside the input
+   */
+  onBlur: PropTypes.func,
+  /**
    * Subscribe to change events from input field
    */
   onChange: PropTypes.func,
@@ -127,6 +169,10 @@ SearchBar.propTypes = {
    * On clear, triggered when clear button is pressed
    */
   onClear: PropTypes.func,
+  /**
+   * On focus method, triggered by clicking into the input
+   */
+  onFocus: PropTypes.func,
   /**
    * Place holder text for search input
    */

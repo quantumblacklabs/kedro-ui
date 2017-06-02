@@ -71,6 +71,8 @@ $menu-item-padding: 12px;
 
     margin: 0 $menu-menu-item-padding;
 
+    opacity: 0.5;
+
     .cbn-menu-option--icon-left & {
       left: 0;
       right: auto;

@@ -59,7 +59,8 @@ themes:
       textFilled: rgb(0, 0, 0)
       error: rgb(236, 53, 8)
       success: rgb(0, 195, 41)
-      status: rgb(255, 255, 255)
+      status: rgba(0, 0, 0, 0.85)
+      backgroundActive: rgb(248, 248, 248)
     grid:
       default: rgba(255, 105, 180, 0.5)
     search:
@@ -142,7 +143,8 @@ themes:
       textFilled: rgb(255, 255, 255)
       error: rgb(236, 53, 8)
       success: rgb(0, 195, 41)
-      status: rgb(255, 255, 255)
+      status: rgba(255, 255, 255, 0.85)
+      backgroundActive: rgb(50, 66, 75)
     grid:
       default: rgba(100, 149, 237, 0.5)
     search:
@@ -153,7 +155,7 @@ themes:
       headerLabel: rgba(255, 255, 255, 0.85)
     toggle:
       default: rgba(255, 255, 255, 0.85)
-      hover: rgba(255, 255, 255, 0.6)
+      hover: rgba(255, 255, 255, 0.12)
       focus: rgba(255, 255, 255, 0.06)
       disabled: rgba(255, 255, 255, 0.3)
       active: rgba(0, 0, 0, 0.12)
