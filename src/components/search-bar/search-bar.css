@@ -22,13 +22,6 @@ $size-pos-base: 10px;
   }
 }
 
-.cbn-icon--close {
-  right: $size-pos-base;
-
-  width: $size-icon;
-  height: $size-icon;
-}
-
 .cbn-searchbar__iconwrapper {
   .cbn-icon {
     top: calc($size-pos-base * 2);
@@ -73,6 +66,15 @@ $size-pos-base: 10px;
   }
 }
 
-.cbn-searchbar__dynamicicon {
+.cbn-icon--close {
+  .cbn-searchbar & {
+    right: $size-pos-base;
+
+    width: $size-icon;
+    height: $size-icon;
+  }
+}
+
+.cbn-searchbar__iconwrapper {
   transition: 0.3s opacity;
 }
