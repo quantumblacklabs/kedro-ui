@@ -42,7 +42,7 @@ const style = {
 </section>
 ```
 
-Programmatic opening and closing of the Dropdown via `.open()` and `.close()` API methods.
+Programmatically change a toggle value
 ```
 const style = {
     borderTopWidth: 1,
@@ -73,7 +73,7 @@ class Wrap extends React.Component {
                     <Toggle label='Bluetooth' type='bold' value={this.state.status} theme='light' />
                 </div>
                 <div style={style}>
-                    <Button size='small' onClick={ () => this._handleButtonClick() }>Change</Button>
+                    <Button size='small' onClick={this._handleButtonClick}>Change</Button>
                 </div>
             </section>
         );
