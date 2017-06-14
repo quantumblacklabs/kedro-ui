@@ -41,3 +41,45 @@ const style = {
     </div>
 </section>
 ```
+
+Programmatically change a toggle value
+```
+const style = {
+    borderTopWidth: 1,
+    borderTopStyle: 'solid',
+    borderTopColor: 'rgba(255, 255, 255, 0.12)',
+    paddingTop: 19,
+    paddingBottom: 16
+};
+class Wrap extends React.Component {
+    constructor(props) {
+      super(props);
+
+      this.state = {
+          status: true
+      };
+
+      this._handleButtonClick = this._handleButtonClick.bind(this);
+    }
+
+    _handleButtonClick() {
+        this.setState({ status: !this.state.status });
+    }
+
+    render() {
+        return (
+            <section style={{ width: 250 }}>
+                <div style={style}>
+                    <Toggle label='Bluetooth' type='bold' value={this.state.status} theme='light' />
+                </div>
+                <div style={style}>
+                    <Button size='small' onClick={this._handleButtonClick}>Change</Button>
+                </div>
+            </section>
+        );
+    }
+}
+
+<Wrap />
+
+```

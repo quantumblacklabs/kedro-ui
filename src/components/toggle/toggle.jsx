@@ -32,6 +32,15 @@ class Toggle extends React.Component {
   }
 
   /**
+   * React lifecycle method
+   * {@link https://facebook.github.io/react/docs/react-component.html#componentWillReceiveProps}
+   * @return {object} JSX for this component
+   */
+  componentWillReceiveProps(nextProps) {
+    this.setState({ value: nextProps.value });
+  }
+
+  /**
    * Callback function for selection change
    * @param {object} e                The event object
    * @param {string} payload.value The new value (on/off)
