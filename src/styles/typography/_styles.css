@@ -34,6 +34,10 @@ h5 {
   @extend %type--title;
 }
 
+h6 {
+  @extend %type--subhead-1;
+}
+
 p,
 td {
   @extend %type--body-1;
