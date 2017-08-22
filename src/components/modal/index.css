@@ -12,15 +12,17 @@
 }
 
 .modal__bg {
+  @mixin themedParent background, modal, bg;
+
   position: absolute;
 
   width: 100%;
   height: 100%;
-
-  @mixin themedParent background, modal, bg;
 }
 
 .modal__content {
+  @mixin themedParent background, modal, content;
+
   position: absolute;
 
   top: 50%;
@@ -28,8 +30,6 @@
 
   max-width: 400px;
   width: 100%;
-
-  @mixin themedParent background, modal, content;
 
   transform: translate(-50%, -50%);
 }
@@ -49,19 +49,19 @@
 }
 
 .modal__title {
+  @mixin themedParent color, modal, title;
+
   @extend %type--subhead-1;
 
   width: 100%;
 
   margin-bottom: 40px;
-
-  @mixin themedParent color, modal, title;
 }
 
 .modal__description {
-  margin-bottom: 40px;
-
   @mixin themedParent color, modal, description;
+
+  margin-bottom: 40px;
 }
 
 .cbn-icon {
