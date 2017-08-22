@@ -1,4 +1,9 @@
+Basic modal component, could be used for system messages with user confirmation
+
 ```
+/**
+ * Basic Modal Trigger Example
+ */
 class ModalTrigger extends React.Component {
   constructor(props) {
     super(props);
@@ -31,8 +36,7 @@ class ModalTrigger extends React.Component {
             message='This is a test, This is a test, This is a test, This is a test, This is a test.'
             buttonLabel='Confirm'
             onClose={this.onClose.bind(this)}
-            visible={this.state.visible}
-          />
+            visible={this.state.visible} />
         }
       </div>
     );
@@ -42,7 +46,12 @@ class ModalTrigger extends React.Component {
 <ModalTrigger />
 ```
 
+Example showing how you can use custom modal content
+
 ```
+/**
+ * Custom Modal Trigger Example
+ */
 class ModalTrigger extends React.Component {
   constructor(props) {
     super(props);
@@ -73,8 +82,7 @@ class ModalTrigger extends React.Component {
           <Modal
             title='Custom Modal'
             onClose={this.onClose.bind(this)}
-            visible={this.state.visible}
-          >
+            visible={this.state.visible}>
             <span style={{color: 'hotpink', marginBottom: '40px'}}>This is a custom modal, with custom content</span>
             <div style={{display: 'flex'}}>
               <div style={{marginRight: '20px'}}><Button>one</Button></div>

@@ -1,4 +1,14 @@
+/** Imports **/
+
 @import '../../styles/includes';
+
+/** Variables **/
+
+$size-spacing: 40px;
+$size-pos: 10px;
+$size-content-maxwidth: 400px;
+
+/** Implementation **/
 
 .modal {
   position: fixed;
@@ -28,7 +38,7 @@
   top: 50%;
   left: 50%;
 
-  max-width: 400px;
+  max-width: $size-content-maxwidth;
   width: 100%;
 
   transform: translate(-50%, -50%);
@@ -43,7 +53,7 @@
   width: 100%;
   height: 100%;
 
-  padding: 40px;
+  padding: $size-spacing;
 
   text-align: center;
 }
@@ -55,20 +65,20 @@
 
   width: 100%;
 
-  margin-bottom: 40px;
+  margin-bottom: $size-spacing;
 }
 
 .modal__description {
   @mixin themedParent color, modal, description;
 
-  margin-bottom: 40px;
+  margin-bottom: $size-spacing;
 }
 
 .cbn-icon {
   .modal & {
     position: absolute;
 
-    top: 10px;
-    right: 10px;
+    top: $size-pos;
+    right: $size-pos;
   }
 }

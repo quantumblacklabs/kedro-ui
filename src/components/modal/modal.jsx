@@ -153,7 +153,7 @@ Modal.propTypes = {
    */
   buttonLabel: PropTypes.string,
   /**
-   * Child elements for component
+   * Child elements for component, this can be of any type
    */
   children: PropTypes.node,
   /**
