@@ -17,7 +17,7 @@
   width: 100%;
   height: 100%;
 
-  background: rgba(19, 25, 36, 0.9);
+  @mixin themedParent background, modal, bg;
 }
 
 .modal__content {
@@ -29,7 +29,7 @@
   max-width: 400px;
   width: 100%;
 
-  background: rgb(18, 37, 49);
+  @mixin themedParent background, modal, content;
 
   transform: translate(-50%, -50%);
 }
@@ -55,13 +55,13 @@
 
   margin-bottom: 40px;
 
-  color: white;
+  @mixin themedParent color, modal, title;
 }
 
 .modal__description {
   margin-bottom: 40px;
 
-  color: rgba(255, 255, 255, 0.55);
+  @mixin themedParent color, modal, description;
 }
 
 .cbn-icon {

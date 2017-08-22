@@ -111,7 +111,7 @@ class Modal extends React.Component {
     return (
       <div
         aria-haspopup='true'
-        className='modal'
+        className='modal cbn-theme--dark'
         onKeyDown={_handleKeyDown}
         role='dialog'>
         <div
