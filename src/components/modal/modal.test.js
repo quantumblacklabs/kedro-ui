@@ -29,3 +29,13 @@ test('Modal should have button and description when supplied no children', t => 
   t.true(wrapper.find('.modal__description').length === 1);
   t.true(wrapper.find('Button').length === 1);
 });
+
+test('Modal should have correct structure when supplied children', t => {
+  const wrapper = shallow(
+    <Modal title='Hello Test'>
+      <button>Hello World</button>
+    </Modal>
+  );
+
+  t.true(wrapper.find('button').length === 1);
+});
