@@ -8,6 +8,7 @@ import MenuOption from 'components/menu-option';
 import RadioButton from 'components/radio-button';
 import SearchBar from 'components/search-bar';
 import Notification from 'components/notification';
+import Modal from 'components/modal';
 import SearchResults from 'components/search-results';
 import Slider from 'components/slider';
 import Tabs from 'components/tabs';
@@ -24,6 +25,7 @@ module.exports = {
   Icon,
   Input,
   Notification,
+  Modal,
   MenuOption,
   RadioButton,
   SearchBar,
