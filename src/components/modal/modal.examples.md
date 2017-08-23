@@ -32,9 +32,9 @@ class ModalTrigger extends React.Component {
         {
           this.state.visible &&
           <Modal
-            title='System Message'
-            message='This is a test, This is a test, This is a test, This is a test, This is a test.'
-            buttonLabel='Confirm'
+            title='Warning!'
+            message='Are you sure you want to delete the current item? You cannot undo this action.'
+            buttonLabel='Confirm Deletion'
             onClose={this.onClose.bind(this)}
             visible={this.state.visible} />
         }
@@ -74,6 +74,14 @@ class ModalTrigger extends React.Component {
   }
 
   render() {
+    const containerStyle = {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'flex-end',
+      width: '100%',
+      marginTop: '40px'
+    };
+
     return (
       <div>
         <Button onClick={this.onTriggered.bind(this)}>Trigger Modal</Button>
@@ -83,10 +91,31 @@ class ModalTrigger extends React.Component {
             title='Custom Modal'
             onClose={this.onClose.bind(this)}
             visible={this.state.visible}>
-            <span style={{color: 'hotpink', marginBottom: '40px'}}>This is a custom modal, with custom content</span>
-            <div style={{display: 'flex'}}>
-              <div style={{marginRight: '20px'}}><Button>one</Button></div>
-              <Button>two</Button>
+            <span style={{color: 'rgba(255, 255, 255, 0.55)', marginBottom: '40px'}}>Please select reason for deletion. We need to track this for auditing.</span>
+            <Dropdown
+                theme='light'
+                onOpened={ null }
+                onClosed={ null }
+                onChanged={ null }
+                width={ 170 }>
+                <MenuOption primaryText='Redundant' value={ 1 } />
+                <MenuOption primaryText='Duplicate' value={ 2 } />
+                <MenuOption primaryText='Out of date' value={ 2 } />
+            </Dropdown>
+            <div style={containerStyle}>
+              <div style={{marginRight: '20px'}}>
+              <Button
+                onClick={this.onClose.bind(this)}
+                size='small'
+                type='secondary'>
+                cancel
+              </Button>
+              </div>
+              <Button
+                onClick={this.onClose.bind(this)}
+                size='small'>
+                OK
+              </Button>
             </div>
           </Modal>
         }

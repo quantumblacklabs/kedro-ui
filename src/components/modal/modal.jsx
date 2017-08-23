@@ -23,7 +23,7 @@ const createAnim = ({ target }) => {
 
   return new TimelineLite({ repeat: 0 })
     .to(bg, 1, { opacity: 1 })
-    .to(content, 1, { opacity: 1, top: '50%' }, 0)
+    .to(content, 1, { opacity: 1, y: '-50%' }, 0)
     .duration(0.5);
 };
 
@@ -124,7 +124,7 @@ class Modal extends React.Component {
           className='modal__bg' />
         <div
           name='content'
-          style={{ opacity: 0, top: '40%' }}
+          style={{ opacity: 0, transform: 'translate(-50%, -40%)' }}
           className='modal__content'>
           <Icon
             onClick={onClose}
@@ -149,7 +149,7 @@ Modal.defaultProps = {
   children: null,
   message: null,
   zIndex: 9999,
-  theme: 'light'
+  theme: 'dark'
 };
 
 Modal.propTypes = {
