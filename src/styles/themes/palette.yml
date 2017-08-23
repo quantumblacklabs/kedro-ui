@@ -85,10 +85,10 @@ themes:
       default: rgba(132, 142, 150, 1)
       text: rgba(255, 255, 255, 0.85)
     modal:
-      bg: rgba(19, 25, 36, 0.9)
-      content: rgb(18, 37, 49)
-      title: rgb(255, 255, 255)
-      description: rgba(255, 255, 255, 0.55)
+      bg: rgba(0, 0, 0, 0.55)
+      content: rgb(255, 255, 255)
+      title: rgb(0, 0, 0)
+      description: rgba(0, 0, 0, 0.55)
   dark:
     base:
       primary: rgb(27, 117, 240)

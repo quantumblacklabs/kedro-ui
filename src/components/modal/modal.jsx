@@ -6,7 +6,7 @@ import Button from 'components/button';
 import Icon from 'components/icon';
 import { handleKeyEvent } from 'utils';
 import GSAP from 'react-gsap-enhancer';
-import { TimelineMax } from 'gsap';
+import { TimelineLite } from 'gsap';
 
 // Styles
 
@@ -21,7 +21,7 @@ const createAnim = ({ target }) => {
   const bg = target.find({ name: 'bg' });
   const content = target.find({ name: 'content' });
 
-  return new TimelineMax({ repeat: 0 })
+  return new TimelineLite({ repeat: 0 })
     .to(bg, 1, { opacity: 1 })
     .to(content, 1, { opacity: 1, top: '50%' }, 0)
     .duration(0.5);
@@ -79,7 +79,9 @@ class Modal extends React.Component {
       children,
       message,
       onClose,
-      title
+      title,
+      theme,
+      zIndex
     } = this.props;
     let content = null;
 
@@ -94,7 +96,7 @@ class Modal extends React.Component {
           </div>
           <Button
             onClick={onClose}
-            theme='dark'
+            theme={theme}
             size='small'>{buttonLabel}</Button>
         </div>
       );
@@ -111,9 +113,10 @@ class Modal extends React.Component {
     return (
       <div
         aria-haspopup='true'
-        className='modal cbn-theme--dark'
+        className={`modal cbn-theme--${theme}`}
         onKeyDown={_handleKeyDown}
-        role='dialog'>
+        role='dialog'
+        style={{ zIndex }}>
         <div
           onClick={onClose}
           name='bg'
@@ -128,7 +131,7 @@ class Modal extends React.Component {
             type='close'
             size='medium'
             title=''
-            theme='dark' />
+            theme={theme} />
           <div
             className='modal__wrapper'>
             <div
@@ -144,7 +147,9 @@ class Modal extends React.Component {
 Modal.defaultProps = {
   buttonLabel: null,
   children: null,
-  message: null
+  message: null,
+  zIndex: 9999,
+  theme: 'light'
 };
 
 Modal.propTypes = {
@@ -167,7 +172,15 @@ Modal.propTypes = {
   /**
    * Title of the modal
    */
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
+  /**
+   * Theme of the component
+   */
+  theme: PropTypes.oneOf(['light', 'dark']),
+  /**
+   * zIndex - how far infront of the other content the modal will sit
+   */
+  zIndex: PropTypes.number
 };
 
 export default GSAP()(Modal);
