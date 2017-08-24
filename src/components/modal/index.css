@@ -1,0 +1,83 @@
+/** Imports **/
+
+@import '../../styles/includes';
+
+/** Variables **/
+
+$size-spacing: 40px;
+$size-pos: 10px;
+$size-content-maxwidth: 400px;
+
+/** Implementation **/
+
+.modal {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+}
+
+.modal__bg {
+  @mixin themedParent background, modal, bg;
+
+  position: absolute;
+
+  width: 100%;
+  height: 100%;
+}
+
+.modal__content {
+  @mixin themedParent background, modal, content;
+
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  max-width: $size-content-maxwidth;
+  width: 100%;
+
+  transform: translate(-50%, -50%);
+}
+
+.modal__wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+
+  padding: $size-spacing;
+
+  text-align: center;
+}
+
+.modal__title {
+  @mixin themedParent color, modal, title;
+
+  @extend %type--subhead-1;
+
+  width: 100%;
+
+  margin-bottom: $size-spacing;
+}
+
+.modal__description {
+  @mixin themedParent color, modal, description;
+
+  margin-bottom: $size-spacing;
+}
+
+.cbn-icon {
+  .modal & {
+    position: absolute;
+
+    top: $size-pos;
+    right: $size-pos;
+  }
+}
