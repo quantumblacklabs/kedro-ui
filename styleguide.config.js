@@ -2,7 +2,6 @@ const path = require('path');
 const pkg = require('./package.json');
 const _ = require('lodash');
 const glob = require('glob');
-const stylelint = require('stylelint');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 
 const dirs = [
@@ -87,7 +86,6 @@ const config = {
               options: {
                 plugins: function () {
                   return [
-                    require('stylelint'),
                     require('precss'),
                     require('postcss-cssnext'),
                     require('postcss-map')({
