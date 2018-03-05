@@ -120,15 +120,20 @@ class Dropdown extends React.Component {
   _findSelectedOptionElement(props = this.props) {
     const children = React.Children.toArray(props.children);
 
+    if (!children.length) {
+      return null;
+    }
+
     // we may have an array of options
     // or an array of sections, containing options
-    return children[0].type === 'section'
-    ? flow(
+    if (children[0].type === 'section') {
+      return flow(
         map(x => x.props.children),
         flatten,
         find(x => x.props.selected)
-      )(children)
-    : find(c => c.props.selected)(children);
+      )(children);
+    }
+    return find(c => c.props.selected)(children);
   }
 
   /**
