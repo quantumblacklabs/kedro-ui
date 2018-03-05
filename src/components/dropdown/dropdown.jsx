@@ -78,7 +78,7 @@ class Dropdown extends React.Component {
 
   /**
    * Check whether new props contain updated children
-   * @param {Object} New component props
+   * @param {Object} nextProps - New component props
    * @return {Boolean} True if new children are different from current ones
    */
   _childrenHaveChanged(nextProps) {
@@ -91,6 +91,8 @@ class Dropdown extends React.Component {
 
   /**
    * Format the selected option props for adding to state
+   * @param {Object} props - Component props
+   * @return {Object} Selected option object for use in the state
    */
   _findSelectedOption(props) {
     const selectedOptionElement = this._findSelectedOptionElement(props);
@@ -116,6 +118,8 @@ class Dropdown extends React.Component {
 
   /**
    * Find the selected option by traversing sections and MenuOptions
+   * @param {Object} props - Component props (optional)
+   * @return {Object} Selected option element
    */
   _findSelectedOptionElement(props = this.props) {
     const children = React.Children.toArray(props.children);
@@ -133,6 +137,7 @@ class Dropdown extends React.Component {
         find(x => x.props.selected)
       )(children);
     }
+
     return find(c => c.props.selected)(children);
   }
 
