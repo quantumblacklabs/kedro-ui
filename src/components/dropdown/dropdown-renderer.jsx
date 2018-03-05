@@ -64,7 +64,7 @@ const DropdownRenderer = ({
   };
 
   const childElements = React.Children.toArray(children);
-  const sectionWrapRequired = typeof childElements[0].type === 'function';
+  const sectionWrapRequired = childElements[0] && typeof childElements[0].type === 'function';
 
   // create options node
   // we may have a plain array of Menu Options, in which case we'll wrap it with a section
