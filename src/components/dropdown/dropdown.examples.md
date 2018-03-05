@@ -196,3 +196,59 @@ Scrollable dropdown with many children
     <MenuOption primaryText='Menu Item 25' value={ 25 } />
 </Dropdown>
 ```
+The selected option state will update when passing new child props, but should otherwise stay the same when updating other props.
+Edit the text field below to see how the selected option changes when altering the child values, but stays the same when updating the width.
+```
+class DropdownStateTest extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            text: 'one,two,three',
+            width: 320
+        };
+    }
+    render() {
+        return (
+            <div>
+                <Dropdown theme='light' width={this.state.width}>
+                    {
+                        this.state.text.split(',')
+                        .filter(Boolean)
+                        .map((d,i) => (
+                            <MenuOption
+                                key={d + i}
+                                primaryText={d}
+                                value={d}
+                                selected={d  === 'two'} />
+                        ))
+                    }
+                </Dropdown>
+                <br />
+                <br />
+                <Input
+                    theme='light'
+                    value={this.state.text}
+                    onChange={(e, { value }) => {
+                        this.setState({
+                            text: value
+                        });
+                    }} />
+                <br />
+                <Slider
+                    label='Width'
+                    min={200}
+                    max={400}
+                    onChange={(e, { max }) => {
+                        this.setState({
+                            width: max
+                        });
+                    }}
+                    step={10}
+                    theme='light'
+                    value={this.state.width} />
+            </div>
+        );
+    }
+}
+<DropdownStateTest />
+```
