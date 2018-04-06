@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { flatten, find, flow, map } from 'lodash/fp';
+import { flatten, find, flow, isEqual, map } from 'lodash/fp';
 
 // Styles
 import './dropdown.css';
@@ -28,7 +28,6 @@ class Dropdown extends React.Component {
     this.displayName = 'Dropdown';
 
     // bind method scope
-    this._findSelectedOptionElement = this._findSelectedOptionElement.bind(this);
     this._handleRef = this._handleRef.bind(this);
     this._getOptionsList = this._getOptionsList.bind(this);
     this._handleLabelClicked = this._handleLabelClicked.bind(this);
@@ -38,30 +37,24 @@ class Dropdown extends React.Component {
     this.open = this.open.bind(this);
     this.close = this.close.bind(this);
 
-    // check children for a selected option
-    // otherwise, default to first
-    let selectedOption = {
-      id: null,
-      label: null,
-      value: null
-    };
-
-    const selectedOptionElement = this._findSelectedOptionElement();
-
-    if (selectedOptionElement) {
-      const { id, primaryText, value } = selectedOptionElement.props;
-      selectedOption = {
-        id,
-        label: primaryText,
-        value
-      };
-    }
-
     this.state = {
       focusedOption: null,
-      selectedOption,
+      selectedOption: this._findSelectedOption(),
       open: false
     };
+  }
+
+  /**
+   * React lifecycle method
+   * {@link https://facebook.github.io/react/docs/react-component.html#componentwillreceiveprops}
+   * @param {Object} New component props
+   */
+  componentWillReceiveProps(nextProps) {
+    if (this._childrenHaveChanged(nextProps)) {
+      this.setState({
+        selectedOption: this._findSelectedOption(nextProps)
+      });
+    }
   }
 
   /**
@@ -84,20 +77,68 @@ class Dropdown extends React.Component {
   }
 
   /**
-   * Find the selected option by traversing sections and MenuOptions
+   * Check whether new props contain updated children
+   * @param {Object} nextProps - New component props
+   * @return {Boolean} True if new children are different from current ones
    */
-  _findSelectedOptionElement() {
-    const children = React.Children.toArray(this.props.children);
+  _childrenHaveChanged(nextProps) {
+    const children = [this.props, nextProps].map(props =>
+      React.Children.toArray(props.children)
+    );
+
+    return !isEqual(...children);
+  }
+
+  /**
+   * Format the selected option props for adding to state
+   * @param {Object} props - Component props
+   * @return {Object} Selected option object for use in the state
+   */
+  _findSelectedOption(props) {
+    const selectedOptionElement = this._findSelectedOptionElement(props);
+
+    // check children for a selected option
+    if (selectedOptionElement) {
+      const { id, primaryText, value } = selectedOptionElement.props;
+
+      return {
+        id,
+        label: primaryText,
+        value
+      };
+    }
+
+    // otherwise, default to first
+    return {
+      id: null,
+      label: null,
+      value: null
+    };
+  }
+
+  /**
+   * Find the selected option by traversing sections and MenuOptions
+   * @param {Object} props - Component props (optional)
+   * @return {Object} Selected option element
+   */
+  _findSelectedOptionElement(props = this.props) {
+    const children = React.Children.toArray(props.children);
+
+    if (!children.length) {
+      return null;
+    }
 
     // we may have an array of options
     // or an array of sections, containing options
-    return children[0].type === 'section'
-    ? flow(
+    if (children[0].type === 'section') {
+      return flow(
         map(x => x.props.children),
         flatten,
         find(x => x.props.selected)
-      )(children)
-    : find(c => c.props.selected)(children);
+      )(children);
+    }
+
+    return find(c => c.props.selected)(children);
   }
 
   /**
