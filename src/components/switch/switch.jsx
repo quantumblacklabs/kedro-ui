@@ -54,6 +54,7 @@ const Switch = ({
     <div className={_containerClassNames}>
       <input
         {..._extraProps}
+        checked={checked}
         className='cbn-switch__input'
         disabled={disabled}
         id={id}
