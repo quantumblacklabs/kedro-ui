@@ -48,7 +48,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@bitbucket.org/quantumblack/carbon-ui-components.git"
+    "url": "git+ssh://git@github.com:quantumblack/asset-carbon-ui-components.git"
   },
   "author": "Andy Shora <andy.shora@quantumblack.com>",
   "contributors": [
@@ -143,5 +143,5 @@
     "npm": "3.10"
   },
   "license": "UNLICENSED",
-  "homepage": "https://bitbucket.org/quantumblack/carbon-ui-components#readme"
+  "homepage": "https://github.com/quantumblack/asset-carbon-ui-components#readme"
 }
