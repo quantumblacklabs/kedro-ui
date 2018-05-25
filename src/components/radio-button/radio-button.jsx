@@ -13,13 +13,14 @@ import './radio-button.css';
  * Radio button, when a user selects one, all other radio buttons with the same
  * name will become unchecked i.e. you can only select one
  */
-const RadioButton = ({ checked, disabled, label, name, onChange, theme, value }) => {
+const RadioButton = ({ checked, defaultChecked, disabled, label, name, onChange, theme, value }) => {
   const id = uniqueId('radiobutton');
 
   return (
     <Switch
       checked={checked}
       id={id}
+      defaultChecked={defaultChecked}
       disabled={disabled}
       name={name}
       onChange={onChange}
@@ -38,6 +39,7 @@ const RadioButton = ({ checked, disabled, label, name, onChange, theme, value })
 
 RadioButton.defaultProps = {
   checked: null,
+  defaultChecked: null,
   disabled: false,
   onChange: null,
   theme: 'dark'
@@ -48,6 +50,10 @@ RadioButton.propTypes = {
    * Set the selected / deselected state to switch component
    */
   checked: PropTypes.bool,
+  /**
+   * Set the default selected / deselected state to switch component
+   */
+  defaultChecked: PropTypes.bool,
   /**
    * Set the radio button to disabled
    */

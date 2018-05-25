@@ -14,7 +14,7 @@ Checkbox examples
     theme='light' />
   <Checkbox
     label='Hello World'
-    checked={true}
+    defaultChecked={true}
     name='test-3'
     value={1}
     theme='light' />
