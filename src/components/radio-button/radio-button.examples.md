@@ -4,7 +4,7 @@ Radio Button Example - preselected first example and second example disabled
 <section>
     <form className='cbn-demo-form'>
         <RadioButton
-            checked={true}
+            defaultChecked={true}
             label='Hello World'
             name='test'
             value={1}

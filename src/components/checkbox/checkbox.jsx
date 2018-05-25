@@ -13,11 +13,12 @@ import './checkbox.css';
  * Checkbox is a simple input element which can be either checked or unchecked;
  * its state does not effect other checkboxes, therefore multiple checkboxes can be checked at the same time.
  */
-const Checkbox = ({ checked, disabled, label, name, onChange, theme, value }) => {
+const Checkbox = ({ checked, defaultChecked, disabled, label, name, onChange, theme, value }) => {
   const id = uniqueId('checkbox');
 
   return (
     <Switch
+      defaultChecked={defaultChecked}
       checked={checked}
       id={id}
       disabled={disabled}
@@ -48,6 +49,7 @@ const Checkbox = ({ checked, disabled, label, name, onChange, theme, value }) =>
 
 Checkbox.defaultProps = {
   checked: null,
+  defaultChecked: null,
   disabled: false,
   onChange: null,
   theme: 'dark'
@@ -58,6 +60,10 @@ Checkbox.propTypes = {
    * Set the selected / deselected state to switch component
    */
   checked: PropTypes.bool,
+  /**
+   * Set the default selected / deselected state to switch component
+   */
+  defaultChecked: PropTypes.bool,
   /**
    * Set the checkbox to disabled
    */
