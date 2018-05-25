@@ -25,6 +25,15 @@ const Switch = ({
 }) => {
   let _handleOnChange = null;
 
+  // Add checked & defaultChecked props if set, to avoid warnings from having both supplied
+  const extraProps = {};
+  if (checked !== null) {
+    extraProps.checked = checked;
+  }
+  if (defaultChecked !== null) {
+    extraProps.defaultChecked = defaultChecked;
+  }
+
   // if onChange function has been supplied, fire with event and payload - value and checked
   if (typeof onChange === 'function') {
     _handleOnChange = e =>
@@ -43,9 +52,8 @@ const Switch = ({
   return (
     <div className={_containerClassNames}>
       <input
-        checked={checked}
+        {...extraProps}
         className='cbn-switch__input'
-        defaultChecked={defaultChecked}
         disabled={disabled}
         id={id}
         onChange={_handleOnChange}
@@ -60,9 +68,9 @@ const Switch = ({
 // Props
 
 Switch.defaultProps = {
-  checked: false,
+  checked: null,
   children: null,
-  defaultChecked: false,
+  defaultChecked: null,
   disabled: false,
   onChange: null,
   theme: 'dark'
