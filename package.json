@@ -3,6 +3,9 @@
   "version": "1.2.1",
   "description": "Carbon UI Components",
   "main": "dist/index.min.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "start": "npm run docs:server",
     "docs:server": "npm run fix:styleguidist && styleguidist server",
@@ -10,9 +13,8 @@
     "build": "webpack -p --config webpack.build.config.js",
     "build:dev": "webpack -d --config webpack.dev.config.js",
     "docs:build": "npm run fix:styleguidist && styleguidist build",
-    "postinstall": "npm run build",
     "prepush": "npm run test",
-    "prepublish": "npm run test",
+    "prepublish": "npm run test && npm run build",
     "stylelint": "stylelint templates/**/*.css --config stylelint.config.js",
     "eslint": "eslint src/**/*.js src/**/*.jsx",
     "ava": "CONFIG=$(pwd)/webpack.ava.config.js NODE_ENV=AVA BABEL_DISABLE_CACHE=1 ava",
