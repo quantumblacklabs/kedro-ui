@@ -15,6 +15,7 @@ import Slider from 'components/slider';
 import Tabs from 'components/tabs';
 import Toggle from 'components/toggle';
 import { Tooltip, TooltipTrigger } from 'components/tooltip';
+import utils from './utils';
 
 import './styles/app.css';
 
@@ -36,5 +37,6 @@ module.exports = {
   Toggle,
   Tabs,
   Tooltip,
-  TooltipTrigger
+  TooltipTrigger,
+  utils
 };
