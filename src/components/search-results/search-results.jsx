@@ -56,6 +56,7 @@ class SearchResults extends React.Component {
       onMouseOver,
       results,
       row,
+      RowItem,
       theme
     } = this.props;
 
@@ -71,6 +72,7 @@ class SearchResults extends React.Component {
         onMouseOver={onMouseOver}
         results={this._getFormattedResults()}
         row={row}
+        RowItem={RowItem}
         theme={theme} />
     );
   }
@@ -86,6 +88,7 @@ SearchResults.defaultProps = {
     maxRows: 5,
     padding: 8
   },
+  RowItem: null,
   theme: 'dark'
 };
 
@@ -123,6 +126,10 @@ SearchResults.propTypes = {
     maxRows: PropTypes.number,
     padding: PropTypes.number
   }),
+  /**
+   * A React Component with a text prop, for rendering custom results
+   */
+  RowItem: PropTypes.node,
   /**
    * Theme of the component
    */

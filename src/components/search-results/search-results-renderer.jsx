@@ -73,8 +73,19 @@ class SearchResultsRenderer extends React.Component {
       onMouseOver,
       results,
       row,
+      RowItem,
       theme
     } = this.props;
+
+    /**
+     * Highlighted search result text
+     * @param {Object} result
+     */
+    const text = result => (
+      <div
+        className='cbn-search-results__label'
+        dangerouslySetInnerHTML={{ __html: result.highlightedLabel }} />
+    );
 
     return (
       <div className='cbn-search-results' onMouseOver={onMouseOver}>
@@ -104,9 +115,7 @@ class SearchResultsRenderer extends React.Component {
                 tabIndex='-1'
                 title={result.label}>
                 { result.icon && <Icon type={result.icon} size='medium' theme={theme} /> }
-                <div
-                  className='cbn-search-results__label'
-                  dangerouslySetInnerHTML={{ __html: result.highlightedLabel }} />
+                { RowItem ? <RowItem text={text(result)} /> : text(result) }
               </li>
             ) }
           </ul>
@@ -120,7 +129,8 @@ SearchResultsRenderer.defaultProps = {
   activeRow: null,
   height: null,
   onClick: null,
-  onMouseOver: null
+  onMouseOver: null,
+  RowItem: null
 };
 
 SearchResultsRenderer.propTypes = {
@@ -162,6 +172,10 @@ SearchResultsRenderer.propTypes = {
    * and an optional 'type' property (string) for the icon
    */
   results: PropTypes.array.isRequired,
+  /**
+   * A React Component with a text prop, for rendering custom results
+   */
+  RowItem: PropTypes.node,
   /**
    * Theme of the component
    */

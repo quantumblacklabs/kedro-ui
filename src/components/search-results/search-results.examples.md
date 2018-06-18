@@ -140,11 +140,41 @@ const dummyData = [
     { icon: 'refresh', label: 'Sed diam voluptua' },
     { label: 'At vero eos et accusam et justo duo dolores et ea rebum' }
 ];
+
 <div style={{paddingBottom:'200px'}}>
     <SearchResults
         activeRow={1}
         hidden={false}
         results={dummyData}
+        theme='light'
+        value='lor' />
+</div>
+```
+
+Search results component with custom row element:
+
+```
+const RowItem = ({ text }) => (
+    <div style={{ display: 'flex' }}>
+        ➡️ { text } ⬅️
+    </div>
+);
+
+const dummyData = [
+    { label: 'Lorem ipsum dolor sit amet' },
+    { label: 'Consetetur sadipscing elitr' },
+    { label: 'Sed diam nonumy eirmod tempor' },
+    { label: 'Invidunt ut labore et dolore magna aliquyam erat' },
+    { label: 'Sed diam voluptua' },
+    { label: 'At vero eos et accusam et justo duo dolores et ea rebum' }
+];
+
+<div style={{paddingBottom:'200px'}}>
+    <SearchResults
+        activeRow={1}
+        hidden={false}
+        results={dummyData}
+        RowItem={RowItem}
         theme='light'
         value='lor' />
 </div>
