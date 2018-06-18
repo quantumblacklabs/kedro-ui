@@ -25,7 +25,7 @@ class SearchBar extends React.Component {
     this.state = {
       value: this.props.value,
       isFocused: false,
-      showClearButton: false
+      showClearButton: this.props.value !== ''
     };
 
     this._handleBlurred = this._handleBlurred.bind(this);
@@ -43,7 +43,8 @@ class SearchBar extends React.Component {
   componentWillReceiveProps(newProps) {
     if (newProps.value !== this.state.value) {
       this.setState({
-        value: newProps.value
+        value: newProps.value,
+        showClearButton: newProps.value !== ''
       });
     }
   }
