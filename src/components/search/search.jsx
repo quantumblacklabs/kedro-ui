@@ -55,7 +55,7 @@ class Search extends React.Component {
    */
   _handleChange(value) {
     this.setState({
-      hidden: !value,
+      hideResults: !value,
       results: this._filterResults(value),
       value: value || ''
     });
