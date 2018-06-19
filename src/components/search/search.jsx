@@ -183,7 +183,7 @@ class Search extends React.Component {
           {...searchResultsProps}
           activeRow={activeRow}
           height={height}
-          hidden={showResults ? false : hideResults}
+          hidden={showResults !== null ? !showResults : hideResults}
           onClick={handleEvents(this._selectResult, searchResultsProps.onClick)}
           onMouseOver={handleEvents(this._handleMouseOver, searchResultsProps.onMouseOver)}
           results={results}
