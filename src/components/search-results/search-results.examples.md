@@ -1,106 +1,7 @@
-Search results component used alongside a search input:
+Search results component with dummy data:
 
 ```
-const { handleKeyEvent } = require('utils');
-
-class SearchBoxWithResults extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            activeRow: null,
-            hideResults: false,
-            results: this._filterResults('Lor'),
-            value: 'Lor'
-        };
-    }
-    _handleChange(value) {
-        this.setState({
-            hideResults: !value,
-            results: this._filterResults(value),
-            value: value || ''
-        });
-    }
-    _handleClick({ data }) {
-        this.setState({
-            hideResults: true,
-            value: data.result.label
-        });
-    }
-    _handleMouseOver() {
-        this.setState({
-            activeRow: null
-        })
-    }
-    _filterResults(value) {
-        const { results } = this.props;
-        const valueRegex = value ? new RegExp(value, 'gi') : '';
-
-        return results.filter(({ label }) => label.match(valueRegex));
-    }
-    _handleKeyDown({ keyCode }) {
-        handleKeyEvent(keyCode, {
-            enter: this._hideResults,
-            escape: this._clearResults,
-            up: this._changeActiveRow.bind(this, -1),
-            down: this._changeActiveRow.bind(this, 1)
-        });
-    }
-    _changeActiveRow(direction) {
-        let { activeRow, results } = this.state;
-        if (activeRow === null) {
-            activeRow = (direction > 0) ? 0 : results.length - 1;
-        } else {
-            activeRow += direction;
-        }
-        if (activeRow >= results.length || activeRow < 0) {
-            activeRow = null;
-        }
-        this.setState({
-            activeRow,
-            value: results[activeRow] ? results[activeRow].label : this.state.value
-        });
-    }
-    _clearResults() {
-        this.setState({
-            hideResults: true,
-            value: ''
-        });
-    }
-    _hideResults() {
-        this.setState({
-            hideResults: true
-        });
-    }
-    render() {
-        const { activeRow, hideResults, results, value } = this.state;
-
-        return (
-            <div role='search' onKeyDown={this._handleKeyDown.bind(this)}>
-                <SearchBar
-                    aria={{
-                        expanded: !hideResults,
-                        activedescendant: hideResults ? null : 'cbn-search-results-selected'
-                    }}
-                    onClear={this._handleChange.bind(this)}
-                    onChange={this._handleChange.bind(this)}
-                    placeholder='Search'
-                    theme='light'
-                    value={value} />
-                <SearchResults
-                    activeRow={activeRow}
-                    hidden={hideResults}
-                    onClick={this._handleClick.bind(this)}
-                    onMouseOver={this._handleMouseOver.bind(this)}
-                    results={results}
-                    theme='light'
-                    value={value} />
-            </div>
-        );
-    }
-}
-
-SearchBoxWithResults.defaultProps = {
-    results: [
+const dummyData = [
         { icon: 'copy', label: 'Lorem ipsum dolor sit amet' },
         { icon: 'paste', label: 'Consetetur sadipscing elitr' },
         { icon: 'undo', label: 'Sed diam nonumy eirmod tempor' },
@@ -123,35 +24,18 @@ SearchBoxWithResults.defaultProps = {
         { label: 'Neque porro quisquam est, qui dolorem ipsum quia dolor' },
         { label: 'Sit amet, consectetur, adipisci velit, sed quia non numquam eius' },
         { label: 'Modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem' }
-    ]
-};
-
-<SearchBoxWithResults />
-```
-
-Search results component on its own:
-
-```
-const dummyData = [
-    { icon: 'copy', label: 'Lorem ipsum dolor sit amet' },
-    { icon: 'paste', label: 'Consetetur sadipscing elitr' },
-    { icon: 'undo', label: 'Sed diam nonumy eirmod tempor' },
-    { icon: 'cut', label: 'Invidunt ut labore et dolore magna aliquyam erat' },
-    { icon: 'refresh', label: 'Sed diam voluptua' },
-    { label: 'At vero eos et accusam et justo duo dolores et ea rebum' }
 ];
 
 <div style={{paddingBottom:'200px'}}>
     <SearchResults
-        activeRow={1}
+        value=''
         hidden={false}
         results={dummyData}
-        theme='light'
-        value='lor' />
+        theme='light' />
 </div>
 ```
 
-Search results component with custom row element:
+Search results component with custom row element, a search term, and an active row:
 
 ```
 const RowItem = ({ text }) => (
@@ -175,7 +59,7 @@ const dummyData = [
         hidden={false}
         results={dummyData}
         RowItem={RowItem}
-        theme='light'
-        value='lor' />
+        value='lor'
+        theme='light' />
 </div>
 ```
