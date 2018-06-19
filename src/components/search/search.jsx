@@ -68,9 +68,10 @@ class Search extends React.Component {
       activeRow: null
     });
   }
+
   /**
-   *
-   * @param {*} param0
+   * Listen for keyboard events, and trigger relevant actions
+   * @param {number} keyCode The key event keycode
    */
   _handleKeyDown({ keyCode }) {
     handleKeyEvent(keyCode, {
