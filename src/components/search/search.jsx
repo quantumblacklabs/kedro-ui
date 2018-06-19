@@ -217,7 +217,7 @@ Search.propTypes = {
     height: PropTypes.number,
     maxRows: PropTypes.number,
     padding: PropTypes.number
-  }).isRequired,
+  }),
   /**
    * A filtered array of results
    * Each row should contain a required 'label' text property (string),
@@ -232,7 +232,7 @@ Search.propTypes = {
   /**
    * Flag whether to keep the results dropdown open by default
    */
-  showResults: PropTypes.bool.isRequired,
+  showResults: PropTypes.bool,
   /**
    * Theme of the component
    */
