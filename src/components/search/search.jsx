@@ -33,6 +33,13 @@ class Search extends React.Component {
     super(props);
     const { value } = props;
 
+    this.state = {
+      activeRow: null,
+      hideResults: true,
+      results: this._filterResults(value),
+      value
+    };
+
     this._handleKeyDown = this._handleKeyDown.bind(this);
     this._handleChange = this._handleChange.bind(this);
     this._selectResult = this._selectResult.bind(this);
@@ -40,13 +47,6 @@ class Search extends React.Component {
     this._showResults = this._showResults.bind(this);
     this._hideResults = this._hideResults.bind(this);
     this._clearResults = this._clearResults.bind(this);
-
-    this.state = {
-      activeRow: null,
-      hideResults: true,
-      results: this._filterResults(value),
-      value
-    };
   }
 
   /**
