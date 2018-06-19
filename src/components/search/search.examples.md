@@ -26,10 +26,10 @@ const results = [
     { label: 'Modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem' }
 ];
 
-<Search results={results} />
+<Search results={results} theme='light' />
 ```
 
-Search component with custom row element:
+Search component with custom row element, which is kept open by default:
 
 ```
 const RowItem = ({ text }) => (
