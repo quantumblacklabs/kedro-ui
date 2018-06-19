@@ -11,6 +11,17 @@ import { handleKeyEvent } from '../../utils';
 import './search.css';
 
 /**
+ * Execute user-supplied prop-based event actions alongside component actions
+ * @param {Array} actions Functions to execute when the event fires
+ * @param {Array} eventArgs Arguments passed from the event handler
+ */
+const handleEvents = (...actions) =>
+  (...eventArgs) =>
+    actions.map(func =>
+      (typeof func === 'function' ? func(...eventArgs) : null)
+    );
+
+/**
  * Search, used to output the actual DOM markup for the component
  */
 class Search extends React.Component {
@@ -28,6 +39,7 @@ class Search extends React.Component {
     this._handleMouseOver = this._handleMouseOver.bind(this);
     this._showResults = this._showResults.bind(this);
     this._hideResults = this._hideResults.bind(this);
+    this._clearResults = this._clearResults.bind(this);
 
     this.state = {
       activeRow: null,
@@ -151,28 +163,29 @@ class Search extends React.Component {
    */
   render() {
     const { activeRow, hideResults, results, value } = this.state;
-    const { height, row, RowItem, showResults, theme } = this.props;
+    const { height, row, RowItem, searchBarProps, searchResultsProps, showResults, theme } = this.props;
 
     return (
       <div className='cbn-search' role='search' onKeyDown={this._handleKeyDown}>
         <SearchBar
+          {...searchBarProps}
           aria-expanded={!hideResults}
           aria-activedescendant={hideResults ? null : 'cbn-search-results-selected'}
-          onClick={this._handleBarClick}
-          onClear={this._handleChange}
-          onChange={this._handleChange}
-          onFocus={this._showResults}
-          onBlur={this._hideResults}
+          onClear={handleEvents(this._handleChange, searchBarProps.onClear)}
+          onChange={handleEvents(this._handleChange, searchBarProps.onClear)}
+          onFocus={handleEvents(this._showResults, searchBarProps.onFocus)}
+          onBlur={handleEvents(this._hideResults, searchBarProps.onBlur)}
           placeholder='Search'
           theme={theme}
           value={value} />
 
         <SearchResults
+          {...searchResultsProps}
           activeRow={activeRow}
           height={height}
           hidden={showResults ? false : hideResults}
-          onClick={this._selectResult}
-          onMouseOver={this._handleMouseOver}
+          onClick={handleEvents(this._selectResult, searchResultsProps.onClick)}
+          onMouseOver={handleEvents(this._handleMouseOver, searchResultsProps.onMouseOver)}
           results={results}
           row={row}
           RowItem={RowItem}
@@ -194,6 +207,8 @@ Search.defaultProps = {
     padding: 8
   },
   RowItem: null,
+  searchBarProps: {},
+  searchResultsProps: {},
   theme: 'dark',
   value: ''
 };
@@ -229,6 +244,14 @@ Search.propTypes = {
    * A React Component with a text prop, for rendering custom results
    */
   RowItem: PropTypes.node,
+  /**
+   * Props to pass on to the SearchBar child component
+   */
+  searchBarProps: PropTypes.object,
+  /**
+   * Props to pass on to the SearchResults child component
+   */
+  searchResultsProps: PropTypes.object,
   /**
    * Flag whether to keep the results dropdown open by default
    */
