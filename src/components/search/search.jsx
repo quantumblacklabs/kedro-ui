@@ -243,7 +243,11 @@ Search.propTypes = {
   /**
    * A React Component with a text prop, for rendering custom results
    */
-  RowItem: PropTypes.node,
+  RowItem: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.node,
+    PropTypes.func
+  ]),
   /**
    * Props to pass on to the SearchBar child component
    */

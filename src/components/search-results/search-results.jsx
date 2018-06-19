@@ -129,7 +129,11 @@ SearchResults.propTypes = {
   /**
    * A React Component with a text prop, for rendering custom results
    */
-  RowItem: PropTypes.node,
+  RowItem: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.node,
+    PropTypes.func
+  ]),
   /**
    * Theme of the component
    */
