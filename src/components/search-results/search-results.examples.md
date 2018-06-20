@@ -40,22 +40,25 @@ Search results component with custom row element, a search term, and an active r
 ```
 const RowItem = ({ text }) => (
     <div style={{ display: 'flex' }}>
-        ➡️ { text } ⬅️
+        🌧 { text } 🌍
     </div>
 );
 
 const dummyData = [
-    { label: 'Lorem ipsum dolor sit amet' },
-    { label: 'Consetetur sadipscing elitr' },
-    { label: 'Sed diam nonumy eirmod tempor' },
-    { label: 'Invidunt ut labore et dolore magna aliquyam erat' },
-    { label: 'Sed diam voluptua' },
-    { label: 'At vero eos et accusam et justo duo dolores et ea rebum' }
+    { label: 'It\'s gonna take a lot to take me away from you' },
+    { label: 'There\'s nothing that a hundred men or more could ever do' },
+    { label: 'I bless the rains down in Africa' },
+    { label: 'Gonna take some time to do the things we never had' },
 ];
 
-<div style={{paddingBottom:'200px'}}>
+<div className='africa' style={{paddingBottom:'200px'}}>
+    <style>{`
+        .africa .cbn-search-results__row {
+            padding-left: 20px;
+        }
+    `}</style>
     <SearchResults
-        activeRow={1}
+        activeRow={2}
         hidden={false}
         results={dummyData}
         RowItem={RowItem}
