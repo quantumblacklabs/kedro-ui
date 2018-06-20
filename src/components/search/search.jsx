@@ -122,9 +122,12 @@ class Search extends React.Component {
       activeRow = null;
     }
 
+    const value = results[activeRow] ? results[activeRow].label : this.state.value;
+    
     this.setState({
+      hideResults: !value,
       activeRow,
-      value: results[activeRow] ? results[activeRow].label : this.state.value
+      value
     });
   }
 
