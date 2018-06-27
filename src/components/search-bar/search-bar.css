@@ -78,3 +78,7 @@ $size-pos-base: 10px;
 .cbn-searchbar__iconwrapper {
   transition: 0.3s opacity;
 }
+
+.cbn-searchbar__submit {
+  @extend %hidden;
+}

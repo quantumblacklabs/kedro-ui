@@ -18,14 +18,17 @@ const SearchBarRenderer = ({
   onChange,
   onClear,
   onFocus,
+  onSubmit,
   theme,
   showClearButton,
   value }) => {
   const style = { opacity: showClearButton ? 1 : 0 };
 
   return (
-    <div
-      className={classnames('cbn-searchbar', `cbn-theme--${theme}`, { 'cbn-searchbar--focused': isFocused })}>
+    <form
+      className={classnames('cbn-searchbar', `cbn-theme--${theme}`, { 'cbn-searchbar--focused': isFocused })}
+      onSubmit={onSubmit}
+      role='search'>
       <div className='cbn-searchbar__iconwrapper'>
         <Icon type={iconType} size='medium' theme={theme} />
       </div>
@@ -39,7 +42,8 @@ const SearchBarRenderer = ({
       <div className='cbn-searchbar__dynamicicon' style={style}>
         <Icon onClick={onClear} type='close' size='medium' theme={theme} />
       </div>
-    </div>
+      <input className='cbn-searchbar__submit' type='submit' value='Search' />
+    </form>
   );
 };
 
@@ -72,6 +76,10 @@ SearchBarRenderer.propTypes = {
    * On focus method, triggered by clicking into the input
    */
   onFocus: PropTypes.func.isRequired,
+  /**
+   * On submit method, triggered by hitting enter on the input
+   */
+  onSubmit: PropTypes.func.isRequired,
   /**
    * Theme of the component
    */

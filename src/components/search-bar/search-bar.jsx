@@ -135,6 +135,7 @@ class SearchBar extends React.Component {
         onChange={this._handleChanged}
         onClear={this._handleCleared}
         onFocus={this._handleFocused}
+        onSubmit={this.props.onSubmit}
         showClearButton={this.state.showClearButton}
         value={this.state.value}
         theme={this.props.theme} />
@@ -149,6 +150,7 @@ SearchBar.defaultProps = {
   onChange: null,
   onClear: null,
   onFocus: null,
+  onSubmit: null,
   theme: 'dark',
   value: ''
 };
@@ -174,6 +176,10 @@ SearchBar.propTypes = {
    * On focus method, triggered by clicking into the input
    */
   onFocus: PropTypes.func,
+  /**
+   * On submit method, triggered by hitting enter on the input
+   */
+  onSubmit: PropTypes.func,
   /**
    * Place holder text for search input
    */
