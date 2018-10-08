@@ -1,4 +1,10 @@
 /**
+ * Escape string for use in a regular expression
+ * @param {string} str Search keyword string
+ */
+const escapeRegExp = str => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+/**
  * Create a regular expression to match certain keywords
  * Note: Uses String.prototype.replace() to prevent XSS attacks
  * @param  {string} value - The search keyword to highlight
@@ -8,7 +14,7 @@ const getValueRegex = value => {
   if (!value) {
     return false;
   }
-  return new RegExp(`(${value.replace(/[<>]/g, '')})`, 'gi');
+  return new RegExp(`(${escapeRegExp(value).replace(/[<>]/g, '')})`, 'gi');
 };
 
 /**
@@ -34,6 +40,7 @@ const getHighlightedText = (text, value) => {
 };
 
 export {
+  escapeRegExp,
   getValueRegex,
   getHighlightedText
 };

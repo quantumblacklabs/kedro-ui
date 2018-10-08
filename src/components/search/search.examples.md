@@ -2,8 +2,8 @@ Search component with working autocomplete:
 
 ```
 const results = [
-    { icon: 'copy', label: 'Lorem ipsum dolor sit amet' },
-    { icon: 'paste', label: 'Consetetur sadipscing elitr' },
+    { icon: 'copy', label: 'Lorem\\ ipsum dolor sit amet' },
+    { icon: 'paste', label: 'Consetetur (sadipscing) elitr' },
     { icon: 'undo', label: 'Sed diam nonumy eirmod tempor' },
     { icon: 'cut', label: 'Invidunt ut labore et dolore magna aliquyam erat' },
     { icon: 'refresh', label: 'Sed diam voluptua' },

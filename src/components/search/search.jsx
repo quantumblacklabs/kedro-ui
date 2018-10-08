@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import SearchBar from 'components/search-bar';
 import SearchResults from 'components/search-results';
+import { escapeRegExp } from 'components/search-results/search-results-utils';
 import { handleKeyEvent } from '../../utils';
 
 // Styles
@@ -101,7 +102,7 @@ class Search extends React.Component {
    */
   _filterResults(value) {
     const { results } = this.props;
-    const valueRegex = value ? new RegExp(value, 'gi') : '';
+    const valueRegex = value ? new RegExp(escapeRegExp(value), 'gi') : '';
 
     return results.filter(({ label }) => label.match(valueRegex));
   }
