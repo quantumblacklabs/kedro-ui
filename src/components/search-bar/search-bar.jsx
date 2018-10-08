@@ -32,6 +32,7 @@ class SearchBar extends React.Component {
     this._handleFocused = this._handleFocused.bind(this);
     this._handleChanged = this._handleChanged.bind(this);
     this._handleCleared = this._handleCleared.bind(this);
+    this._handleSubmit = this._handleSubmit.bind(this);
   }
 
   /**
@@ -99,8 +100,6 @@ class SearchBar extends React.Component {
 
   /**
    * onClose - clear the text in the input
-   * @param  {type} e description
-   * @return {type}   description
    */
   _handleCleared() {
     this.setState({
@@ -116,6 +115,19 @@ class SearchBar extends React.Component {
     // trigger onChange prop if available
     if (typeof this.props.onChange === 'function') {
       this.props.onChange('');
+    }
+  }
+
+  /**
+   * Trigger onSubmit prop if available
+   * @param {Object} e native change event
+   */
+  _handleSubmit(e) {
+    if (typeof this.props.onSubmit === 'function') {
+      this.props.onSubmit({
+        e,
+        data: this.state.value
+      });
     }
   }
 
@@ -135,15 +147,18 @@ class SearchBar extends React.Component {
         onChange={this._handleChanged}
         onClear={this._handleCleared}
         onFocus={this._handleFocused}
-        onSubmit={this.props.onSubmit}
+        onSubmit={this._handleSubmit}
         showClearButton={this.state.showClearButton}
         value={this.state.value}
-        theme={this.props.theme} />
+        theme={this.props.theme}>
+        { this.props.children }
+      </SearchBarRenderer>
     );
   }
 }
 
 SearchBar.defaultProps = {
+  children: null,
   iconType: 'search',
   placeholder: 'Search Here...',
   onBlur: null,
@@ -156,6 +171,10 @@ SearchBar.defaultProps = {
 };
 
 SearchBar.propTypes = {
+  /**
+   * Child component, usually search-bar-results
+   */
+  children: PropTypes.node,
   /**
    * Icon type e.g. cut, paste, undo etc. see Icon component for more
    */

@@ -46,8 +46,8 @@ class SearchResultsRenderer extends React.Component {
 
   /**
    * Handle selection click events on the rows
-   * @param  {[object]} e      - Native onClick event
-   * @param  {[object]} result - The data for the selected label
+   * @param  {Object} e  - Native onClick event
+   * @param  {Object} result - The data for the selected label
    */
   _handleRowClicked(e, result) {
     const { onClick } = this.props;
@@ -55,7 +55,7 @@ class SearchResultsRenderer extends React.Component {
     if (onClick) {
       onClick({
         e,
-        data: { result }
+        data: result.label
       });
     }
   }

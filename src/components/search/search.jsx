@@ -66,9 +66,10 @@ class Search extends React.Component {
    * @param {object} data
    */
   _selectResult({ data }) {
+    this._focusSearchInput();
     this.setState({
       hideResults: true,
-      value: data.result.label
+      value: data
     });
   }
 
@@ -85,9 +86,9 @@ class Search extends React.Component {
    * Listen for keyboard events, and trigger relevant actions
    * @param {number} keyCode The key event keycode
    */
-  _handleKeyDown({ keyCode }) {
-    handleKeyEvent(keyCode, {
-      enter: this._hideResults,
+  _handleKeyDown(event) {
+    handleKeyEvent(event.keyCode, {
+      enter: this._handleEnter.bind(this, event),
       escape: this._clearResults,
       up: this._changeActiveRow.bind(this, -1),
       down: this._changeActiveRow.bind(this, 1)
@@ -122,13 +123,28 @@ class Search extends React.Component {
       activeRow = null;
     }
 
-    const value = results[activeRow] ? results[activeRow].label : this.state.value;
-    
     this.setState({
-      hideResults: !value,
-      activeRow,
-      value
+      hideResults: activeRow === null,
+      activeRow
     });
+  }
+
+  /**
+   * Either select the active result or else submit the form
+   */
+  _handleEnter(e) {
+    const { activeRow, hideResults, results, value } = this.state;
+    if (hideResults) {
+      this.props.onSubmit({
+        e,
+        data: value
+      });
+    } else if (!hideResults && results[activeRow]) {
+      this._selectResult({
+        data: results[activeRow].label
+      });
+      e.preventDefault();
+    }
   }
 
   /**
@@ -160,6 +176,15 @@ class Search extends React.Component {
   }
 
   /**
+   * Move focus back to the input after clicking on a row
+   */
+  _focusSearchInput() {
+    this._search
+      .querySelector('input')
+      .focus();
+  }
+
+  /**
    * React lifecycle method
    * {@link https://facebook.github.io/react/docs/react-component.html#render}
    * @return {object} JSX for this component
@@ -169,31 +194,42 @@ class Search extends React.Component {
     const { height, row, RowItem, searchBarProps, searchResultsProps, showResults, theme } = this.props;
 
     return (
-      <div className='cbn-search' role='search' onKeyDown={this._handleKeyDown}>
+      <div
+        className='cbn-search'
+        ref={el => {
+          this._search = el;
+        }}
+        onKeyDown={this._handleKeyDown}>
         <SearchBar
           {...searchBarProps}
-          aria-expanded={!hideResults}
-          aria-activedescendant={hideResults ? null : 'cbn-search-results-selected'}
           onClear={handleEvents(this._handleChange, searchBarProps.onClear)}
           onChange={handleEvents(this._handleChange, searchBarProps.onClear)}
           onFocus={handleEvents(this._showResults, searchBarProps.onFocus)}
           onBlur={handleEvents(this._hideResults, searchBarProps.onBlur)}
+          onSubmit={this.props.onSubmit}
           placeholder='Search'
           theme={theme}
-          value={value} />
-
-        <SearchResults
-          {...searchResultsProps}
-          activeRow={activeRow}
-          height={height}
-          hidden={showResults !== null ? !showResults : hideResults}
-          onClick={handleEvents(this._selectResult, searchResultsProps.onClick)}
-          onMouseOver={handleEvents(this._handleMouseOver, searchResultsProps.onMouseOver)}
-          results={results}
-          row={row}
-          RowItem={RowItem}
-          theme={theme}
-          value={value} />
+          value={value}>
+          <SearchResults
+            {...searchResultsProps}
+            activeRow={activeRow}
+            height={height}
+            hidden={showResults !== null ? !showResults : hideResults}
+            onClick={handleEvents(
+              this._selectResult,
+              searchResultsProps.onClick,
+              this.props.onSubmit
+            )}
+            onMouseOver={handleEvents(
+              this._handleMouseOver,
+              searchResultsProps.onMouseOver
+            )}
+            results={results}
+            row={row}
+            RowItem={RowItem}
+            theme={theme}
+            value={value} />
+        </SearchBar>
       </div>
     );
   }
@@ -202,7 +238,7 @@ class Search extends React.Component {
 Search.defaultProps = {
   activeRow: null,
   height: null,
-  showResults: null,
+  onSubmit: () => {},
   results: [],
   row: {
     height: 40,
@@ -212,6 +248,7 @@ Search.defaultProps = {
   RowItem: null,
   searchBarProps: {},
   searchResultsProps: {},
+  showResults: null,
   theme: 'dark',
   value: ''
 };
@@ -225,6 +262,10 @@ Search.propTypes = {
    * Height for the results box, to prevent it expanding before close animation
    */
   height: PropTypes.number,
+  /**
+   * On submit method, triggered by hitting enter on the input
+   */
+  onSubmit: PropTypes.func,
   /**
    * Constants for the dimensions of a row item and its container
    * row.height: The height of a row

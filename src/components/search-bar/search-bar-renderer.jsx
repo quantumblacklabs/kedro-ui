@@ -10,44 +10,59 @@ import Input from 'components/input';
 /**
  * SearchBarRenderer, used to output the actual DOM markup for the component
  */
-const SearchBarRenderer = ({
-  iconType,
-  isFocused,
-  placeholder,
-  onBlur,
-  onChange,
-  onClear,
-  onFocus,
-  onSubmit,
-  theme,
-  showClearButton,
-  value }) => {
+const SearchBarRenderer = props => {
+  const {
+    children,
+    iconType,
+    isFocused,
+    placeholder,
+    onBlur,
+    onChange,
+    onClear,
+    onFocus,
+    onSubmit,
+    theme,
+    showClearButton,
+    value
+  } = props;
   const style = { opacity: showClearButton ? 1 : 0 };
 
   return (
     <form
       className={classnames('cbn-searchbar', `cbn-theme--${theme}`, { 'cbn-searchbar--focused': isFocused })}
       onSubmit={onSubmit}
-      role='search'>
+      role={children ? 'combobox' : 'search'}>
+      <label className='cbn-searchbar__label' htmlFor='cbn-searchbar'>Search</label>
       <div className='cbn-searchbar__iconwrapper'>
         <Icon type={iconType} size='medium' theme={theme} />
       </div>
       <Input
+        id='cbn-searchbar'
         placeholder={placeholder}
         onChange={onChange}
         onFocus={onFocus}
         onBlur={onBlur}
         value={value}
-        theme={theme} />
+        theme={theme}
+        type='search' />
       <div className='cbn-searchbar__dynamicicon' style={style}>
         <Icon onClick={onClear} type='close' size='medium' theme={theme} />
       </div>
-      <input className='cbn-searchbar__submit' type='submit' value='Search' />
+      { children }
     </form>
   );
 };
 
+SearchBarRenderer.defaultProps = {
+  children: null,
+  onSubmit: null
+};
+
 SearchBarRenderer.propTypes = {
+  /**
+   * Child component, usually search-bar-results
+   */
+  children: PropTypes.node,
   /**
    * Icon type e.g. cut, paste, undo etc. see Icon component for more
    */
@@ -79,7 +94,7 @@ SearchBarRenderer.propTypes = {
   /**
    * On submit method, triggered by hitting enter on the input
    */
-  onSubmit: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func,
   /**
    * Theme of the component
    */

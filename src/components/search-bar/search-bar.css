@@ -79,6 +79,6 @@ $size-pos-base: 10px;
   transition: 0.3s opacity;
 }
 
-.cbn-searchbar__submit {
+.cbn-searchbar__label {
   @extend %hidden;
 }

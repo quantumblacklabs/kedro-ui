@@ -198,7 +198,6 @@ class Input extends React.Component {
           onBlur={this._handleBlured}>
           {labelWrapper}
           <input
-            {...this.props}
             className='cbn-input__field'
             type='text'
             placeholder={this.props.placeholder || ''}

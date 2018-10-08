@@ -1,4 +1,4 @@
-Search component:
+Search component with working autocomplete:
 
 ```
 const results = [
@@ -26,7 +26,13 @@ const results = [
     { label: 'Modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem' }
 ];
 
-<Search results={results} theme='light' />
+<Search
+    results={results}
+    theme='light'
+    onSubmit={({ e, data }) => {
+        console.log(data);
+        e.preventDefault();
+    }} />
 ```
 
 Search component with custom row element, which is kept open by default:
@@ -48,6 +54,7 @@ const dummyData = Array.from(Array(30).keys()).map(i => ({
         showResults={true}
         results={dummyData}
         RowItem={RowItem}
+        searchResultsProps={{ onClick: console.log }}
         theme='light'
         value='lor' />
 </div>
