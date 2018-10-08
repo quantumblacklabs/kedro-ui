@@ -172,6 +172,7 @@ class Search extends React.Component {
   _clearResults() {
     this.setState({
       hideResults: true,
+      results: this.props.results,
       value: ''
     });
   }
