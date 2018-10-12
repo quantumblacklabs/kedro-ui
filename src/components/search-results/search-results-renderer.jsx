@@ -115,7 +115,7 @@ class SearchResultsRenderer extends React.Component {
                 tabIndex='-1'
                 title={result.label}>
                 { result.icon && <Icon type={result.icon} size='medium' theme={theme} /> }
-                { RowItem ? <RowItem text={text(result)} /> : text(result) }
+                { RowItem ? <RowItem {...result} text={text(result)} /> : text(result) }
               </li>
             ) }
           </ul>
