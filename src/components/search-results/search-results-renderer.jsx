@@ -88,7 +88,7 @@ class SearchResultsRenderer extends React.Component {
     );
 
     return (
-      <div className='cbn-search-results' onMouseOver={onMouseOver}>
+      <div className='carbon cbn-search-results' onMouseOver={onMouseOver}>
         <div
           aria-hidden={hidden}
           className={classnames(

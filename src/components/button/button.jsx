@@ -22,6 +22,7 @@ const Button = ({
 }) => (
   <button
     className={classnames(
+      'carbon',
       'cbn-button',
       `cbn-button--${animation}`,
       `cbn-button--${size}`,

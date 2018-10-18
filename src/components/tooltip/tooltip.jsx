@@ -26,6 +26,7 @@ const Tooltip = ({
     <div
       aria-hidden={!show.toString()}
       className={classnames(
+        'carbon',
         'cbn-tooltip',
         `cbn-theme--${theme}`,
         { 'cbn-tooltip--hidden': !show }

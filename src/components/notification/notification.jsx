@@ -32,7 +32,7 @@ const Notification = ({
     <div
       role='alert'
       aria-live='assertive'
-      className={`cbn-notification cbn-notification--${type} cbn-theme--${theme}`}
+      className={`carbon cbn-notification cbn-notification--${type} cbn-theme--${theme}`}
       tabIndex='-1'>
       {contextIcon}
       <div className='cbn-notification__content'>

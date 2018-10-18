@@ -29,7 +29,7 @@ const SearchBarRenderer = props => {
 
   return (
     <form
-      className={classnames('cbn-searchbar', `cbn-theme--${theme}`, { 'cbn-searchbar--focused': isFocused })}
+      className={classnames('carbon', 'cbn-searchbar', `cbn-theme--${theme}`, { 'cbn-searchbar--focused': isFocused })}
       onSubmit={onSubmit}
       role={children ? 'combobox' : 'search'}>
       <label className='cbn-searchbar__label' htmlFor='cbn-searchbar'>Search</label>

@@ -91,7 +91,7 @@ class Modal extends React.Component {
       content = (
         <div>
           <div
-            className='modal__description'>
+            className='cbn-modal__description'>
             {message}
           </div>
           <Button
@@ -113,7 +113,7 @@ class Modal extends React.Component {
     return (
       <div
         aria-haspopup='true'
-        className={`modal cbn-theme--${theme}`}
+        className={`carbon cbn-modal cbn-theme--${theme}`}
         onKeyDown={_handleKeyDown}
         role='dialog'
         style={{ zIndex }}>
@@ -121,11 +121,11 @@ class Modal extends React.Component {
           onClick={onClose}
           name='bg'
           style={{ opacity: 0 }}
-          className='modal__bg' />
+          className='cbn-modal__bg' />
         <div
           name='content'
           style={{ opacity: 0, transform: 'translate(-50%, -40%)' }}
-          className='modal__content'>
+          className='cbn-modal__content'>
           <Icon
             onClick={onClose}
             type='close'
@@ -133,9 +133,9 @@ class Modal extends React.Component {
             title=''
             theme={theme} />
           <div
-            className='modal__wrapper'>
+            className='cbn-modal__wrapper'>
             <div
-              className='modal__title'>{title}</div>
+              className='cbn-modal__title'>{title}</div>
             { content }
           </div>
         </div>

@@ -26,7 +26,7 @@ const MenuOption = ({
   theme,
   value
 }) => {
-  const wrapperClasses = classnames('cbn-menu-option', {
+  const wrapperClasses = classnames('carbon', 'cbn-menu-option', {
     'cbn-menu-option--focused': focused,
     'cbn-menu-option--selected': selected,
     'cbn-menu-option--has-icon': typeof icon === 'string',

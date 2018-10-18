@@ -60,6 +60,7 @@ const TabsRenderer = ({
   return (
     <div
       className={classnames(
+        'carbon',
         'cbn-tabs',
         `cbn-theme--${theme}`,
         { 'cbn-tabs--small': size === 'small' }

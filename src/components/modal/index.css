@@ -10,7 +10,7 @@ $size-content-maxwidth: 400px;
 
 /** Implementation **/
 
-.modal {
+.cbn-modal {
   position: fixed;
 
   top: 0;
@@ -20,7 +20,7 @@ $size-content-maxwidth: 400px;
   height: 100%;
 }
 
-.modal__bg {
+.cbn-modal__bg {
   @mixin themedParent background, modal, bg;
 
   position: absolute;
@@ -29,7 +29,7 @@ $size-content-maxwidth: 400px;
   height: 100%;
 }
 
-.modal__content {
+.cbn-modal__content {
   @mixin themedParent background, modal, content;
 
   position: absolute;
@@ -43,7 +43,7 @@ $size-content-maxwidth: 400px;
   transform: translate(-50%, -50%);
 }
 
-.modal__wrapper {
+.cbn-modal__wrapper {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -57,7 +57,7 @@ $size-content-maxwidth: 400px;
   text-align: center;
 }
 
-.modal__title {
+.cbn-modal__title {
   @mixin themedParent color, modal, title;
 
   @extend %type--subhead-1;
@@ -67,14 +67,14 @@ $size-content-maxwidth: 400px;
   margin-bottom: $size-spacing;
 }
 
-.modal__description {
+.cbn-modal__description {
   @mixin themedParent color, modal, description;
 
   margin-bottom: $size-spacing;
 }
 
 .cbn-icon {
-  .modal & {
+  .cbn-modal & {
     position: absolute;
 
     top: $size-pos;

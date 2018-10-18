@@ -183,7 +183,7 @@ class Input extends React.Component {
     );
 
     return (
-      <div className='cbn-input-wrapper'>
+      <div className='carbon cbn-input-wrapper'>
         <div
           className={classnames(
             'cbn-input',

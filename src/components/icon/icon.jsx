@@ -37,6 +37,7 @@ const Icon = props => {
   const SvgIcon2 = iconType2 ? IconAssets[iconType2] : '';
 
   const containerClassNames = classnames(
+    'carbon',
     'cbn-icon',
     `cbn-icon--${size}`,
     `cbn-icon--${iconType}`,
