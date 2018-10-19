@@ -34,7 +34,9 @@ const Tooltip = ({
       data-tooltip-id={tooltipId}
       hidden={!show}
       style={style}>
-      { children }
+      <div className='cbn-tooltip__text'>
+        { children }
+      </div>
     </div>
   );
 };
