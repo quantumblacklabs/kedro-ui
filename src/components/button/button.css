@@ -13,13 +13,18 @@ $secondary-underline-offset-hover: 2px;
 /** Implementation **/
 
 .cbn-button {
+  display: inline-block;
+}
+
+.cbn-button__btn {
   @extend %type--subhead-2;
   @extend %type--semibold;
 
   @mixin themed color, text;
 
   display: inline-block;
-  padding: 9px 12px 11px;
+  padding: 0.7em 0.8em 0.8em;
+  line-height: 1em;
   border: none;
   border-radius: 0;
 
@@ -42,13 +47,13 @@ $secondary-underline-offset-hover: 2px;
   }
 }
 
-.cbn-button--small {
+.cbn-button__btn--small {
   @extend %type--body-1;
 
-  padding: 5px 12px 7px;
+  padding: 0.6em 0.85em 0.7em;
 }
 
-.cbn-button--primary {
+.cbn-button__btn--primary {
   @mixin themed outline-color, button, outline;
   @mixin themedState hover, color, button, textHover;
   @mixin themedState active, color, button, textHover;
@@ -93,7 +98,7 @@ $secondary-underline-offset-hover: 2px;
     }
   }
 
-  &.cbn-button--wipe {
+  &.cbn-button__btn--wipe {
     position: relative;
 
     /**
@@ -128,7 +133,7 @@ $secondary-underline-offset-hover: 2px;
   }
 }
 
-.cbn-button--secondary {
+.cbn-button__btn--secondary {
   @mixin themedState focus::after, background, button, focus;
   @mixin themedState hover::after, background, button, outline;
 
@@ -161,7 +166,7 @@ $secondary-underline-offset-hover: 2px;
     display: none;
   }
 
-  &.cbn-button--wipe {
+  &.cbn-button__btn--wipe {
     &::after {
       width: 0;
       transition: all ease 0.2s;

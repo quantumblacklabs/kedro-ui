@@ -20,19 +20,20 @@ const Button = ({
   theme,
   type
 }) => (
-  <button
-    className={classnames(
-      'carbon',
-      'cbn-button',
-      `cbn-button--${animation}`,
-      `cbn-button--${size}`,
-      `cbn-button--${type}`,
-      `cbn-theme--${theme}`
-    )}
-    disabled={disabled}
-    onClick={onClick}>
-    { children }
-  </button>
+  <span className='carbon cbn-button'>
+    <button
+      className={classnames(
+        'cbn-button__btn',
+        `cbn-button__btn--${animation}`,
+        `cbn-button__btn--${size}`,
+        `cbn-button__btn--${type}`,
+        `cbn-theme--${theme}`
+      )}
+      disabled={disabled}
+      onClick={onClick}>
+      { children }
+    </button>
+  </span>
 );
 
 Button.defaultProps = {
