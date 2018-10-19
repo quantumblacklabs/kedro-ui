@@ -64,7 +64,7 @@ $menu-item-padding: 12px;
 
   @extend %type--subhead-2;
 
-  line-height: 1.25rem;
+  line-height: 1.25em;
 
   @mixin themedParent background, menu, default;
   @mixin themedParent color, text;
