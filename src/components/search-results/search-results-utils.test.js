@@ -6,7 +6,8 @@ test('getValueRegex should return a regular expression', t => {;
   t.is(getValueRegex(), false);
   t.is(getValueRegex(''), false);
   t.is(getValueRegex('foo').toString(), '/(foo)/gi');
-  t.is(getValueRegex('<foo>').toString(), '/(foo)/gi');
+  t.is(getValueRegex('<foo>').toString(), '/(\\<foo\\>)/gi');
+
 });
 
 test('getHighlightedText should highlight search terms', t => {
