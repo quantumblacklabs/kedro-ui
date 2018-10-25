@@ -19,59 +19,59 @@
 /* Fonts */
 %type--display-1 {
   font-size: 4.8em;
-  line-height: 5.6em;
+  line-height: 1.4;
   letter-spacing: -0.5px;
 }
 
 %type--display-2 {
   font-size: 4em;
-  line-height: 4.8em;
+  line-height: 1.4;
   letter-spacing: -0.3px;
 }
 
 %type--display-3 {
   font-size: 3.4em;
-  line-height: 4em;
+  line-height: 1.4;
   letter-spacing: -0.1px;
 }
 
 %type--headline {
   font-size: 2.4em;
-  line-height: 3.2em;
+  line-height: 1.4;
   letter-spacing: -0.1px;
 }
 
 %type--title {
   font-size: 2em;
-  line-height: 2.8em;
+  line-height: 1.4;
 }
 
 %type--subhead-1 {
   font-size: 1.8em;
-  line-height: 2.4em;
+  line-height: 1.4;
 }
 
 %type--subhead-2 {
   font-size: 1.6em;
-  line-height: 2em;
+  line-height: 1.4;
   letter-spacing: 0.1px;
 }
 
 %type--body-1 {
   font-size: 1.4em;
-  line-height: 2em;
+  line-height: 1.4;
   letter-spacing: 0.1px;
 }
 
 %type--body-2 {
   font-size: 1.3em;
-  line-height: 2em;
+  line-height: 1.4;
   letter-spacing: 0.1px;
 }
 
 %type--tiny {
   font-size: 1em;
-  line-height: 1.2em;
+  line-height: 1.4;
   letter-spacing: 0.1px;
 }
 
@@ -81,7 +81,7 @@
   -webkit-font-smoothing: antialiased;
   font-family: 'Titillium Web', sans-serif;
   font-weight: 400;
-  line-height: 2em;
+  line-height: 1.4;
   letter-spacing: 0.1px;
 }
 
@@ -92,7 +92,7 @@
 
   font-size: 1.3em;
   letter-spacing: 0.1px;
-  line-height: 1;
+  line-height: 1.4;
 }
 
 %a {

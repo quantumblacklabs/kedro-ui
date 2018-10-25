@@ -8,7 +8,6 @@ html {
 
 body {
   @extend %base;
-  font-size: 1.4rem;
 }
 
 h1 {
@@ -54,7 +53,6 @@ h5 {
   margin: $rem-base 0;
 }
 
-label,
 .label {
   @extend %label;
 }

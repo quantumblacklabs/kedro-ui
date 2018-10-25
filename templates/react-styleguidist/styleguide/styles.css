@@ -9,13 +9,19 @@
 }
 
 .cbn-sg-root {
-  font-size: 16px;
-
   color: black;
+
+  p {
+    font-size: 16px;
+  }
 }
 
 .cbn-sg__section {
   padding-top: 48px;
+
+  .rsg--Link--link, span {
+    font-size: 16px;
+  }
 }
 
 .cbn-sg-content {
