@@ -193,8 +193,6 @@ class Search extends React.Component {
   render() {
     const { activeRow, hideResults, results, value } = this.state;
     const { height, row, RowItem, searchBarProps, searchResultsProps, showResults, theme } = this.props;
-    console.log('states are');
-    console.log(this.state);
     return (
       <div
         className='cbn-search'
