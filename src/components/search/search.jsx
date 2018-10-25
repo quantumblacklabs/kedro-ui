@@ -193,6 +193,7 @@ class Search extends React.Component {
   render() {
     const { activeRow, hideResults, results, value } = this.state;
     const { height, row, RowItem, searchBarProps, searchResultsProps, showResults, theme } = this.props;
+    
     return (
       <div
         className='cbn-search'
@@ -307,7 +308,11 @@ Search.propTypes = {
   /**
    * Theme of the component
    */
-  theme: PropTypes.oneOf(['light', 'dark']).isRequired
+  theme: PropTypes.oneOf(['light', 'dark']).isRequired,
+  /**
+   * activeRow should be a number
+   */
+  activeRow: PropTypes.number
 };
 
 export default Search;
