@@ -91,7 +91,7 @@ class ModalTrigger extends React.Component {
             title='Custom Modal'
             onClose={this.onClose.bind(this)}
             visible={this.state.visible}>
-            <span style={{color: 'rgba(255, 255, 255, 0.55)', marginBottom: '40px'}}>Please select reason for deletion. We need to track this for auditing.</span>
+            <p style={{color: 'rgba(255, 255, 255, 0.55)', marginBottom: '40px'}}>Please select reason for deletion. We need to track this for auditing.</p>
             <Dropdown
                 theme='light'
                 onOpened={ null }
@@ -108,7 +108,7 @@ class ModalTrigger extends React.Component {
                 onClick={this.onClose.bind(this)}
                 size='small'
                 type='secondary'>
-                cancel
+                Cancel
               </Button>
               </div>
               <Button

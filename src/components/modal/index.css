@@ -70,6 +70,8 @@ $size-content-maxwidth: 400px;
 .cbn-modal__description {
   @mixin themedParent color, modal, description;
 
+  @extend %type--subhead-2;
+
   margin-bottom: $size-spacing;
 }
 
