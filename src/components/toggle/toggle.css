@@ -4,7 +4,6 @@
 
 /** Variables **/
 
-$size-toggle-lineheight: 1.25;
 $size-toggle-margin: 12px;
 $size-toggle-outline: 7px;
 $size-toggle-padding: 4px;
@@ -50,8 +49,6 @@ $duration-switch-hover: 0.1s;
   @mixin themedParent color, toggle;
 
   margin: 0 0 $size-toggle-text-margin;
-
-  line-height: $size-toggle-lineheight;
 
   &.cbn-toggle--bold {
     @extend %type--semibold;
