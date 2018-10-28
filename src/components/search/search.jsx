@@ -50,6 +50,22 @@ class Search extends React.Component {
   }
 
   /**
+   * React lifecycle method
+   * {@link https://facebook.github.io/react/docs/react-component.html#componentwillreceiveprops}
+   * @param {Object} New component props
+   */
+  componentWillReceiveProps(nextProps) {
+    const newActiveRow = typeof nextProps.activeRow === 'number'
+      && nextProps.activeRow !== this.state.activeRow;
+
+    if (newActiveRow) {
+      this.setState({
+        activeRow: nextProps.activeRow
+      });
+    }
+  }
+
+  /**
    * Update the state with the new value
    * @param  {object} event
    */
