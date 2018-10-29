@@ -31,10 +31,10 @@ class Search extends React.Component {
    */
   constructor(props) {
     super(props);
-    const { value } = props;
+    const { value, activeRow } = props;
 
     this.state = {
-      activeRow: null,
+      activeRow,
       hideResults: true,
       results: this._filterResults(value),
       value
@@ -47,6 +47,22 @@ class Search extends React.Component {
     this._showResults = this._showResults.bind(this);
     this._hideResults = this._hideResults.bind(this);
     this._clearResults = this._clearResults.bind(this);
+  }
+
+  /**
+   * React lifecycle method
+   * {@link https://facebook.github.io/react/docs/react-component.html#componentwillreceiveprops}
+   * @param {Object} New component props
+   */
+  componentWillReceiveProps(nextProps) {
+    const newActiveRow = typeof nextProps.activeRow === 'number'
+      && nextProps.activeRow !== this.state.activeRow;
+
+    if (newActiveRow) {
+      this.setState({
+        activeRow: nextProps.activeRow
+      });
+    }
   }
 
   /**
@@ -308,7 +324,11 @@ Search.propTypes = {
   /**
    * Theme of the component
    */
-  theme: PropTypes.oneOf(['light', 'dark']).isRequired
+  theme: PropTypes.oneOf(['light', 'dark']).isRequired,
+  /**
+   * Passing activeRow will highlight the index of the row supplied
+   */
+  activeRow: PropTypes.number
 };
 
 export default Search;
