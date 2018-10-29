@@ -34,7 +34,7 @@ class Search extends React.Component {
     const { value, activeRow } = props;
 
     this.state = {
-      activeRow: activeRow || null,
+      activeRow,
       hideResults: true,
       results: this._filterResults(value),
       value
