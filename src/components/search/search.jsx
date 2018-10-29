@@ -31,10 +31,10 @@ class Search extends React.Component {
    */
   constructor(props) {
     super(props);
-    const { value } = props;
+    const { value, activeRow } = props;
 
     this.state = {
-      activeRow: props.activeRow || null,
+      activeRow: activeRow || null,
       hideResults: true,
       results: this._filterResults(value),
       value
@@ -209,7 +209,7 @@ class Search extends React.Component {
   render() {
     const { activeRow, hideResults, results, value } = this.state;
     const { height, row, RowItem, searchBarProps, searchResultsProps, showResults, theme } = this.props;
-    
+
     return (
       <div
         className='cbn-search'
@@ -326,7 +326,7 @@ Search.propTypes = {
    */
   theme: PropTypes.oneOf(['light', 'dark']).isRequired,
   /**
-   * activeRow should be a number
+   * Passing activeRow will highlight the index of the row supplied
    */
   activeRow: PropTypes.number
 };
