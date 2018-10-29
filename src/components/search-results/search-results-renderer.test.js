@@ -71,7 +71,8 @@ test('SearchResults should highlight the active row', t => {
 
   t.is(wrapper.find('.cbn-search-results__row--active').length, 1);
   t.is(
-    wrapper.find('.cbn-search-results__row--active').prop('title'),
+    wrapper.find('.cbn-search-results__row--active')
+           .prop('title'),
     testProps.results[activeRow].label
   );
 });
