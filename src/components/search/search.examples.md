@@ -48,14 +48,39 @@ const dummyData = Array.from(Array(30).keys()).map(i => ({
     label: `Lorem ipsum dolor sit amet ${i}` }
 ));
 
-<div style={{paddingBottom:'200px'}}>
-    <Search
-        activeRow={1}
-        showResults={true}
-        results={dummyData}
-        RowItem={RowItem}
-        searchResultsProps={{ onClick: console.log }}
-        theme='light'
-        value='lor' />
-</div>
+class SearchActiveRow extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            currentActiveRow: 1
+        };
+    }
+
+    componentDidMount() {
+        setInterval(() => {
+            this.setState({
+                currentActiveRow: Math.floor(Math.random() * 4) + 1    
+            })
+            
+        }, 1000)
+    }
+
+    render() {
+        return (
+            <div style={{paddingBottom:'200px'}}>
+                <Search
+                    activeRow={this.state.currentActiveRow}
+                    showResults={true}
+                    results={dummyData}
+                    RowItem={RowItem}
+                    searchResultsProps={{ onClick: console.log }}
+                    theme='light'
+                    value='lor' />
+            </div>
+        );
+    }
+}
+
+<SearchActiveRow />
 ```
