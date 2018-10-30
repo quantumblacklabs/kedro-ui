@@ -12,7 +12,7 @@ $range-input-height: 24px;
 
 $thumb-size: 4px;
 $thumb-border-width: 5px;
-$thumb-width: calc($thumb-size + $thumb-border-width / 2);
+$thumb-width: calc($thumb-size / 2 + $thumb-border-width / 2);
 
 $track-height: 2px;
 
@@ -40,7 +40,8 @@ $hidden-elements-height: 1px;
 
   width: $thumb-size;
   height: $thumb-size;
-  margin-top: calc(-2 * $thumb-size);
+
+  margin-top: calc(($thumb-size + $thumb-border-width + $thumb-border-width) / -2);
 
   border-width: $thumb-border-width;
   border-style: solid;
@@ -155,7 +156,8 @@ $hidden-elements-height: 1px;
 /** SLIDER LINE **/
 .cbn-slider__line {
   position: absolute;
-  top: calc(50% - $thumb-width / 2);
+  top: 50%;
+  margin-top: -$track-height;
 
   /** slider's 0% will appear to be in thumb's center **/
   left: $thumb-width;
@@ -168,13 +170,6 @@ $hidden-elements-height: 1px;
 }
 
 /** SLIDER TICKS **/
-.cbn-slider__ticks {
-  position: absolute;
-
-  width: 100%;
-  height: $wrapper-height;
-}
-
 .cbn-slider__tick-number-group,
 .cbn-slider__tick-symbol-group {
   position: absolute;
@@ -183,6 +178,9 @@ $hidden-elements-height: 1px;
   justify-content: space-between;
 
   width: 100%;
+}
+
+.cbn-slider__tick-number-group {
   height: $wrapper-height;
 }
 
@@ -209,12 +207,16 @@ $hidden-elements-height: 1px;
   margin-left: -$thumb-width;
 }
 
+.cbn-slider__tick-symbol-group {
+  top: calc(($range-input-height / 2) - ($track-height / 2));
+}
+
 .cbn-slider__tick-symbol {
   position: relative;
-  top: $tick-symbol-top;
+  top: -$track-height;
 
   width: calc($track-height * 2);
-  min-height: calc($track-height * 2);
+  min-height: 0;
   height: calc($track-height * 2);
   margin: 0;
   padding: 0;

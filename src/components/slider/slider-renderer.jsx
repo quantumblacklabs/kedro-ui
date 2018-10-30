@@ -130,31 +130,29 @@ class SliderRenderer extends React.Component {
         {label}
         <div className='cbn-slider__controls'>
           <div className='cbn-slider__range'>
-            <div className='cbn-slider__ticks'>
-              <TickRenderer
-                componentPrefix='cbn-slider'
-                id={this.props.listId}
-                min={this.props.min}
-                max={this.props.max}
-                minRange={0}
-                maxRange={this.state.value}
-                numberWidth={this.props.tickNumberWidth}
-                step={this.props.tickStep}
-                percentage={this.props.percentage}
-                type='number'
-                width={this.props.sliderWidth} />
-              <TickRenderer
-                componentPrefix='cbn-slider'
-                min={this.props.min}
-                max={this.props.max}
-                minRange={0}
-                maxRange={this.state.value}
-                numberWidth={this.props.tickNumberWidth}
-                step={this.props.tickStep}
-                percentage={this.props.percentage}
-                type='symbol'
-                width={this.props.sliderWidth} />
-            </div>
+            <TickRenderer
+              componentPrefix='cbn-slider'
+              id={this.props.listId}
+              min={this.props.min}
+              max={this.props.max}
+              minRange={0}
+              maxRange={this.state.value}
+              numberWidth={this.props.tickNumberWidth}
+              step={this.props.tickStep}
+              percentage={this.props.percentage}
+              type='number'
+              width={this.props.sliderWidth} />
+            <TickRenderer
+              componentPrefix='cbn-slider'
+              min={this.props.min}
+              max={this.props.max}
+              minRange={0}
+              maxRange={this.state.value}
+              numberWidth={this.props.tickNumberWidth}
+              step={this.props.tickStep}
+              percentage={this.props.percentage}
+              type='symbol'
+              width={this.props.sliderWidth} />
             <div
               ref={lineFilled => { this._lineFilled = lineFilled; }}
               className='cbn-slider__line' />

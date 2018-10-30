@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 const EventIndicatorRenderer = ({ color, count, name, theme }) => (
   <div
     aria-label={`${name} events: ${count}`}
-    className='cbn-sg-playground__event'
+    className='carbon cbn-sg-playground__event'
     role='marquee'>
     <svg width='80' height='80'>
       <circle

@@ -28,6 +28,7 @@ const ToggleRenderer = ({
   return (
     <div
       className={classnames(
+        'carbon',
         'cbn-toggle',
         `cbn-theme--${theme}`,
         { 'cbn-toggle--disabled': disabled }

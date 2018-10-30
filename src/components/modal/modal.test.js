@@ -15,9 +15,9 @@ test('Modal should have correct structure', t => {
     </Modal>
   );
 
-  t.true(wrapper.find('.modal__bg').length === 1);
-  t.true(wrapper.find('.modal__content').length === 1);
-  t.true(wrapper.find('.modal__wrapper').length === 1);
+  t.true(wrapper.find('.cbn-modal__bg').length === 1);
+  t.true(wrapper.find('.cbn-modal__content').length === 1);
+  t.true(wrapper.find('.cbn-modal__wrapper').length === 1);
   t.true(wrapper.find('Button').length === 0);
 });
 
@@ -26,7 +26,7 @@ test('Modal should have button and description when supplied no children', t => 
     <Modal title='Hello Test' />
   );
 
-  t.true(wrapper.find('.modal__description').length === 1);
+  t.true(wrapper.find('.cbn-modal__description').length === 1);
   t.true(wrapper.find('Button').length === 1);
 });
 

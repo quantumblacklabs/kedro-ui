@@ -23,7 +23,7 @@ const DropdownRenderer = ({
   title,
   width
 }) => {
-  const wrapperClasses = classnames('cbn-dropdown', `cbn-theme--${theme}`, { 'cbn-dropdown--open': open });
+  const wrapperClasses = classnames('carbon', 'cbn-dropdown', `cbn-theme--${theme}`, { 'cbn-dropdown--open': open });
   let optionIndex = 0;
 
   /**

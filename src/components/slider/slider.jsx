@@ -111,6 +111,7 @@ class Slider extends React.Component {
     return (
       <div
         className={classnames(
+          'carbon',
           'cbn-slider',
           `cbn-slider--${type}`,
           `cbn-theme--${theme}`,

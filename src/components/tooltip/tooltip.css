@@ -14,9 +14,6 @@ $duration-opacity: 0.3s;
   @mixin themed color, tooltip, text;
   @mixin themed background, tooltip;
 
-  @extend %type--body-2;
-  @extend %type--semibold;
-
   display: inline-block;
 
   padding: $size-padding;
@@ -56,4 +53,11 @@ $duration-opacity: 0.3s;
 
 .cbn-tooltip--right {
   transform: translate(0, 0);
+}
+
+.cbn-tooltip__text {
+  @extend %type--body-2;
+  @extend %type--semibold;
+
+  display: inline-block;
 }
