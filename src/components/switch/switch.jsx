@@ -47,7 +47,13 @@ const Switch = ({
   const extraClasses = {};
   extraClasses[`cbn-switch-${type}--disabled`] = disabled;
 
-  const _containerClassNames = classnames('carbon', 'cbn-switch', `cbn-switch-${type}`, `cbn-theme--${theme}`, extraClasses);
+  const _containerClassNames = classnames(
+    'carbon',
+    'cbn-switch',
+    `cbn-switch-${type}`,
+    `cbn-theme--${theme}`,
+    extraClasses
+  );
 
   return (
     <div className={_containerClassNames}>
