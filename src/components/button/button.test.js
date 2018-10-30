@@ -19,7 +19,11 @@ test('Button should correctly render its text value', t => {
   const text = 'I am a button!';
   const wrapper = shallow(<Button>{ text }</Button>);
 
-  t.is(wrapper.find('button').text(), text);
+  t.is(
+    wrapper.find('button')
+           .text(),
+    text
+  );
 });
 
 test('Button should handle click events', t => {

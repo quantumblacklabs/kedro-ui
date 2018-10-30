@@ -29,7 +29,11 @@ bower_components
 # Compiled code
 /tmp/
 /styleguide/
-/dist/
+
+# Source code
+/src/
+/templates/
+/test/
 
 # Cypress.io
 cypress/screenshots
