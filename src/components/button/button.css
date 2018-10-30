@@ -7,8 +7,8 @@
 $color-secondary-active: rgba(0, 0, 0, 0.12);
 $timing-primary: 0.2s;
 $secondary-underline-height: 2px;
-$secondary-underline-offset: 6px;
-$secondary-underline-offset-hover: 2px;
+$secondary-underline-offset: 8px;
+$secondary-underline-offset-hover: 4px;
 
 /** Implementation **/
 
