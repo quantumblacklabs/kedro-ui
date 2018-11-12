@@ -137,8 +137,8 @@
     "stylelint-order": "^0.4.4"
   },
   "peerDependencies": {
-    "react": "^15.5.4",
-    "react-dom": "^15.4.2"
+    "react": "^16.6.0",
+    "react-dom": "^16.6.0"
   },
   "engines": {
     "node": "6.9",
