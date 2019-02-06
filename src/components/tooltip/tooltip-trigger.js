@@ -37,7 +37,10 @@ const TooltipTriggerHOC = WrapperComponent => {
     componentDidMount() {
       // Grab the tooltip and add window scroll events
       this.tooltip = document.querySelector(`.cbn-tooltip[data-tooltip-id="${this.props.tooltipId}"]`);
-      this.tooltip.classList.add('cbn-tooltip--fixed');
+
+      if (this.tooltip) {
+        this.tooltip.classList.add('cbn-tooltip--fixed');
+      }
 
       window.addEventListener('scroll', this._hideTooltip);
     }

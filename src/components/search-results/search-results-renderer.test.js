@@ -1,9 +1,12 @@
 import test from 'ava';
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 
 import SearchResultsRenderer from './search-results-renderer';
 import { getHighlightedText } from './search-results-utils';
+
+configure({ adapter: new Adapter() });
 
 const testProps = {
   activeRow: null,

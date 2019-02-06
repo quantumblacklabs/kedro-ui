@@ -1,8 +1,11 @@
 import test from 'ava';
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 import sinon from 'sinon';
 import Switch from './switch';
+
+configure({ adapter: new Adapter() });
 
 test('Switch should be a function', t => {
   t.is(typeof Switch, 'function');

@@ -1,9 +1,11 @@
 import test from 'ava';
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow, configure } from 'enzyme';
 import sinon from 'sinon';
-
+import Adapter from 'enzyme-adapter-react-16';
 import Button from './button';
+
+configure({ adapter: new Adapter() });
 
 test('Button should be a function', t => {
   t.is(typeof Button, 'function');
@@ -27,16 +29,13 @@ test('Button should correctly render its text value', t => {
 });
 
 test('Button should handle click events', t => {
-  const spy = sinon.spy();
-  const wrapper = mount(<Button onClick={spy} />);
+  const onClick = sinon.spy();
+  const wrapper = shallow(<Button onClick={onClick} />);
 
-  t.is(typeof wrapper.props().onClick, 'function');
-
-  wrapper
-    .find('button')
+  wrapper.find('button')
     .simulate('click');
 
-  t.is(spy.callCount, 1);
+  t.is(onClick.callCount, 1);
 });
 
 test('Button should correctly be disabled', () => {

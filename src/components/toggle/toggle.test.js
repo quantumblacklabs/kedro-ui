@@ -1,9 +1,12 @@
 import test from 'ava';
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow, mount, configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 import sinon from 'sinon';
 
 import Toggle from './toggle';
+
+configure({ adapter: new Adapter() });
 
 test('Toggle should be a function', t => {
   t.is(typeof Toggle, 'function');
