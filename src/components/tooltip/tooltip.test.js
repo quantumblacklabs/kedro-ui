@@ -1,8 +1,11 @@
 import test from 'ava';
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 
 import Tooltip from './tooltip';
+
+configure({ adapter: new Adapter() });
 
 test('Tooltip should be a function', t => {
   t.is(typeof Tooltip, 'function');

@@ -1,8 +1,11 @@
 import test from 'ava';
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 
 import Input from './input';
+
+configure({ adapter: new Adapter() });
 
 test('Input should be a function', t => {
   t.is(typeof Input, 'function');

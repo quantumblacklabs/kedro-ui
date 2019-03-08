@@ -1,7 +1,10 @@
 import test from 'ava';
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 import Checkbox from './checkbox';
+
+configure({ adapter: new Adapter() });
 
 test('Checkbox should be a function', t => {
   t.is(typeof Checkbox, 'function');
