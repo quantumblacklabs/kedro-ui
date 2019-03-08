@@ -51,6 +51,6 @@ test('Tabs should be created with all the user defined props', t => {
 
   t.is(spy.callCount, 1);
 
-  // // also verify the structure
+  // also verify the structure
   t.is(wrapper.find('li').length, 3);
 });
