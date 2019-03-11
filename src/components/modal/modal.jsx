@@ -4,9 +4,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'components/button';
 import Icon from 'components/icon';
-import { handleKeyEvent } from 'utils';
 import GSAP from 'react-gsap-enhancer';
 import { TimelineLite } from 'gsap';
+
+import utils from 'utils';
+
+const handleKeyEvent = utils.handleKeyEvent;
 
 // Styles
 

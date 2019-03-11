@@ -1,0 +1,11 @@
+/** Breakpoints **/
+$breakpoint-xsmall: 320px;
+$breakpoint-small: 480px;
+$breakpoint-medium: 768px;
+$breakpoint-large: 1024px;
+$breakpoint-xlarge: 1440px;
+$breakpoint-xxlarge: 1920px;
+
+/** Sizing **/
+$size-icon-base: 24px;
+$rem-base: 10px;

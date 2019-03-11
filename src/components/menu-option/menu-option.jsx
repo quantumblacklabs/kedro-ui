@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { handleKeyEvent } from 'utils';
+import utils from 'utils';
+
+const handleKeyEvent = utils.handleKeyEvent;
 
 // Components
 import Icon from 'components/icon';

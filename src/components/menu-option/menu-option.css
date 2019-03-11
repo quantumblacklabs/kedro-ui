@@ -69,7 +69,7 @@ $menu-item-padding: 12px;
     position: absolute;
     right: 0;
 
-    margin: 0 $menu-menu-item-padding;
+    margin: 0 $menu-item-padding;
 
     opacity: 0.5;
 

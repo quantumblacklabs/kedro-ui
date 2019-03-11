@@ -2,8 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { uniqueId } from 'lodash';
 import assert from 'assert';
-import { handleKeyEvent } from 'utils';
 import ToggleRenderer from './toggle-renderer';
+import utils from 'utils';
+
+const handleKeyEvent = utils.handleKeyEvent;
 
 import './toggle.css';
 

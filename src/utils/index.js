@@ -6,7 +6,7 @@ import {
   getHighlightedText
  } from '../components/search-results/search-results-utils';
 
-module.exports = {
+export default {
   CustomPropTypes,
   handleKeyEvent,
   escapeRegExp,

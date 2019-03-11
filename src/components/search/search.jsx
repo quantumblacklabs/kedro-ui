@@ -4,7 +4,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import SearchBar from 'components/search-bar';
 import SearchResults from 'components/search-results';
-import { escapeRegExp, handleKeyEvent } from '../../utils';
+import utils from 'utils';
+
+const escapeRegExp = utils.escapeRegExp;
+const handleKeyEvent = utils.handleKeyEvent;
+
+console.log(escapeRegExp)
 
 // Styles
 
