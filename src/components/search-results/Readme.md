@@ -1,6 +1,8 @@
 Search results component with dummy data:
 
 ```
+import SearchResults from 'components/search-results';
+
 const dummyData = [
         { icon: 'copy', label: 'Lorem ipsum dolor sit amet' },
         { icon: 'paste', label: 'Consetetur sadipscing elitr' },
@@ -38,6 +40,8 @@ const dummyData = [
 Search results component with custom row element, a search term, and an active row:
 
 ```
+import SearchResults from 'components/search-results';
+
 const RowItem = ({ text }) => (
     <div style={{ display: 'flex' }}>
         🌧 { text } 🌍

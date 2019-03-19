@@ -1,6 +1,8 @@
 Basic modal component, could be used for system messages with user confirmation
 
 ```
+import Button from 'components/button';
+
 /**
  * Basic Modal Trigger Example
  */
@@ -28,10 +30,11 @@ class ModalTrigger extends React.Component {
   render() {
     return (
       <div>
-        <Button onClick={this.onTriggered.bind(this)}>Trigger Modal</Button>
+        <Button theme='light' onClick={this.onTriggered.bind(this)}>Trigger Modal</Button>
         {
           this.state.visible &&
           <Modal
+            theme='light'
             title='Warning!'
             message='Are you sure you want to delete the current item? You cannot undo this action.'
             buttonLabel='Confirm Deletion'
@@ -49,6 +52,10 @@ class ModalTrigger extends React.Component {
 Example showing how you can use custom modal content
 
 ```
+import Button from 'components/button';
+import Dropdown from 'components/dropdown';
+import MenuOption from 'components/menu-option';
+
 /**
  * Custom Modal Trigger Example
  */
@@ -84,14 +91,15 @@ class ModalTrigger extends React.Component {
 
     return (
       <div>
-        <Button onClick={this.onTriggered.bind(this)}>Trigger Modal</Button>
+        <Button theme='light' onClick={this.onTriggered.bind(this)}>Trigger Modal</Button>
         {
           this.state.visible &&
           <Modal
+            theme='light'
             title='Custom Modal'
             onClose={this.onClose.bind(this)}
             visible={this.state.visible}>
-            <p style={{color: 'rgba(255, 255, 255, 0.55)', marginBottom: '40px'}}>Please select reason for deletion. We need to track this for auditing.</p>
+            <p style={{fontSize: '2rem', color: 'rgba(0, 0, 0, 0.55)', marginBottom: '40px'}}>Please select reason for deletion. We need to track this for auditing.</p>
             <Dropdown
                 theme='light'
                 onOpened={ null }
@@ -105,6 +113,7 @@ class ModalTrigger extends React.Component {
             <div style={containerStyle}>
               <div style={{marginRight: '20px'}}>
               <Button
+                theme='light'
                 onClick={this.onClose.bind(this)}
                 size='small'
                 type='secondary'>
@@ -112,6 +121,7 @@ class ModalTrigger extends React.Component {
               </Button>
               </div>
               <Button
+                theme='light'
                 onClick={this.onClose.bind(this)}
                 size='small'>
                 OK

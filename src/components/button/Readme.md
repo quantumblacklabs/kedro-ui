@@ -42,12 +42,17 @@ Disabled buttons
 
 Button with Icon
 ```
+import Icon from 'components/icon';
+
 <section>
     <div style={{ marginRight: '12px', display: 'inline-block' }}>
         <Button theme='light'><Icon type='paste' size='small' theme='light' /> Hello world!</Button>
     </div>
     <div style={{ display: 'inline-block' }}>
-        <Button theme='light' type='secondary'><Icon type='paste' size='small' theme='light' /> Hello world!</Button>
+        <Button theme='light' type='secondary'>
+            <Icon type='paste' size='small' theme='light' />
+            <span>Hello world!</span>
+        </Button>
     </div>
 </section>
 ```

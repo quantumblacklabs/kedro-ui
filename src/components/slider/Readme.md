@@ -1,6 +1,8 @@
 Single-handler slider component with minimum and maximum number of properties
 
 ```
+import Slider from 'components/slider';
+
 <section>
     <div style={{ margin: '0 0 50px 90px' }}>
         <Slider theme='light' />
@@ -24,6 +26,8 @@ Single-handler slider component with minimum and maximum number of properties
 Single-handler slider component with different min and max range
 
 ```
+import Slider from 'components/slider';
+
 <section>
     <Slider
         label='Range of values'
@@ -41,6 +45,8 @@ Single-handler slider component with different min and max range
 Multi-ranged slider component
 
 ```
+import Slider from 'components/slider';
+
 <section>
     <div style={{ margin: '0 0 80px 0' }}>
         <Slider

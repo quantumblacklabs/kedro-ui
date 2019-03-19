@@ -1,11 +1,11 @@
 module.exports = {
   parser: 'postcss-scss',
   plugins: {
+    'postcss-preset-env': {},
     'postcss-import': {},
     'postcss-mixins': {},
     'postcss-extend-rule': {},
     'postcss-advanced-variables': {},
-    'postcss-preset-env': {},
     'postcss-atroot': {},
     'postcss-property-lookup': {},
     'postcss-nested': {},

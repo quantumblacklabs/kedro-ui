@@ -1,6 +1,8 @@
 Simple, single line, notification
 
 ```
+import Notification from 'components/notification';
+
 <div style={{ width: '500px' }}>
   <Notification
     type='inline'
@@ -13,6 +15,8 @@ Simple, single line, notification
 Single line notification with an icon
 
 ```
+import Notification from 'components/notification';
+
 <div style={{ width: '500px' }}>
   <Notification
     icon='undo'
@@ -26,6 +30,8 @@ Single line notification with an icon
 You can change the display type to multiline if you want to break up the content
 
 ```
+import Notification from 'components/notification';
+
 <div style={{ width: '500px' }}>
   <Notification
     icon='refresh'
@@ -38,7 +44,10 @@ You can change the display type to multiline if you want to break up the content
 
 Using a notification list component, allows you to display application level notifications. In this demo we can create persistent notifications that require user to close them to dismiss them from the screen.
 ```
-const _ = require('lodash');
+import _ from 'lodash';
+import Notification from 'components/notification';
+import Button from 'components/button';
+import NotificationList from 'components/notification/notification-list';
 
 class NotificationListDemo extends React.Component {
   constructor(props) {
@@ -84,7 +93,10 @@ class NotificationListDemo extends React.Component {
 
 If they do not need user input, you can provide the list with a removeAfter property, to automagically remove them from the screen.
 ```
-const _ = require('lodash');
+import _ from 'lodash';
+import Notification from 'components/notification';
+import Button from 'components/button';
+import NotificationList from 'components/notification/notification-list';
 
 class NotificationListDemo extends React.Component {
   constructor(props) {

@@ -29,6 +29,8 @@ Checkbox examples
 ```
 Toggle Checkbox programmatically
 ```
+import Button from 'components/button';
+
 class Wrap extends React.Component {
     constructor(props) {
       super(props);
@@ -60,7 +62,7 @@ class Wrap extends React.Component {
                         onChange={this._onChangeCheckbox.bind(this)} />
                 </div>
                 <div style={{ marginRight: '20px', display: 'inline-block' }}>
-                    <Button size='small' onClick={this._toggleCheckbox.bind(this)}>Toggle Checkbox</Button>
+                    <Button theme='light' size='small' onClick={this._toggleCheckbox.bind(this)}>Toggle Checkbox</Button>
                 </div>
             </div>
         );

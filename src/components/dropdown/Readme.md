@@ -1,6 +1,9 @@
 A dropdown component with no selected options by default, and default unselected text.
 A plain array of Menu Options will get wrapped inside a padded section automatically.
 ```
+import Dropdown from 'components/dropdown';
+import MenuOption from 'components/menu-option';
+
 <div style={{ display: 'flex', flexDirection: 'column' }}>
     <Dropdown
         theme='light'
@@ -28,6 +31,9 @@ A plain array of Menu Options will get wrapped inside a padded section automatic
 
 Or you can define the single section yourself. You may want to do this if you also require a heading next to the options.
 ```
+import Dropdown from 'components/dropdown';
+import MenuOption from 'components/menu-option';
+
 <Dropdown
     theme='light'
     onOpened={ null }
@@ -45,6 +51,9 @@ Or you can define the single section yourself. You may want to do this if you al
 
 An initial selected menu option.
 ```
+import Dropdown from 'components/dropdown';
+import MenuOption from 'components/menu-option';
+
 <Dropdown
     theme='light'
     onOpened={ () => console.log('Opened') }
@@ -61,6 +70,10 @@ An initial selected menu option.
 
 Programmatic opening and closing of the Dropdown via `.open()` and `.close()` API methods.
 ```
+import Dropdown from 'components/dropdown';
+import MenuOption from 'components/menu-option';
+import Button from 'components/button';
+
 class Wrap extends React.Component {
     constructor(props) {
       super(props);
@@ -96,6 +109,9 @@ class Wrap extends React.Component {
 
 Using sections and headings to group menu options.
 ```
+import Dropdown from 'components/dropdown';
+import MenuOption from 'components/menu-option';
+
 <Dropdown
     onChanged={ e => console.log(e) }
     width={ 200 }
@@ -116,6 +132,9 @@ Using sections and headings to group menu options.
 
 A selected option within sections.
 ```
+import Dropdown from 'components/dropdown';
+import MenuOption from 'components/menu-option';
+
 <Dropdown
     onChanged={ e => console.log(e) }
     width={ 200 }
@@ -137,6 +156,9 @@ A selected option within sections.
 
 Icons within menu options.
 ```
+import Dropdown from 'components/dropdown';
+import MenuOption from 'components/menu-option';
+
 <Dropdown
     onChanged={ e => console.log(e) }
     width={ 200 }
@@ -153,6 +175,9 @@ Icons within menu options.
 
 Icons within menu options, positioned on the left.
 ```
+import Dropdown from 'components/dropdown';
+import MenuOption from 'components/menu-option';
+
 <Dropdown
     onChanged={ e => console.log(e) }
     width={ 200 }
@@ -168,6 +193,9 @@ Icons within menu options, positioned on the left.
 
 Scrollable dropdown with many children
 ```
+import Dropdown from 'components/dropdown';
+import MenuOption from 'components/menu-option';
+
 <Dropdown width={ 200 } theme='light'>
     <MenuOption primaryText='Menu Item 1' value={ 1 } />
     <MenuOption primaryText='Menu Item 2' value={ 2 } />
@@ -199,6 +227,11 @@ Scrollable dropdown with many children
 The selected option state will update when passing new child props, but should otherwise stay the same when updating other props.
 Edit the text field below to see how the selected option changes when altering the child values, but stays the same when updating the width.
 ```
+import Dropdown from 'components/dropdown';
+import MenuOption from 'components/menu-option';
+import Input from 'components/input';
+import Slider from 'components/slider';
+
 class DropdownStateTest extends React.Component {
     constructor(props) {
         super(props);

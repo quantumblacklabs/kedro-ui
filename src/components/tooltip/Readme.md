@@ -27,8 +27,10 @@ If you want the Tooltip to adhere to a certain width, you can pass a value down,
 
 Using the Tooltip in conjunction with the HOC tooltip trigger, which allows you to compose a complex component - giving it tooltip displaying abilities.
 ```
-const _ = require('lodash');
-const TooltipTrigger = require('./tooltip-trigger').default;
+import _ from 'lodash';
+import TooltipTrigger from 'components/tooltip/tooltip-trigger';
+import Dropdown from 'components/dropdown';
+import MenuOption from 'components/menu-option';
 
 const id = _.uniqueId();
 class MyComponent extends React.Component {
@@ -61,8 +63,9 @@ const DropDownTTTrigger = TooltipTrigger(MyComponent);
 
 You can provide the wrapped component with a display direction for where you want the Tooltip to display from.
 ```
-const _ = require('lodash');
-const TooltipTrigger = require('./tooltip-trigger').default;
+import _ from 'lodash';
+import TooltipTrigger from 'components/tooltip/tooltip-trigger';
+import Icon from 'components/icon';
 
 class MyComponent extends React.Component {
   render() {

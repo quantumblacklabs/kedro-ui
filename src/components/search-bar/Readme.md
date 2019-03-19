@@ -1,10 +1,14 @@
 Search bar component, used (usually in addition with a results box) for user search.
 
 ```
+import SearchBar from 'components/search-bar';
+
 <SearchBar theme='light'/>
 ```
 
 ```
+import SearchBar from 'components/search-bar';
+
 const styleParent = {
   display: 'flex',
   flexDirection: 'column'
@@ -25,6 +29,9 @@ const styleChild = {
 ```
 
 ```
+import SearchBar from 'components/search-bar';
+import Button from 'components/button';
+
 class ChangeParent extends React.Component {
   constructor(props) {
     super(props);

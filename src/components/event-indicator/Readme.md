@@ -1,6 +1,8 @@
 Simple Event Indicator
 
 ```
+import EventIndicator from 'components/event-indicator';
+
 <div style={{ width: '80px', height: '80px' }}>
     <EventIndicator
         colorIndex={2}
@@ -13,6 +15,9 @@ Simple Event Indicator
 Multiple Event Indicators
 
 ```
+import EventIndicator from 'components/event-indicator';
+
+
 <div style={{ width: '240px', height: '80px' }}>
     <EventIndicator
         colorIndex={0}
@@ -33,15 +38,3 @@ Multiple Event Indicators
 ```
 
 Clickable Icon demonstrating event indicator updates (top right)
-
-```
-<div
-    className='example-indicator'
-    onClick={ null }
-    onMouseOver={ null }
-    onMouseOut={ null }
-    style={{ cursor: 'pointer' }}>
-    <Icon type='refresh' size='large' title='' color='cornflowerblue' theme='light' />
-    <span style={{ display: 'block', color: 'grey', fontSize: 16 }}>Click!</span>
-</div>
-```
