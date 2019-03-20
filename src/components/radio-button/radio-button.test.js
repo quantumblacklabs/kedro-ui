@@ -18,8 +18,8 @@ test('RadioButton should create a valid React Component when called with require
       value={1} />
   );
 
-  expect(wrapper.children().length)
-    .toBe(1);
-  expect(wrapper.find('label').length)
-    .toBe(1);
+  expect(wrapper.children())
+    .toHaveLength(1);
+  expect(wrapper.find('label'))
+    .toHaveLength(1);
 });

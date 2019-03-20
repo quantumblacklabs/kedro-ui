@@ -32,7 +32,7 @@ mockData.forEach((dataSet, i) => {
       === dataSet.primaryText)
       .toBeTruthy();
 
-      expect(wrapper.find(`.cbn-menu-option__content[title="${dataSet.primaryText}"]`).length
+    expect(wrapper.find(`.cbn-menu-option__content[title="${dataSet.primaryText}"]`).length
       === 1)
       .toBeTruthy();
   });

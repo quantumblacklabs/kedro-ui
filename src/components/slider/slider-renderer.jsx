@@ -123,7 +123,8 @@ class SliderRenderer extends React.Component {
       <div
         className={classnames(
           'cbn-slider__label',
-          'cbn-slider__label--single')}>
+          'cbn-slider__label--single'
+        )}>
         {this.props.label}
       </div>
     );
@@ -173,7 +174,8 @@ class SliderRenderer extends React.Component {
           <div
             className={classnames(
               'cbn-slider__number-input',
-              'cbn-slider__number-input--single')}>
+              'cbn-slider__number-input--single'
+            )}>
             <Input
               value={this.state.value.toString()}
               onBlur={this._handleBlured} />

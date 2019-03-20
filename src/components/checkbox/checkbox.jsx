@@ -13,7 +13,9 @@ import './checkbox.css';
  * Checkbox is a simple input element which can be either checked or unchecked;
  * its state does not effect other checkboxes, therefore multiple checkboxes can be checked at the same time.
  */
-const Checkbox = ({ checked, defaultChecked, disabled, label, name, onChange, theme, value }) => {
+const Checkbox = ({
+  checked, defaultChecked, disabled, label, name, onChange, theme, value
+}) => {
   const id = uniqueId('checkbox');
 
   return (

@@ -22,8 +22,8 @@ test('Switch should create a valid React Component when called with required pro
 
   expect(wrapper.children().length === 1)
     .toBeTruthy();
-  expect(wrapper.find('input').length)
-    .toBe(1);
+  expect(wrapper.find('input'))
+    .toHaveLength(1);
 });
 
 test('Switch should trigger onChange event when clicked', () => {

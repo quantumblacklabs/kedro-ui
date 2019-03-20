@@ -4,7 +4,7 @@ import {
   escapeRegExp,
   getValueRegex,
   getHighlightedText
- } from '../components/search-results/search-results-utils';
+} from '../components/search-results/search-results-utils';
 
 export default {
   CustomPropTypes,

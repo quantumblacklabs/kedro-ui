@@ -24,10 +24,10 @@ test('getHighlightedText should highlight search terms', () => {
   const fail = getHighlightedText(text, 'qwertyuiop');
 
   // Check successful matches
-  expect(match1.match(/<b>/g).length)
-    .toBe(1);
-  expect(match2.match(/<b>/g).length)
-    .toBe(2);
+  expect(match1.match(/<b>/g))
+    .toHaveLength(1);
+  expect(match2.match(/<b>/g))
+    .toHaveLength(2);
   expect(match1.match(/<b>(\w+)<\/b>/)[1])
     .toBe('amet');
   // Check failed match

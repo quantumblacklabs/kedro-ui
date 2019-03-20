@@ -57,15 +57,16 @@ test('Toggle should be created with all the user defined props', () => {
   wrapper.find('input')
     .simulate('change');
 
-  expect(spy.callCount).toBe(1);
+  expect(spy.callCount)
+    .toBe(1);
 
   // also verify the structure
-  expect(wrapper.find('.cbn-toggle__label').length)
-    .toBe(1);
-  expect(wrapper.find('.cbn-toggle__button').length)
-    .toBe(2);
+  expect(wrapper.find('.cbn-toggle__label'))
+    .toHaveLength(1);
+  expect(wrapper.find('.cbn-toggle__button'))
+    .toHaveLength(2);
 });
 
 test('Toggle should throw an error when only 1 text is provided', () => {
-  //t.throws(() => { shallow(<Toggle texts={['UP']} />); }, Error);
+  // t.throws(() => { shallow(<Toggle texts={['UP']} />); }, Error);
 });

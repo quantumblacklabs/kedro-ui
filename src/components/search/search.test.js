@@ -50,17 +50,18 @@ test('Search should render correct structure', () => {
     <Search {...testProps} />
   );
   const searchBarRenderComponent = wrapper.find(SearchBar)
-                                          .dive()
-                                          .dive();
+    .dive()
+    .dive();
   const searchResultsRenderComponent = wrapper.find(SearchResults)
-                                              .dive()
-                                              .dive();
+    .dive()
+    .dive();
 
-  expect(wrapper.find('.cbn-search').length).toBe(1);
-  expect(searchBarRenderComponent.find('.cbn-searchbar').length)
-    .toBe(1);
-  expect(searchResultsRenderComponent.find('.cbn-search-results').length)
-    .toBe(1);
+  expect(wrapper.find('.cbn-search'))
+    .toHaveLength(1);
+  expect(searchBarRenderComponent.find('.cbn-searchbar'))
+    .toHaveLength(1);
+  expect(searchResultsRenderComponent.find('.cbn-search-results'))
+    .toHaveLength(1);
 });
 
 test('Search should have a light theme class', () => {
@@ -68,11 +69,11 @@ test('Search should have a light theme class', () => {
     <Search {...testProps} theme='light' />
   );
   const searchResultsRenderComponent = wrapper.find(SearchResults)
-                                              .dive()
-                                              .dive();
+    .dive()
+    .dive();
 
-  expect(searchResultsRenderComponent.find('.cbn-theme--light').length)
-    .toBe(1);
+  expect(searchResultsRenderComponent.find('.cbn-theme--light'))
+    .toHaveLength(1);
 });
 
 test('Search should have a dark theme class', () => {
@@ -80,11 +81,11 @@ test('Search should have a dark theme class', () => {
     <Search {...testProps} theme='dark' />
   );
   const searchResultsRenderComponent = wrapper.find(SearchResults)
-                                              .dive()
-                                              .dive();
+    .dive()
+    .dive();
 
-  expect(searchResultsRenderComponent.find('.cbn-theme--dark').length)
-    .toBe(1);
+  expect(searchResultsRenderComponent.find('.cbn-theme--dark'))
+    .toHaveLength(1);
 });
 
 test('SearchResults should highlight the active row', () => {
@@ -93,13 +94,14 @@ test('SearchResults should highlight the active row', () => {
     <Search {...testProps} activeRow={activeRow} />
   );
   const searchResultsRenderComponent = wrapper.find(SearchResults)
-                                              .dive()
-                                              .dive();
+    .dive()
+    .dive();
 
-  expect(searchResultsRenderComponent.find('.cbn-search-results__row--active').length)
-    .toBe(1);
+  expect(searchResultsRenderComponent.find('.cbn-search-results__row--active'))
+    .toHaveLength(1);
   expect(
     searchResultsRenderComponent.find('.cbn-search-results__row--active')
-      .prop('title'))
+      .prop('title')
+  )
     .toBe(testProps.results[activeRow].label);
 });

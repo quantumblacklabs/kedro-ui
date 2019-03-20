@@ -7,7 +7,8 @@ configure({ adapter: new Adapter() });
 
 // check the type of the component
 test('SearchBar should be a function', () => {
-  expect(typeof SearchBar).toBe('function');
+  expect(typeof SearchBar)
+    .toBe('function');
 });
 
 // should render correctly
@@ -16,7 +17,10 @@ test('SearchBar should render correctly', () => {
     <SearchBar />
   );
 
-  expect(wrapper.props().iconType).toBe('search');
-  expect(typeof wrapper.props().onChange).toBe('function');
-  expect(typeof wrapper.props().onClear).toBe('function');
+  expect(wrapper.props().iconType)
+    .toBe('search');
+  expect(typeof wrapper.props().onChange)
+    .toBe('function');
+  expect(typeof wrapper.props().onClear)
+    .toBe('function');
 });

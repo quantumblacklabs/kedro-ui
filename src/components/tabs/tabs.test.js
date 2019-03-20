@@ -46,7 +46,7 @@ test('Tabs should be created with all the user defined props', () => {
       onSelect={spy}
       selectedIndex={1}
       size='small'
-        
+
       tabs={tabData}
       theme='light' />
   );
@@ -59,6 +59,6 @@ test('Tabs should be created with all the user defined props', () => {
     .toBe(1);
 
   // also verify the structure
-  expect(wrapper.find('li').length)
-    .toBe(3);
+  expect(wrapper.find('li'))
+    .toHaveLength(3);
 });

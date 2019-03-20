@@ -24,7 +24,8 @@ const testProps = {
 };
 
 test('SearchResults should be a function', () => {
-  expect(typeof SearchResults).toBe('function');
+  expect(typeof SearchResults)
+    .toBe('function');
 });
 
 test('SearchResults should render correctly', () => {
@@ -32,6 +33,8 @@ test('SearchResults should render correctly', () => {
     <SearchResults {...testProps} />
   );
 
-  expect(typeof wrapper.props().row).toBe('object');
-  expect(typeof wrapper.props().results).toBe('object');
+  expect(typeof wrapper.props().row)
+    .toBe('object');
+  expect(typeof wrapper.props().results)
+    .toBe('object');
 });

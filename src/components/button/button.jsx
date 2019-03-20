@@ -22,6 +22,7 @@ const Button = ({
 }) => (
   <span className='carbon cbn-button'>
     <button
+      type='button'
       className={classnames(
         'cbn-button__btn',
         `cbn-button__btn--${animation}`,

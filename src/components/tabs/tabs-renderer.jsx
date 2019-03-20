@@ -74,8 +74,7 @@ const TabsRenderer = ({
               data-tabindex={i}>
               { _renderTabButton(tab, i) }
             </li>
-            )
-          )
+          ))
         }
       </ul>
     </div>

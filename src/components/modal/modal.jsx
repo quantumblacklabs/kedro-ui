@@ -9,11 +9,11 @@ import { TimelineLite } from 'gsap';
 
 import utils from 'utils';
 
-const handleKeyEvent = utils.handleKeyEvent;
-
 // Styles
 
 import './index.css';
+
+const { handleKeyEvent } = utils;
 
 /**
  * Create animation
@@ -100,7 +100,9 @@ class Modal extends React.Component {
           <Button
             onClick={onClose}
             theme={theme}
-            size='small'>{buttonLabel}</Button>
+            size='small'>
+            {buttonLabel}
+          </Button>
         </div>
       );
     }
@@ -138,7 +140,9 @@ class Modal extends React.Component {
           <div
             className='cbn-modal__wrapper'>
             <div
-              className='cbn-modal__title'>{title}</div>
+              className='cbn-modal__title'>
+              {title}
+            </div>
             { content }
           </div>
         </div>

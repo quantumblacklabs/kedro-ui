@@ -7,7 +7,8 @@ import Button from './button';
 configure({ adapter: new Adapter() });
 
 test('Button should be a function', () => {
-  expect(typeof Button).toBe('function');
+  expect(typeof Button)
+    .toBe('function');
 });
 
 test('Button should include only one button field', () => {
@@ -49,14 +50,14 @@ test('Button should correctly be disabled', () => {
 test('Button should correctly have light theme class', () => {
   const wrapper = shallow(<Button theme='light' />);
 
-  expect(wrapper.find('.cbn-theme--light').length)
-    .toBe(1);
+  expect(wrapper.find('.cbn-theme--light'))
+    .toHaveLength(1);
 });
 
 test('Button should correctly have dark theme class', () => {
   // dark theme is default, so it should be automatically assigned
   const wrapper = shallow(<Button theme='dark' />);
 
-  expect(wrapper.find('.cbn-theme--dark').length)
-    .toBe(1);
+  expect(wrapper.find('.cbn-theme--dark'))
+    .toHaveLength(1);
 });

@@ -6,7 +6,8 @@ import SearchBarRenderer from './search-bar-renderer';
 configure({ adapter: new Adapter() });
 
 test('SearchBarRenderer should be a function', () => {
-  expect(typeof SearchBarRenderer).toBe('function');
+  expect(typeof SearchBarRenderer)
+    .toBe('function');
 });
 
 test('SearchBarRenderer should render correct structure', () => {
@@ -17,5 +18,6 @@ test('SearchBarRenderer should render correct structure', () => {
       value='hello world' />
   );
 
-  expect(wrapper.find('Icon').length).toBe(2);
+  expect(wrapper.find('Icon'))
+    .toHaveLength(2);
 });

@@ -36,11 +36,10 @@ const Switch = ({
 
   // if onChange function has been supplied, fire with event and payload - value and checked
   if (typeof onChange === 'function') {
-    _handleOnChange = e =>
-      onChange(e, {
-        checked: e.target.checked,
-        value
-      });
+    _handleOnChange = e => onChange(e, {
+      checked: e.target.checked,
+      value
+    });
   }
 
   // conditional classes based on props

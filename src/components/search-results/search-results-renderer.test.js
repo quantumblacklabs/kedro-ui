@@ -49,10 +49,10 @@ test('SearchResultsRenderer should render correct structure', () => {
   const wrapper = shallow(
     <SearchResultsRenderer {...testProps} />
   );
-  expect(wrapper.find('.cbn-search-results__list').length)
-    .toBe(1);
-  expect(wrapper.find('.cbn-search-results__row').length)
-    .toBe(testProps.results.length);
+  expect(wrapper.find('.cbn-search-results__list'))
+    .toHaveLength(1);
+  expect(wrapper.find('.cbn-search-results__row'))
+    .toHaveLength(testProps.results.length);
 });
 
 test('SearchResultsRenderer should have a light theme class', () => {
@@ -77,8 +77,9 @@ test('SearchResults should highlight the active row', () => {
     <SearchResultsRenderer {...testProps} activeRow={activeRow} />
   );
 
-  expect(wrapper.find('.cbn-search-results__row--active').length)
-    .toBe(1);
-  expect(wrapper.find('.cbn-search-results__row--active').prop('title'))
+  expect(wrapper.find('.cbn-search-results__row--active'))
+    .toHaveLength(1);
+  expect(wrapper.find('.cbn-search-results__row--active')
+    .prop('title'))
     .toBe(testProps.results[activeRow].label);
 });
