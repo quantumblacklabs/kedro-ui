@@ -6,8 +6,8 @@ module.exports = {
   ignore: ['./src/components/**/*-renderer.jsx', './src/components/**/*-list.jsx'],
   serverHost: '0.0.0.0',
   serverPort: 3030,
-  styleguideDir: path.resolve(__dirname, ''),
-  contextDependencies: [path.resolve(__dirname, 'src')],
+  styleguideDir: path.join(__dirname, 'styleguide'),
+  contextDependencies: [path.join(__dirname, 'src')],
   styles: {
     StyleGuide: {
       '@global html': {
