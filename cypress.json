@@ -1,9 +1,0 @@
-{
-  "baseUrl": "http://localhost:3500",
-  "integrationFolder": "cypress/tests",
-  "pageLoadTimeout": 10000,
-  "projectId": "x4tjns",
-  "fileServerFolder": "styleguide",
-  "viewportWidth": 1440,
-  "viewportHeight": 900
-}

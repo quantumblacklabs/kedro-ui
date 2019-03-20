@@ -8,40 +8,15 @@
   ],
   "scripts": {
     "start": "npm run docs:server",
-    "docs:server": "npm run fix:styleguidist && styleguidist server",
+    "docs:server": "styleguidist server",
+    "docs:build": "styleguidist build",
     "static": "node server.js",
     "build": "webpack --mode production",
-    "build:dev": "webpack -d --config webpack.dev.config.js",
-    "docs:build": "styleguidist build",
     "prepush": "npm run test",
     "prepublishOnly": "npm run test && npm run build",
     "stylelint": "stylelint templates/**/*.css --config stylelint.config.js",
     "eslint": "eslint src/**/*.js src/**/*.jsx src/**/*.test.js",
     "test": "jest --config jest-ui.json --maxWorkers=4 --silent --coverage"
-  },
-  "ava": {
-    "babel": {
-      "testOptions": {
-        "presets": [
-          "@babel/preset-react"
-        ]
-      }
-    },
-    "require": [
-      "@babel/register",
-      "./test/helpers/setup-browser-env.js"
-    ]
-  },
-  "nyc": {
-    "reporter": [
-      "lcov",
-      "cobertura",
-      "text",
-      "html"
-    ],
-    "extension": [
-      ".jsx"
-    ]
   },
   "repository": {
     "type": "git",
