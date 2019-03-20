@@ -3,14 +3,14 @@
  * All of these should be escaped: \ ^ $ * + ? . ( ) | { } [ ] < >
  * @param {string} str Search keyword string
  */
-const escapeRegExp = str => str.replace(/[.*+?^${}<>()|[\]\\]/g, '\\$&');
+export const escapeRegExp = str => str.replace(/[.*+?^${}<>()|[\]\\]/g, '\\$&');
 
 /**
  * Create a regular expression to match certain keywords
  * @param  {string} value - The search keyword to highlight
  * @return {object|boolean} Regular expression or false
  */
-const getValueRegex = value => {
+export const getValueRegex = value => {
   if (!value) {
     return false;
   }
@@ -30,17 +30,11 @@ const getWrappedMatch = str => `<b>${str}</b>`;
  * @param  {string} value - The search keyword to highlight
  * @return {string} The original text but with <b> tags wrapped around matches
  */
-const getHighlightedText = (text, value) => {
+export const getHighlightedText = (text, value) => {
   const valueRegex = getValueRegex(value);
   const matches = text.match(valueRegex);
 
   return value && matches
     ? text.replace(valueRegex, getWrappedMatch('$1'))
     : text;
-};
-
-export {
-  escapeRegExp,
-  getValueRegex,
-  getHighlightedText
 };
