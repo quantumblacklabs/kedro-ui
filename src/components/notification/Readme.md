@@ -94,7 +94,6 @@ class NotificationListDemo extends React.Component {
 If they do not need user input, you can provide the list with a removeAfter property, to automagically remove them from the screen.
 ```
 import _ from 'lodash';
-import Notification from 'components/notification';
 import Button from 'components/button';
 import NotificationList from 'components/notification/notification-list';
 

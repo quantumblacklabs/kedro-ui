@@ -1,4 +1,3 @@
-import test from 'ava';
 import React from 'react';
 import { shallow, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
@@ -7,14 +6,16 @@ import Input from './input';
 
 configure({ adapter: new Adapter() });
 
-test('Input should be a function', t => {
-  t.is(typeof Input, 'function');
+test('Input should be a function', () => {
+  expect(typeof Input)
+    .toBe('function');
 });
 
-test('Input should include only one input field', t => {
+test('Input should include only one input field', () => {
   const wrapper = shallow(<Input />);
 
-  t.true(wrapper.find('input').length === 1);
+  expect(wrapper.find('input').length === 1)
+    .toBeTruthy();
 });
 
 test('Input should correctly render the value', () => {
@@ -36,15 +37,17 @@ test('Input should correctly be disabled', () => {
     .includes('disabled');
 });
 
-test('Input should correctly have light theme class', t => {
+test('Input should correctly have light theme class', () => {
   const wrapper = shallow(<Input theme='light' />);
 
-  t.true(wrapper.find('.cbn-theme--light').length === 1);
+  expect(wrapper.find('.cbn-theme--light').length === 1)
+    .toBeTruthy();
 });
 
-test('Input should correctly have dark theme class', t => {
+test('Input should correctly have dark theme class', () => {
   // dark theme is default, so it should be automatically assigned
   const wrapper = shallow(<Input theme='dark' />);
 
-  t.true(wrapper.find('.cbn-theme--dark').length === 1);
+  expect(wrapper.find('.cbn-theme--dark').length === 1)
+    .toBeTruthy();
 });

@@ -1,4 +1,3 @@
-import test from 'ava';
 import React from 'react';
 import { shallow, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
@@ -22,11 +21,12 @@ const mockData = [
 ];
 
 mockData.forEach((data, i) => {
-  test(`EventIndicator should be a function - Test ${i}`, t => {
-    t.is(typeof EventIndicator, 'function');
+  test(`EventIndicator should be a function - Test ${i}`, () => {
+    expect(typeof EventIndicator)
+      .toBe('function');
   });
 
-  test(`EventIndicator should create a valid React Component when called with required props - Test ${i}`, t => {
+  test(`EventIndicator should create a valid React Component when called with required props - Test ${i}`, () => {
     const eventIndicatorJsx = (
       <EventIndicator
         colorIndex={data.colorIndex}
@@ -38,6 +38,7 @@ mockData.forEach((data, i) => {
     const indicator = shallow(eventIndicatorJsx)
       .find('.cbn-sg-playground__event-wrapper');
 
-    t.true(indicator.children().length === 1);
+    expect(indicator.children().length === 1)
+      .toBeTruthy();
   });
 });

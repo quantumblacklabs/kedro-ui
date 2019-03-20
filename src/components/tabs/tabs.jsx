@@ -8,7 +8,6 @@ import './tabs.css';
  * Tabs control
  */
 class Tabs extends React.Component {
-
   /**
    * constructor - create new Tabs
    * @param {Object} props properties passed to component

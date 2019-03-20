@@ -148,6 +148,8 @@ Second variant of input's status style
 
 Example of a form with dummy validation
 ```
+import Icon from 'components/icon';
+
 const data = [
     {
         label: 'Name',

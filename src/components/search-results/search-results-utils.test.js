@@ -1,32 +1,36 @@
-import test from 'ava';
-
 import { getValueRegex, getHighlightedText } from './search-results-utils';
 
-test('getValueRegex should return a regular expression', t => {
-  t.is(getValueRegex(), false);
-  t.is(getValueRegex(''), false);
-  t.is(
-    getValueRegex('foo')
-      .toString(),
-    '/(foo)/gi'
-  );
-  t.is(
-    getValueRegex('<foo>')
-      .toString(),
-    '/(\\<foo\\>)/gi'
-  );
+test('getValueRegex should return a regular expression', () => {
+  expect(getValueRegex())
+    .toBe(false);
+  expect(getValueRegex(''))
+    .toBe(false);
+  expect(getValueRegex('foo')
+    .toString())
+    .toBe(
+      '/(foo)/gi'
+    );
+  expect(getValueRegex('<foo>')
+    .toString())
+    .toBe(
+      '/(\\<foo\\>)/gi'
+    );
 });
 
-test('getHighlightedText should highlight search terms', t => {
+test('getHighlightedText should highlight search terms', () => {
   const text = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.';
   const match1 = getHighlightedText(text, 'AmEt');
   const match2 = getHighlightedText(text, 'lor');
   const fail = getHighlightedText(text, 'qwertyuiop');
 
   // Check successful matches
-  t.is(match1.match(/<b>/g).length, 1);
-  t.is(match2.match(/<b>/g).length, 2);
-  t.is(match1.match(/<b>(\w+)<\/b>/)[1], 'amet');
+  expect(match1.match(/<b>/g).length)
+    .toBe(1);
+  expect(match2.match(/<b>/g).length)
+    .toBe(2);
+  expect(match1.match(/<b>(\w+)<\/b>/)[1])
+    .toBe('amet');
   // Check failed match
-  t.is(fail.match(/<b>/g), null);
+  expect(fail.match(/<b>/g))
+    .toBe(null);
 });

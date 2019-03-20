@@ -2,5 +2,17 @@
   "presets": ["@babel/preset-env", "@babel/preset-react"],
   "plugins": [
     "lodash"
-  ]
+  ],
+  "env": {
+    "AVA": {
+      "plugins": [
+        [
+          {
+            "config": "./webpack.ava.config.js",
+            "verbose": true
+          }
+        ]
+      ]
+    }
+  }
 }

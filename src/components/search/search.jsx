@@ -9,8 +9,6 @@ import utils from 'utils';
 const escapeRegExp = utils.escapeRegExp;
 const handleKeyEvent = utils.handleKeyEvent;
 
-console.log(escapeRegExp)
-
 // Styles
 
 import './search.css';

@@ -44,6 +44,8 @@ const style = {
 
 Programmatically change a toggle value
 ```
+import Button from 'components/button';
+
 const style = {
     borderTopWidth: 1,
     borderTopStyle: 'solid',
@@ -73,7 +75,7 @@ class Wrap extends React.Component {
                     <Toggle label='Bluetooth' type='bold' value={this.state.status} theme='light' />
                 </div>
                 <div style={style}>
-                    <Button size='small' onClick={this._handleButtonClick}>Change</Button>
+                    <Button theme='light' size='small' onClick={this._handleButtonClick}>Change</Button>
                 </div>
             </section>
         );

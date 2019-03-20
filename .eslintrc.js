@@ -3,12 +3,7 @@ var baseConfig = require('@quantumblack/javascript-standards/config/react/eslint
 baseConfig.settings = Object.assign(baseConfig.settings, {
   'import/core-modules': [
     'enzyme'
-  ],
-  'import/resolver': {
-    'webpack': {
-      'config': 'webpack.build.config.js'
-    }
-  }
+  ]
 });
 
 baseConfig.rules = Object.assign(baseConfig.rules, {

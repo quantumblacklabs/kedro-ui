@@ -1,4 +1,3 @@
-import test from 'ava';
 import React from 'react';
 import { shallow, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
@@ -24,15 +23,15 @@ const testProps = {
   ]
 };
 
-test('SearchResults should be a function', t => {
-  t.is(typeof SearchResults, 'function');
+test('SearchResults should be a function', () => {
+  expect(typeof SearchResults).toBe('function');
 });
 
-test('SearchResults should render correctly', t => {
+test('SearchResults should render correctly', () => {
   const wrapper = shallow(
     <SearchResults {...testProps} />
   );
 
-  t.is(typeof wrapper.props().row, 'object');
-  t.is(typeof wrapper.props().results, 'object');
+  expect(typeof wrapper.props().row).toBe('object');
+  expect(typeof wrapper.props().results).toBe('object');
 });
