@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow, configure } from 'enzyme';
+import { shallow, mount, configure } from 'enzyme';
 import sinon from 'sinon';
 import Adapter from 'enzyme-adapter-react-16';
 import Button from './button';
@@ -35,6 +35,21 @@ test('Button should handle click events', () => {
     .simulate('click');
 
   expect(onClick.callCount)
+    .toBe(1);
+});
+
+test('Button in form should handle submit events', () => {
+  const onSubmit = sinon.spy();
+  const wrapper = mount(
+    <form onSubmit={onSubmit}>
+      <Button type='submit' />
+    </form>
+  );
+
+  wrapper.find('button')
+    .simulate('submit');
+
+  expect(onSubmit.callCount)
     .toBe(1);
 });
 
