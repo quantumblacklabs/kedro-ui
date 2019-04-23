@@ -10,8 +10,7 @@ import utils from 'utils';
 
 import './search.css';
 
-const { escapeRegExp } = utils;
-const { handleKeyEvent } = utils;
+const { escapeRegExp, handleKeyEvent } = utils;
 
 /**
  * Execute user-supplied prop-based event actions alongside component actions

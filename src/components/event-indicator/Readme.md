@@ -36,5 +36,3 @@ import EventIndicator from 'components/event-indicator';
         theme='light' />
 </div>
 ```
-
-Clickable Icon demonstrating event indicator updates (top right)

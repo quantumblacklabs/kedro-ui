@@ -78,7 +78,7 @@
  * @param {string} variant - value of the property's variant value taken from the style themes object
  */
 @define-mixin themedParentState $state, $propName, $category: base, $variant: default {
-  .cbn-theme--light-two &:$(state) {
+  .cbn-theme--light &:$(state) {
     $(propName): map(themes, light, $category, $variant);
   }
 

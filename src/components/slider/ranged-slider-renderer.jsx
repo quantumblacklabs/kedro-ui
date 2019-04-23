@@ -183,8 +183,7 @@ class RangedSliderRenderer extends React.Component {
    * _updatePercentage - injects the CSS variables into the child to correctly update the input
    */
   _updatePercentage() {
-    const { min } = this.props;
-    const { max } = this.props;
+    const { min, max } = this.props;
 
     this._lineFilled.style.setProperty('background', `
       linear-gradient(to right,
