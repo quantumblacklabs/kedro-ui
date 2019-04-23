@@ -4,22 +4,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import SearchBar from 'components/search-bar';
 import SearchResults from 'components/search-results';
-import { escapeRegExp, handleKeyEvent } from '../../utils';
+import utils from 'utils';
 
 // Styles
 
 import './search.css';
+
+const { escapeRegExp, handleKeyEvent } = utils;
 
 /**
  * Execute user-supplied prop-based event actions alongside component actions
  * @param {Array} actions Functions to execute when the event fires
  * @param {Array} eventArgs Arguments passed from the event handler
  */
-const handleEvents = (...actions) =>
-  (...eventArgs) =>
-    actions.map(func =>
-      (typeof func === 'function' ? func(...eventArgs) : null)
-    );
+const handleEvents = (...actions) => 
+  (...eventArgs) => 
+    actions.map(func => 
+      (typeof func === 'function' ? func(...eventArgs) : null));
 
 /**
  * Search, used to output the actual DOM markup for the component
@@ -149,7 +150,9 @@ class Search extends React.Component {
    * Either select the active result or else submit the form
    */
   _handleEnter(e) {
-    const { activeRow, hideResults, results, value } = this.state;
+    const {
+      activeRow, hideResults, results, value
+    } = this.state;
     if (hideResults) {
       this.props.onSubmit({
         e,
@@ -207,8 +210,12 @@ class Search extends React.Component {
    * @return {object} JSX for this component
    */
   render() {
-    const { activeRow, hideResults, results, value } = this.state;
-    const { height, row, RowItem, searchBarProps, searchResultsProps, showResults, theme } = this.props;
+    const {
+      activeRow, hideResults, results, value
+    } = this.state;
+    const {
+      height, row, RowItem, searchBarProps, searchResultsProps, showResults, theme
+    } = this.props;
 
     return (
       <div

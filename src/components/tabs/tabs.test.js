@@ -1,4 +1,3 @@
-import test from 'ava';
 import React from 'react';
 import { shallow, configure, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
@@ -12,24 +11,30 @@ const jsx = (
   <Tabs tabs={['Overview', 'Location (98)', 'Sensors', 'Log', 'Related']} />
 );
 
-test('Tabs should be a function', t => {
-  t.is(typeof Tabs, 'function');
+test('Tabs should be a function', () => {
+  expect(typeof Tabs)
+    .toBe('function');
 });
 
-test('Tabs should create a valid React Component when called with required props', t => {
+test('Tabs should create a valid React Component when called with required props', () => {
   const wrapper = shallow(jsx);
-  t.true(wrapper.length === 1);
+  expect(wrapper.length === 1)
+    .toBeTruthy();
 });
 
-test('Tabs should be created with the correct default props', t => {
+test('Tabs should be created with the correct default props', () => {
   const wrapper = shallow(jsx);
-  t.is(typeof wrapper.props().onSelect, 'function');
-  t.is(wrapper.props().selectedIndex, 0);
-  t.is(wrapper.props().size, 'regular');
-  t.is(wrapper.props().theme, 'dark');
+  expect(typeof wrapper.props().onSelect)
+    .toBe('function');
+  expect(wrapper.props().selectedIndex)
+    .toBe(0);
+  expect(wrapper.props().size)
+    .toBe('regular');
+  expect(wrapper.props().theme)
+    .toBe('dark');
 });
 
-test('Tabs should be created with all the user defined props', t => {
+test('Tabs should be created with all the user defined props', () => {
   const tabData = [
     { text: 'One' },
     { text: 'Two' },
@@ -41,6 +46,7 @@ test('Tabs should be created with all the user defined props', t => {
       onSelect={spy}
       selectedIndex={1}
       size='small'
+
       tabs={tabData}
       theme='light' />
   );
@@ -49,8 +55,10 @@ test('Tabs should be created with all the user defined props', t => {
     .first()
     .simulate('click');
 
-  t.is(spy.callCount, 1);
+  expect(spy.callCount)
+    .toBe(1);
 
   // also verify the structure
-  t.is(wrapper.find('li').length, 3);
+  expect(wrapper.find('li'))
+    .toHaveLength(3);
 });

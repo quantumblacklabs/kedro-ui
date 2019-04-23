@@ -29,7 +29,6 @@ bower_components
 # Compiled code
 /tmp/
 /styleguide/
-/dist/
 
 # Cypress.io
 cypress/screenshots

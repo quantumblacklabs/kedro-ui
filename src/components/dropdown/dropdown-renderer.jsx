@@ -1,10 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { handleKeyEvent } from 'utils';
+import utils from 'utils';
+import { uniqueId } from 'lodash';
 
 // Components
 import Icon from 'components/icon';
+
+const { handleKeyEvent } = utils;
 
 /**
  * Renderer for the Dropdown component
@@ -75,7 +78,7 @@ const DropdownRenderer = ({
       case 'section':
         // one level of sections to iterate before we get to the Menu Options
         return (
-          <section key={`menu-section-${i}`}>
+          <section key={`menu-section-${uniqueId(i)}`}>
             {React.Children.map(child.props.children, (sectionChild, j) => {
               switch (sectionChild.type) {
                 case 'span':
@@ -110,6 +113,7 @@ const DropdownRenderer = ({
       style={{ width: `${width}px` }}
       title={title}>
       <button
+        type='button'
         className='cbn-dropdown__label'
         onClick={onLabelClicked}>
         <span>{selectedOption.label || defaultText}</span>
@@ -127,7 +131,6 @@ DropdownRenderer.defaultProps = {
   defaultText: 'Please select...',
   focusedOption: null,
   handleRef: null,
-  onChanged: null,
   onLabelClicked: null,
   onOptionSelected: null,
   onSelectChanged: null,
@@ -142,7 +145,7 @@ DropdownRenderer.propTypes = {
   /**
   * Child items. The nodes which React will pass down, defined inside the DropdownRenderer tag.
   */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   /**
   * Default text to show in a closed unselected state
   */

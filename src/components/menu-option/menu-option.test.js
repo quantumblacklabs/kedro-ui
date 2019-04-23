@@ -1,9 +1,8 @@
-import test from 'ava';
 import React from 'react';
 import { shallow, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import sinon from 'sinon';
-import MenuOption from '../menu-option/menu-option';
+import MenuOption from 'components/menu-option/menu-option';
 
 configure({ adapter: new Adapter() });
 
@@ -21,25 +20,29 @@ const mockData = [
 mockData.forEach((dataSet, i) => {
   const jsx = <MenuOption {...dataSet} />;
 
-  test(`MenuOption should be a function - Test ${i}`, t => {
-    t.is(typeof MenuOption, 'function');
+  test(`MenuOption should be a function - Test ${i}`, () => {
+    expect(typeof MenuOption)
+      .toBe('function');
   });
 
-  test(`MenuOption should contain text - Test ${i}`, t => {
+  test(`MenuOption should contain text - Test ${i}`, () => {
     const wrapper = shallow(jsx);
-    t.true(wrapper.find('.cbn-menu-option__content')
+    expect(wrapper.find('.cbn-menu-option__content')
       .text()
-      === dataSet.primaryText);
+      === dataSet.primaryText)
+      .toBeTruthy();
 
-    t.true(wrapper.find(`.cbn-menu-option__content[title="${dataSet.primaryText}"]`).length
-      === 1);
+    expect(wrapper.find(`.cbn-menu-option__content[title="${dataSet.primaryText}"]`).length
+      === 1)
+      .toBeTruthy();
   });
 
   if (typeof dataSet.onSelected === 'function') {
-    test(`MenuOption should fire onSelected event handler when clicked - Test ${i}`, t => {
+    test(`MenuOption should fire onSelected event handler when clicked - Test ${i}`, () => {
       const wrapper = shallow(jsx);
       wrapper.simulate('click');
-      t.true(dataSet.onSelected.called);
+      expect(dataSet.onSelected.called)
+        .toBeTruthy();
     });
   }
 });

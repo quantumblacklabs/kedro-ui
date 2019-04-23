@@ -101,7 +101,7 @@ class SearchResultsRenderer extends React.Component {
             className='cbn-search-results__list'
             ref={el => { this._list = el; }}
             role='listbox'>
-            { results.map((result, i) =>
+            { results.map((result, i) => (
               <li
                 id={activeRow === i ? 'cbn-search-results-selected' : null}
                 aria-selected={activeRow === i}
@@ -117,7 +117,7 @@ class SearchResultsRenderer extends React.Component {
                 { result.icon && <Icon type={result.icon} size='medium' theme={theme} /> }
                 { RowItem ? <RowItem {...result} text={text(result)} /> : text(result) }
               </li>
-            ) }
+            )) }
           </ul>
         </div>
       </div>

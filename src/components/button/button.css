@@ -55,11 +55,11 @@ $secondary-underline-offset-hover: 4px;
 
 .cbn-button__btn--primary {
   @mixin themed outline-color, button, outline;
-  @mixin themedState hover, color, button, textHover;
-  @mixin themedState active, color, button, textHover;
-  @mixin themedState hover, background, button, outline;
-  @mixin themedState active, background, button, active;
-  @mixin themedState disabled, color, text;
+  @mixin themedState :hover, color, button, textHover;
+  @mixin themedState :active, color, button, textHover;
+  @mixin themedState :hover, background, button, outline;
+  @mixin themedState :active, background, button, active;
+  @mixin themedState :disabled, color, text;
 
   &.cbn-theme--light:focus {
     box-shadow: 0 0 0 5px map(themes, light, button, focus);
@@ -134,8 +134,8 @@ $secondary-underline-offset-hover: 4px;
 }
 
 .cbn-button__btn--secondary {
-  @mixin themedState focus::after, background, button, focus;
-  @mixin themedState hover::after, background, button, outline;
+  @mixin themedState :focus::after, background, button, focus;
+  @mixin themedState :hover::after, background, button, outline;
 
   &::after {
     display: block;

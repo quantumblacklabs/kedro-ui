@@ -1,13 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { handleKeyEvent } from 'utils';
+import utils from 'utils';
 
 // Components
 import Icon from 'components/icon';
 
 // Styles
 import './menu-option.css';
+
+const { handleKeyEvent } = utils;
 
 /**
  * A menu option, which sits within a dropdown component.

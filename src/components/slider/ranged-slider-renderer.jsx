@@ -183,8 +183,7 @@ class RangedSliderRenderer extends React.Component {
    * _updatePercentage - injects the CSS variables into the child to correctly update the input
    */
   _updatePercentage() {
-    const min = this.props.min;
-    const max = this.props.max;
+    const { min, max } = this.props;
 
     this._lineFilled.style.setProperty('background', `
       linear-gradient(to right,
@@ -202,13 +201,16 @@ class RangedSliderRenderer extends React.Component {
    */
   render() {
     const { minRange, maxRange, maxRangeDisabled } = this.state;
-    const { label, listId, min, max, name, percentage, sliderWidth, step, tickNumberWidth, tickStep } = this.props;
+    const {
+      label, listId, min, max, name, percentage, sliderWidth, step, tickNumberWidth, tickStep
+    } = this.props;
 
     const sliderLabel = label && (
       <div
         className={classnames(
           'cbn-slider__label',
-          'cbn-slider__label--multiple')}>
+          'cbn-slider__label--multiple'
+        )}>
         {label}
       </div>
     );
@@ -217,14 +219,16 @@ class RangedSliderRenderer extends React.Component {
       <div
         className={classnames(
           'cbn-slider__wrapper',
-          'cbn-slider__wrapper--multiple')}>
+          'cbn-slider__wrapper--multiple'
+        )}>
         {sliderLabel}
         <div className='cbn-slider__controls'>
           <div
             className={classnames(
               'cbn-slider__number-input',
               'cbn-slider__number-input--min',
-              'cbn-slider__number-input--multiple')}>
+              'cbn-slider__number-input--multiple'
+            )}>
             <Input
               value={minRange.toString()}
               onBlur={this._handleMinBlured} />
@@ -293,7 +297,8 @@ class RangedSliderRenderer extends React.Component {
             className={classnames(
               'cbn-slider__number-input',
               'cbn-slider__number-input--max',
-              'cbn-slider__number-input--multiple')}>
+              'cbn-slider__number-input--multiple'
+            )}>
             <Input
               value={maxRange.toString()}
               onBlur={this._handleMaxBlured} />

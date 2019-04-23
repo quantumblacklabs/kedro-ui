@@ -1,25 +1,17 @@
 {
-  "presets": [
-    ["env", {
-      "targets": {
-        "browsers": ["last 2 versions"]
-      }
-    }],
-    "react"
-  ],
+  "presets": ["@babel/preset-env", "@babel/preset-react"],
   "plugins": [
-    "lodash",
-    "transform-es2015-modules-commonjs",
-    "transform-es2015-destructuring",
-    "transform-object-rest-spread"
+    "lodash"
   ],
   "env": {
     "AVA": {
       "plugins": [
-        ["babel-plugin-webpack-loaders", {
-          "config": "${CONFIG}",
-          "verbose": true
-        }]
+        [
+          {
+            "config": "./webpack.ava.config.js",
+            "verbose": true
+          }
+        ]
       ]
     }
   }

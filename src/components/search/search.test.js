@@ -1,4 +1,3 @@
-import test from 'ava';
 import React from 'react';
 import { shallow, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
@@ -41,61 +40,68 @@ const testProps = {
   value: ''
 };
 
-test('Search should be a function', t => {
-  t.is(typeof Search, 'function');
+test('Search should be a function', () => {
+  expect(typeof Search)
+    .toBe('function');
 });
 
-test('Search should render correct structure', t => {
+test('Search should render correct structure', () => {
   const wrapper = shallow(
     <Search {...testProps} />
   );
   const searchBarRenderComponent = wrapper.find(SearchBar)
-                                          .dive()
-                                          .dive();
+    .dive()
+    .dive();
   const searchResultsRenderComponent = wrapper.find(SearchResults)
-                                              .dive()
-                                              .dive();
+    .dive()
+    .dive();
 
-  t.is(wrapper.find('.cbn-search').length, 1);
-  t.is(searchBarRenderComponent.find('.cbn-searchbar').length, 1);
-  t.is(searchResultsRenderComponent.find('.cbn-search-results').length, 1);
+  expect(wrapper.find('.cbn-search'))
+    .toHaveLength(1);
+  expect(searchBarRenderComponent.find('.cbn-searchbar'))
+    .toHaveLength(1);
+  expect(searchResultsRenderComponent.find('.cbn-search-results'))
+    .toHaveLength(1);
 });
 
-test('Search should have a light theme class', t => {
+test('Search should have a light theme class', () => {
   const wrapper = shallow(
     <Search {...testProps} theme='light' />
   );
   const searchResultsRenderComponent = wrapper.find(SearchResults)
-                                              .dive()
-                                              .dive();
+    .dive()
+    .dive();
 
-  t.is(searchResultsRenderComponent.find('.cbn-theme--light').length, 1);
+  expect(searchResultsRenderComponent.find('.cbn-theme--light'))
+    .toHaveLength(1);
 });
 
-test('Search should have a dark theme class', t => {
+test('Search should have a dark theme class', () => {
   const wrapper = shallow(
     <Search {...testProps} theme='dark' />
   );
   const searchResultsRenderComponent = wrapper.find(SearchResults)
-                                              .dive()
-                                              .dive();
+    .dive()
+    .dive();
 
-  t.is(searchResultsRenderComponent.find('.cbn-theme--dark').length, 1);
+  expect(searchResultsRenderComponent.find('.cbn-theme--dark'))
+    .toHaveLength(1);
 });
 
-test('SearchResults should highlight the active row', t => {
+test('SearchResults should highlight the active row', () => {
   const activeRow = 6;
   const wrapper = shallow(
     <Search {...testProps} activeRow={activeRow} />
   );
   const searchResultsRenderComponent = wrapper.find(SearchResults)
-                                              .dive()
-                                              .dive();
+    .dive()
+    .dive();
 
-  t.is(searchResultsRenderComponent.find('.cbn-search-results__row--active').length, 1);
-  t.is(
+  expect(searchResultsRenderComponent.find('.cbn-search-results__row--active'))
+    .toHaveLength(1);
+  expect(
     searchResultsRenderComponent.find('.cbn-search-results__row--active')
-      .prop('title'),
-    testProps.results[activeRow].label
-  );
+      .prop('title')
+  )
+    .toBe(testProps.results[activeRow].label);
 });

@@ -1,0 +1,20 @@
+{
+  "moduleNameMapper": {
+    "^components(.*)$": "<rootDir>/src/components$1",
+    "^utils(.*)$": "<rootDir>/src/utils$1",
+    "\\.(css|less|sass|scss)$": "<rootDir>/test/mock/style-mock.js",
+    "\\.(gif|ttf|eot|svg)$": "<rootDir>/test/mock/file-mock.js"
+  },
+  "coverageReporters": [
+    "lcov",
+    "text-summary"
+  ],
+  "coverageThreshold": {
+    "global": {
+      "branches": 20,
+      "functions": 20,
+      "lines": 20,
+      "statements": 20
+    }
+  }
+}

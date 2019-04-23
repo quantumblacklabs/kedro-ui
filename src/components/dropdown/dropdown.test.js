@@ -1,4 +1,3 @@
-import test from 'ava';
 import React from 'react';
 import { shallow, configure } from 'enzyme';
 import sinon from 'sinon';
@@ -33,12 +32,14 @@ mockData.forEach((dataSet, i) => {
     </Dropdown>
   );
 
-  test(`Dropdown should be a function - Test ${i}`, t => {
-    t.is(typeof Dropdown, 'function');
+  test(`Dropdown should be a function - Test ${i}`, () => {
+    expect(typeof Dropdown)
+      .toBe('function');
   });
 
-  test(`Dropdown should create a valid React Component when called with required props - Test ${i}`, t => {
+  test(`Dropdown should create a valid React Component when called with required props - Test ${i}`, () => {
     const wrapper = shallow(jsx);
-    t.true(wrapper.children().length === 3);
+    expect(wrapper.children().length === 3)
+      .toBeTruthy();
   });
 });
