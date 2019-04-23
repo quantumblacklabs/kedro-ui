@@ -62,10 +62,8 @@
     $(propName): map(themes, light, $category, $variant);
   }
 
-  &.cbn-theme--dark {
-    :$(state) {
-      $(propName): map(themes, dark, $category, $variant);
-    }
+  &.cbn-theme--dark$(state) {
+    $(propName): map(themes, dark, $category, $variant);
   }
 }
 
