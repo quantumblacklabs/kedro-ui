@@ -14,7 +14,7 @@ test('Switch should be a function', () => {
 test('Switch should create a valid React Component when called with required props', () => {
   const wrapper = shallow(
     <Switch
-      id={1}
+      id={'1'}
       name='test'
       type='checkbox'
       value={1} />
@@ -32,7 +32,7 @@ test('Switch should trigger onChange event when clicked', () => {
   const wrapper = shallow(
     <Switch
       onChange={onChanged}
-      id={1}
+      id={'1'}
       name='test'
       type='radio'
       value={1} />
