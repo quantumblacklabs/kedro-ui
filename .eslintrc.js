@@ -1,24 +1,27 @@
-var baseConfig = require('@quantumblack/javascript-standards/config/react/eslint/.eslintrc-source');
 
-baseConfig.settings = Object.assign(baseConfig.settings, {
-  'import/core-modules': [
-    'enzyme'
-  ]
-});
-
-baseConfig.rules = Object.assign(baseConfig.rules, {
-  'import/no-extraneous-dependencies': 'off',
-  'import/no-unresolved': 'off',
-  'import/extensions': 'off',
-  'react/destructuring-assignment': 'off',
-  'no-restricted-globals': 'off',
-  'jsx-a11y/label-has-for': 'off',
-  'jsx-a11y/interactive-supports-focus': 'off',
-  'jsx-a11y/role-has-required-aria-props': 'off'
-});
-
-baseConfig = Object.assign(baseConfig, {
-  extends: "plugin:react/recommended",
+module.exports = {
+  extends: [
+    "standard",
+    "plugin:react/recommended"
+  ],
+  rules: {
+    'import/no-extraneous-dependencies': 'off',
+    'import/no-unresolved': 'off',
+    'import/extensions': 'off',
+    'react/destructuring-assignment': 'off',
+    'no-restricted-globals': 'off',
+    'jsx-a11y/label-has-for': 'off',
+    'jsx-a11y/interactive-supports-focus': 'off',
+    'jsx-a11y/role-has-required-aria-props': 'off',
+    'space-before-function-paren': 'off',
+    'semi': 'off',
+    'operator-linebreak': 'off'
+  },
+  settings: {
+    'import/core-modules': [
+      'enzyme'
+    ]
+  },
   env: {
     es6: true
   },
@@ -43,7 +46,4 @@ baseConfig = Object.assign(baseConfig, {
       }
     }
   ]
-})
-
-
-module.exports = baseConfig;
+};

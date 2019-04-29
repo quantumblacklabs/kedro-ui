@@ -19,12 +19,12 @@ class SearchResultsRenderer extends React.Component {
    * {@link https://facebook.github.io/react/docs/react-component.html#componentwillreceiveprops}
    * @param {object} newProps - Properties passed to component
    */
-  componentWillReceiveProps(newProps) {
-    const newActiveRow = typeof newProps.activeRow === 'number'
-      && newProps.activeRow !== this.props.activeRow;
+  componentDidUpdate(prevProps) {
+    const newActiveRow = typeof this.props.activeRow === 'number'
+      && this.props.activeRow !== prevProps.activeRow;
 
     if (newActiveRow) {
-      this._scrollToActiveRow(newProps.activeRow);
+      this._scrollToActiveRow(this.props.activeRow);
     }
   }
 

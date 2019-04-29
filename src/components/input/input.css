@@ -31,16 +31,24 @@ $height-tiny: 1px;
 
   outline: none;
 
-  &:hover:not([disabled]) {
-    @extend %shadow-light--hover;
-  }
-
   &:focus {
     @extend %shadow-light--focus;
   }
 
   &:active {
     @extend %shadow-light--active;
+  }
+
+  .cbn-theme--dark & {
+    @extend %shadow-dark;
+
+    &:hover {
+      @extend %shadow-dark--hover;
+    }
+  }
+
+  &:hover:not([disabled]) {
+    @extend %shadow-light--hover;
   }
 
   &:active:not(&--disabled) {
@@ -51,14 +59,6 @@ $height-tiny: 1px;
     opacity: 0.5;
 
     cursor: not-allowed;
-  }
-
-  .cbn-theme--dark & {
-    @extend %shadow-dark;
-
-    &:hover {
-      @extend %shadow-dark--hover;
-    }
   }
 }
 
@@ -93,6 +93,10 @@ $height-tiny: 1px;
     @mixin themedParent color, input, placeholder;
   }
 
+  .cbn-input--focused &::placeholder {
+    @mixin themedParent color, input, placeholderFocused;
+  }
+
   /** more specific selector needs to be stated so the changes apply **/
   .cbn-input.cbn-input--disabled & {
     cursor: not-allowed;
@@ -100,10 +104,6 @@ $height-tiny: 1px;
     &::placeholder {
       @mixin themedParent color, input, placeholder;
     }
-  }
-
-  .cbn-input--focused &::placeholder {
-    @mixin themedParent color, input, placeholderFocused;
   }
 }
 
@@ -146,6 +146,8 @@ $height-tiny: 1px;
     background-color: transparent;
   }
 
+  /* stylelint-disable */
+
   .cbn-input--success &,
   .cbn-input--success .cbn-input__field:focus + &,
   .cbn-input--success .cbn-input__field:active + & {
@@ -157,6 +159,8 @@ $height-tiny: 1px;
   .cbn-input--error .cbn-input__field:active + & {
     @mixin themedParent background-color, input, error;
   }
+
+  /* stylelint-enable */
 }
 
 .cbn-input__line--filled {

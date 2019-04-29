@@ -47,26 +47,18 @@ class Input extends React.Component {
 
   /**
    * React lifecycle method
-   * Update the value in state if props chage
-   * {@link https://facebook.github.io/react/docs/react-component.html#componentwillreceiveprops}
-   * @return {object} JSX for this component
-   */
-  componentWillReceiveProps(newProps) {
-    if (newProps.value !== null && newProps.value !== this.state.value) {
-      this.setState({
-        value: newProps.value
-      });
-    }
-  }
-
-  /**
-   * React lifecycle method
    * {@link https://facebook.github.io/react/docs/react-component.html#componentDidUpdate}
    * @return {object} JSX for this component
    */
-  componentDidUpdate(nextProps) {
-    if (!this.state.focused && (this.props.status === 'default' || nextProps.status === 'default')) {
+  componentDidUpdate(prevProps, prevState) {
+    if (!this.state.focused && (this.props.status === 'default' || prevProps.status === 'default')) {
       this._anim.restart();
+    }
+
+    if (this.props.value !== null && this.props.value !== prevProps.value) {
+      this.setState({
+        value: this.props.value
+      });
     }
   }
 

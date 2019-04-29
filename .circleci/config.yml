@@ -17,6 +17,14 @@ jobs:
       - run:
           name: Installing dependencies
           command: npm install
+
+      - run:
+          name: ESLint
+          command: npm run eslint
+
+      - run:
+          name: Stylelint
+          command: npm run stylelint
         
       - run:
           name: Running tests

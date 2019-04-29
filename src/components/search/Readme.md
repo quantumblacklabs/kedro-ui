@@ -38,6 +38,8 @@ const results = [
 Search component with custom row element, which is kept open by default:
 
 ```
+import Button from 'components/button';
+
 const RowItem = ({ text }) => (
     <div style={{ display: 'flex' }}>
         ➡️ { text } ⬅️
@@ -57,18 +59,18 @@ class SearchActiveRow extends React.Component {
         };
     }
 
-    componentDidMount() {
-        setInterval(() => {
-            this.setState({
-                currentActiveRow: Math.floor(Math.random() * 4) + 1    
-            })
-            
-        }, 1000)
+    onGetNewRow() {
+        this.setState({
+            currentActiveRow: Math.floor(Math.random() * 30) + 1    
+        });
     }
 
     render() {
         return (
             <div style={{paddingBottom:'200px'}}>
+                <div style={{marginRight: '40px', marginBottom: '40px'}}>
+                    <Button onClick={this.onGetNewRow.bind(this)} theme='light'>Change active row</Button>
+                </div>
                 <Search
                     activeRow={this.state.currentActiveRow}
                     showResults={true}

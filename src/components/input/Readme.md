@@ -146,6 +146,43 @@ Second variant of input's status style
 </section>
 ```
 
+Set value externally
+```
+import Button from 'components/button';
+
+class Test extends React.Component {
+    constructor() {
+        this.state = {
+            value: 'Hi'
+        };
+    }
+
+    onToggle() {
+        this.setState({
+            value: this.state.value === 'Hi' ? 'Hello' : 'Hi'
+        })
+    }
+
+    render() {
+        return (
+            <section style={{margin: '20px'}}>
+                <Input
+                    label='Set value externally'
+                    theme='light'
+                    value={this.state.value}
+                    variant={2} />
+                <div style={{marginTop: '20px'}}>
+                    <Button theme='light' onClick={this.onToggle.bind(this)}>Click</Button>
+                </div>
+            </section>
+        )
+    }
+}
+
+<Test/>
+
+```
+
 Example of a form with dummy validation
 ```
 import Icon from 'components/icon';

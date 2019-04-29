@@ -47,6 +47,15 @@ $size-radio-button-spacing: 14px;
     transition: all 0.3s;
   }
 
+  .cbn-switch__input:checked + .cbn-switch-radio__label & {
+    &::before {
+      width: 80%;
+      height: 80%;
+
+      opacity: 1;
+    }
+  }
+
   .cbn-switch__input:focus + .cbn-switch-radio__label & {
     .cbn-theme--light & {
       box-shadow: 0 0 0 3px map(themes, light, radiobutton, focus);
@@ -54,15 +63,6 @@ $size-radio-button-spacing: 14px;
 
     .cbn-theme--dark & {
       box-shadow: 0 0 0 3px map(themes, dark, radiobutton, focus);
-    }
-  }
-
-  .cbn-switch__input:checked + .cbn-switch-radio__label & {
-    &::before {
-      width: 80%;
-      height: 80%;
-
-      opacity: 1;
     }
   }
 }
