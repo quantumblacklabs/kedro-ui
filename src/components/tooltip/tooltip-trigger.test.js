@@ -73,20 +73,20 @@ test('It should apply position class when calling handle event', () => {
     );
     
     /** Trigger handle event */
-    const he = () => {
+    const handleEvent = () => {
       mountTTView
         .instance()
         ._handleEvent();
     };
 
     if (!dir) {
-      expect(he)
+      expect(handleEvent)
         .toThrow();
 
       return;
     }
      
-    he();
+    handleEvent();
 
     expect(el.classList.contains(`cbn-tooltip--${dir}`))
       .toBeTruthy();

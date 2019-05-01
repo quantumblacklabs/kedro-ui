@@ -4,11 +4,11 @@ import Adapter from 'enzyme-adapter-react-16';
 import utils from './index.js';
 import sinon from 'sinon';
 
+const { CustomPropTypes, handleKeyEvent } = utils;
+
 configure({ adapter: new Adapter() });
 
 // CustomPropTypes tests
-
-const CustomPropTypes = utils.CustomPropTypes;
 
 test('CustomPropTypes should be an object', () => {
   expect(typeof CustomPropTypes)
@@ -126,8 +126,6 @@ test('CustomPropTypes.checkPosition should throw if invalid position', () => {
 
 // handleKeyEvent tests
 
-const handleKeyEvent = utils.handleKeyEvent;
-
 test('handleKeyEvent is a function', () => {
   expect(typeof handleKeyEvent)
     .toBe('function');
@@ -138,7 +136,7 @@ test('Invokes the correct actions when supplied a keycode', () => {
   const notToCall = sinon.spy();
 
   // 27 is keycode for escape
-  const hke = handleKeyEvent(27, {
+  handleKeyEvent(27, {
     escape: toCall,
     enter: notToCall
   });
@@ -151,9 +149,7 @@ test('Invokes the correct actions when supplied a keycode', () => {
 });
 
 test('Should return function if no actions are supplied', () => {
-  const hke = handleKeyEvent(27);
-
-  expect(typeof hke)
+  expect(typeof handleKeyEvent(27))
     .toBe('function');
 });
 
