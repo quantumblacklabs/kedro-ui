@@ -19,7 +19,7 @@ const createChainableTypeChecker = validate => {
   /**
    * TODO Add jsdoc description
    */
-  const checkType = (isRequired, props, propName, componentName = 'ANONYMOUS', location) => {
+  const checkType = (isRequired, props, propName, componentName = 'ANONYMOUS', location) => { 
     if (props[propName] == null) {
       const locationName = ReactPropTypeLocationNames[location];
       if (isRequired) {
@@ -52,7 +52,7 @@ const checkNumberBetween = (min, max) => (props, propName, componentName) => {
   // throw an error if prop val exists and either isn't a number or is out of range
   if ((propVal && (propVal < min || propVal > max)) || isNaN(propVal)) {
     return new Error(
-      `Invalid prop ${propName} supplied to ${componentName} (${propVal}). Prop must be in the range ${min} - ${max}/`
+      `Invalid prop ${propName} supplied to ${componentName} (${propVal}). Prop must be in the range ${min} - ${max}`
     );
   }
 

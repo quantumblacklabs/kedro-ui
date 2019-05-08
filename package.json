@@ -16,7 +16,7 @@
     "prepublishOnly": "npm run test && npm run build",
     "stylelint": "stylelint templates/**/*.css --config stylelint.config.js",
     "eslint": "eslint src/**/*.js src/**/*.jsx src/**/*.test.js",
-    "test": "jest --config jest-ui.json --maxWorkers=4 --silent --coverage"
+    "test": "jest --config jest-ui.json --maxWorkers=4 --coverage"
   },
   "repository": {
     "type": "git",

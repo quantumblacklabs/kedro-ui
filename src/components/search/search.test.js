@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow, configure } from 'enzyme';
+import { shallow, configure, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import Search from './search';
 import SearchBar from '../search-bar/search-bar';
@@ -104,4 +104,35 @@ test('SearchResults should highlight the active row', () => {
       .prop('title')
   )
     .toBe(testProps.results[activeRow].label);
+});
+
+test('Should change active row correctly', () => {
+  const activeRow = 6;
+  const wrapper = shallow(
+    <Search {...testProps} activeRow={activeRow} />
+  );
+
+  wrapper.instance()
+    ._changeActiveRow(+1);
+
+  expect(wrapper.state().activeRow)
+    .toBe(7);
+
+  wrapper.instance()
+    ._changeActiveRow(-1);
+
+  expect(wrapper.state().activeRow)
+    .toBe(6);
+
+  wrapper.instance()
+    ._changeActiveRow(+100);
+
+  expect(wrapper.state().activeRow)
+    .toBe(null);
+
+  wrapper.instance()
+    ._changeActiveRow(+1);
+
+  expect(wrapper.state().activeRow)
+    .toBe(0);
 });
