@@ -6,7 +6,6 @@
 This repo represents a set of UI components that we use in our internal products and applications. It allows us to move at speed i.e. not rewrite the wheel on every new endeavour.
 
 ## 👀 Getting Started
----
 
 To install Carbon UI Components into your project, run the following in your project directory:
 
