@@ -1,8 +1,10 @@
 import React from 'react';
-import test from 'ava';
-import { shallow } from 'enzyme';
+import { shallow, configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 
 import Icon from './icon';
+
+configure({ adapter: new Adapter() });
 
 const mockData = [
   {
@@ -20,25 +22,30 @@ const mockData = [
 ];
 
 // check the type of the component
-test('Icon should be a function', t => {
-  t.is(typeof Icon, 'function');
+test('Icon should be a function', () => {
+  expect(typeof Icon)
+    .toBe('function');
 });
 
 // check the properties after constructing the component
 mockData.forEach((dataSet, i) => {
   const wrapper = shallow(<Icon {...dataSet} />);
 
-  test(`Icon should have correct classes and labels - Test ${i}`, t => {
+  test(`Icon should have correct classes and labels - Test ${i}`, () => {
     // correct modieier classes generated
-    t.true(wrapper.hasClass(`cbn-icon--${dataSet.type}`));
+    expect(wrapper.hasClass(`cbn-icon--${dataSet.type}`))
+      .toBeTruthy();
 
     if (dataSet.size) {
-      t.true(wrapper.hasClass(`cbn-icon--${dataSet.size}`));
+      expect(wrapper.hasClass(`cbn-icon--${dataSet.size}`))
+        .toBeTruthy();
     }
 
     if ('type2' in dataSet) {
-      t.true(wrapper.hasClass('cbn-icon--double'));
-      t.true(wrapper.hasClass('cbn-icon--index-0'));
+      expect(wrapper.hasClass('cbn-icon--double'))
+        .toBeTruthy();
+      expect(wrapper.hasClass('cbn-icon--index-0'))
+        .toBeTruthy();
     }
   });
 });

@@ -1,13 +1,16 @@
-import test from 'ava';
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 import RadioButton from './radio-button';
 
-test('RadioButton should be a function', t => {
-  t.is(typeof RadioButton, 'function');
+configure({ adapter: new Adapter() });
+
+test('RadioButton should be a function', () => {
+  expect(typeof RadioButton)
+    .toBe('function');
 });
 
-test('RadioButton should create a valid React Component when called with required props', t => {
+test('RadioButton should create a valid React Component when called with required props', () => {
   const wrapper = shallow(
     <RadioButton
       label='hello world'
@@ -15,6 +18,8 @@ test('RadioButton should create a valid React Component when called with require
       value={1} />
   );
 
-  t.is(wrapper.children().length, 1);
-  t.is(wrapper.find('label').length, 1);
+  expect(wrapper.children())
+    .toHaveLength(1);
+  expect(wrapper.find('label'))
+    .toHaveLength(1);
 });

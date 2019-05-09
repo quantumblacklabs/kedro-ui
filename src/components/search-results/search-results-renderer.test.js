@@ -1,9 +1,11 @@
-import test from 'ava';
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 
 import SearchResultsRenderer from './search-results-renderer';
 import { getHighlightedText } from './search-results-utils';
+
+configure({ adapter: new Adapter() });
 
 const testProps = {
   activeRow: null,
@@ -11,6 +13,7 @@ const testProps = {
   hidden: false,
   onClick: null,
   onMouseOver: null,
+
   row: {
     height: 40,
     maxRows: 5,
@@ -37,42 +40,46 @@ const testProps = {
   value: ''
 };
 
-test('SearchResultsRenderer should be a function', t => {
-  t.is(typeof SearchResultsRenderer, 'function');
+test('SearchResultsRenderer should be a function', () => {
+  expect(typeof SearchResultsRenderer)
+    .toBe('function');
 });
 
-test('SearchResultsRenderer should render correct structure', t => {
+test('SearchResultsRenderer should render correct structure', () => {
   const wrapper = shallow(
     <SearchResultsRenderer {...testProps} />
   );
-  t.is(wrapper.find('.cbn-search-results__list').length, 1);
-  t.is(wrapper.find('.cbn-search-results__row').length, testProps.results.length);
+  expect(wrapper.find('.cbn-search-results__list'))
+    .toHaveLength(1);
+  expect(wrapper.find('.cbn-search-results__row'))
+    .toHaveLength(testProps.results.length);
 });
 
-test('SearchResultsRenderer should have a light theme class', t => {
+test('SearchResultsRenderer should have a light theme class', () => {
   const wrapper = shallow(
     <SearchResultsRenderer {...testProps} theme='light' />
   );
-  t.true(wrapper.find('.cbn-theme--light').length === 1);
+  expect(wrapper.find('.cbn-theme--light').length === 1)
+    .toBeTruthy();
 });
 
-test('SearchResultsRenderer should have a dark theme class', t => {
+test('SearchResultsRenderer should have a dark theme class', () => {
   const wrapper = shallow(
     <SearchResultsRenderer {...testProps} theme='dark' />
   );
-  t.true(wrapper.find('.cbn-theme--dark').length === 1);
+  expect(wrapper.find('.cbn-theme--dark').length === 1)
+    .toBeTruthy();
 });
 
-test('SearchResults should highlight the active row', t => {
+test('SearchResults should highlight the active row', () => {
   const activeRow = 6;
   const wrapper = shallow(
     <SearchResultsRenderer {...testProps} activeRow={activeRow} />
   );
 
-  t.is(wrapper.find('.cbn-search-results__row--active').length, 1);
-  t.is(
-    wrapper.find('.cbn-search-results__row--active')
-           .prop('title'),
-    testProps.results[activeRow].label
-  );
+  expect(wrapper.find('.cbn-search-results__row--active'))
+    .toHaveLength(1);
+  expect(wrapper.find('.cbn-search-results__row--active')
+    .prop('title'))
+    .toBe(testProps.results[activeRow].label);
 });

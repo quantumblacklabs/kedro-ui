@@ -1,14 +1,16 @@
-import test from 'ava';
 import React from 'react';
-import { shallow } from 'enzyme';
-
+import { shallow, configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 import SearchBarRenderer from './search-bar-renderer';
 
-test('SearchBarRenderer should be a function', t => {
-  t.is(typeof SearchBarRenderer, 'function');
+configure({ adapter: new Adapter() });
+
+test('SearchBarRenderer should be a function', () => {
+  expect(typeof SearchBarRenderer)
+    .toBe('function');
 });
 
-test('SearchBarRenderer should render correct structure', t => {
+test('SearchBarRenderer should render correct structure', () => {
   const wrapper = shallow(
     <SearchBarRenderer
       iconType='refresh'
@@ -16,6 +18,6 @@ test('SearchBarRenderer should render correct structure', t => {
       value='hello world' />
   );
 
-  t.is(wrapper.find('GSAPEnhancer').length, 1);
-  t.is(wrapper.find('Icon').length, 2);
+  expect(wrapper.find('Icon'))
+    .toHaveLength(2);
 });

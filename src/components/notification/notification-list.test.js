@@ -1,14 +1,16 @@
-import test from 'ava';
 import React from 'react';
-import { shallow } from 'enzyme';
-
+import { shallow, configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 import NotificationList from './notification-list';
 
-test('NotificationList should be a function', t => {
-  t.is(typeof NotificationList, 'function');
+configure({ adapter: new Adapter() });
+
+test('NotificationList should be a function', () => {
+  expect(typeof NotificationList)
+    .toBe('function');
 });
 
-test('NotificationList should contain correct children', t => {
+test('NotificationList should contain correct children', () => {
   const wrapper = shallow(
     <NotificationList
       currentNotification={{
@@ -19,6 +21,8 @@ test('NotificationList should contain correct children', t => {
       }} />
   );
 
-  t.true(wrapper.find('.cbn-notification-list').length === 1);
-  t.true(wrapper.find('Notification').length === 1);
+  expect(wrapper.find('.cbn-notification-list').length === 1)
+    .toBeTruthy();
+  expect(wrapper.find('Notification').length === 1)
+    .toBeTruthy();
 });

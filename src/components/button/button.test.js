@@ -1,42 +1,56 @@
-import test from 'ava';
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow, mount, configure } from 'enzyme';
 import sinon from 'sinon';
-
+import Adapter from 'enzyme-adapter-react-16';
 import Button from './button';
 
-test('Button should be a function', t => {
-  t.is(typeof Button, 'function');
+configure({ adapter: new Adapter() });
+
+test('Button should be a function', () => {
+  expect(typeof Button)
+    .toBe('function');
 });
 
-test('Button should include only one button field', t => {
+test('Button should include only one button field', () => {
   const wrapper = shallow(<Button />);
 
-  t.true(wrapper.find('button').length === 1);
+  expect(wrapper.find('button').length === 1)
+    .toBeTruthy();
 });
 
-test('Button should correctly render its text value', t => {
+test('Button should correctly render its text value', () => {
   const text = 'I am a button!';
   const wrapper = shallow(<Button>{ text }</Button>);
 
-  t.is(
-    wrapper.find('button')
-           .text(),
-    text
-  );
+  expect(wrapper.find('button')
+    .text())
+    .toBe(text);
 });
 
-test('Button should handle click events', t => {
-  const spy = sinon.spy();
-  const wrapper = mount(<Button onClick={spy} />);
+test('Button should handle click events', () => {
+  const onClick = sinon.spy();
+  const wrapper = shallow(<Button onClick={onClick} />);
 
-  t.is(typeof wrapper.props().onClick, 'function');
-
-  wrapper
-    .find('button')
+  wrapper.find('button')
     .simulate('click');
 
-  t.is(spy.callCount, 1);
+  expect(onClick.callCount)
+    .toBe(1);
+});
+
+test('Button in form should handle submit events', () => {
+  const onSubmit = sinon.spy();
+  const wrapper = mount(
+    <form onSubmit={onSubmit}>
+      <Button type='submit' />
+    </form>
+  );
+
+  wrapper.find('button')
+    .simulate('submit');
+
+  expect(onSubmit.callCount)
+    .toBe(1);
 });
 
 test('Button should correctly be disabled', () => {
@@ -48,15 +62,17 @@ test('Button should correctly be disabled', () => {
     .includes('disabled');
 });
 
-test('Button should correctly have light theme class', t => {
+test('Button should correctly have light theme class', () => {
   const wrapper = shallow(<Button theme='light' />);
 
-  t.is(wrapper.find('.cbn-theme--light').length, 1);
+  expect(wrapper.find('.cbn-theme--light'))
+    .toHaveLength(1);
 });
 
-test('Button should correctly have dark theme class', t => {
+test('Button should correctly have dark theme class', () => {
   // dark theme is default, so it should be automatically assigned
   const wrapper = shallow(<Button theme='dark' />);
 
-  t.is(wrapper.find('.cbn-theme--dark').length, 1);
+  expect(wrapper.find('.cbn-theme--dark'))
+    .toHaveLength(1);
 });

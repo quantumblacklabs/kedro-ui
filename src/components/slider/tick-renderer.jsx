@@ -74,10 +74,12 @@ class TickRenderer extends React.Component {
               { [`${tickClass}--range`]: tick.range }
             )}
             value={tick.value}
-            style={{ transform:
+            style={{
+              transform:
               type === 'number'
                 ? `translateX(${this._getNumberShift(tick.value)}px)`
-                : '0' }}>
+                : '0'
+            }}>
             { type === 'number' ? tick.value : undefined }
           </option>
         ))}

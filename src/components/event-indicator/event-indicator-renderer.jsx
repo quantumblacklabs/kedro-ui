@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 /**
  * Event Indicator renders a component containing circle with number (count) inside and a name of the Event.
  */
-const EventIndicatorRenderer = ({ color, count, name, theme }) => (
+const EventIndicatorRenderer = ({
+  color, count, name, theme
+}) => (
   <div
     aria-label={`${name} events: ${count}`}
     className='carbon cbn-sg-playground__event'

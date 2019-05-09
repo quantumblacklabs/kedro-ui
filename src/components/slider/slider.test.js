@@ -1,78 +1,76 @@
-import test from 'ava';
 import React from 'react';
-import { shallow } from 'enzyme';
-
+import { configure, mount } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 import Slider from './slider';
-import SliderRenderer from './slider-renderer';
-import RangedSliderRenderer from './ranged-slider-renderer';
 
-test('Slider should be a function', t => {
-  t.is(typeof Slider, 'function');
+configure({ adapter: new Adapter() });
+
+test('Slider should be a function', () => {
+  expect(typeof Slider)
+    .toBe('function');
 });
 
 test('Slider of type single should correctly call SliderRenderer', () => {
-  const wrapper = shallow(<Slider type='single' />);
+  const wrapper = mount(<Slider type='single' />);
 
-  wrapper.containsMatchingElement(SliderRenderer);
+  expect(wrapper.find('.cbn-slider__wrapper').length === 1)
+    .toBeTruthy();
 });
 
 test('Slider of type multiple should correctly call RangedSliderRenderer', () => {
-  const wrapper = shallow(<Slider type='multiple' />);
+  const wrapper = mount(<Slider type='multiple' />);
 
-  wrapper.containsMatchingElement(RangedSliderRenderer);
+  expect(wrapper.find('.cbn-slider__wrapper--multiple').length === 1)
+    .toBeTruthy();
 });
 
-test('Slider should correctly have light theme class', t => {
-  const wrapper = shallow(<Slider theme='light' />);
+test('Slider should correctly have light theme class', () => {
+  const wrapper = mount(<Slider theme='light' />);
 
-  t.true(wrapper.find('.cbn-theme--light').length > 1);
-  t.true(wrapper.find('.cbn-theme--dark').length === 0);
-});
-
-test('Slider should correctly have dark theme class', t => {
-  const wrapper = shallow(<Slider theme='dark' />);
-
-  t.true(wrapper.find('.cbn-theme--dark').length > 1);
-  t.true(wrapper.find('.cbn-theme--light').length === 0);
+  expect(wrapper.find('.cbn-theme--light').length > 1)
+    .toBeTruthy();
+  expect(wrapper.find('.cbn-theme--dark').length === 0)
+    .toBeTruthy();
 });
 
 /* SINGLE SLIDER RENDERER */
 
-test('SliderRenderer should include only one input field', t => {
-  const wrapper = shallow(<SliderRenderer />);
+test('SliderRenderer should include only one input field', () => {
+  const wrapper1 = mount(<Slider type='multiple' />);
+  const wrapper2 = mount(<Slider type='single' />);
 
-  t.true(wrapper.find('input').length === 1);
+  expect(wrapper1.find('input').length === 4)
+    .toBeTruthy();
+  expect(wrapper2.find('input').length === 2)
+    .toBeTruthy();
 });
 
 test('SliderRenderer should correctly render the value', () => {
   const value = 33;
-  const wrapper = shallow(<SliderRenderer value={value} />);
+  const wrapper = mount(<Slider value={value} />);
 
   wrapper
     .find('input')
+    .first()
     .html()
     .includes(`value="${value}"`);
 });
 
 /* RANGED SLIDER RENDERER */
 
-test('RangedSliderRenderer should include two input fields', t => {
-  const wrapper = shallow(<RangedSliderRenderer />);
-
-  t.true(wrapper.find('input').length === 2);
-});
-
 test('RangedSliderRenderer should correctly render the values', () => {
   const values = [22, 33];
-  const wrapper = shallow(<RangedSliderRenderer value={values} />);
+  const wrapper = mount(<Slider value={values} />);
 
   wrapper
-    .find('.cbn-slider__input--min')
+    .find('input')
+    .first()
     .html()
     .includes(`value="${values[0]}"`);
 
   wrapper
-    .find('.cbn-slider__input--max')
+    .find('input')
+    .last()
     .html()
     .includes(`value="${values[1]}"`);
 });

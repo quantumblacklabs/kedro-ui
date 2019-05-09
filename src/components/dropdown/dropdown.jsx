@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { flatten, find, flow, isEqual, map } from 'lodash/fp';
+import {
+  flatten, find, flow, isEqual, map
+} from 'lodash/fp';
 
 // Styles
 import './dropdown.css';
@@ -82,9 +84,7 @@ class Dropdown extends React.Component {
    * @return {Boolean} True if new children are different from current ones
    */
   _childrenHaveChanged(nextProps) {
-    const children = [this.props, nextProps].map(props =>
-      React.Children.toArray(props.children)
-    );
+    const children = [this.props, nextProps].map(props => React.Children.toArray(props.children));
 
     return !isEqual(...children);
   }
@@ -184,7 +184,7 @@ class Dropdown extends React.Component {
       if (current.props.primaryText) {
         // MenuOption: Add to list
         return previous.concat(current);
-      } else if (current.type === 'section') {
+      } if (current.type === 'section') {
         // Section: Keep recursing
         return previous.concat(
           current.props.children.reduce(getSectionChildren, [])
@@ -319,7 +319,9 @@ class Dropdown extends React.Component {
    * @return {object} JSX for this component
    */
   render() {
-    const { children, defaultText, theme, width } = this.props;
+    const {
+      children, defaultText, theme, width
+    } = this.props;
     const { open, focusedOption, selectedOption } = this.state;
 
     return (

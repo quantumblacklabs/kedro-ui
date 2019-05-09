@@ -4,13 +4,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'components/button';
 import Icon from 'components/icon';
-import { handleKeyEvent } from 'utils';
 import GSAP from 'react-gsap-enhancer';
 import { TimelineLite } from 'gsap';
+
+import utils from 'utils';
 
 // Styles
 
 import './index.css';
+
+const { handleKeyEvent } = utils;
 
 /**
  * Create animation
@@ -97,7 +100,9 @@ class Modal extends React.Component {
           <Button
             onClick={onClose}
             theme={theme}
-            size='small'>{buttonLabel}</Button>
+            size='small'>
+            {buttonLabel}
+          </Button>
         </div>
       );
     }
@@ -135,7 +140,9 @@ class Modal extends React.Component {
           <div
             className='cbn-modal__wrapper'>
             <div
-              className='cbn-modal__title'>{title}</div>
+              className='cbn-modal__title'>
+              {title}
+            </div>
             { content }
           </div>
         </div>

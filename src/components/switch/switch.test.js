@@ -1,40 +1,46 @@
-import test from 'ava';
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 import sinon from 'sinon';
 import Switch from './switch';
 
-test('Switch should be a function', t => {
-  t.is(typeof Switch, 'function');
+configure({ adapter: new Adapter() });
+
+test('Switch should be a function', () => {
+  expect(typeof Switch)
+    .toBe('function');
 });
 
-test('Switch should create a valid React Component when called with required props', t => {
+test('Switch should create a valid React Component when called with required props', () => {
   const wrapper = shallow(
     <Switch
-      id={1}
+      id='1'
       name='test'
       type='checkbox'
       value={1} />
   );
 
-  t.true(wrapper.children().length === 1);
-  t.is(wrapper.find('input').length, 1);
+  expect(wrapper.children().length === 1)
+    .toBeTruthy();
+  expect(wrapper.find('input'))
+    .toHaveLength(1);
 });
 
-test('Switch should trigger onChange event when clicked', t => {
+test('Switch should trigger onChange event when clicked', () => {
   const onChanged = sinon.spy();
 
   const wrapper = shallow(
     <Switch
       onChange={onChanged}
-      id={1}
+      id='1'
       name='test'
       type='radio'
       value={1} />
   );
 
   wrapper.find('.cbn-switch__input')
-         .simulate('change', { target: { checked: true } });
+    .simulate('change', { target: { checked: true } });
 
-  t.is(onChanged.callCount, 1);
+  expect(onChanged.callCount)
+    .toBe(1);
 });

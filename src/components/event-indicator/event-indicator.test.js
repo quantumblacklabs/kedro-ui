@@ -1,8 +1,10 @@
-import test from 'ava';
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, configure, mount } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 
 import EventIndicator from './event-indicator';
+
+configure({ adapter: new Adapter() });
 
 const mockData = [
   {
@@ -18,23 +20,61 @@ const mockData = [
   }
 ];
 
-mockData.forEach((data, i) => {
-  test(`EventIndicator should be a function - Test ${i}`, t => {
-    t.is(typeof EventIndicator, 'function');
-  });
+let eventIndicatorJsx = null;
 
-  test(`EventIndicator should create a valid React Component when called with required props - Test ${i}`, t => {
-    const eventIndicatorJsx = (
+mockData.forEach((data, i) => {
+  beforeAll(() => {
+    eventIndicatorJsx = (
       <EventIndicator
         colorIndex={data.colorIndex}
         count={data.count}
         name={data.name}
         theme={data.theme} />
     );
+  });
 
+  test(`EventIndicator should be a function - Test ${i}`, () => {
+    expect(typeof EventIndicator)
+      .toBe('function');
+  });
+
+  test(`EventIndicator should create a valid React Component when called with required props - Test ${i}`, () => {
     const indicator = shallow(eventIndicatorJsx)
       .find('.cbn-sg-playground__event-wrapper');
 
-    t.true(indicator.children().length === 1);
+    expect(indicator.children().length === 1)
+      .toBeTruthy();
+  });
+
+  it(`Should reset the animation when updated - Test ${i}`, () => {
+    const indicator = mount(eventIndicatorJsx);
+    const cb = jest.fn();
+
+    indicator.instance()._anim = {
+      restart: cb
+    };
+
+    indicator.setProps({
+      count: 100
+    });
+
+    indicator.update();
+
+    expect(cb)
+      .toHaveBeenCalled();
+  });
+
+  it(`Should kill any animation when unmounting - Test ${i}`, () => {
+    const indicator = mount(eventIndicatorJsx);
+    const cb = jest.fn();
+
+    indicator.instance()._anim = {
+      kill: cb
+    };
+
+    indicator.unmount();
+
+    expect(cb)
+      .toHaveBeenCalled();
   });
 });

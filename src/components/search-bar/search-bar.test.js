@@ -1,21 +1,26 @@
-import test from 'ava';
 import React from 'react';
-import { shallow } from 'enzyme';
-
+import { shallow, configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 import SearchBar from './search-bar';
 
+configure({ adapter: new Adapter() });
+
 // check the type of the component
-test('SearchBar should be a function', t => {
-  t.is(typeof SearchBar, 'function');
+test('SearchBar should be a function', () => {
+  expect(typeof SearchBar)
+    .toBe('function');
 });
 
 // should render correctly
-test('SearchBar should render correctly', t => {
+test('SearchBar should render correctly', () => {
   const wrapper = shallow(
     <SearchBar />
   );
 
-  t.is(wrapper.props().iconType, 'search');
-  t.is(typeof wrapper.props().onChange, 'function');
-  t.is(typeof wrapper.props().onClear, 'function');
+  expect(wrapper.props().iconType)
+    .toBe('search');
+  expect(typeof wrapper.props().onChange)
+    .toBe('function');
+  expect(typeof wrapper.props().onClear)
+    .toBe('function');
 });

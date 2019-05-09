@@ -26,10 +26,12 @@ class NotificationList extends React.Component {
   constructor(props) {
     super(props);
 
+    const { currentNotification } = props;
+
     this.timer = null;
 
     this.state = {
-      notifications: [this.props.currentNotification]
+      notifications: [currentNotification]
     };
 
     this._removeNotification = this._removeNotification.bind(this);
@@ -43,8 +45,11 @@ class NotificationList extends React.Component {
    * @return {object} JSX for this component
    */
   componentWillReceiveProps(newProps) {
+    const { notifications } = this.state;
+    const { removeAfter } = this.props;
+
     // clone props, no mutations
-    const newNotifications = this.state.notifications.slice();
+    const newNotifications = notifications.slice();
     const newCurrent = JSON.parse(JSON.stringify(newProps.currentNotification));
 
     // create unique key identifier and unshift the new content onto the queue
@@ -56,15 +61,15 @@ class NotificationList extends React.Component {
     });
 
     // lazy create timer
-    if (this.props.removeAfter && this.timer === null) {
+    if (removeAfter && this.timer === null) {
       // this periodically removes notifications after a given time
       this.timer = setInterval(() => {
-        if (this.state.notifications.length !== 0) {
-          this._removeNotification(this.state.notifications.length - 1);
+        if (notifications.length !== 0) {
+          this._removeNotification(notifications.length - 1);
         } else {
           clearInterval(this.timer);
         }
-      }, this.props.removeAfter);
+      }, removeAfter);
     }
   }
 
@@ -73,7 +78,9 @@ class NotificationList extends React.Component {
    * @param  {number} index of notification in list
    */
   _removeNotification(index) {
-    const newItems = this.state.notifications.slice();
+    const { notifications } = this.state;
+
+    const newItems = notifications.slice();
     newItems.splice(index, 1);
 
     this.setState({
@@ -94,28 +101,37 @@ class NotificationList extends React.Component {
    * @return {ReactElement} markup
    */
   render() {
-    const items = this.state.notifications.map((item, i) => {
+    const { notifications } = this.state;
+    const { theme, width } = this.props;
+
+    const items = notifications.map((item, i) => {
       if (!item) {
         return null;
       }
 
-      const { icon, type, header, label } = item;
+      const {
+        icon,
+        type,
+        header,
+        label
+      } = item;
 
       return (
         <div key={item.key}>
           <Notification
             icon={icon}
-            theme={this.props.theme}
+            theme={theme}
             headerLabel={header}
             label={label}
             type={type}
             onClose={() => this._handleClose(i)} />
-        </div>);
+        </div>
+      );
     });
 
     return (
       <div
-        style={{ width: this.props.width }}
+        style={{ width }}
         className='carbon cbn-notification-list'>
         <CSSTransitionGroup
           transitionName='cbn-notification-animation'

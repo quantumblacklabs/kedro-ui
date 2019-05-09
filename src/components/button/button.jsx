@@ -18,15 +18,17 @@ const Button = ({
   onClick,
   size,
   theme,
-  type
+  type,
+  mode
 }) => (
   <span className='carbon cbn-button'>
     <button
+      type={type}
       className={classnames(
         'cbn-button__btn',
         `cbn-button__btn--${animation}`,
         `cbn-button__btn--${size}`,
-        `cbn-button__btn--${type}`,
+        `cbn-button__btn--${mode}`,
         `cbn-theme--${theme}`
       )}
       disabled={disabled}
@@ -39,10 +41,11 @@ const Button = ({
 Button.defaultProps = {
   animation: 'fade',
   disabled: false,
+  mode: 'primary',
   onClick: null,
   size: 'regular',
   theme: 'dark',
-  type: 'primary'
+  type: 'button'
 };
 
 Button.propTypes = {
@@ -59,6 +62,10 @@ Button.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
+   * Button style - either with a border or minimal with an underline on hover
+   */
+  mode: PropTypes.oneOf(['primary', 'secondary']),
+  /**
    * Handle click events
    */
   onClick: PropTypes.func,
@@ -71,9 +78,9 @@ Button.propTypes = {
    */
   theme: PropTypes.oneOf(['dark', 'light']),
   /**
-   * Button style - either with a border or minimal with an underline on hover
+   * Native button type, e.g. 'button', 'submit', etc
    */
-  type: PropTypes.oneOf(['primary', 'secondary'])
+  type: PropTypes.string
 };
 
 export default Button;

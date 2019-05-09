@@ -1,8 +1,9 @@
-import test from 'ava';
 import React from 'react';
-import { shallow } from 'enzyme';
-
+import { shallow, configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 import SearchResults from './search-results';
+
+configure({ adapter: new Adapter() });
 
 const testProps = {
   value: '',
@@ -22,15 +23,18 @@ const testProps = {
   ]
 };
 
-test('SearchResults should be a function', t => {
-  t.is(typeof SearchResults, 'function');
+test('SearchResults should be a function', () => {
+  expect(typeof SearchResults)
+    .toBe('function');
 });
 
-test('SearchResults should render correctly', t => {
+test('SearchResults should render correctly', () => {
   const wrapper = shallow(
     <SearchResults {...testProps} />
   );
 
-  t.is(typeof wrapper.props().row, 'object');
-  t.is(typeof wrapper.props().results, 'object');
+  expect(typeof wrapper.props().row)
+    .toBe('object');
+  expect(typeof wrapper.props().results)
+    .toBe('object');
 });

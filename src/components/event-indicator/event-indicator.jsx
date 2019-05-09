@@ -102,7 +102,9 @@ class EventIndicator extends React.Component {
       // start position of the border
       .to(border, 0.1, { scale: 1, opacity: 1, transformOrigin: '50% 50%' })
       // slow motion scale of the border
-      .to(border, 0.7, { scale: 5, opacity: 0, ease: SlowMo.ease.config(0.5, 0.4, false), transformOrigin: '50% 50%' })
+      .to(border, 0.7, {
+        scale: 5, opacity: 0, ease: SlowMo.ease.config(0.5, 0.4, false), transformOrigin: '50% 50%'
+      })
       // reset the border to the start position
       .to(border, 0.1, { scale: 1, opacity: 0, transformOrigin: '50% 50%' });
 

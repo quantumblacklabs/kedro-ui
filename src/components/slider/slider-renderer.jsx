@@ -22,6 +22,7 @@ class SliderRenderer extends React.Component {
 
     this._handleChanged = this._handleChanged.bind(this);
     this._handleBlured = this._handleBlured.bind(this);
+    this._updatePercentage = this._updatePercentage.bind(this);
   }
 
   /**
@@ -101,6 +102,8 @@ class SliderRenderer extends React.Component {
    * _updatePercentage - injects the CSS variables into the child to correctly update the input track
    */
   _updatePercentage() {
+    if (!this._lineFilled) return;
+
     this._lineFilled.style.setProperty('background', `
       linear-gradient(to right,
       ${this.props.backgroundColor} 0,
@@ -120,7 +123,8 @@ class SliderRenderer extends React.Component {
       <div
         className={classnames(
           'cbn-slider__label',
-          'cbn-slider__label--single')}>
+          'cbn-slider__label--single'
+        )}>
         {this.props.label}
       </div>
     );
@@ -170,7 +174,8 @@ class SliderRenderer extends React.Component {
           <div
             className={classnames(
               'cbn-slider__number-input',
-              'cbn-slider__number-input--single')}>
+              'cbn-slider__number-input--single'
+            )}>
             <Input
               value={this.state.value.toString()}
               onBlur={this._handleBlured} />

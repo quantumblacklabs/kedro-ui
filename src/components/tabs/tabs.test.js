@@ -1,60 +1,64 @@
-import test from 'ava';
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow, configure, mount } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 import sinon from 'sinon';
 
 import Tabs from './tabs';
 
-let jsx = (
+configure({ adapter: new Adapter() });
+
+const jsx = (
   <Tabs tabs={['Overview', 'Location (98)', 'Sensors', 'Log', 'Related']} />
 );
 
-test('Tabs should be a function', t => {
-  t.is(typeof Tabs, 'function');
+test('Tabs should be a function', () => {
+  expect(typeof Tabs)
+    .toBe('function');
 });
 
-test('Tabs should create a valid React Component when called with required props', t => {
+test('Tabs should create a valid React Component when called with required props', () => {
   const wrapper = shallow(jsx);
-  t.true(wrapper.length === 1);
+  expect(wrapper.length === 1)
+    .toBeTruthy();
 });
 
-test('Tabs should be created with the correct default props', t => {
+test('Tabs should be created with the correct default props', () => {
   const wrapper = shallow(jsx);
-  t.is(typeof wrapper.props().onSelect, 'function');
-  t.is(wrapper.props().selectedIndex, 0);
-  t.is(wrapper.props().size, 'regular');
-  t.is(wrapper.props().theme, 'dark');
+  expect(typeof wrapper.props().onSelect)
+    .toBe('function');
+  expect(wrapper.props().selectedIndex)
+    .toBe(0);
+  expect(wrapper.props().size)
+    .toBe('regular');
+  expect(wrapper.props().theme)
+    .toBe('dark');
 });
 
-test('Tabs should be created with all the user defined props', t => {
+test('Tabs should be created with all the user defined props', () => {
   const tabData = [
     { text: 'One' },
     { text: 'Two' },
     { text: 'Three' }
   ];
   const spy = sinon.spy();
-  jsx = (
+  const wrapper = mount(
     <Tabs
       onSelect={spy}
       selectedIndex={1}
       size='small'
+
       tabs={tabData}
       theme='light' />
   );
-  const wrapper = mount(jsx);
 
-  t.is(wrapper.props().selectedIndex, 1);
-  t.is(wrapper.props().size, 'small');
-  t.deepEqual(wrapper.props().tabs, tabData);
-  t.is(wrapper.props().theme, 'light');
+  wrapper.find('button')
+    .first()
+    .simulate('click');
 
-  wrapper.find('.cbn-tabs__tab')
-    .children()
-    .last()
-    .simulate('click', { target: { dataset: { tabindex: 0 } } });
-
-  t.is(spy.callCount, 1);
+  expect(spy.callCount)
+    .toBe(1);
 
   // also verify the structure
-  t.is(wrapper.find('li').length, 3);
+  expect(wrapper.find('li'))
+    .toHaveLength(3);
 });
