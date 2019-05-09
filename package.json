@@ -1,6 +1,6 @@
 {
   "name": "@quantumblack/carbon-ui-components",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Carbon UI Components",
   "main": "dist/index.min.js",
   "files": [
