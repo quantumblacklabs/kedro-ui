@@ -67,6 +67,8 @@
   }
 }
 
+/* stylelint-disable */
+
 /**
  * ThemedParentState - adds theme to the parent and also adds given state to the given classes
  * @param {string} state - the state of the component which will be targeted

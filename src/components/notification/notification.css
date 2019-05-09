@@ -13,6 +13,19 @@ $color-btn-focus: rgba(255, 255, 255, 0.2);
 
 /** Implementation **/
 
+.cbn-notification__header {
+  @extend %type--semibold;
+  @extend %type--subhead-2;
+
+  @mixin themedParent color, notifications, headerLabel;
+}
+
+.cbn-notification__label {
+  @extend %type--subhead-2;
+
+  @mixin themedParent color, notifications, label;
+}
+
 .cbn-notification {
   @mixin themed background, notifications, background;
 
@@ -55,19 +68,6 @@ $color-btn-focus: rgba(255, 255, 255, 0.2);
       margin-bottom: $size-inner-spacing;
     }
   }
-}
-
-.cbn-notification__header {
-  @extend %type--semibold;
-  @extend %type--subhead-2;
-
-  @mixin themedParent color, notifications, headerLabel;
-}
-
-.cbn-notification__label {
-  @extend %type--subhead-2;
-
-  @mixin themedParent color, notifications, label;
 }
 
 .cbn-icon {

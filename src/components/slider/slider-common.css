@@ -253,26 +253,6 @@ $hidden-elements-height: 1px;
   box-shadow: none;
   box-sizing: content-box;
 
-  &:active {
-    outline: none;
-  }
-
-  &:focus {
-    outline: none;
-
-    &::-webkit-slider-thumb {
-      @mixin thumb-focus-style;
-    }
-
-    &::-moz-range-thumb {
-      @mixin thumb-focus-style;
-    }
-
-    &::-ms-thumb {
-      @mixin thumb-focus-style;
-    }
-  }
-
   /** THUMB **/
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
@@ -313,6 +293,26 @@ $hidden-elements-height: 1px;
     border-color: transparent;
 
     color: transparent;
+  }
+
+  &:active {
+    outline: none;
+  }
+
+  &:focus {
+    outline: none;
+
+    &::-webkit-slider-thumb {
+      @mixin thumb-focus-style;
+    }
+
+    &::-moz-range-thumb {
+      @mixin thumb-focus-style;
+    }
+
+    &::-ms-thumb {
+      @mixin thumb-focus-style;
+    }
   }
 }
 

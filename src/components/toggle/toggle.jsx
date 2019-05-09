@@ -35,11 +35,13 @@ class Toggle extends React.Component {
 
   /**
    * React lifecycle method
-   * {@link https://facebook.github.io/react/docs/react-component.html#componentWillReceiveProps}
+   * {@link https://facebook.github.io/react/docs/react-component.html#componentdidupdate}
    * @return {object} JSX for this component
    */
-  componentWillReceiveProps(nextProps) {
-    this.setState({ value: nextProps.value });
+  componentDidUpdate(prevProps) {
+    if (this.props.value !== prevProps.value) {
+      this.setState({ value: this.props.value });
+    }
   }
 
   /**

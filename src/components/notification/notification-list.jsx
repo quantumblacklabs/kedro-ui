@@ -44,13 +44,17 @@ class NotificationList extends React.Component {
    * {@link https://facebook.github.io/react/docs/react-component.html#componentwillreceiveprops}
    * @return {object} JSX for this component
    */
-  componentWillReceiveProps(newProps) {
+  componentDidUpdate(prevProps) {
     const { notifications } = this.state;
     const { removeAfter } = this.props;
 
+    if (this.props.currentNotification === prevProps.currentNotification) {
+      return null;
+    }
+
     // clone props, no mutations
     const newNotifications = notifications.slice();
-    const newCurrent = JSON.parse(JSON.stringify(newProps.currentNotification));
+    const newCurrent = JSON.parse(JSON.stringify(this.props.currentNotification));
 
     // create unique key identifier and unshift the new content onto the queue
     newCurrent.key = uniqueId('notification');

@@ -17,9 +17,9 @@ const { escapeRegExp, handleKeyEvent } = utils;
  * @param {Array} actions Functions to execute when the event fires
  * @param {Array} eventArgs Arguments passed from the event handler
  */
-const handleEvents = (...actions) => 
-  (...eventArgs) => 
-    actions.map(func => 
+const handleEvents = (...actions) =>
+  (...eventArgs) =>
+    actions.map(func =>
       (typeof func === 'function' ? func(...eventArgs) : null));
 
 /**
@@ -52,16 +52,17 @@ class Search extends React.Component {
 
   /**
    * React lifecycle method
+   * Update state when the input value / results list change
    * {@link https://facebook.github.io/react/docs/react-component.html#componentwillreceiveprops}
-   * @param {Object} New component props
+   * @param {object} newProps - Properties passed to component
    */
-  componentWillReceiveProps(nextProps) {
-    const newActiveRow = typeof nextProps.activeRow === 'number'
-      && nextProps.activeRow !== this.state.activeRow;
+  componentDidUpdate(prevProps) {
+    const newActiveRow = typeof this.props.activeRow === 'number'
+      && this.props.activeRow !== prevProps.activeRow;
 
     if (newActiveRow) {
       this.setState({
-        activeRow: nextProps.activeRow
+        activeRow: this.props.activeRow
       });
     }
   }

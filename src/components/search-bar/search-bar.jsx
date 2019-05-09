@@ -38,14 +38,14 @@ class SearchBar extends React.Component {
   /**
    * React lifecycle method
    * Update the value in state if props chage
-   * {@link https://facebook.github.io/react/docs/react-component.html#componentwillreceiveprops}
+   * {@link https://facebook.github.io/react/docs/react-component.html#componentdidupdate}
    * @return {object} JSX for this component
    */
-  componentWillReceiveProps(newProps) {
-    if (newProps.value !== this.state.value) {
+  componentDidUpdate(prevProps) {
+    if (this.props.value !== prevProps.value) {
       this.setState({
-        value: newProps.value,
-        showClearButton: newProps.value !== ''
+        value: this.props.value,
+        showClearButton: this.props.value !== ''
       });
     }
   }

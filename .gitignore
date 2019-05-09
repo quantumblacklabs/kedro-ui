@@ -33,3 +33,6 @@ bower_components
 # Cypress.io
 cypress/screenshots
 cypress/videos
+
+# Visual Code
+.vscode

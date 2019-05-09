@@ -1,5 +1,4 @@
-import React from 'react';
-import { shallow, configure } from 'enzyme';
+import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import utils from './index.js';
 import sinon from 'sinon';
@@ -164,7 +163,6 @@ test('Should invoke correctly when single key is supplied', () => {
 });
 
 test('Should invoke correctly when multiple keys are supplied', () => {
-  const hke = handleKeyEvent(27);
   const spy = sinon.spy();
 
   /** Test key code */
@@ -172,7 +170,7 @@ test('Should invoke correctly when multiple keys are supplied', () => {
     handleKeyEvent(keyCode)('escape,enter', spy);
   };
 
-  [27,13].forEach(v => {
+  [27, 13].forEach(v => {
     t(v);
   });
 
@@ -181,9 +179,6 @@ test('Should invoke correctly when multiple keys are supplied', () => {
 });
 
 test('Should throw if invalid values supplied', () => {
-  const toCall = sinon.spy();
-  const notToCall = sinon.spy();
-
   /** Test null params */
   const t1 = () => {
     handleKeyEvent(null, null)();
