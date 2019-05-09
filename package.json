@@ -16,7 +16,9 @@
     "prepublishOnly": "npm run test && npm run build",
     "stylelint": "stylelint './src/**/*.css' --formatter verbose",
     "eslint": "eslint src/**/*.js src/**/*.jsx src/**/*.test.js",
-    "test": "jest --config jest-ui.json --maxWorkers=4 --coverage"
+    "test": "jest --config jest-ui.json --maxWorkers=4 --coverage",
+    "version:update": "./tools/bin/update-version.sh",
+    "version:get": "echo \"Current version is \"$(./tools/bin/config.sh version)"
   },
   "repository": {
     "type": "git",
