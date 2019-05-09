@@ -48,13 +48,13 @@ class Dropdown extends React.Component {
 
   /**
    * React lifecycle method
-   * {@link https://facebook.github.io/react/docs/react-component.html#componentwillreceiveprops}
+   * {@link https://facebook.github.io/react/docs/react-component.html#componentwillupdate}
    * @param {Object} New component props
    */
-  componentWillReceiveProps(nextProps) {
-    if (this._childrenHaveChanged(nextProps)) {
+  componentDidUpdate(prevProps) {
+    if (this._childrenHaveChanged(prevProps)) {
       this.setState({
-        selectedOption: this._findSelectedOption(nextProps)
+        selectedOption: this._findSelectedOption(prevProps)
       });
     }
   }

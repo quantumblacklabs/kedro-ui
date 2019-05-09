@@ -28,19 +28,12 @@ $size-checkmark: 24px;
 
   .cbn-switch__input:checked + .cbn-switch-checkbox__label & {
     border-color: transparent;
-  }
-
-  .cbn-switch__input:checked + .cbn-switch-checkbox__label & {
     opacity: 1;
   }
 
   .cbn-switch__input:focus + .cbn-switch-checkbox__label & {
     @mixin themedParent outline-color, radiobutton, focus;
   }
-}
-
-.cbn-switch-checkbox__label {
-  position: relative;
 }
 
 .cbn-switch-checkbox__inner {
@@ -73,6 +66,8 @@ $size-checkmark: 24px;
   @extend %type--subhead-2;
 
   @mixin themedParent color, text;
+
+  position: relative;
 
   display: flex;
   flex-direction: row;

@@ -58,8 +58,8 @@
 
 %shadow-dark--active {
   box-shadow:
-  0 0 1px 0 rgba(0, 0, 0, 0.3),
-  0 0 2px 0 rgba(0, 0, 0, 0.12);
+    0 0 1px 0 rgba(0, 0, 0, 0.3),
+    0 0 2px 0 rgba(0, 0, 0, 0.12);
 }
 
 %shadow-dark--focus {

@@ -92,10 +92,10 @@ class Wrap extends React.Component {
                     </Dropdown>
                 </div>
                 <div style={{ marginRight: '20px', display: 'inline-block' }}>
-                    <Button size='small' onClick={ () => this._dropdown.open() }>Open</Button>
+                    <Button size='small' theme='light' onClick={ () => this._dropdown.open() }>Open</Button>
                 </div>
                 <div style={{ display: 'inline-block' }}>
-                    <Button size='small' onClick={ () => this._dropdown.close() }>Close</Button>
+                    <Button size='small' theme='light' onClick={ () => this._dropdown.close() }>Close</Button>
                 </div>
             </div>
         );

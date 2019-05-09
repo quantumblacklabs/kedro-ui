@@ -19,7 +19,7 @@ const createChainableTypeChecker = validate => {
   /**
    * TODO Add jsdoc description
    */
-  const checkType = (isRequired, props, propName, componentName = 'ANONYMOUS', location) => { 
+  const checkType = (isRequired, props, propName, componentName = 'ANONYMOUS', location) => {
     if (props[propName] == null) {
       const locationName = ReactPropTypeLocationNames[location];
       if (isRequired) {
