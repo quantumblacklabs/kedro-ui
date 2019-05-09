@@ -18,6 +18,8 @@ fi
 echo "Current version is "$FE__VERSION". Version will be updated to: "$NEW_VERSION
 
 git checkout -b $NEW_BRANCH
+npm run build
+git add -A
 git commit -m "create new version $NEW_VERSION" || :
 npm version v$NEW_VERSION
 git push origin $NEW_BRANCH
