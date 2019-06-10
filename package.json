@@ -131,6 +131,6 @@
     "node": "10.8.0",
     "npm": "6.3.0"
   },
-  "license": "UNLICENSED",
+  "license": "Apache-2.0",
   "homepage": "https://github.com/quantumblack/asset-carbon-ui-components#readme"
 }
