@@ -33,7 +33,7 @@ module.exports = {
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional
-      filename: 'carbon-ui.min.css'
+      filename: 'kedro-ui.min.css'
     })
   ],
   module: {

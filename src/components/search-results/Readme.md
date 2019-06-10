@@ -57,7 +57,7 @@ const dummyData = [
 
 <div className='africa' style={{paddingBottom:'200px'}}>
     <style>{`
-        .africa .cbn-search-results__row {
+        .africa .kui-search-results__row {
             padding-left: 20px;
         }
     `}</style>

@@ -18,7 +18,7 @@ test('Tooltip should render the correct structure', () => {
     </Tooltip>
   );
 
-  expect(wrapped.find('.cbn-tooltip').length === 1)
+  expect(wrapped.find('.kui-tooltip').length === 1)
     .toBeTruthy();
   expect(wrapped.find('.tt-test-text').length === 1)
     .toBeTruthy();

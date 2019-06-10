@@ -13,20 +13,20 @@ $color-btn-focus: rgba(255, 255, 255, 0.2);
 
 /** Implementation **/
 
-.cbn-notification__header {
+.kui-notification__header {
   @extend %type--semibold;
   @extend %type--subhead-2;
 
   @mixin themedParent color, notifications, headerLabel;
 }
 
-.cbn-notification__label {
+.kui-notification__label {
   @extend %type--subhead-2;
 
   @mixin themedParent color, notifications, label;
 }
 
-.cbn-notification {
+.kui-notification {
   @mixin themed background, notifications, background;
 
   position: relative;
@@ -37,11 +37,11 @@ $color-btn-focus: rgba(255, 255, 255, 0.2);
 
   padding: $size-spacing-top calc(($size-spacing * 2) + $size-icon) $size-spacing $size-spacing;
 
-  &.cbn-theme--dark {
+  &.kui-theme--dark {
     @extend %shadow-dark--notification;
   }
 
-  &.cbn-theme--light {
+  &.kui-theme--light {
     @extend %shadow-light--notification;
   }
 
@@ -50,41 +50,41 @@ $color-btn-focus: rgba(255, 255, 255, 0.2);
   }
 }
 
-.cbn-notification__content {
+.kui-notification__content {
   display: flex;
 
-  .cbn-notification--inline & {
+  .kui-notification--inline & {
     flex-direction: row;
 
-    .cbn-notification__label {
+    .kui-notification__label {
       margin-left: $size-inner-spacing;
     }
   }
 
-  .cbn-notification--multiline & {
+  .kui-notification--multiline & {
     flex-direction: column;
 
-    .cbn-notification__header {
+    .kui-notification__header {
       margin-bottom: $size-inner-spacing;
     }
   }
 }
 
-.cbn-icon {
+.kui-icon {
   flex-shrink: 0;
 
-  .cbn-notification & {
+  .kui-notification & {
     opacity: 0.55;
 
     margin-right: $size-spacing;
   }
 
-  &.cbn-icon--close {
+  &.kui-icon--close {
     margin-right: 0;
   }
 }
 
-.cbn-notification__closebtn {
+.kui-notification__closebtn {
   position: absolute;
 
   top: $size-spacing;
@@ -106,7 +106,7 @@ $color-btn-focus: rgba(255, 255, 255, 0.2);
   &:hover {
     cursor: pointer;
 
-    .cbn-icon--close {
+    .kui-icon--close {
       opacity: 1;
     }
   }
@@ -116,7 +116,7 @@ $color-btn-focus: rgba(255, 255, 255, 0.2);
 
     outline: none;
 
-    .cbn-icon--close {
+    .kui-icon--close {
       opacity: 1;
     }
   }

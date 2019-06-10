@@ -124,7 +124,7 @@ class EventIndicator extends React.Component {
   render() {
     return (
       <div
-        className='cbn-sg-playground__event-wrapper'
+        className='kui-sg-playground__event-wrapper'
         ref={indicator => { this._indicator = indicator; }}>
         <EventIndicatorRenderer
           color={_getColor(this.props.colorIndex, this.props.colorsCount)}

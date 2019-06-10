@@ -1,6 +1,6 @@
 $size: 80px;
 
-.cbn-sg-playground__events {
+.kui-sg-playground__events {
   position: absolute;
   top: 0;
   right: 0;
@@ -8,7 +8,7 @@ $size: 80px;
   margin-right: 30px;
 }
 
-.cbn-sg-playground__event-wrapper {
+.kui-sg-playground__event-wrapper {
   float: right;
 
   width: $size;

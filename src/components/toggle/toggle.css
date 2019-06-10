@@ -19,7 +19,7 @@ $duration-underline-hovered: 0.5s;
 $duration-separator-switch: 0.5s;
 $duration-switch-hover: 0.1s;
 
-.cbn-toggle {
+.kui-toggle {
   display: flex;
   padding-top: $size-toggle-padding;
   justify-content: space-between;
@@ -28,12 +28,12 @@ $duration-switch-hover: 0.1s;
     opacity: 0.5;
     cursor: not-allowed;
 
-    .cbn-switch {
+    .kui-switch {
       pointer-events: none;
     }
   }
 
-  .cbn-switch {
+  .kui-switch {
     margin: 0;
 
     &:active {
@@ -42,7 +42,7 @@ $duration-switch-hover: 0.1s;
   }
 }
 
-.cbn-toggle__label {
+.kui-toggle__label {
   @extend %type--subhead-2;
   @extend %type--regular;
 
@@ -50,13 +50,13 @@ $duration-switch-hover: 0.1s;
 
   margin: 0 0 $size-toggle-text-margin;
 
-  &.cbn-toggle--bold {
+  &.kui-toggle--bold {
     @extend %type--semibold;
   }
 }
 
-.cbn-toggle__text,
-.cbn-toggle__separator {
+.kui-toggle__text,
+.kui-toggle__separator {
   @extend %type--subhead-2;
   @extend %type--semibold;
 
@@ -65,12 +65,12 @@ $duration-switch-hover: 0.1s;
   margin-bottom: $size-toggle-margin-bottom;
 }
 
-.cbn-toggle__text {
+.kui-toggle__text {
   text-transform: uppercase;
   transition: color $duration-switch-hover;
 }
 
-.cbn-toggle__switch {
+.kui-toggle__switch {
   @mixin themedParent color, toggle;
 
   display: flex;
@@ -81,19 +81,19 @@ $duration-switch-hover: 0.1s;
   transform: translateY($size-toggle-y-offset);
 
   &:hover {
-    .cbn-toggle__text {
+    .kui-toggle__text {
       @mixin themedParent color, toggle, hover;
     }
   }
 
-  .cbn-switch__input:active + &,
-  .cbn-switch__input:focus + & {
+  .kui-switch__input:active + &,
+  .kui-switch__input:focus + & {
     @mixin themedParent outline-color, toggle, focus;
     @mixin themedParent background-color, toggle, focus;
   }
 }
 
-.cbn-toggle__button {
+.kui-toggle__button {
   transform: translateY(-$size-toggle-y-offset);
 
   &::after {
@@ -111,8 +111,8 @@ $duration-switch-hover: 0.1s;
     transition: transform $duration-underline-hovered;
   }
 
-  &.cbn-toggle--selected {
-    .cbn-toggle__text {
+  &.kui-toggle--selected {
+    .kui-toggle__text {
       @mixin themedParent color, text;
     }
 
@@ -126,12 +126,12 @@ $duration-switch-hover: 0.1s;
   }
 }
 
-.cbn-toggle__separator {
+.kui-toggle__separator {
   transition: $duration-separator-switch;
 
   margin: $size-separator-margin;
 
-  &.cbn-toggle__separator--right {
+  &.kui-toggle__separator--right {
     transform: rotate($size-separator-rotation);
   }
 }

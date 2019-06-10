@@ -1,7 +1,7 @@
 {
-  "name": "@quantumblack/carbon-ui-components",
-  "version": "3.0.1",
-  "description": "Carbon UI Components",
+  "name": "@quantumblack/kedro-ui",
+  "version": "1.0.0",
+  "description": "Kedro UI, a React component library by QuantumBlack",
   "main": "dist/index.min.js",
   "files": [
     "dist"
@@ -22,7 +22,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com:quantumblack/asset-carbon-ui-components.git"
+    "url": "git+ssh://git@github.com:quantumblacklabs/kedro-ui.git"
   },
   "author": "Quantumblack",
   "contributors": [
@@ -132,5 +132,5 @@
     "npm": "6.3.0"
   },
   "license": "UNLICENSED",
-  "homepage": "https://github.com/quantumblack/asset-carbon-ui-components#readme"
+  "homepage": "https://github.com/quantumblacklabs/kedro-ui#readme"
 }

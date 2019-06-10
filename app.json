@@ -1,5 +1,5 @@
 {
-  "name":"Carbon UI Components",
+  "name":"Kedro UI",
   "scripts": {
     "dokku": {
       "predeploy": "ls -l && npm run docs:build && ls -l"

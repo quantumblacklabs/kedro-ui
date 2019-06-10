@@ -29,15 +29,15 @@ const SearchBarRenderer = props => {
 
   return (
     <form
-      className={classnames('carbon', 'cbn-searchbar', `cbn-theme--${theme}`, { 'cbn-searchbar--focused': isFocused })}
+      className={classnames('kedro', 'kui-searchbar', `kui-theme--${theme}`, { 'kui-searchbar--focused': isFocused })}
       onSubmit={onSubmit}
       role={children ? 'combobox' : 'search'}>
-      <label className='cbn-searchbar__label' htmlFor='cbn-searchbar'>Search</label>
-      <div className='cbn-searchbar__iconwrapper'>
+      <label className='kui-searchbar__label' htmlFor='kui-searchbar'>Search</label>
+      <div className='kui-searchbar__iconwrapper'>
         <Icon type={iconType} size='medium' theme={theme} />
       </div>
       <Input
-        id='cbn-searchbar'
+        id='kui-searchbar'
         placeholder={placeholder}
         onChange={onChange}
         onFocus={onFocus}
@@ -45,7 +45,7 @@ const SearchBarRenderer = props => {
         value={value}
         theme={theme}
         type='search' />
-      <div className='cbn-searchbar__dynamicicon' style={style}>
+      <div className='kui-searchbar__dynamicicon' style={style}>
         <Icon onClick={onClear} type='close' size='medium' theme={theme} />
       </div>
       { children }

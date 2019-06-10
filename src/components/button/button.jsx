@@ -21,15 +21,15 @@ const Button = ({
   type,
   mode
 }) => (
-  <span className='carbon cbn-button'>
+  <span className='kedro kui-button'>
     <button
       type={type}
       className={classnames(
-        'cbn-button__btn',
-        `cbn-button__btn--${animation}`,
-        `cbn-button__btn--${size}`,
-        `cbn-button__btn--${mode}`,
-        `cbn-theme--${theme}`
+        'kui-button__btn',
+        `kui-button__btn--${animation}`,
+        `kui-button__btn--${size}`,
+        `kui-button__btn--${mode}`,
+        `kui-theme--${theme}`
       )}
       disabled={disabled}
       onClick={onClick}>

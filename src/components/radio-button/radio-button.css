@@ -9,7 +9,7 @@ $size-radio-button-spacing: 14px;
 
 /** Implementation **/
 
-.cbn-switch-radio__box {
+.kui-switch-radio__box {
   @mixin themedParent border-color, radiobutton, default;
 
   position: relative;
@@ -47,7 +47,7 @@ $size-radio-button-spacing: 14px;
     transition: all 0.3s;
   }
 
-  .cbn-switch__input:checked + .cbn-switch-radio__label & {
+  .kui-switch__input:checked + .kui-switch-radio__label & {
     &::before {
       width: 80%;
       height: 80%;
@@ -56,18 +56,18 @@ $size-radio-button-spacing: 14px;
     }
   }
 
-  .cbn-switch__input:focus + .cbn-switch-radio__label & {
-    .cbn-theme--light & {
+  .kui-switch__input:focus + .kui-switch-radio__label & {
+    .kui-theme--light & {
       box-shadow: 0 0 0 3px map(themes, light, radiobutton, focus);
     }
 
-    .cbn-theme--dark & {
+    .kui-theme--dark & {
       box-shadow: 0 0 0 3px map(themes, dark, radiobutton, focus);
     }
   }
 }
 
-.cbn-switch-radio__label {
+.kui-switch-radio__label {
   @extend %type--subhead-2;
 
   @mixin themedParent color, text;
@@ -80,7 +80,7 @@ $size-radio-button-spacing: 14px;
   user-select: none;
   cursor: pointer;
 
-  .cbn-switch-radio--disabled & {
+  .kui-switch-radio--disabled & {
     opacity: 0.5;
     cursor: not-allowed;
   }

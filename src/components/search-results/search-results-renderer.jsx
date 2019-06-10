@@ -83,31 +83,31 @@ class SearchResultsRenderer extends React.Component {
      */
     const text = result => (
       <div
-        className='cbn-search-results__label'
+        className='kui-search-results__label'
         dangerouslySetInnerHTML={{ __html: result.highlightedLabel }} />
     );
 
     return (
-      <div className='carbon cbn-search-results' onMouseOver={onMouseOver}>
+      <div className='kedro kui-search-results' onMouseOver={onMouseOver}>
         <div
           aria-hidden={hidden}
           className={classnames(
-            'cbn-search-results__wrapper',
-            { 'cbn-search-results__wrapper--hidden': hidden },
-            `cbn-theme--${theme}`
+            'kui-search-results__wrapper',
+            { 'kui-search-results__wrapper--hidden': hidden },
+            `kui-theme--${theme}`
           )}
           style={{ height, maxHeight: row.maxHeight }}>
           <ul
-            className='cbn-search-results__list'
+            className='kui-search-results__list'
             ref={el => { this._list = el; }}
             role='listbox'>
             { results.map((result, i) => (
               <li
-                id={activeRow === i ? 'cbn-search-results-selected' : null}
+                id={activeRow === i ? 'kui-search-results-selected' : null}
                 aria-selected={activeRow === i}
                 className={classnames(
-                  'cbn-search-results__row',
-                  { 'cbn-search-results__row--active': activeRow === i }
+                  'kui-search-results__row',
+                  { 'kui-search-results__row--active': activeRow === i }
                 )}
                 key={result.label}
                 onClick={e => this._handleRowClicked(e, result)}

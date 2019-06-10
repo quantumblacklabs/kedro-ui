@@ -56,11 +56,11 @@ test('Search should render correct structure', () => {
     .dive()
     .dive();
 
-  expect(wrapper.find('.cbn-search'))
+  expect(wrapper.find('.kui-search'))
     .toHaveLength(1);
-  expect(searchBarRenderComponent.find('.cbn-searchbar'))
+  expect(searchBarRenderComponent.find('.kui-searchbar'))
     .toHaveLength(1);
-  expect(searchResultsRenderComponent.find('.cbn-search-results'))
+  expect(searchResultsRenderComponent.find('.kui-search-results'))
     .toHaveLength(1);
 });
 
@@ -72,7 +72,7 @@ test('Search should have a light theme class', () => {
     .dive()
     .dive();
 
-  expect(searchResultsRenderComponent.find('.cbn-theme--light'))
+  expect(searchResultsRenderComponent.find('.kui-theme--light'))
     .toHaveLength(1);
 });
 
@@ -84,7 +84,7 @@ test('Search should have a dark theme class', () => {
     .dive()
     .dive();
 
-  expect(searchResultsRenderComponent.find('.cbn-theme--dark'))
+  expect(searchResultsRenderComponent.find('.kui-theme--dark'))
     .toHaveLength(1);
 });
 
@@ -97,10 +97,10 @@ test('SearchResults should highlight the active row', () => {
     .dive()
     .dive();
 
-  expect(searchResultsRenderComponent.find('.cbn-search-results__row--active'))
+  expect(searchResultsRenderComponent.find('.kui-search-results__row--active'))
     .toHaveLength(1);
   expect(
-    searchResultsRenderComponent.find('.cbn-search-results__row--active')
+    searchResultsRenderComponent.find('.kui-search-results__row--active')
       .prop('title')
   )
     .toBe(testProps.results[activeRow].label);

@@ -208,8 +208,8 @@ class RangedSliderRenderer extends React.Component {
     const sliderLabel = label && (
       <div
         className={classnames(
-          'cbn-slider__label',
-          'cbn-slider__label--multiple'
+          'kui-slider__label',
+          'kui-slider__label--multiple'
         )}>
         {label}
       </div>
@@ -218,25 +218,25 @@ class RangedSliderRenderer extends React.Component {
     return (
       <div
         className={classnames(
-          'cbn-slider__wrapper',
-          'cbn-slider__wrapper--multiple'
+          'kui-slider__wrapper',
+          'kui-slider__wrapper--multiple'
         )}>
         {sliderLabel}
-        <div className='cbn-slider__controls'>
+        <div className='kui-slider__controls'>
           <div
             className={classnames(
-              'cbn-slider__number-input',
-              'cbn-slider__number-input--min',
-              'cbn-slider__number-input--multiple'
+              'kui-slider__number-input',
+              'kui-slider__number-input--min',
+              'kui-slider__number-input--multiple'
             )}>
             <Input
               value={minRange.toString()}
               onBlur={this._handleMinBlured} />
           </div>
-          <div className='cbn-slider__range'>
-            <div className='cbn-slider__ticks'>
+          <div className='kui-slider__range'>
+            <div className='kui-slider__ticks'>
               <TickRenderer
-                componentPrefix='cbn-slider'
+                componentPrefix='kui-slider'
                 id={listId}
                 min={min}
                 max={max}
@@ -248,7 +248,7 @@ class RangedSliderRenderer extends React.Component {
                 type='number'
                 width={sliderWidth} />
               <TickRenderer
-                componentPrefix='cbn-slider'
+                componentPrefix='kui-slider'
                 min={min}
                 max={max}
                 minRange={minRange}
@@ -261,12 +261,12 @@ class RangedSliderRenderer extends React.Component {
             </div>
             <div
               ref={lineFilled => { this._lineFilled = lineFilled; }}
-              className='cbn-slider__line' />
+              className='kui-slider__line' />
             <input
               className={classnames(
-                'cbn-slider__input',
-                'cbn-slider__input--multiple',
-                'cbn-slider__input--min'
+                'kui-slider__input',
+                'kui-slider__input--multiple',
+                'kui-slider__input--min'
               )}
               type='range'
               name={name}
@@ -278,10 +278,10 @@ class RangedSliderRenderer extends React.Component {
               multiple />
             <input
               className={classnames(
-                'cbn-slider__input',
-                'cbn-slider__input--multiple',
-                'cbn-slider__input--max',
-                { 'cbn-slider__input--max-disabled': maxRangeDisabled }
+                'kui-slider__input',
+                'kui-slider__input--multiple',
+                'kui-slider__input--max',
+                { 'kui-slider__input--max-disabled': maxRangeDisabled }
               )}
               type='range'
               list={listId}
@@ -295,9 +295,9 @@ class RangedSliderRenderer extends React.Component {
           </div>
           <div
             className={classnames(
-              'cbn-slider__number-input',
-              'cbn-slider__number-input--max',
-              'cbn-slider__number-input--multiple'
+              'kui-slider__number-input',
+              'kui-slider__number-input--max',
+              'kui-slider__number-input--multiple'
             )}>
             <Input
               value={maxRange.toString()}

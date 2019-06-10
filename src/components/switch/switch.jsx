@@ -44,13 +44,13 @@ const Switch = ({
 
   // conditional classes based on props
   const extraClasses = {};
-  extraClasses[`cbn-switch-${type}--disabled`] = disabled;
+  extraClasses[`kui-switch-${type}--disabled`] = disabled;
 
   const _containerClassNames = classnames(
-    'carbon',
-    'cbn-switch',
-    `cbn-switch-${type}`,
-    `cbn-theme--${theme}`,
+    'kedro',
+    'kui-switch',
+    `kui-switch-${type}`,
+    `kui-theme--${theme}`,
     extraClasses
   );
 
@@ -58,7 +58,7 @@ const Switch = ({
     <div className={_containerClassNames}>
       <input
         {...extraProps}
-        className='cbn-switch__input'
+        className='kui-switch__input'
         disabled={disabled}
         id={id}
         onChange={_handleOnChange}

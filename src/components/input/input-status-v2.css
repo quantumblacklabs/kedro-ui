@@ -3,17 +3,17 @@
 @import '../../styles/includes';
 
 /** STATUS DESCRIPTION - VARIANT THREE - DESCRIPTION BACKGROUND COLOR + WHITE TEXT **/
-.cbn-input__description {
-  .cbn-input--variant-two.cbn-input--success + & {
+.kui-input__description {
+  .kui-input--variant-two.kui-input--success + & {
     @mixin themedParent background-color, input, success;
   }
 
-  .cbn-input--variant-two.cbn-input--error + & {
+  .kui-input--variant-two.kui-input--error + & {
     @mixin themedParent background-color, input, error;
   }
 
-  .cbn-input--variant-two.cbn-input--success + &,
-  .cbn-input--variant-two.cbn-input--error + & {
+  .kui-input--variant-two.kui-input--success + &,
+  .kui-input--variant-two.kui-input--error + & {
     @mixin themedParent color, input, status;
   }
 }

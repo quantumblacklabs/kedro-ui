@@ -220,7 +220,7 @@ class Search extends React.Component {
 
     return (
       <div
-        className='cbn-search'
+        className='kui-search'
         ref={el => {
           this._search = el;
         }}

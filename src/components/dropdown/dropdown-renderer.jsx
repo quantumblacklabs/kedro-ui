@@ -26,7 +26,7 @@ const DropdownRenderer = ({
   title,
   width
 }) => {
-  const wrapperClasses = classnames('carbon', 'cbn-dropdown', `cbn-theme--${theme}`, { 'cbn-dropdown--open': open });
+  const wrapperClasses = classnames('kedro', 'kui-dropdown', `kui-theme--${theme}`, { 'kui-dropdown--open': open });
   let optionIndex = 0;
 
   /**
@@ -114,12 +114,12 @@ const DropdownRenderer = ({
       title={title}>
       <button
         type='button'
-        className='cbn-dropdown__label'
+        className='kui-dropdown__label'
         onClick={onLabelClicked}>
         <span>{selectedOption.label || defaultText}</span>
         <Icon type='chevronUp' theme={theme} />
       </button>
-      <div className='cbn-dropdown__options'>
+      <div className='kui-dropdown__options'>
         {optionsNode}
       </div>
     </div>

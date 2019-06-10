@@ -49,12 +49,12 @@ mockData.forEach((data, i) => {
         .toBeTruthy();
 
       // one text element should contain the name
-      const name = wrapper.find('.cbn-sg-playground__event-name');
+      const name = wrapper.find('.kui-sg-playground__event-name');
       expect(name.text())
         .toBe(data.name);
 
       // one text element should contain the count value
-      const count = wrapper.find('.cbn-sg-playground__event-count');
+      const count = wrapper.find('.kui-sg-playground__event-count');
       expect(count.text())
         .toBe(data.count.toString());
     });

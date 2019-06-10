@@ -29,13 +29,13 @@ const Checkbox = ({
       type='checkbox'
       theme={theme}
       value={value}>
-      <label className='cbn-switch-checkbox__label' htmlFor={id}>
-        <div className='cbn-switch-checkbox__box'>
-          <svg className='cbn-switch-checkbox__inner' viewBox='0 0 24 24'>
+      <label className='kui-switch-checkbox__label' htmlFor={id}>
+        <div className='kui-switch-checkbox__box'>
+          <svg className='kui-switch-checkbox__inner' viewBox='0 0 24 24'>
             <g fill='none' fillRule='evenodd'>
               <path d='M0 0h24v24H0z' />
               <path
-                className='cbn-switch-checkbox__innerfill'
+                className='kui-switch-checkbox__innerfill'
                 d='M2 2h20v20H2V2zm7.923 12.362l-2.538-2.418L6
                    13.263 9.923 17 18 9.32 16.615 8l-6.692 6.362z' />
             </g>

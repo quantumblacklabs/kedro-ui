@@ -28,12 +28,12 @@ const MenuOption = ({
   theme,
   value
 }) => {
-  const wrapperClasses = classnames('carbon', 'cbn-menu-option', {
-    'cbn-menu-option--focused': focused,
-    'cbn-menu-option--selected': selected,
-    'cbn-menu-option--has-icon': typeof icon === 'string',
-    'cbn-menu-option--icon-left': iconPosition === 'left',
-    'cbn-menu-option--icon-right': iconPosition === 'right'
+  const wrapperClasses = classnames('kedro', 'kui-menu-option', {
+    'kui-menu-option--focused': focused,
+    'kui-menu-option--selected': selected,
+    'kui-menu-option--has-icon': typeof icon === 'string',
+    'kui-menu-option--icon-left': iconPosition === 'left',
+    'kui-menu-option--icon-right': iconPosition === 'right'
   });
 
   const iconNode = icon
@@ -69,7 +69,7 @@ const MenuOption = ({
       onKeyDown={_handleKeyDown}
       role='option'
       tabIndex='-1'>
-      <div className='cbn-menu-option__content' title={primaryText}>
+      <div className='kui-menu-option__content' title={primaryText}>
         {iconPosition === 'left' && icon
           && iconNode}
         <span>{primaryText}</span>

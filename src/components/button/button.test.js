@@ -65,7 +65,7 @@ test('Button should correctly be disabled', () => {
 test('Button should correctly have light theme class', () => {
   const wrapper = shallow(<Button theme='light' />);
 
-  expect(wrapper.find('.cbn-theme--light'))
+  expect(wrapper.find('.kui-theme--light'))
     .toHaveLength(1);
 });
 
@@ -73,6 +73,6 @@ test('Button should correctly have dark theme class', () => {
   // dark theme is default, so it should be automatically assigned
   const wrapper = shallow(<Button theme='dark' />);
 
-  expect(wrapper.find('.cbn-theme--dark'))
+  expect(wrapper.find('.kui-theme--dark'))
     .toHaveLength(1);
 });

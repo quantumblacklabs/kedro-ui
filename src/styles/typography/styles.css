@@ -2,7 +2,7 @@
 @import url(https://fonts.googleapis.com/css?family=Titillium+Web:300,400,600);
 @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
 
-.carbon {
+.kedro {
   @extend %base;
   font-size: 10px;
 }

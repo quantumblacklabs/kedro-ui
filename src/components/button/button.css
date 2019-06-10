@@ -12,11 +12,11 @@ $secondary-underline-offset-hover: 4px;
 
 /** Implementation **/
 
-.cbn-button {
+.kui-button {
   display: inline-block;
 }
 
-.cbn-button__btn {
+.kui-button__btn {
   @extend %type--subhead-2;
   @extend %type--semibold;
 
@@ -42,18 +42,18 @@ $secondary-underline-offset-hover: 4px;
     opacity: 0.5;
   }
 
-  .cbn-icon {
+  .kui-icon {
     margin-right: 2px;
   }
 }
 
-.cbn-button__btn--small {
+.kui-button__btn--small {
   @extend %type--body-1;
 
   padding: 0.6em 0.85em 0.7em;
 }
 
-.cbn-button__btn--primary {
+.kui-button__btn--primary {
   @mixin themed outline-color, button, outline;
   @mixin themedState :hover, color, button, textHover;
   @mixin themedState :active, color, button, textHover;
@@ -61,11 +61,11 @@ $secondary-underline-offset-hover: 4px;
   @mixin themedState :active, background, button, active;
   @mixin themedState :disabled, color, text;
 
-  &.cbn-theme--light:focus {
+  &.kui-theme--light:focus {
     box-shadow: 0 0 0 5px map(themes, light, button, focus);
   }
 
-  &.cbn-theme--dark:focus {
+  &.kui-theme--dark:focus {
     box-shadow: 0 0 0 5px map(themes, dark, button, focus);
   }
 
@@ -75,30 +75,30 @@ $secondary-underline-offset-hover: 4px;
   }
 
   &:disabled,
-  &.cbn-theme--light:disabled,
-  &.cbn-theme--dark:disabled {
+  &.kui-theme--light:disabled,
+  &.kui-theme--dark:disabled {
     background: none;
   }
 
-  .cbn-icon__graphics {
+  .kui-icon__graphics {
     transition: fill ease $timing-primary;
   }
 
-  &.cbn-theme--light:hover,
-  &.cbn-theme--light:active {
-    .cbn-icon__graphics {
+  &.kui-theme--light:hover,
+  &.kui-theme--light:active {
+    .kui-icon__graphics {
       fill: map(themes, light, button, textHover);
     }
   }
 
-  &.cbn-theme--dark:hover,
-  &.cbn-theme--dark:active {
-    .cbn-icon__graphics {
+  &.kui-theme--dark:hover,
+  &.kui-theme--dark:active {
+    .kui-icon__graphics {
       fill: map(themes, dark, button, textHover);
     }
   }
 
-  &.cbn-button__btn--wipe {
+  &.kui-button__btn--wipe {
     position: relative;
 
     /**
@@ -133,7 +133,7 @@ $secondary-underline-offset-hover: 4px;
   }
 }
 
-.cbn-button__btn--secondary {
+.kui-button__btn--secondary {
   @mixin themedState :focus::after, background, button, focus;
   @mixin themedState :hover::after, background, button, outline;
 
@@ -166,7 +166,7 @@ $secondary-underline-offset-hover: 4px;
     display: none;
   }
 
-  &.cbn-button__btn--wipe {
+  &.kui-button__btn--wipe {
     &::after {
       width: 0;
       transition: all ease 0.2s;
