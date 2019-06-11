@@ -1,7 +1,7 @@
 # Kedro UI
 
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![npm version](https://badge.fury.io/js/%40quantumblack%2Fcarbon-ui-components.svg)](https://badge.fury.io/js/%40quantumblack%2Fcarbon-ui-components) [![CircleCI](https://circleci.com/gh/quantumblacklabs/kedro-ui/tree/master.svg?style=svg&circle-token=16d3f559b48b0890a5ee3adbc1d4be0e62f9637d)](https://circleci.com/gh/quantumblacklabs/kedro-ui/tree/master)
+[![npm version](https://badge.fury.io/js/%40quantumblack%2Fcarbon-ui-components.svg)](https://badge.fury.io/js/%40quantumblack%2Fcarbon-ui-components) [![CircleCI](https://circleci.com/gh/quantumblacklabs/kedro-ui.svg?style=svg&circle-token=16d3f559b48b0890a5ee3adbc1d4be0e62f9637d)](https://circleci.com/gh/quantumblacklabs/kedro-ui)
 
 This repo represents a set of UI components that we use in our internal products and applications. It allows us to move at speed i.e. not rewrite the wheel on every new endeavour.
 
