@@ -10,7 +10,7 @@ $size-content-maxwidth: 400px;
 
 /** Implementation **/
 
-.cbn-modal {
+.kui-modal {
   position: fixed;
 
   top: 0;
@@ -20,7 +20,7 @@ $size-content-maxwidth: 400px;
   height: 100%;
 }
 
-.cbn-modal__bg {
+.kui-modal__bg {
   @mixin themedParent background, modal, bg;
 
   position: absolute;
@@ -29,7 +29,7 @@ $size-content-maxwidth: 400px;
   height: 100%;
 }
 
-.cbn-modal__content {
+.kui-modal__content {
   @mixin themedParent background, modal, content;
 
   position: absolute;
@@ -43,7 +43,7 @@ $size-content-maxwidth: 400px;
   transform: translate(-50%, -50%);
 }
 
-.cbn-modal__wrapper {
+.kui-modal__wrapper {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -57,7 +57,7 @@ $size-content-maxwidth: 400px;
   text-align: center;
 }
 
-.cbn-modal__title {
+.kui-modal__title {
   @mixin themedParent color, modal, title;
 
   @extend %type--subhead-1;
@@ -67,7 +67,7 @@ $size-content-maxwidth: 400px;
   margin-bottom: $size-spacing;
 }
 
-.cbn-modal__description {
+.kui-modal__description {
   @mixin themedParent color, modal, description;
 
   @extend %type--subhead-2;
@@ -75,8 +75,8 @@ $size-content-maxwidth: 400px;
   margin-bottom: $size-spacing;
 }
 
-.cbn-icon {
-  .cbn-modal & {
+.kui-icon {
+  .kui-modal & {
     position: absolute;
 
     top: $size-pos;

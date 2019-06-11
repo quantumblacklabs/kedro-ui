@@ -49,9 +49,9 @@ test('SearchResultsRenderer should render correct structure', () => {
   const wrapper = shallow(
     <SearchResultsRenderer {...testProps} />
   );
-  expect(wrapper.find('.cbn-search-results__list'))
+  expect(wrapper.find('.kui-search-results__list'))
     .toHaveLength(1);
-  expect(wrapper.find('.cbn-search-results__row'))
+  expect(wrapper.find('.kui-search-results__row'))
     .toHaveLength(testProps.results.length);
 });
 
@@ -59,7 +59,7 @@ test('SearchResultsRenderer should have a light theme class', () => {
   const wrapper = shallow(
     <SearchResultsRenderer {...testProps} theme='light' />
   );
-  expect(wrapper.find('.cbn-theme--light').length === 1)
+  expect(wrapper.find('.kui-theme--light').length === 1)
     .toBeTruthy();
 });
 
@@ -67,7 +67,7 @@ test('SearchResultsRenderer should have a dark theme class', () => {
   const wrapper = shallow(
     <SearchResultsRenderer {...testProps} theme='dark' />
   );
-  expect(wrapper.find('.cbn-theme--dark').length === 1)
+  expect(wrapper.find('.kui-theme--dark').length === 1)
     .toBeTruthy();
 });
 
@@ -77,9 +77,9 @@ test('SearchResults should highlight the active row', () => {
     <SearchResultsRenderer {...testProps} activeRow={activeRow} />
   );
 
-  expect(wrapper.find('.cbn-search-results__row--active'))
+  expect(wrapper.find('.kui-search-results__row--active'))
     .toHaveLength(1);
-  expect(wrapper.find('.cbn-search-results__row--active')
+  expect(wrapper.find('.kui-search-results__row--active')
     .prop('title'))
     .toBe(testProps.results[activeRow].label);
 });

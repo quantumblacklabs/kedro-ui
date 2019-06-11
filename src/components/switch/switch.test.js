@@ -38,7 +38,7 @@ test('Switch should trigger onChange event when clicked', () => {
       value={1} />
   );
 
-  wrapper.find('.cbn-switch__input')
+  wrapper.find('.kui-switch__input')
     .simulate('change', { target: { checked: true } });
 
   expect(onChanged.callCount)

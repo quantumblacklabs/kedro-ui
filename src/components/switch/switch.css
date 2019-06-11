@@ -8,11 +8,11 @@ $size-switch-spacing: 14px;
 
 /** Implementation **/
 
-.cbn-switch__input {
+.kui-switch__input {
   @extend %hidden;
 }
 
-.cbn-switch {
+.kui-switch {
   margin-bottom: $size-switch-spacing;
 
   &:active {

@@ -10,7 +10,7 @@ $duration-opacity: 0.3s;
 
 /** Implementation */
 
-.cbn-tooltip {
+.kui-tooltip {
   @mixin themed color, tooltip, text;
   @mixin themed background, tooltip;
 
@@ -24,38 +24,38 @@ $duration-opacity: 0.3s;
   transition: opacity $duration-opacity;
 }
 
-.cbn-tooltip--fixed {
+.kui-tooltip--fixed {
   position: fixed;
 }
 
-.cbn-tooltip--hidden {
+.kui-tooltip--hidden {
   opacity: 0;
   pointer-events: none;
 }
 
-.cbn-tooltip-trigger {
+.kui-tooltip-trigger {
   display: inline-block;
 }
 
 /** Directions */
 
-.cbn-tooltip--top {
+.kui-tooltip--top {
   transform: translate(0, -100%);
 }
 
-.cbn-tooltip--bottom {
+.kui-tooltip--bottom {
   transform: translate(0, 0);
 }
 
-.cbn-tooltip--left {
+.kui-tooltip--left {
   transform: translate(-100%, 0);
 }
 
-.cbn-tooltip--right {
+.kui-tooltip--right {
   transform: translate(0, 0);
 }
 
-.cbn-tooltip__text {
+.kui-tooltip__text {
   @extend %type--body-2;
   @extend %type--semibold;
 

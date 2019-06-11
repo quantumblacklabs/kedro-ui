@@ -122,20 +122,20 @@ class SliderRenderer extends React.Component {
     const label = this.props.label && (
       <div
         className={classnames(
-          'cbn-slider__label',
-          'cbn-slider__label--single'
+          'kui-slider__label',
+          'kui-slider__label--single'
         )}>
         {this.props.label}
       </div>
     );
 
     return (
-      <div className='cbn-slider__wrapper'>
+      <div className='kui-slider__wrapper'>
         {label}
-        <div className='cbn-slider__controls'>
-          <div className='cbn-slider__range'>
+        <div className='kui-slider__controls'>
+          <div className='kui-slider__range'>
             <TickRenderer
-              componentPrefix='cbn-slider'
+              componentPrefix='kui-slider'
               id={this.props.listId}
               min={this.props.min}
               max={this.props.max}
@@ -147,7 +147,7 @@ class SliderRenderer extends React.Component {
               type='number'
               width={this.props.sliderWidth} />
             <TickRenderer
-              componentPrefix='cbn-slider'
+              componentPrefix='kui-slider'
               min={this.props.min}
               max={this.props.max}
               minRange={0}
@@ -159,9 +159,9 @@ class SliderRenderer extends React.Component {
               width={this.props.sliderWidth} />
             <div
               ref={lineFilled => { this._lineFilled = lineFilled; }}
-              className='cbn-slider__line' />
+              className='kui-slider__line' />
             <input
-              className='cbn-slider__input'
+              className='kui-slider__input'
               type='range'
               list={this.props.listId}
               name={this.props.name}
@@ -173,8 +173,8 @@ class SliderRenderer extends React.Component {
           </div>
           <div
             className={classnames(
-              'cbn-slider__number-input',
-              'cbn-slider__number-input--single'
+              'kui-slider__number-input',
+              'kui-slider__number-input--single'
             )}>
             <Input
               value={this.state.value.toString()}

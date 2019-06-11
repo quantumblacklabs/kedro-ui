@@ -32,23 +32,23 @@ const Notification = ({
     <div
       role='alert'
       aria-live='assertive'
-      className={`carbon cbn-notification cbn-notification--${type} cbn-theme--${theme}`}
+      className={`kedro kui-notification kui-notification--${type} kui-theme--${theme}`}
       tabIndex='-1'>
       {contextIcon}
-      <div className='cbn-notification__content'>
+      <div className='kui-notification__content'>
         <span
-          className='cbn-notification__header'>
+          className='kui-notification__header'>
           {headerLabel}
         </span>
         <span
-          className='cbn-notification__label'>
+          className='kui-notification__label'>
           {label}
         </span>
       </div>
       <button
         aria-label='close'
         onClick={onClose}
-        className='cbn-notification__closebtn'>
+        className='kui-notification__closebtn'>
         <Icon
           size='medium'
           theme={theme}

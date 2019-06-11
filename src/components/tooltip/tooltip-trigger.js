@@ -36,10 +36,10 @@ const TooltipTriggerHOC = WrapperComponent => {
      */
     componentDidMount() {
       // Grab the tooltip and add window scroll events
-      this.tooltip = document.querySelector(`.cbn-tooltip[data-tooltip-id="${this.props.tooltipId}"]`);
+      this.tooltip = document.querySelector(`.kui-tooltip[data-tooltip-id="${this.props.tooltipId}"]`);
 
       if (this.tooltip) {
-        this.tooltip.classList.add('cbn-tooltip--fixed');
+        this.tooltip.classList.add('kui-tooltip--fixed');
       }
 
       window.addEventListener('scroll', this._hideTooltip);
@@ -59,7 +59,7 @@ const TooltipTriggerHOC = WrapperComponent => {
      */
     _hideTooltip() {
       if (this.tooltip) {
-        this.tooltip.classList.add('cbn-tooltip--hidden');
+        this.tooltip.classList.add('kui-tooltip--hidden');
         this.tooltip.setAttribute('hidden', '');
         this.tooltip.setAttribute('aria-hidden', 'true');
       }
@@ -70,7 +70,7 @@ const TooltipTriggerHOC = WrapperComponent => {
      */
     _showTooltip() {
       if (this.tooltip) {
-        this.tooltip.classList.remove('cbn-tooltip--hidden');
+        this.tooltip.classList.remove('kui-tooltip--hidden');
         this.tooltip.removeAttribute('hidden');
         this.tooltip.setAttribute('aria-hidden', 'false');
       }
@@ -91,7 +91,7 @@ const TooltipTriggerHOC = WrapperComponent => {
       Object.keys(position)
         .forEach(key => {
           this.tooltip.style[key] = `${position[key]}px`;
-          this.tooltip.classList.add(`cbn-tooltip--${this.props.displayDirection}`);
+          this.tooltip.classList.add(`kui-tooltip--${this.props.displayDirection}`);
         });
     }
 
@@ -159,7 +159,7 @@ const TooltipTriggerHOC = WrapperComponent => {
       return (
         <div
           ref={c => { this._wrapper = c; }}
-          className='cbn-tooltip-trigger'
+          className='kui-tooltip-trigger'
           {...this._getEventHandlers()}>
           <WrapperComponent {...this.props} />
         </div>);

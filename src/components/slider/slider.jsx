@@ -32,7 +32,7 @@ class Slider extends React.Component {
       styles: null
     };
 
-    this._id = uniqueId(`cbn-slider--${this.props.type}-`);
+    this._id = uniqueId(`kui-slider--${this.props.type}-`);
 
     this._handleChanged = this._handleChanged.bind(this);
   }
@@ -89,19 +89,19 @@ class Slider extends React.Component {
     const { styles } = this.state;
 
     const hiddenElements = !styles && (
-      <div className='cbn-slider__hidden'>
+      <div className='kui-slider__hidden'>
         <div
           ref={hiddenFill => { this._hiddenFill = hiddenFill; }}
-          className={classnames('cbn-slider__hidden--fill', `cbn-theme--${theme}`)} />
+          className={classnames('kui-slider__hidden--fill', `kui-theme--${theme}`)} />
         <div
           ref={hiddenBackground => { this._hiddenBackground = hiddenBackground; }}
-          className={classnames('cbn-slider__hidden--background', `cbn-theme--${theme}`)} />
+          className={classnames('kui-slider__hidden--background', `kui-theme--${theme}`)} />
         <div
           ref={hiddenLine => { this._hiddenLine = hiddenLine; }}
-          className='cbn-slider__hidden--slider-line' />
+          className='kui-slider__hidden--slider-line' />
         <div
           ref={hiddenTickNumber => { this._hiddenTickNumber = hiddenTickNumber; }}
-          className='cbn-slider__hidden--tick-number' />
+          className='kui-slider__hidden--tick-number' />
       </div>
     );
 
@@ -111,11 +111,11 @@ class Slider extends React.Component {
     return (
       <div
         className={classnames(
-          'carbon',
-          'cbn-slider',
-          `cbn-slider--${type}`,
-          `cbn-theme--${theme}`,
-          { 'cbn-slider--stepped': step !== 1 }
+          'kedro',
+          'kui-slider',
+          `kui-slider--${type}`,
+          `kui-theme--${theme}`,
+          { 'kui-slider--stepped': step !== 1 }
         )}>
         <RendererType
           backgroundColor={styles ? styles.background : 'transparent'}

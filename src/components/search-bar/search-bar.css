@@ -10,22 +10,22 @@ $size-pos-base: 10px;
 
 /** Implementation **/
 
-.cbn-searchbar {
+.kui-searchbar {
   position: relative;
 
   display: inline-block;
 }
 
-.cbn-input {
-  .cbn-searchbar & {
+.kui-input {
+  .kui-searchbar & {
     padding-left: $size-input-offset;
   }
 }
 
-.cbn-icon {
+.kui-icon {
   transition: 0.3s opacity;
 
-  .cbn-searchbar & {
+  .kui-searchbar & {
     position: absolute;
     top: 50%;
     z-index: 1;
@@ -39,15 +39,15 @@ $size-pos-base: 10px;
     }
   }
 
-  .cbn-searchbar--focused & {
+  .kui-searchbar--focused & {
     opacity: 1;
   }
 }
 
-.cbn-searchbar__iconwrapper {
+.kui-searchbar__iconwrapper {
   transition: 0.3s opacity;
 
-  .cbn-icon {
+  .kui-icon {
     top: calc($size-pos-base * 2);
     left: calc($size-icon / 2);
 
@@ -56,20 +56,20 @@ $size-pos-base: 10px;
   }
 }
 
-.cbn-input__field {
-  .cbn-searchbar & {
+.kui-input__field {
+  .kui-searchbar & {
     max-width: calc(100% - $size-icon);
   }
 }
 
-.cbn-input__line--filled {
-  .cbn-searchbar & {
+.kui-input__line--filled {
+  .kui-searchbar & {
     max-width: calc(100% - $size-icon);
   }
 }
 
-.cbn-icon--close {
-  .cbn-searchbar & {
+.kui-icon--close {
+  .kui-searchbar & {
     right: $size-pos-base;
 
     width: $size-icon;
@@ -77,6 +77,6 @@ $size-pos-base: 10px;
   }
 }
 
-.cbn-searchbar__label {
+.kui-searchbar__label {
   @extend %hidden;
 }

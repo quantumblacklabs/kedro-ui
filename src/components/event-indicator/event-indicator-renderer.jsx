@@ -9,7 +9,7 @@ const EventIndicatorRenderer = ({
 }) => (
   <div
     aria-label={`${name} events: ${count}`}
-    className='carbon cbn-sg-playground__event'
+    className='kedro kui-sg-playground__event'
     role='marquee'>
     <svg width='80' height='80'>
       <circle
@@ -29,7 +29,7 @@ const EventIndicatorRenderer = ({
         strokeWidth='1'
         name={`${name}-circle`} />
       <text
-        className='cbn-sg-playground__event-count'
+        className='kui-sg-playground__event-count'
         x='50%'
         y='51%'
         fontSize='12px'
@@ -39,7 +39,7 @@ const EventIndicatorRenderer = ({
         { count }
       </text>
       <text
-        className='cbn-sg-playground__event-name'
+        className='kui-sg-playground__event-name'
         x='50%'
         y='85%'
         fontSize='10px'

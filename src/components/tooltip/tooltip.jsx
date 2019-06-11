@@ -26,15 +26,15 @@ const Tooltip = ({
     <div
       aria-hidden={!show.toString()}
       className={classnames(
-        'carbon',
-        'cbn-tooltip',
-        `cbn-theme--${theme}`,
-        { 'cbn-tooltip--hidden': !show }
+        'kedro',
+        'kui-tooltip',
+        `kui-theme--${theme}`,
+        { 'kui-tooltip--hidden': !show }
       )}
       data-tooltip-id={tooltipId}
       hidden={!show}
       style={style}>
-      <div className='cbn-tooltip__text'>
+      <div className='kui-tooltip__text'>
         { children }
       </div>
     </div>

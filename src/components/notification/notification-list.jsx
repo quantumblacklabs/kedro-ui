@@ -136,9 +136,9 @@ class NotificationList extends React.Component {
     return (
       <div
         style={{ width }}
-        className='carbon cbn-notification-list'>
+        className='kedro kui-notification-list'>
         <CSSTransitionGroup
-          transitionName='cbn-notification-animation'
+          transitionName='kui-notification-animation'
           transitionEnterTimeout={500}
           transitionLeaveTimeout={300}>
           {items}

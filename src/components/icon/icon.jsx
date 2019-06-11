@@ -37,23 +37,23 @@ const Icon = props => {
   const SvgIcon2 = iconType2 ? IconAssets[iconType2] : '';
 
   const containerClassNames = classnames(
-    'carbon',
-    'cbn-icon',
-    `cbn-icon--${size}`,
-    `cbn-icon--${iconType}`,
-    `cbn-icon--${theme}`,
-    `cbn-icon--index-${index}`,
+    'kedro',
+    'kui-icon',
+    `kui-icon--${size}`,
+    `kui-icon--${iconType}`,
+    `kui-icon--${theme}`,
+    `kui-icon--index-${index}`,
     {
-      'cbn-icon--tappable': typeof onClick === 'function',
-      'cbn-icon--double': type2
+      'kui-icon--tappable': typeof onClick === 'function',
+      'kui-icon--double': type2
     }
   );
 
   const svgClassNames = classnames(
-    'cbn-icon__graphics',
-    `cbn-icon__graphics--${theme}`,
+    'kui-icon__graphics',
+    `kui-icon__graphics--${theme}`,
     {
-      'cbn-icon__graphics--tappable': typeof onClick === 'function'
+      'kui-icon__graphics--tappable': typeof onClick === 'function'
     }
   );
 

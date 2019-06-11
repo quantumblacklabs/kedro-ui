@@ -4,7 +4,7 @@ $size-spacing: 20px;
 
 /** Implementation **/
 
-.cbn-notification-list {
+.kui-notification-list {
   position: fixed;
 
   top: $size-spacing;
@@ -14,26 +14,26 @@ $size-spacing: 20px;
 
   transform: translate(-50%, 0);
 
-  .cbn-notification {
+  .kui-notification {
     margin-bottom: $size-spacing;
   }
 }
 
-.cbn-notification-animation-enter {
+.kui-notification-animation-enter {
   opacity: 0;
 }
 
-.cbn-notification-animation-enter.cbn-notification-animation-enter-active {
+.kui-notification-animation-enter.kui-notification-animation-enter-active {
   opacity: 1;
 
   transition: all 500ms;
 }
 
-.cbn-notification-animation-leave {
+.kui-notification-animation-leave {
   opacity: 1;
 }
 
-.cbn-notification-animation-leave.cbn-notification-animation-leave-active {
+.kui-notification-animation-leave.kui-notification-animation-leave-active {
   opacity: 0;
 
   transition: all 300ms ease-in;

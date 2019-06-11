@@ -13,23 +13,23 @@ test('Slider should be a function', () => {
 test('Slider of type single should correctly call SliderRenderer', () => {
   const wrapper = mount(<Slider type='single' />);
 
-  expect(wrapper.find('.cbn-slider__wrapper').length === 1)
+  expect(wrapper.find('.kui-slider__wrapper').length === 1)
     .toBeTruthy();
 });
 
 test('Slider of type multiple should correctly call RangedSliderRenderer', () => {
   const wrapper = mount(<Slider type='multiple' />);
 
-  expect(wrapper.find('.cbn-slider__wrapper--multiple').length === 1)
+  expect(wrapper.find('.kui-slider__wrapper--multiple').length === 1)
     .toBeTruthy();
 });
 
 test('Slider should correctly have light theme class', () => {
   const wrapper = mount(<Slider theme='light' />);
 
-  expect(wrapper.find('.cbn-theme--light').length > 1)
+  expect(wrapper.find('.kui-theme--light').length > 1)
     .toBeTruthy();
-  expect(wrapper.find('.cbn-theme--dark').length === 0)
+  expect(wrapper.find('.kui-theme--dark').length === 0)
     .toBeTruthy();
 });
 

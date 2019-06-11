@@ -46,8 +46,8 @@ const TabsRenderer = ({
   const _renderTabButton = (tab, i) => {
     const props = {
       'aria-selected': `${selectedIndex === i}`,
-      className: 'cbn-tabs__button',
-      id: `cbn-tab-${_stringToID(tab.text)}`,
+      className: 'kui-tabs__button',
+      id: `kui-tab-${_stringToID(tab.text)}`,
       onClick: e => _handleSelect(e, { selectedIndex: i, ...tab })
     };
     return tab.href ? (
@@ -60,17 +60,17 @@ const TabsRenderer = ({
   return (
     <div
       className={classnames(
-        'carbon',
-        'cbn-tabs',
-        `cbn-theme--${theme}`,
-        { 'cbn-tabs--small': size === 'small' }
+        'kedro',
+        'kui-tabs',
+        `kui-theme--${theme}`,
+        { 'kui-tabs--small': size === 'small' }
       )}>
-      <ul className='cbn-tabs__list'>
+      <ul className='kui-tabs__list'>
         {
           tabs.map((tab, i) => (
             <li
               key={tab.text}
-              className={classnames('cbn-tabs__tab', { 'cbn-tabs__tab--selected': selectedIndex === i })}
+              className={classnames('kui-tabs__tab', { 'kui-tabs__tab--selected': selectedIndex === i })}
               data-tabindex={i}>
               { _renderTabButton(tab, i) }
             </li>
