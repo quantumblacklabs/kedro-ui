@@ -65,8 +65,3 @@ jobs:
             else
               echo "Not deployable branch"
             fi
-
-
-    
-
-
