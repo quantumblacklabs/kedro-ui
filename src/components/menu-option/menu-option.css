@@ -11,7 +11,7 @@ $menu-group-padding: 4px;
 /* the padding of each item (either side of the text ) */
 $menu-item-padding: 12px;
 
-.cbn-menu-option {
+.kui-menu-option {
   display: flex;
   align-items: center;
   box-sizing: border-box;
@@ -28,11 +28,11 @@ $menu-item-padding: 12px;
   user-select: none;
   outline: none;
 
-  &.cbn-menu-option--selected {
+  &.kui-menu-option--selected {
     @mixin themedParent background, menu, selected;
   }
 
-  &.cbn-menu-option--focused,
+  &.kui-menu-option--focused,
   &:focus,
   &:hover {
     @mixin themedParent background, menu, hover;
@@ -44,7 +44,7 @@ $menu-item-padding: 12px;
   }
 }
 
-.cbn-menu-option__content {
+.kui-menu-option__content {
   position: relative;
 
   display: flex;
@@ -57,15 +57,15 @@ $menu-item-padding: 12px;
 
   line-height: 1.25;
 
-  .cbn-menu-option--icon-left & {
+  .kui-menu-option--icon-left & {
     padding-left: calc($size-icon-base + $menu-item-padding);
   }
 
-  .cbn-menu-option--icon-right & {
+  .kui-menu-option--icon-right & {
     padding-right: calc($size-icon-base + $menu-item-padding);
   }
 
-  > .cbn-icon {
+  > .kui-icon {
     position: absolute;
     right: 0;
 
@@ -73,7 +73,7 @@ $menu-item-padding: 12px;
 
     opacity: 0.5;
 
-    .cbn-menu-option--icon-left & {
+    .kui-menu-option--icon-left & {
       left: 0;
       right: auto;
     }

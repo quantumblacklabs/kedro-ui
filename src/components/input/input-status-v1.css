@@ -3,12 +3,12 @@
 @import '../../styles/includes';
 
 /** STATUS DESCRIPTION - VARIANT TWO - INPUT BACKGROUND COLOR + WHITE INPUT TEXT + BLACK / WHITE DESCRIIPTION TEXT  **/
-.cbn-input--variant-one.cbn-input--success,
-.cbn-input--variant-one.cbn-input--error {
+.kui-input--variant-one.kui-input--success,
+.kui-input--variant-one.kui-input--error {
   @mixin themed color, input, status;
 }
 
-.cbn-input--variant-one.cbn-input--success {
+.kui-input--variant-one.kui-input--success {
   @mixin themed background-color, input, success;
 
   &:active {
@@ -16,7 +16,7 @@
   }
 }
 
-.cbn-input--variant-one.cbn-input--error {
+.kui-input--variant-one.kui-input--error {
   @mixin themed background-color, input, error;
 
   &:active {
@@ -24,45 +24,45 @@
   }
 }
 
-.cbn-input__label {
-  .cbn-input--variant-one.cbn-input--success &,
-  .cbn-input--variant-one.cbn-input--error & {
+.kui-input__label {
+  .kui-input--variant-one.kui-input--success &,
+  .kui-input--variant-one.kui-input--error & {
     @mixin themedParent color, input, status;
   }
 }
 
-.cbn-input__field {
-  .cbn-input--variant-one.cbn-input--success & {
+.kui-input__field {
+  .kui-input--variant-one.kui-input--success & {
     @mixin themedParent background-color, input, success;
   }
 
-  .cbn-input--variant-one.cbn-input--error & {
+  .kui-input--variant-one.kui-input--error & {
     @mixin themedParent background-color, input, error;
   }
 
-  .cbn-input--variant-one.cbn-input--success &,
-  .cbn-input--variant-one.cbn-input--error & {
+  .kui-input--variant-one.kui-input--success &,
+  .kui-input--variant-one.kui-input--error & {
     @mixin themedParent color, input, status;
   }
 }
 
-.cbn-input__line {
-  .cbn-input--variant-one.cbn-input--success &,
-  .cbn-input--variant-one.cbn-input--error & {
+.kui-input__line {
+  .kui-input--variant-one.kui-input--success &,
+  .kui-input--variant-one.kui-input--error & {
     @mixin themedParent background-color, input, status;
   }
 }
 
-.cbn-input__line--filled {
-  .cbn-input--variant-one.cbn-input--success &,
-  .cbn-input--variant-one.cbn-input--error & {
+.kui-input__line--filled {
+  .kui-input--variant-one.kui-input--success &,
+  .kui-input--variant-one.kui-input--error & {
     @mixin themedParent background-color, input, status;
   }
 }
 
-.cbn-input__description {
-  .cbn-input--variant-one.cbn-input--success + &,
-  .cbn-input--variant-one.cbn-input--error + & {
+.kui-input__description {
+  .kui-input--variant-one.kui-input--success + &,
+  .kui-input--variant-one.kui-input--error + & {
     @mixin themedParent color, input, textFilled;
   }
 }

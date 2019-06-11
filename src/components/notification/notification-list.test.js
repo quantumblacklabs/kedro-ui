@@ -21,7 +21,7 @@ test('NotificationList should contain correct children', () => {
       }} />
   );
 
-  expect(wrapper.find('.cbn-notification-list').length === 1)
+  expect(wrapper.find('.kui-notification-list').length === 1)
     .toBeTruthy();
   expect(wrapper.find('Notification').length === 1)
     .toBeTruthy();

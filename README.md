@@ -1,4 +1,4 @@
-# Carbon UI Components
+# Kedro UI
 
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![npm version](https://badge.fury.io/js/%40quantumblack%2Fcarbon-ui-components.svg)](https://badge.fury.io/js/%40quantumblack%2Fcarbon-ui-components) [![CircleCI](https://circleci.com/gh/quantumblacklabs/kedro-ui/tree/master.svg?style=svg&circle-token=16d3f559b48b0890a5ee3adbc1d4be0e62f9637d)](https://circleci.com/gh/quantumblacklabs/kedro-ui/tree/master)
@@ -7,10 +7,10 @@ This repo represents a set of UI components that we use in our internal products
 
 ## 👀 Getting Started
 
-To install Carbon UI Components into your project, run the following in your project directory:
+To install Kedro UI into your project, run the following in your project directory:
 
 ```
-npm i --save @quantumblack/carbon-ui-components
+npm install @quantumblack/kedro-ui
 ```
 
 Once you have installed the library you can use the components in your project e.g.
@@ -18,7 +18,8 @@ Once you have installed the library you can use the components in your project e
 ```
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Button } from '@quantumblack/carbon-ui-components';
+import '@quantumblack/kedro-ui/dist/kedro-ui.min.css';
+import { Button } from '@quantumblack/kedro-ui';
 
 const MyComponent = () => (
   <Button theme='light' size='small' mode='secondary'>Hello world!</Button>
@@ -29,8 +30,8 @@ ReactDOM.render(<MyComponent />, document.getElementById('root'));
 
 ## 📚 Documentation
 
-We use styleguidist to document our comments and their usage. To try them out head over [here](http://carbon-ui-components.qb.com).
+We use styleguidist to document our comments and their usage. To try them out head over [here](http://kedro-ui.quantumblack.com).
 
 ## 👋 Contact
 
-This project needs your help! If you have any questions email: frontend@quantumblack.com
+This project needs your help! If you have any questions email: opensource@quantumblack.com

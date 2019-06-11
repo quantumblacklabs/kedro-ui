@@ -17,11 +17,11 @@ test('Modal should have correct structure', () => {
     </Modal>
   );
 
-  expect(wrapper.find('.cbn-modal__bg').length === 1)
+  expect(wrapper.find('.kui-modal__bg').length === 1)
     .toBeTruthy();
-  expect(wrapper.find('.cbn-modal__content').length === 1)
+  expect(wrapper.find('.kui-modal__content').length === 1)
     .toBeTruthy();
-  expect(wrapper.find('.cbn-modal__wrapper').length === 1)
+  expect(wrapper.find('.kui-modal__wrapper').length === 1)
     .toBeTruthy();
   expect(wrapper.find('Button').length === 0)
     .toBeTruthy();
@@ -32,7 +32,7 @@ test('Modal should have button and description when supplied no children', () =>
     <Modal title='Hello Test' />
   );
 
-  expect(wrapper.find('.cbn-modal__description').length === 1)
+  expect(wrapper.find('.kui-modal__description').length === 1)
     .toBeTruthy();
   expect(wrapper.find('Button').length === 1)
     .toBeTruthy();

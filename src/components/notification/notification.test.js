@@ -16,13 +16,13 @@ test('Notification should contain correct children', () => {
 
   const wrapperWithIcon = shallow(<Notification icon='paste' label='Hello' headerLabel='World' />);
 
-  expect(wrapper.find('.cbn-notification').length)
+  expect(wrapper.find('.kui-notification').length)
     .toBeTruthy();
-  expect(wrapper.find('.cbn-notification__content').length)
+  expect(wrapper.find('.kui-notification__content').length)
     .toBeTruthy();
-  expect(wrapper.find('.cbn-notification__header').length)
+  expect(wrapper.find('.kui-notification__header').length)
     .toBeTruthy();
-  expect(wrapper.find('.cbn-notification__label').length)
+  expect(wrapper.find('.kui-notification__label').length)
     .toBeTruthy();
   expect(wrapper.find('Icon').length)
     .toBeTruthy();

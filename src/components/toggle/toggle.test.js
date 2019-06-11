@@ -61,9 +61,9 @@ test('Toggle should be created with all the user defined props', () => {
     .toBe(1);
 
   // also verify the structure
-  expect(wrapper.find('.cbn-toggle__label'))
+  expect(wrapper.find('.kui-toggle__label'))
     .toHaveLength(1);
-  expect(wrapper.find('.cbn-toggle__button'))
+  expect(wrapper.find('.kui-toggle__button'))
     .toHaveLength(2);
 });
 

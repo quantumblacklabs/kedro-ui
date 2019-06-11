@@ -12,7 +12,7 @@ let el = null;
 
 beforeEach(() => {
   el = document.createElement('div');
-  el.classList.add('cbn-tooltip');
+  el.classList.add('kui-tooltip');
   el.dataset.tooltipId = 'test';
 
   document.body.appendChild(el);
@@ -40,7 +40,7 @@ test('TooltipTrigger should render the correct structure', () => {
     <TTView displayDirection='left' tooltipId='test' />
   );
 
-  expect(shallowTTView.find('.cbn-tooltip-trigger').length === 1)
+  expect(shallowTTView.find('.kui-tooltip-trigger').length === 1)
     .toBeTruthy();
 });
 
@@ -49,7 +49,7 @@ test('It adds the correct class to the tooltip', () => {
     <TTView displayDirection='left' tooltipId='test' />
   );
 
-  expect(el.classList.contains('cbn-tooltip--fixed'))
+  expect(el.classList.contains('kui-tooltip--fixed'))
     .toBeTruthy();
 });
 
@@ -62,7 +62,7 @@ test('It should remove the tooltip when page is scrolled', () => {
   window.dispatchEvent(new Event('scroll'));
   mountTTView.update();
 
-  expect(el.classList.contains('cbn-tooltip--hidden'))
+  expect(el.classList.contains('kui-tooltip--hidden'))
     .toBeTruthy();
 });
 
@@ -88,7 +88,7 @@ test('It should apply position class when calling handle event', () => {
      
     handleEvent();
 
-    expect(el.classList.contains(`cbn-tooltip--${dir}`))
+    expect(el.classList.contains(`kui-tooltip--${dir}`))
       .toBeTruthy();
   });
 });

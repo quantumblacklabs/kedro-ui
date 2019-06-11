@@ -11,35 +11,35 @@
 
 /** Implementation **/
 
-.cbn-slider__wrapper--multiple {
+.kui-slider__wrapper--multiple {
   flex-direction: column;
 }
 
-.cbn-slider__input {
-  &.cbn-slider__input--min {
+.kui-slider__input {
+  &.kui-slider__input--min {
     position: absolute;
   }
 
-  &.cbn-slider__input--max {
+  &.kui-slider__input--max {
     position: relative;
   }
 }
 
-.cbn-slider__input--multiple {
+.kui-slider__input--multiple {
   pointer-events: none;
 }
 
-.cbn-slider__controls {
+.kui-slider__controls {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
-.cbn-slider__number-input.cbn-slider__number-input--min .cbn-input-wrapper {
+.kui-slider__number-input.kui-slider__number-input--min .kui-input-wrapper {
   margin: 0 $label-number-margin 0 0;
 }
 
-.cbn-slider__label--multiple {
+.kui-slider__label--multiple {
   @extend %type--subhead-2;
 
   margin: 0 0 $label-number-margin;
@@ -48,42 +48,42 @@
 }
 
 /** THUMB **/
-.cbn-slider__input--multiple::-webkit-slider-thumb {
+.kui-slider__input--multiple::-webkit-slider-thumb {
   @mixin thumb;
 }
 
-.cbn-slider__input--multiple::-moz-range-thumb {
+.kui-slider__input--multiple::-moz-range-thumb {
   @mixin thumb;
 }
 
-.cbn-slider__input--multiple::-ms-thumb {
+.kui-slider__input--multiple::-ms-thumb {
   @mixin thumb;
 }
 
 /** MAX THUMB - DISABLED
     maximum is disabled when both thumbs are at maximum value --
     the minimum has to change first and it is below the maximum, so this allows to move only the min thumb **/
-.cbn-slider__input--max-disabled::-webkit-slider-thumb {
+.kui-slider__input--max-disabled::-webkit-slider-thumb {
   pointer-events: none;
 }
 
-.cbn-slider__input--max-disabled::-moz-range-thumb {
+.kui-slider__input--max-disabled::-moz-range-thumb {
   pointer-events: none;
 }
 
-.cbn-slider__input--max-disabled::-ms-thumb {
+.kui-slider__input--max-disabled::-ms-thumb {
   pointer-events: none;
 }
 
 /** TRACK **/
-.cbn-slider__input--max::-webkit-slider-runnable-track {
+.kui-slider__input--max::-webkit-slider-runnable-track {
   pointer-events: all;
 }
 
-.cbn-slider__input--max::-moz-range-track {
+.kui-slider__input--max::-moz-range-track {
   pointer-events: all;
 }
 
-.cbn-slider__input--max::-ms-track {
+.kui-slider__input--max::-ms-track {
   pointer-events: all;
 }

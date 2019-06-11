@@ -59,11 +59,11 @@ $hidden-elements-height: 1px;
 }
 
 @define-mixin thumb-focus-style {
-  .cbn-theme--light & {
+  .kui-theme--light & {
     box-shadow: 0 0 0 3px map(themes, light, slider, focus);
   }
 
-  .cbn-theme--dark & {
+  .kui-theme--dark & {
     box-shadow: 0 0 0 3px map(themes, dark, slider, focus);
   }
 }
@@ -84,24 +84,24 @@ $hidden-elements-height: 1px;
 
 /** Implementation **/
 
-.cbn-slider {
+.kui-slider {
   display: flex;
 
   width: $wrapper-width;
 }
 
-.cbn-slider__wrapper {
+.kui-slider__wrapper {
   display: flex;
 }
 
-.cbn-slider__controls {
+.kui-slider__controls {
   display: flex;
 
   /** set the correct height of the controls to include the height of the ticks **/
   height: $wrapper-height;
 }
 
-.cbn-slider__range {
+.kui-slider__range {
   position: relative;
 
   width: $range-input-width;
@@ -109,11 +109,11 @@ $hidden-elements-height: 1px;
 }
 
 /** SLIDER LABEL **/
-.cbn-slider__label {
+.kui-slider__label {
   @mixin themedParent color, slider, label;
 }
 
-.cbn-slider__label--single {
+.kui-slider__label--single {
   @extend %type--body-1;
 
   width: $label-single-width;
@@ -121,8 +121,8 @@ $hidden-elements-height: 1px;
 }
 
 /** SLIDER NUMBER INPUT **/
-.cbn-slider__number-input {
-  & .cbn-input {
+.kui-slider__number-input {
+  & .kui-input {
     margin: 0;
     padding: 0;
     border: none;
@@ -136,17 +136,17 @@ $hidden-elements-height: 1px;
     }
   }
 
-  & .cbn-input__field {
+  & .kui-input__field {
     @extend %type--body-1;
 
     background: transparent;
   }
 
-  & .cbn-input__line {
+  & .kui-input__line {
     @mixin themedParent background, slider, numberInputLine;
   }
 
-  & .cbn-input-wrapper {
+  & .kui-input-wrapper {
     width: $number-input-width;
     margin: 0 0 0 $label-number-margin;
     padding: 0;
@@ -154,7 +154,7 @@ $hidden-elements-height: 1px;
 }
 
 /** SLIDER LINE **/
-.cbn-slider__line {
+.kui-slider__line {
   position: absolute;
   top: 50%;
   margin-top: -$track-height;
@@ -170,8 +170,8 @@ $hidden-elements-height: 1px;
 }
 
 /** SLIDER TICKS **/
-.cbn-slider__tick-number-group,
-.cbn-slider__tick-symbol-group {
+.kui-slider__tick-number-group,
+.kui-slider__tick-symbol-group {
   position: absolute;
 
   display: flex;
@@ -180,11 +180,11 @@ $hidden-elements-height: 1px;
   width: 100%;
 }
 
-.cbn-slider__tick-number-group {
+.kui-slider__tick-number-group {
   height: $wrapper-height;
 }
 
-.cbn-slider__tick-number {
+.kui-slider__tick-number {
   @mixin themedParent color, slider, tickNumber;
 
   @extend %type--body-1;
@@ -199,19 +199,19 @@ $hidden-elements-height: 1px;
   text-align: center;
 }
 
-.cbn-slider__tick-number--min {
+.kui-slider__tick-number--min {
   margin-left: $thumb-width;
 }
 
-.cbn-slider__tick-number--max {
+.kui-slider__tick-number--max {
   margin-left: -$thumb-width;
 }
 
-.cbn-slider__tick-symbol-group {
+.kui-slider__tick-symbol-group {
   top: calc(($range-input-height / 2) - ($track-height / 2));
 }
 
-.cbn-slider__tick-symbol {
+.kui-slider__tick-symbol {
   position: relative;
   top: -$track-height;
 
@@ -225,20 +225,20 @@ $hidden-elements-height: 1px;
   @mixin themedParent background, slider, default;
 }
 
-.cbn-slider__tick-symbol--range {
+.kui-slider__tick-symbol--range {
   @mixin themedParent background, slider, thumbBorder;
 }
 
-.cbn-slider__tick-symbol--min {
+.kui-slider__tick-symbol--min {
   transform: translateX(calc(-50% + $thumb-width));
 }
 
-.cbn-slider__tick-symbol--max {
+.kui-slider__tick-symbol--max {
   transform: translateX(calc(50% - $thumb-width));
 }
 
 /** SLIDER INPUT RANGE **/
-.cbn-slider__input {
+.kui-slider__input {
   -webkit-appearance: none;
 
   position: relative;
@@ -317,29 +317,29 @@ $hidden-elements-height: 1px;
 }
 
 /** RENDERED BUT NOT VISIBLE IN VIEWPORT **/
-.cbn-slider__hidden {
+.kui-slider__hidden {
   position: fixed;
   left: -9999px;
 
   opacity: 0;
 }
 
-.cbn-slider__hidden--fill {
+.kui-slider__hidden--fill {
   height: $hidden-elements-height;
 
   @mixin themed background, slider, thumbBorder;
 }
 
-.cbn-slider__hidden--background {
+.kui-slider__hidden--background {
   height: $hidden-elements-height;
 
   @mixin themed background, slider, default;
 }
 
-.cbn-slider__hidden--slider-line {
+.kui-slider__hidden--slider-line {
   width: $range-input-width;
 }
 
-.cbn-slider__hidden--tick-number {
+.kui-slider__hidden--tick-number {
   width: $tick-number-width;
 }

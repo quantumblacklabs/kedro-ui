@@ -155,7 +155,7 @@ class Input extends React.Component {
     const validatedStatus = this.props.status !== 'default' ? this.props.status : false;
 
     const labelWrapper = this.props.label && (
-      <div className='cbn-input__label'>
+      <div className='kui-input__label'>
         {this.props.label}
       </div>
     );
@@ -163,10 +163,10 @@ class Input extends React.Component {
     // description's div has to be always rendered, even if its content is empty
     // to enable the animation to run when the component receives a description; otherwise the animation is ignored
     const description = (
-      <div className='cbn-input__description' ref={desc => { this._description = desc; }}>
+      <div className='kui-input__description' ref={desc => { this._description = desc; }}>
         {
           this.props.status !== 'default' && this.props.statusDescription && (
-            <div className='cbn-input__description-content'>
+            <div className='kui-input__description-content'>
               { this.props.statusDescription }
             </div>
           )
@@ -175,22 +175,22 @@ class Input extends React.Component {
     );
 
     return (
-      <div className='carbon cbn-input-wrapper'>
+      <div className='kedro kui-input-wrapper'>
         <div
           className={classnames(
-            'cbn-input',
-            `cbn-theme--${this.props.theme}`,
-            { [`cbn-input--${validatedStatus}`]: !!validatedStatus },
-            { 'cbn-input--disabled': this.props.disabled },
-            { 'cbn-input--focused': this.state.focused },
-            { 'cbn-input--variant-one': this.props.variant === 1 },
-            { 'cbn-input--variant-two': this.props.variant === 2 }
+            'kui-input',
+            `kui-theme--${this.props.theme}`,
+            { [`kui-input--${validatedStatus}`]: !!validatedStatus },
+            { 'kui-input--disabled': this.props.disabled },
+            { 'kui-input--focused': this.state.focused },
+            { 'kui-input--variant-one': this.props.variant === 1 },
+            { 'kui-input--variant-two': this.props.variant === 2 }
           )}
           onFocus={this._handleFocused}
           onBlur={this._handleBlured}>
           {labelWrapper}
           <input
-            className='cbn-input__field'
+            className='kui-input__field'
             type='text'
             placeholder={this.props.placeholder || ''}
             disabled={this.props.disabled}
@@ -198,8 +198,8 @@ class Input extends React.Component {
             onChange={this._handleChanged}
             onFocus={this._handleFocused}
             onBlur={this._handleBlured} />
-          <div className='cbn-input__line' ref={line => { this._line = line; }}>
-            <div className='cbn-input__line--filled'>
+          <div className='kui-input__line' ref={line => { this._line = line; }}>
+            <div className='kui-input__line--filled'>
               {this.state.value || ''}
             </div>
           </div>

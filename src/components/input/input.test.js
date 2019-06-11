@@ -40,7 +40,7 @@ test('Input should correctly be disabled', () => {
 test('Input should correctly have light theme class', () => {
   const wrapper = shallow(<Input theme='light' />);
 
-  expect(wrapper.find('.cbn-theme--light').length === 1)
+  expect(wrapper.find('.kui-theme--light').length === 1)
     .toBeTruthy();
 });
 
@@ -48,7 +48,7 @@ test('Input should correctly have dark theme class', () => {
   // dark theme is default, so it should be automatically assigned
   const wrapper = shallow(<Input theme='dark' />);
 
-  expect(wrapper.find('.cbn-theme--dark').length === 1)
+  expect(wrapper.find('.kui-theme--dark').length === 1)
     .toBeTruthy();
 });
 

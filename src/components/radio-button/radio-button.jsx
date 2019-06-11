@@ -29,8 +29,8 @@ const RadioButton = ({
       type='radio'
       theme={theme}
       value={value}>
-      <label className='cbn-switch-radio__label' htmlFor={id}>
-        <span className='cbn-switch-radio__box' />
+      <label className='kui-switch-radio__label' htmlFor={id}>
+        <span className='kui-switch-radio__box' />
         {label}
       </label>
     </Switch>

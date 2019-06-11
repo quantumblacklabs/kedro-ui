@@ -40,7 +40,7 @@ mockData.forEach((data, i) => {
 
   test(`EventIndicator should create a valid React Component when called with required props - Test ${i}`, () => {
     const indicator = shallow(eventIndicatorJsx)
-      .find('.cbn-sg-playground__event-wrapper');
+      .find('.kui-sg-playground__event-wrapper');
 
     expect(indicator.children().length === 1)
       .toBeTruthy();

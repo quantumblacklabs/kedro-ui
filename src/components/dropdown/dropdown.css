@@ -14,7 +14,7 @@ $menu-group-padding: 4px;
 /* the padding of each item (either side of the text ) */
 $menu-item-padding: 12px;
 
-.cbn-dropdown {
+.kui-dropdown {
   position: relative;
 
   display: inline-block;
@@ -27,12 +27,12 @@ $menu-item-padding: 12px;
   @mixin themed border-color, menu, wrapper;
 
   &:hover {
-    &:not(.cbn-dropdown--open) {
+    &:not(.kui-dropdown--open) {
       @extend %shadow-light--hover;
     }
   }
 
-  &.cbn-theme--dark {
+  &.kui-theme--dark {
     @extend %shadow-dark;
 
     &:hover {
@@ -41,13 +41,13 @@ $menu-item-padding: 12px;
   }
 }
 
-.cbn-dropdown--open {
+.kui-dropdown--open {
   position: relative;
 
   z-index: 9;
 }
 
-.cbn-dropdown__label {
+.kui-dropdown__label {
   position: relative;
   z-index: 8;
 
@@ -76,7 +76,7 @@ $menu-item-padding: 12px;
     @mixin themedParent outline-color, menu, hover;
   }
 
-  > .cbn-icon {
+  > .kui-icon {
     position: absolute;
     right: 0;
 
@@ -87,13 +87,13 @@ $menu-item-padding: 12px;
     transition: transform 0.2s;
     transform: rotate(180deg); /* chevron pointing up */
 
-    .cbn-dropdown--open & {
+    .kui-dropdown--open & {
       transform: rotate(0deg); /* chevron pointing down */
     }
   }
 }
 
-.cbn-dropdown__options {
+.kui-dropdown__options {
   @extend %shadow-light--active;
 
   @mixin themedParent border-top-color, menu, border;
@@ -111,7 +111,7 @@ $menu-item-padding: 12px;
   border-width: 1px 0 0;
   animation: dropdownEntrance 0.3s;
 
-  .cbn-dropdown--open & {
+  .kui-dropdown--open & {
     display: block;
   }
 

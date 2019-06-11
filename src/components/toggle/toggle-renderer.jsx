@@ -28,15 +28,15 @@ const ToggleRenderer = ({
   return (
     <div
       className={classnames(
-        'carbon',
-        'cbn-toggle',
-        `cbn-theme--${theme}`,
-        { 'cbn-toggle--disabled': disabled }
+        'kedro',
+        'kui-toggle',
+        `kui-theme--${theme}`,
+        { 'kui-toggle--disabled': disabled }
       )}
       onKeyDown={onKeyDown}>
       {
         label && (
-          <span className={classnames('cbn-toggle__label', { 'cbn-toggle--bold': type === 'bold' })}>
+          <span className={classnames('kui-toggle__label', { 'kui-toggle--bold': type === 'bold' })}>
             { label }
           </span>
         )
@@ -52,19 +52,19 @@ const ToggleRenderer = ({
         value={texts.join('/')}>
         <label
           aria-label={`${label ? `${label}: ` : ''}${texts[value ? 0 : 1]}`}
-          className='cbn-toggle__switch'
+          className='kui-toggle__switch'
           htmlFor={id}>
           <div
-            className={classnames('cbn-toggle__button', { 'cbn-toggle--selected': value })}>
-            <div className='cbn-toggle__text'>{texts[0]}</div>
+            className={classnames('kui-toggle__button', { 'kui-toggle--selected': value })}>
+            <div className='kui-toggle__text'>{texts[0]}</div>
           </div>
           <div
-            className={classnames('cbn-toggle__separator', { 'cbn-toggle__separator--right': !value })}>
+            className={classnames('kui-toggle__separator', { 'kui-toggle__separator--right': !value })}>
             /
           </div>
           <div
-            className={classnames('cbn-toggle__button', { 'cbn-toggle--selected': !value })}>
-            <div className='cbn-toggle__text'>{texts[1]}</div>
+            className={classnames('kui-toggle__button', { 'kui-toggle--selected': !value })}>
+            <div className='kui-toggle__text'>{texts[1]}</div>
           </div>
         </label>
       </Switch>

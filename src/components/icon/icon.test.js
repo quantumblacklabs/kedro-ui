@@ -33,18 +33,18 @@ mockData.forEach((dataSet, i) => {
 
   test(`Icon should have correct classes and labels - Test ${i}`, () => {
     // correct modieier classes generated
-    expect(wrapper.hasClass(`cbn-icon--${dataSet.type}`))
+    expect(wrapper.hasClass(`kui-icon--${dataSet.type}`))
       .toBeTruthy();
 
     if (dataSet.size) {
-      expect(wrapper.hasClass(`cbn-icon--${dataSet.size}`))
+      expect(wrapper.hasClass(`kui-icon--${dataSet.size}`))
         .toBeTruthy();
     }
 
     if ('type2' in dataSet) {
-      expect(wrapper.hasClass('cbn-icon--double'))
+      expect(wrapper.hasClass('kui-icon--double'))
         .toBeTruthy();
-      expect(wrapper.hasClass('cbn-icon--index-0'))
+      expect(wrapper.hasClass('kui-icon--index-0'))
         .toBeTruthy();
     }
   });

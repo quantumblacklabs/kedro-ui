@@ -12,13 +12,13 @@ $results-row-padding: 8px 20px 12px 44px;
 
 /** Implementation **/
 
-.cbn-search-results {
+.kui-search-results {
   position: relative;
 
   margin-top: $results-list-margin-top;
 }
 
-.cbn-search-results__wrapper {
+.kui-search-results__wrapper {
   position: absolute;
   overflow: hidden;
 
@@ -29,7 +29,7 @@ $results-row-padding: 8px 20px 12px 44px;
   @mixin themed background, menu, default;
   @mixin themed color, text;
 
-  &.cbn-theme--dark {
+  &.kui-theme--dark {
     @extend %shadow-dark;
   }
 
@@ -38,7 +38,7 @@ $results-row-padding: 8px 20px 12px 44px;
   }
 }
 
-.cbn-search-results__list {
+.kui-search-results__list {
   height: 100%;
   overflow: auto;
 
@@ -48,7 +48,7 @@ $results-row-padding: 8px 20px 12px 44px;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12) inset;
 }
 
-.cbn-search-results__row {
+.kui-search-results__row {
   position: relative;
 
   display: block;
@@ -63,14 +63,14 @@ $results-row-padding: 8px 20px 12px 44px;
     @mixin themedParent background, menu, hover;
   }
 
-  .cbn-icon {
+  .kui-icon {
     position: absolute;
     left: 10px;
     opacity: 0.6;
   }
 }
 
-.cbn-search-results__label {
+.kui-search-results__label {
   @extend %type--subhead-2;
 
   white-space: nowrap;

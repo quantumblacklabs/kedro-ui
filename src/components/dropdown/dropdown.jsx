@@ -202,7 +202,7 @@ class Dropdown extends React.Component {
    * This is particularly useful for screen-readers and keyboard users.
    */
   _focusLabel() {
-    this.dropdown.querySelector('.cbn-dropdown__label')
+    this.dropdown.querySelector('.kui-dropdown__label')
       .focus();
 
     this.setState({
@@ -233,8 +233,8 @@ class Dropdown extends React.Component {
       // Focus either the button label or the active option.
       // This is so screen-readers will follow the active element
       const focusClass = focusedOption !== null
-        ? '.cbn-menu-option--focused'
-        : '.cbn-dropdown__label';
+        ? '.kui-menu-option--focused'
+        : '.kui-dropdown__label';
 
       this.dropdown.querySelector(focusClass)
         .focus();

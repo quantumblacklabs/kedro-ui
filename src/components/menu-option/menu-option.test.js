@@ -27,12 +27,12 @@ mockData.forEach((dataSet, i) => {
 
   test(`MenuOption should contain text - Test ${i}`, () => {
     const wrapper = shallow(jsx);
-    expect(wrapper.find('.cbn-menu-option__content')
+    expect(wrapper.find('.kui-menu-option__content')
       .text()
       === dataSet.primaryText)
       .toBeTruthy();
 
-    expect(wrapper.find(`.cbn-menu-option__content[title="${dataSet.primaryText}"]`).length
+    expect(wrapper.find(`.kui-menu-option__content[title="${dataSet.primaryText}"]`).length
       === 1)
       .toBeTruthy();
   });
