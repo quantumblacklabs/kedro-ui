@@ -1,7 +1,7 @@
 # Carbon UI Components
 
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![npm version](https://badge.fury.io/js/%40quantumblack%2Fcarbon-ui-components.svg)](https://badge.fury.io/js/%40quantumblack%2Fcarbon-ui-components) [![CircleCI](https://circleci.com/gh/quantumblack/asset-carbon-ui-components/tree/develop.svg?style=svg&circle-token=9323ba08d86af5e46928c330cb52b39a0e7dde50)](https://circleci.com/gh/quantumblack/asset-carbon-ui-components/tree/develop)
+[![npm version](https://badge.fury.io/js/%40quantumblack%2Fcarbon-ui-components.svg)](https://badge.fury.io/js/%40quantumblack%2Fcarbon-ui-components) [![CircleCI](https://circleci.com/gh/quantumblacklabs/kedro-ui/tree/master.svg?style=svg)](https://circleci.com/gh/quantumblacklabs/kedro-ui/tree/master)
 
 This repo represents a set of UI components that we use in our internal products and applications. It allows us to move at speed i.e. not rewrite the wheel on every new endeavour.
 
