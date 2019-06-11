@@ -34,4 +34,4 @@ We use styleguidist to document our comments and their usage. To try them out he
 
 ## 👋 Contact
 
-This project needs your help! If you have any questions email: frontend@quantumblack.com
+This project needs your help! If you have any questions email: opensource@quantumblack.com
