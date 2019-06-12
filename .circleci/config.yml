@@ -1,7 +1,6 @@
 defaults: &defaults
   docker:
       - image: circleci/node:10.15.0
-
   working_directory: ~/repo
 
 version: 2
@@ -9,68 +8,64 @@ jobs:
   build:
     <<: *defaults
     steps:
-
       - checkout
-
       - run:
           name: Installing dependencies
           command: npm install
-
       - run:
           name: ESLint
           command: npm run eslint
-
       - run:
           name: Stylelint
           command: npm run stylelint
-        
       - run:
           name: Running tests
           command: npm run test
-
       - run:
           name: Building UI components
           command: npm run build
-  
-  deploy:
-    <<: *defaults
-
-    environment:
-      STYLEGUIDE_BUILD_DIR: /styleguide
-
-    steps:
-
-      - checkout
-
-      - run:
-          name: Installing dependencies
-          command: npm install
-
       - run:
           name: Build Styleguide
           command: npm run docs:build
-
+  
+  deploy-prod-docs:
+    <<: *defaults
+    steps:
       - run:
-          name: Deploy the styleguide
+          name: Instal awscli
+          command: sudo apt-get -y -qq install awscli
+      - run:
+          name: (Prod) Deploy the styleguide
           command: |
-            if [ "${CIRCLE_BRANCH}" = "master" ]; then
-              sudo apt-get -y -qq install awscli
-              aws s3 sync $STYLEGUIDE_BUILD_DIR \
-              s3://qb1-cms-static-prod/docs/kedro-ui/ --delete
-            fi
-            if [ "${CIRCLE_BRANCH}" = "develop" ]; then
-              sudo apt-get -y -qq install awscli
-              aws s3 sync $STYLEGUIDE_BUILD_DIR \
-              s3://qb1-cms-static-qa/docs/kedro-ui/ --delete
-            else
-              echo "Not deployable branch"
-            fi
+            aws s3 sync styleguide \
+            s3://qb1-cms-static-prod/docs/kedro-ui/ --delete
+            
+  deploy-qa-docs:
+    <<: *defaults
+    steps:
+      - run:
+          name: Instal awscli
+          command: sudo apt-get -y -qq install awscli
+      - run:
+          name: (Prod) Deploy the styleguide
+          command: |
+            aws s3 sync styleguide \
+            s3://qb1-cms-static-qa/docs/kedro-ui/ --delete
 
 workflows:
   version: 2
   regular:
     jobs:
       - build
-      - deploy:
+      - deploy-prod-docs:
           requires:
               - build
+          filters:
+            branches:
+              only: master
+      - deploy-qa-docs:
+          requires:
+              - build
+          filters:
+            branches:
+              only: develop
