@@ -2,12 +2,12 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from 'components/button';
-import Icon from 'components/icon';
+import Button from '../button';
+import Icon from '../icon';
 import GSAP from 'react-gsap-enhancer';
 import { TimelineLite } from 'gsap';
 
-import utils from 'utils';
+import utils from '../../utils';
 
 // Styles
 

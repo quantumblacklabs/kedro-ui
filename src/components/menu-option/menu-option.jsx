@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import utils from 'utils';
+import utils from '../../utils';
 
 // Components
-import Icon from 'components/icon';
+import Icon from '../icon';
 
 // Styles
 import './menu-option.css';

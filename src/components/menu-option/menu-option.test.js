@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import sinon from 'sinon';
-import MenuOption from 'components/menu-option/menu-option';
+import MenuOption from '../menu-option';
 
 configure({ adapter: new Adapter() });
 
