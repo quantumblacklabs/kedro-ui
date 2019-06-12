@@ -62,7 +62,6 @@ jobs:
               sudo apt-get -y -qq install awscli
               aws s3 sync $STYLEGUIDE_BUILD_DIR \
               s3://qb1-cms-static-qa/docs/kedro-ui/ --delete
-            fi
             else
               echo "Not deployable branch"
             fi
