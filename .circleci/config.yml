@@ -47,18 +47,15 @@ jobs:
           command: npm run docs:build
 
       - run:
-          name: Install aws cli
-          command: |
-            sudo apt-get -y -qq install awscli
-
-      - run:
           name: Deploy the styleguide
           command: |
             if [ "${CIRCLE_BRANCH}" = "master" ]; then
+              sudo apt-get -y -qq install awscli
               aws s3 sync $STYLEGUIDE_BUILD_DIR \
               s3://qb1-cms-static-prod/docs/kedro-ui/ --delete
             fi
             if [ "${CIRCLE_BRANCH}" = "develop" ]; then
+              sudo apt-get -y -qq install awscli
               aws s3 sync $STYLEGUIDE_BUILD_DIR \
               s3://qb1-cms-static-qa/docs/kedro-ui/ --delete
             fi
