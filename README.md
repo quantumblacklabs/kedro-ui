@@ -28,7 +28,7 @@ const MyComponent = () => (
 ReactDOM.render(<MyComponent />, document.getElementById('root'));
 ```
 
-## 📚 Documentation
+## 📚 Documentation 
 
 We use styleguidist to document our comments and their usage. To try them out head over [here](http://kedro-ui.quantumblack.com).
 
