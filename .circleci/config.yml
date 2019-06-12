@@ -43,6 +43,10 @@ jobs:
       - checkout
 
       - run:
+          name: Installing dependencies
+          command: npm install
+
+      - run:
           name: Build Styleguide
           command: npm run docs:build
 
