@@ -71,4 +71,5 @@ workflows:
   regular:
     jobs:
       - build
-      - deploy
+      - deploy:
+          requires: build
