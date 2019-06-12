@@ -62,3 +62,10 @@ jobs:
             else
               echo "Not deployable branch"
             fi
+
+workflows:
+  version: 2
+  regular:
+    jobs:
+      - build
+      - deploy
