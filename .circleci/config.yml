@@ -1,15 +1,13 @@
-# Javascript Node CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-javascript/ for more details
-#
+defaults: &defaults
+  docker:
+      - image: circleci/node:10.15.0
+
+  working_directory: ~/repo
+
 version: 2
 jobs:
   build:
-    docker:
-      - image: circleci/node:10.15.0
-
-    working_directory: ~/repo
-
+    <<: *defaults
     steps:
 
       - checkout
@@ -32,5 +30,35 @@ jobs:
 
       - run:
           name: Building UI components
+          command: npm run build
+  
+  deploy:
+    <<: *defaults
+
+    environment:
+      STYLEGUIDE_BUILD_DIR: ~/styleguide
+
+    steps:
+
+      - checkout
+
+      - run:
+          name: Build Styleguide
+          command: npm run docs:build
+
+      - run:
+          name: Deploy the styleguide
           command: |
-            npm run build
+            if [ "${CIRCLE_BRANCH}" = "master" ]; then
+              sudo apt-get -y -qq install awscli
+              aws s3 sync $STYLEGUIDE_BUILD_DIR \
+              s3://qb1-cms-static-prod/docs/kedro-ui/ --delete
+            fi
+            if [ "${CIRCLE_BRANCH}" = "develop" ]; then
+              sudo apt-get -y -qq install awscli
+              aws s3 sync $STYLEGUIDE_BUILD_DIR \
+              s3://qb1-cms-static-qa/docs/kedro-ui/ --delete
+            fi
+            else
+              echo "Not deployable branch"
+            fi
