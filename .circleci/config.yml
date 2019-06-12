@@ -27,10 +27,17 @@ jobs:
       - run:
           name: Build Styleguide
           command: npm run docs:build
+      - persist_to_workspace:
+          root: ~/repo
+          paths:
+            - styleguide
+
   
   deploy-prod-docs:
     <<: *defaults
     steps:
+      - attach_workspace:
+          at: ~/repo/
       - run:
           name: Instal awscli
           command: sudo apt-get -y -qq install awscli
