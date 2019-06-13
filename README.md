@@ -7,19 +7,32 @@ This repo represents a set of UI components that we use in our internal products
 
 ## 👀 Getting Started
 
+### Installation
 To install Kedro UI into your project, run the following in your project directory:
-
 ```
 npm install @quantumblack/kedro-ui
 ```
 
-Once you have installed the library you can use the components in your project e.g.
-
+### Usage
+The **recommended** way to import Kedro UI components is to import each component and the core CSS separately:
+```JavaScript
+// Core CSS (import once)
+import '@quantumblack/kedro-ui/lib/styles/app.css';
+// Single component (import in each file you use it)
+import Button from '@quantumblack/kedro-ui/lib/components/input';
 ```
+However the quickest way to import Kedro UI components is with a destructured import:
+```JavaScript
+import { Button } from '@quantumblack/kedro-ui';
+```
+Doing this [will import the entire library](https://www.blazemeter.com/blog/the-correct-way-to-import-lodash-libraries-a-benchmark), which will increase your bundle size and affect your page load time, so we don't recommend using this method unless you are using [babel-plugin-transform-imports](https://www.npmjs.com/package/babel-plugin-transform-imports) or you don't care about bundle size.
+
+Once you have installed the library and imported a component, you can use it in your project:
+```JavaScript
 import React from 'react';
 import ReactDOM from 'react-dom';
-import '@quantumblack/kedro-ui/dist/kedro-ui.min.css';
-import { Button } from '@quantumblack/kedro-ui';
+import '@quantumblack/kedro-ui/lib/styles/app.css';
+import Button from '@quantumblack/kedro-ui/lib/components/input';
 
 const MyComponent = () => (
   <Button theme='light' size='small' mode='secondary'>Hello world!</Button>
