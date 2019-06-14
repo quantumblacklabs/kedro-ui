@@ -1,36 +1,78 @@
-# Javascript Node CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-javascript/ for more details
-#
+defaults: &defaults
+  docker:
+      - image: circleci/node:10.15.0
+  working_directory: ~/repo
+
 version: 2
 jobs:
   build:
-    docker:
-      - image: circleci/node:10.15.0
-
-    working_directory: ~/repo
-
+    <<: *defaults
     steps:
-
       - checkout
-
       - run:
           name: Installing dependencies
           command: npm install
-
       - run:
           name: ESLint
           command: npm run eslint
-
       - run:
           name: Stylelint
           command: npm run stylelint
-        
       - run:
           name: Running tests
           command: npm run test
-
       - run:
           name: Building UI components
+          command: npm run build
+      - run:
+          name: Build Styleguide
+          command: npm run docs:build
+      - persist_to_workspace:
+          root: ~/repo
+          paths:
+            - styleguide
+
+  
+  deploy-prod-docs:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/repo/
+      - run:
+          name: Instal awscli
+          command: sudo apt-get -y -qq install awscli
+      - run:
+          name: (Prod) Deploy the styleguide
           command: |
-            npm run build
+            aws s3 sync styleguide \
+            s3://qb1-cms-static-prod/docs/kedro-ui/ --delete
+            
+  deploy-qa-docs:
+    <<: *defaults
+    steps:
+      - run:
+          name: Instal awscli
+          command: sudo apt-get -y -qq install awscli
+      - run:
+          name: (Prod) Deploy the styleguide
+          command: |
+            aws s3 sync styleguide \
+            s3://qb1-cms-static-qa/docs/kedro-ui/ --delete
+
+workflows:
+  version: 2
+  regular:
+    jobs:
+      - build
+      - deploy-prod-docs:
+          requires:
+              - build
+          filters:
+            branches:
+              only: master
+      - deploy-qa-docs:
+          requires:
+              - build
+          filters:
+            branches:
+              only: develop
