@@ -28,8 +28,8 @@ module.exports = {
     },
     Playground: {
       preview: {
-        background: '#f7f7f7',
-        padding: 40
+        border: null,
+        padding: 0
       }
     }
   },
@@ -37,6 +37,9 @@ module.exports = {
     fontFamily: {
       base: '"Titillium Web", sans-serif;'
     }
+  },
+  styleguideComponents: {
+    Preview: path.join(__dirname, 'styleguide/components/Preview')
   },
   require: [
     path.join(__dirname, 'src/styles/app.css')
