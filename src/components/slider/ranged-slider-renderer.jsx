@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import Input from 'components/input';
+import Input from '../input';
 import TickRenderer from './tick-renderer';
 
 import './ranged-slider-renderer.css';

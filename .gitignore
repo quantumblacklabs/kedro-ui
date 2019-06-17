@@ -30,6 +30,7 @@ bower_components
 /tmp/
 /styleguide/build/
 /styleguide/*.*
+/lib/
 /dist/
 
 # Cypress.io

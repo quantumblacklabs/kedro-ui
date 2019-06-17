@@ -2,9 +2,9 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import SearchBar from 'components/search-bar';
-import SearchResults from 'components/search-results';
-import utils from 'utils';
+import SearchBar from '../search-bar';
+import SearchResults from '../search-results';
+import utils from '../../utils';
 
 // Styles
 
