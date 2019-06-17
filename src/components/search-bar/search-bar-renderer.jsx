@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 // Components
-import Icon from 'components/icon';
-import Input from 'components/input';
+import Icon from '../icon';
+import Input from '../input';
 
 /**
  * SearchBarRenderer, used to output the actual DOM markup for the component

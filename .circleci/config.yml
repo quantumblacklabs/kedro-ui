@@ -19,13 +19,16 @@ jobs:
           name: Stylelint
           command: npm run stylelint
       - run:
-          name: Running tests
+          name: Run tests
           command: npm run test
       - run:
-          name: Building UI components
+          name: Transpile UI components for package
+          command: npm run lib
+      - run:
+          name: Build bundled UI components
           command: npm run build
       - run:
-          name: Build Styleguide
+          name: Build style guide
           command: npm run docs:build
       - persist_to_workspace:
           root: ~/repo
@@ -51,7 +54,7 @@ jobs:
     <<: *defaults
     steps:
       - run:
-          name: Instal awscli
+          name: Install awscli
           command: sudo apt-get -y -qq install awscli
       - run:
           name: (Prod) Deploy the styleguide
