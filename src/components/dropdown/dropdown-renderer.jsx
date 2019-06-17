@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import utils from 'utils';
+import utils from '../../utils';
 import { uniqueId } from 'lodash';
 
 // Components
-import Icon from 'components/icon';
+import Icon from '../icon';
 
 const { handleKeyEvent } = utils;
 
