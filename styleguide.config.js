@@ -15,6 +15,9 @@ module.exports = {
       }
     }
   },
+  styleguideComponents: {
+    StyleGuideRenderer: path.join(__dirname, 'styleguide/components/StyleGuide')
+  },
   require: [
     path.join(__dirname, 'src/styles/app.css')
   ],
