@@ -7,7 +7,6 @@ const checker = require('license-checker');
 
 const LICENSE_WHITELIST = [
   'AFLV2.1',
-  'APACHE',
   'APACHE-2.0',
   'BSD',
   'BSD-2-CLAUSE',
