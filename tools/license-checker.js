@@ -22,6 +22,14 @@ const LICENSE_WHITELIST = [
   'WTFPL'
 ].map(license => new RegExp(license, 'gi'));
 
+// List of false negatives
+const PACKAGE_WHITELIST = [
+  'colors@0.6.2', // MIT
+  'isnumeric@0.2.0', // MIT
+  'mdn-data@1.1.4', // CCO-1.0
+  'walkes@0.2.1' // LGPL-3.0 unmodified sub-dependency
+];
+
 const getLicences = (packages, key) => {
   const { licenses } = packages[key];
   if (typeof licenses !== 'string') {
@@ -32,6 +40,10 @@ const getLicences = (packages, key) => {
 
 const checkLicense = (licenses) => Boolean(
   LICENSE_WHITELIST.find(regexp => licenses.match(regexp))
+);
+
+const checkPackage = (key) => Boolean(
+  PACKAGE_WHITELIST.find(packageName => key === packageName)
 );
 
 checker.init({
@@ -45,12 +57,8 @@ checker.init({
 
   packageKeys.forEach(key => {
     const licenses = getLicences(packages, key);
-    const licenseIsValid = checkLicense(licenses);
-    if (!licenseIsValid) {
-      invalidPackages.push({
-        key,
-        licenses
-      });
+    if (!checkLicense(licenses) && !checkPackage(key)) {
+      invalidPackages.push({ key, licenses });
     }
   });
 
@@ -59,7 +67,7 @@ checker.init({
 
   if (invalidPackages.length) {
     const invalidLicenseInfo = invalidPackages
-      .map(({ key, licenses }) => `${key}: ${licenses}`)
+      .map(p => `${p.key}: ${p.licenses}`)
       .join('\n');
 
     throw new Error(
