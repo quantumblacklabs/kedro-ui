@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  title: 'Documentation',
+  title: 'Kedro UI',
   components: './src/components/**/*.jsx',
   ignore: ['./src/components/**/*-renderer.jsx', './src/components/**/*-list.jsx'],
   serverHost: '0.0.0.0',
@@ -9,13 +9,37 @@ module.exports = {
   styleguideDir: path.join(__dirname, 'styleguide'),
   contextDependencies: [path.join(__dirname, 'src')],
   styles: {
-    StyleGuide: {
-      '@global html': {
-        fontSize: '10px'
+    Logo: {
+      logo: {
+        fontSize: '1.6rem'
+      }
+    },
+    TableOfContents: {
+      input: {
+        border: '1px #d5d5d5 solid',
+        borderRadius: 0
+      }
+    },
+    ComponentsList: {
+      item: {
+        fontSize: 17,
+        margin: '10px 0'
+      }
+    },
+    Playground: {
+      preview: {
+        border: null,
+        padding: 0
       }
     }
   },
+  theme: {
+    fontFamily: {
+      base: '"Titillium Web", sans-serif;'
+    }
+  },
   styleguideComponents: {
+    Preview: path.join(__dirname, 'styleguide/components/Preview'),
     StyleGuideRenderer: path.join(__dirname, 'styleguide/components/StyleGuide')
   },
   require: [
@@ -27,4 +51,3 @@ module.exports = {
     return `${dir}/${name}`;
   }
 };
-
