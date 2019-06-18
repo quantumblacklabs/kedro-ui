@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import utils from '../../utils';
-import { uniqueId } from 'lodash';
+import uniqueId from 'lodash/uniqueId';
 
 // Components
 import Icon from '../icon';
