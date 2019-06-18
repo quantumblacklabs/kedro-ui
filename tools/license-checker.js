@@ -5,8 +5,8 @@
 
 const checker = require('license-checker');
 
+// List of acceptable licenses
 const LICENSE_WHITELIST = [
-  'AFLV2.1',
   'APACHE-2.0',
   'BSD',
   'BSD-2-CLAUSE',
