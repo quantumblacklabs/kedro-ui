@@ -28,7 +28,8 @@ bower_components
 
 # Compiled code
 /tmp/
-/styleguide/
+/styleguide/build/
+/styleguide/*.*
 /lib/
 /dist/
 
