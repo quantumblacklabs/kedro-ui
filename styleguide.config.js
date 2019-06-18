@@ -39,7 +39,8 @@ module.exports = {
     }
   },
   styleguideComponents: {
-    Preview: path.join(__dirname, 'styleguide/components/Preview')
+    Preview: path.join(__dirname, 'styleguide/components/Preview'),
+    StyleGuideRenderer: path.join(__dirname, 'styleguide/components/StyleGuide')
   },
   require: [
     path.join(__dirname, 'src/styles/app.css')
