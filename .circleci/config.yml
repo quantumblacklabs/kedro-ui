@@ -20,7 +20,7 @@ jobs:
           command: npm run stylelint
       - run:
           name: Run tests
-          command: npm run test
+          command: npm run test:coverage --maxWorkers=4
       - run:
           name: Transpile UI components for package
           command: npm run lib
