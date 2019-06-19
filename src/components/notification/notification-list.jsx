@@ -121,7 +121,7 @@ class NotificationList extends React.Component {
       } = item;
 
       return (
-        <div key={item.key}>
+        <div key={item.label}>
           <Notification
             icon={icon}
             theme={theme}

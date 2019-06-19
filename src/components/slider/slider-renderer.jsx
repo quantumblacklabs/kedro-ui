@@ -257,9 +257,9 @@ SliderRenderer.propTypes = {
    */
   tickStep: PropTypes.number,
   /**
-   * The pre-selected value of the slider.
+   * The value of the slider - either array for ranged slider or a single number for simple slider.
    */
-  value: PropTypes.number
+  value: PropTypes.oneOfType([PropTypes.array, PropTypes.number])
 };
 
 export default SliderRenderer;

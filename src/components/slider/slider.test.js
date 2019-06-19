@@ -60,7 +60,7 @@ test('SliderRenderer should correctly render the value', () => {
 
 test('RangedSliderRenderer should correctly render the values', () => {
   const values = [22, 33];
-  const wrapper = mount(<Slider value={values} />);
+  const wrapper = mount(<Slider type='multiple' value={values} />);
 
   wrapper
     .find('input')

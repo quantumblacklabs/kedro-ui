@@ -14,6 +14,13 @@ test('SearchBarRenderer should render correct structure', () => {
   const wrapper = shallow(
     <SearchBarRenderer
       iconType='refresh'
+      placeholder='hello world'
+      isFocused={true}
+      onBlur={() => {}}
+      onChange={() => {}}
+      onClear={() => {}}
+      onFocus={() => {}}
+      showClearButton={true}
       theme='dark'
       value='hello world' />
   );
