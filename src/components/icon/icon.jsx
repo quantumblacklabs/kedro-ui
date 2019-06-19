@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { pickBy } from 'lodash';
+import pickBy from 'lodash/pickBy';
 import IconAssets from './assets';
 
 import './icon.css';
