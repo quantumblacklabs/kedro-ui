@@ -23,7 +23,10 @@ jobs:
           command: npm run stylelint
       - run:
           name: Run tests
-          command: npm run test
+          command: npm test
+      - run:
+          name: Check dependency licenses
+          command: npm run licenses
       - run:
           name: Transpile UI components for package
           command: npm run lib
