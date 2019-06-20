@@ -23,7 +23,7 @@ jobs:
           command: npm run stylelint
       - run:
           name: Run tests
-          command: npm test
+          command: npm run test:coverage --maxWorkers=4
       - run:
           name: Check dependency licenses
           command: npm run licenses

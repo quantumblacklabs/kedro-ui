@@ -122,7 +122,7 @@ class NotificationList extends React.Component {
 
       return (
         <CSSTransition
-          key={item.key}
+          key={item.label}
           classNames='kui-notification-animation'
           timeout={{
             enter: 500,

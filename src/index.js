@@ -1,7 +1,6 @@
 import Button from './components/button';
 import Checkbox from './components/checkbox';
 import Dropdown from './components/dropdown';
-import EventIndicator from './components/event-indicator';
 import Icon from './components/icon';
 import Input from './components/input';
 import MenuOption from './components/menu-option';
@@ -24,7 +23,6 @@ export {
   Button,
   Checkbox,
   Dropdown,
-  EventIndicator,
   Icon,
   Input,
   Notification,

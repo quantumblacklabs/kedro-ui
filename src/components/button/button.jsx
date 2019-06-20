@@ -56,7 +56,7 @@ Button.propTypes = {
   /**
    * The displayed button value
    */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   /**
    * True if disabled
    */

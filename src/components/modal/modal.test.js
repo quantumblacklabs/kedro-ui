@@ -5,6 +5,8 @@ import Modal from './modal';
 
 configure({ adapter: new Adapter() });
 
+const onClose = () => {};
+
 test('Modal should be a function', () => {
   expect(typeof Modal)
     .toBe('function');
@@ -12,7 +14,7 @@ test('Modal should be a function', () => {
 
 test('Modal should have correct structure', () => {
   const wrapper = shallow(
-    <Modal title='Hello Test'>
+    <Modal title='Hello Test' onClose={onClose}>
       <div />
     </Modal>
   );
@@ -29,7 +31,7 @@ test('Modal should have correct structure', () => {
 
 test('Modal should have button and description when supplied no children', () => {
   const wrapper = shallow(
-    <Modal title='Hello Test' />
+    <Modal title='Hello Test' onClose={onClose} />
   );
 
   expect(wrapper.find('.kui-modal__description').length === 1)
@@ -40,7 +42,7 @@ test('Modal should have button and description when supplied no children', () =>
 
 test('Modal should have correct structure when supplied children', () => {
   const wrapper = shallow(
-    <Modal title='Hello Test'>
+    <Modal title='Hello Test' onClose={onClose}>
       <button>Hello World</button>
     </Modal>
   );
