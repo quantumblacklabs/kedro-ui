@@ -48,25 +48,14 @@ jobs:
       - attach_workspace:
           at: ~/repo/
       - run:
-          name: Instal awscli
-          command: sudo apt-get -y -qq install awscli
-      - run:
-          name: (Prod) Deploy the styleguide
+          name: Deploy to gh-pages
           command: |
-            aws s3 sync styleguide \
-            s3://qb1-cms-static-prod/docs/kedro-ui/ --delete
-            
-  deploy-qa-docs:
-    <<: *defaults
-    steps:
-      - run:
-          name: Install awscli
-          command: sudo apt-get -y -qq install awscli
-      - run:
-          name: (Prod) Deploy the styleguide
-          command: |
-            aws s3 sync styleguide \
-            s3://qb1-cms-static-qa/docs/kedro-ui/ --delete
+            cd styleguide
+            git init
+            git add -A
+            git commit -m 'Docs build ${CIRCLE_BUILD_NUM}'
+            git add origin https://github.com/quantumblacklabs/kedro-ui.git
+            git push origin master:gh-pages
 
 workflows:
   version: 2
@@ -79,9 +68,3 @@ workflows:
           filters:
             branches:
               only: master
-      - deploy-qa-docs:
-          requires:
-              - build
-          filters:
-            branches:
-              only: develop
