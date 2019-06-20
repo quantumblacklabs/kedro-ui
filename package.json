@@ -119,7 +119,7 @@
     "postcss-property-lookup": "^2.0.0",
     "postcss-scss": "^2.0.0",
     "precss": "^4.0.0",
-    "react-styleguidist": "^9.0.4",
+    "react-styleguidist": "^9.1.9",
     "react-test-renderer": "^16.8.4",
     "sinon": "^7.3.0",
     "style-loader": "^0.23.1",

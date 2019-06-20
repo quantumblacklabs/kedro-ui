@@ -26,8 +26,7 @@ const LICENSE_WHITELIST = [
 const PACKAGE_WHITELIST = [
   'colors@0.6.2', // MIT
   'isnumeric@0.2.0', // MIT
-  'mdn-data@1.1.4', // CCO-1.0
-  'walkes@0.2.1' // LGPL-3.0 unmodified sub-dependency
+  'mdn-data@1.1.4' // CCO-1.0
 ];
 
 const getLicences = (packages, key) => {
