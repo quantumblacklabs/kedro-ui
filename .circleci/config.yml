@@ -11,7 +11,10 @@ jobs:
       - checkout
       - run:
           name: Installing dependencies
-          command: npm install
+          command: npm install --no-audit
+      - run:
+          name: Run audit-ci
+          command: npm run audit
       - run:
           name: ESLint
           command: npm run eslint
@@ -21,6 +24,9 @@ jobs:
       - run:
           name: Run tests
           command: npm run test:coverage --maxWorkers=4
+      - run:
+          name: Check dependency licenses
+          command: npm run licenses
       - run:
           name: Transpile UI components for package
           command: npm run lib
