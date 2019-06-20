@@ -29,11 +29,11 @@ $size-spacing: 20px;
   transition: all 500ms;
 }
 
-.kui-notification-animation-leave {
+.kui-notification-animation-exit {
   opacity: 1;
 }
 
-.kui-notification-animation-leave.kui-notification-animation-leave-active {
+.kui-notification-animation-exit.kui-notification-animation-exit-active {
   opacity: 0;
 
   transition: all 300ms ease-in;

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { CSSTransitionGroup } from 'react-transition-group';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import { uniqueId } from 'lodash/fp';
 
@@ -121,7 +121,13 @@ class NotificationList extends React.Component {
       } = item;
 
       return (
-        <div key={item.key}>
+        <CSSTransition
+          key={item.key}
+          classNames='kui-notification-animation'
+          timeout={{
+            enter: 500,
+            exit: 300
+          }}>
           <Notification
             icon={icon}
             theme={theme}
@@ -129,7 +135,7 @@ class NotificationList extends React.Component {
             label={label}
             type={type}
             onClose={() => this._handleClose(i)} />
-        </div>
+        </CSSTransition>
       );
     });
 
@@ -137,12 +143,9 @@ class NotificationList extends React.Component {
       <div
         style={{ width }}
         className='kedro kui-notification-list'>
-        <CSSTransitionGroup
-          transitionName='kui-notification-animation'
-          transitionEnterTimeout={500}
-          transitionLeaveTimeout={300}>
+        <TransitionGroup>
           {items}
-        </CSSTransitionGroup>
+        </TransitionGroup>
       </div>
     );
   }
