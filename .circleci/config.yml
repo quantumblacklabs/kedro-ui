@@ -47,6 +47,9 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/repo/
+      - add_ssh_keys:
+          fingerprints:
+            - "17:31:e3:6b:2a:94:4d:33:ed:67:fe:77:b2:55:02:21"
       - run:
           name: Deploy to gh-pages
           command: |
