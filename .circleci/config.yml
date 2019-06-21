@@ -61,7 +61,9 @@ workflows:
   version: 2
   regular:
     jobs:
-      - build
+      - build:
+          branches:
+              ignore: gh-pages
       - deploy-prod-docs:
           requires:
               - build
