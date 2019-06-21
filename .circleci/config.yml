@@ -51,6 +51,8 @@ jobs:
           name: Deploy to gh-pages
           command: |
             cd styleguide
+            git config --global user.email circleci@circleci
+            git config --global user.name CircleCIBot
             git init
             git add -A
             git commit -m 'Docs build ${CIRCLE_BUILD_NUM}'
