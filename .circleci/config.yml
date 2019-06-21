@@ -59,7 +59,7 @@ jobs:
             git config --global user.name CircleCIBot
             git init
             git add -A
-            git commit -m 'Docs build $CIRCLE_BUILD_NUM'
+            git commit -m 'Docs build [ci skip]'
             git remote add origin https://github.com/quantumblacklabs/kedro-ui.git
             git push origin master:gh-pages --force
 
