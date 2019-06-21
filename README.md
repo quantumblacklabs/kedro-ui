@@ -43,7 +43,7 @@ ReactDOM.render(<MyComponent />, document.getElementById('root'));
 
 ## 📚 Documentation
 
-We use styleguidist to document our comments and their usage. To try them out head over [here](http://kedro-ui.quantumblack.com).
+We use styleguidist to document our comments and their usage. To try them out head over [here](https://quantumblacklabs.github.io/kedro-ui/).
 
 ## 👋 Contact
 

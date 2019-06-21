@@ -55,7 +55,7 @@ jobs:
             git add -A
             git commit -m 'Docs build ${CIRCLE_BUILD_NUM}'
             git add origin https://github.com/quantumblacklabs/kedro-ui.git
-            git push origin master:gh-pages
+            git push origin master:gh-pages --force
 
 workflows:
   version: 2
