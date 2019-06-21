@@ -62,7 +62,8 @@ workflows:
   regular:
     jobs:
       - build:
-          branches:
+          filters:
+            branches:
               ignore: gh-pages
       - deploy-prod-docs:
           requires:
