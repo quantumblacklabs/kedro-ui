@@ -73,7 +73,11 @@ Checkbox.propTypes = {
   /**
    * This is the label that will be displayed for the control
    */
-  label: PropTypes.string.isRequired,
+  label: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.node,
+    PropTypes.string
+  ]),
   /**
    * This is the name of the group the element belongs to
    */
@@ -89,7 +93,7 @@ Checkbox.propTypes = {
   /**
    * The underlying value of the checkbox
    */
-  value: PropTypes.number.isRequired
+  value: PropTypes.any
 };
 
 export default Checkbox;
