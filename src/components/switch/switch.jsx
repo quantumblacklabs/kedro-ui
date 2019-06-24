@@ -121,7 +121,7 @@ Switch.propTypes = {
   /**
    * The underlying value of the element
    */
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 };
 
 // Exports
