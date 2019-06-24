@@ -8,7 +8,7 @@
     "dist"
   ],
   "scripts": {
-    "audit": "audit-ci --moderate",
+    "audit": "audit-ci --moderate -a 788 813",
     "start": "npm run docs:server",
     "docs:server": "styleguidist server",
     "docs:build": "styleguidist build",
