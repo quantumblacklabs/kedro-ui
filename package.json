@@ -1,6 +1,6 @@
 {
   "name": "@quantumblack/kedro-ui",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Kedro UI, a React component library by QuantumBlack",
   "main": "lib/index.js",
   "files": [
