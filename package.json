@@ -25,7 +25,9 @@
     "test": "jest --config jest-ui.json --watch",
     "test:coverage": "jest --config jest-ui.json --coverage",
     "version:update": "./tools/bin/update-version.sh",
-    "version:get": "echo \"Current version is \"$(./tools/bin/config.sh version)"
+    "version:get": "echo \"Current version is \"$(./tools/bin/config.sh version)",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -64,7 +66,8 @@
     "lodash": "^4.17.15",
     "prop-types": "^15.7.2",
     "react-gsap-enhancer": "^0.3.0",
-    "react-transition-group": "^4.1.1"
+    "react-transition-group": "^4.1.1",
+    "snyk": "^1.189.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
@@ -140,5 +143,6 @@
     "npm": "6.3.0"
   },
   "license": "Apache-2.0",
-  "homepage": "https://github.com/quantumblacklabs/kedro-ui#readme"
+  "homepage": "https://github.com/quantumblacklabs/kedro-ui#readme",
+  "snyk": true
 }
