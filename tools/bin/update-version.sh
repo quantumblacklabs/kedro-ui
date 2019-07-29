@@ -8,7 +8,7 @@ echo "==== Run 'Update version' task ==="
 FE__VERSION=$(./tools/bin/config.sh version)
 NEW_VERSION="$1"
 NEW_BRANCH="update-version-to-$NEW_VERSION"
-MAIN_BRANCH="develop"
+MAIN_BRANCH="master"
 
 if [[ -z "$NEW_VERSION" ]]; then
     echo "You should eneter new version..."
