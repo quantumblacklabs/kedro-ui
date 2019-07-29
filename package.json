@@ -67,7 +67,7 @@
     "prop-types": "^15.7.2",
     "react-gsap-enhancer": "^0.3.0",
     "react-transition-group": "^4.1.1",
-    "snyk": "^1.189.0"
+    "snyk": "^1.202.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
