@@ -7,6 +7,7 @@
 $size-spacing: 40px;
 $size-pos: 10px;
 $size-content-maxwidth: 400px;
+$duration-visibility: 0.4s;
 
 /** Implementation **/
 
@@ -18,6 +19,13 @@ $size-content-maxwidth: 400px;
 
   width: 100%;
   height: 100%;
+
+  visibility: hidden;
+  transition: visibility ease $duration-visibility;
+}
+
+.kui-modal--visible {
+  visibility: visible;
 }
 
 .kui-modal__bg {
@@ -27,6 +35,13 @@ $size-content-maxwidth: 400px;
 
   width: 100%;
   height: 100%;
+
+  opacity: 0;
+  transition: opacity ease $duration-visibility;
+}
+
+.kui-modal__bg--visible {
+  opacity: 1;
 }
 
 .kui-modal__content {
@@ -40,6 +55,13 @@ $size-content-maxwidth: 400px;
   max-width: $size-content-maxwidth;
   width: 100%;
 
+  opacity: 0;
+  transform: translate(-50%, -50%) translateY(80px);
+  transition: all ease $duration-visibility;
+}
+
+.kui-modal__content--visible {
+  opacity: 1;
   transform: translate(-50%, -50%);
 }
 

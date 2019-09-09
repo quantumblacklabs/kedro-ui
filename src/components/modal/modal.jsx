@@ -2,10 +2,9 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import Button from '../button';
 import Icon from '../icon';
-import GSAP from 'react-gsap-enhancer';
-import { TimelineLite } from 'gsap';
 
 import utils from '../../utils';
 
@@ -14,21 +13,6 @@ import utils from '../../utils';
 import './index.css';
 
 const { handleKeyEvent } = utils;
-
-/**
- * Create animation
- * @type {object} target
- * @return {object} new timeline animation
- */
-const createAnim = ({ target }) => {
-  const bg = target.find({ name: 'bg' });
-  const content = target.find({ name: 'content' });
-
-  return new TimelineLite({ repeat: 0 })
-    .to(bg, 1, { opacity: 1 })
-    .to(content, 1, { opacity: 1, y: '-50%' }, 0)
-    .duration(0.5);
-};
 
 /**
  * Modal component, used for popup dialogs
@@ -41,11 +25,6 @@ class Modal extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      opacity: 0,
-      top: '40%'
-    };
-
     this._handleKeyDown = this._handleKeyDown.bind(this);
   }
 
@@ -53,7 +32,7 @@ class Modal extends React.Component {
    * componentWillMount
    */
   componentDidMount() {
-    this.entranceAnimation = this.addAnimation(createAnim);
+    // this.entranceAnimation = this.addAnimation(createAnim);
     window.addEventListener('keydown', this._handleKeyDown);
   }
 
@@ -84,6 +63,7 @@ class Modal extends React.Component {
       onClose,
       title,
       theme,
+      visible,
       zIndex
     } = this.props;
     let content = null;
@@ -93,14 +73,8 @@ class Modal extends React.Component {
     } else {
       content = (
         <div>
-          <div
-            className='kui-modal__description'>
-            {message}
-          </div>
-          <Button
-            onClick={onClose}
-            theme={theme}
-            size='small'>
+          <div className='kui-modal__description'>{message}</div>
+          <Button onClick={onClose} theme={theme} size='small'>
             {buttonLabel}
           </Button>
         </div>
@@ -118,19 +92,36 @@ class Modal extends React.Component {
     return (
       <div
         aria-haspopup='true'
-        className={`kedro kui-modal kui-theme--${theme}`}
+        className={
+          classnames(
+            `kedro kui-modal kui-theme--${theme}`,
+            {
+              'kui-modal--visible': visible
+            }
+          )
+        }
         onKeyDown={_handleKeyDown}
         role='dialog'
         style={{ zIndex }}>
         <div
           onClick={onClose}
-          name='bg'
-          style={{ opacity: 0 }}
-          className='kui-modal__bg' />
-        <div
-          name='content'
-          style={{ opacity: 0, transform: 'translate(-50%, -40%)' }}
-          className='kui-modal__content'>
+          className={
+            classnames(
+              'kui-modal__bg',
+              {
+                'kui-modal__bg--visible': visible
+              }
+            )
+          }
+        />
+        <div className={
+          classnames(
+            'kui-modal__content',
+            {
+              'kui-modal__content--visible': visible
+            }
+          )
+        }>
           <Icon
             onClick={onClose}
             type='close'
@@ -155,8 +146,9 @@ Modal.defaultProps = {
   buttonLabel: null,
   children: null,
   message: null,
-  zIndex: 9999,
-  theme: 'dark'
+  theme: 'dark',
+  visible: false,
+  zIndex: 9999
 };
 
 Modal.propTypes = {
@@ -185,9 +177,13 @@ Modal.propTypes = {
    */
   theme: PropTypes.oneOf(['light', 'dark']),
   /**
+   * Whether to show the modal
+   */
+  visible: PropTypes.bool,
+  /**
    * zIndex - how far infront of the other content the modal will sit
    */
   zIndex: PropTypes.number
 };
 
-export default GSAP()(Modal);
+export default Modal;
