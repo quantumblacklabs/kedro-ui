@@ -31,8 +31,6 @@ class ModalTrigger extends React.Component {
     return (
       <div>
         <Button theme='light' onClick={this.onTriggered.bind(this)}>Trigger Modal</Button>
-        {
-          this.state.visible &&
           <Modal
             theme='light'
             title='Warning!'
@@ -40,7 +38,6 @@ class ModalTrigger extends React.Component {
             buttonLabel='Confirm Deletion'
             onClose={this.onClose.bind(this)}
             visible={this.state.visible} />
-        }
       </div>
     );
   }
@@ -92,8 +89,6 @@ class ModalTrigger extends React.Component {
     return (
       <div>
         <Button theme='light' onClick={this.onTriggered.bind(this)}>Trigger Modal</Button>
-        {
-          this.state.visible &&
           <Modal
             theme='light'
             title='Custom Modal'
@@ -128,7 +123,6 @@ class ModalTrigger extends React.Component {
               </Button>
             </div>
           </Modal>
-        }
       </div>
     );
   }

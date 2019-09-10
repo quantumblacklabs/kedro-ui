@@ -24,45 +24,9 @@
   }
 }
 
-.kui-input__label {
-  .kui-input--variant-one.kui-input--success &,
-  .kui-input--variant-one.kui-input--error & {
-    @mixin themedParent color, input, status;
-  }
-}
-
-.kui-input__field {
-  .kui-input--variant-one.kui-input--success & {
-    @mixin themedParent background-color, input, success;
-  }
-
-  .kui-input--variant-one.kui-input--error & {
-    @mixin themedParent background-color, input, error;
-  }
-
-  .kui-input--variant-one.kui-input--success &,
-  .kui-input--variant-one.kui-input--error & {
-    @mixin themedParent color, input, status;
-  }
-}
-
-.kui-input__line {
-  .kui-input--variant-one.kui-input--success &,
-  .kui-input--variant-one.kui-input--error & {
-    @mixin themedParent background-color, input, status;
-  }
-}
-
 .kui-input__line--filled {
   .kui-input--variant-one.kui-input--success &,
   .kui-input--variant-one.kui-input--error & {
-    @mixin themedParent background-color, input, status;
-  }
-}
-
-.kui-input__description {
-  .kui-input--variant-one.kui-input--success + &,
-  .kui-input--variant-one.kui-input--error + & {
-    @mixin themedParent color, input, textFilled;
+    @mixin themedStart background-color, input, status;
   }
 }

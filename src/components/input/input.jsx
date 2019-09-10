@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import GSAP from 'react-gsap-enhancer';
-import { TimelineLite, Elastic, Power1 } from 'gsap';
 
 import './input.css';
 import './input-status-v1.css';
@@ -31,18 +29,6 @@ class Input extends React.Component {
     this._handleFocused = this._handleFocused.bind(this);
     this._handleBlured = this._handleBlured.bind(this);
     this._handleChanged = this._handleChanged.bind(this);
-
-    this._createAnimation = this._createAnimation.bind(this);
-  }
-
-  /**
-   * React lifecycle method
-   * Adds the animation via GSAP-enhancer to the component.
-   * {@link https://facebook.github.io/react/docs/react-component.html#componentDidMount}
-   * @return {object} JSX for this component
-   */
-  componentDidMount() {
-    this._anim = this.addAnimation(this._createAnimation);
   }
 
   /**
@@ -50,11 +36,7 @@ class Input extends React.Component {
    * {@link https://facebook.github.io/react/docs/react-component.html#componentDidUpdate}
    * @return {object} JSX for this component
    */
-  componentDidUpdate(prevProps, prevState) {
-    if (!this.state.focused && (this.props.status === 'default' || prevProps.status === 'default')) {
-      this._anim.restart();
-    }
-
+  componentDidUpdate(prevProps) {
     if (this.props.value !== null && this.props.value !== prevProps.value) {
       this.setState({
         value: this.props.value
@@ -63,52 +45,9 @@ class Input extends React.Component {
   }
 
   /**
-   * React lifecycle method
-   * Removes the animation created with GSAP-enhancer from the component.
-   * {@link https://facebook.github.io/react/docs/react-component.html#componentWillUnmount}
-   * @return {object} JSX for this component
-   */
-  componentWillUnmount() {
-    this._anim.kill();
-  }
-
-  /**
-   * Animation wrapper made with GSAP.
-   * @return {GSAP}
-   */
-  _createAnimation() {
-    const animationTimeline = new TimelineLite();
-
-    const line = this._line;
-    const lineWidthTimeline = new TimelineLite();
-    lineWidthTimeline
-      .to(line, 0, { width: 0 })
-      .to(line, 1, { width: '100%', ease: Elastic.easeOut.config(0.3, 1) });
-
-    animationTimeline.add(lineWidthTimeline, 0);
-
-    const desc = this._description;
-
-    if (desc) {
-      const descTimeline = new TimelineLite();
-      descTimeline
-        .to(desc, 0, { opacity: 0, ease: Power1.easeIn })
-        .to(desc, 0.7, { opacity: 1, ease: Power1.easeIn });
-
-      animationTimeline.add(descTimeline, 0);
-    }
-
-    return animationTimeline;
-  }
-
-  /**
    * _handleFocused - changes the focus to enabled state.
    */
   _handleFocused(event) {
-    if (this.props.status === 'default') {
-      this._anim.restart();
-    }
-
     this.setState({
       focused: true
     });
@@ -151,23 +90,37 @@ class Input extends React.Component {
    * @return {object} JSX for this component
    */
   render() {
-    // status indicating error or success; ignored when it is default
-    const validatedStatus = this.props.status !== 'default' ? this.props.status : false;
+    const {
+      disabled,
+      label,
+      placeholder,
+      status,
+      statusDescription,
+      theme,
+      variant
+    } = this.props;
+    const { focused, value } = this.state;
 
-    const labelWrapper = this.props.label && (
+    // status indicating error or success; ignored when it is default
+    const validatedStatus = status !== 'default' ? status : false;
+    const hasDescription = status !== 'default' && statusDescription;
+
+    const labelWrapper = label && (
       <div className='kui-input__label'>
-        {this.props.label}
+        {label}
       </div>
     );
 
     // description's div has to be always rendered, even if its content is empty
     // to enable the animation to run when the component receives a description; otherwise the animation is ignored
     const description = (
-      <div className='kui-input__description' ref={desc => { this._description = desc; }}>
+      <div className={classnames('kui-input__description', {
+        'kui-input__description--has-content': hasDescription
+      })}>
         {
-          this.props.status !== 'default' && this.props.statusDescription && (
+          statusDescription && (
             <div className='kui-input__description-content'>
-              { this.props.statusDescription }
+              { statusDescription }
             </div>
           )
         }
@@ -179,12 +132,12 @@ class Input extends React.Component {
         <div
           className={classnames(
             'kui-input',
-            `kui-theme--${this.props.theme}`,
+            `kui-theme--${theme}`,
             { [`kui-input--${validatedStatus}`]: !!validatedStatus },
-            { 'kui-input--disabled': this.props.disabled },
-            { 'kui-input--focused': this.state.focused },
-            { 'kui-input--variant-one': this.props.variant === 1 },
-            { 'kui-input--variant-two': this.props.variant === 2 }
+            { 'kui-input--disabled': disabled },
+            { 'kui-input--focused': focused },
+            { 'kui-input--variant-one': variant === 1 },
+            { 'kui-input--variant-two': variant === 2 }
           )}
           onFocus={this._handleFocused}
           onBlur={this._handleBlured}>
@@ -192,15 +145,17 @@ class Input extends React.Component {
           <input
             className='kui-input__field'
             type='text'
-            placeholder={this.props.placeholder || ''}
-            disabled={this.props.disabled}
-            value={this.state.value || ''}
+            placeholder={placeholder || ''}
+            disabled={disabled}
+            value={value || ''}
             onChange={this._handleChanged}
             onFocus={this._handleFocused}
             onBlur={this._handleBlured} />
-          <div className='kui-input__line' ref={line => { this._line = line; }}>
+          <div
+            aria-hidden='true'
+            className='kui-input__line'>
             <div className='kui-input__line--filled'>
-              {this.state.value || ''}
+              {value || ''}
             </div>
           </div>
         </div>
@@ -274,4 +229,4 @@ Input.propTypes = {
   variant: PropTypes.oneOf([0, 1, 2])
 };
 
-export default GSAP()(Input);
+export default Input;
