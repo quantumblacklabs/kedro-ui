@@ -32,7 +32,6 @@ class Modal extends React.Component {
    * componentWillMount
    */
   componentDidMount() {
-    // this.entranceAnimation = this.addAnimation(createAnim);
     window.addEventListener('keydown', this._handleKeyDown);
   }
 

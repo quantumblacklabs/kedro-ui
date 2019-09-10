@@ -48,10 +48,6 @@ class Input extends React.Component {
    * _handleFocused - changes the focus to enabled state.
    */
   _handleFocused(event) {
-    // if (this.props.status === 'default') {
-    //   this._anim.restart();
-    // }
-
     this.setState({
       focused: true
     });
@@ -234,4 +230,3 @@ Input.propTypes = {
 };
 
 export default Input;
-// export default GSAP()(Input);
