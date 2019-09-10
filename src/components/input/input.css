@@ -10,6 +10,7 @@ $padding-top-bottom: 7px;
 $offset-top-bottom-small: 4px;
 $margin-top-line: 3px;
 $height-tiny: 1px;
+$duration-input-transition: 0.3s;
 
 /** Implementation **/
 
@@ -118,23 +119,27 @@ $height-tiny: 1px;
 }
 
 .kui-input__line {
+  display: flex;
+
   height: $height-tiny;
   margin-top: $margin-top-line;
-  width: 0;
-
-  /** by default the background color is transparent; when in active/focus it is visible **/
-  background-color: transparent;
 
   pointer-events: none;
-  transition: all ease-out 0.4s;
 
-  .kui-input__field:focus + &,
-  .kui-input__field:active + & {
+  &:after {
+    content: '';
+    flex: 0;
+    background-color: transparent;
+    transition: all ease $duration-input-transition;
+  }
+
+
+  .kui-input__field:focus + &:after,
+  .kui-input__field:active + &:after {
     @mixin themedParent background-color, menu, border;
 
-    width: 100%;
-
-    transition: width ease-in 0.4s;
+    flex: 1;
+    transition-timing-function: ease-out;
   }
 
   /* stylelint-disable */
@@ -166,7 +171,7 @@ $height-tiny: 1px;
   white-space: pre;
   vertical-align: top;
   color: transparent;
-  transition: all ease 0.1s;
+  transition: all ease $duration-input-transition;
 
   .kui-input--focused & {
     @mixin themedStart background-color, input, textFilled;
@@ -189,7 +194,7 @@ $height-tiny: 1px;
   transform: scaleY(0.8);
   transform-origin: top;
   height: 0;
-  transition: all ease 0.3s;
+  transition: all ease $duration-input-transition;
 
   &--has-content {
     visibility: visible;
