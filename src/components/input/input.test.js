@@ -100,17 +100,3 @@ test('It should trigger onChange correctly', () => {
   expect(wrapper.state().value)
     .toBe('new value');
 });
-
-it('Should kill the animation when unmounting', () => {
-  const cb = jest.fn();
-  
-  const wrapper = mount(<Input />);
-  wrapper.instance()._anim = {
-    kill: cb
-  };
-
-  wrapper.unmount();
-
-  expect(cb)
-    .toHaveBeenCalled();
-});
