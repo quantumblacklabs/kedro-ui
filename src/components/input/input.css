@@ -20,9 +20,6 @@ $height-tiny: 1px;
 .kui-input {
   @mixin themed background-color, menu;
 
-  display: flex;
-  flex-direction: column;
-
   /** padding top can be overriden if label is generated (see below) **/
   padding: $padding-top-bottom $padding-left-right;
 
@@ -73,8 +70,7 @@ $height-tiny: 1px;
   @extend %type--regular;
   @extend %type--subhead-2;
 
-  display: flex;
-
+  width: 100%;
   padding: 0;
 
   border: none;
@@ -122,28 +118,23 @@ $height-tiny: 1px;
 }
 
 .kui-input__line {
-  display: flex;
-
   height: $height-tiny;
   margin-top: $margin-top-line;
+  width: 0;
 
   /** by default the background color is transparent; when in active/focus it is visible **/
   background-color: transparent;
 
   pointer-events: none;
-
-  .kui-input__field:active + & {
-    @mixin themedParent background-color, menu, border;
-  }
+  transition: all ease-out 0.4s;
 
   .kui-input__field:focus + &,
   .kui-input__field:active + & {
     @mixin themedParent background-color, menu, border;
-  }
 
-  .kui-input--disabled .kui-input__field:focus + &,
-  .kui-input--disabled .kui-input__field:active + & {
-    background-color: transparent;
+    width: 100%;
+
+    transition: width ease-in 0.4s;
   }
 
   /* stylelint-disable */
@@ -168,10 +159,14 @@ $height-tiny: 1px;
   @extend %type--regular;
   @extend %type--subhead-2;
 
+  display: inline-block;
   height: $height-tiny;
 
   overflow: hidden;
   white-space: pre;
+  vertical-align: top;
+  color: transparent;
+  transition: all ease 0.1s;
 
   .kui-input--focused & {
     @mixin themedStart background-color, input, textFilled;
@@ -189,6 +184,19 @@ $height-tiny: 1px;
 .kui-input__description {
   display: flex;
   padding: 0;
+  visibility: hidden;
+  opacity: 0;
+  transform: scaleY(0.8);
+  transform-origin: top;
+  height: 0;
+  transition: all ease 0.3s;
+
+  &--has-content {
+    visibility: visible;
+    opacity: 1;
+    height: auto;
+    transform: scaleY(1);
+  }
 }
 
 .kui-input__description-content {
