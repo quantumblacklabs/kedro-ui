@@ -8,7 +8,6 @@
     "dist"
   ],
   "scripts": {
-    "audit": "audit-ci --moderate -a 788 813",
     "start": "npm run docs:server",
     "docs:server": "styleguidist server",
     "docs:build": "styleguidist build",
@@ -73,7 +72,6 @@
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.4.4",
-    "audit-ci": "^2.0.1",
     "autoprefixer": "^9.6.0",
     "ava": "^2.1.0",
     "babel-loader": "^8.0.6",

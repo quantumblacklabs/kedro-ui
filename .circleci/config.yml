@@ -10,11 +10,8 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Installing dependencies
-          command: npm install --no-audit
-      - run:
-          name: Run audit-ci
-          command: npm run audit
+          name: Install dependencies
+          command: npm ci
       - run:
           name: ESLint
           command: npm run eslint
