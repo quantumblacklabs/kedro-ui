@@ -31,6 +31,7 @@ $secondary-underline-offset-hover: 4px;
   background: none;
   box-shadow: none;
   cursor: pointer;
+  font-family: inherit;
   transition:
     background ease $timing-primary,
     outline-color ease $timing-primary,
