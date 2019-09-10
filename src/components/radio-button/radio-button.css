@@ -16,7 +16,7 @@ $size-radio-button-spacing: 14px;
 
   display: inline-block;
 
-  width: $size-dot-dimension;
+  min-width: $size-dot-dimension;
   height: $size-dot-dimension;
 
   margin-right: $size-radio-button-spacing;
