@@ -153,10 +153,8 @@ class Input extends React.Component {
             onBlur={this._handleBlured} />
           <div
             aria-hidden='true'
-            className='kui-input__line'>
-            <div className='kui-input__line--filled'>
-              {value || ''}
-            </div>
+            className='kui-input__line'
+            data-value={value || ''}>
           </div>
         </div>
         {description}

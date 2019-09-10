@@ -119,12 +119,37 @@ $duration-input-transition: 0.3s;
 }
 
 .kui-input__line {
+  @extend %type--family;
+  @extend %type--regular;
+  @extend %type--subhead-2;
+
   display: flex;
 
   height: $height-tiny;
   margin-top: $margin-top-line;
 
   pointer-events: none;
+
+  &::before {
+    content: attr(data-value);
+    overflow: hidden;
+    white-space: pre;
+    background-color: transparent;
+    color: transparent;
+    transition: all ease $duration-input-transition;
+
+    .kui-input--focused & {
+      @mixin themedStart background-color, input, textFilled;
+    }
+
+    .kui-input--success & {
+      @mixin themedStart background-color, input, success;
+    }
+
+    .kui-input--error & {
+      @mixin themedStart background-color, input, error;
+    }
+  }
 
   &::after {
     content: '';
@@ -153,35 +178,6 @@ $duration-input-transition: 0.3s;
   .kui-input--error .kui-input__field:focus + &,
   .kui-input--error .kui-input__field:active + & {
     @mixin themedParent background-color, input, error;
-  }
-
-  /* stylelint-enable */
-}
-
-.kui-input__line--filled {
-  @extend %type--family;
-  @extend %type--regular;
-  @extend %type--subhead-2;
-
-  display: inline-block;
-  height: $height-tiny;
-
-  overflow: hidden;
-  white-space: pre;
-  vertical-align: top;
-  color: transparent;
-  transition: all ease $duration-input-transition;
-
-  .kui-input--focused & {
-    @mixin themedStart background-color, input, textFilled;
-  }
-
-  .kui-input--success & {
-    @mixin themedStart background-color, input, success;
-  }
-
-  .kui-input--error & {
-    @mixin themedStart background-color, input, error;
   }
 }
 
