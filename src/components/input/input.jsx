@@ -154,8 +154,7 @@ class Input extends React.Component {
           <div
             aria-hidden='true'
             className='kui-input__line'
-            data-value={value || ''}>
-          </div>
+            data-value={value || ''} />
         </div>
         {description}
       </div>
