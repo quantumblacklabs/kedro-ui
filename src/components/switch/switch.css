@@ -13,6 +13,13 @@ $size-switch-spacing: 14px;
 }
 
 .kui-switch {
+  /**
+    Prevent Chrome 71 focus scroll bug, by containing the
+    visually-hidden mixin in a wrapper to prevent it escaping and somehow
+    messing up the overflow:hidden scroll positioning.
+    */
+  position: relative;
+
   margin-bottom: $size-switch-spacing;
 
   &:active {
