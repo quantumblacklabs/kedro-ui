@@ -24,7 +24,7 @@
   }
 }
 
-.kui-input__line--filled {
+.kui-input__line::before {
   .kui-input--variant-one.kui-input--success &,
   .kui-input--variant-one.kui-input--error & {
     @mixin themedStart background-color, input, status;
