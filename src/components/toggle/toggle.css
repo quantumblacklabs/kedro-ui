@@ -7,6 +7,7 @@
 $size-toggle-margin: 12px;
 $size-toggle-outline: 7px;
 $size-toggle-padding: 4px;
+$size-toggle-outline-padding: 6px;
 $size-toggle-text-margin: 8px;
 $size-toggle-margin-bottom: -3px;
 $size-toggle-margin-small: 10px;
@@ -86,10 +87,21 @@ $duration-switch-hover: 0.1s;
     }
   }
 
-  .kui-switch__input:active + &,
-  .kui-switch__input:focus + & {
+  .kui-switch__input:active + & {
     @mixin themedParent outline-color, toggle, focus;
     @mixin themedParent background-color, toggle, focus;
+  }
+
+  .kui-switch__input:focus + & {
+    @mixin themedParent outline-color, focus, secondary;
+
+    outline-width: 4px;
+    padding: $size-toggle-outline-padding;
+    margin: -$size-toggle-outline-padding -$size-toggle-outline-padding calc($size-toggle-text-margin - $size-toggle-outline-padding);
+
+    [data-whatinput='mouse'] & {
+      outline: none;
+    }
   }
 }
 

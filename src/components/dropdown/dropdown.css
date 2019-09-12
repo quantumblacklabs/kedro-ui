@@ -60,7 +60,7 @@ $menu-item-padding: 12px;
   border: none;
   border-radius: 0;
   box-shadow: none;
-  outline: 3px solid transparent;
+  outline: 4px solid transparent;
 
   @extend %type--subhead-2;
 
@@ -73,7 +73,11 @@ $menu-item-padding: 12px;
   user-select: none;
 
   &:focus {
-    @mixin themedParent outline-color, menu, hover;
+    @mixin themedParent outline-color, focus, secondary;
+
+    [data-whatinput='mouse'] & {
+      outline: none;
+    }
   }
 
   > .kui-icon {

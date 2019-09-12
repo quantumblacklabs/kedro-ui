@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { uniqueId } from 'lodash/fp';
+import 'what-input';
 
 import SliderRenderer from './slider-renderer';
 import RangedSliderRenderer from './ranged-slider-renderer';

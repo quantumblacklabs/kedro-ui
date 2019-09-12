@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import uniqueId from 'lodash/uniqueId';
 import assert from 'assert';
+import 'what-input';
 import utils from '../../utils';
 import ToggleRenderer from './toggle-renderer';
 

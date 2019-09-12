@@ -58,11 +58,15 @@ $size-radio-button-spacing: 14px;
 
   .kui-switch__input:focus + .kui-switch-radio__label & {
     .kui-theme--light & {
-      box-shadow: 0 0 0 3px map(themes, light, radiobutton, focus);
+      box-shadow: 0 0 0 4px map(themes, light, focus, secondary);
     }
 
     .kui-theme--dark & {
-      box-shadow: 0 0 0 3px map(themes, dark, radiobutton, focus);
+      box-shadow: 0 0 0 4px map(themes, dark, focus, secondary);
+    }
+
+    [data-whatinput='mouse'] & {
+      box-shadow: none;
     }
   }
 }

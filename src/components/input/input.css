@@ -27,16 +27,6 @@ $duration-input-transition: 0.3s;
   border: $height-tiny solid rgba(0, 0, 0, 0.12);
   box-sizing: border-box;
 
-  outline: none;
-
-  &:focus {
-    @extend %shadow-light--focus;
-  }
-
-  &:active {
-    @extend %shadow-light--active;
-  }
-
   .kui-theme--dark & {
     @extend %shadow-dark;
 
@@ -62,6 +52,22 @@ $duration-input-transition: 0.3s;
 
 .kui-input--focused {
   @extend %shadow-light--active;
+
+  &.kui-theme--light {
+    outline: 4px solid map(themes, light, focus, secondary);
+}
+
+  &.kui-theme--dark {
+    outline: 4px solid map(themes, dark, focus, secondary);
+  }
+
+  [data-whatintent='keyboard'] & {
+    box-shadow: none;
+  }
+
+  [data-whatintent='mouse'] & {
+    outline: none;
+  }
 }
 
 .kui-input__field {

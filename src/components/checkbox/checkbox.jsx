@@ -3,6 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import uniqueId from 'lodash/uniqueId';
+import 'what-input';
 import Switch from '../switch';
 
 // Styles
@@ -14,7 +15,14 @@ import './checkbox.css';
  * its state does not effect other checkboxes, therefore multiple checkboxes can be checked at the same time.
  */
 const Checkbox = ({
-  checked, defaultChecked, disabled, label, name, onChange, theme, value
+  checked,
+  defaultChecked,
+  disabled,
+  label,
+  name,
+  onChange,
+  theme,
+  value
 }) => {
   const id = uniqueId('checkbox');
 
@@ -26,18 +34,19 @@ const Checkbox = ({
       disabled={disabled}
       name={name}
       onChange={onChange}
-      type='checkbox'
+      type="checkbox"
       theme={theme}
       value={value}>
-      <label className='kui-switch-checkbox__label' htmlFor={id}>
-        <div className='kui-switch-checkbox__box'>
-          <svg className='kui-switch-checkbox__inner' viewBox='0 0 24 24'>
-            <g fill='none' fillRule='evenodd'>
-              <path d='M0 0h24v24H0z' />
+      <label className="kui-switch-checkbox__label" htmlFor={id}>
+        <div className="kui-switch-checkbox__box">
+          <svg className="kui-switch-checkbox__inner" viewBox="0 0 24 24">
+            <g fill="none" fillRule="evenodd">
+              <path d="M0 0h24v24H0z" />
               <path
-                className='kui-switch-checkbox__innerfill'
-                d='M2 2h20v20H2V2zm7.923 12.362l-2.538-2.418L6
-                   13.263 9.923 17 18 9.32 16.615 8l-6.692 6.362z' />
+                className="kui-switch-checkbox__innerfill"
+                d="M2 2h20v20H2V2zm7.923 12.362l-2.538-2.418L6
+                   13.263 9.923 17 18 9.32 16.615 8l-6.692 6.362z"
+              />
             </g>
           </svg>
         </div>

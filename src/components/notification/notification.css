@@ -101,7 +101,8 @@ $color-btn-focus: rgba(255, 255, 255, 0.2);
   font-size: 0;
   line-height: 1;
 
-  background: transparent;
+  background: none;
+  outline: 4px solid transparent;
 
   &:hover {
     cursor: pointer;
@@ -112,12 +113,14 @@ $color-btn-focus: rgba(255, 255, 255, 0.2);
   }
 
   &:focus {
-    background: $color-btn-focus;
-
-    outline: none;
+    @mixin themedParent outline-color, focus, secondary;
 
     .kui-icon--close {
       opacity: 1;
     }
+  }
+
+  [data-whatinput='mouse'] & {
+    outline: none;
   }
 }
