@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import pickBy from 'lodash/pickBy';
+import 'what-input';
 import IconAssets from './assets';
 
 import './icon.css';
@@ -59,11 +60,13 @@ const Icon = props => {
 
   const styleOverrides = typeof color === 'string' ? { style: { fill: color } } : null;
 
+  const Container = onClick ? 'button' : 'span';
+
   return (
-    <span className={containerClassNames} {...dataProps} onClick={onClick}>
+    <Container className={containerClassNames} {...dataProps} onClick={onClick}>
       {SvgIcon && <SvgIcon title={title} className={svgClassNames} {...styleOverrides} />}
       {SvgIcon2 && <SvgIcon2 title={title} className={svgClassNames} {...styleOverrides} />}
-    </span>
+    </Container>
   );
 };
 
