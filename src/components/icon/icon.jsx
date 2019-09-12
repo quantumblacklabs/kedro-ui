@@ -19,6 +19,8 @@ const Icon = props => {
     color,
     index,
     onClick,
+    onFocus,
+    onBlur,
     size,
     theme,
     title,
@@ -60,10 +62,10 @@ const Icon = props => {
 
   const styleOverrides = typeof color === 'string' ? { style: { fill: color } } : null;
 
-  const Container = onClick ? 'button' : 'span';
+  const Container = (onClick || onFocus || onBlur) ? 'button' : 'span';
 
   return (
-    <Container className={containerClassNames} {...dataProps} onClick={onClick}>
+    <Container className={containerClassNames} {...dataProps} onClick={onClick} onFocus={onFocus} onBlur={onBlur}>
       {SvgIcon && <SvgIcon title={title} className={svgClassNames} {...styleOverrides} />}
       {SvgIcon2 && <SvgIcon2 title={title} className={svgClassNames} {...styleOverrides} />}
     </Container>
@@ -80,9 +82,17 @@ Icon.propTypes = {
    */
   index: PropTypes.oneOf([0, 1]),
   /**
-   * Callback from when an icon is tapped
+   * Callback for when an icon is tapped
    */
   onClick: PropTypes.func,
+  /**
+   * Callback for when an icon is focused
+   */
+  onFocus: PropTypes.func,
+  /**
+   * Callback for when an icon is blurred
+   */
+  onBlur: PropTypes.func,
   /**
    * The size of the whole icon.
    */

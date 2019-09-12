@@ -71,6 +71,17 @@ $size-pos-base: 10px;
   }
 }
 
+.kui-searchbar__dynamicicon {
+  visibility: hidden;
+  opacity: 0;
+  transition: all ease 0.1s;
+
+  &--visible {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
 .kui-icon--close {
   .kui-searchbar & {
     right: $size-pos-base;
