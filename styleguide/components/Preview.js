@@ -21,7 +21,9 @@ const styles = ({ fontFamily }) => ({
   previewBg: {
     borderWidth: 1,
     borderStyle: 'solid',
-    padding: 40,
+    padding: 40
+  },
+  themeButtonWrapper: {
     position: 'relative'
   },
   themeButton: {
@@ -58,21 +60,25 @@ export class Preview extends React.Component {
     const themedCode = code.replace(/theme='light'/g, `theme='${theme}'`);
 
     return (
-      <div
-        className={classes.previewBg}
-        style={{
-          background: BACKGROUND_COLOR[theme],
-          borderColor: BORDER_COLOR[theme]
-        }}>
-        <button
-          className={classes.themeButton}
-          onClick={this.toggleTheme.bind(this)}
-          style={{ color: COLOR[theme] }}>
-          { theme.toUpperCase() }
-        </button>
-        <DefaultPreview {...this.props} code={themedCode}>
-          {children}
-        </DefaultPreview>
+      <div>
+        <div className={classes.themeButtonWrapper}>
+          <button
+            className={classes.themeButton}
+            onClick={this.toggleTheme.bind(this)}
+            style={{ color: COLOR[theme] }}>
+            { theme.toUpperCase() }
+          </button>
+        </div>
+        <div
+          className={classes.previewBg}
+          style={{
+            background: BACKGROUND_COLOR[theme],
+            borderColor: BORDER_COLOR[theme]
+          }}>
+          <DefaultPreview {...this.props} code={themedCode}>
+            {children}
+          </DefaultPreview>
+        </div>
       </div>
     )
   }
