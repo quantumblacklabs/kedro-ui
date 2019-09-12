@@ -15,7 +15,8 @@ $duration-input-transition: 0.3s;
 /** Implementation **/
 
 .kui-input-wrapper {
-  width: $default-input-width;
+  width: 100%;
+  max-width: $default-input-width;
 }
 
 .kui-input {
@@ -55,7 +56,7 @@ $duration-input-transition: 0.3s;
 
   &.kui-theme--light {
     outline: 4px solid map(themes, light, focus, secondary);
-}
+  }
 
   &.kui-theme--dark {
     outline: 4px solid map(themes, dark, focus, secondary);

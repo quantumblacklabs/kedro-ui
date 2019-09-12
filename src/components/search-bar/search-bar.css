@@ -2,6 +2,8 @@
 
 @import '../../styles/includes';
 
+$default-input-width: 320px;
+
 /** Variables **/
 
 $size-icon: 24px;
@@ -13,7 +15,8 @@ $size-pos-base: 10px;
 .kui-searchbar {
   position: relative;
 
-  display: inline-block;
+  width: 100%;
+  max-width: $default-input-width;
 }
 
 .kui-input {
