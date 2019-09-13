@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  flatten, find, flow, isEqual, map
-} from 'lodash/fp';
+import { flatten, find, flow, isEqual, map } from 'lodash/fp';
+import 'what-input';
 
 // Styles
 import './dropdown.css';

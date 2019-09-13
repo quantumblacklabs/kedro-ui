@@ -25,7 +25,6 @@ const SearchBarRenderer = props => {
     showClearButton,
     value
   } = props;
-  const style = { opacity: showClearButton ? 1 : 0 };
 
   return (
     <form
@@ -45,8 +44,9 @@ const SearchBarRenderer = props => {
         value={value}
         theme={theme}
         type='search' />
-      <div className='kui-searchbar__dynamicicon' style={style}>
-        <Icon onClick={onClear} type='close' size='medium' theme={theme} />
+      <div className={classnames('kui-searchbar__dynamicicon', {
+        'kui-searchbar__dynamicicon--visible': showClearButton })}>
+        <Icon onClick={onClear} type='close' size='medium' theme={theme} onFocus={onFocus} onBlur={onBlur} />
       </div>
       { children }
     </form>

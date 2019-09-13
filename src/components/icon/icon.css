@@ -20,6 +20,23 @@
   width: $size-icon-base;
   height: $size-icon-base;
 
+  button& {
+    background: none;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    border-radius: 0;
+    outline: 4px solid transparent;
+
+    &:focus {
+      @mixin themedParent outline-color, focus, secondary;
+    }
+
+    [data-whatinput='mouse'] & {
+      outline: none;
+    }
+  }
+
   /** size variants **/
   &--small {
     width: calc($size-icon-base * 0.5);

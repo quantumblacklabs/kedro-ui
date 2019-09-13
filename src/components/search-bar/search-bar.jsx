@@ -101,7 +101,7 @@ class SearchBar extends React.Component {
   /**
    * onClose - clear the text in the input
    */
-  _handleCleared() {
+  _handleCleared(event) {
     this.setState({
       value: '',
       showClearButton: false
@@ -116,6 +116,8 @@ class SearchBar extends React.Component {
     if (typeof this.props.onChange === 'function') {
       this.props.onChange('');
     }
+
+    event.preventDefault();
   }
 
   /**

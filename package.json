@@ -64,7 +64,8 @@
     "lodash": "^4.17.15",
     "prop-types": "^15.7.2",
     "react-transition-group": "^4.1.1",
-    "snyk": "^1.202.0"
+    "snyk": "^1.202.0",
+    "what-input": "^5.2.3"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",

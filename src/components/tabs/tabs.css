@@ -81,7 +81,7 @@ $duration-underline-hovered: 0.5s;
   box-shadow: none;
   text-decoration: none;
   cursor: pointer;
-  outline: none;
+  outline: 4px solid transparent;
 
   &:hover {
     text-decoration: none;
@@ -89,10 +89,15 @@ $duration-underline-hovered: 0.5s;
 
   &:focus {
     @mixin themedParent color, text;
+    @mixin themedParent outline-color, focus, secondary;
   }
 
   &:active {
     @mixin themedParent background-color, tabs, active;
+  }
+
+  [data-whatintent='mouse'] & {
+    outline: none;
   }
 }
 

@@ -6,10 +6,6 @@ import SearchBar from '../search-bar';
 import SearchResults from '../search-results';
 import utils from '../../utils';
 
-// Styles
-
-import './search.css';
-
 const { escapeRegExp, handleKeyEvent } = utils;
 
 /**

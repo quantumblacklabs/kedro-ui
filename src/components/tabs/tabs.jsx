@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import 'what-input';
 import TabsRenderer from './tabs-renderer';
 
 import './tabs.css';

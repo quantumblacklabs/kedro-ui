@@ -63,11 +63,11 @@ $secondary-underline-offset-hover: 4px;
   @mixin themedState :disabled, color, text;
 
   &.kui-theme--light:focus {
-    box-shadow: 0 0 0 5px map(themes, light, button, focus);
+    box-shadow: 0 0 0 7px map(themes, light, focus, secondary);
   }
 
   &.kui-theme--dark:focus {
-    box-shadow: 0 0 0 5px map(themes, dark, button, focus);
+    box-shadow: 0 0 0 7px map(themes, dark, focus, secondary);
   }
 
   &:active {
@@ -132,11 +132,17 @@ $secondary-underline-offset-hover: 4px;
       width: 100%;
     }
   }
+
+  [data-whatinput='mouse'] &:focus {
+    box-shadow: none;
+  }
 }
 
 .kui-button__btn--secondary {
-  @mixin themedState :focus::after, background, button, focus;
   @mixin themedState :hover::after, background, button, outline;
+  @mixin themedState :focus, outline-color, focus, secondary;
+
+  outline: 4px solid transparent;
 
   &::after {
     display: block;
@@ -153,8 +159,7 @@ $secondary-underline-offset-hover: 4px;
     background: none;
   }
 
-  &:hover::after,
-  &:focus::after {
+  &:hover::after {
     transform: translateY($secondary-underline-offset-hover);
   }
 
@@ -177,9 +182,12 @@ $secondary-underline-offset-hover: 4px;
     @mixin themedState :after, background, button, outline;
 
     &:active::after,
-    &:focus::after,
     &:hover::after {
       width: 100%;
     }
+  }
+
+  [data-whatinput='mouse'] &:focus {
+    outline: none;
   }
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import 'what-input';
 
 import './input.css';
 import './input-status-v1.css';
