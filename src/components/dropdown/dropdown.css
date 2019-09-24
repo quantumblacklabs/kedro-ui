@@ -61,6 +61,7 @@ $menu-item-padding: 12px;
   border-radius: 0;
   box-shadow: none;
   outline: 4px solid transparent;
+  font-family: inherit;
 
   @extend %type--subhead-2;
 
