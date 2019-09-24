@@ -11,7 +11,7 @@ themes:
       default: rgb(208, 209, 210)
     focus:
       primary: rgb(27, 117, 240)
-      secondary: rgb(80, 170, 222)
+      secondary: rgb(102, 199, 255)
       default: rgb(240, 241, 243)
     active:
       primary: rgb(58, 137, 242)
@@ -100,7 +100,7 @@ themes:
       default: rgb(67, 76, 81)
     focus:
       primary: rgb(27, 117, 240)
-      secondary: rgb(80, 170, 222)
+      secondary: rgb(90, 183, 237)
       default: rgb(85, 99, 108)
     active:
       primary: rgb(58, 137, 242)
