@@ -57,7 +57,9 @@ $duration-visibility: 0.4s;
 
   opacity: 0;
   transform: translate(-50%, -50%) translateY(80px);
-  transition: all ease $duration-visibility;
+  transition:
+    opacity $duration-visibility,
+    transform $duration-visibility;
 }
 
 .kui-modal__content--visible {

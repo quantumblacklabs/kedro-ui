@@ -7,6 +7,7 @@
 $size-dot-dimension: 20px;
 $size-radio-button-spacing: 14px;
 $size-checkmark: 24px;
+$timing-primary: 0.2s;
 
 /** Implementation **/
 
@@ -24,7 +25,7 @@ $size-checkmark: 24px;
 
   border: 2px solid;
   outline: 4px solid transparent;
-  transition: 0.2s all;
+  transition: oapcity $timing-primary, border-color $timing-primary;
 
   .kui-switch__input:checked + .kui-switch-checkbox__label & {
     border-color: transparent;
@@ -46,24 +47,21 @@ $size-checkmark: 24px;
   top: 50%;
   left: 50%;
 
-  width: 1px;
-  height: 1px;
+  width: $size-checkmark;
+  height: $size-checkmark;
 
-  transition: 0.2s all;
-  transform: translate(-50%, -50%);
+  transition: transform $timing-primary, opacity $timing-primary;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
 
   .kui-switch__input:checked + .kui-switch-checkbox__label & {
-    width: $size-checkmark;
-    height: $size-checkmark;
-
-    transition: 0.2s all;
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
   }
 }
 
 .kui-switch-checkbox__innerfill {
-  .kui-switch__input:checked + .kui-switch-checkbox__label & {
-    @mixin themedParent fill, radiobutton;
-  }
+  @mixin themedParent fill, radiobutton;
 }
 
 .kui-switch-checkbox__label {

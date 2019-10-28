@@ -26,7 +26,7 @@ $size-spacing: 20px;
 .kui-notification-animation-enter.kui-notification-animation-enter-active {
   opacity: 1;
 
-  transition: all 500ms;
+  transition: opacity 500ms;
 }
 
 .kui-notification-animation-exit {
@@ -36,5 +36,5 @@ $size-spacing: 20px;
 .kui-notification-animation-exit.kui-notification-animation-exit-active {
   opacity: 0;
 
-  transition: all 300ms ease-in;
+  transition: opacity 300ms ease-in;
 }
