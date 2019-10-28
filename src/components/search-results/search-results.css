@@ -23,7 +23,9 @@ $results-row-padding: 8px 20px 12px 44px;
   overflow: hidden;
 
   width: $search-input-width;
-  transition: all ease $results-list-vertical-transition;
+  transition:
+    height $results-list-vertical-transition,
+    max-height $results-list-vertical-transition;
   box-sizing: border-box;
 
   @mixin themed background, menu, default;
@@ -44,7 +46,6 @@ $results-row-padding: 8px 20px 12px 44px;
 
   margin: 0;
   padding: $results-list-vertical-padding 0;
-  transition: all ease $results-list-vertical-transition;
   box-sizing: border-box;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12) inset;
 }

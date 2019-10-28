@@ -77,7 +77,7 @@ $duration-switch-hover: 0.1s;
   display: flex;
   margin: 0 0 $size-toggle-text-margin;
   cursor: pointer;
-  transition: $duration-switch-hover;
+  transition: color $duration-switch-hover;
   outline: $size-toggle-outline solid transparent;
   transform: translateY($size-toggle-y-offset);
 
@@ -139,7 +139,7 @@ $duration-switch-hover: 0.1s;
 }
 
 .kui-toggle__separator {
-  transition: $duration-separator-switch;
+  transition: transform $duration-separator-switch;
 
   margin: $size-separator-margin;
 

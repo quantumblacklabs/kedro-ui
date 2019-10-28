@@ -143,7 +143,7 @@ $duration-input-transition: 0.3s;
     white-space: pre;
     background-color: transparent;
     color: transparent;
-    transition: all ease $duration-input-transition;
+    transition: background-color $duration-input-transition;
 
     .kui-input--focused & {
       @mixin themedStart background-color, input, textFilled;
@@ -162,7 +162,9 @@ $duration-input-transition: 0.3s;
     content: '';
     flex: 0;
     background-color: transparent;
-    transition: all ease $duration-input-transition;
+    transition:
+      background-color $duration-input-transition,
+      flex $duration-input-transition;
   }
 
   .kui-input__field:focus + &::after,
@@ -196,13 +198,21 @@ $duration-input-transition: 0.3s;
   transform: scaleY(0.8);
   transform-origin: top;
   height: 0;
-  transition: all ease $duration-input-transition;
+  transition:
+    visibility $duration-input-transition,
+    opacity $duration-input-transition,
+    height $duration-input-transition,
+    transform $duration-input-transition;
 
   &--has-content {
     visibility: visible;
     opacity: 1;
     height: auto;
     transform: scaleY(1);
+    transition:
+      opacity $duration-input-transition,
+      height $duration-input-transition,
+      transform $duration-input-transition;
   }
 }
 

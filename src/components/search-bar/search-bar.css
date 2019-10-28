@@ -74,11 +74,12 @@ $size-pos-base: 10px;
 .kui-searchbar__dynamicicon {
   visibility: hidden;
   opacity: 0;
-  transition: all ease 0.1s;
+  transition: opacity 0.1s, visibility 0.1s;
 
   &--visible {
     visibility: visible;
     opacity: 1;
+    transition: opacity 0.1s;
   }
 }
 
