@@ -136,7 +136,7 @@
     "react-dom": "^16.8.6"
   },
   "engines": {
-    "node": "10.8.0",
+    "node": "^10.8.0",
     "npm": "6.3.0"
   },
   "license": "Apache-2.0",
