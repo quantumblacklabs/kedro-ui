@@ -4,10 +4,6 @@
 }
 
 /* Weights */
-%type--light {
-  font-weight: 300;
-}
-
 %type--regular {
   font-weight: 400;
 }
