@@ -11,7 +11,9 @@ jobs:
       - checkout
       - run:
           name: Install dependencies
-          command: npm ci
+          command: |
+            export NODE_OPTIONS=--max-old-space-size=8192
+            npm ci
       - run:
           name: ESLint
           command: npm run eslint
