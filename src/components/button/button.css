@@ -23,6 +23,7 @@ $secondary-underline-offset-hover: 4px;
   @mixin themed color, text;
 
   display: inline-block;
+  margin: 2px;
   padding: 0.7em 0.8em 0.8em;
   line-height: 1em;
   border: none;
