@@ -19,7 +19,7 @@ The **recommended** way to import Kedro UI components is to import each componen
 // Core CSS (import once)
 import '@quantumblack/kedro-ui/lib/styles/app.css';
 // Single component (import in each file you use it)
-import Button from '@quantumblack/kedro-ui/lib/components/input';
+import Button from '@quantumblack/kedro-ui/lib/components/button';
 ```
 However the quickest way to import Kedro UI components is with a destructured import:
 ```JavaScript
@@ -32,7 +32,7 @@ Once you have installed the library and imported a component, you can use it in 
 import React from 'react';
 import ReactDOM from 'react-dom';
 import '@quantumblack/kedro-ui/lib/styles/app.css';
-import Button from '@quantumblack/kedro-ui/lib/components/input';
+import Button from '@quantumblack/kedro-ui/lib/components/button';
 
 const MyComponent = () => (
   <Button theme='light' size='small' mode='secondary'>Hello world!</Button>
