@@ -65,7 +65,7 @@
     "prop-types": "^15.7.2",
     "react-transition-group": "^4.1.1",
     "snyk": "^1.337.0",
-    "what-input": "^5.2.3"
+    "what-input": "^5.2.10"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
