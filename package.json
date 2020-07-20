@@ -63,7 +63,7 @@
     "classnames": "^2.2.6",
     "lodash": "^4.17.15",
     "prop-types": "^15.7.2",
-    "react-transition-group": "^4.1.1",
+    "react-transition-group": "^4.4.1",
     "snyk": "^1.337.0",
     "what-input": "^5.2.10"
   },
