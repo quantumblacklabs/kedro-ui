@@ -57,7 +57,7 @@ class ChangeParent extends React.Component {
 
     return (
       <div>
-        <SearchBar value={this.state.currentText} onChange={this.onChange} theme='light' iconType='refresh'/>
+        <SearchBar value={this.state.currentText} onChange={this.onChange} theme='light' />
         <div style={style}>Text From SearchBar: {this.state.currentText}</div>
         <Button size='small' theme='light' onClick={()=> { this.setState({currentText: 'something'}); }}>Set External Value</Button>
       </div>
@@ -66,4 +66,67 @@ class ChangeParent extends React.Component {
 }
 
 <ChangeParent />
+```
+
+```
+import SearchBar from 'components/search-bar';
+import Button from 'components/button';
+
+class FocusParent extends React.Component {
+  constructor(props) {
+    super(props);
+    
+    this.setFocused = this.setFocused.bind(this);
+    this.focusTimeout = null;
+
+    this.state = {
+      isFocused: false
+    };
+  }
+
+  setFocused(isFocused) {
+    this.setState({ isFocused });
+    clearTimeout(this.focusTimeout);
+
+    if (isFocused) {
+      this.focusTimeout = setTimeout(() => {
+        this.setState({ isFocused: false });
+      }, 5000);
+    }
+  }
+
+  render() {
+    const style = {
+      color: 'grey',
+      margin: '20px 0'
+    };
+
+    const isFocused = this.state.isFocused;
+    const text = isFocused ? 'Blur in 5 seconds...' : 'Focus';
+
+    return (
+      <div>
+        <SearchBar 
+          theme='light' 
+          focused={this.state.isFocused}
+          onFocus={() => this.setFocused(true)} 
+          onBlur={() => this.setFocused(false)}
+        />
+        <Button 
+          size='small' 
+          theme='light'
+          disabled={this.state.isFocused}
+          onClick={() => this.setFocused(true)}
+        >{text}</Button>
+        <Button 
+          size='small' 
+          theme='light' 
+          onClick={() => this.setFocused(false)}
+        >Blur</Button>
+      </div>
+    );
+  }
+}
+
+<FocusParent />
 ```

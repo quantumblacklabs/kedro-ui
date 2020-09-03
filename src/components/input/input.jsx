@@ -21,9 +21,10 @@ class Input extends React.Component {
     super(props);
 
     this.displayName = 'Input';
+    this.textInput = React.createRef();
 
     this.state = {
-      focused: false,
+      focused: null,
       value: this.props.value
     };
 
@@ -42,6 +43,12 @@ class Input extends React.Component {
       this.setState({
         value: this.props.value
       });
+    }
+
+    if (this.props.focused === true) {
+      this.textInput.current.focus();
+    } else if (this.props.focused === false) {
+      this.textInput.current.blur();
     }
   }
 
@@ -145,6 +152,7 @@ class Input extends React.Component {
           {labelWrapper}
           <input
             className='kui-input__field'
+            ref={this.textInput}
             type='text'
             placeholder={placeholder || ''}
             disabled={disabled}
@@ -165,6 +173,7 @@ class Input extends React.Component {
 
 Input.defaultProps = {
   disabled: false,
+  focused: null,
   label: null,
   onBlur: null,
   onFocus: null,

@@ -24,7 +24,7 @@ class SearchBar extends React.Component {
 
     this.state = {
       value: this.props.value,
-      isFocused: false,
+      isFocused: null,
       showClearButton: this.props.value !== ''
     };
 
@@ -46,6 +46,12 @@ class SearchBar extends React.Component {
       this.setState({
         value: this.props.value,
         showClearButton: this.props.value !== ''
+      });
+    }
+
+    if (this.props.focused !== prevProps.focused) {
+      this.setState({
+        isFocused: this.props.focused
       });
     }
   }
@@ -212,7 +218,11 @@ SearchBar.propTypes = {
   /**
    * Value of the inner input bar
    */
-  value: PropTypes.string
+  value: PropTypes.string,
+  /**
+   * Sets the focus
+   */
+  focused: PropTypes.bool
 };
 
 export default SearchBar;

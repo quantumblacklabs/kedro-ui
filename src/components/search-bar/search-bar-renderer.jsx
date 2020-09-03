@@ -38,6 +38,7 @@ const SearchBarRenderer = props => {
       <Input
         id='kui-searchbar'
         placeholder={placeholder}
+        focused={isFocused}
         onChange={onChange}
         onFocus={onFocus}
         onBlur={onBlur}
@@ -55,7 +56,8 @@ const SearchBarRenderer = props => {
 
 SearchBarRenderer.defaultProps = {
   children: null,
-  onSubmit: null
+  onSubmit: null,
+  isFocused: null
 };
 
 SearchBarRenderer.propTypes = {
@@ -70,7 +72,7 @@ SearchBarRenderer.propTypes = {
   /**
    * Indicating whether the search bar is focused or blurred
    */
-  isFocused: PropTypes.bool.isRequired,
+  isFocused: PropTypes.bool,
   /**
    * Place holder text for search input
    */
