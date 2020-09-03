@@ -100,3 +100,45 @@ test('It should trigger onChange correctly', () => {
   expect(wrapper.state().value)
     .toBe('new value');
 });
+
+test('It should trigger onFocus when focused prop set on mount', () => {
+  const cb = jest.fn();
+
+  const wrapper = mount(<Input focused={true} onFocus={cb} />);
+
+  expect(cb)
+    .toHaveBeenCalled();
+
+  expect(wrapper.find('.kui-input--focused').length).toBe(1);
+});
+
+test('It should trigger onFocus and onBlur when focused prop changes', () => {
+  const onFocus = jest.fn();
+  const onBlur = jest.fn();
+
+  const wrapper = mount(<Input focused={null} onFocus={onFocus} onBlur={onBlur} />);
+
+  expect(onFocus)
+    .not.toHaveBeenCalled();
+
+  expect(onBlur)
+    .not.toHaveBeenCalled();
+
+  expect(wrapper.find('.kui-input--focused').length).toBe(0);
+
+  wrapper.setProps({ focused: true });
+  wrapper.update();
+
+  expect(onFocus)
+    .toHaveBeenCalled();
+
+  expect(wrapper.find('.kui-input--focused').length).toBe(1);
+
+  wrapper.setProps({ focused: false });
+  wrapper.update();
+
+  expect(onBlur)
+    .toHaveBeenCalled();
+
+  expect(wrapper.find('.kui-input--focused').length).toBe(0);
+});

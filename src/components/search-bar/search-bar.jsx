@@ -24,7 +24,7 @@ class SearchBar extends React.Component {
 
     this.state = {
       value: this.props.value,
-      isFocused: null,
+      isFocused: this.props.focused,
       showClearButton: this.props.value !== ''
     };
 
@@ -175,7 +175,8 @@ SearchBar.defaultProps = {
   onFocus: null,
   onSubmit: null,
   theme: 'dark',
-  value: ''
+  value: '',
+  focused: null
 };
 
 SearchBar.propTypes = {

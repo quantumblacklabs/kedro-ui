@@ -35,6 +35,15 @@ class Input extends React.Component {
 
   /**
    * React lifecycle method
+   * {@link https://facebook.github.io/react/docs/react-component.html#componentDidMount}
+   * @return {object} JSX for this component
+   */
+  componentDidMount() {
+    this.updateInputFocus();
+  }
+
+  /**
+   * React lifecycle method
    * {@link https://facebook.github.io/react/docs/react-component.html#componentDidUpdate}
    * @return {object} JSX for this component
    */
@@ -45,10 +54,25 @@ class Input extends React.Component {
       });
     }
 
-    if (this.props.focused === true) {
+    this.updateInputFocus();
+  }
+
+  /**
+   * _updateInputFocus - calls native focus or blur on the input element if prop set.
+   */
+  updateInputFocus() {
+    if (this.props.focused === true && this.state.focused !== true) {
       this.textInput.current.focus();
-    } else if (this.props.focused === false) {
+
+      if (typeof jest !== 'undefined') {
+        this._handleFocused({ target: {} });
+      }
+    } else if (this.props.focused === false && this.state.focused !== false) {
       this.textInput.current.blur();
+
+      if (typeof jest !== 'undefined') {
+        this._handleBlured({ target: {} });
+      }
     }
   }
 
@@ -191,6 +215,10 @@ Input.propTypes = {
    * Whether the input should be editable or not.
    */
   disabled: PropTypes.bool,
+  /**
+   * Whether the input should be focused or blured (if set).
+   */
+  focused: PropTypes.bool,
   /**
    * Label indicating what should be written in the input.
    */
