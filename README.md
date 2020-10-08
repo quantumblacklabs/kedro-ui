@@ -41,6 +41,22 @@ const MyComponent = () => (
 ReactDOM.render(<MyComponent />, document.getElementById('root'));
 ```
 
+#### Loading Webfonts
+
+By default, the 'Titillium Web' font is imported from Google Fonts via `styles/app.css`. If you would prefer not to include this webfont, you can instead use `styles/app-no-webfont.css`, which does not include this font import. If you need more control over font loading (for instance, you might want to add a callback for once the font has loaded), you can import `LoadWebFont` from `utils/webfont.js`, which provides a configurable JS wrapper around the Google [webfontloader](https://github.com/typekit/webfontloader) library. Example usage:
+
+```JavaScript
+import '@quantumblack/kedro-ui/lib/styles/app-no-webfont.css';
+import LoadWebFont from '@quantumblack/kedro-ui/lib/utils/webfont.js';
+
+LoadWebFont({
+  active: function() {
+    console.log('Font has been rendered');
+  }
+})
+```
+
+
 ## 📚 Documentation
 
 We use styleguidist to document our comments and their usage. To try them out head over [here](https://quantumblacklabs.github.io/kedro-ui/).
