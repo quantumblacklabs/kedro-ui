@@ -1,3 +1,8 @@
+/**
+ * The main stylesheet for library-wide styles.
+ * Import this CSS file separately from individual components.
+ */
+@import url(https://fonts.googleapis.com/css?family=Titillium+Web:400,600);
 @import './includes';
 @import './typography/styles';
 @import './overrides';
