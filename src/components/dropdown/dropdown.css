@@ -106,7 +106,7 @@ $menu-item-padding: 12px;
 
   position: absolute;
 
-  display: none;
+  visibility: hidden;
   width: 100%;
   max-height: $menu-max-height;
   overflow: auto;
@@ -114,10 +114,15 @@ $menu-item-padding: 12px;
 
   border-style: solid;
   border-width: 1px 0 0;
-  animation: dropdownEntrance 0.3s;
+  transition: opacity ease 0.2s, transform ease 0.2s, visibility ease 0.2s;
+  transform: translateY(-10px);
+  opacity: 0;
 
   .kui-dropdown--open & {
-    display: block;
+    visibility: visible;
+    transition: opacity ease 0.3s, transform ease 0.3s, visibility ease 0.3s;
+    opacity: 1;
+    transform: translateY(0);
   }
 
   > section {
@@ -160,17 +165,5 @@ $menu-item-padding: 12px;
       @extend %type--body-1;
       @extend %type--semibold;
     }
-  }
-}
-
-@keyframes dropdownEntrance {
-  0% {
-    opacity: 0.5;
-    transform: translateY(-10px);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0);
   }
 }
