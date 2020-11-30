@@ -27,7 +27,7 @@ $menu-item-padding: 12px;
   @mixin themed border-color, menu, wrapper;
 
   &:hover {
-    &:not(.kui-dropdown--open) {
+    &:not(.kui-dropdown--open):not(.kui-dropdown--disabled) {
       @extend %shadow-light--hover;
     }
   }
@@ -45,6 +45,10 @@ $menu-item-padding: 12px;
   position: relative;
 
   z-index: 9;
+}
+
+.kui-dropdown--disabled {
+  opacity: 0.5;
 }
 
 .kui-dropdown__label {
@@ -72,6 +76,10 @@ $menu-item-padding: 12px;
 
   cursor: pointer;
   user-select: none;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
 
   &:focus {
     @mixin themedParent outline-color, focus, secondary;
