@@ -15,6 +15,7 @@ const { handleKeyEvent } = utils;
 const DropdownRenderer = ({
   children,
   defaultText,
+  disabled,
   focusedOption,
   handleRef,
   onLabelClicked,
@@ -26,7 +27,10 @@ const DropdownRenderer = ({
   title,
   width
 }) => {
-  const wrapperClasses = classnames('kedro', 'kui-dropdown', `kui-theme--${theme}`, { 'kui-dropdown--open': open });
+  const wrapperClasses = classnames(
+    'kedro', 'kui-dropdown', `kui-theme--${theme}`,
+    { 'kui-dropdown--open': open, 'kui-dropdown--disabled': disabled }
+  );
   let optionIndex = 0;
 
   /**
@@ -114,6 +118,7 @@ const DropdownRenderer = ({
       title={title}>
       <button
         type='button'
+        disabled={disabled}
         className='kui-dropdown__label'
         onClick={onLabelClicked}>
         <span>{selectedOption.label || defaultText}</span>
@@ -129,6 +134,7 @@ const DropdownRenderer = ({
 DropdownRenderer.defaultProps = {
   children: null,
   defaultText: 'Please select...',
+  disabled: false,
   focusedOption: null,
   handleRef: null,
   onLabelClicked: null,
@@ -150,6 +156,10 @@ DropdownRenderer.propTypes = {
   * Default text to show in a closed unselected state
   */
   defaultText: PropTypes.string,
+  /**
+  * Whether to disable the dropdown
+  */
+  disabled: PropTypes.bool,
   /**
   * The index of the currently-focused menu option
   */

@@ -107,6 +107,13 @@ class Wrap extends React.Component {
 ```
 
 
+A disabled dropdown
+```
+import Dropdown from 'components/dropdown';
+
+<Dropdown disabled={true} theme='light' />
+```
+
 Using sections and headings to group menu options.
 ```
 import Dropdown from 'components/dropdown';
