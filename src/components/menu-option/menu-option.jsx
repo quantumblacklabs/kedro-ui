@@ -18,6 +18,7 @@ const { handleKeyEvent } = utils;
  * The parent component will override the onSelected property of this component, so you don't need to implement it.
  */
 const MenuOption = ({
+  className,
   focused,
   icon,
   iconPosition,
@@ -28,7 +29,7 @@ const MenuOption = ({
   theme,
   value
 }) => {
-  const wrapperClasses = classnames('kedro', 'kui-menu-option', {
+  const wrapperClasses = classnames('kedro', 'kui-menu-option', className, {
     'kui-menu-option--focused': focused,
     'kui-menu-option--selected': selected,
     'kui-menu-option--has-icon': typeof icon === 'string',
@@ -81,6 +82,7 @@ const MenuOption = ({
 };
 
 MenuOption.defaultProps = {
+  className: null,
   focused: false,
   icon: null,
   iconPosition: 'right',
@@ -92,6 +94,10 @@ MenuOption.defaultProps = {
 };
 
 MenuOption.propTypes = {
+  /**
+   * Container class
+   */
+  className: PropTypes.string,
   /**
    * Whether the option is focused
    */
