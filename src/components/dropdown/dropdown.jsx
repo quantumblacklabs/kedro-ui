@@ -319,13 +319,14 @@ class Dropdown extends React.Component {
    */
   render() {
     const {
-      children, defaultText, theme, width
+      children, defaultText, disabled, theme, width
     } = this.props;
     const { open, focusedOption, selectedOption } = this.state;
 
     return (
       <DropdownRenderer
         defaultText={defaultText}
+        disabled={disabled}
         handleRef={this._handleRef}
         onLabelClicked={this._handleLabelClicked}
         onOptionSelected={this._handleOptionSelected}
@@ -344,6 +345,7 @@ class Dropdown extends React.Component {
 Dropdown.defaultProps = {
   children: null,
   defaultText: 'Please select...',
+  disabled: false,
   onChanged: null,
   onClosed: null,
   onOpened: null,
@@ -360,6 +362,10 @@ Dropdown.propTypes = {
   * Default text to show in a closed unselected state
   */
   defaultText: PropTypes.string,
+  /**
+  * Whether to disable the dropdown
+  */
+  disabled: PropTypes.bool,
   /**
    * Callback function to be executed when a menu item is clicked, other than the one currently selected.
    */
