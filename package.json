@@ -61,7 +61,7 @@
   ],
   "dependencies": {
     "classnames": "^2.2.6",
-    "lodash": "^4.17.20",
+    "lodash": "^4.17.21",
     "prop-types": "^15.7.2",
     "react-transition-group": "^4.4.1",
     "snyk": "^1.337.0",
