@@ -1,5 +1,34 @@
 @import './extends';
 
+/*
+A little background about the .kedro class and %base styles:
+
+Kedro-UI originally included Eric Meyer's Reset CSS v2.0 (which nuked default
+browser styles to avoid cross-browser issues), as well as a bunch of global
+typography styles. As part of this, it set the base font-size to 62.5% (because
+the default browser font-size is 16px so 16px x 0.625 = 10px), so that converting
+font-sizes from pixels to rem is easy as you can simply divide them by ten (e.g.
+14px = 10px x 1.4rem). This allows you to avoid doing complicated maths when
+converting font-sizes from px to rem, as you can just divide them by ten. However
+there was no base default set on the `body` (e.g. body { font-size: 1.6rem; }),
+so every single element's font-size needed to be individually applied based on a
+modifier of 10px, rather than being able to inherit a more sensible/usable default
+font-size (like 1.4rem or 1.6rem) from their parent.
+
+However, these global reset+typography styles prevented the library from being
+imported into existing projects, as it would override the default CSS and impose
+its own. In order to facilitate this usage, we refactored the CSS, removed the
+global resets, and instead applied the base typography styles to a new '.kedro'
+class with a font-size of 10px. This 'kedro' class would be applied via a div/span
+wrapper around every Kedro-UI component. Additionally, we changed the font-size
+values from rem to em, so that they'd inherit from this wrapper class instead of
+the root `html` element (which might vary in different app contexts). This meant
+that Kedro-UI could now be imported into pre-existing web-apps without ruining
+them, which is a sensible thing to expect from a UI component library in retrospect.
+
+- @richardwestenra, February 2021
+*/
+
 .kedro {
   @extend %base;
   font-size: 10px;
