@@ -64,7 +64,7 @@
     "lodash": "^4.17.21",
     "prop-types": "^15.7.2",
     "react-transition-group": "^4.4.1",
-    "snyk": "^1.337.0",
+    "snyk": "^1.465.0",
     "webfontloader": "^1.6.28",
     "what-input": "^5.2.10"
   },
