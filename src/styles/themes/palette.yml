@@ -85,9 +85,9 @@ themes:
       default: rgba(132, 142, 150, 1)
       text: rgba(255, 255, 255, 0.85)
     modal:
-      bg: rgba(0, 0, 0, 0.55)
-      content: rgb(255, 255, 255)
-      title: rgb(0, 0, 0)
+      bg: rgb(248,249,250)
+      content: rgb(248,249,250)
+      title: rgb(0, 0, 0,0.85)
       description: rgba(0, 0, 0, 0.55)
   dark:
     base:
@@ -174,7 +174,7 @@ themes:
       default: rgba(132, 142, 150, 1)
       text: rgba(255, 255, 255, 0.85)
     modal:
-      bg: rgba(19, 25, 36, 0.9)
-      content: rgb(18, 37, 49)
-      title: rgb(255, 255, 255)
+      bg: rgb(29,48,59)
+      content: rgb(29,48,59)
+      title: rgba(255, 255, 255,0.85)
       description: rgba(255, 255, 255, 0.55)
