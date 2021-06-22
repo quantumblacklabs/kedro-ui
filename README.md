@@ -55,7 +55,12 @@ LoadWebFont({
   }
 })
 ```
+### Running Kedro-UI locally  
 
+Kedro-UI has an interface based on [react-styleguidist](https://react-styleguidist.js.org/docs/getting-started) that allows you to interact with all the components during development. You can run the react-styleguidst server and start interacting with your components with the following command:
+```
+npm run start
+```
 
 ## 📚 Documentation
 
